@@ -1,0 +1,7 @@
+[Activity]
+name = Paint
+activity_version = 1
+service_name = org.laptop.Oficina
+icon = activity-rgbpaint
+class = OficinaActivity.OficinaActivity
+
