@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 28
-/svn/!svn/ver/38/trunk/icons
+/svn/!svn/ver/59/trunk/icons
 END
 object-width.svg
 K 25
@@ -225,12 +225,6 @@ svn:wc:ra_dav:version-url
 V 53
 /svn/!svn/ver/16/trunk/icons/tool-shape-trapezoid.svg
 END
-bucket_cursor.svg
-K 25
-svn:wc:ra_dav:version-url
-V 46
-/svn/!svn/ver/34/trunk/icons/bucket_cursor.svg
-END
 format-justify-left.svg
 K 25
 svn:wc:ra_dav:version-url
@@ -260,10 +254,4 @@ K 25
 svn:wc:ra_dav:version-url
 V 57
 /svn/!svn/ver/16/trunk/icons/tool-marquee-rectangular.svg
-END
-brush_cursor.svg
-K 25
-svn:wc:ra_dav:version-url
-V 45
-/svn/!svn/ver/34/trunk/icons/brush_cursor.svg
 END

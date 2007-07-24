@@ -1,12 +1,35 @@
-# Portuguese translations for Oficina package.
-# Copyright (C) 2007 GNU General Public License
-# This file is distributed under the same license as the Oficina package.
-# Nathalia <nathalia.sautchuk@gmail.com>, 2007.
-#
+"""Portuguese translations for Oficina package.
+Copyright 2007, NATE-LSI-EPUSP
+
+Oficina is developed in Brazil at Escola Politecnica of 
+Universidade de Sao Paulo. NATE is part of LSI (Integrated 
+Systems Laboratory) and stands for Learning, Work and 
+Entertainment Center. Visit our web page: 
+www.nate.lsi.usp.br
+Suggestions, bugs and doubts, please email oficina@lsi.usp.br
+
+Oficina is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License 
+as published by the Free Software Foundation version 2 of 
+the License.
+
+Oficina is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public
+License along with Oficina; if not, write to the
+Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, 
+Boston, MA  02110-1301  USA.
+The copy of the GNU General Public License is found in the 
+COPYING file included in the source distribution.
+"""
+
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: Irene <irene@lsi.usp.br>\n"
+"Report-Msgid-Bugs-To: Oficina <oficina@lsi.usp.br>\n"
 "POT-Creation-Date: 2007-07-13 17:56-0300\n"
 "PO-Revision-Date: 2007-07-13 18:00-0300\n"
 "Last-Translator: Nathalia <nathalia.sautchuk@gmail.com>\n"

@@ -1,4 +1,58 @@
 # -*- coding: utf-8 -*-
+"""
+Area.py
+
+Tools and events manipulation
+
+
+Copyright 2007, NATE-LSI-EPUSP
+
+Oficina is developed in Brazil at Escola Politécnica of 
+Universidade de São Paulo. NATE is part of LSI (Integrable
+Systems Laboratory) and stands for Learning, Work and Entertainment
+Research Group. Visit our web page: 
+www.nate.lsi.usp.br
+Suggestions, bugs and doubts, please email oficina@lsi.usp.br
+
+Oficina is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License 
+as published by the Free Software Foundation version 2 of 
+the License.
+
+Oficina is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public
+License along with Oficina; if not, write to the
+Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, 
+Boston, MA  02110-1301  USA.
+The copy of the GNU General Public License is found in the 
+COPYING file included in the source distribution.
+
+
+Authors:
+
+Joyce Alessandra Saul               (joycealess@gmail.com)
+Andre Mossinato                     (andremossinato@gmail.com)
+Nathalia Sautchuk Patrício          (nathalia.sautchuk@gmail.com)
+Pedro Kayatt                        (pekayatt@gmail.com)
+Rafael Barbolo Lopes                (barbolo@gmail.com)
+Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
+
+Colaborators:
+Bruno Gola                          (brunogola@gmail.com)
+
+Group Manager:
+Irene Karaguilla Ficheman           (irene@lsi.usp.br)
+
+Cientific Coordinator:
+Roseli de Deus Lopes                (roseli@lsi.usp.br)
+
+"""
+
+
 import  pygtk
 pygtk.require('2.0')
 import gtk
@@ -6,6 +60,7 @@ import sys, gobject, socket
 from gtk import gdk
 import math
 import pango
+from fill import *
 
 from Desenho import Desenho
 
@@ -38,7 +93,8 @@ class Area(gtk.DrawingArea):
         
         self.tool = None
         self.desenha = False
-        self.move = False
+        self.selmove = False
+        self.sel_get_out = False
         self.connect("configure_event", self.configure_event)
         self.oldx = 0
         self.oldy = 0
@@ -48,7 +104,6 @@ class Area(gtk.DrawingArea):
         self.newy_ = 0
         self.color_dec = 0
         self.polygon_start = True
-        self.busy = False
         self.gc = None
         self.gc_line = None
         self.gc_eraser = None
@@ -56,35 +111,47 @@ class Area(gtk.DrawingArea):
         self.gc_selection = None
         self.pixmap = None  
         self.pixmap_temp = None
+        self.pixmap_sel = None
         self.desenho = []   
         self.textos = []    
-        self.color_ = 0
-        self.color_line = 0
+        #self.color_ = 0
+        #self.color_line = 0
         self.estadoTexto = 0
         self.janela = janela    
         self.d = Desenho(self)
         self.line_size = 2
         self.brush_shape = 'circle'
+        self.eraser_shape = 'circle'
 
+        #This list must not be used. Using gdk.Color objects.
+        '''      
         colormap = self.get_colormap()
         
-        self.cores = [      
-        colormap.alloc_color('#000000', True, True), # black
-        colormap.alloc_color('#ee33ee', True, True), # purple
-        colormap.alloc_color('#f4ee56', True, True), # yellow       
-        colormap.alloc_color('#45a5dc', True, True), # blue
-        colormap.alloc_color('#44aa44', True, True), # green
-        colormap.alloc_color('#dd5555', True, True), # red
-        colormap.alloc_color('#ffaa11', True, True), # orange       
-        colormap.alloc_color('#ffffff', True, True), # white    
-        colormap.alloc_color('#00aa00', True, True)  # green - selection
+        self.cores = [ 
+        colormap.alloc_color('#ffffff', True, True), # white     
+        colormap.alloc_color('#800000', True, True), # maroon
+        colormap.alloc_color('#ff0000', True, True), # red
+        colormap.alloc_color('#808000', True, True), # olive
+        colormap.alloc_color('#ffff00', True, True), # yellow
+        colormap.alloc_color('#008000', True, True), # green
+        colormap.alloc_color('#00ff00', True, True), # lime
+        colormap.alloc_color('#008080', True, True), # teal
+        colormap.alloc_color('#00ffff', True, True), # aqua
+        colormap.alloc_color('#000080', True, True), # navy
+        colormap.alloc_color('#0000ff', True, True), # blue
+        colormap.alloc_color('#800080', True, True), # purple
+        colormap.alloc_color('#ff00ff', True, True), # fuchsia
+        colormap.alloc_color('#000000', True, True)  # black - selection
         ]
+        '''
+        
         self.font = pango.FontDescription('Sans 9')
         #self.mensagem = Mensagens(self)
         #self.mensagem.criaConexao()
         
         #start of UNDO and REDO
         self.first_undo = True
+        self.first_redo = True
         self.undo_times = 0
         self.redo_times = 0
         self.undo_list=[]#pixmaps list to Undo func
@@ -105,21 +172,28 @@ class Area(gtk.DrawingArea):
         
         self.pixmap = gtk.gdk.Pixmap(win, width, height, -1)
         self.pixmap.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
+        
         self.pixmap_temp = gtk.gdk.Pixmap(win, width, height, -1)
         self.pixmap_temp.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
         
+        self.pixmap_sel = gtk.gdk.Pixmap(win, width, height, -1)
+        self.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
+        
         self.gc = widget.window.new_gc()    
-        self.gc_eraser = widget.window.new_gc()     
-        self.gc_eraser.set_foreground(self.cores[7])
+        self.gc_eraser = widget.window.new_gc()
+        colormap = self.get_colormap()
+        white = colormap.alloc_color('#ffffff', True, True) # white      
+        self.gc_eraser.set_foreground(white)
         
         self.gc_brush = widget.window.new_gc()      
-        self.gc_brush.set_foreground(self.cores[0])
+        self.gc_brush.set_foreground(white)
                 
         self.gc_line = widget.window.new_gc()   
 
         self.gc_selection = widget.window.new_gc()  
         self.gc_selection.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        self.gc_selection.set_foreground(self.cores[8])
+        black = colormap.alloc_color('#000000', True, True)  # black
+        self.gc_selection.set_foreground(black)
         
         print 'configure event'
         
@@ -146,9 +220,12 @@ class Area(gtk.DrawingArea):
         event -- GdkEvent
 
         """ 
-        area = event.area       
+        area = event.area      
         if self.desenha:
-            widget.window.draw_drawable(self.gc, self.pixmap_temp, area[0], area[1], area[0], area[1], area[2], area[3])    
+            if self.selmove :
+                widget.window.draw_drawable(self.gc, self.pixmap_sel, area[0], area[1], area[0], area[1], area[2], area[3])
+            else:
+                widget.window.draw_drawable(self.gc, self.pixmap_temp, area[0], area[1], area[0], area[1], area[2], area[3])  
         else:
             widget.window.draw_drawable(self.gc, self.pixmap, area[0], area[1], area[0], area[1], area[2], area[3])     
         return False
@@ -163,14 +240,24 @@ class Area(gtk.DrawingArea):
 
         """
         # text
-        if self.busy == False:
-            if self.tool == 4:
-                self.d.text(widget,event)
-            if not self.move or self.tool != 26:
-                self.oldx = int(event.x)
-                self.oldy = int(event.y)    
-            
-            self.desenha = True     
+        if self.tool == 'text':
+            self.d.text(widget,event)
+        if not self.selmove or self.tool != 'marquee-rectangular':
+            self.oldx = int(event.x)
+            self.oldy = int(event.y)
+        if self.selmove and self.tool != 'marquee-rectangular': #get out of the func selection
+            self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
+            self.selmove = False
+            self.enableUndo(widget)
+        x , y, state = event.window.get_pointer()
+        if state & gtk.gdk.BUTTON3_MASK:
+            self.sel_get_out = True
+            self.pixmap_sel.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
+        if state & gtk.gdk.BUTTON1_MASK:
+            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0,0,0,0, WIDTH, HEIGHT)
+        widget.queue_draw()
+        self.desenha = True  
+           
         
     def mousemove(self,widget,event):
         """Make the Area object (GtkDrawingArea) recognize that the mouse is moving.
@@ -181,53 +268,64 @@ class Area(gtk.DrawingArea):
         event -- GdkEvent
 
         """
-	if self.busy == False:
-            x , y, state = event.window.get_pointer()   
-            coords = int(x), int(y)
+        x , y, state = event.window.get_pointer()   
+        coords = int(x), int(y)
                         
-            if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
-                if self.tool == 3:
-                    self.d.eraser(widget, coords)
-                #brush
-                elif self.tool == 29:
-                    self.d.brush(widget, coords, self.line_size, self.brush_shape)
-                if self.desenha:
-                    # line
-                    if self.tool == 1:
-                        print self.oldx
-                        self.configure_line(self.line_size)
-                        self.d.line(widget, coords) 
-                    # pencil
-                    elif self.tool == 2:
-                        self.configure_line(self.line_size)
-                        self.d.pencil(widget, coords)       
-                    # circle
-                    elif self.tool == 5:
-                        self.configure_line(self.line_size)
-                        self.d.circle(widget,coords)    
-                    # square
-                    elif self.tool == 6:
-                        self.configure_line(self.line_size)
-                        self.d.square(widget,coords)    
-                    # selection
-                    elif self.tool == 26 and not self.move:
-                        self.d.selection(widget,coords)                     
-                    # selection
-                    elif self.tool == 26 and self.move:
-                        self.d.moveSelection(widget, coords)
-                    #polygon    
-                    elif self.tool == 27:
-                        self.configure_line(self.line_size)
-                        self.d.polygon(widget, coords)  
-                    #triangle
-                    elif self.tool == 30:
-                        self.configure_line(self.line_size)
-                        self.d.triangle(widget,coords)
-                    #trapezoid
-                    elif self.tool == 31:
-                        self.configure_line(self.line_size)
-                        self.d.trapezoid(widget,coords)
-        
+        if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
+            #eraser
+            if self.tool == 'eraser':
+                self.d.eraser(widget, coords, self.line_size, self.eraser_shape)
+            #brush
+            elif self.tool == 'brush':
+                self.d.brush(widget, coords, self.line_size, self.brush_shape)
+            if self.desenha:
+                # line
+                if self.tool == 'line':
+                    self.configure_line(self.line_size)
+                    self.d.line(widget, coords) 
+                # pencil
+                elif self.tool == 'pencil':
+                    self.configure_line(self.line_size)
+                    self.d.pencil(widget, coords)       
+                # ellipse
+                elif self.tool == 'ellipse':
+                    self.configure_line(self.line_size)
+                    self.d.circle(widget,coords)    
+                # rectangle
+                elif self.tool == 'rectangle':
+                    self.configure_line(self.line_size)
+                    self.d.square(widget,coords)    
+                # selection
+                elif self.tool == 'marquee-rectangular' and not self.selmove:
+                    self.d.selection(widget,coords)                     
+                # selection
+                elif self.tool == 'marquee-rectangular' and self.selmove:
+                    self.d.moveSelection(widget, coords)
+                #polygon    
+                elif self.tool == 'polygon':
+                    self.configure_line(self.line_size)
+                    self.d.polygon(widget, coords)  
+                #triangle
+                elif self.tool == 'triangle':
+                    self.configure_line(self.line_size)
+                    self.d.triangle(widget,coords)
+                #trapezoid
+                elif self.tool == 'trapezoid':
+                    self.configure_line(self.line_size)
+                    self.d.trapezoid(widget,coords)
+                #arrow
+                elif self.tool == 'arrow':
+                    self.configure_line(self.line_size)
+                    self.d.arrow(widget,coords)
+                #parallelogram
+                elif self.tool == 'parallelogram':
+                    self.configure_line(self.line_size)
+                    self.d.parallelogram(widget,coords)
+                #star
+                elif self.tool == 'star':
+                    self.configure_line(self.line_size)
+                    self.d.star(widget,coords)
+
     def mouseup(self,widget,event): 
         """Make the Area object (GtkDrawingArea) recognize that the mouse was released.
 
@@ -237,105 +335,111 @@ class Area(gtk.DrawingArea):
         event -- GdkEvent
 
         """
-        if self.busy == False:
-            if self.desenha == True:
-                # line
-                if self.tool == 1:
-                    self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int(event.y))                
-                    widget.queue_draw()
+        if self.desenha == True:
+            # line
+            if self.tool == 'line':
+                self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int(event.y))                
+                widget.queue_draw()
+                self.enableUndo(widget)
+            # ellipse
+            elif self.tool == 'ellipse':
+                self.pixmap.draw_arc(self.gc, True, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
+                self.pixmap.draw_arc(self.gc_line, False, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
+                widget.queue_draw()
+                self.enableUndo(widget)
+            # rectangle
+            elif self.tool == 'rectangle':    
+                self.pixmap.draw_rectangle(self.gc, True, self.newx,self.newy, self.newx_,self.newy_)
+                self.pixmap.draw_rectangle(self.gc_line, False, self.newx,self.newy, self.newx_,self.newy_)
+                widget.queue_draw()
+                self.enableUndo(widget)
+            # selection
+            elif self.tool == 'marquee-rectangular':
+            # FIXME: Adicionar cursor formato selecao
+                if self.selmove == False:
+                    self.pixmap_temp.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+                    self.sx = int (event.x)
+                    self.sy = int(event.y)
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
+                    self.selmove = True
+                    self.sel_get_out = False
+                elif self.selmove and self.sel_get_out: #get out of the func selection
+                    self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
+                    self.selmove = False
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                    self.oldx = event.x
+                    self.oldy = event.y
                     self.enableUndo(widget)
-                # circle
-                elif self.tool == 5:
-                    self.pixmap.draw_arc(self.gc, True, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
-                    self.pixmap.draw_arc(self.gc_line, False, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
-
-                    widget.queue_draw()
-                    self.enableUndo(widget)
-                # square
-                elif self.tool == 6:    
-                    self.pixmap.draw_rectangle(self.gc, True, self.newx,self.newy, self.newx_,self.newy_)
-                    self.pixmap.draw_rectangle(self.gc_line, False, self.newx,self.newy, self.newx_,self.newy_)
-
-                    widget.queue_draw()
-                    self.enableUndo(widget)
-                # selection
-                elif self.tool == 26:
-                    if self.move == False:
-                        self.pixmap_temp.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-                        self.move = True
-                        self.sx = int (event.x)
-                        self.sy = int(event.y)
-                        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
-                    elif self.move == True:     
-                        self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)    
-                        # FIXME: Adicionar cursor formato selecao
-                        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSSHAIR))   
-                        self.move = False
-                        self.enableUndo(widget)             
                 # polygon
-                elif self.tool == 27:
-                    if self.polygon_start:
+            elif self.tool == 'polygon':
+                if self.polygon_start:
+                    self.enableUndo(widget)
+                    self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int( event.y ))
+                    self.lastx = event.x
+                    self.lasty = event.y
+                    self.firstx = self.oldx
+                    self.firsty = self.oldy
+                    self.polygon_start = False
+                else:
+                    self.dx = math.fabs(event.x - self.firstx)
+                    self.dy = math.fabs(event.y - self.firsty)
+                    if (self.dx < 20) & (self.dy < 20):
+                        self.pixmap.draw_line(self.gc_line,int (self.firstx), int (self.firsty), int (self.lastx), int (self.lasty))
+                        self.polygon_start = True
+                        self.undo_times -= 1#destroy the undo screen of polygon start 
                         self.enableUndo(widget)
-                        self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int( event.y ))
-                        self.lastx = event.x
-                        self.lasty = event.y
-                        self.firstx = self.oldx
-                        self.firsty = self.oldy
-                        self.polygon_start = False
-                    else:
-                        self.dx = math.fabs(event.x - self.firstx)
-                        self.dy = math.fabs(event.y - self.firsty)
-                        if (self.dx < 20) & (self.dy < 20):
-                            self.pixmap.draw_line(self.gc_line,int (self.firstx), int (self.firsty), int (self.lastx), int (self.lasty))
-                            self.polygon_start = True
-                            self.undo_times -= 1#destroy the undo screen of polygon start 
-                            self.enableUndo(widget)
-                        else:   
-                            self.pixmap.draw_line(self.gc_line,int (self.lastx),int (self.lasty), int (event.x), int( event.y ))
-                        self.lastx = event.x
-                        self.lasty = event.y
-                    widget.queue_draw() 
+                    else:   
+                        self.pixmap.draw_line(self.gc_line,int (self.lastx),int (self.lasty), int (event.x), int( event.y ))
+                    self.lastx = event.x
+                    self.lasty = event.y
+                widget.queue_draw() 
 
-                elif self.tool == 2:# or 4 check this for desire tool
-                    widget.queue_draw() 
-                    self.enableUndo(widget)
-
-                #bucket
-                elif self.tool == 28:
-                # New algorithm. See Desenho.py
-                    width, height = self.window.get_size()
-                    self.busy = True
-                    image = self.pixmap.get_image(0,0, width, height)
-                    fill_image = self.d.fill(image, int(event.x), int(event.y), self.color_dec)
-                
-                    self.pixmap.draw_image(self.gc, fill_image,0,0,0,0, width, height)
-                    self.pixmap_temp.draw_image(self.gc, fill_image,0,0,0,0, width, height)
-                
-                    del image
-                    del fill_image
-                
-                    widget.queue_draw()
-                    self.busy = False
-                    self.enableUndo(widget)
-                
-                elif self.tool == 30:
-                    self.pixmap.draw_polygon(self.gc, True, self.d.points)
-                    self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
-                    widget.queue_draw()
-                    self.enableUndo(widget)
-
-                elif self.tool == 31:
-                    self.pixmap.draw_polygon(self.gc, True, self.d.points)
-                    self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
-                    widget.queue_draw()
-                    self.enableUndo(widget)
-            if self.tool == 29 or self.tool == 3:
+            elif self.tool == 'pencil': #to undo pencil
                 widget.queue_draw() 
                 self.enableUndo(widget)
-            if self.tool == 4:
-                widget.queue_draw() 
+
+            #bucket
+            elif self.tool == 'bucket':
+            # New algorithm. See Desenho.py
+                width, height = self.window.get_size()
+                fill(self.pixmap, self.gc, int(event.x), int(event.y), width, height, self.color_dec)
+                widget.queue_draw()
                 self.enableUndo(widget)
-            self.desenha = False
+                
+            elif self.tool == 'triangle':
+                self.pixmap.draw_polygon(self.gc, True, self.d.points)
+                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
+                widget.queue_draw()
+                self.enableUndo(widget)
+
+            elif self.tool == 'trapezoid':
+                self.pixmap.draw_polygon(self.gc, True, self.d.points)
+                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
+                widget.queue_draw()
+                self.enableUndo(widget)
+
+            elif self.tool == 'arrow':
+                self.pixmap.draw_polygon(self.gc, True, self.d.points)
+                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
+                widget.queue_draw()
+                self.enableUndo(widget)
+
+            elif self.tool == 'parallelogram':
+                self.pixmap.draw_polygon(self.gc, True, self.d.points)
+                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
+                widget.queue_draw()
+                self.enableUndo(widget)
+
+            elif self.tool == 'star':
+                self.pixmap.draw_polygon(self.gc, True, self.d.points)
+                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
+                widget.queue_draw()
+                self.enableUndo(widget)
+
+        if self.tool == 'brush' or self.tool == 'eraser':
+            widget.queue_draw() 
+            self.enableUndo(widget)
+        self.desenha = False
         
         
     #this func make a basic Undo
@@ -349,7 +453,8 @@ class Area(gtk.DrawingArea):
         self.polygon_start = True
         if self.first_undo:#if is the first time you click on UNDO
             self.undo_times -= 1
-            self.redo_times = 1
+            if self.undo_times == 0: #to work when clear screen (bug fixed)
+                self.redo_times = 1
         
         elif (self.first_redo) and (self.undo_times!=0):
             self.undo_times += 1
@@ -375,7 +480,7 @@ class Area(gtk.DrawingArea):
 
 
 	#special case of func polygon
-        if self.tool == 27:		
+        if self.tool == 'polygon':		
                 self.polygon_start = True #start the polygon again
         
          
@@ -387,16 +492,15 @@ class Area(gtk.DrawingArea):
 
         """
         #print "REDO no.%d" %(self.redo_times)
+        if self.first_redo:
+            self.undo_times -=1
+            self.redo_times +=1
+        self.first_redo=False
         
         if  (self.redo_times>0):
             self.redo_times -= 1
             self.undo_times += 1
-
             
-            if self.first_redo:
-                self.undo_times -=1
-                self.redo_times +=1
-            self.first_redo=False
             try: #to not try paint someting wrong 
                 #print "Drawing undo[%d]" %(self.undo_times)
                 self.pixmap.draw_drawable(self.gc, self.undo_list[self.undo_times], 0,0,0,0, WIDTH, HEIGHT)
@@ -435,11 +539,12 @@ class Area(gtk.DrawingArea):
 
         Keyword arguments:
         self -- the Area object (GtkDrawingArea)
-        color -- integer "enum"
+        color -- a gdk.Color object
 
         """
-        self.color_ = color     
-        self.gc.set_foreground(self.cores[color])
+        #self.color_ = color     
+        #self.gc.set_foreground(self.cores[color])
+        self.gc.set_foreground(color)
         
  
     def _set_stroke_color(self, color):
@@ -447,14 +552,22 @@ class Area(gtk.DrawingArea):
 
         Keyword arguments:
         self -- the Area object (GtkDrawingArea)
-        color -- integer "enum"
+        color -- a gdk.Color object
 
         """
+        '''
         self.color_line = color 
         self.gc_line.set_foreground(self.cores[color])
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)  
         self.gc_brush.set_foreground(self.cores[color])
         self.color_dec = self.cores[color].pixel
+        '''
+        
+        #self.color_line = color 
+        self.gc_line.set_foreground(color)
+        self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)  
+        self.gc_brush.set_foreground(color)
+        self.color_dec = color.pixel
 
     def _set_grayscale(self,widget):
         """Apply grayscale effect.

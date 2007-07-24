@@ -1,15 +1,15 @@
 8
 
 dir
-52
+76
 https://oficina.googlecode.com/svn/trunk/images
 https://oficina.googlecode.com/svn
 
 
 
-2007-07-15T20:13:19.082257Z
-49
-andremossinato
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 
 
 svn:special svn:externals svn:needs-lock
@@ -26,225 +26,43 @@ svn:special svn:externals svn:needs-lock
 
 e2fb0b9f-bc32-0410-ab74-19e9d00b4e58
 
-circulo_cursor.png
+ellipse.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
+2007-07-23T19:49:38.000000Z
 18b86bde4f5514139d6d4fd48cac8abe
-2007-06-12T22:07:17.555544Z
-2
-joycealess
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-corlinha.png
+trapezoid.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-7c822d25f3d45a28a3c04d668cd07680
-2007-06-12T22:07:17.555544Z
-2
-joycealess
+2007-07-23T19:49:38.000000Z
+61c7f8671c90a798c9f0e951758914f2
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-quadrado.png
+heart.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-7d523ce25cb8329aa9bce899a5787ddb
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-balde.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-1b044e719146991527f6d9aecd0e03db
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-lapis.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-19f856922962f428ea9f858a6ec1fc09
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-laranja.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-7f9dbd8c61602c36156fc45c068f55b9
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-borracha_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-7f81bc6307b60f51f0b850f3e83f83ad
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-borracha.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-920aae3ef1be38d542d7525b0a5ed4da
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-poligono_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-6cd059ced988051c235b277e55ed206d
-2007-06-18T18:20:42.711072Z
-7
-joycealess
-has-props
-
-linha_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-21d012ee14fcece687a999b7fbb8b24b
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-preto.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-37ed9cc07e4cdb3c0a3d9d02bec6d792
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-linha.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-28d26688e09d1b1dbddd802429d62f24
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-quadrado_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-86cacdc27b09e5b36355298428f2c417
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-trapezoid_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-2de1730e8a5920b78a21ae4383350ae1
-2007-07-15T20:13:19.082257Z
-49
-andremossinato
-has-props
-
-abrir.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-2c2865eb138c23c0ff97683c94c6e992
-2007-06-15T16:46:33.642423Z
-6
-joycealess
-has-props
-
-circulo.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-f9502c7f984408e5116b97f5aa801e08
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-triangle_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-74a4c11380216305ae5cac9c3f7f477f
-2007-07-15T20:13:19.082257Z
-49
-andremossinato
+2007-07-23T19:49:38.000000Z
+2e3c7dbcb289680b47c954494d09820b
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
 move_cursor.png
@@ -253,205 +71,179 @@ file
 
 
 
-2007-07-16T13:46:26.000000Z
+2007-07-23T19:49:38.000000Z
 b42a867cb51d5094fadce36c2d31591d
 2007-06-18T18:20:42.711072Z
 7
 joycealess
 has-props
 
-vassoura.png
+marquee-rectangular.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-af55c62b1573860d601cd584b37e0a3b
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-Thumbs.db
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-69cb3c1cb1c065985f8a8f85336a3d28
-2007-06-15T16:46:03.611045Z
-5
-joycealess
-has-props
-
-letra_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-8b4363cd52feb57b200db0228d2af612
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-branco.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-720bd5a28d127b0003e2dda0f38179c0
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-lapis_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-4de0e8f1d1f5d05bc2b73e1bbea35e38
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-verde.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-2322a60eb2c3562a36511f7a14238f3c
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-letra.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
-581c5b63d3e43b461fdbaffc5e74ffcc
-2007-06-12T22:07:17.555544Z
-2
-joycealess
-has-props
-
-selecao_cursor.png
-file
-
-
-
-
-2007-07-16T13:46:26.000000Z
+2007-07-23T19:49:38.000000Z
 03e58edf2c431a6995d7a80bb7615ce4
-2007-06-15T16:46:03.611045Z
-5
-joycealess
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-azul.png
+rectangle.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-5905a16a0cb083a48d95c1ed797beaf8
-2007-06-12T22:07:17.555544Z
-2
-joycealess
+2007-07-23T19:49:38.000000Z
+86cacdc27b09e5b36355298428f2c417
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-selecao.png
+triangle.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-a71fb6b71b1a6af906f4519956b2c88f
-2007-06-15T16:46:03.611045Z
-5
-joycealess
+2007-07-23T19:49:38.000000Z
+ac69b1dcadb698af2d898698f0079faa
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-amarelo.png
+star.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-4bc1cac4a2e46557c59e785c43960c70
-2007-06-12T22:07:17.555544Z
-2
-joycealess
+2007-07-23T19:49:38.000000Z
+838a5280fb54697e529c94e3a2f2378d
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-vermelho.png
+pencil.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-95da835747614c5799fab28814ac5a01
-2007-06-12T22:07:17.555544Z
-2
-joycealess
+2007-07-23T19:49:38.000000Z
+4de0e8f1d1f5d05bc2b73e1bbea35e38
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-poligono.png
+bucket.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-ea7ee8abf944b7952f780c5099745adc
-2007-06-18T18:20:42.711072Z
-7
-joycealess
+2007-07-23T19:49:38.000000Z
+a59bb36b5d18aae78efe4328992a0f74
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-roxo.png
+eraser.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-c406b58097cf5e96a287ec6727d9594a
-2007-06-12T22:07:17.555544Z
-2
-joycealess
+2007-07-23T19:49:38.000000Z
+7f81bc6307b60f51f0b850f3e83f83ad
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 
-salvar.png
+parallelogram.png
 file
 
 
 
 
-2007-07-16T13:46:26.000000Z
-22def5499bc2c7d469ce898102d59660
-2007-06-12T22:07:17.555544Z
-2
-joycealess
+2007-07-23T19:49:38.000000Z
+54a53e6aaf1ec1dad96e82f73b317b2e
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
+has-props
+
+brush.png
+file
+
+
+
+
+2007-07-23T19:49:38.000000Z
+e045df95b9c4b29e7eac0f518332b5cc
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
+has-props
+
+text.png
+file
+
+
+
+
+2007-07-23T19:49:38.000000Z
+8b4363cd52feb57b200db0228d2af612
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
+has-props
+
+polygon.png
+file
+
+
+
+
+2007-07-23T19:49:38.000000Z
+6cd059ced988051c235b277e55ed206d
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
+has-props
+
+line.png
+file
+
+
+
+
+2007-07-23T19:49:38.000000Z
+21d012ee14fcece687a999b7fbb8b24b
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
+has-props
+
+arrow.png
+file
+
+
+
+
+2007-07-23T19:49:38.000000Z
+99e5f8733e0ebebb31d543a94301aca0
+2007-07-19T21:06:05.822182Z
+66
+nathalia.sautchuk
 has-props
 

@@ -1,4 +1,58 @@
 # -*- coding: utf-8 -*-
+"""
+Desenho.py
+
+Pixmap manipulation
+
+
+Copyright 2007, NATE-LSI-EPUSP
+
+Oficina is developed in Brazil at Escola Politécnica of 
+Universidade de São Paulo. NATE is part of LSI (Integrable
+Systems Laboratory) and stands for Learning, Work and Entertainment
+Research Group. Visit our web page: 
+www.nate.lsi.usp.br
+Suggestions, bugs and doubts, please email oficina@lsi.usp.br
+
+Oficina is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License 
+as published by the Free Software Foundation version 2 of 
+the License.
+
+Oficina is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public
+License along with Oficina; if not, write to the
+Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, 
+Boston, MA  02110-1301  USA.
+The copy of the GNU General Public License is found in the 
+COPYING file included in the source distribution.
+
+
+Authors:
+
+Joyce Alessandra Saul               (joycealess@gmail.com)
+Andre Mossinato                     (andremossinato@gmail.com)
+Nathalia Sautchuk Patrício          (nathalia.sautchuk@gmail.com)
+Pedro Kayatt                        (pekayatt@gmail.com)
+Rafael Barbolo Lopes                (barbolo@gmail.com)
+Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
+
+Colaborators:
+Bruno Gola                          (brunogola@gmail.com)
+
+Group Manager:
+Irene Karaguilla Ficheman           (irene@lsi.usp.br)
+
+Cientific Coordinator:
+Roseli de Deus Lopes                (roseli@lsi.usp.br)
+
+"""
+
+
 import  pygtk
 pygtk.require('2.0')
 import gtk
@@ -53,8 +107,8 @@ class Desenho:
             self.d.pixmap.draw_arc(self.d.gc_eraser, True, coords[0], coords[1], size, size, 0, 360*64)
             self.d.pixmap_temp.draw_arc(self.d.gc_eraser, True, coords[0], coords[1], size, size, 0, 360*64)
         if(shape == 'square'):
-            self.d.pixmap.draw_rectangle(self.d.gc_borracha, True, coords[0], coords[1], size, size)
-            self.d.pixmap_temp.draw_rectangle(self.d.gc_borracha, True, coords[0], coords[1], size, size)
+            self.d.pixmap.draw_rectangle(self.d.gc_eraser, True, coords[0], coords[1], size, size)
+            self.d.pixmap_temp.draw_rectangle(self.d.gc_eraser, True, coords[0], coords[1], size, size)
         self.d.oldx = coords[0]
         self.d.oldy = coords[1]
         widget.queue_draw()
@@ -191,6 +245,114 @@ class Desenho:
 
         dif = int((coords0 - self.d.oldx)/4)
         self.points = [(self.d.oldx, self.d.oldy), (self.d.oldx+dif, coords1), (coords0-dif, coords1) , (coords0,self.d.oldy)]                
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
+        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
+
+    def arrow(self, widget, coords):
+        """Draw a arrow.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+        widget.queue_draw()     
+
+        if coords[0] > WIDTH:
+            coords0 = WIDTH
+        else:
+            coords0 = coords[0]
+            
+        if coords [1] > HEIGHT:
+            coords1 = HEIGHT
+        else:
+            coords1 = coords[1]
+
+        if coords0 < 0:
+            coords0 = 0
+
+        if coords1 < 0:
+            coords1 = 0
+        self.width = coords0 - self.d.oldx
+        self.height = coords1 - self.d.oldy
+        self.points = [(self.d.oldx,self.d.oldy), (self.d.oldx+int(self.width/6),coords1), (self.d.oldx+int(self.width/6),self.d.oldy+int(self.height/3)), (coords0,self.d.oldy+int(self.height/3)), (coords0,self.d.oldy-int(self.height/3)), (self.d.oldx+int(self.width/6),self.d.oldy-int(self.height/3)), (self.d.oldx+int(self.width/6),self.d.oldy-self.height)]
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
+        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
+
+    def parallelogram(self, widget, coords):
+        """Draw a parallelogram.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+        widget.queue_draw()     
+
+        if coords[0] > WIDTH:
+            coords0 = WIDTH
+        else:
+            coords0 = coords[0]
+            
+        if coords[1] > HEIGHT:
+            coords1 = HEIGHT
+        else:
+            coords1 = coords[1]
+
+        if coords0 < 0:
+            coords0 = 0
+
+        if coords1 < 0:
+            coords1 = 0
+
+        self.width = int((coords0 - self.d.oldx)/4)
+        self.points = [(self.d.oldx,self.d.oldy), (coords0-self.width, self.d.oldy), (coords0,coords1), (self.d.oldx+self.width,coords1)]
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
+        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
+
+    def star(self, widget, coords):
+        """Draw a arrow.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+        widget.queue_draw()     
+
+        if coords[0] > WIDTH:
+            coords0 = WIDTH
+        else:
+            coords0 = coords[0]
+            
+        if coords [1] > HEIGHT:
+            coords1 = HEIGHT
+        else:
+            coords1 = coords[1]
+
+        if coords0 < 0:
+            coords0 = 0
+
+        if coords1 < 0:
+            coords1 = 0
+        self.width = coords0 - self.d.oldx
+        self.height = coords1 - self.d.oldy
+        self.points = [(self.d.oldx,self.d.oldy),\
+(self.d.oldx+int(self.width*0.25), self.d.oldy+int(self.height*0.4)),\
+(self.d.oldx+int(self.width),self.d.oldy+int(self.height*0.4)),\
+(self.d.oldx+int(self.width*0.35), self.d.oldy+int(self.height*0.6)),\
+(self.d.oldx+int(self.width*0.6), self.d.oldy+self.height),\
+(self.d.oldx, self.d.oldy+int(self.height*0.75)),\
+(self.d.oldx-int(self.width*0.6), self.d.oldy+self.height),\
+(self.d.oldx-int(self.width*0.35), self.d.oldy+int(self.height*0.6)),\
+(self.d.oldx-int(self.width),self.d.oldy+int(self.height*0.4)),\
+(self.d.oldx-int(self.width*0.25), self.d.oldy+int(self.height*0.4))]
         self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
         self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
         self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
@@ -346,9 +508,11 @@ class Desenho:
             self.d.janela._textview.hide()
             self.d.janela._textview.set_text('')
 
+            self.d.enableUndo(widget)
+            
             widget.queue_draw()
 
-    def loadImage(self, name):
+    def loadImage(self, name, widget):
         """Load an image.
 
         Keyword arguments:
@@ -359,7 +523,10 @@ class Desenho:
         pixbuf = gtk.gdk.pixbuf_new_from_file(name) 
         self.d.pixmap.draw_pixbuf(self.d.gc, pixbuf, 0, 0, 0, 0, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
         self.d.pixmap_temp.draw_pixbuf(self.d.gc, pixbuf, 0, 0, 0, 0, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-        self.d.queue_draw() 
+        
+        self.d.enableUndo(widget)
+        
+        self.d.queue_draw()
         
     def moveSelection(self, widget, coords):
         """Move the selection.
@@ -371,7 +538,10 @@ class Desenho:
 
         """ 
         self.d.pixmap_temp.draw_rectangle(self.d.get_style().white_gc, True,0, 0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)   
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        
+        self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True,0, 0, WIDTH, HEIGHT)
+        self.d.pixmap_sel.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)   
         
         if self.d.sx > self.d.oldx:
             x0 = self.d.oldx
@@ -393,6 +563,12 @@ class Desenho:
         
         self.d.pixmap_temp.draw_rectangle(self.d.get_style().white_gc, True, x0, x1, w, h)
         self.d.pixmap_temp.draw_drawable(self.d.gc, self.d.pixmap, x0, x1, coords[0] - w/2, coords[1]- h/2, w, h)       
+        
+        self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0, x1, w, h)
+        self.d.pixmap_sel.draw_drawable(self.d.gc, self.d.pixmap, x0, x1, coords[0] - w/2, coords[1]- h/2, w, h)
+	    #to draw the selection green line rectangle
+        self.d.pixmap_sel.draw_rectangle(self.d.gc_selection, False ,coords[0] - w/2, coords[1]- h/2, w, h)
+        
         widget.queue_draw()
     
     def polygon(self, widget, coords):
