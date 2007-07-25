@@ -112,39 +112,16 @@ class Area(gtk.DrawingArea):
         self.pixmap = None  
         self.pixmap_temp = None
         self.pixmap_sel = None
+        self.pixmap_copy = None
         self.desenho = []   
-        self.textos = []    
-        #self.color_ = 0
-        #self.color_line = 0
+        self.textos = []
         self.estadoTexto = 0
         self.janela = janela    
         self.d = Desenho(self)
         self.line_size = 2
         self.brush_shape = 'circle'
         self.eraser_shape = 'circle'
-
-        #This list must not be used. Using gdk.Color objects.
-        '''      
-        colormap = self.get_colormap()
-        
-        self.cores = [ 
-        colormap.alloc_color('#ffffff', True, True), # white     
-        colormap.alloc_color('#800000', True, True), # maroon
-        colormap.alloc_color('#ff0000', True, True), # red
-        colormap.alloc_color('#808000', True, True), # olive
-        colormap.alloc_color('#ffff00', True, True), # yellow
-        colormap.alloc_color('#008000', True, True), # green
-        colormap.alloc_color('#00ff00', True, True), # lime
-        colormap.alloc_color('#008080', True, True), # teal
-        colormap.alloc_color('#00ffff', True, True), # aqua
-        colormap.alloc_color('#000080', True, True), # navy
-        colormap.alloc_color('#0000ff', True, True), # blue
-        colormap.alloc_color('#800080', True, True), # purple
-        colormap.alloc_color('#ff00ff', True, True), # fuchsia
-        colormap.alloc_color('#000000', True, True)  # black - selection
-        ]
-        '''
-        
+                
         self.font = pango.FontDescription('Sans 9')
         #self.mensagem = Mensagens(self)
         #self.mensagem.criaConexao()
@@ -195,7 +172,10 @@ class Area(gtk.DrawingArea):
         black = colormap.alloc_color('#000000', True, True)  # black
         self.gc_selection.set_foreground(black)
         
-        print 'configure event'
+        self.gc_selection1 = widget.window.new_gc()  #this make another white line out of the black line
+        self.gc_selection1.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+        self.gc_selection1.set_foreground(white)
+        #print 'configure event'
         
         return True
         
@@ -358,6 +338,7 @@ class Area(gtk.DrawingArea):
             # FIXME: Adicionar cursor formato selecao
                 if self.selmove == False:
                     self.pixmap_temp.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+                    self.pixmap_sel.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)#avoid blink
                     self.sx = int (event.x)
                     self.sy = int(event.y)
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
@@ -534,6 +515,62 @@ class Area(gtk.DrawingArea):
         #   self.undo_times-=1
         #   print "estourou"
         
+    def copy(self):
+        """ Copy Image.
+        When the tool selection is working make the change the copy of selectioned area"""
+        if self.selmove:
+    
+            if self.sx > self.oldx:
+                x = self.oldx
+            else:
+                x = self.sx
+            
+            if self.sy > self.oldy:
+                y = self.oldy
+            else:
+                y = self.sy
+
+            w = self.sx - self.oldx
+            if w < 0:
+                w = - w
+                
+            h = self.sy - self.oldy         
+            if h < 0:
+                h = - h
+
+            self.pixmap_copy = gtk.gdk.Pixmap(self.window, w, h, -1)
+            self.pixmap_copy.draw_drawable(self.gc, self.pixmap, x, y, 0, 0, w, h)  
+        else :
+            print "Please select some area first"
+            self.pixmap_copy == None
+            
+    def past(self):
+        """ Past image.
+        Past image that is in pixmap_copy"""
+        if self.pixmap_copy != None :
+            
+
+            w, h = self.pixmap_copy.get_size()
+            
+            #to draw everthing done until this moment
+            #self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
+            
+            #to get out of sel func
+            if self.tool == 'marquee-rectangular': 
+                self.pixmap_sel.draw_drawable(self.gc, self.pixmap_copy, 0,0,0,0, w, h)   
+                #self.enableUndo(self)
+                self.sel_get_out = True
+                self.selmove = False
+                
+            #to draw the new area on screen
+            self.pixmap.draw_drawable(self.gc, self.pixmap_copy, 0,0,0,0, w, h)  
+            
+                      
+            self.enableUndo(self)     
+            self.queue_draw()
+        else :
+            print "Nothing is copied yet"
+            
     def _set_fill_color(self, color):
         """Set fill color.
 

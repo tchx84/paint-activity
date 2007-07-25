@@ -357,54 +357,6 @@ class Desenho:
         self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
         self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
 
-
-    def selection(self, widget, coords):
-        """Make a selection.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
-
-        """     
-        widget.queue_draw()     
-
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
-        else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
-            
-        self.d.newx_ = coords0 - self.d.oldx
-        self.d.newy_ = coords1 - self.d.oldy
-
-        if self.d.newx_ >= 0:
-            self.d.newx = self.d.oldx   
-        else:   
-            if coords0 > 0:
-                self.d.newx = coords0
-                self.d.newx_ = - self.d.newx_
-            else:
-                self.d.newx = 0
-                self.d.newx_ = self.d.oldx
-                    
-        if self.d.newy_ >= 0:
-            self.d.newy = self.d.oldy   
-        else:               
-            if coords1 > 0:
-                self.d.newy_ = - self.d.newy_
-                self.d.newy = coords1
-            else:
-                self.d.newy = 0
-                self.d.newy_ = self.d.oldy
-                
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_rectangle(self.d.gc_selection, False ,self.d.newx,self.d.newy,self.d.newx_,self.d.newy_)
-
     
     def circle(self, widget, coords):
         """Draw a circle.
@@ -527,6 +479,55 @@ class Desenho:
         self.d.enableUndo(widget)
         
         self.d.queue_draw()
+
+    def selection(self, widget, coords):
+        """Make a selection.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """     
+        widget.queue_draw()     
+
+        if coords[0] > WIDTH:
+            coords0 = WIDTH
+        else:
+            coords0 = coords[0]
+            
+        if coords [1] > HEIGHT:
+            coords1 = HEIGHT
+        else:
+            coords1 = coords[1]
+            
+        self.d.newx_ = coords0 - self.d.oldx
+        self.d.newy_ = coords1 - self.d.oldy
+
+        if self.d.newx_ >= 0:
+            self.d.newx = self.d.oldx   
+        else:   
+            if coords0 > 0:
+                self.d.newx = coords0
+                self.d.newx_ = - self.d.newx_
+            else:
+                self.d.newx = 0
+                self.d.newx_ = self.d.oldx
+                    
+        if self.d.newy_ >= 0:
+            self.d.newy = self.d.oldy   
+        else:               
+            if coords1 > 0:
+                self.d.newy_ = - self.d.newy_
+                self.d.newy = coords1
+            else:
+                self.d.newy = 0
+                self.d.newy_ = self.d.oldy
+                
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        self.d.pixmap_temp.draw_rectangle(self.d.gc_selection, False ,self.d.newx,self.d.newy,self.d.newx_,self.d.newy_)
+        self.d.pixmap_temp.draw_rectangle(self.d.gc_selection1, False, \
+                                        self.d.newx-1,self.d.newy-1,self.d.newx_+2,self.d.newy_+2)
         
     def moveSelection(self, widget, coords):
         """Move the selection.
@@ -566,8 +567,9 @@ class Desenho:
         
         self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0, x1, w, h)
         self.d.pixmap_sel.draw_drawable(self.d.gc, self.d.pixmap, x0, x1, coords[0] - w/2, coords[1]- h/2, w, h)
-	    #to draw the selection green line rectangle
+	    #to draw the selection black and white line rectangle
         self.d.pixmap_sel.draw_rectangle(self.d.gc_selection, False ,coords[0] - w/2, coords[1]- h/2, w, h)
+        self.d.pixmap_sel.draw_rectangle(self.d.gc_selection1, False ,coords[0] - w/2-1, coords[1]- h/2-1, w+2, h+2)
         
         widget.queue_draw()
     
@@ -598,10 +600,6 @@ class Desenho:
         color   -- a color to fill (decimal)
         
         '''
-#         print 'entering (flood) fill function...'
-#         print image
-#         print x,y
-#         print color, image.get_pixel(x,y)
         
         start_color = image.get_pixel(x,y)
         width, height = self.d.window.get_size()

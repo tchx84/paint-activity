@@ -1,5 +1,6 @@
 4
 ===
+New past and copy funcions, improvments on selection func (pekayatt)
 Fixed bug with pixmap_temp
 New FILL fuction, linked to C module (pekayatt)
 Color list in Area.py is not used anymore. Toolbox.py now passes a gdk.Color (nathalia.sautchuk, alexandre)

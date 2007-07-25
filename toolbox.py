@@ -115,8 +115,8 @@ class DrawEditToolbar(EditToolbar):
         self.copy.connect('clicked', self._copy_cb)
         self.paste.connect('clicked', self._paste_cb)
 
-        self.copy.hide()
-        self.paste.hide()
+#        self.copy.hide()
+#        self.paste.hide()
         
     def _undo_cb(self, widget, data=None):
         self._activity._area.undo()
@@ -125,12 +125,10 @@ class DrawEditToolbar(EditToolbar):
         self._activity._area.redo()
         
     def _copy_cb(self, widget, data=None):
-        #FIXME: connect to the correct function
-        pass
+        self._activity._area.copy()
         
     def _paste_cb(self, widget, data=None):
-        #FIXME: connect to the correct function
-        pass
+        self._activity._area.past()
 
 
 class ToolsToolbar(gtk.Toolbar):
