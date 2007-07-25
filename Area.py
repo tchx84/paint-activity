@@ -132,6 +132,7 @@ class Area(gtk.DrawingArea):
         self.undo_times = 0
         self.redo_times = 0
         self.undo_list=[]#pixmaps list to Undo func
+        
 
     # Create a new backing pixmap of the appropriate size
     def configure_event(self, widget, event):
@@ -175,7 +176,9 @@ class Area(gtk.DrawingArea):
         self.gc_selection1 = widget.window.new_gc()  #this make another white line out of the black line
         self.gc_selection1.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         self.gc_selection1.set_foreground(white)
-        #print 'configure event'
+        print 'configure event'
+        
+        self.enableUndo(widget)
         
         return True
         
@@ -431,16 +434,11 @@ class Area(gtk.DrawingArea):
         self -- the Area object (GtkDrawingArea)
 
         """
-        self.polygon_start = True
         if self.first_undo:#if is the first time you click on UNDO
             self.undo_times -= 1
             if self.undo_times == 0: #to work when clear screen (bug fixed)
                 self.redo_times = 1
-        
-        elif (self.first_redo) and (self.undo_times!=0):
-            self.undo_times += 1
-        
-        print "Undo no.%d" %(self.undo_times)
+        #print "Undo no.%d" %(self.undo_times)
         if self.undo_times >0 : 
             self.undo_times -= 1
             self.redo_times += 1
@@ -454,13 +452,11 @@ class Area(gtk.DrawingArea):
             self.first_redo=False
         else:   
             self.undo_times = 0
-            #self.redo_times = 1
             self.first_redo = True
-            self.d.clear()#Undo the last action, so clear-all
         self.first_undo=False
 
 
-	#special case of func polygon
+	    #special case for func polygon
         if self.tool == 'polygon':		
                 self.polygon_start = True #start the polygon again
         
@@ -473,11 +469,6 @@ class Area(gtk.DrawingArea):
 
         """
         #print "REDO no.%d" %(self.redo_times)
-        if self.first_redo:
-            self.undo_times -=1
-            self.redo_times +=1
-        self.first_redo=False
-        
         if  (self.redo_times>0):
             self.redo_times -= 1
             self.undo_times += 1
@@ -499,9 +490,6 @@ class Area(gtk.DrawingArea):
         widget -- the Area object (GtkDrawingArea)
 
         """
-        if not self.first_undo and not self.first_redo:
-            self.undo_times += 1
-        
         self.undo_list.append(None)#alloc memory
         self.undo_list[self.undo_times] = gtk.gdk.Pixmap(widget.window, WIDTH, HEIGHT, -1) #define type
         self.undo_list[self.undo_times].draw_drawable(self.gc,self.pixmap,0,0,0,0, WIDTH, HEIGHT) #copy workarea
@@ -510,10 +498,10 @@ class Area(gtk.DrawingArea):
         self.first_undo = True
         
         #this is the part where we can limit the steps of undo/redo     
-        #if self.undo_times>=2:
-        #   self.undo_list.pop(0)
-        #   self.undo_times-=1
-        #   print "estourou"
+        if self.undo_times==10:
+           self.undo_list.pop(0)
+           self.undo_times-=1
+           #print "estourou"
         
     def copy(self):
         """ Copy Image.
