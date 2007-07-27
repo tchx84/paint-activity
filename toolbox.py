@@ -54,7 +54,7 @@ Roseli de Deus Lopes                (roseli@lsi.usp.br)
 
 from gettext import gettext as _
 
-import gtk
+import gtk, logging
 
 from sugar.activity.activity import ActivityToolbox, EditToolbar
 from sugar.graphics import color
@@ -164,11 +164,22 @@ class ToolsToolbar(gtk.Toolbar):
         self._icon_stroke = ToolButton('icon-stroke')
         self.insert(self._icon_stroke, -1)
         self._icon_stroke.show()
-
+        
+        # Changing widget: using toolbox.ButtonStrokeColor instead of toolbox.ComboStrokeColors
+        '''
         self._stroke_color = ComboStrokeColors(activity)
         self.insert(self._stroke_color, -1)
         self._stroke_color.show()
-
+        '''
+        self._stroke_color = ButtonStrokeColor(activity)
+        self._stroke_color.show()
+#         self._stroke_color.set_tooltip(_('Stroke Color'))
+        item = gtk.ToolItem()
+        item.add(self._stroke_color)
+        self.insert(item, -1)
+        item.show()
+        
+        
         self._stroke_size = ComboStrokeSize(activity)
         self.insert(self._stroke_size, -1)
         self._stroke_size.show()
@@ -230,18 +241,6 @@ class ToolsToolbar(gtk.Toolbar):
         self.insert(self._tool_marquee_rectangular, -1)
         self._tool_marquee_rectangular.show()
         self._tool_marquee_rectangular.set_tooltip(_('Rectangular Marquee'))
-        
-        '''
-        self._tool_polygon.connect('clicked', set_tool, activity, 'tool-polygon', self._TOOL_POLYGON)
-        self._tool_pencil.connect('clicked', set_tool, activity, 'tool-pencil', self._TOOL_PENCIL)
-        self._tool_brush.connect('clicked', set_tool, activity, 'tool-brush', self._TOOL_BRUSH)
-        self._tool_eraser.connect('clicked', set_tool, activity, 'tool-eraser', self._TOOL_ERASER)
-        self._tool_bucket.connect('clicked', set_tool, activity, 'tool-bucket', self._TOOL_BUCKET)
-        #self._tool_marquee_elliptical.connect('clicked', set_tool, activity, 'tool-marquee-elliptical', self._TOOL_MARQUEE_ELLIPTICAL)
-        #self._tool_marquee_freeform.connect('clicked', set_tool, activity, 'tool-marquee-freeform', self._TOOL_MARQUEE_FREEFORM)
-        self._tool_marquee_rectangular.connect('clicked', set_tool, activity, 'tool-marquee-rectangular', self._TOOL_MARQUEE_RECTANGULAR)
-        #self._tool_marquee_smart.connect('clicked', set_tool, activity, 'tool-marquee-smart', self._TOOL_MARQUEE_SMART)
-        '''
         
         # New connect method
         self._tool_polygon.connect('clicked', self.set_tool, self._TOOL_POLYGON)
@@ -306,6 +305,16 @@ class ToolsToolbar(gtk.Toolbar):
             cursor = None
         
         self._activity._area.window.set_cursor(cursor)
+        
+#     def _color_button_cb(self, widget):
+#         newcolor = self._color_button.get_color()
+# #         colormap = gtk.gdk.colormap_get_system()
+#         colormap = self._activity._area.get_colormap()
+#         
+#         color = colormap.alloc_color(newcolor.red, newcolor.green, newcolor.blue)
+#         self._activity._area._set_stroke_color(color)
+        
+        
 
 class ComboFillColors(ToolComboBox):
     """Class to manage Fill colors """   
@@ -506,6 +515,49 @@ class ComboStrokeSize(ToolComboBox):
         active = self.combo.get_active()
         return model[active][0]
 
+
+class ButtonFillColor(gtk.ColorButton):
+
+    def __init__(self, activity):
+        gtk.ColorButton.__init__(self)
+        self._activity = activity
+        
+        self.connect('color-set', self._color_button_cb)
+        
+    def _color_button_cb(self, widget):
+        color = self.get_color()
+        self.set_fill_color(color)
+        
+    def alloc_color(self, color):
+        colormap = self._activity._area.get_colormap()
+        return colormap.alloc_color(color.red, color.green, color.blue)
+        
+    def set_fill_color(self, color):
+        new_color = self.alloc_color(color)
+        self._activity._area._set_fill_color(new_color)
+
+
+class ButtonStrokeColor(gtk.ColorButton):
+
+    def __init__(self, activity):
+        gtk.ColorButton.__init__(self)
+        self._activity = activity
+        
+        self.connect('color-set', self._color_button_cb)
+        
+    def _color_button_cb(self, widget):
+        color = self.get_color()
+        self.set_stroke_color(color)
+        
+    def alloc_color(self, color):
+        colormap = self._activity._area.get_colormap()
+        return colormap.alloc_color(color.red, color.green, color.blue)
+        
+    def set_stroke_color(self, color):
+        new_color = self.alloc_color(color)
+        self._activity._area._set_stroke_color(new_color)
+
+
 class ShapesToolbar(gtk.Toolbar):
 
     _TOOL_SHAPE_ARROW = 'arrow'
@@ -530,23 +582,43 @@ class ShapesToolbar(gtk.Toolbar):
         self.insert(self._icon_fill, -1)
         self._icon_fill.show()
         
+        # Changing widget: using toolbox.ButtonFillColor instead of toolbox.ComboFillColors
+        '''
         self._fill_color = ComboFillColors(activity)
         self.insert(self._fill_color, -1)
         self._fill_color.show()
-
+        '''
+        self._fill_color = ButtonFillColor(activity)
+        self._fill_color.show()
+        item = gtk.ToolItem()
+        item.add(self._fill_color)
+        self.insert(item, -1)
+        item.show()
+        
         self._icon_stroke = ToolButton('icon-stroke')
         self.insert(self._icon_stroke, -1)
         self._icon_stroke.show()
-
+        
+        # Changing widget: using toolbox.ButtonStrokeColor instead of toolbox.ComboStrokeColors
+        '''
         self._stroke_color = ComboStrokeColors(activity)
         self.insert(self._stroke_color, -1)
         self._stroke_color.show()
-
+        '''
+        self._stroke_color = ButtonStrokeColor(activity)
+        self._stroke_color.show()
+        item = gtk.ToolItem()
+        item.add(self._stroke_color)
+        self.insert(item, -1)
+        item.show()
+        
+        
         self._stroke_size = ComboStrokeSize(activity)
         self.insert(self._stroke_size, -1)
         self._stroke_size.show()
         
         separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
         self.insert(separator, -1)
         separator.show()
 
@@ -667,11 +739,23 @@ class TextToolbar(gtk.Toolbar):
 
         self._activity = activity
 
-        self._text = ToggleToolButton('text')
+        self._text = ToolButton('text')
         self.insert(self._text, -1)
         self._text.show()
         self._text.set_tooltip(_('Type'))
         self._text.connect('clicked', self.set_tool, self._ACTION_TEXT)
+        
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        self.insert(separator, -1)
+        separator.show()
+        
+        self._text_color = ButtonFillColor(activity)
+        self._text_color.show()
+        item = gtk.ToolItem()
+        item.add(self._text_color)
+        self.insert(item, -1)
+        item.show()
         
         """
         #FIXME: this button is not connected to the right callback
@@ -705,14 +789,17 @@ class TextToolbar(gtk.Toolbar):
         self._text_color.show()
         """
         
-	def type_text(self, activity):
-        	set_tool(self._ACTION_TEXT, activity, 'text')
-        	activity._textview.show()
-        	
     def set_tool(self, widget, tool):
         #FIXME: this callback must change as others buttons get enabled
         self._activity._area.tool = tool
         
+        color = self._text_color.get_color()
+        self._text_color.set_fill_color(color)
+        
+        # setting cursor
+        pixbuf = gtk.gdk.pixbuf_new_from_file('./images/text.png')
+        cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pixbuf, 6, 21)
+        self._activity._area.window.set_cursor(cursor)
 
 
 class ImageToolbar(gtk.Toolbar):
@@ -772,21 +859,26 @@ class ImageToolbar(gtk.Toolbar):
 
 
     def insertImage(self, widget, activity):
+        # TODO: add a filter to display images only.
         dialog = gtk.FileChooserDialog(title=(_('Open File...')),   
                      action=gtk.FILE_CHOOSER_ACTION_OPEN,   
                      buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,   
                      gtk.STOCK_OK, gtk.RESPONSE_OK)) 
-        dialog.show_all()			
+        dialog.show_all()
+        
+        logging.debug('Importing image from file')
         response = dialog.run()
+        
         if response == gtk.RESPONSE_OK:
-            print dialog.get_filename(), 'selected'
-            #gtk28 = False 
             file_path = dialog.get_filename()
+            logging.debug('file selected')
+            logging.debug(file_path)
             #file_path = decode_path((file_path,))[0]
             #open(activity, file_path)
             activity._area.d.loadImage(file_path,widget)
         elif response == gtk.RESPONSE_CANCEL:
-            print 'Closed, no files selected'
+            logging.debug('Closed, no files selected')
+            
         dialog.destroy()
 
 
@@ -805,11 +897,10 @@ class EffectsToolbar(gtk.Toolbar):
         self._effect_grayscale = ToolButton('effect-grayscale')
         self.insert(self._effect_grayscale, -1)
         self._effect_grayscale.show()
-        self._effect_grayscale.connect('clicked', test_connect, activity, 'effect-grayscale')
         self._effect_grayscale.set_tooltip(_('Grayscale'))
 	
 	"""
-	#FIXME: Must be implemented
+        #FIXME: Must be implemented
         self._black_and_white = ToolButton('black_and_white')
         self.insert(self._black_and_white, -1)
         self._black_and_white.show()
@@ -873,130 +964,15 @@ class ViewToolbar(gtk.Toolbar):
         self._zoom_minus.show()
         self._zoom_minus.set_tooltip(_('ZOOM -'))
 
+        '''
+        # FIXME: these callbacks are not implemented
         self._zoom_plus.connect('clicked', test_connect, activity, 'zoom_plus')
         self._zoom_minus.connect('clicked', test_connect, activity, 'zoom_minus')
-
+        '''
+        
     def _combo_changed_cb(self, combo):
         if combo == self._view_percent:
             print 'treeeter'
 
 
-# def set_tool(widget, activity, data=None, tool=None):
-#     activity._area.tool = tool
-#     #setting cursor
-#     print data
-#     if data == 'tool-pencil':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/lapis_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-eraser':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/borracha_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-shape-ellipse':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/circulo_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-shape-rectangle':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/quadrado_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-marquee-rectangular':    
-#         cursor = gtk.gdk.Cursor(gtk.gdk.CROSSHAIR)
-# 	activity._area.move = False
 
-#     elif data == 'text':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/letra_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-shape-line':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/linha_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-
-#     elif data == 'tool-brush':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/brush_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-
-#     elif data == 'tool-bucket':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/bucket_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-
-#     elif data == 'tool-polygon':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/poligono_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-
-#     elif data == 'tool-shape-triangle':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/triangle_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-
-#     elif data == 'tool-shape-trapezoid':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/trapezoid_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-shape-star':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/star_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#        
-#     elif data == 'tool-shape-heart':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/heart_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-shape-parallelogram':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/parallelogram_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         
-#     elif data == 'tool-shape-arrow':
-#         pix = gtk.gdk.pixbuf_new_from_file("./images/arrow_cursor.png")
-#         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-
-#     else:
-#         # Uses toolbar icon as cursor
-#         #FIXME: invert cursor color. Toolbar icons are white
-#         try:
-#             archive = './icons/' + data + '.svg'
-#             pix = gtk.gdk.pixbuf_new_from_file(archive)
-#             print archive, pix
-#             cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pix, 6, 21)
-#         except:
-#             cursor = None
-
-#        
-#     activity._area.window.set_cursor(cursor)
-#     #print cursor
-    
-
-#move to class ComboStrokeSize
-#def set_stroke_size(activity, size):
-     #activity._area.configure_line(size)
-            
-def undo(widget, activity):
-    activity._area.undo()		
-
-def redo(widget, activity):
-    activity._area.redo()
-
-def test_connect(widget, activity, data=None):
-    ''' Dummy callback for testing'''
-    string = data + ' button clicked\n'
-    #activity.textview.get_buffer().insert_at_cursor(string)
-    
-
-def insertImage(widget, activity):
-    dialog = gtk.FileChooserDialog(title=(_('Open File...')),   
-                 action=gtk.FILE_CHOOSER_ACTION_OPEN,   
-                 buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,   
-                 gtk.STOCK_OK, gtk.RESPONSE_OK)) 
-    dialog.show_all()			
-    response = dialog.run()
-    if response == gtk.RESPONSE_OK:
-        print dialog.get_filename(), 'selected'
-        #gtk28 = False 
-        file_path = dialog.get_filename()
-        #file_path = decode_path((file_path,))[0]
-        #open(activity, file_path)
-        activity._area.d.loadImage(file_path)
-    elif response == gtk.RESPONSE_CANCEL:
-        print 'Closed, no files selected'
-    dialog.destroy()
-
-  

@@ -567,8 +567,6 @@ class Area(gtk.DrawingArea):
         color -- a gdk.Color object
 
         """
-        #self.color_ = color     
-        #self.gc.set_foreground(self.cores[color])
         self.gc.set_foreground(color)
         
  
@@ -580,15 +578,7 @@ class Area(gtk.DrawingArea):
         color -- a gdk.Color object
 
         """
-        '''
-        self.color_line = color 
-        self.gc_line.set_foreground(self.cores[color])
-        self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)  
-        self.gc_brush.set_foreground(self.cores[color])
-        self.color_dec = self.cores[color].pixel
-        '''
         
-        #self.color_line = color 
         self.gc_line.set_foreground(color)
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)  
         self.gc_brush.set_foreground(color)

@@ -381,7 +381,7 @@ class Desenho:
             
         self.d.newx_ = coords0 - self.d.oldx
         self.d.newy_ = coords1 - self.d.oldy
-        print "coords0", coords0
+        #print "coords0", coords0
 
         if self.d.newx_ >= 0:
             self.d.newx = self.d.oldx   
