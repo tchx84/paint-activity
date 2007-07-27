@@ -128,7 +128,7 @@ class Area(gtk.DrawingArea):
         
         #start of UNDO and REDO
         self.first_undo = True
-        self.first_redo = True
+        self.undo_surf = False
         self.undo_times = 0
         self.redo_times = 0
         self.undo_list=[]#pixmaps list to Undo func
@@ -436,8 +436,7 @@ class Area(gtk.DrawingArea):
         """
         if self.first_undo:#if is the first time you click on UNDO
             self.undo_times -= 1
-            if self.undo_times == 0: #to work when clear screen (bug fixed)
-                self.redo_times = 1
+            
         #print "Undo no.%d" %(self.undo_times)
         if self.undo_times >0 : 
             self.undo_times -= 1
@@ -449,11 +448,11 @@ class Area(gtk.DrawingArea):
                 print "Can't draw"
                 pass
             self.queue_draw()
-            self.first_redo=False
         else:   
             self.undo_times = 0
-            self.first_redo = True
+            
         self.first_undo=False
+        self.undo_surf = True
 
 
 	    #special case for func polygon
@@ -490,15 +489,19 @@ class Area(gtk.DrawingArea):
         widget -- the Area object (GtkDrawingArea)
 
         """
+        if self.undo_surf:
+            self.undo_times += 1
+        
         self.undo_list.append(None)#alloc memory
         self.undo_list[self.undo_times] = gtk.gdk.Pixmap(widget.window, WIDTH, HEIGHT, -1) #define type
         self.undo_list[self.undo_times].draw_drawable(self.gc,self.pixmap,0,0,0,0, WIDTH, HEIGHT) #copy workarea
         self.undo_times += 1
         self.redo_times = 0 
         self.first_undo = True
+        self.undo_surf = False
         
         #this is the part where we can limit the steps of undo/redo     
-        if self.undo_times==10:
+        if self.undo_times==12:
            self.undo_list.pop(0)
            self.undo_times-=1
            #print "estourou"
