@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-07-31 13:45-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: toolbox.py:74
+msgid "Edit"
+msgstr ""
+
+#: toolbox.py:78
+msgid "Tools"
+msgstr ""
+
+#: toolbox.py:82
+msgid "Shapes"
+msgstr ""
+
+#: toolbox.py:86
+msgid "Text"
+msgstr ""
+
+#: toolbox.py:90
+msgid "Image"
+msgstr ""
+
+#: toolbox.py:94
+msgid "Effects"
+msgstr ""
+
+#: toolbox.py:195
+msgid "Pencil"
+msgstr ""
+
+#: toolbox.py:201
+msgid "Brush"
+msgstr ""
+
+#: toolbox.py:208
+msgid "Eraser"
+msgstr ""
+
+#: toolbox.py:214
+msgid "Polygon"
+msgstr ""
+
+#: toolbox.py:219
+msgid "Bucket"
+msgstr ""
+
+#: toolbox.py:243
+msgid "Rectangular Marquee"
+msgstr ""
+
+#: toolbox.py:263
+msgid "Square"
+msgstr ""
+
+#: toolbox.py:264
+msgid "Circle"
+msgstr ""
+
+#: toolbox.py:333 toolbox.py:404
+msgid "Black"
+msgstr ""
+
+#: toolbox.py:334 toolbox.py:405
+msgid "White"
+msgstr ""
+
+#: toolbox.py:335 toolbox.py:406
+msgid "Maroon"
+msgstr ""
+
+#: toolbox.py:336 toolbox.py:407
+msgid "Red"
+msgstr ""
+
+#: toolbox.py:337 toolbox.py:408
+msgid "Olive"
+msgstr ""
+
+#: toolbox.py:338 toolbox.py:409
+msgid "Yellow"
+msgstr ""
+
+#: toolbox.py:339 toolbox.py:410
+msgid "Green"
+msgstr ""
+
+#: toolbox.py:340 toolbox.py:411
+msgid "Lime"
+msgstr ""
+
+#: toolbox.py:341 toolbox.py:412
+msgid "Teal"
+msgstr ""
+
+#: toolbox.py:342 toolbox.py:413
+msgid "Aqua"
+msgstr ""
+
+#: toolbox.py:343 toolbox.py:414
+msgid "Navy"
+msgstr ""
+
+#: toolbox.py:344 toolbox.py:415
+msgid "Blue"
+msgstr ""
+
+#: toolbox.py:345 toolbox.py:416
+msgid "Purple"
+msgstr ""
+
+#: toolbox.py:346 toolbox.py:417
+msgid "Fuchsia"
+msgstr ""
+
+#: toolbox.py:484
+msgid "1"
+msgstr ""
+
+#: toolbox.py:485
+msgid "2"
+msgstr ""
+
+#: toolbox.py:486
+msgid "3"
+msgstr ""
+
+#: toolbox.py:487
+msgid "5"
+msgstr ""
+
+#: toolbox.py:488 toolbox.py:947
+msgid "10"
+msgstr ""
+
+#: toolbox.py:489
+msgid "20"
+msgstr ""
+
+#: toolbox.py:490 toolbox.py:945
+msgid "50"
+msgstr ""
+
+#: toolbox.py:491 toolbox.py:944
+msgid "100"
+msgstr ""
+
+#: toolbox.py:628
+msgid "Ellipse"
+msgstr ""
+
+#: toolbox.py:633
+msgid "Rectangle"
+msgstr ""
+
+#: toolbox.py:638
+msgid "Line"
+msgstr ""
+
+#: toolbox.py:660
+msgid "Parallelogram"
+msgstr ""
+
+#: toolbox.py:665
+msgid "Arrow"
+msgstr ""
+
+#: toolbox.py:670
+msgid "Star"
+msgstr ""
+
+#: toolbox.py:675
+msgid "Trapezoid"
+msgstr ""
+
+#: toolbox.py:680
+msgid "Triangle"
+msgstr ""
+
+#: toolbox.py:745
+msgid "Type"
+msgstr ""
+
+#: toolbox.py:819
+msgid "Insert Image"
+msgstr ""
+
+#: toolbox.py:863
+msgid "Open File..."
+msgstr ""
+
+#: toolbox.py:900
+msgid "Grayscale"
+msgstr ""
+
+#: toolbox.py:940
+msgid "1000"
+msgstr ""
+
+#: toolbox.py:941
+msgid "500"
+msgstr ""
+
+#: toolbox.py:942
+msgid "200"
+msgstr ""
+
+#: toolbox.py:943
+msgid "150"
+msgstr ""
+
+#: toolbox.py:946
+msgid "25"
+msgstr ""
+
+#: toolbox.py:960
+msgid "ZOOM +"
+msgstr ""
+
+#: toolbox.py:965
+msgid "ZOOM -"
+msgstr ""
