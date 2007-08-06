@@ -53,11 +53,11 @@ Roseli de Deus Lopes                (roseli@lsi.usp.br)
 """
 
 
-import  pygtk
-pygtk.require('2.0')
-import gtk
-import sys, gobject, socket
-from gtk import gdk
+# import  pygtk
+# pygtk.require('2.0')
+import gtk, gobject, logging
+# import sys, socket
+# from gtk import gdk
 import math
 import pango
 from fill import *
@@ -68,6 +68,15 @@ WIDTH = 800
 HEIGHT = 600
 
 class Area(gtk.DrawingArea):
+
+    __gsignals__ = {
+        'undo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
+        'redo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
+        #TODO: these signals still not used.
+#         'copy' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
+#         'selected' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
+    }
+
     def __init__(self, janela):
         """ Initialize the object from class Area which is derived from gtk.DrawingArea.
 
@@ -76,6 +85,8 @@ class Area(gtk.DrawingArea):
         janela -- the parent window
 
         """
+        logging.debug('Area.__init__(self, janela)')
+        
         gtk.DrawingArea.__init__(self)
         self.set_size_request(WIDTH, HEIGHT)
         self.set_events(gtk.gdk.POINTER_MOTION_MASK |
@@ -123,8 +134,6 @@ class Area(gtk.DrawingArea):
         self.eraser_shape = 'circle'
                 
         self.font = pango.FontDescription('Sans 9')
-        #self.mensagem = Mensagens(self)
-        #self.mensagem.criaConexao()
         
         #start of UNDO and REDO
         self.first_undo = True
@@ -144,6 +153,8 @@ class Area(gtk.DrawingArea):
         event -- GdkEvent
 
         """
+        logging.debug('Area.configure_event(self, widget, event)')
+        
         win = widget.window
         width = win.get_geometry()[2]
         height = win.get_geometry()[3]  
@@ -176,9 +187,13 @@ class Area(gtk.DrawingArea):
         self.gc_selection1 = widget.window.new_gc()  #this make another white line out of the black line
         self.gc_selection1.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         self.gc_selection1.set_foreground(white)
-        print 'configure event'
+        
         
         self.enableUndo(widget)
+        # forcing self.undo_times to zero; self.enableUndo() increases it
+        # wrongly at this point... bad hacking, I know.
+        #self.undo_times = 0
+        #self.emit('undo')
         
         return True
         
@@ -191,6 +206,8 @@ class Area(gtk.DrawingArea):
         size -- 
 
         """     
+        #logging.debug('Area.configure_line(self, size)')
+        
         self.line_size = size
         self.gc_line.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
 
@@ -202,7 +219,9 @@ class Area(gtk.DrawingArea):
         widget -- the Area object (GtkDrawingArea)
         event -- GdkEvent
 
-        """ 
+        """
+        #logging.debug('Area.expose(self, widget, event)')
+        
         area = event.area      
         if self.desenha:
             if self.selmove :
@@ -434,6 +453,8 @@ class Area(gtk.DrawingArea):
         self -- the Area object (GtkDrawingArea)
 
         """
+        logging.debug('Area.undo(self)')
+        
         if self.first_undo:#if is the first time you click on UNDO
             self.undo_times -= 1
             
@@ -459,7 +480,16 @@ class Area(gtk.DrawingArea):
         if self.tool == 'polygon':		
                 self.polygon_start = True #start the polygon again
         
-         
+        # emits 'undo' and 'redo' signals only in case of first action,
+        # (first undo or first redo) or no actions available
+        # FIXME: this way, things work strangely; emiting signals everytime
+#         if self.undo_times <= 1:
+#             self.emit('undo')
+#         if self.redo_times <= 1:
+#             self.emit('redo')
+        self.emit('undo')
+        self.emit('redo')
+        
     def redo(self):
         """Redo the last undo operation.
 
@@ -467,6 +497,8 @@ class Area(gtk.DrawingArea):
         self -- the Area object (GtkDrawingArea)
 
         """
+        logging.debug('Area.redo(self)')
+        
         #print "REDO no.%d" %(self.redo_times)
         if  (self.redo_times>0):
             self.redo_times -= 1
@@ -479,7 +511,16 @@ class Area(gtk.DrawingArea):
                 print "Can't draw"
                 self.undo_times-=1
         self.queue_draw()
-            
+        
+        # emits 'undo' and 'redo' signals only in case of first action,
+        # (first undo or first redo) or no actions available
+        # FIXME: this way, things work strangely; emiting signals everytime
+#         if self.undo_times <= 1:
+#             self.emit('undo')
+#         if self.redo_times <= 1:
+#             self.emit('redo')
+        self.emit('undo')
+        self.emit('redo')
             
     def enableUndo(self,widget):
         """Keep the last change in a list for Undo/Redo commands.
@@ -489,6 +530,8 @@ class Area(gtk.DrawingArea):
         widget -- the Area object (GtkDrawingArea)
 
         """
+        logging.debug('Area.enableUndo(self,widget)')
+        
         if self.undo_surf:
             self.undo_times += 1
         
@@ -506,9 +549,22 @@ class Area(gtk.DrawingArea):
            self.undo_times-=1
            #print "estourou"
         
+        # emits 'undo' and 'redo' signals only in case of first action,
+        # (first undo or first redo) or no actions available
+        # FIXME: this way, things work strangely; emiting signals everytime
+#         if self.undo_times <= 1:
+#             self.emit('undo')
+#         if self.redo_times <= 1:
+#             self.emit('redo')
+        self.emit('undo')
+        self.emit('redo')
+        
+        
     def copy(self):
         """ Copy Image.
         When the tool selection is working make the change the copy of selectioned area"""
+        logging.debug('Area.copy(self)')
+        
         if self.selmove:
     
             if self.sx > self.oldx:
@@ -538,6 +594,8 @@ class Area(gtk.DrawingArea):
     def past(self):
         """ Past image.
         Past image that is in pixmap_copy"""
+        logging.debug('Area.past(self)')
+        
         if self.pixmap_copy != None :
             
 
@@ -570,6 +628,8 @@ class Area(gtk.DrawingArea):
         color -- a gdk.Color object
 
         """
+        logging.debug('Area._set_fill_color(self, color)')
+        
         self.gc.set_foreground(color)
         
  
@@ -581,6 +641,7 @@ class Area(gtk.DrawingArea):
         color -- a gdk.Color object
 
         """
+        logging.debug('Area._set_stroke_color(self, color)')
         
         self.gc_line.set_foreground(color)
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)  
@@ -594,6 +655,8 @@ class Area(gtk.DrawingArea):
         self -- the Area object (GtkDrawingArea)
 
         """
+        logging.debug('Area._set_grayscale(self,widget)')
+        
         pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
         pix_ = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
         pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, WIDTH, HEIGHT)
@@ -612,6 +675,8 @@ class Area(gtk.DrawingArea):
         self -- the Area object (GtkDrawingArea)
 
         """
+        logging.debug('Area._rotate_left(self)')
+        
         pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
         pix_ = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
         pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
@@ -619,4 +684,25 @@ class Area(gtk.DrawingArea):
         self.pixmap.draw_pixbuf(self.gc, pix_, 0, 0, 0, 0, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
         self.queue_draw()
         
+    def can_undo(self):
+        '''
+        Indicate if is there some action to undo
+        '''
+        logging.debug('Area.can_undo(self)')
+        
+        if self.undo_times < 1:
+            return False
+        else:
+            return True
+            
+    def can_redo(self):
+        '''
+        Indicate if is there some action to redo
+        '''
+        logging.debug('Area.can_redo(self)')
+        
+        if self.redo_times < 1:
+            return False
+        else:
+            return True
         

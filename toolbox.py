@@ -57,7 +57,6 @@ from gettext import gettext as _
 import gtk, logging
 
 from sugar.activity.activity import ActivityToolbox, EditToolbar
-from sugar.graphics import color
 from sugar.graphics.toolcombobox import ToolComboBox
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
@@ -105,18 +104,14 @@ class DrawEditToolbar(EditToolbar):
         
         self._activity = activity
 
-#         self.undo.connect('clicked', undo, activity)
-#         self.redo.connect('clicked', redo, activity)
         self.undo.connect('clicked', self._undo_cb)
         self.redo.connect('clicked', self._redo_cb)
 
-#         self.copy.connect('clicked', test_connect, activity, 'copy')
-#         self.paste.connect('clicked', test_connect, activity, 'paste')
         self.copy.connect('clicked', self._copy_cb)
         self.paste.connect('clicked', self._paste_cb)
-
-#        self.copy.hide()
-#        self.paste.hide()
+        
+        self._activity._area.connect('undo', self._enable_undo_button_cb)
+        self._activity._area.connect('redo', self._enable_redo_button_cb)
         
     def _undo_cb(self, widget, data=None):
         self._activity._area.undo()
@@ -129,7 +124,13 @@ class DrawEditToolbar(EditToolbar):
         
     def _paste_cb(self, widget, data=None):
         self._activity._area.past()
-
+        
+    def _enable_undo_button_cb(self, widget, data=None):
+        self.undo.set_sensitive( self._activity._area.can_undo() )
+        
+    def _enable_redo_button_cb(self, widget, data=None):
+        self.redo.set_sensitive( self._activity._area.can_redo() )
+        
 
 class ToolsToolbar(gtk.Toolbar):
 
@@ -198,14 +199,14 @@ class ToolsToolbar(gtk.Toolbar):
         self.insert(self._tool_brush, -1)
         self._tool_brush.show()
         #self._tool_brush.set_tooltip(_('Brush'))
-        self._brush_palette = self.create_palette('Brush')
+        self._brush_palette = self.create_palette(_('Brush'))
         self._tool_brush.set_palette(self._brush_palette)
 
         self._tool_eraser = ToolButton('tool-eraser')
         self.insert(self._tool_eraser, -1)
         self._tool_eraser.show()
         #self._tool_eraser.set_tooltip(_('Eraser'))
-        self._eraser_palette = self.create_palette('Eraser')
+        self._eraser_palette = self.create_palette(_('Eraser'))
         self._tool_eraser.set_palette(self._eraser_palette)
 
         self._tool_polygon = ToolButton('tool-polygon')

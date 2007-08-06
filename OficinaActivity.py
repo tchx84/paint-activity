@@ -60,7 +60,6 @@ import gtk
 
 from sugar.activity import activity
 
-#from Oficina import Oficina
 from toolbox import Toolbox
 from Area import Area
 import logging
@@ -81,17 +80,18 @@ class OficinaActivity(activity.Activity):
         os.chdir(activity.get_bundle_path())
         #print activity.get_bundle_path()
         
+        self._fixed = gtk.Fixed()   
+        self._area = Area(self) 
+        
         toolbox = Toolbox(self)
         self.set_toolbox(toolbox)
         toolbox.show()       
   
 
-        # addind a textview widget
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
-        self._fixed = gtk.Fixed()   
-        self._area = Area(self) 
+        
         color = gtk.gdk.color_parse("white")
         self._fixed.modify_bg(gtk.STATE_NORMAL, color)
 
@@ -126,16 +126,14 @@ class OficinaActivity(activity.Activity):
         file_path --
 
         '''
-        logging.debug('reading file')
-        logging.debug(file_path)
+        logging.debug('reading file %s', file_path)
+#         logging.debug(file_path)
         
-        #self._area.d.limpatudo()
-        #self._area.d.clear()
         self._area.d.loadImage(file_path, self._area)
         
         # Does this work?
-        self._area.undo_times = 1
-        self._area.redo_times = 0
+#         self._area.undo_times = 1
+#         self._area.redo_times = 0
 
 
     def write_file(self, file_path):
@@ -145,8 +143,8 @@ class OficinaActivity(activity.Activity):
         file_path -- 
 
         '''
-        logging.debug('writting file')
-        logging.debug(file_path)
+        logging.debug('saving as PNG')
+        logging.debug('writting file %s', file_path)
         
         width, height = self._area.window.get_size()
         pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, width, height)
