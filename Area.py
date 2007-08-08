@@ -55,7 +55,7 @@ Roseli de Deus Lopes                (roseli@lsi.usp.br)
 
 # import  pygtk
 # pygtk.require('2.0')
-import gtk, gobject, logging
+import gtk, gobject, logging, os
 # import sys, socket
 # from gtk import gdk
 import math
@@ -564,8 +564,14 @@ class Area(gtk.DrawingArea):
         
     def copy(self):
         """ Copy Image.
-        When the tool selection is working make the change the copy of selectioned area"""
-        logging.debug('Area.copy(self)')
+        When the tool selection is working make the change the copy of selectioned area
+        
+        Keyword arguments:
+        self -- the Area object (GtkDrawingArea)
+        """
+        clipBoard = gtk.Clipboard()
+        tempPath = os.path.join("/tmp", "tempFile")
+        tempPath = os.path.abspath(tempPath)  
         
         if self.selmove:
     
@@ -587,40 +593,52 @@ class Area(gtk.DrawingArea):
             if h < 0:
                 h = - h
 
-            self.pixmap_copy = gtk.gdk.Pixmap(self.window, w, h, -1)
-            self.pixmap_copy.draw_drawable(self.gc, self.pixmap, x, y, 0, 0, w, h)  
+            pixbuf_copy = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, w, h)
+            pixbuf_copy.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), x, y, 0, 0, w, h)
+
+            pixbuf_copy.save(tempPath,'png')
+            #gtk.Clipboard().set_with_data( [('text/uri-list', 0, 0)], self._copyGetFunc, self._copyClearFunc, tempPath )
+            clipBoard.set_image(pixbuf_copy)
+            
         else :
             print "Please select some area first"
-            self.pixmap_copy == None
             
+    def _copyGetFunc(  self, clipboard, selection_data, info, data ):
+        selection_data.set( "text/uri-list", 8, data)
+    
+    def _copyClearFunc( self, clipboard, data ):
+        if (data != None):
+            if (os.path.exists(data)):
+                os.remove( data )
+        data = None
+	       
     def past(self):
         """ Past image.
-        Past image that is in pixmap_copy"""
-        logging.debug('Area.past(self)')
+        Past image that is in pixmap_copy
         
-        if self.pixmap_copy != None :
-            
-
-            w, h = self.pixmap_copy.get_size()
-            
-            #to draw everthing done until this moment
-            #self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
-            
-            #to get out of sel func
-            if self.tool == 'marquee-rectangular': 
-                self.pixmap_sel.draw_drawable(self.gc, self.pixmap_copy, 0,0,0,0, w, h)   
-                #self.enableUndo(self)
-                self.sel_get_out = True
-                self.selmove = False
-                
-            #to draw the new area on screen
-            self.pixmap.draw_drawable(self.gc, self.pixmap_copy, 0,0,0,0, w, h)  
-            
-                      
-            self.enableUndo(self)     
+        Keyword arguments:
+        self -- the Area object (GtkDrawingArea)
+        """
+        width, height = self.window.get_size()
+        
+        tempPath = os.path.join("/tmp", "tempFile")
+        tempPath = os.path.abspath(tempPath)
+        
+        clipBoard = gtk.Clipboard()
+        
+        if clipBoard.wait_is_image_available():
+            pixbuf_copy = clipBoard.wait_for_image()
+            self.pixmap.draw_pixbuf(self.gc, pixbuf_copy, 0, 0, 0, 0, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
             self.queue_draw()
-        else :
-            print "Nothing is copied yet"
+        else:
+            self.d.loadImage(tempPath, self)
+            
+        #to get out of sel func
+        if self.tool == 'marquee-rectangular': 
+            self.pixmap_sel.draw_drawable(self.gc, self.pixmap_copy, 0,0,0,0, width, height)   
+            #self.enableUndo(self)
+            self.sel_get_out = True
+            self.selmove = False
             
     def _set_fill_color(self, color):
         """Set fill color.
