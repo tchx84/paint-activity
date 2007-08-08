@@ -149,5 +149,6 @@ class OficinaActivity(activity.Activity):
         width, height = self._area.window.get_size()
         pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, width, height)
         pixbuf.get_from_drawable(self._area.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
+        self.metadata['mime_type'] = 'image/png'
         pixbuf.save(file_path, 'png', {})   
 

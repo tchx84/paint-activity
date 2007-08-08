@@ -72,6 +72,7 @@ class Area(gtk.DrawingArea):
     __gsignals__ = {
         'undo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         'redo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
+        'action-saved' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         #TODO: these signals still not used.
 #         'copy' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
 #         'selected' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
@@ -488,7 +489,7 @@ class Area(gtk.DrawingArea):
 #         if self.redo_times <= 1:
 #             self.emit('redo')
         self.emit('undo')
-        self.emit('redo')
+        #self.emit('redo')
         
     def redo(self):
         """Redo the last undo operation.
@@ -519,7 +520,7 @@ class Area(gtk.DrawingArea):
 #             self.emit('undo')
 #         if self.redo_times <= 1:
 #             self.emit('redo')
-        self.emit('undo')
+        #self.emit('undo')
         self.emit('redo')
             
     def enableUndo(self,widget):
@@ -556,8 +557,9 @@ class Area(gtk.DrawingArea):
 #             self.emit('undo')
 #         if self.redo_times <= 1:
 #             self.emit('redo')
-        self.emit('undo')
-        self.emit('redo')
+        #self.emit('undo')
+        #self.emit('redo')
+        self.emit('action-saved')
         
         
     def copy(self):

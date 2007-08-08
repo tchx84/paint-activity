@@ -110,8 +110,9 @@ class DrawEditToolbar(EditToolbar):
         self.copy.connect('clicked', self._copy_cb)
         self.paste.connect('clicked', self._paste_cb)
         
-        self._activity._area.connect('undo', self._enable_undo_button_cb)
-        self._activity._area.connect('redo', self._enable_redo_button_cb)
+        self._activity._area.connect('undo', self._on_signal_undo_cb)
+        self._activity._area.connect('redo', self._on_signal_redo_cb)
+        self._activity._area.connect('action-saved', self._on_signal_action_saved_cb)
         
     def _undo_cb(self, widget, data=None):
         self._activity._area.undo()
@@ -125,12 +126,21 @@ class DrawEditToolbar(EditToolbar):
     def _paste_cb(self, widget, data=None):
         self._activity._area.past()
         
-    def _enable_undo_button_cb(self, widget, data=None):
+    def _on_signal_undo_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+        
+    def _on_signal_redo_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+        
+    def _on_signal_action_saved_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+        
+    def _verify_sensitive_buttons(self):
         self.undo.set_sensitive( self._activity._area.can_undo() )
-        
-    def _enable_redo_button_cb(self, widget, data=None):
         self.redo.set_sensitive( self._activity._area.can_redo() )
-        
+        #TODO: it is not possible to verify these yet.
+        #self.copy.set_sensitive( self._activity._area.can_copy() )
+        #self.paste.set_sensitive( self._activity._area.can_paste() )
 
 class ToolsToolbar(gtk.Toolbar):
 
