@@ -570,7 +570,7 @@ class ShapesToolbar(gtk.Toolbar):
     _TOOL_SHAPE_HEART = 'heart'
     _TOOL_SHAPE_LINE = 'line'
     _TOOL_SHAPE_PARALLELOGRAM = 'parallelogram'
-    _TOOL_SHAPE_POLYGON = 'polygon'
+    _TOOL_SHAPE_POLYGON = 'polygon_regular'
     _TOOL_SHAPE_RECTANGLE = 'rectangle'
     _TOOL_SHAPE_STAR = 'star'
     _TOOL_SHAPE_TRAPEZOID = 'trapezoid'
@@ -641,12 +641,14 @@ class ShapesToolbar(gtk.Toolbar):
         self.insert(self._tool_shape_line, -1)
         self._tool_shape_line.show()
         self._tool_shape_line.set_tooltip(_('Line'))
-        """
+        
         self._tool_shape_polygon = ToolButton('tool-shape-polygon')
         self.insert(self._tool_shape_polygon, -1)
         self._tool_shape_polygon.show()
         self._tool_shape_polygon.set_tooltip(_('Polygon'))
 
+        """
+        
         self._tool_shape_freeform = ToolButton('tool-shape-freeform')
         self.insert(self._tool_shape_freeform, -1)
         self._tool_shape_freeform.show()
@@ -695,7 +697,7 @@ class ShapesToolbar(gtk.Toolbar):
         #self._tool_shape_heart.connect('clicked', self.set_tool, self._TOOL_SHAPE_HEART)
         self._tool_shape_line.connect('clicked', self.set_tool, self._TOOL_SHAPE_LINE)
         self._tool_shape_parallelogram.connect('clicked', self.set_tool, self._TOOL_SHAPE_PARALLELOGRAM)
-        #self._tool_shape_polygon.connect('clicked', self.set_tool, self._TOOL_SHAPE_POLYGON)
+        self._tool_shape_polygon.connect('clicked', self.set_tool, self._TOOL_SHAPE_POLYGON)
         self._tool_shape_rectangle.connect('clicked', self.set_tool, self._TOOL_SHAPE_RECTANGLE)
         self._tool_shape_star.connect('clicked', self.set_tool, self._TOOL_SHAPE_STAR)
         self._tool_shape_trapezoid.connect('clicked', self.set_tool, self._TOOL_SHAPE_TRAPEZOID)

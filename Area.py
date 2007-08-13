@@ -116,6 +116,7 @@ class Area(gtk.DrawingArea):
         self.newy_ = 0
         self.color_dec = 0
         self.polygon_start = True
+        self.points = []
         self.gc = None
         self.gc_line = None
         self.gc_eraser = None
@@ -307,27 +308,32 @@ class Area(gtk.DrawingArea):
                 #polygon    
                 elif self.tool == 'polygon':
                     self.configure_line(self.line_size)
-                    self.d.polygon(widget, coords)  
+                    self.d.polygon(widget,coords,True,False)
                 #triangle
                 elif self.tool == 'triangle':
                     self.configure_line(self.line_size)
-                    self.d.triangle(widget,coords)
+                    self.d.triangle(widget,coords,True)
                 #trapezoid
                 elif self.tool == 'trapezoid':
                     self.configure_line(self.line_size)
-                    self.d.trapezoid(widget,coords)
+                    self.d.trapezoid(widget,coords,True)
                 #arrow
                 elif self.tool == 'arrow':
                     self.configure_line(self.line_size)
-                    self.d.arrow(widget,coords)
+                    self.d.arrow(widget,coords,True)
                 #parallelogram
                 elif self.tool == 'parallelogram':
                     self.configure_line(self.line_size)
-                    self.d.parallelogram(widget,coords)
+                    self.d.parallelogram(widget,coords,True)
                 #star
                 elif self.tool == 'star':
                     self.configure_line(self.line_size)
-                    self.d.star(widget,coords)
+                    self.d.star(widget,coords,True)
+                #polygon regular
+                elif self.tool == 'polygon_regular':
+                    self.configure_line(self.line_size)
+                    n = 7
+                    self.d.polygon_regular(widget,coords,n,True)
 
     def mouseup(self,widget,event): 
         """Make the Area object (GtkDrawingArea) recognize that the mouse was released.
@@ -338,6 +344,7 @@ class Area(gtk.DrawingArea):
         event -- GdkEvent
 
         """
+        coords = int(event.x), int(event.y)
         if self.desenha == True:
             # line
             if self.tool == 'line':
@@ -374,70 +381,43 @@ class Area(gtk.DrawingArea):
                     self.oldx = event.x
                     self.oldy = event.y
                     self.enableUndo(widget)
-                # polygon
+            # polygon
             elif self.tool == 'polygon':
-                if self.polygon_start:
-                    self.enableUndo(widget)
-                    self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int( event.y ))
-                    self.lastx = event.x
-                    self.lasty = event.y
-                    self.firstx = self.oldx
-                    self.firsty = self.oldy
-                    self.polygon_start = False
-                else:
-                    self.dx = math.fabs(event.x - self.firstx)
-                    self.dy = math.fabs(event.y - self.firsty)
-                    if (self.dx < 20) & (self.dy < 20):
-                        self.pixmap.draw_line(self.gc_line,int (self.firstx), int (self.firsty), int (self.lastx), int (self.lasty))
-                        self.polygon_start = True
-                        self.undo_times -= 1#destroy the undo screen of polygon start 
-                        self.enableUndo(widget)
-                    else:   
-                        self.pixmap.draw_line(self.gc_line,int (self.lastx),int (self.lasty), int (event.x), int( event.y ))
-                    self.lastx = event.x
-                    self.lasty = event.y
-                widget.queue_draw() 
-
-            elif self.tool == 'pencil': #to undo pencil
+                self.d.polygon(widget, coords, False, False)
+            #to undo pencil
+            elif self.tool == 'pencil':
                 widget.queue_draw() 
                 self.enableUndo(widget)
-
             #bucket
             elif self.tool == 'bucket':
-            # New algorithm. See Desenho.py
                 width, height = self.window.get_size()
                 fill(self.pixmap, self.gc, int(event.x), int(event.y), width, height, self.color_dec)
                 widget.queue_draw()
                 self.enableUndo(widget)
-                
+            #triangle
             elif self.tool == 'triangle':
-                self.pixmap.draw_polygon(self.gc, True, self.d.points)
-                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
-                widget.queue_draw()
+                self.d.triangle(widget,coords,False)
                 self.enableUndo(widget)
-
+            #trapezoid
             elif self.tool == 'trapezoid':
-                self.pixmap.draw_polygon(self.gc, True, self.d.points)
-                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
-                widget.queue_draw()
+                self.d.trapezoid(widget,coords,False)
                 self.enableUndo(widget)
-
+            #arrow
             elif self.tool == 'arrow':
-                self.pixmap.draw_polygon(self.gc, True, self.d.points)
-                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
-                widget.queue_draw()
+                self.d.arrow(widget,coords,False)
                 self.enableUndo(widget)
-
+            #parallelogram
             elif self.tool == 'parallelogram':
-                self.pixmap.draw_polygon(self.gc, True, self.d.points)
-                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
-                widget.queue_draw()
+                self.d.parallelogram(widget,coords,False)
                 self.enableUndo(widget)
-
+            #star
             elif self.tool == 'star':
-                self.pixmap.draw_polygon(self.gc, True, self.d.points)
-                self.pixmap.draw_polygon(self.gc_line, False, self.d.points)
-                widget.queue_draw()
+                self.d.star(widget,coords,False)
+                self.enableUndo(widget)
+            #polygon regular
+            elif self.tool == 'polygon_regular':
+                n = 7
+                self.d.polygon_regular(widget,coords,n,False)
                 self.enableUndo(widget)
 
         if self.tool == 'brush' or self.tool == 'eraser':

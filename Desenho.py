@@ -184,7 +184,7 @@ class Desenho:
         self.d.pixmap_temp.draw_rectangle(self.d.gc_line, False ,self.d.newx,self.d.newy,self.d.newx_,self.d.newy_)
 
     
-    def triangle(self, widget, coords):
+    def triangle(self, widget, coords, temp):
         """Draw a triangle.
 
         Keyword arguments:
@@ -193,30 +193,21 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        widget.queue_draw()     
 
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
+        if temp == True:
+            pixmap = self.d.pixmap_temp
         else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        points = [(self.d.oldx,self.d.oldy), (self.d.oldx+int((coords[0]-self.d.oldx)/2),coords[1]), (coords[0],self.d.oldy)]
+        pixmap.draw_drawable(self.d.gc, self.d.pixmap, 0, 0, 0, 0, width, height)
+        pixmap.draw_polygon(self.d.gc, True, points)
+        pixmap.draw_polygon(self.d.gc_line, False, points)
+        widget.queue_draw()
 
-        if coords0 < 0:
-            coords0 = 0
 
-        if coords1 < 0:
-            coords1 = 0
-
-        self.points = [(self.d.oldx, self.d.oldy), (self.d.oldx+int((coords0-self.d.oldx)/2), coords1), (coords0,self.d.oldy)]                
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
-        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
-
-    def trapezoid(self, widget, coords):
+    def trapezoid(self, widget, coords, temp):
         """Draw a trapezoid.
 
         Keyword arguments:
@@ -225,31 +216,22 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        widget.queue_draw()     
 
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
+        if temp == True:
+            pixmap = self.d.pixmap_temp
         else:
-            coords0 = coords[0]
-            
-        if coords[1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
 
-        if coords0 < 0:
-            coords0 = 0
-
-        if coords1 < 0:
-            coords1 = 0
-
-        dif = int((coords0 - self.d.oldx)/4)
-        self.points = [(self.d.oldx, self.d.oldy), (self.d.oldx+dif, coords1), (coords0-dif, coords1) , (coords0,self.d.oldy)]                
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
-        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
-
-    def arrow(self, widget, coords):
+        dif = int((coords[0] - self.d.oldx)/4)
+        points = [(self.d.oldx, self.d.oldy), (self.d.oldx+dif, coords[1]), (coords[0]-dif, coords[1]) , (coords[0],self.d.oldy)]                
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 , 0, 0, width, height)
+        pixmap.draw_polygon(self.d.gc, True, points)
+        pixmap.draw_polygon(self.d.gc_line, False, points)
+        widget.queue_draw()
+        
+        
+    def arrow(self, widget, coords, temp):
         """Draw a arrow.
 
         Keyword arguments:
@@ -258,31 +240,28 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        widget.queue_draw()     
-
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
+        if temp == True:
+            pixmap = self.d.pixmap_temp
         else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
 
-        if coords0 < 0:
-            coords0 = 0
-
-        if coords1 < 0:
-            coords1 = 0
-        self.width = coords0 - self.d.oldx
-        self.height = coords1 - self.d.oldy
-        self.points = [(self.d.oldx,self.d.oldy), (self.d.oldx+int(self.width/6),coords1), (self.d.oldx+int(self.width/6),self.d.oldy+int(self.height/3)), (coords0,self.d.oldy+int(self.height/3)), (coords0,self.d.oldy-int(self.height/3)), (self.d.oldx+int(self.width/6),self.d.oldy-int(self.height/3)), (self.d.oldx+int(self.width/6),self.d.oldy-self.height)]
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
-        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
-
-    def parallelogram(self, widget, coords):
+        x = coords[0] - self.d.oldx
+        y = coords[1] - self.d.oldy
+        points = [(self.d.oldx,self.d.oldy),\
+(self.d.oldx+int(x/6),self.d.oldy+y),\
+(self.d.oldx+int(x/6),self.d.oldy+int(y/3)),\
+(self.d.oldx+x,self.d.oldy+int(y/3)),\
+(self.d.oldx+x,self.d.oldy-int(y/3)),\
+(self.d.oldx+int(x/6),self.d.oldy-int(y/3)),\
+(self.d.oldx+int(x/6),self.d.oldy-y)]
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap, 0, 0, 0, 0, width, height)
+        pixmap.draw_polygon(self.d.gc, True, points)
+        pixmap.draw_polygon(self.d.gc_line, False, points)
+        widget.queue_draw()
+        
+        
+    def parallelogram(self, widget, coords, temp):
         """Draw a parallelogram.
 
         Keyword arguments:
@@ -291,31 +270,21 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        widget.queue_draw()     
-
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
+        if temp == True:
+            pixmap = self.d.pixmap_temp
         else:
-            coords0 = coords[0]
-            
-        if coords[1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
 
-        if coords0 < 0:
-            coords0 = 0
+        x = int((coords[0] - self.d.oldx)/4)
+        points = [(self.d.oldx,self.d.oldy), (coords[0]-x, self.d.oldy), (coords[0],coords[1]), (self.d.oldx+x,coords[1])]
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        pixmap.draw_polygon(self.d.gc, True, points)
+        pixmap.draw_polygon(self.d.gc_line, False, points)
+        widget.queue_draw()
 
-        if coords1 < 0:
-            coords1 = 0
 
-        self.width = int((coords0 - self.d.oldx)/4)
-        self.points = [(self.d.oldx,self.d.oldy), (coords0-self.width, self.d.oldy), (coords0,coords1), (self.d.oldx+self.width,coords1)]
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
-        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
-
-    def star(self, widget, coords):
+    def star(self, widget, coords, temp):
         """Draw a arrow.
 
         Keyword arguments:
@@ -324,38 +293,63 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        widget.queue_draw()     
-
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
+        if temp == True:
+            pixmap = self.d.pixmap_temp
         else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        x = coords[0] - self.d.oldx
+        y = coords[1] - self.d.oldy
+
+        points = [(self.d.oldx,self.d.oldy),\
+(self.d.oldx+int(x*0.25), self.d.oldy+int(y*0.4)),\
+(self.d.oldx+int(x), self.d.oldy+int(y*0.4)),\
+(self.d.oldx+int(x*0.35), self.d.oldy+int(y*0.6)),\
+(self.d.oldx+int(x*0.6), self.d.oldy+y),\
+(self.d.oldx, self.d.oldy+int(y*0.75)),\
+(self.d.oldx-int(x*0.6), self.d.oldy+y),\
+(self.d.oldx-int(x*0.35), self.d.oldy+int(y*0.6)),\
+(self.d.oldx-int(x), self.d.oldy+int(y*0.4)),\
+(self.d.oldx-int(x*0.25), self.d.oldy+int(y*0.4))]
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)
+        pixmap.draw_polygon(self.d.gc, True, points)
+        pixmap.draw_polygon(self.d.gc_line, False, points)
+        widget.queue_draw()
+
+
+    def polygon_regular(self, widget, coords, n, temp):
+        """Draw polygon with n sides.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+        n -- number of sides
+        temp -- switch between pixmap and pixmap_temp
+
+        """
+        if temp == True:
+            pixmap = self.d.pixmap_temp
         else:
-            coords1 = coords[1]
-
-        if coords0 < 0:
-            coords0 = 0
-
-        if coords1 < 0:
-            coords1 = 0
-        self.width = coords0 - self.d.oldx
-        self.height = coords1 - self.d.oldy
-        self.points = [(self.d.oldx,self.d.oldy),\
-(self.d.oldx+int(self.width*0.25), self.d.oldy+int(self.height*0.4)),\
-(self.d.oldx+int(self.width),self.d.oldy+int(self.height*0.4)),\
-(self.d.oldx+int(self.width*0.35), self.d.oldy+int(self.height*0.6)),\
-(self.d.oldx+int(self.width*0.6), self.d.oldy+self.height),\
-(self.d.oldx, self.d.oldy+int(self.height*0.75)),\
-(self.d.oldx-int(self.width*0.6), self.d.oldy+self.height),\
-(self.d.oldx-int(self.width*0.35), self.d.oldy+int(self.height*0.6)),\
-(self.d.oldx-int(self.width),self.d.oldy+int(self.height*0.4)),\
-(self.d.oldx-int(self.width*0.25), self.d.oldy+int(self.height*0.4))]
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_polygon(self.d.gc, True, self.points)
-        self.d.pixmap_temp.draw_polygon(self.d.gc_line, False, self.points)
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        x = coords[0] - self.d.oldx
+        y = coords[1] - self.d.oldy
+        A = math.atan2(y,x)
+        dA = 2*math.pi/n
+        r = math.hypot(y,x)
+        p = [(self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A)))]
+        for i in range(n-1):
+            A = A+dA
+            p.append((self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A))))
+        tp = tuple(p)
+        
+        pixmap.draw_drawable(self.d.gc, self.d.pixmap, 0, 0, 0, 0, width, height)
+        pixmap.draw_polygon(self.d.gc, True, tp)
+        pixmap.draw_polygon(self.d.gc_line, False, tp)
+        widget.queue_draw()
 
     
     def circle(self, widget, coords):
@@ -572,8 +566,9 @@ class Desenho:
         self.d.pixmap_sel.draw_rectangle(self.d.gc_selection1, False ,coords[0] - w/2-1, coords[1]- h/2-1, w+2, h+2)
         
         widget.queue_draw()
-    
-    def polygon(self, widget, coords):
+
+
+    def polygon(self, widget, coords, temp, fill):
         """Draw polygon.
 
         Keyword arguments:
@@ -581,14 +576,48 @@ class Desenho:
         widget -- Area object (GtkDrawingArea)
         coords -- Two value tuple
 
-        """ 
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        if self.d.polygon_start:
-            self.d.pixmap_temp.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy,coords[0],coords[1]) 
+        """
+
+        if temp == True:
+            pixmap = self.d.pixmap_temp
         else:
-            self.d.pixmap_temp.draw_line(self.d.gc_line,int (self.d.lastx), int (self.d.lasty),coords[0],coords[1]) 
-        self.d.newx = coords[0]     
-        self.d.newy = coords[1]     
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+
+        pixmap.draw_drawable(self.d.gc, self.d.pixmap, 0, 0, 0, 0, width, height)
+        
+        if self.d.polygon_start == True: # Starting a new polygon ?
+            if temp == True:
+                pixmap.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy, coords[0], coords[1])
+            else:
+                pixmap.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy, coords[0], coords[1])
+                self.d.enableUndo(widget)
+                self.d.lastx = coords[0]
+                self.d.lasty = coords[1]
+                self.d.firstx = self.d.oldx
+                self.d.firsty = self.d.oldy
+                self.d.polygon_start = False
+                self.d.points = [(self.d.oldx,self.d.oldy), (coords[0],coords[1])]
+        else:
+            if temp == True:
+                pixmap.draw_line(self.d.gc_line,self.d.lastx,self.d.lasty,coords[0],coords[1])
+            else:
+                x = coords[0] - self.d.firstx
+                y = coords[1] - self.d.firsty
+                d = math.hypot(x,y)
+                if d > 20: # close the polygon ?
+                    pixmap.draw_line(self.d.gc_line,self.d.lastx,self.d.lasty,coords[0],coords[1])
+                    self.d.lastx = coords[0]
+                    self.d.lasty = coords[1]
+                    self.d.points.append((coords[0],coords[1]))
+                else:
+                    tp = tuple(self.d.points)
+                    if fill == True:
+                        pixmap.draw_polygon(self.d.gc, True, tp)
+                    pixmap.draw_polygon(self.d.gc_line, False, tp)
+                    self.d.polygon_start = True
+                    self.d.undo_times -= 1#destroy the undo screen of polygon start 
+                    self.d.enableUndo(widget)
         widget.queue_draw()
         
         
