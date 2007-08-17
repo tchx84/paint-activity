@@ -61,7 +61,8 @@ import gtk, gobject, logging, os
 import math
 import pango
 from fill import *
-
+import Image
+import StringIO
 from Desenho import Desenho
 
 WIDTH = 800
@@ -75,7 +76,7 @@ class Area(gtk.DrawingArea):
         'action-saved' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         #TODO: these signals still not used.
 #         'copy' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
-#         'selected' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
+        'selected' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
     }
 
     def __init__(self, janela):
@@ -294,17 +295,18 @@ class Area(gtk.DrawingArea):
                 # ellipse
                 elif self.tool == 'ellipse':
                     self.configure_line(self.line_size)
-                    self.d.circle(widget,coords)    
+                    self.d.circle(widget,coords,True,True)    
                 # rectangle
                 elif self.tool == 'rectangle':
                     self.configure_line(self.line_size)
-                    self.d.square(widget,coords)    
+                    self.d.square(widget,coords,True,True)
                 # selection
                 elif self.tool == 'marquee-rectangular' and not self.selmove:
-                    self.d.selection(widget,coords)                     
+                    x1, y1, x2, y2 = self.d.selection(widget,coords,True,False)
+                    self._set_selection_bounds(x1, y1, x2, y2)                   
                 # selection
                 elif self.tool == 'marquee-rectangular' and self.selmove:
-                    self.d.moveSelection(widget, coords)
+                    self.d.moveSelection(widget,coords)
                 #polygon    
                 elif self.tool == 'polygon':
                     self.configure_line(self.line_size)
@@ -312,28 +314,28 @@ class Area(gtk.DrawingArea):
                 #triangle
                 elif self.tool == 'triangle':
                     self.configure_line(self.line_size)
-                    self.d.triangle(widget,coords,True)
+                    self.d.triangle(widget,coords,True,True)
                 #trapezoid
                 elif self.tool == 'trapezoid':
                     self.configure_line(self.line_size)
-                    self.d.trapezoid(widget,coords,True)
+                    self.d.trapezoid(widget,coords,True,True)
                 #arrow
                 elif self.tool == 'arrow':
                     self.configure_line(self.line_size)
-                    self.d.arrow(widget,coords,True)
+                    self.d.arrow(widget,coords,True,True)
                 #parallelogram
                 elif self.tool == 'parallelogram':
                     self.configure_line(self.line_size)
-                    self.d.parallelogram(widget,coords,True)
+                    self.d.parallelogram(widget,coords,True,True)
                 #star
                 elif self.tool == 'star':
                     self.configure_line(self.line_size)
-                    self.d.star(widget,coords,True)
+                    self.d.star(widget,coords,True,True)
                 #polygon regular
                 elif self.tool == 'polygon_regular':
                     self.configure_line(self.line_size)
                     n = 7
-                    self.d.polygon_regular(widget,coords,n,True)
+                    self.d.polygon_regular(widget,coords,n,True,True)
 
     def mouseup(self,widget,event): 
         """Make the Area object (GtkDrawingArea) recognize that the mouse was released.
@@ -345,6 +347,7 @@ class Area(gtk.DrawingArea):
 
         """
         coords = int(event.x), int(event.y)
+        width, height = self.window.get_size()
         if self.desenha == True:
             # line
             if self.tool == 'line':
@@ -353,34 +356,37 @@ class Area(gtk.DrawingArea):
                 self.enableUndo(widget)
             # ellipse
             elif self.tool == 'ellipse':
-                self.pixmap.draw_arc(self.gc, True, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
-                self.pixmap.draw_arc(self.gc_line, False, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
-                widget.queue_draw()
+                self.d.circle(widget,coords,False,True)
+                #self.pixmap.draw_arc(self.gc, True, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
+                #self.pixmap.draw_arc(self.gc_line, False, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
+                #widget.queue_draw()
                 self.enableUndo(widget)
             # rectangle
-            elif self.tool == 'rectangle':    
-                self.pixmap.draw_rectangle(self.gc, True, self.newx,self.newy, self.newx_,self.newy_)
-                self.pixmap.draw_rectangle(self.gc_line, False, self.newx,self.newy, self.newx_,self.newy_)
-                widget.queue_draw()
+            elif self.tool == 'rectangle':
+                self.d.square(widget,coords,False,True)
+                #self.pixmap.draw_rectangle(self.gc, True, self.newx,self.newy, self.newx_,self.newy_)
+                #self.pixmap.draw_rectangle(self.gc_line, False, self.newx,self.newy, self.newx_,self.newy_)
+                #widget.queue_draw()
                 self.enableUndo(widget)
             # selection
             elif self.tool == 'marquee-rectangular':
             # FIXME: Adicionar cursor formato selecao
                 if self.selmove == False:
-                    self.pixmap_temp.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-                    self.pixmap_sel.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)#avoid blink
+                    self.pixmap_temp.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, width, height)
+                    self.pixmap_sel.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, width, height)#avoid blink
                     self.sx = int (event.x)
                     self.sy = int(event.y)
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
                     self.selmove = True
                     self.sel_get_out = False
                 elif self.selmove and self.sel_get_out: #get out of the func selection
-                    self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
+                    self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
                     self.selmove = False
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
                     self.oldx = event.x
                     self.oldy = event.y
                     self.enableUndo(widget)
+                self.emit('selected')
             # polygon
             elif self.tool == 'polygon':
                 self.d.polygon(widget, coords, False, False)
@@ -396,28 +402,28 @@ class Area(gtk.DrawingArea):
                 self.enableUndo(widget)
             #triangle
             elif self.tool == 'triangle':
-                self.d.triangle(widget,coords,False)
+                self.d.triangle(widget,coords,False,True)
                 self.enableUndo(widget)
             #trapezoid
             elif self.tool == 'trapezoid':
-                self.d.trapezoid(widget,coords,False)
+                self.d.trapezoid(widget,coords,False,True)
                 self.enableUndo(widget)
             #arrow
             elif self.tool == 'arrow':
-                self.d.arrow(widget,coords,False)
+                self.d.arrow(widget,coords,False,True)
                 self.enableUndo(widget)
             #parallelogram
             elif self.tool == 'parallelogram':
-                self.d.parallelogram(widget,coords,False)
+                self.d.parallelogram(widget,coords,False,True)
                 self.enableUndo(widget)
             #star
             elif self.tool == 'star':
-                self.d.star(widget,coords,False)
+                self.d.star(widget,coords,False,True)
                 self.enableUndo(widget)
             #polygon regular
             elif self.tool == 'polygon_regular':
                 n = 7
-                self.d.polygon_regular(widget,coords,n,False)
+                self.d.polygon_regular(widget,coords,n,False,True)
                 self.enableUndo(widget)
 
         if self.tool == 'brush' or self.tool == 'eraser':
@@ -435,6 +441,7 @@ class Area(gtk.DrawingArea):
 
         """
         logging.debug('Area.undo(self)')
+        width, height = self.window.get_size()
         
         if self.first_undo:#if is the first time you click on UNDO
             self.undo_times -= 1
@@ -445,7 +452,7 @@ class Area(gtk.DrawingArea):
             self.redo_times += 1
             try: #to not try paint someting wrong
                 #print "Drawing undo[%d]" %(self.undo_times)
-                self.pixmap.draw_drawable(self.gc, self.undo_list[self.undo_times], 0,0,0,0, WIDTH, HEIGHT)
+                self.pixmap.draw_drawable(self.gc, self.undo_list[self.undo_times], 0,0,0,0, width, height)
             except:
                 print "Can't draw"
                 pass
@@ -479,6 +486,7 @@ class Area(gtk.DrawingArea):
 
         """
         logging.debug('Area.redo(self)')
+        width, height = self.window.get_size()
         
         #print "REDO no.%d" %(self.redo_times)
         if  (self.redo_times>0):
@@ -487,7 +495,7 @@ class Area(gtk.DrawingArea):
             
             try: #to not try paint someting wrong 
                 #print "Drawing undo[%d]" %(self.undo_times)
-                self.pixmap.draw_drawable(self.gc, self.undo_list[self.undo_times], 0,0,0,0, WIDTH, HEIGHT)
+                self.pixmap.draw_drawable(self.gc, self.undo_list[self.undo_times], 0,0,0,0, width, height)
             except:
                 print "Can't draw"
                 self.undo_times-=1
@@ -512,13 +520,14 @@ class Area(gtk.DrawingArea):
 
         """
         logging.debug('Area.enableUndo(self,widget)')
+        width, height = self.window.get_size()
         
         if self.undo_surf:
             self.undo_times += 1
         
         self.undo_list.append(None)#alloc memory
-        self.undo_list[self.undo_times] = gtk.gdk.Pixmap(widget.window, WIDTH, HEIGHT, -1) #define type
-        self.undo_list[self.undo_times].draw_drawable(self.gc,self.pixmap,0,0,0,0, WIDTH, HEIGHT) #copy workarea
+        self.undo_list[self.undo_times] = gtk.gdk.Pixmap(widget.window, width, height, -1) #define type
+        self.undo_list[self.undo_times].draw_drawable(self.gc,self.pixmap,0,0,0,0, width, height) #copy workarea
         self.undo_times += 1
         self.redo_times = 0 
         self.first_undo = True
@@ -668,7 +677,22 @@ class Area(gtk.DrawingArea):
         self.queue_draw()
         self.enableUndo(widget)
 
-    def _rotate_left(self):
+    def _pixbuf2Image(self, pb):
+        width,height = pb.get_width(),pb.get_height()
+        return Image.fromstring("RGB",(width,height),pb.get_pixels() )
+        
+    def _image2pixbuf(self, im):  
+        file1 = StringIO.StringIO()  
+        im.save(file1, "ppm")  
+        contents = file1.getvalue()  
+        file1.close()  
+        loader = gtk.gdk.PixbufLoader("pnm")  
+        loader.write(contents, len(contents))  
+        pixbuf = loader.get_pixbuf()  
+        loader.close()  
+        return pixbuf  
+    
+    def _rotate_left(self, widget):
         """Rotate the image.
 
         Keyword arguments:
@@ -676,13 +700,27 @@ class Area(gtk.DrawingArea):
 
         """
         logging.debug('Area._rotate_left(self)')
-        
-        pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
-        pix_ = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
-        pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
-        pix_ = pix.rotate_simple(gtk.gdk.PIXBUF_ROTATE_COUNTERCLOCKWISE)
-        self.pixmap.draw_pixbuf(self.gc, pix_, 0, 0, 0, 0, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-        self.queue_draw()
+
+        x1, y1, x2, y2 = self.get_selection_bounds()
+        #x1, y1, x2, y2 = 0, 0, 100, 200
+        if self.selmove:
+            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, x2 - x1, y2 - y1)
+            pix_ = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, x2 - x1, y2 - y1)
+            pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), x1, y1, 0, 0, x2 - x1, y2 - y1)
+
+            im = self._pixbuf2Image(pix)
+            #pix_ = pix.rotate_simple(gtk.gdk.PIXBUF_ROTATE_CLOCKWISE)
+
+            im_ = im.rotate(90)
+
+            pix_ = self._image2pixbuf(im_)
+
+            self.pixmap.draw_pixbuf(self.gc, pix_, 0, 0, x1, y1, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+            self.queue_draw()
+            self.enableUndo(widget)
+                
+        else :
+            print "Please select some area first"
         
     def can_undo(self):
         '''
@@ -705,4 +743,10 @@ class Area(gtk.DrawingArea):
             return False
         else:
             return True
+            
+    def _set_selection_bounds(self, x1, y1, x2, y2):
+        self._selection_corners = (x1, y1, x2, y2)
+     
+    def get_selection_bounds(self):
+        return self._selection_corners[0], self._selection_corners[1], self._selection_corners[2], self._selection_corners[3]
         

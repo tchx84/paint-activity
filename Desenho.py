@@ -87,8 +87,8 @@ class Desenho:
         """
         self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
         self.d.pixmap_temp.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy,coords[0],coords[1])
-        self.d.newx = coords[0] 
-        self.d.newy = coords[1]
+        #self.d.newx = coords[0] 
+        #self.d.newy = coords[1]
         widget.queue_draw()
     
     def eraser(self, widget, coords, size = 30, shape = 'circle'):
@@ -135,7 +135,7 @@ class Desenho:
         self.d.oldy = coords[1]
         widget.queue_draw()
     
-    def square(self, widget, coords):
+    def square(self, widget, coords, temp, fill):
         """Draw a square.
 
         Keyword arguments:
@@ -143,8 +143,246 @@ class Desenho:
         widget -- Area object (GtkDrawingArea)
         coords -- Two value tuple
 
+        
+        if coords[0] > WIDTH:
+            coords0 = WIDTH
+        else:
+            coords0 = coords[0]
+            
+        if coords [1] > HEIGHT:
+            coords1 = HEIGHT
+        else:
+            coords1 = coords[1]
+            
+        self.d.newx_ = coords0 - self.d.oldx
+        self.d.newy_ = coords1 - self.d.oldy
+
+        if self.d.newx_ >= 0:
+            self.d.newx = self.d.oldx   
+        else:   
+            if coords0 > 0:
+                self.d.newx = coords0
+                self.d.newx_ = - self.d.newx_
+            else:
+                self.d.newx = 0
+                self.d.newx_ = self.d.oldx
+                    
+        if self.d.newy_ >= 0:
+            self.d.newy = self.d.oldy   
+        else:               
+            if coords1 > 0:
+                self.d.newy_ = - self.d.newy_
+                self.d.newy = coords1
+            else:
+                self.d.newy = 0
+                self.d.newy_ = self.d.oldy
+
         """
-        widget.queue_draw()     
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        dx = math.fabs(coords[0] - self.d.oldx)
+        dy = math.fabs(coords[1] - self.d.oldy)
+        
+        if coords[0] < self.d.oldx:
+            x = coords[0]
+        else:
+            x = self.d.oldx
+        if coords[1] < self.d.oldy:
+            y = coords[1]
+        else:
+            y = self.d.oldy
+        
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_rectangle(self.d.gc,True,x,y,dx,dy)
+        pixmap.draw_rectangle(self.d.gc_line,False,x,y,dx,dy)
+        widget.queue_draw()
+    
+    def triangle(self, widget, coords, temp, fill):
+        """Draw a triangle.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        points = [(self.d.oldx,self.d.oldy), (self.d.oldx+int((coords[0]-self.d.oldx)/2),coords[1]), (coords[0],self.d.oldy)]
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_polygon(self.d.gc,True,points)
+        pixmap.draw_polygon(self.d.gc_line,False,points)
+        widget.queue_draw()
+
+
+    def trapezoid(self, widget, coords, temp, fill):
+        """Draw a trapezoid.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+
+        dif = int((coords[0] - self.d.oldx)/4)
+        points = [(self.d.oldx, self.d.oldy), (self.d.oldx+dif, coords[1]), (coords[0]-dif, coords[1]) , (coords[0],self.d.oldy)]                
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_polygon(self.d.gc, True, points)
+        pixmap.draw_polygon(self.d.gc_line,False,points)
+        widget.queue_draw()
+        
+        
+    def arrow(self, widget, coords, temp, fill):
+        """Draw a arrow.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+
+        x = coords[0] - self.d.oldx
+        y = coords[1] - self.d.oldy
+        points = [(self.d.oldx,self.d.oldy),\
+(self.d.oldx+int(x/6),self.d.oldy+y),\
+(self.d.oldx+int(x/6),self.d.oldy+int(y/3)),\
+(self.d.oldx+x,self.d.oldy+int(y/3)),\
+(self.d.oldx+x,self.d.oldy-int(y/3)),\
+(self.d.oldx+int(x/6),self.d.oldy-int(y/3)),\
+(self.d.oldx+int(x/6),self.d.oldy-y)]
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_polygon(self.d.gc,True,points)
+        pixmap.draw_polygon(self.d.gc_line,False,points)
+        widget.queue_draw()
+        
+        
+    def parallelogram(self, widget, coords, temp, fill):
+        """Draw a parallelogram.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+
+        x = int((coords[0] - self.d.oldx)/4)
+        points = [(self.d.oldx,self.d.oldy), (coords[0]-x, self.d.oldy), (coords[0],coords[1]), (self.d.oldx+x,coords[1])]
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_polygon(self.d.gc,True,points)
+        pixmap.draw_polygon(self.d.gc_line,False,points)
+        widget.queue_draw()
+
+
+    def star(self, widget, coords, temp, fill):
+        """Draw a arrow.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        x = coords[0] - self.d.oldx
+        y = coords[1] - self.d.oldy
+
+        points = [(self.d.oldx,self.d.oldy),\
+(self.d.oldx+int(x*0.25), self.d.oldy+int(y*0.4)),\
+(self.d.oldx+int(x), self.d.oldy+int(y*0.4)),\
+(self.d.oldx+int(x*0.35), self.d.oldy+int(y*0.6)),\
+(self.d.oldx+int(x*0.6), self.d.oldy+y),\
+(self.d.oldx, self.d.oldy+int(y*0.75)),\
+(self.d.oldx-int(x*0.6), self.d.oldy+y),\
+(self.d.oldx-int(x*0.35), self.d.oldy+int(y*0.6)),\
+(self.d.oldx-int(x), self.d.oldy+int(y*0.4)),\
+(self.d.oldx-int(x*0.25), self.d.oldy+int(y*0.4))]
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_polygon(self.d.gc,True,points)
+        pixmap.draw_polygon(self.d.gc_line,False,points)
+        widget.queue_draw()
+
+
+    def polygon_regular(self, widget, coords, n, temp, fill):
+        """Draw polygon with n sides.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+        n -- number of sides
+        temp -- switch between pixmap and pixmap_temp
+
+        """
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        x = coords[0] - self.d.oldx
+        y = coords[1] - self.d.oldy
+        A = math.atan2(y,x)
+        dA = 2*math.pi/n
+        r = math.hypot(y,x)
+        p = [(self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A)))]
+        for i in range(n-1):
+            A = A+dA
+            p.append((self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A))))
+        tp = tuple(p)
+        
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_polygon(self.d.gc,True,tp)
+        pixmap.draw_polygon(self.d.gc_line,False,tp)
+        widget.queue_draw()
+
+    
+    def circle(self, widget, coords, temp, fill):
+        """Draw a circle.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
 
         if coords[0] > WIDTH:
             coords0 = WIDTH
@@ -178,42 +416,6 @@ class Desenho:
             else:
                 self.d.newy = 0
                 self.d.newy_ = self.d.oldy
-                
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_rectangle(self.d.gc, True ,self.d.newx,self.d.newy,self.d.newx_,self.d.newy_)
-        self.d.pixmap_temp.draw_rectangle(self.d.gc_line, False ,self.d.newx,self.d.newy,self.d.newx_,self.d.newy_)
-
-    
-    def triangle(self, widget, coords, temp):
-        """Draw a triangle.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
-
-        """
-
-        if temp == True:
-            pixmap = self.d.pixmap_temp
-        else:
-            pixmap = self.d.pixmap
-        width, height = self.d.window.get_size()
-        
-        points = [(self.d.oldx,self.d.oldy), (self.d.oldx+int((coords[0]-self.d.oldx)/2),coords[1]), (coords[0],self.d.oldy)]
-        pixmap.draw_drawable(self.d.gc, self.d.pixmap, 0, 0, 0, 0, width, height)
-        pixmap.draw_polygon(self.d.gc, True, points)
-        pixmap.draw_polygon(self.d.gc_line, False, points)
-        widget.queue_draw()
-
-
-    def trapezoid(self, widget, coords, temp):
-        """Draw a trapezoid.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
 
         """
 
@@ -223,185 +425,25 @@ class Desenho:
             pixmap = self.d.pixmap
         width, height = self.d.window.get_size()
 
-        dif = int((coords[0] - self.d.oldx)/4)
-        points = [(self.d.oldx, self.d.oldy), (self.d.oldx+dif, coords[1]), (coords[0]-dif, coords[1]) , (coords[0],self.d.oldy)]                
-        pixmap.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 , 0, 0, width, height)
-        pixmap.draw_polygon(self.d.gc, True, points)
-        pixmap.draw_polygon(self.d.gc_line, False, points)
-        widget.queue_draw()
-        
-        
-    def arrow(self, widget, coords, temp):
-        """Draw a arrow.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
-
-        """
-        if temp == True:
-            pixmap = self.d.pixmap_temp
+        if coords[0] < self.d.oldx:
+            x = coords[0]
         else:
-            pixmap = self.d.pixmap
-        width, height = self.d.window.get_size()
-
-        x = coords[0] - self.d.oldx
-        y = coords[1] - self.d.oldy
-        points = [(self.d.oldx,self.d.oldy),\
-(self.d.oldx+int(x/6),self.d.oldy+y),\
-(self.d.oldx+int(x/6),self.d.oldy+int(y/3)),\
-(self.d.oldx+x,self.d.oldy+int(y/3)),\
-(self.d.oldx+x,self.d.oldy-int(y/3)),\
-(self.d.oldx+int(x/6),self.d.oldy-int(y/3)),\
-(self.d.oldx+int(x/6),self.d.oldy-y)]
-        pixmap.draw_drawable(self.d.gc,self.d.pixmap, 0, 0, 0, 0, width, height)
-        pixmap.draw_polygon(self.d.gc, True, points)
-        pixmap.draw_polygon(self.d.gc_line, False, points)
-        widget.queue_draw()
-        
-        
-    def parallelogram(self, widget, coords, temp):
-        """Draw a parallelogram.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
-
-        """
-        if temp == True:
-            pixmap = self.d.pixmap_temp
+            x = self.d.oldx
+        if coords[1] < self.d.oldy:
+            y = coords[1]
         else:
-            pixmap = self.d.pixmap
-        width, height = self.d.window.get_size()
-
-        x = int((coords[0] - self.d.oldx)/4)
-        points = [(self.d.oldx,self.d.oldy), (coords[0]-x, self.d.oldy), (coords[0],coords[1]), (self.d.oldx+x,coords[1])]
+            y = self.d.oldy
+        
+        dx = math.fabs(coords[0] - self.d.oldx)
+        dy = math.fabs(coords[1] - self.d.oldy)
+        
         pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
-        pixmap.draw_polygon(self.d.gc, True, points)
-        pixmap.draw_polygon(self.d.gc_line, False, points)
+        if fill == True:
+            pixmap.draw_arc(self.d.gc,True,x,y,dx,dy,0,360*64)
+        pixmap.draw_arc(self.d.gc_line,False,x,y,dx,dy,0,360*64)     
         widget.queue_draw()
 
 
-    def star(self, widget, coords, temp):
-        """Draw a arrow.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
-
-        """
-        if temp == True:
-            pixmap = self.d.pixmap_temp
-        else:
-            pixmap = self.d.pixmap
-        width, height = self.d.window.get_size()
-        
-        x = coords[0] - self.d.oldx
-        y = coords[1] - self.d.oldy
-
-        points = [(self.d.oldx,self.d.oldy),\
-(self.d.oldx+int(x*0.25), self.d.oldy+int(y*0.4)),\
-(self.d.oldx+int(x), self.d.oldy+int(y*0.4)),\
-(self.d.oldx+int(x*0.35), self.d.oldy+int(y*0.6)),\
-(self.d.oldx+int(x*0.6), self.d.oldy+y),\
-(self.d.oldx, self.d.oldy+int(y*0.75)),\
-(self.d.oldx-int(x*0.6), self.d.oldy+y),\
-(self.d.oldx-int(x*0.35), self.d.oldy+int(y*0.6)),\
-(self.d.oldx-int(x), self.d.oldy+int(y*0.4)),\
-(self.d.oldx-int(x*0.25), self.d.oldy+int(y*0.4))]
-        pixmap.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)
-        pixmap.draw_polygon(self.d.gc, True, points)
-        pixmap.draw_polygon(self.d.gc_line, False, points)
-        widget.queue_draw()
-
-
-    def polygon_regular(self, widget, coords, n, temp):
-        """Draw polygon with n sides.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
-        n -- number of sides
-        temp -- switch between pixmap and pixmap_temp
-
-        """
-        if temp == True:
-            pixmap = self.d.pixmap_temp
-        else:
-            pixmap = self.d.pixmap
-        width, height = self.d.window.get_size()
-        
-        x = coords[0] - self.d.oldx
-        y = coords[1] - self.d.oldy
-        A = math.atan2(y,x)
-        dA = 2*math.pi/n
-        r = math.hypot(y,x)
-        p = [(self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A)))]
-        for i in range(n-1):
-            A = A+dA
-            p.append((self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A))))
-        tp = tuple(p)
-        
-        pixmap.draw_drawable(self.d.gc, self.d.pixmap, 0, 0, 0, 0, width, height)
-        pixmap.draw_polygon(self.d.gc, True, tp)
-        pixmap.draw_polygon(self.d.gc_line, False, tp)
-        widget.queue_draw()
-
-    
-    def circle(self, widget, coords):
-        """Draw a circle.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        widget -- Area object (GtkDrawingArea)
-        coords -- Two value tuple
-
-        """
-        widget.queue_draw() 
-        
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
-        else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
-            
-        self.d.newx_ = coords0 - self.d.oldx
-        self.d.newy_ = coords1 - self.d.oldy
-        #print "coords0", coords0
-
-        if self.d.newx_ >= 0:
-            self.d.newx = self.d.oldx   
-        else:   
-            if coords0 > 0:
-                self.d.newx = coords0
-                self.d.newx_ = - self.d.newx_
-            else:
-                self.d.newx = 0
-                self.d.newx_ = self.d.oldx
-
-        if self.d.newy_ >= 0:
-            self.d.newy = self.d.oldy   
-        else:   
-            if coords1 > 0:             
-                self.d.newy = coords1
-                self.d.newy_ = - self.d.newy_
-            else:
-                self.d.newy = 0
-                self.d.newy_ = self.d.oldy
-
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)   
-        self.d.pixmap_temp.draw_arc(self.d.gc, True, self.d.newx, self.d.newy, self.d.newx_,self.d.newy_, 0, 360*64)
-        self.d.pixmap_temp.draw_arc(self.d.gc_line, False, self.d.newx, self.d.newy, self.d.newx_, self.d.newy_, 0, 360*64)     
-
-    
     def pencil(self, widget, coords):
         """Draw a pencil.
 
@@ -474,7 +516,7 @@ class Desenho:
         
         self.d.queue_draw()
 
-    def selection(self, widget, coords):
+    def selection(self, widget, coords, temp, fill):
         """Make a selection.
 
         Keyword arguments:
@@ -482,7 +524,7 @@ class Desenho:
         widget -- Area object (GtkDrawingArea)
         coords -- Two value tuple
 
-        """     
+    
         widget.queue_draw()     
 
         if coords[0] > WIDTH:
@@ -522,6 +564,32 @@ class Desenho:
         self.d.pixmap_temp.draw_rectangle(self.d.gc_selection, False ,self.d.newx,self.d.newy,self.d.newx_,self.d.newy_)
         self.d.pixmap_temp.draw_rectangle(self.d.gc_selection1, False, \
                                         self.d.newx-1,self.d.newy-1,self.d.newx_+2,self.d.newy_+2)
+        """ 
+        
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+        
+        dx = math.fabs(coords[0] - self.d.oldx)
+        dy = math.fabs(coords[1] - self.d.oldy)
+        
+        if coords[0] < self.d.oldx:
+            x = coords[0]
+        else:
+            x = self.d.oldx
+        if coords[1] < self.d.oldy:
+            y = coords[1]
+        else:
+            y = self.d.oldy
+        
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_rectangle(self.d.gc,True,x,y,dx,dy)
+        pixmap.draw_rectangle(self.d.gc_line,False,x,y,dx,dy)
+        widget.queue_draw()
+        return self.d.oldx, self.d.oldy, coords[0], coords[1]        
         
     def moveSelection(self, widget, coords):
         """Move the selection.
