@@ -62,6 +62,7 @@ from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.combobox import ComboBox
 from sugar.graphics.palette import Palette
+from sugar.graphics.menuitem import MenuItem
 
 class Toolbox(ActivityToolbox):
     def __init__(self, activity):
@@ -204,17 +205,21 @@ class ToolsToolbar(gtk.Toolbar):
         self._tool_brush = ToolButton('tool-brush')
         self.insert(self._tool_brush, -1)
         self._tool_brush.show()
-        #self._tool_brush.set_tooltip(_('Brush'))
-        #self._brush_palette = self.create_palette(_('Brush'))
-        #self._tool_brush.set_palette(self._brush_palette)
-
+        self._tool_brush.set_tooltip(_('Brush'))
+        try:
+            self.set_palette(self._tool_brush, self._TOOL_BRUSH)
+        except:
+            logging.debug('Could not create palette for tool Brush')
+        
         self._tool_eraser = ToolButton('tool-eraser')
         self.insert(self._tool_eraser, -1)
         self._tool_eraser.show()
-        #self._tool_eraser.set_tooltip(_('Eraser'))
-        #self._eraser_palette = self.create_palette(_('Eraser'))
-        #self._tool_eraser.set_palette(self._eraser_palette)
-
+        self._tool_eraser.set_tooltip(_('Eraser'))
+        try:
+            self.set_palette(self._tool_eraser, self._TOOL_ERASER)
+        except:
+            logging.debug('Could not create palette for tool Eraser')
+        
         self._tool_polygon = ToolButton('tool-polygon')
         self.insert(self._tool_polygon, -1)
         self._tool_polygon.show()
@@ -263,7 +268,7 @@ class ToolsToolbar(gtk.Toolbar):
         #self._tool_marquee_smart.connect('clicked', self.set_tool, self._TOOL_MARQUEE_SMART)
 
     def create_palette(self, tool=None):
-    
+    # Deprecated: Palette module has changed.
         #TODO: create palettes for other tools.
         if tool == None:
             return None
@@ -281,15 +286,48 @@ class ToolsToolbar(gtk.Toolbar):
             
             return palette
 
-    def set_shape(self, button, tool, shape):
+    def set_palette(self, widget, tool=None):
+        '''Set palette for a tool'''
+        
+        logging.debug('setting a palette for %s', tool)
+        
+        #FIXME: this does not work; MenuItem widgets are not displayed. This way, it is not possible to choose shapes for Brush and Eraser.
+        palette = widget.get_palette()
+        #print palette, tool
+        if tool == None:
+            return
+        elif (tool == self._TOOL_BRUSH) or (tool == self._TOOL_ERASER):
+            palette = Palette(_(tool))
+            item_1 = MenuItem(_('Square'))
+            item_2 = MenuItem(_('Circle'))
+            
+            logging.debug('Menu Items created')
+            #print palette.menu.get_children()
+            
+            for menu_item in palette.menu.get_children():
+                #print menu_item
+                palette.menu.remove(menu_item)
+            
+            palette.menu.append(item_1)
+            palette.menu.append(item_2)
+            
+            item_1.connect('activate', self.set_shape, tool, 'square')
+            item_2.connect('activate', self.set_shape, tool,'circle')
+            
+            item_1.show()
+            item_2.show()
+
+    def set_shape(self, widget, tool, shape):
         '''
         Set a tool shape according to user choice at Tool Palette
         '''
         
-        if tool == 'Brush':
+        if tool == self._TOOL_BRUSH:
             self._activity._area.brush_shape = shape
-        elif tool == 'Eraser':
+        elif tool == self._TOOL_ERASER:
             self._activity._area.eraser_shape = shape
+            
+        self.set_tool(widget, tool)
             
     def set_tool(self, widget, tool):
         '''
@@ -825,12 +863,12 @@ class ImageToolbar(gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
         separator.show()
-    
+        """
         self._object_rotate_left = ToolButton('object-rotate-left')
         self.insert(self._object_rotate_left, -1)
         self._object_rotate_left.show()
         self._object_rotate_left.set_tooltip(_('Rotate Left'))
-        """     
+        
         self._object_rotate_right = ToolButton('object-rotate-right')
         self.insert(self._object_rotate_right, -1)
         self._object_rotate_right.show()
@@ -851,13 +889,13 @@ class ImageToolbar(gtk.Toolbar):
         self._object_height.connect('clicked', set_tool, activity, 'object-height', self._OBJECT_HEIGHT)
         """
         self._object_insert.connect('clicked', self.insertImage, activity)
-        self._object_rotate_left.connect('clicked', self.rotate_left, activity)
+        #self._object_rotate_left.connect('clicked', self.rotate_left, activity)
         #self._object_rotate_right.connect('clicked', set_tool, activity, 'object-rotate-right', self._OBJECT_ROTATE_RIGHT)
         #self._object_width.connect('clicked', set_tool, activity, 'object-width', self._OBJECT_WIDTH)
 	
     def rotate_left(self, widget, activity):    
-        activity._area._rotate_left(widget)
-        #pass
+        #activity._area._rotate_left(widget)
+        pass
 
 
     def insertImage(self, widget, activity):
