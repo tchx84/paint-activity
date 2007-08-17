@@ -336,6 +336,11 @@ class Area(gtk.DrawingArea):
                     self.configure_line(self.line_size)
                     n = 7
                     self.d.polygon_regular(widget,coords,n,True,True)
+                #Heart
+                elif self.tool == 'heart':
+                    self.configure_line(self.line_size)
+                    self.d.heart(widget,coords,True,True)
+
 
     def mouseup(self,widget,event): 
         """Make the Area object (GtkDrawingArea) recognize that the mouse was released.
@@ -424,6 +429,10 @@ class Area(gtk.DrawingArea):
             elif self.tool == 'polygon_regular':
                 n = 7
                 self.d.polygon_regular(widget,coords,n,False,True)
+                self.enableUndo(widget)
+            #Heart
+            elif self.tool == 'heart':
+                self.d.heart(widget,coords,False,True)
                 self.enableUndo(widget)
 
         if self.tool == 'brush' or self.tool == 'eraser':

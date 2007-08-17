@@ -654,12 +654,12 @@ class ShapesToolbar(gtk.Toolbar):
         self._tool_shape_freeform.show()
         self._tool_shape_freeform.set_tooltip(_('Freeform'))
 
+        """
+
         self._tool_shape_heart = ToolButton('tool-shape-heart')
         self.insert(self._tool_shape_heart, -1)
         self._tool_shape_heart.show()
         self._tool_shape_heart.set_tooltip(_('Heart'))
-
-        """
 
         self._tool_shape_parallelogram = ToolButton('tool-shape-parallelogram')
         self.insert(self._tool_shape_parallelogram, -1)
@@ -694,7 +694,7 @@ class ShapesToolbar(gtk.Toolbar):
         self._tool_shape_arrow.connect('clicked', self.set_tool, self._TOOL_SHAPE_ARROW)
         self._tool_shape_ellipse.connect('clicked', self.set_tool, self._TOOL_SHAPE_ELLIPSE)
         #self._tool_shape_freeform.connect('clicked', self.set_tool, self._TOOL_SHAPE_FREEFORM)
-        #self._tool_shape_heart.connect('clicked', self.set_tool, self._TOOL_SHAPE_HEART)
+        self._tool_shape_heart.connect('clicked', self.set_tool, self._TOOL_SHAPE_HEART)
         self._tool_shape_line.connect('clicked', self.set_tool, self._TOOL_SHAPE_LINE)
         self._tool_shape_parallelogram.connect('clicked', self.set_tool, self._TOOL_SHAPE_PARALLELOGRAM)
         self._tool_shape_polygon.connect('clicked', self.set_tool, self._TOOL_SHAPE_POLYGON)
@@ -825,12 +825,12 @@ class ImageToolbar(gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
         separator.show()
-        """         
+    
         self._object_rotate_left = ToolButton('object-rotate-left')
         self.insert(self._object_rotate_left, -1)
         self._object_rotate_left.show()
         self._object_rotate_left.set_tooltip(_('Rotate Left'))
-    
+        """     
         self._object_rotate_right = ToolButton('object-rotate-right')
         self.insert(self._object_rotate_right, -1)
         self._object_rotate_right.show()
@@ -851,13 +851,13 @@ class ImageToolbar(gtk.Toolbar):
         self._object_height.connect('clicked', set_tool, activity, 'object-height', self._OBJECT_HEIGHT)
         """
         self._object_insert.connect('clicked', self.insertImage, activity)
-        #self._object_rotate_left.connect('clicked', self.rotate_left, activity)
+        self._object_rotate_left.connect('clicked', self.rotate_left, activity)
         #self._object_rotate_right.connect('clicked', set_tool, activity, 'object-rotate-right', self._OBJECT_ROTATE_RIGHT)
         #self._object_width.connect('clicked', set_tool, activity, 'object-width', self._OBJECT_WIDTH)
 	
     def rotate_left(self, widget, activity):    
-        #activity._area._rotate_left(widget)
-        pass
+        activity._area._rotate_left(widget)
+        #pass
 
 
     def insertImage(self, widget, activity):

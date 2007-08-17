@@ -375,7 +375,53 @@ class Desenho:
         pixmap.draw_polygon(self.d.gc_line,False,tp)
         widget.queue_draw()
 
-    
+
+    def heart(self, widget, coords, temp, fill):
+        """Draw polygon with n sides.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+        n -- number of sides
+        temp -- switch between pixmap and pixmap_temp
+
+        """
+        if temp == True:
+            pixmap = self.d.pixmap_temp
+        else:
+            pixmap = self.d.pixmap
+        width, height = self.d.window.get_size()
+
+        if coords[0] < self.d.oldx:
+            x = coords[0]
+        else:
+            x = self.d.oldx
+        if coords[1] < self.d.oldy:
+            y = coords[1]
+        else:
+            y = self.d.oldy
+        
+        dx = math.fabs(coords[0] - self.d.oldx)
+        dy = math.fabs(coords[1] - self.d.oldy)
+        
+        w=int(4*dx)
+        e=int(4*dx/math.sqrt(3))
+
+        pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
+        if fill == True:
+            pixmap.draw_arc(self.d.gc,True,int(self.d.oldx-dx),int(self.d.oldy-e/2),w,e,180*64,60*64)
+            pixmap.draw_arc(self.d.gc,True,int(self.d.oldx-3*dx),int(self.d.oldy-e/2),w,e,300*64,60*64)
+            pixmap.draw_arc(self.d.gc,True,int(self.d.oldx-dx*0.2),int(self.d.oldy-0.6*dx+2),int(1.2*dx),int(1.2*dx),0,180*64)
+            pixmap.draw_arc(self.d.gc,True,int(self.d.oldx-dx),int(self.d.oldy-0.6*dx+2),int(1.2*dx),int(1.2*dx),0,180*64)
+        pixmap.draw_arc(self.d.gc_line,False,int(self.d.oldx-dx),int(self.d.oldy-e/2),w,e,180*64,60*64)
+        pixmap.draw_arc(self.d.gc_line,False,int(self.d.oldx-dx-w/2),int(self.d.oldy-e/2),w,e,300*64,60*64)
+        pixmap.draw_arc(self.d.gc_line,False,int(self.d.oldx-dx*0.2),int(self.d.oldy-0.6*dx+2),int(1.2*dx),int(1.2*dx),0,132*64)
+        pixmap.draw_arc(self.d.gc_line,False,int(self.d.oldx-dx),int(self.d.oldy-0.6*dx+2),int(1.2*dx),int(1.2*dx),48*64,132*64)
+        
+        widget.queue_draw()
+
+ 
     def circle(self, widget, coords, temp, fill):
         """Draw a circle.
 

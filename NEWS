@@ -1,6 +1,5 @@
 4
 ===
-Rearrange translation Folders and add activity name translation
 Now paste and copy are integrated to Sugar (pekayatt)
 Colors now are choosen from a ColorButton. Selected color is shown, not its name (alexandre)
 Adjust in Undo/Redo functions, now we have a limit (on 10 times) (pekayatt)
