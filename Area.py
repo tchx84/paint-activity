@@ -61,8 +61,8 @@ import gtk, gobject, logging, os
 import math
 import pango
 from fill import *
-import Image
-import StringIO
+# import Image
+# import StringIO
 from Desenho import Desenho
 
 WIDTH = 800
@@ -74,7 +74,7 @@ class Area(gtk.DrawingArea):
         'undo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         'redo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         'action-saved' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
-        #TODO: these signals still not used.
+        #TODO: this signal still not used.
 #         'copy' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         'selected' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
     }
@@ -111,14 +111,10 @@ class Area(gtk.DrawingArea):
         self.connect("configure_event", self.configure_event)
         self.oldx = 0
         self.oldy = 0
-        self.newx = 0
-        self.newy = 0
-        self.newx_ = 0
-        self.newy_ = 0
-        self.color_dec = 0
         self.polygon_start = True
         self.points = []
         self.gc = None
+        self.gc_rainbow = None
         self.gc_line = None
         self.gc_eraser = None
         self.gc_brush = None
@@ -135,6 +131,8 @@ class Area(gtk.DrawingArea):
         self.line_size = 2
         self.brush_shape = 'circle'
         self.eraser_shape = 'circle'
+        self.last = -1, -1
+        self.rainbow_counter = 0
                 
         self.font = pango.FontDescription('Sans 9')
         
@@ -145,6 +143,8 @@ class Area(gtk.DrawingArea):
         self.redo_times = 0
         self.undo_list=[]#pixmaps list to Undo func
         
+        # Number of sides for regular polygon
+        self.polygon_sides = 5
 
     # Create a new backing pixmap of the appropriate size
     def configure_event(self, widget, event):
@@ -176,6 +176,7 @@ class Area(gtk.DrawingArea):
         colormap = self.get_colormap()
         white = colormap.alloc_color('#ffffff', True, True) # white      
         self.gc_eraser.set_foreground(white)
+        self.gc_rainbow = widget.window.new_gc()
         
         self.gc_brush = widget.window.new_gc()      
         self.gc_brush.set_foreground(white)
@@ -244,22 +245,36 @@ class Area(gtk.DrawingArea):
         event -- GdkEvent
 
         """
+        width, height = self.window.get_size()
         # text
+        coords = int(event.x), int(event.y)
         if self.tool == 'text':
             self.d.text(widget,event)
         if not self.selmove or self.tool != 'marquee-rectangular':
             self.oldx = int(event.x)
             self.oldy = int(event.y)
         if self.selmove and self.tool != 'marquee-rectangular': #get out of the func selection
-            self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
+            self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
             self.selmove = False
             self.enableUndo(widget)
+        if self.tool == 'eraser':
+            self.last = -1, -1
+            self.d.eraser(widget, coords, self.last, self.line_size, self.eraser_shape)
+            self.last = coords
+        if self.tool == 'brush':
+            self.last = -1, -1
+            self.d.brush(widget, coords, self.last, self.line_size, self.brush_shape)
+            self.last = coords
+        if self.tool == 'rainbow':
+            self.last = -1, -1
+            self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.brush_shape)
+            self.last = coords
         x , y, state = event.window.get_pointer()
         if state & gtk.gdk.BUTTON3_MASK:
             self.sel_get_out = True
-            self.pixmap_sel.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, WIDTH, HEIGHT)
+            self.pixmap_sel.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
         if state & gtk.gdk.BUTTON1_MASK:
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0,0,0,0, WIDTH, HEIGHT)
+            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0,0,0,0, width, height)
         widget.queue_draw()
         self.desenha = True  
            
@@ -279,10 +294,18 @@ class Area(gtk.DrawingArea):
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
             #eraser
             if self.tool == 'eraser':
-                self.d.eraser(widget, coords, self.line_size, self.eraser_shape)
+                self.d.eraser(widget, coords, self.last, self.line_size, self.eraser_shape)
+                self.last = coords
             #brush
             elif self.tool == 'brush':
-                self.d.brush(widget, coords, self.line_size, self.brush_shape)
+                self.d.brush(widget, coords, self.last, self.line_size, self.brush_shape)
+                self.last = coords
+            elif self.tool == 'rainbow':
+                self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.brush_shape)
+                self.rainbow_counter += 1
+                if self.rainbow_counter > 11:
+                    self.rainbow_counter = 0
+                self.last = coords
             if self.desenha:
                 # line
                 if self.tool == 'line':
@@ -334,8 +357,8 @@ class Area(gtk.DrawingArea):
                 #polygon regular
                 elif self.tool == 'polygon_regular':
                     self.configure_line(self.line_size)
-                    n = 7
-                    self.d.polygon_regular(widget,coords,n,True,True)
+                    #n = 7
+                    self.d.polygon_regular(widget,coords,self.polygon_sides,True,True)
                 #Heart
                 elif self.tool == 'heart':
                     self.configure_line(self.line_size)
@@ -362,16 +385,10 @@ class Area(gtk.DrawingArea):
             # ellipse
             elif self.tool == 'ellipse':
                 self.d.circle(widget,coords,False,True)
-                #self.pixmap.draw_arc(self.gc, True, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
-                #self.pixmap.draw_arc(self.gc_line, False, self.newx, self.newy, self.newx_, self.newy_, 0, 360*64)
-                #widget.queue_draw()
                 self.enableUndo(widget)
             # rectangle
             elif self.tool == 'rectangle':
                 self.d.square(widget,coords,False,True)
-                #self.pixmap.draw_rectangle(self.gc, True, self.newx,self.newy, self.newx_,self.newy_)
-                #self.pixmap.draw_rectangle(self.gc_line, False, self.newx,self.newy, self.newx_,self.newy_)
-                #widget.queue_draw()
                 self.enableUndo(widget)
             # selection
             elif self.tool == 'marquee-rectangular':
@@ -402,7 +419,7 @@ class Area(gtk.DrawingArea):
             #bucket
             elif self.tool == 'bucket':
                 width, height = self.window.get_size()
-                fill(self.pixmap, self.gc, int(event.x), int(event.y), width, height, self.color_dec)
+                fill(self.pixmap, self.gc, coords[0], coords[1], width, height, self.gc_line.foreground.pixel)
                 widget.queue_draw()
                 self.enableUndo(widget)
             #triangle
@@ -427,15 +444,16 @@ class Area(gtk.DrawingArea):
                 self.enableUndo(widget)
             #polygon regular
             elif self.tool == 'polygon_regular':
-                n = 7
-                self.d.polygon_regular(widget,coords,n,False,True)
+                #n = 7
+                self.d.polygon_regular(widget,coords,self.polygon_sides,False,True)
                 self.enableUndo(widget)
-            #Heart
+            #heart
             elif self.tool == 'heart':
                 self.d.heart(widget,coords,False,True)
                 self.enableUndo(widget)
 
-        if self.tool == 'brush' or self.tool == 'eraser':
+        if self.tool == 'brush' or self.tool == 'eraser' or self.tool == 'rainbow':
+            self.last = -1, -1
             widget.queue_draw() 
             self.enableUndo(widget)
         self.desenha = False
@@ -664,7 +682,6 @@ class Area(gtk.DrawingArea):
         self.gc_line.set_foreground(color)
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)  
         self.gc_brush.set_foreground(color)
-        self.color_dec = color.pixel
 
     def _set_grayscale(self,widget):
         """Apply grayscale effect.
@@ -674,15 +691,16 @@ class Area(gtk.DrawingArea):
 
         """
         logging.debug('Area._set_grayscale(self,widget)')
+        width, height = self.window.get_size()
         
-        pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
-        pix_ = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, WIDTH, HEIGHT)
-        pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, WIDTH, HEIGHT)
+        pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, width, height)
+        pix_ = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, width, height)
+        pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
         pix.saturate_and_pixelate(pix_, 0 ,0)
 
-        self.pixmap.draw_pixbuf(self.gc, pix_, 0, 0, 0, 0, WIDTH, HEIGHT, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+        self.pixmap.draw_pixbuf(self.gc, pix_, 0, 0, 0, 0, width, height, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
 
-        self.pixmap_temp.draw_pixbuf(self.gc, pix_, 0, 0, 0, 0, WIDTH, HEIGHT, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+        self.pixmap_temp.draw_pixbuf(self.gc, pix_, 0, 0, 0, 0, width, height, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
         self.queue_draw()
         self.enableUndo(widget)
 
@@ -758,4 +776,35 @@ class Area(gtk.DrawingArea):
      
     def get_selection_bounds(self):
         return self._selection_corners[0], self._selection_corners[1], self._selection_corners[2], self._selection_corners[3]
+
+    def loadImage(self, name, widget, load_selected):
+        """Load an image.
+
+        Keyword arguments:
+        self -- Area.area instance
+        name -- string (image file path)
+
+        """
+        pixbuf = gtk.gdk.pixbuf_new_from_file(name) 
+        size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
+        
+        self.pixmap.draw_pixbuf(self.gc, pixbuf, 0, 0, 0, 0, size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+        self.pixmap_temp.draw_pixbuf(self.gc, pixbuf, 0, 0, 0, 0, size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+        self.pixmap_sel.draw_pixbuf(self.gc, pixbuf, 0, 0, 0, 0, size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+        
+        
+        
+        if not load_selected :
+            self.enableUndo(widget)
+        else :
+            self.oldx, self.oldy = 0,0
+            self.d.selection(self, size, True, False)
+            #self.pixmap_temp.draw_rectangle(self.gc_selection, True ,0,0,size[0],size[1])
+            self.sx, self.sy = size
+            self.tool = 'marquee-rectangular'
+            self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
+            self.selmove = True
+            self.desenha = True
+            
+        self.queue_draw()
         

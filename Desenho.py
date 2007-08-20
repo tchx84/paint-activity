@@ -85,13 +85,14 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        width, height = self.window.get_size()
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)
         self.d.pixmap_temp.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy,coords[0],coords[1])
         #self.d.newx = coords[0] 
         #self.d.newy = coords[1]
         widget.queue_draw()
     
-    def eraser(self, widget, coords, size = 30, shape = 'circle'):
+    def eraser(self, widget, coords, last, size = 30, shape = 'circle'):
         """Erase part of the drawing.
 
         Keyword arguments:
@@ -105,15 +106,20 @@ class Desenho:
         self.d.desenha = False
         if(shape == 'circle'):
             self.d.pixmap.draw_arc(self.d.gc_eraser, True, coords[0], coords[1], size, size, 0, 360*64)
-            self.d.pixmap_temp.draw_arc(self.d.gc_eraser, True, coords[0], coords[1], size, size, 0, 360*64)
+            if last[0] != -1:
+                self.d.gc_eraser.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+                self.d.pixmap.draw_line(self.d.gc_eraser,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
+                self.d.gc_eraser.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         if(shape == 'square'):
             self.d.pixmap.draw_rectangle(self.d.gc_eraser, True, coords[0], coords[1], size, size)
-            self.d.pixmap_temp.draw_rectangle(self.d.gc_eraser, True, coords[0], coords[1], size, size)
-        self.d.oldx = coords[0]
-        self.d.oldy = coords[1]
+            if last[0] != -1:
+                points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
+                self.d.pixmap.draw_polygon(self.d.gc_eraser,True,points)
+                points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
+                self.d.pixmap.draw_polygon(self.d.gc_eraser,True,points)
         widget.queue_draw()
         
-    def brush(self, widget, coords, size = 5, shape = 'circle'):
+    def brush(self, widget, coords, last, size = 5, shape = 'circle'):
         """Paint with brush.
 
         Keyword arguments:
@@ -127,13 +133,64 @@ class Desenho:
         self.d.desenha = False
         if(shape == 'circle'):
             self.d.pixmap.draw_arc(self.d.gc_brush, True, coords[0], coords[1], size, size, 0, 360*64)
-            self.d.pixmap_temp.draw_arc(self.d.gc_brush, True, coords[0], coords[1], size, size, 0, 360*64)
+            if last[0] != -1:
+                self.d.gc_brush.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+                self.d.pixmap.draw_line(self.d.gc_brush,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
+                self.d.gc_brush.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         if(shape == 'square'):
             self.d.pixmap.draw_rectangle(self.d.gc_brush, True, coords[0], coords[1], size, size)
-            self.d.pixmap_temp.draw_rectangle(self.d.gc_brush, True, coords[0], coords[1], size, size)
-        self.d.oldx = coords[0]
-        self.d.oldy = coords[1]
+            if last[0] != -1:
+                points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
+                self.d.pixmap.draw_polygon(self.d.gc_brush,True,points)
+                points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
+                self.d.pixmap.draw_polygon(self.d.gc_brush,True,points)
         widget.queue_draw()
+
+    def rainbow(self, widget, coords, last, color, size = 5, shape = 'circle'):
+        """Paint with rainbow.
+
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+        size -- integer (default 30)
+        shape -- string (default 'circle')
+
+        """
+        colormap = self.d.get_colormap()
+        rainbow_colors = [
+        colormap.alloc_color('#ff0000', True, True), # vermelho
+        colormap.alloc_color('#ff8000', True, True), # laranja
+        colormap.alloc_color('#ffff00', True, True), # amarelo
+        colormap.alloc_color('#80ff00', True, True), # verde lima
+        colormap.alloc_color('#00ff00', True, True), # verde
+        colormap.alloc_color('#00ff80', True, True), # verde agua
+        colormap.alloc_color('#00ffff', True, True), # azul claro
+        colormap.alloc_color('#007fff', True, True), # quase azul
+        colormap.alloc_color('#0000ff', True, True), # azul
+        colormap.alloc_color('#8000ff', True, True), # anil
+        colormap.alloc_color('#ff00ff', True, True), # rosa violeta
+        colormap.alloc_color('#ff0080', True, True), # violeta
+        ]
+
+        self.d.gc_rainbow.set_foreground(rainbow_colors[color])
+        self.d.desenha = False
+        if(shape == 'circle'):
+            self.d.pixmap.draw_arc(self.d.gc_rainbow, True, coords[0], coords[1], size, size, 0, 360*64)
+            if last[0] != -1:
+                self.d.gc_rainbow.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+                self.d.pixmap.draw_line(self.d.gc_rainbow,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
+                self.d.gc_rainbow.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+        if(shape == 'square'):
+            if last[0] != -1:
+                self.d.pixmap.draw_rectangle(self.d.gc_rainbow, True, last[0], last[1], size, size)
+                points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
+                self.d.pixmap.draw_polygon(self.d.gc_rainbow,True,points)
+                points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
+                self.d.pixmap.draw_polygon(self.d.gc_rainbow,True,points)
+            self.d.pixmap.draw_rectangle(self.d.gc_rainbow, True, coords[0], coords[1], size, size)
+        widget.queue_draw()
+
     
     def square(self, widget, coords, temp, fill):
         """Draw a square.
@@ -142,41 +199,6 @@ class Desenho:
         self -- Desenho.Desenho instance
         widget -- Area object (GtkDrawingArea)
         coords -- Two value tuple
-
-        
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
-        else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
-            
-        self.d.newx_ = coords0 - self.d.oldx
-        self.d.newy_ = coords1 - self.d.oldy
-
-        if self.d.newx_ >= 0:
-            self.d.newx = self.d.oldx   
-        else:   
-            if coords0 > 0:
-                self.d.newx = coords0
-                self.d.newx_ = - self.d.newx_
-            else:
-                self.d.newx = 0
-                self.d.newx_ = self.d.oldx
-                    
-        if self.d.newy_ >= 0:
-            self.d.newy = self.d.oldy   
-        else:               
-            if coords1 > 0:
-                self.d.newy_ = - self.d.newy_
-                self.d.newy = coords1
-            else:
-                self.d.newy = 0
-                self.d.newy_ = self.d.oldy
-
         """
         if temp == True:
             pixmap = self.d.pixmap_temp
@@ -430,39 +452,6 @@ class Desenho:
         widget -- Area object (GtkDrawingArea)
         coords -- Two value tuple
 
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
-        else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
-            
-        self.d.newx_ = coords0 - self.d.oldx
-        self.d.newy_ = coords1 - self.d.oldy
-
-        if self.d.newx_ >= 0:
-            self.d.newx = self.d.oldx   
-        else:   
-            if coords0 > 0:
-                self.d.newx = coords0
-                self.d.newx_ = - self.d.newx_
-            else:
-                self.d.newx = 0
-                self.d.newx_ = self.d.oldx
-                    
-        if self.d.newy_ >= 0:
-            self.d.newy = self.d.oldy   
-        else:               
-            if coords1 > 0:
-                self.d.newy_ = - self.d.newy_
-                self.d.newy = coords1
-            else:
-                self.d.newy = 0
-                self.d.newy_ = self.d.oldy
-
         """
 
         if temp == True:
@@ -499,7 +488,8 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        width, height = self.d.window.get_size()
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)
         self.d.pixmap.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy,coords[0],coords[1]) 
         self.d.oldx = coords[0]
         self.d.oldy = coords[1]
@@ -512,10 +502,11 @@ class Desenho:
         self -- Desenho.Desenho instance
 
         """
+        width, height = self.d.window.get_size()
         self.d.desenho = []
         self.d.textos = []      
-        self.d.pixmap.draw_rectangle(self.d.get_style().white_gc, True,0, 0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_rectangle(self.d.get_style().white_gc, True,0, 0, WIDTH, HEIGHT)
+        self.d.pixmap.draw_rectangle(self.d.get_style().white_gc, True,0, 0, width, height)
+        self.d.pixmap_temp.draw_rectangle(self.d.get_style().white_gc, True,0, 0, width, height)
         self.d.queue_draw() 
     
     def text(self,widget,event):
@@ -531,6 +522,8 @@ class Desenho:
             self.d.estadoTexto = 1
             print event.x
             self.d.janela._fixed.move(self.d.janela._textview, int(event.x)+200, int(event.y)+100)
+            # Area size has changed...
+            #self.d.janela._fixed.move(self.d.janela._textview, int(event.x), int(event.y))
             self.d.janela._textview.show()
         else:   
             self.d.estadoTexto = 0  
@@ -546,21 +539,6 @@ class Desenho:
             
             widget.queue_draw()
 
-    def loadImage(self, name, widget):
-        """Load an image.
-
-        Keyword arguments:
-        self -- Desenho.Desenho instance
-        name -- string (image file path)
-
-        """
-        pixbuf = gtk.gdk.pixbuf_new_from_file(name) 
-        self.d.pixmap.draw_pixbuf(self.d.gc, pixbuf, 0, 0, 0, 0, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-        self.d.pixmap_temp.draw_pixbuf(self.d.gc, pixbuf, 0, 0, 0, 0, width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-        
-        self.d.enableUndo(widget)
-        
-        self.d.queue_draw()
 
     def selection(self, widget, coords, temp, fill):
         """Make a selection.
@@ -569,47 +547,6 @@ class Desenho:
         self -- Desenho.Desenho instance
         widget -- Area object (GtkDrawingArea)
         coords -- Two value tuple
-
-    
-        widget.queue_draw()     
-
-        if coords[0] > WIDTH:
-            coords0 = WIDTH
-        else:
-            coords0 = coords[0]
-            
-        if coords [1] > HEIGHT:
-            coords1 = HEIGHT
-        else:
-            coords1 = coords[1]
-            
-        self.d.newx_ = coords0 - self.d.oldx
-        self.d.newy_ = coords1 - self.d.oldy
-
-        if self.d.newx_ >= 0:
-            self.d.newx = self.d.oldx   
-        else:   
-            if coords0 > 0:
-                self.d.newx = coords0
-                self.d.newx_ = - self.d.newx_
-            else:
-                self.d.newx = 0
-                self.d.newx_ = self.d.oldx
-                    
-        if self.d.newy_ >= 0:
-            self.d.newy = self.d.oldy   
-        else:               
-            if coords1 > 0:
-                self.d.newy_ = - self.d.newy_
-                self.d.newy = coords1
-            else:
-                self.d.newy = 0
-                self.d.newy_ = self.d.oldy
-                
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_rectangle(self.d.gc_selection, False ,self.d.newx,self.d.newy,self.d.newx_,self.d.newy_)
-        self.d.pixmap_temp.draw_rectangle(self.d.gc_selection1, False, \
-                                        self.d.newx-1,self.d.newy-1,self.d.newx_+2,self.d.newy_+2)
         """ 
         
         if temp == True:
@@ -633,7 +570,7 @@ class Desenho:
         pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
         if fill == True:
             pixmap.draw_rectangle(self.d.gc,True,x,y,dx,dy)
-        pixmap.draw_rectangle(self.d.gc_line,False,x,y,dx,dy)
+        pixmap.draw_rectangle(self.d.gc_selection,False,x,y,dx,dy)
         widget.queue_draw()
         return self.d.oldx, self.d.oldy, coords[0], coords[1]        
         
@@ -646,11 +583,10 @@ class Desenho:
         coords -- Two value tuple
 
         """ 
-        self.d.pixmap_temp.draw_rectangle(self.d.get_style().white_gc, True,0, 0, WIDTH, HEIGHT)
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)
+        width, height = self.d.window.get_size()
+        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)
         
-        self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True,0, 0, WIDTH, HEIGHT)
-        self.d.pixmap_sel.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, WIDTH, HEIGHT)   
+        self.d.pixmap_sel.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)   
         
         if self.d.sx > self.d.oldx:
             x0 = self.d.oldx
@@ -706,65 +642,31 @@ class Desenho:
             else:
                 pixmap.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy, coords[0], coords[1])
                 self.d.enableUndo(widget)
-                self.d.lastx = coords[0]
-                self.d.lasty = coords[1]
-                self.d.firstx = self.d.oldx
-                self.d.firsty = self.d.oldy
+                self.d.last = coords
+                self.d.first = self.d.oldx, self.d.oldy
                 self.d.polygon_start = False
-                self.d.points = [(self.d.oldx,self.d.oldy), (coords[0],coords[1])]
+                self.d.points = [self.d.first, coords]
         else:
             if temp == True:
-                pixmap.draw_line(self.d.gc_line,self.d.lastx,self.d.lasty,coords[0],coords[1])
+                pixmap.draw_line(self.d.gc_line,self.d.last[0],self.d.last[1],coords[0],coords[1])
             else:
-                x = coords[0] - self.d.firstx
-                y = coords[1] - self.d.firsty
+                x = coords[0] - self.d.first[0]
+                y = coords[1] - self.d.first[1]
                 d = math.hypot(x,y)
                 if d > 20: # close the polygon ?
-                    pixmap.draw_line(self.d.gc_line,self.d.lastx,self.d.lasty,coords[0],coords[1])
-                    self.d.lastx = coords[0]
-                    self.d.lasty = coords[1]
-                    self.d.points.append((coords[0],coords[1]))
+                    pixmap.draw_line(self.d.gc_line,self.d.last[0],self.d.last[1],coords[0],coords[1])
+                    self.d.last = coords
+                    self.d.points.append(coords)
                 else:
                     tp = tuple(self.d.points)
                     if fill == True:
                         pixmap.draw_polygon(self.d.gc, True, tp)
                     pixmap.draw_polygon(self.d.gc_line, False, tp)
+                    self.d.last = -1, -1
                     self.d.polygon_start = True
                     self.d.undo_times -= 1#destroy the undo screen of polygon start 
                     self.d.enableUndo(widget)
         widget.queue_draw()
         
         
-    def fill(self, image, x, y, color):
-        '''Fills a region with a given color.
-        self    --
-        image   -- a gtk.gdk.Image
-        x,y     -- pixel coordinates
-        color   -- a color to fill (decimal)
-        
-        '''
-        
-        start_color = image.get_pixel(x,y)
-        width, height = self.d.window.get_size()
-        
-        if x < 0 or x > width or y < 0 or y > height \
-            or image.get_pixel(x,y) == color:
-#             print 'leaving...'
-            return
-        
-        edge = [(x, y)]
-        image.put_pixel(x, y, color)
-        while edge:
-#             print edge
-            newedge = []
-            while gtk.events_pending ():gtk.main_iteration()
-            for (x, y) in edge:
-                for (s, t) in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
-                    if (s >= 0 and s < width) and (t >= 0 and t < height) \
-                        and image.get_pixel(s, t) == start_color:
-                        image.put_pixel(s, t, color)
-                        newedge.append((s, t))
-            edge = newedge
-        
-        return image
 

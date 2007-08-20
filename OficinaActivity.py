@@ -105,7 +105,9 @@ class OficinaActivity(activity.Activity):
         self._textview = gtk.Entry()
         self._area.tool = 2
         self._fixed.put(self._area, 200 , 100)
-
+        # Area size increased
+        #self._fixed.put(self._area, 0 , 0)
+        
         sw.add_with_viewport(self._fixed)
         self._area.show()
         self._fixed.show()
@@ -129,7 +131,7 @@ class OficinaActivity(activity.Activity):
         logging.debug('reading file %s', file_path)
 #         logging.debug(file_path)
         
-        self._area.d.loadImage(file_path, self._area)
+        self._area.loadImage(file_path, self._area, False)
         
         # Does this work?
 #         self._area.undo_times = 1

@@ -207,7 +207,7 @@ class ToolsToolbar(gtk.Toolbar):
         self._tool_brush.show()
         self._tool_brush.set_tooltip(_('Brush'))
         try:
-            self.set_palette(self._tool_brush, self._TOOL_BRUSH)
+            self._configure_palette(self._tool_brush, self._TOOL_BRUSH)
         except:
             logging.debug('Could not create palette for tool Brush')
         
@@ -216,7 +216,7 @@ class ToolsToolbar(gtk.Toolbar):
         self._tool_eraser.show()
         self._tool_eraser.set_tooltip(_('Eraser'))
         try:
-            self.set_palette(self._tool_eraser, self._TOOL_ERASER)
+            self._configure_palette(self._tool_eraser, self._TOOL_ERASER)
         except:
             logging.debug('Could not create palette for tool Eraser')
         
@@ -267,45 +267,27 @@ class ToolsToolbar(gtk.Toolbar):
         self._tool_marquee_rectangular.connect('clicked', self.set_tool, self._TOOL_MARQUEE_RECTANGULAR)
         #self._tool_marquee_smart.connect('clicked', self.set_tool, self._TOOL_MARQUEE_SMART)
 
-    def create_palette(self, tool=None):
-    # Deprecated: Palette module has changed.
-        #TODO: create palettes for other tools.
-        if tool == None:
-            return None
-        elif (tool == 'Brush') or (tool == 'Eraser'):
-            palette = Palette(_(tool))
-            item_1 = gtk.MenuItem(_('Square'))
-            item_2 = gtk.MenuItem(_('Circle'))
-
-            palette.append_menu_item(item_1)
-            palette.append_menu_item(item_2)
-            item_1.show()
-            item_2.show()
-            item_1.connect('activate', self.set_shape, tool, 'square')
-            item_2.connect('activate', self.set_shape, tool,'circle')
-            
-            return palette
-
-    def set_palette(self, widget, tool=None):
-        '''Set palette for a tool'''
+    def _configure_palette(self, widget, tool=None):
+        '''Set palette for a tool
+        widget  - the widget which Palette will be set
+        tool    - the reference tool for Palette creation. Its values are
+                  restricted to ToolsToolbar Class constants
+        '''
         
         logging.debug('setting a palette for %s', tool)
         
-        #FIXME: this does not work; MenuItem widgets are not displayed. This way, it is not possible to choose shapes for Brush and Eraser.
         palette = widget.get_palette()
-        #print palette, tool
-        if tool == None:
+        
+        if tool is None:
             return
-        elif (tool == self._TOOL_BRUSH) or (tool == self._TOOL_ERASER):
-            palette = Palette(_(tool))
+        elif (tool is self._TOOL_BRUSH) or (tool is self._TOOL_ERASER):
+            
             item_1 = MenuItem(_('Square'))
             item_2 = MenuItem(_('Circle'))
             
             logging.debug('Menu Items created')
-            #print palette.menu.get_children()
             
             for menu_item in palette.menu.get_children():
-                #print menu_item
                 palette.menu.remove(menu_item)
             
             palette.menu.append(item_1)
@@ -624,12 +606,6 @@ class ShapesToolbar(gtk.Toolbar):
         self._icon_fill.show()
         self._icon_fill.set_tooltip(_('Fill Color'))
         
-        # Changing widget: using toolbox.ButtonFillColor instead of toolbox.ComboFillColors
-        '''
-        self._fill_color = ComboFillColors(activity)
-        self.insert(self._fill_color, -1)
-        self._fill_color.show()
-        '''
         self._fill_color = ButtonFillColor(activity)
         self._fill_color.show()
         item = gtk.ToolItem()
@@ -642,12 +618,7 @@ class ShapesToolbar(gtk.Toolbar):
         self._icon_stroke.show()
         self._icon_stroke.set_tooltip(_('Stroke Color'))
         
-        # Changing widget: using toolbox.ButtonStrokeColor instead of toolbox.ComboStrokeColors
-        '''
-        self._stroke_color = ComboStrokeColors(activity)
-        self.insert(self._stroke_color, -1)
-        self._stroke_color.show()
-        '''
+        
         self._stroke_color = ButtonStrokeColor(activity)
         self._stroke_color.show()
         item = gtk.ToolItem()
@@ -684,6 +655,10 @@ class ShapesToolbar(gtk.Toolbar):
         self.insert(self._tool_shape_polygon, -1)
         self._tool_shape_polygon.show()
         self._tool_shape_polygon.set_tooltip(_('Polygon'))
+#         try:
+        self._configure_palette(self._tool_shape_polygon, self._TOOL_SHAPE_POLYGON)
+#         except:
+#             logging.debug('Could not create palette for Regular Polygon')
 
         """
         
@@ -770,7 +745,49 @@ class ShapesToolbar(gtk.Toolbar):
         
     def _on_icon_fill_clicked(self, widget, data=None):
         self._fill_color.clicked()
-
+        
+    def _configure_palette(self, widget, tool=None):
+        '''Configure palette for a given tool
+        widget  - the widget which Palette will be set
+        tool    - the reference tool for Palette creation. Its values are
+                  restricted to ToolsToolbar Class constants
+        '''
+        
+        logging.debug('setting a palette for %s', tool)
+        
+        palette = widget.get_palette()
+        
+        if tool is None:
+            logging.debug('Trying to configure Palette, but there is no tool!')
+            raise TypeError
+            
+        elif tool is self._TOOL_SHAPE_POLYGON:
+            spin = gtk.SpinButton()
+            spin.show()
+            
+            black = gtk.gdk.Color(0,0,0)
+            white = gtk.gdk.Color(255,255,255)
+            
+            spin.modify_base(gtk.STATE_NORMAL, black)
+            spin.modify_base(gtk.STATE_ACTIVE, white)
+            
+            # This is where we set restrictions for Regular Polygon:
+            # Initial value, minimum value, maximum value, step
+            try:
+                initial = self._activity._area.polygon_sides
+            except:
+                initial = 5
+            adj = gtk.Adjustment(float(initial), 3.0, 50.0, 1.0)
+            spin.set_adjustment(adj)
+            
+            spin.set_numeric(True)            
+            palette.set_content(spin)
+            
+            spin.connect('value-changed', self._on_value_changed)
+            
+    def _on_value_changed(self, spinbutton, data=None):
+        self._activity._area.polygon_sides = spinbutton.get_value_as_int()
+            
 class TextToolbar(gtk.Toolbar):
 
     _ACTION_TEXT = 'text'
@@ -915,7 +932,7 @@ class ImageToolbar(gtk.Toolbar):
             logging.debug(file_path)
             #file_path = decode_path((file_path,))[0]
             #open(activity, file_path)
-            activity._area.d.loadImage(file_path,widget)
+            activity._area.loadImage(file_path,widget,True)
         elif response == gtk.RESPONSE_CANCEL:
             logging.debug('Closed, no files selected')
             
@@ -925,7 +942,8 @@ class ImageToolbar(gtk.Toolbar):
 
 class EffectsToolbar(gtk.Toolbar):
 
-    _ACTION_GRAYSCALE = 'grayscale'
+    _EFFECT_GRAYSCALE = 'grayscale'
+    _EFFECT_RAINBOW = 'rainbow'
 
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
@@ -938,6 +956,11 @@ class EffectsToolbar(gtk.Toolbar):
         self.insert(self._effect_grayscale, -1)
         self._effect_grayscale.show()
         self._effect_grayscale.set_tooltip(_('Grayscale'))
+        
+        self._effect_rainbow = ToolButton('effect-raindow')
+        self.insert(self._effect_rainbow, -1)
+        self._effect_rainbow.show()
+        self._effect_rainbow.set_tooltip(_('Rainbow'))
 	
 	"""
         #FIXME: Must be implemented
@@ -955,10 +978,16 @@ class EffectsToolbar(gtk.Toolbar):
 
         """
         self._effect_grayscale.connect('clicked', self.grayscale, activity)
+        self._effect_rainbow.connect('clicked', self.rainbow, activity)
 
     def grayscale(self, widget, activity):	
         activity._area._set_grayscale(widget)
 
+    def rainbow(self, widget, activity):
+        activity._area.tool = self._EFFECT_RAINBOW
+        #FIXME: this should NOT be like this. I want user to choose rainbow size!
+        activity._area.configure_line(10)
+        
 
 class ViewToolbar(gtk.Toolbar):
 

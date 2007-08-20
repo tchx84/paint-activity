@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # Copyright (C) 2006, Red Hat, Inc.
 #
@@ -18,5 +18,5 @@
 
 from sugar.activity import bundlebuilder
 
-bundlebuilder.start()
+bundlebuilder.start('oficina')
 
