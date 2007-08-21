@@ -5,13 +5,7 @@ NEWS
 OficinaActivity.py
 activity/activity-rgbpaint.svg
 activity/activity.info
-fill_src/Makefile
-fill_src/eggfill.c
-fill_src/eggfill.h
-fill_src/fill.c
-fill_src/fill.defs
-fill_src/fill.override
-fill_src/fillmodule.c
+fill.so
 icons/bg.svg
 icons/edit-copy.svg
 icons/edit-paste.svg

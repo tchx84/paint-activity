@@ -110,15 +110,29 @@ class DrawEditToolbar(EditToolbar):
         self.copy.set_tooltip(_('Copy'))
         self.paste.set_tooltip(_('Paste'))
         
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        self.insert(separator, -1)
+        separator.show()
+        
+        self._clear_all = ToolButton('clear')
+        self.insert(self._clear_all, -1)
+        self._clear_all.show()
+        self._clear_all.set_tooltip(_('Clear'))
+        
         self.undo.connect('clicked', self._undo_cb)
         self.redo.connect('clicked', self._redo_cb)
 
         self.copy.connect('clicked', self._copy_cb)
         self.paste.connect('clicked', self._paste_cb)
+        self._clear_all.connect('clicked', self._clear_all_cb)
+        
+        
         
         self._activity._area.connect('undo', self._on_signal_undo_cb)
         self._activity._area.connect('redo', self._on_signal_redo_cb)
         self._activity._area.connect('action-saved', self._on_signal_action_saved_cb)
+
         
     def _undo_cb(self, widget, data=None):
         self._activity._area.undo()
@@ -147,6 +161,9 @@ class DrawEditToolbar(EditToolbar):
         #TODO: it is not possible to verify these yet.
         #self.copy.set_sensitive( self._activity._area.can_copy() )
         #self.paste.set_sensitive( self._activity._area.can_paste() )
+        
+    def _clear_all_cb(self, widget, data=None):
+        self._activity._area.clear()
 
 class ToolsToolbar(gtk.Toolbar):
 
@@ -271,7 +288,7 @@ class ToolsToolbar(gtk.Toolbar):
         '''Set palette for a tool
         widget  - the widget which Palette will be set
         tool    - the reference tool for Palette creation. Its values are
-                  restricted to ToolsToolbar Class constants
+                  restricted to Class constants
         '''
         
         logging.debug('setting a palette for %s', tool)
@@ -282,8 +299,8 @@ class ToolsToolbar(gtk.Toolbar):
             return
         elif (tool is self._TOOL_BRUSH) or (tool is self._TOOL_ERASER):
             
-            item_1 = MenuItem(_('Square'))
-            item_2 = MenuItem(_('Circle'))
+            item_1 = MenuItem(_('Square'), self._TOOL_BRUSH)
+            item_2 = MenuItem(_('Circle'), self._TOOL_ERASER)
             
             logging.debug('Menu Items created')
             
@@ -750,7 +767,7 @@ class ShapesToolbar(gtk.Toolbar):
         '''Configure palette for a given tool
         widget  - the widget which Palette will be set
         tool    - the reference tool for Palette creation. Its values are
-                  restricted to ToolsToolbar Class constants
+                  restricted to Class constants
         '''
         
         logging.debug('setting a palette for %s', tool)
@@ -766,10 +783,11 @@ class ShapesToolbar(gtk.Toolbar):
             spin.show()
             
             black = gtk.gdk.Color(0,0,0)
-            white = gtk.gdk.Color(255,255,255)
+            #white = gtk.gdk.Color(255,255,255)
             
-            spin.modify_base(gtk.STATE_NORMAL, black)
-            spin.modify_base(gtk.STATE_ACTIVE, white)
+            #spin.modify_base(gtk.STATE_NORMAL, black)
+            #spin.modify_base(gtk.STATE_ACTIVE, white)
+            spin.modify_text(gtk.STATE_NORMAL, black)
             
             # This is where we set restrictions for Regular Polygon:
             # Initial value, minimum value, maximum value, step
@@ -781,12 +799,23 @@ class ShapesToolbar(gtk.Toolbar):
             spin.set_adjustment(adj)
             
             spin.set_numeric(True)            
-            palette.set_content(spin)
+            #palette.set_content(spin)
             
+            frame = gtk.Frame(_('Sides'))
+            frame.add(spin)
+            frame.show()          
+            #palette.set_content(frame)
+            
+            vbox = gtk.VBox()
+            vbox.show()
+            palette.action_bar.pack_start(vbox)
+            
+            vbox.pack_start(frame)
             spin.connect('value-changed', self._on_value_changed)
             
     def _on_value_changed(self, spinbutton, data=None):
         self._activity._area.polygon_sides = spinbutton.get_value_as_int()
+        self.set_tool(self._tool_shape_polygon, self._TOOL_SHAPE_POLYGON)
             
 class TextToolbar(gtk.Toolbar):
 
@@ -947,6 +976,8 @@ class EffectsToolbar(gtk.Toolbar):
 
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
+        
+        self._activity = activity
 	
         separator = gtk.SeparatorToolItem()
         self.insert(separator, -1)
@@ -961,6 +992,7 @@ class EffectsToolbar(gtk.Toolbar):
         self.insert(self._effect_rainbow, -1)
         self._effect_rainbow.show()
         self._effect_rainbow.set_tooltip(_('Rainbow'))
+        self._configure_palette(self._effect_rainbow, self._EFFECT_RAINBOW)
 	
 	"""
         #FIXME: Must be implemented
@@ -977,17 +1009,76 @@ class EffectsToolbar(gtk.Toolbar):
         self._invert_colors.set_tooltip(_('Invert Colors'))
 
         """
-        self._effect_grayscale.connect('clicked', self.grayscale, activity)
-        self._effect_rainbow.connect('clicked', self.rainbow, activity)
+        self._effect_grayscale.connect('clicked', self.grayscale)
+        self._effect_rainbow.connect('clicked', self.rainbow)
 
-    def grayscale(self, widget, activity):	
-        activity._area._set_grayscale(widget)
+    def grayscale(self, widget):	
+        self._activity._area._set_grayscale(widget)
 
-    def rainbow(self, widget, activity):
-        activity._area.tool = self._EFFECT_RAINBOW
-        #FIXME: this should NOT be like this. I want user to choose rainbow size!
-        activity._area.configure_line(10)
+    def rainbow(self, widget):
+        self._activity._area.tool = self._EFFECT_RAINBOW
         
+        # setting cursor
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file('./images/rainbow.png')
+            cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pixbuf, 6, 21)
+            
+        except:
+            cursor = None
+            
+        self._activity._area.window.set_cursor(cursor)
+        
+        
+    def _configure_palette(self, widget, tool=None):
+        '''Set palette for a tool
+        widget  - the widget which Palette will be set
+        tool    - the reference tool for Palette creation. Its values are
+                  restricted to Class constants
+        '''
+        
+        logging.debug('setting a palette for %s', tool)
+        
+        palette = widget.get_palette()
+        
+        if tool is None:
+            return
+        elif tool is self._EFFECT_RAINBOW:
+            spin = gtk.SpinButton()
+            spin.show()
+            
+            black = gtk.gdk.Color(0,0,0)
+            #white = gtk.gdk.Color(255,255,255)
+            
+            #spin.modify_base(gtk.STATE_NORMAL, black)
+            #spin.modify_base(gtk.STATE_ACTIVE, white)
+            spin.modify_text(gtk.STATE_NORMAL, black)
+            
+            # This is where we set restrictions for Rainbow:
+            # Initial value, minimum value, maximum value, step
+            adj = gtk.Adjustment(5.0, 1.0, 100.0, 1.0)
+            spin.set_adjustment(adj)
+            
+            spin.set_numeric(True)
+            
+            frame = gtk.Frame(_('Size'))
+            frame.add(spin)
+            frame.show()          
+            #palette.set_content(frame)
+            
+            vbox = gtk.VBox()
+            vbox.show()
+            palette.action_bar.pack_start(vbox)
+            
+            vbox.pack_start(frame)
+            
+            spin.connect('value-changed', self._on_value_changed)
+            
+    def _on_value_changed(self, spinbutton, data=None):
+            size = spinbutton.get_value_as_int()
+            self._activity._area.configure_line(size)
+            
+            self.rainbow(self._effect_rainbow)
+            
 
 class ViewToolbar(gtk.Toolbar):
 
