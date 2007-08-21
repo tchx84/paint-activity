@@ -85,7 +85,7 @@ class Desenho:
         coords -- Two value tuple
 
         """
-        width, height = self.window.get_size()
+        width, height = self.d.window.get_size()
         self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)
         self.d.pixmap_temp.draw_line(self.d.gc_line,self.d.oldx,self.d.oldy,coords[0],coords[1])
         #self.d.newx = coords[0] 
@@ -569,10 +569,12 @@ class Desenho:
         
         pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
         if fill == True:
-            pixmap.draw_rectangle(self.d.gc,True,x,y,dx,dy)
-        pixmap.draw_rectangle(self.d.gc_selection,False,x,y,dx,dy)
+            pixmap.draw_rectangle(self.d.gc,True,int(x),int(y),int(dx),int(dy))
+            
+        pixmap.draw_rectangle(self.d.gc_selection,False,int(x),int(y),int(dx),int(dy))
         widget.queue_draw()
-        return self.d.oldx, self.d.oldy, coords[0], coords[1]        
+        #return self.d.oldx, self.d.oldy, coords[0], coords[1]        
+        return x,y,x+dx,y+dy
         
     def moveSelection(self, widget, coords):
         """Move the selection.
@@ -584,9 +586,8 @@ class Desenho:
 
         """ 
         width, height = self.d.window.get_size()
-        self.d.pixmap_temp.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)
         
-        self.d.pixmap_sel.draw_drawable(self.d.gc,self.d.pixmap,  0 , 0 ,0,0, width, height)   
+        self.d.pixmap_sel.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0, width, height)   
         
         if self.d.sx > self.d.oldx:
             x0 = self.d.oldx
@@ -594,9 +595,9 @@ class Desenho:
             x0 = self.d.sx
             
         if self.d.sy > self.d.oldy:
-            x1 = self.d.oldy
+            y0 = self.d.oldy
         else:
-            x1 = self.d.sy
+            y0 = self.d.sy
             
         w = self.d.sx - self.d.oldx
         if w < 0:
@@ -605,16 +606,18 @@ class Desenho:
         h = self.d.sy - self.d.oldy         
         if h < 0:
             h = - h
+            
+        self.d._set_selection_bounds(coords[0]-w/2, coords[1]-h/2, coords[0]+w/2, coords[1]+h/2)
+               
         
-        self.d.pixmap_temp.draw_rectangle(self.d.get_style().white_gc, True, x0, x1, w, h)
-        self.d.pixmap_temp.draw_drawable(self.d.gc, self.d.pixmap, x0, x1, coords[0] - w/2, coords[1]- h/2, w, h)       
+        self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0, y0, w, h)
+        self.d.pixmap_sel.draw_drawable(self.d.gc, self.d.pixmap, x0, y0, coords[0] - w/2, coords[1]- h/2, w, h)
+        self.d.pixmap_temp.draw_drawable(self.d.gc, self.d.pixmap_sel,0,0,0,0, width, height)
         
-        self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0, x1, w, h)
-        self.d.pixmap_sel.draw_drawable(self.d.gc, self.d.pixmap, x0, x1, coords[0] - w/2, coords[1]- h/2, w, h)
 	    #to draw the selection black and white line rectangle
         self.d.pixmap_sel.draw_rectangle(self.d.gc_selection, False ,coords[0] - w/2, coords[1]- h/2, w, h)
         self.d.pixmap_sel.draw_rectangle(self.d.gc_selection1, False ,coords[0] - w/2-1, coords[1]- h/2-1, w+2, h+2)
-        
+       
         widget.queue_draw()
 
 

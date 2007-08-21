@@ -135,6 +135,7 @@ class Area(gtk.DrawingArea):
         self.rainbow_counter = 0
                 
         self.font = pango.FontDescription('Sans 9')
+        self._set_selection_bounds(0,0,0,0)
         
         #start of UNDO and REDO
         self.first_undo = True
@@ -269,9 +270,13 @@ class Area(gtk.DrawingArea):
             self.last = -1, -1
             self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.brush_shape)
             self.last = coords
+            
         x , y, state = event.window.get_pointer()
-        if state & gtk.gdk.BUTTON3_MASK:
+        x0, y0, x1, y1 = self.get_selection_bounds()
+        
+        if (state & gtk.gdk.BUTTON3_MASK) or not (x0<x<x1 and y0<y<y1):
             self.sel_get_out = True
+            self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
             self.pixmap_sel.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
         if state & gtk.gdk.BUTTON1_MASK:
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0,0,0,0, width, height)
@@ -394,14 +399,14 @@ class Area(gtk.DrawingArea):
             elif self.tool == 'marquee-rectangular':
             # FIXME: Adicionar cursor formato selecao
                 if self.selmove == False:
-                    self.pixmap_temp.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, width, height)
-                    self.pixmap_sel.draw_drawable(self.gc,self.pixmap,  0 , 0 ,0,0, width, height)#avoid blink
+                    self.pixmap_temp.draw_drawable(self.gc,self.pixmap, 0,0,0,0, width, height)
+                    self.pixmap_sel.draw_drawable(self.gc,self.pixmap, 0,0,0,0, width, height)#avoid blink
                     self.sx = int (event.x)
                     self.sy = int(event.y)
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
                     self.selmove = True
                     self.sel_get_out = False
-                elif self.selmove and self.sel_get_out: #get out of the func selection
+                elif self.sel_get_out: #get out of the func selection
                     self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
                     self.selmove = False
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
@@ -797,14 +802,14 @@ class Area(gtk.DrawingArea):
         if not load_selected :
             self.enableUndo(widget)
         else :
+            self.selmove = True
+            self.desenha = True
             self.oldx, self.oldy = 0,0
             self.d.selection(self, size, True, False)
-            #self.pixmap_temp.draw_rectangle(self.gc_selection, True ,0,0,size[0],size[1])
+            self.pixmap_sel.draw_rectangle(self.gc_selection, True ,0,0,size[0],size[1])
             self.sx, self.sy = size
             self.tool = 'marquee-rectangular'
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
-            self.selmove = True
-            self.desenha = True
             
         self.queue_draw()
         
