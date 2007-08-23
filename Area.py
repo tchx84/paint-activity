@@ -146,6 +146,9 @@ class Area(gtk.DrawingArea):
         
         # Number of sides for regular polygon
         self.polygon_sides = 5
+        
+        # Shapes will be filled or not?
+        self.fill = True
 
     # Create a new backing pixmap of the appropriate size
     def configure_event(self, widget, event):
@@ -251,6 +254,9 @@ class Area(gtk.DrawingArea):
         coords = int(event.x), int(event.y)
         if self.tool == 'text':
             self.d.text(widget,event)
+#         else:
+#             self.janela._textview.hide()
+            
         if not self.selmove or self.tool != 'marquee-rectangular':
             self.oldx = int(event.x)
             self.oldy = int(event.y)
@@ -323,11 +329,13 @@ class Area(gtk.DrawingArea):
                 # ellipse
                 elif self.tool == 'ellipse':
                     self.configure_line(self.line_size)
-                    self.d.circle(widget,coords,True,True)    
+                    #self.d.circle(widget,coords,True,True)
+                    self.d.circle(widget,coords,True,self.fill)
                 # rectangle
                 elif self.tool == 'rectangle':
                     self.configure_line(self.line_size)
-                    self.d.square(widget,coords,True,True)
+                    #self.d.square(widget,coords,True,True)
+                    self.d.square(widget,coords,True,self.fill)
                 # selection
                 elif self.tool == 'marquee-rectangular' and not self.selmove:
                     x1, y1, x2, y2 = self.d.selection(widget,coords,True,False)
@@ -338,36 +346,44 @@ class Area(gtk.DrawingArea):
                 #polygon    
                 elif self.tool == 'polygon':
                     self.configure_line(self.line_size)
-                    self.d.polygon(widget,coords,True,False)
+                    #self.d.polygon(widget,coords,True,False)
+                    self.d.polygon(widget,coords,True,self.fill)
                 #triangle
                 elif self.tool == 'triangle':
                     self.configure_line(self.line_size)
-                    self.d.triangle(widget,coords,True,True)
+                    #self.d.triangle(widget,coords,True,True)
+                    self.d.triangle(widget,coords,True,self.fill)
                 #trapezoid
                 elif self.tool == 'trapezoid':
                     self.configure_line(self.line_size)
-                    self.d.trapezoid(widget,coords,True,True)
+                    #self.d.trapezoid(widget,coords,True,True)
+                    self.d.trapezoid(widget,coords,True,self.fill)
                 #arrow
                 elif self.tool == 'arrow':
                     self.configure_line(self.line_size)
-                    self.d.arrow(widget,coords,True,True)
+                    #self.d.arrow(widget,coords,True,True)
+                    self.d.arrow(widget,coords,True,self.fill)
                 #parallelogram
                 elif self.tool == 'parallelogram':
                     self.configure_line(self.line_size)
-                    self.d.parallelogram(widget,coords,True,True)
+                    #self.d.parallelogram(widget,coords,True,True)
+                    self.d.parallelogram(widget,coords,True,self.fill)
                 #star
                 elif self.tool == 'star':
                     self.configure_line(self.line_size)
-                    self.d.star(widget,coords,True,True)
+                    #self.d.star(widget,coords,True,True)
+                    self.d.star(widget,coords,True,self.fill)
                 #polygon regular
                 elif self.tool == 'polygon_regular':
                     self.configure_line(self.line_size)
                     #n = 7
-                    self.d.polygon_regular(widget,coords,self.polygon_sides,True,True)
+                    #self.d.polygon_regular(widget,coords,self.polygon_sides,True,True)
+                    self.d.polygon_regular(widget,coords,self.polygon_sides,True,self.fill)
                 #Heart
                 elif self.tool == 'heart':
                     self.configure_line(self.line_size)
-                    self.d.heart(widget,coords,True,True)
+                    #self.d.heart(widget,coords,True,True)
+                    self.d.heart(widget,coords,True,self.fill)
 
 
     def mouseup(self,widget,event): 
@@ -389,11 +405,13 @@ class Area(gtk.DrawingArea):
                 self.enableUndo(widget)
             # ellipse
             elif self.tool == 'ellipse':
-                self.d.circle(widget,coords,False,True)
+                #self.d.circle(widget,coords,False,True)
+                self.d.circle(widget,coords,False,self.fill)
                 self.enableUndo(widget)
             # rectangle
             elif self.tool == 'rectangle':
-                self.d.square(widget,coords,False,True)
+                #self.d.square(widget,coords,False,True)
+                self.d.square(widget,coords,False,self.fill)
                 self.enableUndo(widget)
             # selection
             elif self.tool == 'marquee-rectangular':
@@ -416,7 +434,8 @@ class Area(gtk.DrawingArea):
                 self.emit('selected')
             # polygon
             elif self.tool == 'polygon':
-                self.d.polygon(widget, coords, False, False)
+                #self.d.polygon(widget, coords, False, False)
+                self.d.polygon(widget, coords, False, self.fill)
             #to undo pencil
             elif self.tool == 'pencil':
                 widget.queue_draw() 
@@ -429,32 +448,39 @@ class Area(gtk.DrawingArea):
                 self.enableUndo(widget)
             #triangle
             elif self.tool == 'triangle':
-                self.d.triangle(widget,coords,False,True)
+                #self.d.triangle(widget,coords,False,True)
+                self.d.triangle(widget,coords,False,self.fill)
                 self.enableUndo(widget)
             #trapezoid
             elif self.tool == 'trapezoid':
-                self.d.trapezoid(widget,coords,False,True)
+                #self.d.trapezoid(widget,coords,False,True)
+                self.d.trapezoid(widget,coords,False,self.fill)
                 self.enableUndo(widget)
             #arrow
             elif self.tool == 'arrow':
-                self.d.arrow(widget,coords,False,True)
+                #self.d.arrow(widget,coords,False,True)
+                self.d.arrow(widget,coords,False,self.fill)
                 self.enableUndo(widget)
             #parallelogram
             elif self.tool == 'parallelogram':
-                self.d.parallelogram(widget,coords,False,True)
+                #self.d.parallelogram(widget,coords,False,True)
+                self.d.parallelogram(widget,coords,False,self.fill)
                 self.enableUndo(widget)
             #star
             elif self.tool == 'star':
-                self.d.star(widget,coords,False,True)
+                #self.d.star(widget,coords,False,True)
+                self.d.star(widget,coords,False,self.fill)
                 self.enableUndo(widget)
             #polygon regular
             elif self.tool == 'polygon_regular':
                 #n = 7
-                self.d.polygon_regular(widget,coords,self.polygon_sides,False,True)
+                #self.d.polygon_regular(widget,coords,self.polygon_sides,False,True)
+                self.d.polygon_regular(widget,coords,self.polygon_sides,False,self.fill)
                 self.enableUndo(widget)
             #heart
             elif self.tool == 'heart':
-                self.d.heart(widget,coords,False,True)
+                #self.d.heart(widget,coords,False,True)
+                self.d.heart(widget,coords,False,self.fill)
                 self.enableUndo(widget)
 
         if self.tool == 'brush' or self.tool == 'eraser' or self.tool == 'rainbow':

@@ -600,18 +600,18 @@ class ButtonStrokeColor(gtk.ColorButton):
 
 class ShapesToolbar(gtk.Toolbar):
 
-    _TOOL_SHAPE_ARROW = 'arrow'
-    _TOOL_SHAPE_CURVE = 'curve'
-    _TOOL_SHAPE_ELLIPSE = 'ellipse'
-    _TOOL_SHAPE_FREEFORM = 'freeform'
-    _TOOL_SHAPE_HEART = 'heart'
-    _TOOL_SHAPE_LINE = 'line'
-    _TOOL_SHAPE_PARALLELOGRAM = 'parallelogram'
-    _TOOL_SHAPE_POLYGON = 'polygon_regular'
-    _TOOL_SHAPE_RECTANGLE = 'rectangle'
-    _TOOL_SHAPE_STAR = 'star'
-    _TOOL_SHAPE_TRAPEZOID = 'trapezoid'
-    _TOOL_SHAPE_TRIANGLE = 'triangle'
+    _SHAPE_ARROW = 'arrow'
+    _SHAPE_CURVE = 'curve'
+    _SHAPE_ELLIPSE = 'ellipse'
+    _SHAPE_FREEFORM = 'freeform'
+    _SHAPE_HEART = 'heart'
+    _SHAPE_LINE = 'line'
+    _SHAPE_PARALLELOGRAM = 'parallelogram'
+    _SHAPE_POLYGON = 'polygon_regular'
+    _SHAPE_RECTANGLE = 'rectangle'
+    _SHAPE_STAR = 'star'
+    _SHAPE_TRAPEZOID = 'trapezoid'
+    _SHAPE_TRIANGLE = 'triangle'
 
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
@@ -653,85 +653,118 @@ class ShapesToolbar(gtk.Toolbar):
         self.insert(separator, -1)
         separator.show()
 
-        self._tool_shape_ellipse = ToolButton('tool-shape-ellipse')
-        self.insert(self._tool_shape_ellipse, -1)
-        self._tool_shape_ellipse.show()
-        self._tool_shape_ellipse.set_tooltip(_('Ellipse'))
+        self._shape_ellipse = ToolButton('tool-shape-ellipse')
+        self.insert(self._shape_ellipse, -1)
+        self._shape_ellipse.show()
+        self._shape_ellipse.set_tooltip(_('Ellipse'))
+        try:
+            self._configure_palette_shape_ellipse()
+        except:
+            logging.debug('Could not create palette for Shape Ellipse')
 
-        self._tool_shape_rectangle = ToolButton('tool-shape-rectangle')
-        self.insert(self._tool_shape_rectangle, -1)
-        self._tool_shape_rectangle.show()
-        self._tool_shape_rectangle.set_tooltip(_('Rectangle'))
-
-        self._tool_shape_line = ToolButton('tool-shape-line')
-        self.insert(self._tool_shape_line, -1)
-        self._tool_shape_line.show()
-        self._tool_shape_line.set_tooltip(_('Line'))
+        self._shape_rectangle = ToolButton('tool-shape-rectangle')
+        self.insert(self._shape_rectangle, -1)
+        self._shape_rectangle.show()
+        self._shape_rectangle.set_tooltip(_('Rectangle'))
+        try:
+            self._configure_palette_shape_rectangle()
+        except:
+            logging.debug('Could not create palette for Shape Ellipse')
         
-        self._tool_shape_polygon = ToolButton('tool-shape-polygon')
-        self.insert(self._tool_shape_polygon, -1)
-        self._tool_shape_polygon.show()
-        self._tool_shape_polygon.set_tooltip(_('Polygon'))
-#         try:
-        self._configure_palette(self._tool_shape_polygon, self._TOOL_SHAPE_POLYGON)
-#         except:
-#             logging.debug('Could not create palette for Regular Polygon')
-
+        self._shape_line = ToolButton('tool-shape-line')
+        self.insert(self._shape_line, -1)
+        self._shape_line.show()
+        self._shape_line.set_tooltip(_('Line'))
+        
+        self._shape_polygon = ToolButton('tool-shape-polygon')
+        self.insert(self._shape_polygon, -1)
+        self._shape_polygon.show()
+        self._shape_polygon.set_tooltip(_('Polygon'))
+        try:
+            #self._configure_palette(self._shape_polygon, self._SHAPE_POLYGON)
+            self._configure_palette_shape_polygon()
+        except:
+            logging.debug('Could not create palette for Regular Polygon')
+        
         """
         
-        self._tool_shape_freeform = ToolButton('tool-shape-freeform')
-        self.insert(self._tool_shape_freeform, -1)
-        self._tool_shape_freeform.show()
-        self._tool_shape_freeform.set_tooltip(_('Freeform'))
+        self._shape_freeform = ToolButton('tool-shape-freeform')
+        self.insert(self._shape_freeform, -1)
+        self._shape_freeform.show()
+        self._shape_freeform.set_tooltip(_('Freeform'))
 
         """
 
-        self._tool_shape_heart = ToolButton('tool-shape-heart')
-        self.insert(self._tool_shape_heart, -1)
-        self._tool_shape_heart.show()
-        self._tool_shape_heart.set_tooltip(_('Heart'))
+        self._shape_heart = ToolButton('tool-shape-heart')
+        self.insert(self._shape_heart, -1)
+        self._shape_heart.show()
+        self._shape_heart.set_tooltip(_('Heart'))
+        try:
+            self._configure_palette_shape_heart()
+        except:
+            logging.debug('Could not create palette for Shape Heart')
+        
 
-        self._tool_shape_parallelogram = ToolButton('tool-shape-parallelogram')
-        self.insert(self._tool_shape_parallelogram, -1)
-        self._tool_shape_parallelogram.show()
-        self._tool_shape_parallelogram.set_tooltip(_('Parallelogram'))
+        self._shape_parallelogram = ToolButton('tool-shape-parallelogram')
+        self.insert(self._shape_parallelogram, -1)
+        self._shape_parallelogram.show()
+        self._shape_parallelogram.set_tooltip(_('Parallelogram'))
+        try:
+            self._configure_palette_shape_parallelogram()
+        except:
+            logging.debug('Could not create palette for Shape Parallelogram')
 
-        self._tool_shape_arrow = ToolButton('tool-shape-arrow')
-        self.insert(self._tool_shape_arrow, -1)
-        self._tool_shape_arrow.show()
-        self._tool_shape_arrow.set_tooltip(_('Arrow'))
+        self._shape_arrow = ToolButton('tool-shape-arrow')
+        self.insert(self._shape_arrow, -1)
+        self._shape_arrow.show()
+        self._shape_arrow.set_tooltip(_('Arrow'))
+        try:
+            self._configure_palette_shape_arrow()
+        except:
+            logging.debug('Could not create palette for Shape Arrow')
 
-        self._tool_shape_star = ToolButton('tool-shape-star')
-        self.insert(self._tool_shape_star, -1)
-        self._tool_shape_star.show()
-        self._tool_shape_star.set_tooltip(_('Star'))
+        self._shape_star = ToolButton('tool-shape-star')
+        self.insert(self._shape_star, -1)
+        self._shape_star.show()
+        self._shape_star.set_tooltip(_('Star'))
+        try:
+            self._configure_palette_shape_star()
+        except:
+            logging.debug('Could not create palette for Shape Star')
 
-        self._tool_shape_trapezoid = ToolButton('tool-shape-trapezoid')
-        self.insert(self._tool_shape_trapezoid, -1)
-        self._tool_shape_trapezoid.show()
-        self._tool_shape_trapezoid.set_tooltip(_('Trapezoid'))
+        self._shape_trapezoid = ToolButton('tool-shape-trapezoid')
+        self.insert(self._shape_trapezoid, -1)
+        self._shape_trapezoid.show()
+        self._shape_trapezoid.set_tooltip(_('Trapezoid'))
+        try:
+            self._configure_palette_shape_trapezoid()
+        except:
+            logging.debug('Could not create palette for Shape Trapezoid')
 
-        self._tool_shape_triangle = ToolButton('tool-shape-triangle')
-        self.insert(self._tool_shape_triangle, -1)
-        self._tool_shape_triangle.show()
-        self._tool_shape_triangle.set_tooltip(_('Triangle'))
-
+        self._shape_triangle = ToolButton('tool-shape-triangle')
+        self.insert(self._shape_triangle, -1)
+        self._shape_triangle.show()
+        self._shape_triangle.set_tooltip(_('Triangle'))
+        try:
+            self._configure_palette_shape_triangle()
+        except:
+            logging.debug('Could not create palette for Shape Triangle')
         
         
         self._icon_stroke.connect('clicked', self._on_icon_stroke_clicked)
         self._icon_fill.connect('clicked', self._on_icon_fill_clicked)
 
-        self._tool_shape_arrow.connect('clicked', self.set_tool, self._TOOL_SHAPE_ARROW)
-        self._tool_shape_ellipse.connect('clicked', self.set_tool, self._TOOL_SHAPE_ELLIPSE)
-        #self._tool_shape_freeform.connect('clicked', self.set_tool, self._TOOL_SHAPE_FREEFORM)
-        self._tool_shape_heart.connect('clicked', self.set_tool, self._TOOL_SHAPE_HEART)
-        self._tool_shape_line.connect('clicked', self.set_tool, self._TOOL_SHAPE_LINE)
-        self._tool_shape_parallelogram.connect('clicked', self.set_tool, self._TOOL_SHAPE_PARALLELOGRAM)
-        self._tool_shape_polygon.connect('clicked', self.set_tool, self._TOOL_SHAPE_POLYGON)
-        self._tool_shape_rectangle.connect('clicked', self.set_tool, self._TOOL_SHAPE_RECTANGLE)
-        self._tool_shape_star.connect('clicked', self.set_tool, self._TOOL_SHAPE_STAR)
-        self._tool_shape_trapezoid.connect('clicked', self.set_tool, self._TOOL_SHAPE_TRAPEZOID)
-        self._tool_shape_triangle.connect('clicked', self.set_tool, self._TOOL_SHAPE_TRIANGLE)
+        self._shape_arrow.connect('clicked', self.set_tool, self._SHAPE_ARROW)
+        self._shape_ellipse.connect('clicked', self.set_tool, self._SHAPE_ELLIPSE)
+        #self._shape_freeform.connect('clicked', self.set_tool, self._SHAPE_FREEFORM)
+        self._shape_heart.connect('clicked', self.set_tool, self._SHAPE_HEART)
+        self._shape_line.connect('clicked', self.set_tool, self._SHAPE_LINE)
+        self._shape_parallelogram.connect('clicked', self.set_tool, self._SHAPE_PARALLELOGRAM)
+        self._shape_polygon.connect('clicked', self.set_tool, self._SHAPE_POLYGON)
+        self._shape_rectangle.connect('clicked', self.set_tool, self._SHAPE_RECTANGLE)
+        self._shape_star.connect('clicked', self.set_tool, self._SHAPE_STAR)
+        self._shape_trapezoid.connect('clicked', self.set_tool, self._SHAPE_TRAPEZOID)
+        self._shape_triangle.connect('clicked', self.set_tool, self._SHAPE_TRIANGLE)
     
     def set_tool(self, widget, tool):
         
@@ -773,50 +806,168 @@ class ShapesToolbar(gtk.Toolbar):
         logging.debug('setting a palette for %s', tool)
         
         palette = widget.get_palette()
+        vbox = gtk.VBox()
+        vbox.show()
+        palette.action_bar.pack_start(vbox)
         
         if tool is None:
             logging.debug('Trying to configure Palette, but there is no tool!')
             raise TypeError
             
-        elif tool is self._TOOL_SHAPE_POLYGON:
+        elif tool is self._SHAPE_POLYGON:
             spin = gtk.SpinButton()
             spin.show()
             
+            # When inserted in a Palette, a spinbutton does not display text in black
             black = gtk.gdk.Color(0,0,0)
-            #white = gtk.gdk.Color(255,255,255)
-            
-            #spin.modify_base(gtk.STATE_NORMAL, black)
-            #spin.modify_base(gtk.STATE_ACTIVE, white)
             spin.modify_text(gtk.STATE_NORMAL, black)
             
             # This is where we set restrictions for Regular Polygon:
             # Initial value, minimum value, maximum value, step
             try:
-                initial = self._activity._area.polygon_sides
+                initial = float(self._activity._area.polygon_sides)
             except:
-                initial = 5
-            adj = gtk.Adjustment(float(initial), 3.0, 50.0, 1.0)
+                initial = 5.0
+            adj = gtk.Adjustment(initial, 3.0, 50.0, 1.0)
             spin.set_adjustment(adj)
-            
-            spin.set_numeric(True)            
-            #palette.set_content(spin)
+            spin.set_numeric(True)
             
             frame = gtk.Frame(_('Sides'))
             frame.add(spin)
-            frame.show()          
-            #palette.set_content(frame)
-            
-            vbox = gtk.VBox()
-            vbox.show()
-            palette.action_bar.pack_start(vbox)
+            frame.show()
             
             vbox.pack_start(frame)
             spin.connect('value-changed', self._on_value_changed)
             
+            separator1 = gtk.HSeparator()
+            vbox.pack_start(separator1)
+            separator1.show()
+            
+            checkbutton = gtk.CheckButton(_('Fill'))
+            checkbutton.connect('toggled', self._on_checkbutton_toggled)
+            vbox.pack_start(checkbutton)
+            checkbutton.show()
+            checkbutton.set_active(True)
+            
+            
     def _on_value_changed(self, spinbutton, data=None):
         self._activity._area.polygon_sides = spinbutton.get_value_as_int()
-        self.set_tool(self._tool_shape_polygon, self._TOOL_SHAPE_POLYGON)
+        self.set_tool(self._shape_polygon, self._SHAPE_POLYGON)
+        
+    def _on_fill_checkbutton_toggled(self, checkbutton, button=None):
+        logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
+        #TODO: this is not connected to any Area method. Should set filling in regular polygon
+        self._activity._area.fill = checkbutton.get_active()
+        try:
+            button.emit('clicked')
+        except:
+            pass
             
+    def _configure_palette_shape_ellipse(self):
+        logging.debug('Creating palette to shape ellipse')
+        self._create_simple_palette(self._shape_ellipse)
+    
+    def _configure_palette_shape_rectangle(self):
+        logging.debug('Creating palette to shape rectangle')
+        self._create_simple_palette(self._shape_rectangle)
+    
+    def _configure_palette_shape_polygon(self):
+        logging.debug('Creating palette to shape polygon')
+        
+        self._create_simple_palette(self._shape_polygon)
+        
+        palette = self._shape_polygon.get_palette()
+        
+        vbox = gtk.VBox()
+        vbox.show()
+        #palette.action_bar.pack_start(vbox)
+        #palette.set_content(vbox)
+        
+        spin = gtk.SpinButton()
+        spin.show()
+        
+        # When inserted in a Palette, a spinbutton does not display text in black
+        black = gtk.gdk.Color(0,0,0)
+        spin.modify_text(gtk.STATE_NORMAL, black)
+        
+        # This is where we set restrictions for Regular Polygon:
+        # Initial value, minimum value, maximum value, step
+        try:
+            initial = float(self._activity._area.polygon_sides)
+        except:
+            initial = 5.0
+        adj = gtk.Adjustment(initial, 3.0, 50.0, 1.0)
+        spin.set_adjustment(adj)
+        spin.set_numeric(True)
+        
+#         separator1 = gtk.HSeparator()
+#         vbox.pack_start(separator1)
+#         separator1.show()
+        
+        frame = gtk.Frame(_('Sides'))
+        frame.add(spin)
+        frame.show()
+        
+        #vbox.pack_start(frame)
+        palette.set_content(frame)
+        spin.connect('value-changed', self._on_value_changed)
+        
+        
+        
+    def _configure_palette_shape_heart(self):
+        logging.debug('Creating palette to shape heart')
+        self._create_simple_palette(self._shape_heart)
+    
+    def _configure_palette_shape_parallelogram(self):
+        logging.debug('Creating palette to shape parallelogram')
+        self._create_simple_palette(self._shape_parallelogram)
+    
+    def _configure_palette_shape_arrow(self):
+        logging.debug('Creating palette to shape arrow')
+        self._create_simple_palette(self._shape_arrow)
+    
+    def _configure_palette_shape_star(self):
+        logging.debug('Creating palette to shape star')
+        self._create_simple_palette(self._shape_star)
+    
+    def _configure_palette_shape_trapezoid(self):
+        logging.debug('Creating palette to shape trapezoid')
+        self._create_simple_palette(self._shape_trapezoid)
+    
+    def _configure_palette_shape_triangle(self):
+        logging.debug('Creating palette to shape triangle')
+        self._create_simple_palette(self._shape_triangle)
+    
+    def _create_simple_palette(self, button):
+        '''
+        Create a simple palette with an CheckButton named "Fill". Most tools use only this.
+        Keyword arguments:
+        widget -- a ToolButton to associate the palette.
+        '''
+        palette = button.get_palette()
+        
+        fill_checkbutton = gtk.CheckButton(_('Fill'))
+        fill_checkbutton.show()
+        fill_checkbutton.set_active(self._activity._area.fill)
+        
+        fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, button)
+        
+        fill_checkbutton.connect('map', self._on_fill_checkbutton_map)
+#         widget.connect_after('clicked', self._on_fill_checkbutton_after_clicked, fill_checkbutton)
+        
+        palette.set_content(fill_checkbutton)
+    
+    def _on_fill_checkbutton_map(self, checkbutton, data=None):
+        '''
+        Update checkbutton condition to agree with Area.Area object; this prevents tools to have fill checked but be drawed not filled.
+        '''
+        self._activity._area.fill = checkbutton.get_active()
+    
+#     def _on_fill_checkbutton_after_clicked(self, widget, checkbutton):
+#         # Trying to prevent same condition described at self._on_fill_checkbutton_map
+#         self._activity._area.fill = checkbutton.get_active()
+    
+    
 class TextToolbar(gtk.Toolbar):
 
     _ACTION_TEXT = 'text'
