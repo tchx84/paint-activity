@@ -252,10 +252,16 @@ class Area(gtk.DrawingArea):
         width, height = self.window.get_size()
         # text
         coords = int(event.x), int(event.y)
-        if self.tool == 'text':
+        if self.tool is 'text':
             self.d.text(widget,event)
-#         else:
-#             self.janela._textview.hide()
+            
+        # This fixes a bug that made the text viewer get stuck in the canvas
+        elif self.estadoTexto is 1:
+            text = self.janela._textview.get_text()
+            if text is not None:
+                self.d.text(widget,event)
+            self.estadoTexto = 0
+            self.janela._textview.hide()
             
         if not self.selmove or self.tool != 'marquee-rectangular':
             self.oldx = int(event.x)

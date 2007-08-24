@@ -518,13 +518,16 @@ class Desenho:
         event -- GdkEvent
 
         """
+        #print self.d.estadoTexto
         if self.d.estadoTexto == 0:
             self.d.estadoTexto = 1
-            print event.x
+            
             self.d.janela._fixed.move(self.d.janela._textview, int(event.x)+200, int(event.y)+100)
             # Area size has changed...
             #self.d.janela._fixed.move(self.d.janela._textview, int(event.x), int(event.y))
             self.d.janela._textview.show()
+            self.d.janela._textview.grab_focus()
+            
         else:   
             self.d.estadoTexto = 0  
             texto = self.d.janela._textview.get_text()
@@ -538,7 +541,8 @@ class Desenho:
             self.d.enableUndo(widget)
             
             widget.queue_draw()
-
+            
+        #print self.d.estadoTexto
 
     def selection(self, widget, coords, temp, fill):
         """Make a selection.
