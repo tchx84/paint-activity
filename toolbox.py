@@ -131,6 +131,7 @@ class DrawEditToolbar(EditToolbar):
         
         self._activity._area.connect('undo', self._on_signal_undo_cb)
         self._activity._area.connect('redo', self._on_signal_redo_cb)
+        self._activity._area.connect('selected', self._on_signal_copy_cb)
         self._activity._area.connect('action-saved', self._on_signal_action_saved_cb)
 
         
@@ -151,6 +152,9 @@ class DrawEditToolbar(EditToolbar):
         
     def _on_signal_redo_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
+           
+    def _on_signal_copy_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
         
     def _on_signal_action_saved_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
@@ -158,6 +162,7 @@ class DrawEditToolbar(EditToolbar):
     def _verify_sensitive_buttons(self):
         self.undo.set_sensitive( self._activity._area.can_undo() )
         self.redo.set_sensitive( self._activity._area.can_redo() )
+        self.copy.set_sensitive( self._activity._area.is_selected() )
         #TODO: it is not possible to verify these yet.
         #self.copy.set_sensitive( self._activity._area.can_copy() )
         #self.paste.set_sensitive( self._activity._area.can_paste() )
@@ -241,7 +246,11 @@ class ToolsToolbar(gtk.Toolbar):
         self.insert(self._tool_polygon, -1)
         self._tool_polygon.show()
         self._tool_polygon.set_tooltip(_('Polygon'))
-        
+        try:
+            self._configure_palette(self._tool_polygon, self._TOOL_POLYGON)
+        except:
+            logging.debug('Could not create palette for tool Polygon')
+            
         self._tool_bucket = ToolButton('tool-bucket')
         self.insert(self._tool_bucket, -1)
         self._tool_bucket.show()
@@ -286,7 +295,7 @@ class ToolsToolbar(gtk.Toolbar):
 
     def _configure_palette(self, widget, tool=None):
         '''Set palette for a tool
-        widget  - the widget which Palette will be set
+        widget  - the widget which Palette will be set, a ToolButton object
         tool    - the reference tool for Palette creation. Its values are
                   restricted to Class constants
         '''
@@ -315,6 +324,20 @@ class ToolsToolbar(gtk.Toolbar):
             
             item_1.show()
             item_2.show()
+            
+        elif tool is self._TOOL_POLYGON:
+        # Create a simple palette with an CheckButton named "Fill".
+        
+            fill_checkbutton = gtk.CheckButton(_('Fill'))
+            fill_checkbutton.show()
+            fill_checkbutton.set_active(self._activity._area.fill)
+            
+            fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, widget)
+            
+            fill_checkbutton.connect('map', self._on_fill_checkbutton_map)
+            
+            palette.set_content(fill_checkbutton)
+    
 
     def set_shape(self, widget, tool, shape):
         '''
@@ -354,6 +377,20 @@ class ToolsToolbar(gtk.Toolbar):
     def _on_icon_stroke_clicked(self, widget, data=None):
         self._stroke_color.clicked()
         
+    def _on_fill_checkbutton_toggled(self, checkbutton, button=None):
+        logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
+        
+        self._activity._area.fill = checkbutton.get_active()
+        try:
+            button.emit('clicked')
+        except:
+            pass
+        
+    def _on_fill_checkbutton_map(self, checkbutton, data=None):
+        '''
+        Update checkbutton condition to agree with Area.Area object; this prevents tools to have fill checked but be drawed not filled.
+        '''
+        self._activity._area.fill = checkbutton.get_active()
         
 
 class ComboFillColors(ToolComboBox):
@@ -681,7 +718,6 @@ class ShapesToolbar(gtk.Toolbar):
         self._shape_polygon.show()
         self._shape_polygon.set_tooltip(_('Polygon'))
         try:
-            #self._configure_palette(self._shape_polygon, self._SHAPE_POLYGON)
             self._configure_palette_shape_polygon()
         except:
             logging.debug('Could not create palette for Regular Polygon')
@@ -796,67 +832,18 @@ class ShapesToolbar(gtk.Toolbar):
     def _on_icon_fill_clicked(self, widget, data=None):
         self._fill_color.clicked()
         
-    def _configure_palette(self, widget, tool=None):
-        '''Configure palette for a given tool
-        widget  - the widget which Palette will be set
-        tool    - the reference tool for Palette creation. Its values are
-                  restricted to Class constants
-        '''
-        
-        logging.debug('setting a palette for %s', tool)
-        
-        palette = widget.get_palette()
-        vbox = gtk.VBox()
-        vbox.show()
-        palette.action_bar.pack_start(vbox)
-        
-        if tool is None:
-            logging.debug('Trying to configure Palette, but there is no tool!')
-            raise TypeError
-            
-        elif tool is self._SHAPE_POLYGON:
-            spin = gtk.SpinButton()
-            spin.show()
-            
-            # When inserted in a Palette, a spinbutton does not display text in black
-            black = gtk.gdk.Color(0,0,0)
-            spin.modify_text(gtk.STATE_NORMAL, black)
-            
-            # This is where we set restrictions for Regular Polygon:
-            # Initial value, minimum value, maximum value, step
-            try:
-                initial = float(self._activity._area.polygon_sides)
-            except:
-                initial = 5.0
-            adj = gtk.Adjustment(initial, 3.0, 50.0, 1.0)
-            spin.set_adjustment(adj)
-            spin.set_numeric(True)
-            
-            frame = gtk.Frame(_('Sides'))
-            frame.add(spin)
-            frame.show()
-            
-            vbox.pack_start(frame)
-            spin.connect('value-changed', self._on_value_changed)
-            
-            separator1 = gtk.HSeparator()
-            vbox.pack_start(separator1)
-            separator1.show()
-            
-            checkbutton = gtk.CheckButton(_('Fill'))
-            checkbutton.connect('toggled', self._on_checkbutton_toggled)
-            vbox.pack_start(checkbutton)
-            checkbutton.show()
-            checkbutton.set_active(True)
-            
             
     def _on_value_changed(self, spinbutton, data=None):
         self._activity._area.polygon_sides = spinbutton.get_value_as_int()
-        self.set_tool(self._shape_polygon, self._SHAPE_POLYGON)
+        
+        if data is self._SHAPE_POLYGON:
+            self.set_tool(self._shape_polygon, self._SHAPE_POLYGON)
+        elif data is self._SHAPE_STAR:
+            self.set_tool(self._shape_star, self._SHAPE_STAR)
         
     def _on_fill_checkbutton_toggled(self, checkbutton, button=None):
         logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
-        #TODO: this is not connected to any Area method. Should set filling in regular polygon
+        
         self._activity._area.fill = checkbutton.get_active()
         try:
             button.emit('clicked')
@@ -878,10 +865,6 @@ class ShapesToolbar(gtk.Toolbar):
         
         palette = self._shape_polygon.get_palette()
         
-        vbox = gtk.VBox()
-        vbox.show()
-        #palette.action_bar.pack_start(vbox)
-        #palette.set_content(vbox)
         
         spin = gtk.SpinButton()
         spin.show()
@@ -900,18 +883,12 @@ class ShapesToolbar(gtk.Toolbar):
         spin.set_adjustment(adj)
         spin.set_numeric(True)
         
-#         separator1 = gtk.HSeparator()
-#         vbox.pack_start(separator1)
-#         separator1.show()
+        label = gtk.Label(_('Sides: '))
+        label.show()
+        palette.action_bar.pack_start(label)
+        palette.action_bar.pack_start(spin)
         
-        frame = gtk.Frame(_('Sides'))
-        frame.add(spin)
-        frame.show()
-        
-        #vbox.pack_start(frame)
-        palette.set_content(frame)
-        spin.connect('value-changed', self._on_value_changed)
-        
+        spin.connect('value-changed', self._on_value_changed, self._SHAPE_POLYGON)
         
         
     def _configure_palette_shape_heart(self):
@@ -929,6 +906,33 @@ class ShapesToolbar(gtk.Toolbar):
     def _configure_palette_shape_star(self):
         logging.debug('Creating palette to shape star')
         self._create_simple_palette(self._shape_star)
+        
+        palette = self._shape_star.get_palette()
+        
+        spin = gtk.SpinButton()
+        spin.show()
+        
+        # When inserted in a Palette, a spinbutton does not display text in black
+        black = gtk.gdk.Color(0,0,0)
+        spin.modify_text(gtk.STATE_NORMAL, black)
+        
+        # This is where we set restrictions for Star:
+        # Initial value, minimum value, maximum value, step
+        try:
+            initial = float(self._activity._area.polygon_sides)
+        except:
+            initial = 5.0
+        adj = gtk.Adjustment(initial, 3.0, 50.0, 1.0)
+        spin.set_adjustment(adj)
+        spin.set_numeric(True)
+        
+        label = gtk.Label(_('Sides: '))
+        label.show()
+        palette.action_bar.pack_start(label)
+        palette.action_bar.pack_start(spin)
+        
+        # It is connected to the same method that Regular Polygon's Palette is because they use the same property in Area
+        spin.connect('value-changed', self._on_value_changed, self._SHAPE_STAR)
     
     def _configure_palette_shape_trapezoid(self):
         logging.debug('Creating palette to shape trapezoid')

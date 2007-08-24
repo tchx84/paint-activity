@@ -328,13 +328,15 @@ class Desenho:
         widget.queue_draw()
 
 
-    def star(self, widget, coords, temp, fill):
-        """Draw a arrow.
+    def star(self, widget, coords, n, temp, fill):
+        """Draw polygon with n sides.
 
         Keyword arguments:
         self -- Desenho.Desenho instance
         widget -- Area object (GtkDrawingArea)
         coords -- Two value tuple
+        n -- number of sides
+        temp -- switch between pixmap and pixmap_temp
 
         """
         if temp == True:
@@ -345,21 +347,21 @@ class Desenho:
         
         x = coords[0] - self.d.oldx
         y = coords[1] - self.d.oldy
-
-        points = [(self.d.oldx,self.d.oldy),\
-(self.d.oldx+int(x*0.25), self.d.oldy+int(y*0.4)),\
-(self.d.oldx+int(x), self.d.oldy+int(y*0.4)),\
-(self.d.oldx+int(x*0.35), self.d.oldy+int(y*0.6)),\
-(self.d.oldx+int(x*0.6), self.d.oldy+y),\
-(self.d.oldx, self.d.oldy+int(y*0.75)),\
-(self.d.oldx-int(x*0.6), self.d.oldy+y),\
-(self.d.oldx-int(x*0.35), self.d.oldy+int(y*0.6)),\
-(self.d.oldx-int(x), self.d.oldy+int(y*0.4)),\
-(self.d.oldx-int(x*0.25), self.d.oldy+int(y*0.4))]
+        A = math.atan2(y,x)
+        dA = 2*math.pi/n
+        r = math.hypot(y,x)
+        p = [(self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A))),\
+        (self.d.oldx+int(0.4*r*math.cos(A+dA/2)),self.d.oldy+int(0.4*r*math.sin(A+dA/2)))]
+        for i in range(n-1):
+            A = A+dA
+            p.append((self.d.oldx+int(r*math.cos(A)),self.d.oldy+int(r*math.sin(A))))
+            p.append((self.d.oldx+int(0.4*r*math.cos(A+dA/2)),self.d.oldy+int(0.4*r*math.sin(A+dA/2))))
+        tp = tuple(p)
+        
         pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
         if fill == True:
-            pixmap.draw_polygon(self.d.gc,True,points)
-        pixmap.draw_polygon(self.d.gc_line,False,points)
+            pixmap.draw_polygon(self.d.gc,True,tp)
+        pixmap.draw_polygon(self.d.gc_line,False,tp)
         widget.queue_draw()
 
 
@@ -572,28 +574,29 @@ class Desenho:
             pixmap = self.d.pixmap
         width, height = self.d.window.get_size()
         
-        dx = math.fabs(coords[0] - self.d.oldx)
-        dy = math.fabs(coords[1] - self.d.oldy)
+        dx = int(math.fabs(coords[0] - self.d.oldx))
+        dy = int(math.fabs(coords[1] - self.d.oldy))
         
         if coords[0] < self.d.oldx:
-            x = coords[0]
+            x = int(coords[0])
         else:
             x = self.d.oldx
         if coords[1] < self.d.oldy:
-            y = coords[1]
+            y = int(coords[1])
         else:
             y = self.d.oldy
         
         pixmap.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0,width,height)
-        if fill == True:
-            pixmap.draw_rectangle(self.d.gc,True,int(x),int(y),int(dx),int(dy))
+        if fill:
+            pixmap.draw_rectangle(self.d.gc,True,x,y,dx,dy)
             
-        pixmap.draw_rectangle(self.d.gc_selection,False,int(x),int(y),int(dx),int(dy))
+        pixmap.draw_rectangle(self.d.gc_selection,False,x,y,dx,dy)
+        pixmap.draw_rectangle(self.d.gc_selection1,False,x-1,y-1,dx+2,dy+2)
         widget.queue_draw()
-        #return self.d.oldx, self.d.oldy, coords[0], coords[1]        
+             
         return x,y,x+dx,y+dy
         
-    def moveSelection(self, widget, coords):
+    def moveSelection(self, widget, coords, mvcopy=False, pixbuf_copy=None):
         """Move the selection.
 
         Keyword arguments:
@@ -603,41 +606,86 @@ class Desenho:
 
         """ 
         width, height = self.d.window.get_size()
-        
+
         self.d.pixmap_sel.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0, width, height)   
         
         if self.d.sx > self.d.oldx:
-            x0 = self.d.oldx
+            x0 = int(self.d.oldx)
         else:
-            x0 = self.d.sx
+            x0 = int(self.d.sx)
             
         if self.d.sy > self.d.oldy:
-            y0 = self.d.oldy
+            y0 = int(self.d.oldy)
         else:
-            y0 = self.d.sy
+            y0 = int(self.d.sy)
             
-        w = self.d.sx - self.d.oldx
-        if w < 0:
-            w = - w
+        w = int(math.fabs(self.d.sx - self.d.oldx))
+        h = int(math.fabs(self.d.sy - self.d.oldy))
             
-        h = self.d.sy - self.d.oldy         
-        if h < 0:
-            h = - h
-            
-        self.d._set_selection_bounds(coords[0]-w/2, coords[1]-h/2, coords[0]+w/2, coords[1]+h/2)
-               
+        self.d._set_selection_bounds(coords[0]-w/2, coords[1]-h/2, coords[0]+w/2, coords[1]+h/2)             
+        if not mvcopy:
+            self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0, y0, w, h)
         
-        self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0, y0, w, h)
-        self.d.pixmap_sel.draw_drawable(self.d.gc, self.d.pixmap, x0, y0, coords[0] - w/2, coords[1]- h/2, w, h)
-        self.d.pixmap_temp.draw_drawable(self.d.gc, self.d.pixmap_sel,0,0,0,0, width, height)
-        
-	    #to draw the selection black and white line rectangle
+        if pixbuf_copy!=None: #to import or past image
+            self.d.pixmap_sel.draw_pixbuf(self.d.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+            self.d.pixmap_temp.draw_pixbuf(self.d.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+        else:    
+            self.d.pixmap_sel.draw_drawable(self.d.gc, self.d.pixmap, x0, y0, coords[0] - w/2, coords[1]- h/2, w, h)
+        self.d.pixmap_temp.draw_drawable(self.d.gc, self.d.pixmap_sel,0,0,0,0, width, height)  
+            
+        #to draw the selection black and white line rectangle
         self.d.pixmap_sel.draw_rectangle(self.d.gc_selection, False ,coords[0] - w/2, coords[1]- h/2, w, h)
         self.d.pixmap_sel.draw_rectangle(self.d.gc_selection1, False ,coords[0] - w/2-1, coords[1]- h/2-1, w+2, h+2)
-       
         widget.queue_draw()
 
+    def resizeSelection(self, widget, width_percent, height_percent):
+        """Resize the selection.
 
+        Keyword arguments:
+        self -- Desenho.Desenho instance
+        widget -- Area object (GtkDrawingArea)
+        coords -- Two value tuple
+
+        """ 
+        width, height = self.d.window.get_size()
+
+        self.d.pixmap_sel.draw_drawable(self.d.gc,self.d.pixmap,0,0,0,0, width, height)   
+        
+        if self.d.sx > self.d.oldx:
+            x0 = int(self.d.oldx)
+        else:
+            x0 = int(self.d.sx)
+            
+        if self.d.sy > self.d.oldy:
+            y0 = int(self.d.oldy)
+        else:
+            y0 = int(self.d.sy)
+            
+        w = int(math.fabs(self.d.sx - self.d.oldx))
+        h = int(math.fabs(self.d.sy - self.d.oldy))
+
+        width_percent, height_percent = 2,2
+
+        delta_x = int( w*(width_percent-1)/2 )
+        delta_y = int( h*(height_percent-1)/2 )
+
+        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
+        pixbuf.get_from_drawable(self.d.pixmap, gtk.gdk.colormap_get_system(), x0, y0, 0, 0, w, h)
+        pixbuf = pixbuf.scale_simple(int(w*width_percent), int(h*height_percent), gtk.gdk.INTERP_BILINEAR)
+
+    
+        #self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0 - delta_x/2, x1 - delta_y/2, int(w*width_percent), int(h*height_percent))
+        self.d.pixmap_sel.draw_rectangle(self.d.get_style().white_gc, True, x0 - delta_x, y0 - delta_y, int(w*width_percent), int(h*height_percent))
+        self.d.pixmap_sel.draw_pixbuf(self.d.get_style().white_gc,pixbuf,0,0,x0 - delta_x, y0 - delta_y,int(w*width_percent), int(h*height_percent))
+        
+        self.d.pixmap_temp.draw_drawable(self.d.gc, self.d.pixmap_sel,0,0,0,0, width, height)  
+
+	    #to draw the selection black and white line rectangle
+        self.d.pixmap_sel.draw_rectangle(self.d.gc_selection, False ,x0- delta_x, y0- delta_y-4,2*w+1, 2*h+1)
+        self.d.pixmap_sel.draw_rectangle(self.d.gc_selection1, False ,x0- delta_x, y0- delta_y-5,2*w +2, 2*h +2)
+  
+        widget.queue_draw()
+        
     def polygon(self, widget, coords, temp, fill):
         """Draw polygon.
 
