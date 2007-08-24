@@ -926,7 +926,7 @@ class ShapesToolbar(gtk.Toolbar):
         spin.set_adjustment(adj)
         spin.set_numeric(True)
         
-        label = gtk.Label(_('Sides: '))
+        label = gtk.Label(_('Points: '))
         label.show()
         palette.action_bar.pack_start(label)
         palette.action_bar.pack_start(spin)
