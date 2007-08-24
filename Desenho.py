@@ -530,13 +530,26 @@ class Desenho:
             
         else:   
             self.d.estadoTexto = 0  
-            texto = self.d.janela._textview.get_text()
-            layout = self.d.create_pango_layout(texto)
+            
+            try:
+            # This works for a gtk.Entry
+                text = self.d.janela._textview.get_text()
+            except:
+            # This works for a gtk.TextView
+                buf = self.d.janela._textview.get_buffer()
+                start, end = buf.get_bounds()
+                text = buf.get_text(start, end)
+            
+            layout = self.d.create_pango_layout(text)
             layout.set_font_description(self.d.font)
+            
             self.d.pixmap.draw_layout(self.d.gc, self.d.oldx, self.d.oldy, layout)
             self.d.pixmap_temp.draw_layout(self.d.gc, self.d.oldx, self.d.oldy, layout)
             self.d.janela._textview.hide()
-            self.d.janela._textview.set_text('')
+            try:
+                self.d.janela._textview.set_text('')
+            except:
+                buf.set_text('')
 
             self.d.enableUndo(widget)
             

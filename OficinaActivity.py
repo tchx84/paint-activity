@@ -101,9 +101,11 @@ class OficinaActivity(activity.Activity):
         self.bg.show()
 
         #FIXME: use a textview instead of an Entry
-        #self._textview = gtk.TextView()
-        self._textview = gtk.Entry()
-        self._area.tool = 2
+        self._textview = gtk.TextView()
+        # If we use this, text viewer will have constant size, we don't want that
+        #self._textview.set_size_request(100,100)
+        #self._textview = gtk.Entry()
+        
         self._fixed.put(self._area, 200 , 100)
         # Area size increased
         #self._fixed.put(self._area, 0 , 0)
