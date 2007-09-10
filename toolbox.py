@@ -115,7 +115,7 @@ class DrawEditToolbar(EditToolbar):
         self.insert(separator, -1)
         separator.show()
         
-        self._clear_all = ToolButton('clear')
+        self._clear_all = ToolButton('edit-clear')
         self.insert(self._clear_all, -1)
         self._clear_all.show()
         self._clear_all.set_tooltip(_('Clear'))
@@ -182,6 +182,16 @@ class ToolsToolbar(gtk.Toolbar):
     _TOOL_MARQUEE_RECTANGULAR = 'marquee-rectangular'
     _TOOL_MARQUEE_SMART = 'marquee-smart'
 
+    _tool = {
+        'name'          : '',
+        'size'          : 5,
+        'fill color'    : None,
+        'stroke color'  : None,
+        'shape'         : 'circle',
+        'fill'          : True,
+        'sides'         : None,
+        'points'        : None
+    }
     
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
@@ -292,6 +302,8 @@ class ToolsToolbar(gtk.Toolbar):
         #self._tool_marquee_freeform.connect('clicked', self.set_tool, self._TOOL_MARQUEE_FREEFORM)
         self._tool_marquee_rectangular.connect('clicked', self.set_tool, self._TOOL_MARQUEE_RECTANGULAR)
         #self._tool_marquee_smart.connect('clicked', self.set_tool, self._TOOL_MARQUEE_SMART)
+        
+        
 
     def _configure_palette(self, widget, tool=None):
         '''Set palette for a tool
@@ -333,8 +345,8 @@ class ToolsToolbar(gtk.Toolbar):
             fill_checkbutton.set_active(self._activity._area.fill)
             
             fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, widget)
-            
-            fill_checkbutton.connect('map', self._on_fill_checkbutton_map)
+            # is this necessary?
+            #fill_checkbutton.connect('map', self._on_fill_checkbutton_map)
             
             palette.set_content(fill_checkbutton)
     
@@ -344,11 +356,11 @@ class ToolsToolbar(gtk.Toolbar):
         Set a tool shape according to user choice at Tool Palette
         '''
         
-        if tool == self._TOOL_BRUSH:
-            self._activity._area.brush_shape = shape
-        elif tool == self._TOOL_ERASER:
-            self._activity._area.eraser_shape = shape
-            
+#         if tool == self._TOOL_BRUSH:
+#             self._activity._area.brush_shape = shape
+#         elif tool == self._TOOL_ERASER:
+#             self._activity._area.eraser_shape = shape
+        self._tool['shape'] = shape
         self.set_tool(widget, tool)
             
     def set_tool(self, widget, tool):
@@ -356,15 +368,22 @@ class ToolsToolbar(gtk.Toolbar):
         Set tool to the Area object. Configures tool's color and size.
         '''
         
-        # setting tool
-        self._activity._area.tool = tool
+#         # setting tool
+#         self._activity._area.tool = tool
+#         
+#         # setting size and color
+#         size = self._stroke_size.get_size()
+#         self._stroke_size.set_stroke_size(size)
+#         
+#         color = self._stroke_color.get_color()
+#         self._stroke_color.set_stroke_color(color)
         
-        # setting size and color
-        size = self._stroke_size.get_size()
-        self._stroke_size.set_stroke_size(size)
+        # New method to set tools
+        self._tool['name'] = tool
+        self._tool['size'] = self._stroke_size.get_size()
+        self._tool['stroke color'] = self._stroke_color.get_color()
         
-        color = self._stroke_color.get_color()
-        self._stroke_color.set_stroke_color(color)
+        self._activity._area.set_tool(self._tool)
         
         #setting cursor
         try:
@@ -380,10 +399,13 @@ class ToolsToolbar(gtk.Toolbar):
     def _on_fill_checkbutton_toggled(self, checkbutton, button=None):
         logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
         
-        self._activity._area.fill = checkbutton.get_active()
+        # New method for setting tools
+        #self._activity._area.fill = checkbutton.get_active()
+        self._tool['fill'] = checkbutton.get_active()
+        
         try:
             button.emit('clicked')
-        except:
+        except AttributeError:
             pass
         
     def _on_fill_checkbutton_map(self, checkbutton, data=None):
@@ -1215,25 +1237,20 @@ class EffectsToolbar(gtk.Toolbar):
             
             spin.set_numeric(True)
             
-            frame = gtk.Frame(_('Size'))
-            frame.add(spin)
-            frame.show()          
-            #palette.set_content(frame)
+            label = gtk.Label(_('Size: '))
+            label.show()
             
-            vbox = gtk.VBox()
-            vbox.show()
-            palette.action_bar.pack_start(vbox)
-            
-            vbox.pack_start(frame)
+            palette.action_bar.pack_start(label)
+            palette.action_bar.pack_start(spin)
             
             spin.connect('value-changed', self._on_value_changed)
             
     def _on_value_changed(self, spinbutton, data=None):
-            size = spinbutton.get_value_as_int()
-            self._activity._area.configure_line(size)
-            
-            self.rainbow(self._effect_rainbow)
-            
+        size = spinbutton.get_value_as_int()
+        self._activity._area.configure_line(size)
+        
+        self.rainbow(self._effect_rainbow)
+        
 
 class ViewToolbar(gtk.Toolbar):
 

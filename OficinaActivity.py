@@ -74,6 +74,7 @@ class OficinaActivity(activity.Activity):
 
         """
         activity.Activity.__init__(self, handle)
+        self.set_title(_('Paint'))
         
         logging.debug('Starting Paint activity (Oficina)')
 
@@ -121,7 +122,9 @@ class OficinaActivity(activity.Activity):
 
         # setting scrolledwindow as activity canvas...
         self.set_canvas(sw)
-
+        
+        # Setting a default tool
+        self._area.tool = 'pencil'
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.

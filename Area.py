@@ -256,11 +256,12 @@ class Area(gtk.DrawingArea):
             try:
             # This works for a gtk.Entry
                 text = self.janela._textview.get_text()
-            except:
+            except AttributeError:
             # This works for a gtk.TextView
                 buf = self.janela._textview.get_buffer()
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end)
+                
             if text is not None:
                 self.d.text(widget,event)
             self.estadoTexto = 0
@@ -706,7 +707,7 @@ class Area(gtk.DrawingArea):
         
         self.queue_draw()
             
-    def _set_fill_color(self, color):
+    def set_fill_color(self, color):
         """Set fill color.
 
         Keyword arguments:
@@ -719,7 +720,7 @@ class Area(gtk.DrawingArea):
         self.gc.set_foreground(color)
         
  
-    def _set_stroke_color(self, color):
+    def set_stroke_color(self, color):
         """Set stroke color.
 
         Keyword arguments:
@@ -733,7 +734,7 @@ class Area(gtk.DrawingArea):
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)  
         self.gc_brush.set_foreground(color)
 
-    def _set_grayscale(self,widget):
+    def grayscale(self,widget):
         """Apply grayscale effect.
 
         Keyword arguments:
@@ -880,4 +881,63 @@ class Area(gtk.DrawingArea):
     def clear(self):
         self.d.clear()
         self.enableUndo(self)
+        
+    # Changing to public methods
+    def _set_fill_color(self, color):
+        self.set_fill_color(color)
+        
+    def _set_stroke_color(self, color):
+        self.set_stroke_color(color)
+        
+    def _set_grayscale(self,widget):
+        self.grayscale(widget)
+    
+    def set_tool(self, tool):
+        '''
+        Method to configure all tools.
+        
+        @param - tool: a dictionary with the following keys:
+                       'name': a string
+                       'size': a integer
+                       'fill color': a gtk.gdk.Color object
+                       'stroke color': a gtk.gdk.Color object
+                       'shape': a string - 'circle' or 'square', for now
+                       'fill': a Boolean value
+                       'sides': a integer (used when drawing regular polygons)
+                       'points': a integer (used when drawing stars)
+        '''
+        logging.debug('Area.set_tool')
+        
+        #FIXME: self.tool should be a dict too.
+        print tool
+        
+        self.tool = tool['name']
+        self.configure_line(tool['size'])
+        
+        if tool['fill color'] is not None:
+            self.set_fill_color(tool['fill color'])
+        else:
+            # use black
+            self.set_fill_color( gtk.gdk.Color(0,0,0) )
+            
+        if tool['stroke color'] is not None:
+            self.set_stroke_color(tool['stroke color'])
+        else:
+            # use black
+            self.set_stroke_color( gtk.gdk.Color(0,0,0) )
+        
+        #FIXME: this is ugly!
+        if tool['name'] is 'brush':
+            self.brush_shape = tool['shape']
+        elif tool['name'] is 'eraser':
+            self.eraser_shape = tool['shape']
+        
+        self.fill = tool['fill']
+        
+        if tool['name'] is 'polygon_regular' and (tool['sides'] is not None):
+            self.polygon_sides = tool['sides']
+        if tool['name'] is 'star' and (tool['points'] is not None):
+            self.polygon_sides = tool['points']
+        
+        #TODO: set cursors (?)
         

@@ -520,6 +520,8 @@ class Desenho:
         event -- GdkEvent
 
         """
+      
+        
         #print self.d.estadoTexto
         if self.d.estadoTexto == 0:
             self.d.estadoTexto = 1
@@ -536,28 +538,27 @@ class Desenho:
             try:
             # This works for a gtk.Entry
                 text = self.d.janela._textview.get_text()
-            except:
+            except AttributeError:
             # This works for a gtk.TextView
                 buf = self.d.janela._textview.get_buffer()
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end)
             
             layout = self.d.create_pango_layout(text)
-            layout.set_font_description(self.d.font)
+            #layout.set_font_description(self.d.font)
             
             self.d.pixmap.draw_layout(self.d.gc, self.d.oldx, self.d.oldy, layout)
             self.d.pixmap_temp.draw_layout(self.d.gc, self.d.oldx, self.d.oldy, layout)
             self.d.janela._textview.hide()
             try:
                 self.d.janela._textview.set_text('')
-            except:
+            except AttributeError:
                 buf.set_text('')
 
             self.d.enableUndo(widget)
             
             widget.queue_draw()
             
-        #print self.d.estadoTexto
 
     def selection(self, widget, coords, temp, fill):
         """Make a selection.
