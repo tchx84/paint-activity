@@ -912,7 +912,9 @@ class Area(gtk.DrawingArea):
         print tool
         
         self.tool = tool['name']
-        self.configure_line(tool['size'])
+        
+        if tool['size'] is not None:
+            self.configure_line(tool['size'])
         
         if tool['fill color'] is not None:
             self.set_fill_color(tool['fill color'])
@@ -940,4 +942,10 @@ class Area(gtk.DrawingArea):
             self.polygon_sides = tool['points']
         
         #TODO: set cursors (?)
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file('./images/' + tool['name'] + '.png')
+            cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pixbuf, 6, 21)
+        except gobject.GError:
+            cursor = None
         
+        self.window.set_cursor(cursor)
