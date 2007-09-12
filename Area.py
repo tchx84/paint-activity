@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-"""
-Area.py
 
-Tools and events manipulation
+"""
+@namespace Area
+
+    Tools and events manipulation
 
 
 Copyright 2007, NATE-LSI-EPUSP
@@ -53,44 +54,35 @@ Roseli de Deus Lopes                (roseli@lsi.usp.br)
 """
 
 
-# import  pygtk
-# pygtk.require('2.0')
+
 import gtk, gobject, logging, os
-# import sys, socket
-# from gtk import gdk
 import math
 import pango
 from fill import *
-# import Image
-# import StringIO
 from Desenho import Desenho
 
-WIDTH = 800
-HEIGHT = 600
-
+##Tools and events manipulation are handle with this class.
 class Area(gtk.DrawingArea):
+
 
     __gsignals__ = {
         'undo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         'redo' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         'action-saved' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
-        #TODO: this signal still not used.
-#         'copy' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
         'selected' : (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
     }
 
     def __init__(self, janela):
         """ Initialize the object from class Area which is derived from gtk.DrawingArea.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        janela -- the parent window
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  janela -- the parent window
 
         """
         logging.debug('Area.__init__(self, janela)')
         
         gtk.DrawingArea.__init__(self)
-        self.set_size_request(WIDTH, HEIGHT)
+        self.set_size_request(800, 600)
         self.set_events(gtk.gdk.POINTER_MOTION_MASK |
                 gtk.gdk.POINTER_MOTION_HINT_MASK |
                 gtk.gdk.BUTTON_PRESS_MASK |
@@ -103,7 +95,7 @@ class Area(gtk.DrawingArea):
         self.connect("button_release_event", self.mouseup)      
 
         self.set_extension_events(gtk.gdk.EXTENSION_EVENTS_CURSOR)
-        
+        ##Define which tool is been used
         self.tool = None
         self.desenha = False
         self.selmove = False
@@ -138,26 +130,28 @@ class Area(gtk.DrawingArea):
         self._set_selection_bounds(0,0,0,0)
         
         #start of UNDO and REDO
+        ## This flag is used when is the first time you click on Undo
         self.first_undo = True
+        ## When you are just clicking on undo or redo and not drawing undo_surf is True
         self.undo_surf = False
         self.undo_times = 0
         self.redo_times = 0
-        self.undo_list=[]#pixmaps list to Undo func
+        ##pixmaps list to Undo func
+        self.undo_list=[]
         
-        # Number of sides for regular polygon
+        ##Number of sides for regular polygon
         self.polygon_sides = 5
         
-        # Shapes will be filled or not?
+        ##Shapes will be filled or not?
         self.fill = True
 
-    # Create a new backing pixmap of the appropriate size
+
     def configure_event(self, widget, event):
         """Configure the Area object.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        widget -- the Area object (GtkDrawingArea)
-        event -- GdkEvent
+        @param self -- the Area object (GtkDrawingArea)
+        @param widget -- the Area object (GtkDrawingArea)
+        @param event -- GdkEvent
 
         """
         logging.debug('Area.configure_event(self, widget, event)')
@@ -166,12 +160,13 @@ class Area(gtk.DrawingArea):
         width = win.get_geometry()[2]
         height = win.get_geometry()[3]  
         
+        ##It is the main pixmap, who is display most of the time.
         self.pixmap = gtk.gdk.Pixmap(win, width, height, -1)
         self.pixmap.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
-        
+        ##This pixmap is showed when we need show something and not draw it.
         self.pixmap_temp = gtk.gdk.Pixmap(win, width, height, -1)
         self.pixmap_temp.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
-        
+        ##When something is selected this pixmap draw and rectangular box out of the selection
         self.pixmap_sel = gtk.gdk.Pixmap(win, width, height, -1)
         self.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
         
@@ -201,13 +196,11 @@ class Area(gtk.DrawingArea):
         
         return True
         
-    # set the new line size
     def configure_line(self, size):
-        """Configure the line's size.
+        """Configure the new line's size.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        size -- 
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  size -- the size of the new line
 
         """     
         #logging.debug('Area.configure_line(self, size)')
@@ -216,12 +209,12 @@ class Area(gtk.DrawingArea):
         self.gc_line.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
 
     def expose(self, widget, event):
-        """Show up the Area object (GtkDrawingArea).
+        """ This function define which pixmap will be showed to the user.
+            Show up the Area object (GtkDrawingArea).
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        widget -- the Area object (GtkDrawingArea)
-        event -- GdkEvent
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
+            @param  event -- GdkEvent
 
         """
         #logging.debug('Area.expose(self, widget, event)')
@@ -237,12 +230,11 @@ class Area(gtk.DrawingArea):
         return False
 
     def mousedown(self,widget,event):
-        """Make the Area object (GtkDrawingArea) recognize that the mouse button was pressed.
+        """Make the Area object (GtkDrawingArea) recognize that the mouse button has been pressed.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        widget -- the Area object (GtkDrawingArea)
-        event -- GdkEvent
+            @param self -- the Area object (GtkDrawingArea)
+            @param widget -- the Area object (GtkDrawingArea)
+            @param event -- GdkEvent
 
         """
         width, height = self.window.get_size()
@@ -278,24 +270,24 @@ class Area(gtk.DrawingArea):
             self.last = -1, -1
             self.d.eraser(widget, coords, self.last, self.line_size, self.eraser_shape)
             self.last = coords
-        if self.tool == 'brush':
+        elif self.tool == 'brush':
             self.last = -1, -1
             self.d.brush(widget, coords, self.last, self.line_size, self.brush_shape)
             self.last = coords
-        if self.tool == 'rainbow':
+        elif self.tool == 'rainbow':
             self.last = -1, -1
             self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.brush_shape)
             self.last = coords
-        if self.tool == 'polygon':
+        elif self.tool == 'polygon':
             self.configure_line(self.line_size)
             
         x , y, state = event.window.get_pointer()
         x0, y0, x1, y1 = self.get_selection_bounds()
-        
-        if (state & gtk.gdk.BUTTON3_MASK):
+
+        if (state & gtk.gdk.BUTTON3_MASK):#Handle with the right button click event.
             self.sel_get_out = True
             self.pixmap_sel.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
-        elif state & gtk.gdk.BUTTON1_MASK:
+        elif state & gtk.gdk.BUTTON1_MASK:#Handle with the left button click event.
             if not (x0<x<x1 and y0<y<y1) and self.selmove:
                 self.sel_get_out = True
                 self.pixmap_sel.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
@@ -308,21 +300,18 @@ class Area(gtk.DrawingArea):
     def mousemove(self,widget,event):
         """Make the Area object (GtkDrawingArea) recognize that the mouse is moving.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        widget -- the Area object (GtkDrawingArea)
-        event -- GdkEvent
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
+            @param  event -- GdkEvent
 
         """
         x , y, state = event.window.get_pointer()   
         coords = int(x), int(y)
                         
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
-            #eraser
             if self.tool == 'eraser':
                 self.d.eraser(widget, coords, self.last, self.line_size, self.eraser_shape)
                 self.last = coords
-            #brush
             elif self.tool == 'brush':
                 self.d.brush(widget, coords, self.last, self.line_size, self.brush_shape)
                 self.last = coords
@@ -333,108 +322,90 @@ class Area(gtk.DrawingArea):
                     self.rainbow_counter = 0
                 self.last = coords
             if self.desenha:
-                # line
                 if self.tool == 'line':
                     self.configure_line(self.line_size)
-                    self.d.line(widget, coords) 
-                # pencil
+                    self.d.line(widget, coords)
+                    
                 elif self.tool == 'pencil':
                     self.configure_line(self.line_size)
-                    self.d.pencil(widget, coords)       
-                # ellipse
+                    self.d.pencil(widget, coords)  
+                     
                 elif self.tool == 'ellipse':
                     self.configure_line(self.line_size)
-                    #self.d.circle(widget,coords,True,True)
                     self.d.circle(widget,coords,True,self.fill)
-                # rectangle
+                    
                 elif self.tool == 'rectangle':
                     self.configure_line(self.line_size)
-                    #self.d.square(widget,coords,True,True)
                     self.d.square(widget,coords,True,self.fill)
-                # selection
+                    
                 elif self.tool == 'marquee-rectangular' and not self.selmove:
                     x1, y1, x2, y2 = self.d.selection(widget,coords,True,False)
                     self._set_selection_bounds(x1, y1, x2, y2)                   
-                # selection
+                # selected
                 elif self.tool == 'marquee-rectangular' and self.selmove:
                     if self.pixbuf_sel!=None:
                         self.d.moveSelection(widget,coords,True,self.pixbuf_sel)                    
                     else:
                         self.d.moveSelection(widget,coords)
-                #polygon    
+                        
                 elif self.tool == 'polygon':
                     self.configure_line(self.line_size)
-                    #self.d.polygon(widget,coords,True,False)
                     self.d.polygon(widget,coords,True,self.fill)
-                #triangle
+                    
                 elif self.tool == 'triangle':
                     self.configure_line(self.line_size)
-                    #self.d.triangle(widget,coords,True,True)
                     self.d.triangle(widget,coords,True,self.fill)
-                #trapezoid
+                    
                 elif self.tool == 'trapezoid':
                     self.configure_line(self.line_size)
-                    #self.d.trapezoid(widget,coords,True,True)
                     self.d.trapezoid(widget,coords,True,self.fill)
-                #arrow
+                    
                 elif self.tool == 'arrow':
                     self.configure_line(self.line_size)
-                    #self.d.arrow(widget,coords,True,True)
                     self.d.arrow(widget,coords,True,self.fill)
-                #parallelogram
+                    
                 elif self.tool == 'parallelogram':
                     self.configure_line(self.line_size)
-                    #self.d.parallelogram(widget,coords,True,True)
                     self.d.parallelogram(widget,coords,True,self.fill)
-                #star
+                    
                 elif self.tool == 'star':
                     self.configure_line(self.line_size)
-                    #self.d.star(widget,coords,True,True)
-                    #self.d.star(widget,coords,True,self.fill)
                     self.d.star(widget,coords,self.polygon_sides,True,self.fill)
-                #polygon regular
+                    
                 elif self.tool == 'polygon_regular':
                     self.configure_line(self.line_size)
-                    #n = 7
-                    #self.d.polygon_regular(widget,coords,self.polygon_sides,True,True)
                     self.d.polygon_regular(widget,coords,self.polygon_sides,True,self.fill)
-                #Heart
+                    
                 elif self.tool == 'heart':
                     self.configure_line(self.line_size)
-                    #self.d.heart(widget,coords,True,True)
                     self.d.heart(widget,coords,True,self.fill)
 
 
     def mouseup(self,widget,event): 
         """Make the Area object (GtkDrawingArea) recognize that the mouse was released.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        widget -- the Area object (GtkDrawingArea)
-        event -- GdkEvent
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
+            @param  event -- GdkEvent
 
         """
         coords = int(event.x), int(event.y)
         width, height = self.window.get_size()
         if self.desenha == True:
-            # line
             if self.tool == 'line':
                 self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int(event.y))                
                 widget.queue_draw()
                 self.enableUndo(widget)
-            # ellipse
+                
             elif self.tool == 'ellipse':
-                #self.d.circle(widget,coords,False,True)
                 self.d.circle(widget,coords,False,self.fill)
                 self.enableUndo(widget)
-            # rectangle
+            
             elif self.tool == 'rectangle':
-                #self.d.square(widget,coords,False,True)
                 self.d.square(widget,coords,False,self.fill)
                 self.enableUndo(widget)
-            # selection
+ 
             elif self.tool == 'marquee-rectangular':
-            # FIXME: Adicionar cursor formato selecao
                 if self.selmove == False:
                     self.pixmap_temp.draw_drawable(self.gc,self.pixmap, 0,0,0,0, width, height)
                     self.pixmap_sel.draw_drawable(self.gc,self.pixmap, 0,0,0,0, width, height)
@@ -451,77 +422,61 @@ class Area(gtk.DrawingArea):
                     self.oldx, self.oldy = coords
                     self.enableUndo(widget)
                 self.emit('selected')
-            # polygon
+
             elif self.tool == 'polygon':
-                #self.d.polygon(widget, coords, False, False)
                 self.d.polygon(widget, coords, False, self.fill)
-            #to undo pencil
-            elif self.tool == 'pencil':
-                widget.queue_draw() 
-                self.enableUndo(widget)
-            #bucket
+
             elif self.tool == 'bucket':
                 width, height = self.window.get_size()
                 fill(self.pixmap, self.gc, coords[0], coords[1], width, height, self.gc_line.foreground.pixel)
                 widget.queue_draw()
                 self.enableUndo(widget)
-            #triangle
+  
             elif self.tool == 'triangle':
-                #self.d.triangle(widget,coords,False,True)
                 self.d.triangle(widget,coords,False,self.fill)
                 self.enableUndo(widget)
-            #trapezoid
+  
             elif self.tool == 'trapezoid':
-                #self.d.trapezoid(widget,coords,False,True)
                 self.d.trapezoid(widget,coords,False,self.fill)
                 self.enableUndo(widget)
-            #arrow
+ 
             elif self.tool == 'arrow':
-                #self.d.arrow(widget,coords,False,True)
                 self.d.arrow(widget,coords,False,self.fill)
                 self.enableUndo(widget)
-            #parallelogram
+ 
             elif self.tool == 'parallelogram':
-                #self.d.parallelogram(widget,coords,False,True)
                 self.d.parallelogram(widget,coords,False,self.fill)
                 self.enableUndo(widget)
-            #star
+
             elif self.tool == 'star':
-                #self.d.star(widget,coords,False,True)
-                #self.d.star(widget,coords,False,self.fill)
                 self.d.star(widget,coords,self.polygon_sides,False,self.fill)
                 self.enableUndo(widget)
-            #polygon regular
+
             elif self.tool == 'polygon_regular':
-                #n = 7
-                #self.d.polygon_regular(widget,coords,self.polygon_sides,False,True)
                 self.d.polygon_regular(widget,coords,self.polygon_sides,False,self.fill)
                 self.enableUndo(widget)
-            #heart
+
             elif self.tool == 'heart':
-                #self.d.heart(widget,coords,False,True)
                 self.d.heart(widget,coords,False,self.fill)
                 self.enableUndo(widget)
 
-        if self.tool == 'brush' or self.tool == 'eraser' or self.tool == 'rainbow':
+        if self.tool == 'brush' or self.tool == 'eraser' or self.tool == 'rainbow' or self.tool== 'pencil' :
             self.last = -1, -1
             widget.queue_draw() 
             self.enableUndo(widget)
         self.desenha = False
         
-        
-    #this func make a basic Undo
     def undo(self):
         """Undo the last drawing change.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
+            @param  self -- the Area object (GtkDrawingArea)
 
         """
         logging.debug('Area.undo(self)')
         width, height = self.window.get_size()
         
-        if self.first_undo:#if is the first time you click on UNDO
+        #if is the first time you click on UNDO (because undo_list always wait for the NEXT image)
+        if self.first_undo:
             self.undo_times -= 1
             
         #print "Undo no.%d" %(self.undo_times)
@@ -546,21 +501,13 @@ class Area(gtk.DrawingArea):
         if self.tool == 'polygon':		
                 self.polygon_start = True #start the polygon again
         
-        # emits 'undo' and 'redo' signals only in case of first action,
-        # (first undo or first redo) or no actions available
-        # FIXME: this way, things work strangely; emiting signals everytime
-#         if self.undo_times <= 1:
-#             self.emit('undo')
-#         if self.redo_times <= 1:
-#             self.emit('redo')
+
         self.emit('undo')
-        #self.emit('redo')
         
     def redo(self):
         """Redo the last undo operation.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
+            @param  self -- the Area object (GtkDrawingArea)
 
         """
         logging.debug('Area.redo(self)')
@@ -579,22 +526,13 @@ class Area(gtk.DrawingArea):
                 self.undo_times-=1
         self.queue_draw()
         
-        # emits 'undo' and 'redo' signals only in case of first action,
-        # (first undo or first redo) or no actions available
-        # FIXME: this way, things work strangely; emiting signals everytime
-#         if self.undo_times <= 1:
-#             self.emit('undo')
-#         if self.redo_times <= 1:
-#             self.emit('redo')
-        #self.emit('undo')
         self.emit('redo')
             
     def enableUndo(self,widget):
         """Keep the last change in a list for Undo/Redo commands.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        widget -- the Area object (GtkDrawingArea)
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
 
         """
         logging.debug('Area.enableUndo(self,widget)')
@@ -611,29 +549,19 @@ class Area(gtk.DrawingArea):
         self.first_undo = True
         self.undo_surf = False
         
-        #this is the part where we can limit the steps of undo/redo     
+        #This is the part where we can limit the steps of undo/redo     
         if self.undo_times==12:
            self.undo_list.pop(0)
            self.undo_times-=1
         
-        # emits 'undo' and 'redo' signals only in case of first action,
-        # (first undo or first redo) or no actions available
-        # FIXME: this way, things work strangely; emiting signals everytime
-#         if self.undo_times <= 1:
-#             self.emit('undo')
-#         if self.redo_times <= 1:
-#             self.emit('redo')
-        #self.emit('undo')
-        #self.emit('redo')
         self.emit('action-saved')
         
         
     def copy(self):
         """ Copy Image.
-        When the tool selection is working make the change the copy of selectioned area
+            When the tool selection is working make the change the copy of selectioned area
         
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
+            @param  self -- the Area object (GtkDrawingArea)
         """
         clipBoard = gtk.Clipboard()
         tempPath = os.path.join("/tmp", "tempFile")
@@ -658,6 +586,7 @@ class Area(gtk.DrawingArea):
             pixbuf_copy.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(), x, y, 0, 0, w, h)
 
             pixbuf_copy.save(tempPath,'png')
+            #with this func we can send the image to the clipboard with right MIME type, but we cannot past the image!
             #gtk.Clipboard().set_with_data( [('text/uri-list', 0, 0)], self._copyGetFunc, self._copyClearFunc, tempPath ) this make the icon seens right, but with none data
             clipBoard.set_image(pixbuf_copy)
             
@@ -665,9 +594,23 @@ class Area(gtk.DrawingArea):
             logging.debug('Area.copy(self): Please select some area first')
             
     def _copyGetFunc(  self, clipboard, selection_data, info, data ):
+        """  Determine type data to put in clipboard  
+        
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  clipboard -- a gtk.Clipboard object
+            @param  selection_data -- data of selection
+            @param  info -- the application assigned integer associated with a target
+            @param  data -- user data (tempPath)
+        """
         selection_data.set( "text/uri-list", 8, data)
-    
+
     def _copyClearFunc( self, clipboard, data ):
+        """ Clear the clipboard
+        
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  clipboard -- a gtk.Clipboard object
+            @param  data -- user data (tempPath)
+        """
         if (data != None):
             if (os.path.exists(data)):
                 os.remove( data )
@@ -677,8 +620,7 @@ class Area(gtk.DrawingArea):
         """ Past image.
         Past image that is in pixmap
         
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
+            @param  self -- the Area object (GtkDrawingArea)
         """
         width, height = self.window.get_size()
         
@@ -704,15 +646,15 @@ class Area(gtk.DrawingArea):
             self.emit('selected')
         else:
             self.loadImage(tempPath, self, True)
+            logging.debug('Area.past(self): Load from clipboard fails, loading from tempPatch')
         
         self.queue_draw()
             
     def set_fill_color(self, color):
         """Set fill color.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        color -- a gdk.Color object
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  color -- a gdk.Color object
 
         """
         logging.debug('Area._set_fill_color(self, color)')
@@ -723,9 +665,8 @@ class Area(gtk.DrawingArea):
     def set_stroke_color(self, color):
         """Set stroke color.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
-        color -- a gdk.Color object
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  color -- a gdk.Color object
 
         """
         logging.debug('Area._set_stroke_color(self, color)')
@@ -737,8 +678,8 @@ class Area(gtk.DrawingArea):
     def grayscale(self,widget):
         """Apply grayscale effect.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
 
         """
         logging.debug('Area._set_grayscale(self,widget)')
@@ -756,10 +697,26 @@ class Area(gtk.DrawingArea):
         self.enableUndo(widget)
 
     def _pixbuf2Image(self, pb):
+        """change a pixbuf to RGB image
+
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  pb -- the pixbuf object (gtk.gdk.Pixbuf)
+            
+            @return RGB Image
+
+        """
         width,height = pb.get_width(),pb.get_height()
         return Image.fromstring("RGB",(width,height),pb.get_pixels() )
         
     def _image2pixbuf(self, im):  
+        """change a RGB image to a pixbuf
+
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  im -- a RGB image
+            
+            @return pixbuf
+
+        """
         file1 = StringIO.StringIO()  
         im.save(file1, "ppm")  
         contents = file1.getvalue()  
@@ -773,8 +730,9 @@ class Area(gtk.DrawingArea):
     def _rotate_left(self, widget):
         """Rotate the image.
 
-        Keyword arguments:
-        self -- the Area object (GtkDrawingArea)
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
+            
 
         """
         logging.debug('Area._rotate_left(self)')
@@ -801,9 +759,12 @@ class Area(gtk.DrawingArea):
             logging.debug('Please select some area first')
         
     def can_undo(self):
-        '''
+        """
         Indicate if is there some action to undo
-        '''
+        
+            @param  self -- the Area object (GtkDrawingArea)
+        
+        """
 #        logging.debug('Area.can_undo(self)')
         
         undo_times = self.undo_times
@@ -817,9 +778,12 @@ class Area(gtk.DrawingArea):
             return True
             
     def can_redo(self):
-        '''
+        """
         Indicate if is there some action to redo
-        '''
+        
+            @param  self -- the Area object (GtkDrawingArea)
+            
+        """
         logging.debug('Area.can_redo(self)')
         
         if self.redo_times < 1:
@@ -828,9 +792,12 @@ class Area(gtk.DrawingArea):
             return True
             
     def is_selected(self):
-        '''
-        Indicate if there is some thing selected
-        '''
+        """
+        Return True if there is some thing selected
+        
+            @param  self -- the Area object (GtkDrawingArea)
+            
+        """
         
         logging.debug('Area.is_selected(self)')
         
@@ -840,17 +807,32 @@ class Area(gtk.DrawingArea):
             return False
             
     def _set_selection_bounds(self, x1, y1, x2, y2):
+        """
+            Set selection bounds   
+            
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  x1,y1,x2,y2 -- the coords of limit points
+        """    
         self._selection_corners = (x1, y1, x2, y2)
      
     def get_selection_bounds(self):
+        """ 
+            Get points of selection
+        
+            @param  self -- the Area object (GtkDrawingArea)
+            
+            @return selection_corners
+            
+        """
         return self._selection_corners[0], self._selection_corners[1], self._selection_corners[2], self._selection_corners[3]
 
     def loadImage(self, name, widget, load_selected):
         """Load an image.
 
-        Keyword arguments:
-        self -- Area.area instance
-        name -- string (image file path)
+            @param  self -- Area instance
+            @param  name -- string (image file path)
+            @param  widget -- GtkDrawingArea
+            @param  load_selected -- if this func is called by Journal
 
         """
         self.pixbuf_sel = gtk.gdk.pixbuf_new_from_file(name) 
@@ -879,6 +861,9 @@ class Area(gtk.DrawingArea):
         self.queue_draw()
         
     def clear(self):
+        """ Clear Canvas
+            @param self -- Area instance
+        """
         self.d.clear()
         self.enableUndo(self)
         

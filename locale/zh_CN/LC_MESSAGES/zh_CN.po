@@ -1,293 +1,248 @@
-# Simplified Chinese translations for Oficina package.
-# Copyright 2007, NATE-LSI-EPUSP
-
-# Oficina is developed in Brazil at Escola Politécnica of
-# Universidade de São Paulo. NATE is part of LSI (Integrable
-# Systems Laboratory) and stands for Learning, Work and Entertainment
-# Research Group. Visit our web page:
-# www.lsi.usp.br/nate
-# Suggestions, bugs and doubts, please email oficina@lsi.usp.br
-
-# Oficina is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation version 2 of
-# the License.
-# Oficina is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Public License for more details.
-# You should have received a copy of the GNU General Public
-# License along with Oficina; if not, write to the
-# Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
-# Boston, MA  02110-1301  USA.
-
-# The copy of the GNU General Public License is found in the
-# COPYING file included in the source distribution.
-
-# Authors:
-# Joyce Alessandra Saul               (joycealess@gmail.com)
-# Andre Mossinato                     (andremossinato@gmail.com)
-# Nathalia Sautchuk Patrício          (nathalia.sautchuk@gmail.com)
-# Pedro Kayatt                        (pekayatt@gmail.com)
-# Rafael Barbolo Lopes                (barbolo@gmail.com)
-# Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
-
-# Colaborators:
-# Bruno Gola                          (brunogola@gmail.com)
-# Ho Tsung Yin                        (johnytyh@lsi.usp.br)
-
-# Group Manager:
-# Irene Karaguilla Ficheman           (irene@lsi.usp.br)
-
-# Cientific Coordinator:
-# Roseli de Deus Lopes                (roseli@lsi.usp.br)
-
+# Simplified Chinese translation of Drawing activity.
+# Copyright (C) 2007 NATE LSI-USP
+# This file is distributed under the same license as the Oficina package.
+# 
+# Ho Tsung Yin <johnytyh@lsi.usp.br>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: oficina <oficina@lsi.usp.br>\n"
-"POT-Creation-Date: 2007-07-31 10:21-0300\n"
-"PO-Revision-Date: 2007-07-31 14:02-0300\n"
-"Last-Translator: Nathalia Sautchuk Patrício <nathysautchuk@usp.br>\n"
+"Project-Id-Version: drawing.master\n"
+"Report-Msgid-Bugs-To: oficina@lsi.usp.br\n"
+"POT-Creation-Date: 2007-09-11 13:52-0300\n"
+"PO-Revision-Date: 2007-09-11 14:01-0300\n"
+"Last-Translator: Ho Tsung Yin <johnytyh@lsi.usp.br>\n"
 "Language-Team: Language locale/zh\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: toolbox.py:74
+#: toolbox.py:75
 msgid "Edit"
 msgstr "编辑"
 
-#: toolbox.py:78
+#: toolbox.py:79
 msgid "Tools"
 msgstr "工具"
 
-#: toolbox.py:82
+#: toolbox.py:83
 msgid "Shapes"
 msgstr "形状"
 
-#: toolbox.py:86
+#: toolbox.py:87
 msgid "Text"
 msgstr "文字"
 
-#: toolbox.py:90
+#: toolbox.py:91
 msgid "Image"
 msgstr "图片"
 
-#: toolbox.py:94
+#: toolbox.py:95
 msgid "Effects"
 msgstr "效果"
 
-#: toolbox.py:195
+#: toolbox.py:110
+msgid "Undo"
+msgstr ""
+
+#: toolbox.py:111
+msgid "Redo"
+msgstr ""
+
+#: toolbox.py:112
+msgid "Copy"
+msgstr ""
+
+#: toolbox.py:113
+msgid "Paste"
+msgstr ""
+
+#: toolbox.py:123
+msgid "Clear"
+msgstr ""
+
+#: toolbox.py:198
+msgid "Tool Color"
+msgstr ""
+
+#: toolbox.py:227
 msgid "Pencil"
 msgstr "铅笔"
 
-#: toolbox.py:201
+#: toolbox.py:232
 msgid "Brush"
 msgstr "刷子"
 
-#: toolbox.py:208
+#: toolbox.py:241
 msgid "Eraser"
 msgstr "橡皮艇"
 
-#: toolbox.py:214
+#: toolbox.py:250 toolbox.py:715
 msgid "Polygon"
 msgstr "多边形"
 
-#: toolbox.py:219
+#: toolbox.py:259
 msgid "Bucket"
 msgstr "色彩桶"
 
-#: toolbox.py:243
+#: toolbox.py:283
 msgid "Rectangular Marquee"
 msgstr "方形选择"
 
-#: toolbox.py:263
+#: toolbox.py:313
 msgid "Square"
 msgstr "方形"
 
-#: toolbox.py:264
+#: toolbox.py:314
 msgid "Circle"
 msgstr "圆形"
 
-#: toolbox.py:333
-#: toolbox.py:404
-msgid "Black"
-msgstr "Black"
+#: toolbox.py:333 toolbox.py:949
+msgid "Fill"
+msgstr ""
 
-#: toolbox.py:334
-#: toolbox.py:405
-msgid "White"
-msgstr "White"
-
-#: toolbox.py:335
-#: toolbox.py:406
-msgid "Maroon"
-msgstr "Maroon"
-
-#: toolbox.py:336
-#: toolbox.py:407
-msgid "Red"
-msgstr "Red"
-
-#: toolbox.py:337
-#: toolbox.py:408
-msgid "Olive"
-msgstr "Olive"
-
-#: toolbox.py:338
-#: toolbox.py:409
-msgid "Yellow"
-msgstr "Yellow"
-
-#: toolbox.py:339
-#: toolbox.py:410
-msgid "Green"
-msgstr "Green"
-
-#: toolbox.py:340
-#: toolbox.py:411
-msgid "Lime"
-msgstr "Lime"
-
-#: toolbox.py:341
-#: toolbox.py:412
-msgid "Teal"
-msgstr "Teal"
-
-#: toolbox.py:342
-#: toolbox.py:413
-msgid "Aqua"
-msgstr "Aqua"
-
-#: toolbox.py:343
-#: toolbox.py:414
-msgid "Navy"
-msgstr "Navy"
-
-#: toolbox.py:344
-#: toolbox.py:415
-msgid "Blue"
-msgstr "Blue"
-
-#: toolbox.py:345
-#: toolbox.py:416
-msgid "Purple"
-msgstr "Purple"
-
-#: toolbox.py:346
-#: toolbox.py:417
-msgid "Fuchsia"
-msgstr "Fuchsia"
-
-#: toolbox.py:484
+#: toolbox.py:557
 msgid "1"
 msgstr "1"
 
-#: toolbox.py:485
+#: toolbox.py:558
 msgid "2"
 msgstr "2"
 
-#: toolbox.py:486
+#: toolbox.py:559
 msgid "3"
 msgstr "3"
 
-#: toolbox.py:487
+#: toolbox.py:560
 msgid "5"
 msgstr "5"
 
-#: toolbox.py:488
-#: toolbox.py:947
+#: toolbox.py:561 toolbox.py:1306
 msgid "10"
 msgstr "10"
 
-#: toolbox.py:489
+#: toolbox.py:562
 msgid "20"
 msgstr "20"
 
-#: toolbox.py:490
-#: toolbox.py:945
+#: toolbox.py:563 toolbox.py:1304
 msgid "50"
 msgstr "50"
 
-#: toolbox.py:491
-#: toolbox.py:944
+#: toolbox.py:564 toolbox.py:1303
 msgid "100"
 msgstr "100"
 
-#: toolbox.py:628
+#: toolbox.py:657
+msgid "Fill Color"
+msgstr ""
+
+#: toolbox.py:669
+msgid "Stroke Color"
+msgstr ""
+
+#: toolbox.py:692
 msgid "Ellipse"
 msgstr "椭圆形"
 
-#: toolbox.py:633
+#: toolbox.py:701
 msgid "Rectangle"
 msgstr "矩形"
 
-#: toolbox.py:638
+#: toolbox.py:710
 msgid "Line"
 msgstr "线条"
 
-#: toolbox.py:660
+#: toolbox.py:733
+msgid "Heart"
+msgstr "中心"
+
+#: toolbox.py:743
 msgid "Parallelogram"
 msgstr "平行四边形"
 
-#: toolbox.py:665
+#: toolbox.py:752
 msgid "Arrow"
 msgstr "箭头"
 
-#: toolbox.py:670
+#: toolbox.py:761
 msgid "Star"
 msgstr "星状"
 
-#: toolbox.py:675
+#: toolbox.py:770
 msgid "Trapezoid"
 msgstr "梯形"
 
-#: toolbox.py:680
+#: toolbox.py:779
 msgid "Triangle"
 msgstr "三角形"
 
-#: toolbox.py:745
+#: toolbox.py:882
+msgid "Sides: "
+msgstr ""
+
+#: toolbox.py:925
+msgid "Points: "
+msgstr ""
+
+#: toolbox.py:987
 msgid "Type"
 msgstr "类型"
 
-#: toolbox.py:819
+#: toolbox.py:1061
 msgid "Insert Image"
 msgstr "插入物件"
 
-#: toolbox.py:863
-msgid "Open File..."
-msgstr "开启旧档"
+#: toolbox.py:1083
+msgid "Height"
+msgstr "高度"
 
-#: toolbox.py:900
+#: toolbox.py:1088
+msgid "Width"
+msgstr "宽度"
+
+#: toolbox.py:1139
+msgid "Resize (%): "
+msgstr ""
+
+#: toolbox.py:1148
+msgid "Open File..."
+msgstr "开启旧档..."
+
+#: toolbox.py:1188
 msgid "Grayscale"
 msgstr "灰阶"
 
-#: toolbox.py:940
+#: toolbox.py:1193
+msgid "Rainbow"
+msgstr ""
+
+#: toolbox.py:1262
+msgid "Size"
+msgstr ""
+
+#: toolbox.py:1299
 msgid "1000"
 msgstr "1000"
 
-#: toolbox.py:941
+#: toolbox.py:1300
 msgid "500"
 msgstr "500"
 
-#: toolbox.py:942
+#: toolbox.py:1301
 msgid "200"
 msgstr "200"
 
-#: toolbox.py:943
+#: toolbox.py:1302
 msgid "150"
 msgstr "150"
 
-#: toolbox.py:946
+#: toolbox.py:1305
 msgid "25"
 msgstr "25"
 
-#: toolbox.py:960
+#: toolbox.py:1319
 msgid "ZOOM +"
 msgstr "ZOOM +"
 
-#: toolbox.py:965
+#: toolbox.py:1324
 msgid "ZOOM -"
 msgstr "ZOOM -"
-

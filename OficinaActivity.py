@@ -65,12 +65,14 @@ from Area import Area
 import logging
 
 class OficinaActivity(activity.Activity):
+    def oficina(self, widget, data=None):
+        logging.info('Oficina')
+         
     def __init__(self, handle):
         """Initialize the OficinaActivity object.
 
-            Keyword arguments:
-            self -- 
-            handle --
+            @param  self
+            @param  handle
 
         """
         activity.Activity.__init__(self, handle)
@@ -101,11 +103,9 @@ class OficinaActivity(activity.Activity):
         self._fixed.put(self.bg, 200, 100)
         self.bg.show()
 
-        #FIXME: use a textview instead of an Entry
         self._textview = gtk.TextView()
         # If we use this, text viewer will have constant size, we don't want that
         #self._textview.set_size_request(100,100)
-        #self._textview = gtk.Entry()
         
         self._fixed.put(self._area, 200 , 100)
         # Area size increased
@@ -129,8 +129,8 @@ class OficinaActivity(activity.Activity):
     def read_file(self, file_path):
         '''Read file from Sugar Journal.
 
-        self --
-        file_path --
+            @param  self
+            @param  file_path 
 
         '''
         logging.debug('reading file %s', file_path)
@@ -138,16 +138,13 @@ class OficinaActivity(activity.Activity):
         
         self._area.loadImage(file_path, self._area, False)
         
-        # Does this work?
-#         self._area.undo_times = 1
-#         self._area.redo_times = 0
 
 
     def write_file(self, file_path):
         '''Save file on Sugar Journal.
 
-        self --
-        file_path -- 
+            @param  self 
+            @param  file_path 
 
         '''
         logging.debug('saving as PNG')

@@ -65,9 +65,15 @@ images/star.png
 images/text.png
 images/trapezoid.png
 images/triangle.png
+locale/ar/LC_MESSAGES/ar.mo
+locale/ar/LC_MESSAGES/ar.po
+locale/ar/activity.linfo
 locale/de/LC_MESSAGES/de.mo
 locale/de/LC_MESSAGES/de.po
 locale/de/activity.linfo
+locale/el/LC_MESSAGES/el.mo
+locale/el/LC_MESSAGES/el.po
+locale/el/activity.linfo
 locale/es/LC_MESSAGES/es.mo
 locale/es/LC_MESSAGES/es.po
 locale/es/activity.linfo

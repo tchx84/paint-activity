@@ -1,99 +1,101 @@
-# French translation of Drawing activity.
+# Greek translation of Drawing activity.
 # Copyright (C) 2007 NATE LSI-USP
 # This file is distributed under the same license as the Oficina package.
 # 
-# Nathalia <nathalia.sautchuk@gmail.com>, 2007.
+# Simos Xenitellis <simos.lists@googlemail.com>, 2007.
+# G Mwralhs <>, 2007.
+# FivosZ <>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: oficina@lsi.usp.br\n"
 "POT-Creation-Date: 2007-09-11 13:52-0300\n"
-"PO-Revision-Date: 2007-09-11 13:59-0300\n"
-"Last-Translator: Nathalia <nathalia.sautchuk@gmail.com>\n"
-"Language-Team: Language locale/fr/LC\n"
+"PO-Revision-Date: 2007-09-11 13:58-0300\n"
+"Last-Translator: Simos Xenitellis <simos.lists@googlemail.com>\n"
+"Language-Team: Greek <olpc-l10n-el@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: toolbox.py:75
 msgid "Edit"
-msgstr "Éditer"
+msgstr "Επεξεργασία"
 
 #: toolbox.py:79
 msgid "Tools"
-msgstr "Outils"
+msgstr "Εργαλεία"
 
 #: toolbox.py:83
 msgid "Shapes"
-msgstr "Formes"
+msgstr "Σχήματα"
 
 #: toolbox.py:87
 msgid "Text"
-msgstr "Texte"
+msgstr "Κείμενο"
 
 #: toolbox.py:91
 msgid "Image"
-msgstr "Image"
+msgstr "Εικόνα"
 
 #: toolbox.py:95
 msgid "Effects"
-msgstr "Effet"
+msgstr "Εφέ"
 
 #: toolbox.py:110
 msgid "Undo"
-msgstr "Défaire"
+msgstr ""
 
 #: toolbox.py:111
 msgid "Redo"
-msgstr "Refaire"
+msgstr ""
 
 #: toolbox.py:112
 msgid "Copy"
-msgstr "Copier"
+msgstr ""
 
 #: toolbox.py:113
 msgid "Paste"
-msgstr "Collier"
+msgstr ""
 
 #: toolbox.py:123
 msgid "Clear"
-msgstr "Nettoyer"
+msgstr ""
 
 #: toolbox.py:198
 msgid "Tool Color"
-msgstr "Couleur de le Outil"
+msgstr ""
 
 #: toolbox.py:227
 msgid "Pencil"
-msgstr "Crayon"
+msgstr "Μολύβι"
 
 #: toolbox.py:232
 msgid "Brush"
-msgstr "Pinceau"
+msgstr "Πινέλο"
 
 #: toolbox.py:241
 msgid "Eraser"
-msgstr "Gomme"
+msgstr "Γόμα"
 
 #: toolbox.py:250 toolbox.py:715
 msgid "Polygon"
-msgstr "Polygone"
+msgstr "Πολύγωνο"
 
 #: toolbox.py:259
 msgid "Bucket"
-msgstr "Seau"
+msgstr "Κουβάς"
 
 #: toolbox.py:283
 msgid "Rectangular Marquee"
-msgstr "Sélection Rectangulaire"
+msgstr "Ορθογώνια επιλογή"
 
 #: toolbox.py:313
 msgid "Square"
-msgstr "Carré"
+msgstr "Τετράγωνο"
 
 #: toolbox.py:314
 msgid "Circle"
-msgstr "Cercle"
+msgstr "Κύκλος"
 
 #: toolbox.py:333 toolbox.py:949
 msgid "Fill"
@@ -141,63 +143,63 @@ msgstr ""
 
 #: toolbox.py:692
 msgid "Ellipse"
-msgstr "Ellipse"
+msgstr "Έλλειψη"
 
 #: toolbox.py:701
 msgid "Rectangle"
-msgstr "Rectangle"
+msgstr "Ορθογώνιο"
 
 #: toolbox.py:710
 msgid "Line"
-msgstr "Ligne"
+msgstr "Γραμμή"
 
 #: toolbox.py:733
 msgid "Heart"
-msgstr "Coeur"
+msgstr "Καρδιά"
 
 #: toolbox.py:743
 msgid "Parallelogram"
-msgstr "Parallélogramme"
+msgstr "Παραλληλόγραμμο"
 
 #: toolbox.py:752
 msgid "Arrow"
-msgstr "Flèche"
+msgstr "Βέλος"
 
 #: toolbox.py:761
 msgid "Star"
-msgstr "Étoile"
+msgstr "Άστρο"
 
 #: toolbox.py:770
 msgid "Trapezoid"
-msgstr "Trapèze"
+msgstr "Τραπέζιο"
 
 #: toolbox.py:779
 msgid "Triangle"
-msgstr "Triangle"
+msgstr "Τρίγωνο"
 
 #: toolbox.py:882
 msgid "Sides: "
-msgstr "Côtés: "
+msgstr ""
 
 #: toolbox.py:925
 msgid "Points: "
-msgstr "Points: "
+msgstr ""
 
 #: toolbox.py:987
 msgid "Type"
-msgstr "Saisir"
+msgstr "Τύπος"
 
 #: toolbox.py:1061
 msgid "Insert Image"
-msgstr "Insérer la Image"
+msgstr "Εισαγωγή εικόνας"
 
 #: toolbox.py:1083
 msgid "Height"
-msgstr "Hauteur"
+msgstr "Ύψος"
 
 #: toolbox.py:1088
 msgid "Width"
-msgstr "Largeur"
+msgstr "Πλάτος"
 
 #: toolbox.py:1139
 msgid "Resize (%): "
@@ -205,19 +207,19 @@ msgstr ""
 
 #: toolbox.py:1148
 msgid "Open File..."
-msgstr "Ouvrir le Dossier..."
+msgstr "Άνοιγμα αρχείου..."
 
 #: toolbox.py:1188
 msgid "Grayscale"
-msgstr "Escale de Gris"
+msgstr "Κλίμακα του γκρι"
 
 #: toolbox.py:1193
 msgid "Rainbow"
-msgstr "Arc-en-ciel"
+msgstr ""
 
 #: toolbox.py:1262
 msgid "Size"
-msgstr "Taille"
+msgstr ""
 
 #: toolbox.py:1299
 msgid "1000"
@@ -241,8 +243,8 @@ msgstr "25"
 
 #: toolbox.py:1319
 msgid "ZOOM +"
-msgstr "ZOOM +"
+msgstr "ΕΣΤΙΑΣΗ +"
 
 #: toolbox.py:1324
 msgid "ZOOM -"
-msgstr "ZOOM -"
+msgstr "ΕΣΤΙΑΣΗ -"

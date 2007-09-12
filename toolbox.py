@@ -63,8 +63,9 @@ from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.combobox import ComboBox
 from sugar.graphics.palette import Palette
 from sugar.graphics.menuitem import MenuItem
-
+#Create toolbars for the activity
 class Toolbox(ActivityToolbox):
+    ## The Constructor
     def __init__(self, activity):
         ActivityToolbox.__init__(self, activity)
         
@@ -99,8 +100,11 @@ class Toolbox(ActivityToolbox):
         #self._view_toolbar.show()
         
         self.set_current_toolbar(2)
+        
     
+##Make the Edit Toolbar
 class DrawEditToolbar(EditToolbar):
+    ## The Constructor
     def __init__(self, activity):
         EditToolbar.__init__(self)
         
@@ -159,7 +163,7 @@ class DrawEditToolbar(EditToolbar):
         
     def _on_signal_action_saved_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
-        
+    ##define when a button is active    
     def _verify_sensitive_buttons(self):
         self.undo.set_sensitive( self._activity._area.can_undo() )
         self.redo.set_sensitive( self._activity._area.can_redo() )
@@ -170,7 +174,7 @@ class DrawEditToolbar(EditToolbar):
         
     def _clear_all_cb(self, widget, data=None):
         self._activity._area.clear()
-
+##Determine Tools of the Toolbar
 class ToolsToolbar(gtk.Toolbar):
         
     #Tool default definitions
@@ -194,7 +198,7 @@ class ToolsToolbar(gtk.Toolbar):
         'sides'         : None,
         'points'        : None
     }
-    
+    ##The Constructor
     _TOOL_ERASER = {
         'name'          : 'eraser',
         'size'          : 20,
@@ -396,11 +400,11 @@ class ToolsToolbar(gtk.Toolbar):
         
 
     def _configure_palette(self, widget, tool=None):
-        '''Set palette for a tool
-        widget  - the widget which Palette will be set, a ToolButton object
-        tool    - the reference tool for Palette creation. Its values are
-                  restricted to Class constants
-        '''
+        """Set palette for a tool
+            @param self -- gtk.Toolbar
+            @param widget  - the widget which Palette will be set, a ToolButton object
+            @param tool    - the reference tool for Palette creation. Its values are restricted to Class constants
+        """
         
         logging.debug('setting a palette for %s', tool['name'])
         
@@ -510,34 +514,28 @@ class ToolsToolbar(gtk.Toolbar):
     
 
     def set_shape(self, widget=None, tool=None, shape=None):
-        '''
+        """
         Set a tool shape according to user choice at Tool Palette
-        '''
         
-#         if tool == self._TOOL_BRUSH:
-#             self._activity._area.brush_shape = shape
-#         elif tool == self._TOOL_ERASER:
-#             self._activity._area.eraser_shape = shape
+            @param self -- gtk.Toolbar
+            @param widget -- The connected widget, if any; necessary in case this method is used in a connect()
+            @param tool -- A dictionnary to determine which tool is been using
+            @param shape -- Determine which shape Brush and Erase will use
+        """
+        
         tool['shape'] = shape
         self.set_tool(tool=tool)
             
     def set_tool(self, widget=None, tool=None):
-        '''
+        """
         Set tool to the Area object. Configures tool's color and size.
-        '''
         
-#         # setting tool
-#         self._activity._area.tool = tool
-#         
-#         # setting size and color
-#         size = self._stroke_size.get_size()
-#         self._stroke_size.set_stroke_size(size)
-#         
-#         color = self._stroke_color.get_color()
-#         self._stroke_color.set_stroke_color(color)
+            @param self -- gtk.Toolbar
+            @param widget -- The connected widget, if any; necessary in case this method is used in a connect()
+            @param tool -- A dictionnary to determine which tool is been using
+        """
         
-        # New method to set tools
-        #tool['size'] = self._stroke_size.get_size()
+        # New method to set tools; using dict
         
         # Color must be allocated; if not, it will be displayed as black
         new_color = self._stroke_color.get_color()
@@ -567,9 +565,13 @@ class ToolsToolbar(gtk.Toolbar):
         self.set_tool(tool=tool)
         
     def _on_fill_checkbutton_map(self, checkbutton, data=None):
-        '''
+        """
         Update checkbutton condition to agree with Area.Area object; this prevents tools to have fill checked but be drawed not filled.
-        '''
+        
+            @param self -- gtk.Toolbar
+            @param checkbutton
+            @param data
+        """
         self._activity._area.fill = checkbutton.get_active()
         
     def _on_color_set(self, colorbutton, tool):
@@ -589,46 +591,39 @@ class ToolsToolbar(gtk.Toolbar):
         if radiobutton.get_active():
             self.set_shape(tool=tool, shape=shape)
 
+'''
+##Class to manage Fill colors
 class ComboFillColors(ToolComboBox):
-    """Class to manage Fill colors """   
-            
-    def __init__(self, activity):
-        """Initialize the object
-
-        Keyword arguments:
-        activity -- the OficinaActivity object
-        """
-    
+    ## The Constructor
+    def __init__(self, activity):    
         ToolComboBox.__init__(self)
         self._activity = activity
 
         self._fill_color = self.combo
-        self._fill_color.append_item(self.alloc_color('#000000'), _('Black'))
-        self._fill_color.append_item(self.alloc_color('#ffffff'), _('White'))
-        self._fill_color.append_item(self.alloc_color('#800000'), _('Maroon'))
-        self._fill_color.append_item(self.alloc_color('#ff0000'), _('Red'))        
-        self._fill_color.append_item(self.alloc_color('#808000'), _('Olive'))
-        self._fill_color.append_item(self.alloc_color('#ffff00'), _('Yellow')) 
-        self._fill_color.append_item(self.alloc_color('#008000'), _('Green'))
-        self._fill_color.append_item(self.alloc_color('#00ff00'), _('Lime'))
-        self._fill_color.append_item(self.alloc_color('#008080'), _('Teal'))
-        self._fill_color.append_item(self.alloc_color('#00ffff'), _('Aqua'))
-        self._fill_color.append_item(self.alloc_color('#000080'), _('Navy'))
-        self._fill_color.append_item(self.alloc_color('#0000ff'), _('Blue'))
-        self._fill_color.append_item(self.alloc_color('#800080'), _('Purple'))
-        self._fill_color.append_item(self.alloc_color('#ff00ff'), _('Fuchsia'))
+        self._fill_color.append_item(self.alloc_color('#000000'), 'Black')
+        self._fill_color.append_item(self.alloc_color('#ffffff'), 'White')
+        self._fill_color.append_item(self.alloc_color('#800000'), 'Maroon')
+        self._fill_color.append_item(self.alloc_color('#ff0000'), 'Red')       
+        self._fill_color.append_item(self.alloc_color('#808000'), 'Olive')
+        self._fill_color.append_item(self.alloc_color('#ffff00'), 'Yellow') 
+        self._fill_color.append_item(self.alloc_color('#008000'), 'Green')
+        self._fill_color.append_item(self.alloc_color('#00ff00'), 'Lime')
+        self._fill_color.append_item(self.alloc_color('#008080'), 'Teal')
+        self._fill_color.append_item(self.alloc_color('#00ffff'), 'Aqua')
+        self._fill_color.append_item(self.alloc_color('#000080'), 'Navy')
+        self._fill_color.append_item(self.alloc_color('#0000ff'), 'Blue')
+        self._fill_color.append_item(self.alloc_color('#800080'), 'Purple')
+        self._fill_color.append_item(self.alloc_color('#ff00ff'), 'Fuchsia')
 
         self._fill_color.set_active(0)
         self._fill_color.connect('changed', self._combo_changed_cb)
 
     def alloc_color(self, color):
         """Alloc new color.
-
-        Keyword arguments:
-        color -- hexadecimal number
+            @param self -- gtk.Toolbar
+            @param color -- hexadecimal number
         
-        Return:
-        a gdk.Color object
+            @return gdk.Color object
 
         """
         colormap = self.get_colormap()
@@ -641,65 +636,56 @@ class ComboFillColors(ToolComboBox):
 
     def set_fill_color(self, color):
         """Set the fill color in Area
-
-        Keyword arguments:
-        color -- a gdk.Color object
+            @param self -- gtk.Toolbar
+            @param color -- a gdk.Color object
 
         """
         self._activity._area._set_fill_color(color)
     
     def get_color(self):  
         """Get the fill color from combobox
-
-        Return:
-        a gdk.Color object
+            @param self -- gtk.Toolbar
+            
+            @return gdk.Color object
 
         """      
         model = self.combo.get_model()
         active = self.combo.get_active()
         return model[active][0]
 
-
+##Class to manage Stroke colors
 class ComboStrokeColors(ToolComboBox):
-    """Class to manage Stroke colors """   
-    
+    ##The Constructor
     def __init__(self, activity):
-        """Initialize the object
-
-        Keyword arguments:
-        activity -- the OficinaActivity object
-        """
         
         ToolComboBox.__init__(self)
         self._activity = activity
         
         self._stroke_color = self.combo
-        self._stroke_color.append_item(self.alloc_color('#000000'), _('Black'))
-        self._stroke_color.append_item(self.alloc_color('#ffffff'), _('White'))
-        self._stroke_color.append_item(self.alloc_color('#800000'), _('Maroon'))
-        self._stroke_color.append_item(self.alloc_color('#ff0000'), _('Red'))        
-        self._stroke_color.append_item(self.alloc_color('#808000'), _('Olive'))
-        self._stroke_color.append_item(self.alloc_color('#ffff00'), _('Yellow')) 
-        self._stroke_color.append_item(self.alloc_color('#008000'), _('Green'))
-        self._stroke_color.append_item(self.alloc_color('#00ff00'), _('Lime'))
-        self._stroke_color.append_item(self.alloc_color('#008080'), _('Teal'))
-        self._stroke_color.append_item(self.alloc_color('#00ffff'), _('Aqua'))
-        self._stroke_color.append_item(self.alloc_color('#000080'), _('Navy'))
-        self._stroke_color.append_item(self.alloc_color('#0000ff'), _('Blue'))
-        self._stroke_color.append_item(self.alloc_color('#800080'), _('Purple'))
-        self._stroke_color.append_item(self.alloc_color('#ff00ff'), _('Fuchsia'))
+        self._stroke_color.append_item(self.alloc_color('#000000'), 'Black')
+        self._stroke_color.append_item(self.alloc_color('#ffffff'), 'White')
+        self._stroke_color.append_item(self.alloc_color('#800000'), 'Maroon')
+        self._stroke_color.append_item(self.alloc_color('#ff0000'), 'Red')     
+        self._stroke_color.append_item(self.alloc_color('#808000'), 'Olive')
+        self._stroke_color.append_item(self.alloc_color('#ffff00'), 'Yellow') 
+        self._stroke_color.append_item(self.alloc_color('#008000'), 'Green')
+        self._stroke_color.append_item(self.alloc_color('#00ff00'), 'Lime')
+        self._stroke_color.append_item(self.alloc_color('#008080'), 'Teal')
+        self._stroke_color.append_item(self.alloc_color('#00ffff'), 'Aqua')
+        self._stroke_color.append_item(self.alloc_color('#000080'), 'Navy')
+        self._stroke_color.append_item(self.alloc_color('#0000ff'), 'Blue')
+        self._stroke_color.append_item(self.alloc_color('#800080'), 'Purple')
+        self._stroke_color.append_item(self.alloc_color('#ff00ff'), 'Fuchsia')
 
         self._stroke_color.set_active(0)
         self._stroke_color.connect('changed', self._combo_changed_cb)
 
     def alloc_color(self, color):
         """Alloc new color.
-
-        Keyword arguments:
-        color -- hexadecimal number
+            @param self -- gtk.Toolbar
+            @param color -- hexadecimal number
         
-        Return:
-        a gdk.Color object
+            @return gdk.Color object
 
         """
         colormap = self.get_colormap()
@@ -712,9 +698,9 @@ class ComboStrokeColors(ToolComboBox):
 
     def get_color(self):
         """Get the fill color from combobox
-
-        Return:
-        a gdk.Color object
+            @param self -- gtk.Toolbar
+            
+            @return a gdk.Color object
 
         """        
         model = self.combo.get_model()
@@ -723,14 +709,13 @@ class ComboStrokeColors(ToolComboBox):
 
     def set_stroke_color(self, color):
         """Set the fill color in Area
-
-        Keyword arguments:
-        color -- a gdk.Color object
+            @param self -- gtk.Toolbar
+            @param color -- a gdk.Color object
 
         """
         self._activity._area._set_stroke_color(color)
-
-
+'''
+##Class to manage Stroke Size
 class ComboStrokeSize(ToolComboBox):
 
     _ACTION_1 = 1
@@ -748,7 +733,7 @@ class ComboStrokeSize(ToolComboBox):
     _ACTION_10000 = 10000
     _ACTION_100000 = 100000
     """
-
+    ##The Constructor
     def __init__(self, activity):
         ToolComboBox.__init__(self)
         self._activity = activity
@@ -788,9 +773,9 @@ class ComboStrokeSize(ToolComboBox):
         active = self.combo.get_active()
         return model[active][0]
 
-
+##Class to manage the Fill Color of a Button
 class ButtonFillColor(gtk.ColorButton):
-
+    ##The Constructor
     def __init__(self, activity):
         gtk.ColorButton.__init__(self)
         self._activity = activity
@@ -809,9 +794,9 @@ class ButtonFillColor(gtk.ColorButton):
         new_color = self.alloc_color(color)
         self._activity._area._set_fill_color(new_color)
 
-
+##Class to manage the Stroke Color of a Button
 class ButtonStrokeColor(gtk.ColorButton):
-
+    ##The Constructor
     def __init__(self, activity):
         gtk.ColorButton.__init__(self)
         self._activity = activity
@@ -830,7 +815,7 @@ class ButtonStrokeColor(gtk.ColorButton):
         new_color = self.alloc_color(color)
         self._activity._area._set_stroke_color(new_color)
 
-
+##Make the Shapes Toolbar
 class ShapesToolbar(gtk.Toolbar):
 
     _SHAPE_ARROW = 'arrow'
@@ -845,7 +830,7 @@ class ShapesToolbar(gtk.Toolbar):
     _SHAPE_STAR = 'star'
     _SHAPE_TRAPEZOID = 'trapezoid'
     _SHAPE_TRIANGLE = 'triangle'
-
+    ##The Constructor
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
 
@@ -1139,11 +1124,11 @@ class ShapesToolbar(gtk.Toolbar):
         self._create_simple_palette(self._shape_triangle)
     
     def _create_simple_palette(self, button):
-        '''
+        """
         Create a simple palette with an CheckButton named "Fill". Most tools use only this.
-        Keyword arguments:
-        widget -- a ToolButton to associate the palette.
-        '''
+            @param self -- gtk.Toolbar
+            @param button -- a ToolButton to associate the palette.
+        """
         palette = button.get_palette()
         
         fill_checkbutton = gtk.CheckButton(_('Fill'))
@@ -1158,20 +1143,24 @@ class ShapesToolbar(gtk.Toolbar):
         palette.set_content(fill_checkbutton)
     
     def _on_fill_checkbutton_map(self, checkbutton, data=None):
-        '''
+        """
         Update checkbutton condition to agree with Area.Area object; this prevents tools to have fill checked but be drawed not filled.
-        '''
+        
+            @param self -- gtk.Toolbar
+            @param checkbutton
+            @param data
+        """
         self._activity._area.fill = checkbutton.get_active()
     
 #     def _on_fill_checkbutton_after_clicked(self, widget, checkbutton):
 #         # Trying to prevent same condition described at self._on_fill_checkbutton_map
 #         self._activity._area.fill = checkbutton.get_active()
     
-    
+##Make the Text Toolbar
 class TextToolbar(gtk.Toolbar):
 
     _ACTION_TEXT = 'text'
-
+    ##The Constructor
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
 
@@ -1240,7 +1229,7 @@ class TextToolbar(gtk.Toolbar):
         cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pixbuf, 6, 21)
         self._activity._area.window.set_cursor(cursor)
 
-
+##Make the Images Toolbar
 class ImageToolbar(gtk.Toolbar):
 
     _OBJECT_HEIGHT = 'height'
@@ -1248,7 +1237,7 @@ class ImageToolbar(gtk.Toolbar):
     _OBJECT_ROTATE_LEFT = 'rotate-left'
     _OBJECT_ROTATE_RIGHT = 'rotate-right'
     _OBJECT_WIDTH = 'width'
-
+    ##The Constructor
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
         
@@ -1271,11 +1260,12 @@ class ImageToolbar(gtk.Toolbar):
         self.insert(self._object_rotate_right, -1)
         self._object_rotate_right.show()
         self._object_rotate_right.set_tooltip(_('Rotate Right'))
+
+        """
         
         self._object_height = ToolButton('object-height')
         self.insert(self._object_height, -1)
         self._object_height.show()
-        self._object_height.connect('clicked', test_connect, activity, 'object-height')
         self._object_height.set_tooltip(_('Height'))           
 
         self._object_width = ToolButton('object-width')
@@ -1284,18 +1274,61 @@ class ImageToolbar(gtk.Toolbar):
         self._object_width.set_tooltip(_('Width'))
 
 
-        self._object_height.connect('clicked', set_tool, activity, 'object-height', self._OBJECT_HEIGHT)
-        """
+        self._configure_palette_resize(self._object_height, 'object-height', activity)
+        self._configure_palette_resize(self._object_width, 'object-width', activity)
+
+#        self._object_height.connect('clicked', self.resize, activity, 'object-height', self._OBJECT_HEIGHT)
+
         self._object_insert.connect('clicked', self.insertImage, activity)
         #self._object_rotate_left.connect('clicked', self.rotate_left, activity)
         #self._object_rotate_right.connect('clicked', set_tool, activity, 'object-rotate-right', self._OBJECT_ROTATE_RIGHT)
-        #self._object_width.connect('clicked', set_tool, activity, 'object-width', self._OBJECT_WIDTH)
+#        self._object_width.connect('clicked', self.resize, activity, 'object-width', self._OBJECT_WIDTH)
 	
     def rotate_left(self, widget, activity):    
         #activity._area._rotate_left(widget)
         pass
 
+    def _resize(self, spinButton, tool, activity):
+        size = spinButton.get_value_as_int()
+        if activity._area.tool == 'marquee-rectangular' and activity._area.selmove:
+            if tool == "object-height":
+                activity._area.d.resizeSelection(activity._area,1., float(size)/100)
+            elif tool == "object-width":
+                activity._area.d.resizeSelection(activity._area,float(size)/100, 1.)
 
+    def _configure_palette_resize(self, widget, tool, activity):
+        """Set palette for a tool - width or height
+
+            @param self -- gtk.Toolbar
+            @param widget  - the widget which Palette will be set, a ToolButton object
+            @param tool
+            @param activity
+        """
+        logging.debug('setting a palette for %s', tool)
+               
+        palette = widget.get_palette()
+        
+        spin = gtk.SpinButton()
+        spin.show()
+        
+        # When inserted in a Palette, a spinbutton does not display text in black
+        black = gtk.gdk.Color(0,0,0)
+        spin.modify_text(gtk.STATE_NORMAL, black)
+        
+        # This is where we set restrictions for Resizing:
+        # Initial value, minimum value, maximum value, step
+        initial = float(100)
+        adj = gtk.Adjustment(initial, 10.0, 500.0, 1.0)
+        spin.set_adjustment(adj)
+        spin.set_numeric(True)
+        
+        label = gtk.Label(_('Resize (%): '))
+        label.show()
+        palette.action_bar.pack_start(label)
+        palette.action_bar.pack_start(spin)
+        
+        spin.connect('value-changed', self._resize, tool, activity)
+           
     def insertImage(self, widget, activity):
         # TODO: add a filter to display images only.
         dialog = gtk.FileChooserDialog(title=(_('Open File...')),   
@@ -1320,12 +1353,12 @@ class ImageToolbar(gtk.Toolbar):
         dialog.destroy()
 
 
-
+##Make the Effects Tools Toolbar
 class EffectsToolbar(gtk.Toolbar):
 
     _EFFECT_GRAYSCALE = 'grayscale'
     _EFFECT_RAINBOW = 'rainbow'
-
+    ##The Constructor
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
         
@@ -1364,10 +1397,10 @@ class EffectsToolbar(gtk.Toolbar):
         """
         self._effect_grayscale.connect('clicked', self.grayscale)
         self._effect_rainbow.connect('clicked', self.rainbow)
-
+    ##Make the colors be in grayscale
     def grayscale(self, widget):	
         self._activity._area.grayscale(widget)
-
+    ##Like the brush, but change it color when painting
     def rainbow(self, widget):
         self._activity._area.tool = self._EFFECT_RAINBOW
         
@@ -1383,11 +1416,11 @@ class EffectsToolbar(gtk.Toolbar):
         
         
     def _configure_palette(self, widget, tool=None):
-        '''Set palette for a tool
-        widget  - the widget which Palette will be set
-        tool    - the reference tool for Palette creation. Its values are
-                  restricted to Class constants
-        '''
+        """Set palette for a tool
+            @param self -- gtk.Toolbar
+            @param widget  - the widget which Palette will be set
+            @param tool    - the reference tool for Palette creation. Its values are restricted to Class constants
+        """
         
         logging.debug('setting a palette for %s', tool)
         
@@ -1427,7 +1460,7 @@ class EffectsToolbar(gtk.Toolbar):
         
         self.rainbow(self._effect_rainbow)
         
-
+##Make the View Toolbar
 class ViewToolbar(gtk.Toolbar):
 
     _ACTION_1000 = 0
@@ -1439,7 +1472,7 @@ class ViewToolbar(gtk.Toolbar):
     _ACTION_25 = 6
     _ACTION_10 = 7
 
-    
+    ##The Constructor
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
 
