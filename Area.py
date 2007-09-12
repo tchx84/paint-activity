@@ -95,8 +95,25 @@ class Area(gtk.DrawingArea):
         self.connect("button_release_event", self.mouseup)      
 
         self.set_extension_events(gtk.gdk.EXTENSION_EVENTS_CURSOR)
-        ##Define which tool is been used
-        self.tool = None
+        ## Define which tool is been used. It is now described as a dictionnary,
+        ## with the following keys:
+        ## - 'name'          : a string
+        ## - 'line size'     : a integer
+        ## - 'fill color'    : a gtk.gdk.Color object
+        ## - 'stroke color'  : a gtk.gdk.Color object
+        ## - 'line shape'    : a string - 'circle' or 'square', for now
+        ## - 'fill'          : a Boolean value
+        ## - 'vertices'      : a integer
+        ## All values migth be None, execept in 'name' key.
+        self.tool = {
+        'name'          : 'pencil',
+        'line size'     : 2,
+        'fill color'    : None,
+        'stroke color'  : None,
+        'line shape'    : 'circle',
+        'fill'          : True,
+        'vertices'      : None
+        }
         self.desenha = False
         self.selmove = False
         self.sel_get_out = False
@@ -121,8 +138,7 @@ class Area(gtk.DrawingArea):
         self.janela = janela    
         self.d = Desenho(self)
         self.line_size = 2
-        self.brush_shape = 'circle'
-        self.eraser_shape = 'circle'
+        self.line_shape = 'circle'
         self.last = -1, -1
         self.rainbow_counter = 0
                 
@@ -140,7 +156,7 @@ class Area(gtk.DrawingArea):
         self.undo_list=[]
         
         ##Number of sides for regular polygon
-        self.polygon_sides = 5
+        self.vertices = 5
         
         ##Shapes will be filled or not?
         self.fill = True
@@ -194,6 +210,10 @@ class Area(gtk.DrawingArea):
         
         self.enableUndo(widget)
         
+        # Setting a initial tool
+        # If not set here, cursor icon can't be load
+        self.set_tool(self.tool)
+        
         return True
         
     def configure_line(self, size):
@@ -240,7 +260,7 @@ class Area(gtk.DrawingArea):
         width, height = self.window.get_size()
         # text
         coords = int(event.x), int(event.y)
-        if self.tool is 'text':
+        if self.tool['name'] == 'text':
             self.d.text(widget,event)
             
         # This fixes a bug that made the text viewer get stuck in the canvas
@@ -259,26 +279,26 @@ class Area(gtk.DrawingArea):
             self.estadoTexto = 0
             self.janela._textview.hide()
             
-        if not self.selmove or self.tool != 'marquee-rectangular':
+        if not self.selmove or self.tool['name'] != 'marquee-rectangular':
             self.oldx, self.oldy = coords
-        if self.selmove and self.tool != 'marquee-rectangular': #get out of the func selection
+        if self.selmove and self.tool['name'] != 'marquee-rectangular': #get out of the func selection
             self.pixmap.draw_drawable(self.gc, self.pixmap_temp, 0,0,0,0, width, height)
             self.selmove = False
             self.pixbuf_sel = None
             self.enableUndo(widget)
-        if self.tool == 'eraser':
+        if self.tool['name'] == 'eraser':
             self.last = -1, -1
-            self.d.eraser(widget, coords, self.last, self.line_size, self.eraser_shape)
+            self.d.eraser(widget, coords, self.last, self.line_size, self.tool['line shape'])
             self.last = coords
-        elif self.tool == 'brush':
+        elif self.tool['name'] == 'brush':
             self.last = -1, -1
-            self.d.brush(widget, coords, self.last, self.line_size, self.brush_shape)
+            self.d.brush(widget, coords, self.last, self.line_size, self.tool['line shape'])
             self.last = coords
-        elif self.tool == 'rainbow':
+        elif self.tool['name'] == 'rainbow':
             self.last = -1, -1
-            self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.brush_shape)
+            self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.tool['line shape'])
             self.last = coords
-        elif self.tool == 'polygon':
+        elif self.tool['name'] == 'polygon':
             self.configure_line(self.line_size)
             
         x , y, state = event.window.get_pointer()
@@ -309,76 +329,76 @@ class Area(gtk.DrawingArea):
         coords = int(x), int(y)
                         
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
-            if self.tool == 'eraser':
-                self.d.eraser(widget, coords, self.last, self.line_size, self.eraser_shape)
+            if self.tool['name'] == 'eraser':
+                self.d.eraser(widget, coords, self.last, self.line_size, self.tool['line shape'])
                 self.last = coords
-            elif self.tool == 'brush':
-                self.d.brush(widget, coords, self.last, self.line_size, self.brush_shape)
+            elif self.tool['name'] == 'brush':
+                self.d.brush(widget, coords, self.last, self.line_size, self.tool['line shape'])
                 self.last = coords
-            elif self.tool == 'rainbow':
-                self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.brush_shape)
+            elif self.tool['name'] == 'rainbow':
+                self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.tool['line shape'])
                 self.rainbow_counter += 1
                 if self.rainbow_counter > 11:
                     self.rainbow_counter = 0
                 self.last = coords
             if self.desenha:
-                if self.tool == 'line':
+                if self.tool['name'] == 'line':
                     self.configure_line(self.line_size)
                     self.d.line(widget, coords)
                     
-                elif self.tool == 'pencil':
+                elif self.tool['name'] == 'pencil':
                     self.configure_line(self.line_size)
                     self.d.pencil(widget, coords)  
                      
-                elif self.tool == 'ellipse':
+                elif self.tool['name'] == 'ellipse':
                     self.configure_line(self.line_size)
-                    self.d.circle(widget,coords,True,self.fill)
+                    self.d.circle(widget,coords,True,self.tool['fill'])
                     
-                elif self.tool == 'rectangle':
+                elif self.tool['name'] == 'rectangle':
                     self.configure_line(self.line_size)
-                    self.d.square(widget,coords,True,self.fill)
+                    self.d.square(widget,coords,True,self.tool['fill'])
                     
-                elif self.tool == 'marquee-rectangular' and not self.selmove:
+                elif self.tool['name'] == 'marquee-rectangular' and not self.selmove:
                     x1, y1, x2, y2 = self.d.selection(widget,coords,True,False)
                     self._set_selection_bounds(x1, y1, x2, y2)                   
                 # selected
-                elif self.tool == 'marquee-rectangular' and self.selmove:
+                elif self.tool['name'] == 'marquee-rectangular' and self.selmove:
                     if self.pixbuf_sel!=None:
                         self.d.moveSelection(widget,coords,True,self.pixbuf_sel)                    
                     else:
                         self.d.moveSelection(widget,coords)
                         
-                elif self.tool == 'polygon':
+                elif self.tool['name'] == 'polygon':
                     self.configure_line(self.line_size)
-                    self.d.polygon(widget,coords,True,self.fill)
+                    self.d.polygon(widget,coords,True,self.tool['fill'])
                     
-                elif self.tool == 'triangle':
+                elif self.tool['name'] == 'triangle':
                     self.configure_line(self.line_size)
-                    self.d.triangle(widget,coords,True,self.fill)
+                    self.d.triangle(widget,coords,True,self.tool['fill'])
                     
-                elif self.tool == 'trapezoid':
+                elif self.tool['name'] == 'trapezoid':
                     self.configure_line(self.line_size)
-                    self.d.trapezoid(widget,coords,True,self.fill)
+                    self.d.trapezoid(widget,coords,True,self.tool['fill'])
                     
-                elif self.tool == 'arrow':
+                elif self.tool['name'] == 'arrow':
                     self.configure_line(self.line_size)
-                    self.d.arrow(widget,coords,True,self.fill)
+                    self.d.arrow(widget,coords,True,self.tool['fill'])
                     
-                elif self.tool == 'parallelogram':
+                elif self.tool['name'] == 'parallelogram':
                     self.configure_line(self.line_size)
-                    self.d.parallelogram(widget,coords,True,self.fill)
+                    self.d.parallelogram(widget,coords,True,self.tool['fill'])
                     
-                elif self.tool == 'star':
+                elif self.tool['name'] == 'star':
                     self.configure_line(self.line_size)
-                    self.d.star(widget,coords,self.polygon_sides,True,self.fill)
+                    self.d.star(widget,coords,self.tool['vertices'],True,self.tool['fill'])
                     
-                elif self.tool == 'polygon_regular':
+                elif self.tool['name'] == 'polygon_regular':
                     self.configure_line(self.line_size)
-                    self.d.polygon_regular(widget,coords,self.polygon_sides,True,self.fill)
+                    self.d.polygon_regular(widget,coords,self.tool['vertices'],True,self.tool['fill'])
                     
-                elif self.tool == 'heart':
+                elif self.tool['name'] == 'heart':
                     self.configure_line(self.line_size)
-                    self.d.heart(widget,coords,True,self.fill)
+                    self.d.heart(widget,coords,True,self.tool['fill'])
 
 
     def mouseup(self,widget,event): 
@@ -392,20 +412,20 @@ class Area(gtk.DrawingArea):
         coords = int(event.x), int(event.y)
         width, height = self.window.get_size()
         if self.desenha == True:
-            if self.tool == 'line':
+            if self.tool['name'] == 'line':
                 self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int(event.y))                
                 widget.queue_draw()
                 self.enableUndo(widget)
                 
-            elif self.tool == 'ellipse':
-                self.d.circle(widget,coords,False,self.fill)
+            elif self.tool['name'] == 'ellipse':
+                self.d.circle(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
             
-            elif self.tool == 'rectangle':
-                self.d.square(widget,coords,False,self.fill)
+            elif self.tool['name'] == 'rectangle':
+                self.d.square(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
  
-            elif self.tool == 'marquee-rectangular':
+            elif self.tool['name'] == 'marquee-rectangular':
                 if self.selmove == False:
                     self.pixmap_temp.draw_drawable(self.gc,self.pixmap, 0,0,0,0, width, height)
                     self.pixmap_sel.draw_drawable(self.gc,self.pixmap, 0,0,0,0, width, height)
@@ -423,44 +443,44 @@ class Area(gtk.DrawingArea):
                     self.enableUndo(widget)
                 self.emit('selected')
 
-            elif self.tool == 'polygon':
-                self.d.polygon(widget, coords, False, self.fill)
+            elif self.tool['name'] == 'polygon':
+                self.d.polygon(widget, coords, False, self.tool['fill'])
 
-            elif self.tool == 'bucket':
+            elif self.tool['name'] == 'bucket':
                 width, height = self.window.get_size()
                 fill(self.pixmap, self.gc, coords[0], coords[1], width, height, self.gc_line.foreground.pixel)
                 widget.queue_draw()
                 self.enableUndo(widget)
   
-            elif self.tool == 'triangle':
-                self.d.triangle(widget,coords,False,self.fill)
+            elif self.tool['name'] == 'triangle':
+                self.d.triangle(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
   
-            elif self.tool == 'trapezoid':
-                self.d.trapezoid(widget,coords,False,self.fill)
+            elif self.tool['name'] == 'trapezoid':
+                self.d.trapezoid(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
  
-            elif self.tool == 'arrow':
-                self.d.arrow(widget,coords,False,self.fill)
+            elif self.tool['name'] == 'arrow':
+                self.d.arrow(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
  
-            elif self.tool == 'parallelogram':
-                self.d.parallelogram(widget,coords,False,self.fill)
+            elif self.tool['name'] == 'parallelogram':
+                self.d.parallelogram(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
 
-            elif self.tool == 'star':
-                self.d.star(widget,coords,self.polygon_sides,False,self.fill)
+            elif self.tool['name'] == 'star':
+                self.d.star(widget,coords,self.tool['vertices'],False,self.tool['fill'])
                 self.enableUndo(widget)
 
-            elif self.tool == 'polygon_regular':
-                self.d.polygon_regular(widget,coords,self.polygon_sides,False,self.fill)
+            elif self.tool['name'] == 'polygon_regular':
+                self.d.polygon_regular(widget,coords,self.tool['vertices'],False,self.tool['fill'])
                 self.enableUndo(widget)
 
-            elif self.tool == 'heart':
-                self.d.heart(widget,coords,False,self.fill)
+            elif self.tool['name'] == 'heart':
+                self.d.heart(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
 
-        if self.tool == 'brush' or self.tool == 'eraser' or self.tool == 'rainbow' or self.tool== 'pencil' :
+        if self.tool['name'] == 'brush' or self.tool['name'] == 'eraser' or self.tool['name'] == 'rainbow' or self.tool['name'] == 'pencil' :
             self.last = -1, -1
             widget.queue_draw() 
             self.enableUndo(widget)
@@ -498,7 +518,7 @@ class Area(gtk.DrawingArea):
 
 
 	    #special case for func polygon
-        if self.tool == 'polygon':		
+        if self.tool['name'] == 'polygon':		
                 self.polygon_start = True #start the polygon again
         
 
@@ -641,7 +661,7 @@ class Area(gtk.DrawingArea):
             self._set_selection_bounds(x1, y1, x2, y2)
             self.pixmap_sel.draw_rectangle(self.gc_selection, False ,0,0,size[0],size[1])
             self.sx, self.sy = size
-            self.tool = 'marquee-rectangular'
+            self.tool['name'] = 'marquee-rectangular'
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
             self.emit('selected')
         else:
@@ -855,7 +875,7 @@ class Area(gtk.DrawingArea):
             self._set_selection_bounds(x0, y0, x1, y1)
             self.pixmap_sel.draw_rectangle(self.gc_selection, False ,0,0,size[0],size[1])
             self.sx, self.sy = size
-            self.tool = 'marquee-rectangular'
+            self.tool['name'] = 'marquee-rectangular'
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
             self.emit('selected')
         self.queue_draw()
@@ -864,7 +884,8 @@ class Area(gtk.DrawingArea):
         """ Clear Canvas
             @param self -- Area instance
         """
-        self.d.clear()
+        logging.debug('Area.clear')
+        self.d.clear(self)
         self.enableUndo(self)
         
     # Changing to public methods
@@ -883,50 +904,51 @@ class Area(gtk.DrawingArea):
         
         @param - tool: a dictionary with the following keys:
                        'name': a string
-                       'size': a integer
+                       'line size': a integer
                        'fill color': a gtk.gdk.Color object
                        'stroke color': a gtk.gdk.Color object
-                       'shape': a string - 'circle' or 'square', for now
+                       'line shape': a string - 'circle' or 'square', for now
                        'fill': a Boolean value
-                       'sides': a integer (used when drawing regular polygons)
-                       'points': a integer (used when drawing stars)
+                       'vertices': a integer
         '''
         logging.debug('Area.set_tool')
         
         #FIXME: self.tool should be a dict too.
         print tool
         
-        self.tool = tool['name']
+        self.tool = tool
         
-        if tool['size'] is not None:
-            self.configure_line(tool['size'])
+        try:
+            if self.tool['line size'] is not None:
+                self.configure_line(self.tool['line size'])
         
-        if tool['fill color'] is not None:
-            self.set_fill_color(tool['fill color'])
-        else:
-            # use black
-            self.set_fill_color( gtk.gdk.Color(0,0,0) )
-            
-        if tool['stroke color'] is not None:
-            self.set_stroke_color(tool['stroke color'])
-        else:
-            # use black
-            self.set_stroke_color( gtk.gdk.Color(0,0,0) )
+            if self.tool['fill color'] is not None:
+                self.set_fill_color(self.tool['fill color'])
+            else:
+                # use black
+                self.set_fill_color( gtk.gdk.Color(0,0,0) )
+                
+            if self.tool['stroke color'] is not None:
+                self.set_stroke_color(self.tool['stroke color'])
+            else:
+                # use black
+                self.set_stroke_color( gtk.gdk.Color(0,0,0) )
         
-        #FIXME: this is ugly!
-        if tool['name'] is 'brush':
-            self.brush_shape = tool['shape']
-        elif tool['name'] is 'eraser':
-            self.eraser_shape = tool['shape']
+        except AttributeError:
+            pass
         
-        self.fill = tool['fill']
+        if self.tool['line shape'] is not None:
+            self.line_shape = self.tool['line shape']
         
-        if tool['name'] is 'polygon_regular' and (tool['sides'] is not None):
-            self.polygon_sides = tool['sides']
-        if tool['name'] is 'star' and (tool['points'] is not None):
-            self.polygon_sides = tool['points']
+        if self.tool['fill'] is not None:
+            self.fill = self.tool['fill']
         
-        #TODO: set cursors (?)
+        if ( self.tool['name'] is 'polygon_regular' \
+           or self.tool['name'] is 'star')\
+           and (self.tool['vertices'] is not None):
+            self.vertices = self.tool['vertices']
+        
+        # Setting the cursor
         try:
             pixbuf = gtk.gdk.pixbuf_new_from_file('./images/' + tool['name'] + '.png')
             cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pixbuf, 6, 21)
@@ -934,3 +956,5 @@ class Area(gtk.DrawingArea):
             cursor = None
         
         self.window.set_cursor(cursor)
+        
+        

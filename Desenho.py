@@ -499,13 +499,13 @@ class Desenho:
         widget.oldy = coords[1]
         widget.queue_draw()
 
-    def clear(self):
+    def clear(self, widget):
         """Clear the drawing.
 
             @param  self -- Desenho.Desenho instance
-
+            @param  widget -- Area object (GtkDrawingArea)
         """
-        width, height = self.d.window.get_size()
+        width, height = widget.window.get_size()
         widget.desenho = []
         widget.textos = []      
         widget.pixmap.draw_rectangle(widget.get_style().white_gc, True,0, 0, width, height)

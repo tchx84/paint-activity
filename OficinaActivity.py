@@ -83,7 +83,7 @@ class OficinaActivity(activity.Activity):
         os.chdir(activity.get_bundle_path())
         #print activity.get_bundle_path()
         
-        self._fixed = gtk.Fixed()   
+        self._fixed = gtk.Fixed()
         self._area = Area(self) 
         
         toolbox = Toolbox(self)
@@ -123,8 +123,17 @@ class OficinaActivity(activity.Activity):
         # setting scrolledwindow as activity canvas...
         self.set_canvas(sw)
         
-        # Setting a default tool
-        self._area.tool = 'pencil'
+#         # Setting a default tool
+#         initial_tool = {
+#         'name'          : 'pencil',
+#         'line size'     : 2,
+#         'fill color'    : None,
+#         'stroke color'  : None,
+#         'line shape'    : 'circle',
+#         'fill'          : True,
+#         'vertices'      : None
+#         }
+#         self._area.set_tool(initial_tool)
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.
