@@ -524,21 +524,21 @@ class Desenho:
         if widget.estadoTexto == 0:
             widget.estadoTexto = 1
             
-            widget.janela._fixed.move(widget.janela._textview, int(event.x)+200, int(event.y)+100)
+            widget.janela.fixed.move(widget.janela.textview, int(event.x)+200, int(event.y)+100)
             # Area size has changed...
-            #widget.janela._fixed.move(widget.janela._textview, int(event.x), int(event.y))
-            widget.janela._textview.show()
-            widget.janela._textview.grab_focus()
+            #widget.janela.fixed.move(widget.janela.textview, int(event.x), int(event.y))
+            widget.janela.textview.show()
+            widget.janela.textview.grab_focus()
             
         else:   
             widget.estadoTexto = 0  
             
             try:
             # This works for a gtk.Entry
-                text = widget.janela._textview.get_text()
+                text = widget.janela.textview.get_text()
             except AttributeError:
             # This works for a gtk.TextView
-                buf = widget.janela._textview.get_buffer()
+                buf = widget.janela.textview.get_buffer()
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end)
             
@@ -547,9 +547,9 @@ class Desenho:
             
             widget.pixmap.draw_layout(widget.gc, widget.oldx, widget.oldy, layout)
             widget.pixmap_temp.draw_layout(widget.gc, widget.oldx, widget.oldy, layout)
-            widget.janela._textview.hide()
+            widget.janela.textview.hide()
             try:
-                widget.janela._textview.set_text('')
+                widget.janela.textview.set_text('')
             except AttributeError:
                 buf.set_text('')
 

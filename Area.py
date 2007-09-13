@@ -267,17 +267,17 @@ class Area(gtk.DrawingArea):
         elif self.estadoTexto is 1:
             try:
             # This works for a gtk.Entry
-                text = self.janela._textview.get_text()
+                text = self.janela.textview.get_text()
             except AttributeError:
             # This works for a gtk.TextView
-                buf = self.janela._textview.get_buffer()
+                buf = self.janela.textview.get_buffer()
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end)
                 
             if text is not None:
                 self.d.text(widget,event)
             self.estadoTexto = 0
-            self.janela._textview.hide()
+            self.janela.textview.hide()
             
         if not self.selmove or self.tool['name'] != 'marquee-rectangular':
             self.oldx, self.oldy = coords

@@ -83,8 +83,9 @@ class OficinaActivity(activity.Activity):
         os.chdir(activity.get_bundle_path())
         #print activity.get_bundle_path()
         
-        self._fixed = gtk.Fixed()
-        self._area = Area(self) 
+        # These attributes are used in other classes, so they should be public
+        self.fixed = gtk.Fixed()
+        self.area = Area(self) 
         
         toolbox = Toolbox(self)
         self.set_toolbox(toolbox)
@@ -96,44 +97,33 @@ class OficinaActivity(activity.Activity):
 
         
         color = gtk.gdk.color_parse("white")
-        self._fixed.modify_bg(gtk.STATE_NORMAL, color)
+        self.fixed.modify_bg(gtk.STATE_NORMAL, color)
 
-        self.bg = gtk.Image()
-        self.bg.set_from_file('./icons/bg.svg')
-        self._fixed.put(self.bg, 200, 100)
-        self.bg.show()
+        self._bg = gtk.Image()
+        self._bg.set_from_file('./icons/bg.svg')
+        self.fixed.put(self._bg, 200, 100)
+        self._bg.show()
 
-        self._textview = gtk.TextView()
+        self.textview = gtk.TextView()
         # If we use this, text viewer will have constant size, we don't want that
-        #self._textview.set_size_request(100,100)
+        #self.textview.set_size_request(100,100)
         
-        self._fixed.put(self._area, 200 , 100)
+        self.fixed.put(self.area, 200 , 100)
         # Area size increased
-        #self._fixed.put(self._area, 0 , 0)
+        #self.fixed.put(self.area, 0 , 0)
         
-        sw.add_with_viewport(self._fixed)
-        self._area.show()
-        self._fixed.show()
+        sw.add_with_viewport(self.fixed)
+        self.area.show()
+        self.fixed.show()
 
 
-        self._fixed.put(self._textview, 0, 0)
-        self._textview.hide()
+        self.fixed.put(self.textview, 0, 0)
+        self.textview.hide()
         sw.show()
 
         # setting scrolledwindow as activity canvas...
         self.set_canvas(sw)
         
-#         # Setting a default tool
-#         initial_tool = {
-#         'name'          : 'pencil',
-#         'line size'     : 2,
-#         'fill color'    : None,
-#         'stroke color'  : None,
-#         'line shape'    : 'circle',
-#         'fill'          : True,
-#         'vertices'      : None
-#         }
-#         self._area.set_tool(initial_tool)
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.
@@ -145,7 +135,7 @@ class OficinaActivity(activity.Activity):
         logging.debug('reading file %s', file_path)
 #         logging.debug(file_path)
         
-        self._area.loadImage(file_path, self._area, False)
+        self.area.loadImage(file_path, self.area, False)
         
 
 
@@ -159,9 +149,9 @@ class OficinaActivity(activity.Activity):
         logging.debug('saving as PNG')
         logging.debug('writting file %s', file_path)
         
-        width, height = self._area.window.get_size()
+        width, height = self.area.window.get_size()
         pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, width, height)
-        pixbuf.get_from_drawable(self._area.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
+        pixbuf.get_from_drawable(self.area.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
         self.metadata['mime_type'] = 'image/png'
         pixbuf.save(file_path, 'png', {})   
 
