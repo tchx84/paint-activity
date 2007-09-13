@@ -1,14 +1,19 @@
-7
-
+* Many improvements in palettes; size now is only choosen inside tool palette (alexandre)
+* User may choose 'line shape' in rainbow effect (alexandre)
+* Added greek and arabic translations (nathalia.sautchuk)
+* Bug #3320 fixed; Default tab now is 'Tools' (alexandre)
+* Bug #3172 fixed. Paint now start with 'Pencil' tool selected (alexandre)
 * Writting tool improved (alexandre)
 * Bug #2147 fixed (alexandre)
-* Build as Paint not oficina
-* Clean up NEWS file - please use setup.py release to do releases
 * toolbar use button copy only when something is selected (pekayatt)
 * New move_selection function, now past and import are really nice (pekayatt)
 * Sel functions improved, import and past now select the image, and can_undo fixed for first undo(pekayatt)
 * Fixed bug with brush and selection, and you can not undo when file is resumed in Journal(pekayatt)
 
+7
+
+* Build as Paint not oficina
+* Clean up NEWS file - please use setup.py release to do releases
 
 6
 
