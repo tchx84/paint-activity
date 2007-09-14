@@ -439,13 +439,22 @@ class ToolsToolbar(gtk.Toolbar):
             tool['name'] is self._TOOL_ERASER['name']:
             
             # Changing to gtk.RadioButton
-            # TODO: insert images to represent shapes
             item1 = gtk.RadioButton(None, _('Circle'))
             item1.show()
             item1.set_active(True)
             
+            image1 = gtk.Image()
+            image1.set_from_file('./icons/tool-shape-ellipse.svg')
+            image1.show()
+            item1.set_image(image1)
+            
             item2 = gtk.RadioButton(item1, _('Square'))
             item2.show()
+            
+            image2 = gtk.Image()
+            image2.set_from_file('./icons/tool-shape-rectangle.svg')
+            image2.show()
+            item2.set_image(image2)
             
             item1.connect('toggled', self._on_toggled, tool, 'circle')
             item2.connect('toggled', self._on_toggled, tool, 'square')
@@ -1417,13 +1426,23 @@ class EffectsToolbar(gtk.Toolbar):
             size_spinbutton.connect('value-changed', self._on_size_value_changed, tool)
             
             # Line Shape
-            # TODO: insert images to represent shapes
+            
             item1 = gtk.RadioButton(None, _('Circle'))
             item1.show()
             item1.set_active(True)
             
+            image1 = gtk.Image()
+            image1.set_from_file('./icons/tool-shape-ellipse.svg')
+            image1.show()
+            item1.set_image(image1)
+            
             item2 = gtk.RadioButton(item1, _('Square'))
             item2.show()
+            
+            image2 = gtk.Image()
+            image2.set_from_file('./icons/tool-shape-rectangle.svg')
+            image2.show()
+            item2.set_image(image2)
             
             item1.connect('toggled', self._on_radio_toggled, tool, 'circle')
             item2.connect('toggled', self._on_radio_toggled, tool, 'square')
