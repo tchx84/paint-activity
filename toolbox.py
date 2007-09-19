@@ -170,8 +170,7 @@ class DrawEditToolbar(EditToolbar):
         self.undo.set_sensitive( self._activity.area.can_undo() )
         self.redo.set_sensitive( self._activity.area.can_redo() )
         self.copy.set_sensitive( self._activity.area.is_selected() )
-        #TODO: it is not possible to verify these yet.
-        #self.copy.set_sensitive( self._activity.area.can_copy() )
+        #TODO: it is not possible to verify this yet.
         #self.paste.set_sensitive( self._activity.area.can_paste() )
         
     def _clear_all_cb(self, widget, data=None):
@@ -199,7 +198,6 @@ class ToolsToolbar(gtk.Toolbar):
         'fill'          : True,
         'vertices'      : None
     }
-    ##The Constructor
     _TOOL_ERASER = {
         'name'          : 'eraser',
         'line size'     : 20,
@@ -270,7 +268,7 @@ class ToolsToolbar(gtk.Toolbar):
         'vertices'      : None
     }
     
-    
+    ##The Constructor
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
 
@@ -283,12 +281,6 @@ class ToolsToolbar(gtk.Toolbar):
         self._icon_stroke.show()
         self._icon_stroke.set_tooltip(_('Tool Color'))
         
-        # Changing widget: using toolbox.ButtonStrokeColor instead of toolbox.ComboStrokeColors
-        '''
-        self._stroke_color = ComboStrokeColors(activity)
-        self.insert(self._stroke_color, -1)
-        self._stroke_color.show()
-        '''
         self._stroke_color = ButtonStrokeColor(activity)
         self._stroke_color.show()
 #         self._stroke_color.set_tooltip(_('Stroke Color'))
@@ -297,10 +289,6 @@ class ToolsToolbar(gtk.Toolbar):
         self.insert(item, -1)
         item.show()
         
-        
-#         self._stroke_size = ComboStrokeSize(activity)
-#         self.insert(self._stroke_size, -1)
-#         self._stroke_size.show()
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -480,7 +468,6 @@ class ToolsToolbar(gtk.Toolbar):
             # Creating a CheckButton named "Fill".
             fill_checkbutton = gtk.CheckButton(_('Fill'))
             fill_checkbutton.show()
-            #fill_checkbutton.set_active(self._activity.area.fill)
             fill_checkbutton.set_active(self._TOOL_POLYGON['fill'])
             
             fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, widget, self._TOOL_POLYGON)
@@ -488,14 +475,21 @@ class ToolsToolbar(gtk.Toolbar):
             palette.set_content(fill_checkbutton)
             
             # Creating Fill Color Button
-            label = gtk.Label(_('Fill Color'))
+            hbox = gtk.HBox()
+            hbox.show()
+            
+            label = gtk.Label(_('Fill Color: '))
             label.show()
             
             colorbutton = ButtonFillColor(self._activity)
             colorbutton.show()
             
-            palette.action_bar.pack_start(label)
-            palette.action_bar.pack_start(colorbutton)
+            hbox.pack_start(label)
+            hbox.pack_start(colorbutton)
+            
+            #palette.action_bar.pack_start(label)
+            #palette.action_bar.pack_start(colorbutton)
+            palette.set_content(hbox)
             
             colorbutton.connect_after('color-set', self._on_color_set, self._TOOL_POLYGON)
     
@@ -570,64 +564,6 @@ class ToolsToolbar(gtk.Toolbar):
         if radiobutton.get_active():
             self.set_shape(tool=tool, shape=shape)
 
-
-##Class to manage Stroke Size
-class ComboStrokeSize(ToolComboBox):
-
-    _ACTION_1 = 1
-    _ACTION_2 = 2
-    _ACTION_3 = 3
-    _ACTION_5 = 5
-    _ACTION_10 = 10
-    _ACTION_20 = 20
-    _ACTION_50 = 50
-    _ACTION_100 = 100
-    """
-    _ACTION_500 = 500
-    _ACTION_1000 = 1000
-    _ACTION_5000 = 5000
-    _ACTION_10000 = 10000
-    _ACTION_100000 = 100000
-    """
-    ##The Constructor
-    def __init__(self, activity):
-        ToolComboBox.__init__(self)
-        self._activity = activity
-
-        self._stroke_size = self.combo
-        self._stroke_size.append_item(self._ACTION_1, _('1'))
-        self._stroke_size.append_item(self._ACTION_2, _('2'))
-        self._stroke_size.append_item(self._ACTION_3, _('3'))        
-        self._stroke_size.append_item(self._ACTION_5, _('5'))
-        self._stroke_size.append_item(self._ACTION_10, _('10')) 
-        self._stroke_size.append_item(self._ACTION_20, _('20'))
-        self._stroke_size.append_item(self._ACTION_50, _('50'))
-        self._stroke_size.append_item(self._ACTION_100, _('100'))
-        """
-        self._stroke_size.append_item(self._ACTION_500, _('500'))
-        self._stroke_size.append_item(self._ACTION_1000, _('1000'))
-        self._stroke_size.append_item(self._ACTION_5000, _('5000'))
-        self._stroke_size.append_item(self._ACTION_10000, _('10000'))
-        self._stroke_size.append_item(self._ACTION_100000, _('100000'))
-        """
-
-        self._stroke_size.set_active(1)
-        self._stroke_size.connect('changed', self._combo_changed_cb)
-
-    def _combo_changed_cb(self, combo):
-#         model = combo.get_model()
-#         active = combo.get_active()
-#         self.set_stroke_size(model[active][0])
-        size = self.get_size()
-        self.set_stroke_size(size)
-        
-    def set_stroke_size(self, size):
-        self._activity.area.configure_line(size)
-        
-    def get_size(self):
-        model = self.combo.get_model()
-        active = self.combo.get_active()
-        return model[active][0]
 
 ##Class to manage the Fill Color of a Button
 class ButtonFillColor(gtk.ColorButton):
@@ -813,12 +749,7 @@ class ShapesToolbar(gtk.Toolbar):
         item.add(self._stroke_color)
         self.insert(item, -1)
         item.show()
-        
-        # Line size is now choosen into tool's palette
-#         self._stroke_size = ComboStrokeSize(activity)
-#         self.insert(self._stroke_size, -1)
-#         self._stroke_size.show()
-        
+                
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
@@ -1010,8 +941,15 @@ class ShapesToolbar(gtk.Toolbar):
         
         label = gtk.Label(_('Sides: '))
         label.show()
-        palette.action_bar.pack_start(label)
-        palette.action_bar.pack_start(spin)
+        
+        hbox = gtk.HBox()
+        hbox.show()
+        hbox.pack_start(label)
+        hbox.pack_start(spin)
+        
+        #palette.action_bar.pack_start(label)
+        #palette.action_bar.pack_start(spin)
+        palette.set_content(hbox)
         
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_POLYGON)
         
@@ -1052,8 +990,15 @@ class ShapesToolbar(gtk.Toolbar):
         
         label = gtk.Label(_('Points: '))
         label.show()
-        palette.action_bar.pack_start(label)
-        palette.action_bar.pack_start(spin)
+        
+        hbox = gtk.HBox()
+        hbox.show()
+        hbox.pack_start(label)
+        hbox.pack_start(spin)
+        
+        #palette.action_bar.pack_start(label)
+        #palette.action_bar.pack_start(spin)
+        palette.set_content(hbox)
         
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_STAR)
     
