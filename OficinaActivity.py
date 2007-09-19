@@ -98,12 +98,12 @@ class OficinaActivity(activity.Activity):
         
         color = gtk.gdk.color_parse("white")
         self.fixed.modify_bg(gtk.STATE_NORMAL, color)
-
+        
         self._bg = gtk.Image()
         self._bg.set_from_file('./icons/bg.svg')
         self.fixed.put(self._bg, 200, 100)
-        self._bg.show()
-
+        self._bg.show
+        
         self.textview = gtk.TextView()
         # If we use this, text viewer will have constant size, we don't want that
         #self.textview.set_size_request(100,100)
@@ -115,15 +115,12 @@ class OficinaActivity(activity.Activity):
         sw.add_with_viewport(self.fixed)
         self.area.show()
         self.fixed.show()
-
-
         self.fixed.put(self.textview, 0, 0)
         self.textview.hide()
         sw.show()
 
         # setting scrolledwindow as activity canvas...
         self.set_canvas(sw)
-        
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.
@@ -136,7 +133,6 @@ class OficinaActivity(activity.Activity):
 #         logging.debug(file_path)
         
         self.area.loadImage(file_path, self.area, False)
-        
 
 
     def write_file(self, file_path):

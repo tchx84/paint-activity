@@ -134,7 +134,6 @@ class DrawEditToolbar(EditToolbar):
         self._clear_all.connect('clicked', self._clear_all_cb)
         
         
-        
         self._activity.area.connect('undo', self._on_signal_undo_cb)
         self._activity.area.connect('redo', self._on_signal_redo_cb)
         self._activity.area.connect('selected', self._on_signal_copy_cb)
@@ -288,7 +287,6 @@ class ToolsToolbar(gtk.Toolbar):
         item.add(self._stroke_color)
         self.insert(item, -1)
         item.show()
-        
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -537,15 +535,15 @@ class ToolsToolbar(gtk.Toolbar):
         tool['fill'] = checkbutton.get_active()
         self.set_tool(tool=tool)
         
-    def _on_fill_checkbutton_map(self, checkbutton, data=None):
-        """
-        Update checkbutton condition to agree with Area.Area object; this prevents tools to have fill checked but be drawed not filled.
-        
-            @param self -- gtk.Toolbar
-            @param checkbutton
-            @param data
-        """
-        self._activity.area.fill = checkbutton.get_active()
+#     def _on_fill_checkbutton_map(self, checkbutton, data=None):
+#         """
+#         Update checkbutton condition to agree with Area.Area object; this prevents tools to have fill checked but be drawed not filled.
+#         
+#             @param self -- gtk.Toolbar
+#             @param checkbutton
+#             @param data
+#         """
+#         self._activity.area.fill = checkbutton.get_active()
         
     def _on_color_set(self, colorbutton, tool):
         logging.debug('toolbox.ToolsToolbar._on_color_set')
@@ -749,7 +747,7 @@ class ShapesToolbar(gtk.Toolbar):
         item.add(self._stroke_color)
         self.insert(item, -1)
         item.show()
-                
+        
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
@@ -1163,6 +1161,10 @@ class ImageToolbar(gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
         separator.show()
+        
+        self.width_percent = 1.
+        self.height_percent = 1.
+
         """
         self._object_rotate_left = ToolButton('object-rotate-left')
         self.insert(self._object_rotate_left, -1)
@@ -1181,14 +1183,24 @@ class ImageToolbar(gtk.Toolbar):
         self._object_height.show()
         self._object_height.set_tooltip(_('Height'))           
 
+        height_spinButton = self._create_spinButton(self._object_height, 'object-height', activity)
+
+        item = gtk.ToolItem()
+        item.add(height_spinButton)
+        self.insert(item, -1)
+        item.show()
+
         self._object_width = ToolButton('object-width')
         self.insert(self._object_width, -1)
         self._object_width.show()
         self._object_width.set_tooltip(_('Width'))
 
-
-        self._configure_palette_resize(self._object_height, 'object-height', activity)
-        self._configure_palette_resize(self._object_width, 'object-width', activity)
+        width_spinButton = self._create_spinButton(self._object_width, 'object-width', activity)
+        
+        item = gtk.ToolItem()
+        item.add(width_spinButton)
+        self.insert(item, -1)
+        item.show()
 
 #        self._object_height.connect('clicked', self.resize, activity, 'object-height', self._OBJECT_HEIGHT)
 
@@ -1196,20 +1208,31 @@ class ImageToolbar(gtk.Toolbar):
         #self._object_rotate_left.connect('clicked', self.rotate_left, activity)
         #self._object_rotate_right.connect('clicked', set_tool, activity, 'object-rotate-right', self._OBJECT_ROTATE_RIGHT)
 #        self._object_width.connect('clicked', self.resize, activity, 'object-width', self._OBJECT_WIDTH)
-	
-    def rotate_left(self, widget, activity):    
+
+    def _selected(self, widget, spin, activity):
+        if not activity.area.is_selected():
+            spin.set_value(100)
+            self.width_percent = 1.
+            self.height_percent = 1.
+        try:
+            del(activity.area.d.resize_pixbuf)
+            del(activity.area.d.resized)
+        except: pass
+
+    def rotate_left(self, widget, activity):
         #activity.area._rotate_left(widget)
         pass
 
-    def _resize(self, spinButton, tool, activity):
-        size = spinButton.get_value_as_int()
-        if activity.area.tool == 'marquee-rectangular' and activity.area.selmove:
+    def resize(self, spinButton, tool, activity):
+        if activity.area.tool['name'] == 'marquee-rectangular' and activity.area.selmove:
             if tool == "object-height":
-                activity.area.d.resizeSelection(activity.area,1., float(size)/100)
+                self.height_percent = spinButton.get_value_as_int()/100.
+                activity.area.d.resizeSelection(activity.area, self.width_percent, self.height_percent)
             elif tool == "object-width":
-                activity.area.d.resizeSelection(activity.area,float(size)/100, 1.)
-
-    def _configure_palette_resize(self, widget, tool, activity):
+                self.width_percent = spinButton.get_value_as_int()/100.
+                activity.area.d.resizeSelection(activity.area, self.width_percent, self.height_percent)
+                
+    def _create_spinButton(self, widget, tool, activity):
         """Set palette for a tool - width or height
 
             @param self -- gtk.Toolbar
@@ -1217,16 +1240,10 @@ class ImageToolbar(gtk.Toolbar):
             @param tool
             @param activity
         """
-        logging.debug('setting a palette for %s', tool)
-               
-        palette = widget.get_palette()
+        logging.debug('setting a spinButton for %s', tool)
         
         spin = gtk.SpinButton()
         spin.show()
-        
-        # When inserted in a Palette, a spinbutton does not display text in black
-        black = gtk.gdk.Color(0,0,0)
-        spin.modify_text(gtk.STATE_NORMAL, black)
         
         # This is where we set restrictions for Resizing:
         # Initial value, minimum value, maximum value, step
@@ -1235,13 +1252,11 @@ class ImageToolbar(gtk.Toolbar):
         spin.set_adjustment(adj)
         spin.set_numeric(True)
         
-        label = gtk.Label(_('Resize (%): '))
-        label.show()
-        palette.action_bar.pack_start(label)
-        palette.action_bar.pack_start(spin)
+        spin.connect('value-changed', self.resize, tool, activity)
+        activity.area.connect('selected', self._selected, spin, activity)
+
+        return spin
         
-        spin.connect('value-changed', self._resize, tool, activity)
-           
     def insertImage(self, widget, activity):
         # TODO: add a filter to display images only.
         dialog = gtk.FileChooserDialog(title=(_('Open File...')),   
@@ -1371,7 +1386,6 @@ class EffectsToolbar(gtk.Toolbar):
             size_spinbutton.connect('value-changed', self._on_size_value_changed, tool)
             
             # Line Shape
-            
             item1 = gtk.RadioButton(None, _('Circle'))
             item1.show()
             item1.set_active(True)

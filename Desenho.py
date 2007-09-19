@@ -60,6 +60,7 @@ import sys, gobject, socket
 from gtk import gdk
 import math
 import pango
+import gc
 
 
 WIDTH = 1195
@@ -548,6 +549,7 @@ class Desenho:
             widget.pixmap.draw_layout(widget.gc, widget.oldx, widget.oldy, layout)
             widget.pixmap_temp.draw_layout(widget.gc, widget.oldx, widget.oldy, layout)
             widget.janela.textview.hide()
+            
             try:
                 widget.janela.textview.set_text('')
             except AttributeError:
@@ -587,6 +589,8 @@ class Desenho:
             y = int(coords[1])
         else:
             y = widget.oldy
+
+        self.coords = (x,y)
         
         pixmap.draw_drawable(widget.gc,widget.pixmap,0,0,0,0,width,height)
         if fill:
@@ -595,11 +599,10 @@ class Desenho:
         pixmap.draw_rectangle(widget.gc_selection,False,x,y,dx,dy)
         pixmap.draw_rectangle(widget.gc_selection1,False,x-1,y-1,dx+2,dy+2)
         widget.queue_draw()
-             
+        
         return x,y,x+dx,y+dy
         
     def moveSelection(self, widget, coords, mvcopy=False, pixbuf_copy=None):
-        self.draw_widget = widget
         """Move the selection.
 
             @param  self -- Desenho.Desenho instance
@@ -609,6 +612,7 @@ class Desenho:
             @param  pixbuf_copy -- For import image
 
         """ 
+        
         width, height = widget.window.get_size()
 
         widget.pixmap_sel.draw_drawable(widget.gc,widget.pixmap,0,0,0,0, width, height)   
@@ -625,18 +629,26 @@ class Desenho:
             
         w = int(math.fabs(widget.sx - widget.oldx))
         h = int(math.fabs(widget.sy - widget.oldy))
-            
+        
+        self.coords = (coords[0] -w/2,coords[1]-h/2)
+
         widget._set_selection_bounds(coords[0]-w/2, coords[1]-h/2, coords[0]+w/2, coords[1]+h/2)             
         if not mvcopy:
             widget.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True, x0, y0, w, h)
-        
-        if pixbuf_copy!=None: #to import or paste image
-            widget.pixmap_sel.draw_pixbuf(widget.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-            widget.pixmap_temp.draw_pixbuf(widget.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-        else:    
-            widget.pixmap_sel.draw_drawable(widget.gc, widget.pixmap, x0, y0, coords[0] - w/2, coords[1]- h/2, w, h)
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,0,0,0,0, width, height)  
             
+        try: # test if resizing has been done
+            w, h = self.resized.get_width(), self.resized.get_height()
+            widget.pixmap_sel.draw_pixbuf(widget.gc,self.resized,0,0,coords[0] - w/2, coords[1] - h/2, w, h) 
+            widget.pixmap_temp.draw_pixbuf(widget.gc,self.resized,0,0,coords[0] - w/2, coords[1] - h/2, w, h)
+        except:
+            if pixbuf_copy!=None: #to import or paste image
+                widget.pixmap_sel.draw_pixbuf(widget.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+                widget.pixmap_temp.draw_pixbuf(widget.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+            else:    
+                widget.pixmap_sel.draw_drawable(widget.gc, widget.pixmap, x0, y0, coords[0] - w/2, coords[1]- h/2, w, h)
+                
+        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,0,0,0,0, width, height)
+        
         #to draw the selection black and white line rectangle
         widget.pixmap_sel.draw_rectangle(widget.gc_selection, False ,coords[0] - w/2, coords[1]- h/2, w, h)
         widget.pixmap_sel.draw_rectangle(widget.gc_selection1, False ,coords[0] - w/2-1, coords[1]- h/2-1, w+2, h+2)
@@ -650,12 +662,12 @@ class Desenho:
             @param  height_percent -- Percent of y scale
 
         """ 
-        #widget = self.draw_widget
-        width, height = widget.window.get_size()
-        
+        widget.desenha = True
+        widget.selmove = True
 
-        widget.pixmap.draw_drawable(widget.gc,widget.pixmap_temp,0,0,0,0, width, height)   
-         
+        width, height = widget.window.get_size()
+        widget.pixmap_sel.draw_drawable(widget.gc,widget.pixmap_temp,0,0,0,0, width, height)
+        
         if widget.sx > widget.oldx:
             x0 = int(widget.oldx)
         else:
@@ -668,28 +680,34 @@ class Desenho:
             
         w = int(math.fabs(widget.sx - widget.oldx))
         h = int(math.fabs(widget.sy - widget.oldy))
+        delta_x = int( w*(width_percent-1)/2 )
+        delta_y = int( h*(height_percent-1)/2 )
+        gc.collect()
+        
+        try: self.resize_pixbuf
+        except:
+            self.resize_pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
+            self.resize_pixbuf.get_from_drawable(widget.pixmap, gtk.gdk.colormap_get_system(), x0, y0, 0, 0, int(w), int(h))
 
-        #delta_x = int( w*(width_percent-1)/2 )
-        #delta_y = int( h*(height_percent-1)/2 )
+        x0,y0 = self.coords
+        
+        try:
+            del(self.resized)
+        except: pass
 
-        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-        pixbuf.get_from_drawable(widget.pixmap_temp, gtk.gdk.colormap_get_system(), x0, y0, 0, 0, w, h)
-        pixbuf = pixbuf.scale_simple(int(w*width_percent), int(h*height_percent), gtk.gdk.INTERP_BILINEAR)
+        self.resized = self.resize_pixbuf.scale_simple(int(w*width_percent), int(h*height_percent), gtk.gdk.INTERP_HYPER)
     
-        widget.pixmap.draw_rectangle(widget.get_style().white_gc, True, x0 , y0 , int(w*width_percent), int(h*height_percent))
-        widget.pixmap.draw_pixbuf(widget.get_style().white_gc,pixbuf,0,0,x0 , y0 ,int(w*width_percent), int(h*height_percent))
-      
-        #widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,0,0,0,0, width, height)  
+        widget.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True, x0 - delta_x, y0 - delta_y, int(w*width_percent), int(h*height_percent))
+        widget.pixmap_sel.draw_pixbuf(widget.get_style().white_gc,self.resized,0,0,x0 - delta_x, y0 - delta_y,int(w*width_percent), int(h*height_percent))
+        
+        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,0,0,0,0, width, height)  
 
 	    #to draw the selection black and white line rectangle
-        #widget.pixmap_sel.draw_rectangle(widget.gc_selection, False ,x0, y0-2,int(width_percent*w+1), int(height_percent*h+1))
-        #widget.pixmap_sel.draw_rectangle(widget.gc_selection1, False ,x0, y0-3,int(width_percent*w +2), int(height_percent*h +2))
-        
-
-        #widget.pixmap.draw_drawable(widget.gc, widget.pixmap_temp, 0,0,0,0, width, height)
+        widget.pixmap_sel.draw_rectangle(widget.gc_selection, False ,x0- delta_x -1, y0- delta_y-1,int(width_percent*w+1), int(height_percent*h+1))
+        widget.pixmap_sel.draw_rectangle(widget.gc_selection1, False ,x0- delta_x -2, y0- delta_y-2,int(width_percent*w +1), int(height_percent*h +1))
         
         widget.queue_draw()
-        widget.enableUndo(widget)
+        gc.collect()
         
     def polygon(self, widget, coords, temp, fill):
         """Draw polygon.
