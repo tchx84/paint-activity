@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
-"Report-Msgid-Bugs-To: oficina@lsi.usp.br\n"
-"POT-Creation-Date: 2007-09-11 13:52-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-19 09:32-0400\n"
 "PO-Revision-Date: 2007-09-11 14:01-0300\n"
 "Last-Translator: Ho Tsung Yin <johnytyh@lsi.usp.br>\n"
 "Language-Team: Language locale/zh\n"
@@ -15,234 +15,243 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: toolbox.py:75
+#: activity/activity.info:2 OficinaActivity.py:79
+msgid "Paint"
+msgstr ""
+
+#: toolbox.py:76
 msgid "Edit"
 msgstr "編輯"
 
-#: toolbox.py:79
+#: toolbox.py:80
 msgid "Tools"
 msgstr "工具"
 
-#: toolbox.py:83
+#: toolbox.py:84
 msgid "Shapes"
 msgstr "形狀"
 
-#: toolbox.py:87
+#: toolbox.py:88
 msgid "Text"
 msgstr "文字"
 
-#: toolbox.py:91
+#: toolbox.py:92
 msgid "Image"
 msgstr "圖片"
 
-#: toolbox.py:95
+#: toolbox.py:96
 msgid "Effects"
 msgstr "效果"
 
-#: toolbox.py:110
+#: toolbox.py:114
 msgid "Undo"
 msgstr ""
 
-#: toolbox.py:111
+#: toolbox.py:115
 msgid "Redo"
 msgstr ""
 
-#: toolbox.py:112
+#: toolbox.py:116
 msgid "Copy"
 msgstr ""
 
-#: toolbox.py:113
+#: toolbox.py:117
 msgid "Paste"
 msgstr ""
 
-#: toolbox.py:123
+#: toolbox.py:127
 msgid "Clear"
 msgstr ""
 
-#: toolbox.py:198
+#: toolbox.py:284
 msgid "Tool Color"
 msgstr ""
 
-#: toolbox.py:227
+#: toolbox.py:313
 msgid "Pencil"
 msgstr "鉛筆"
 
-#: toolbox.py:232
+#: toolbox.py:322
 msgid "Brush"
 msgstr "刷子"
 
-#: toolbox.py:241
+#: toolbox.py:331
 msgid "Eraser"
 msgstr "橡皮艇"
 
-#: toolbox.py:250 toolbox.py:715
+#: toolbox.py:340 toolbox.py:857
 msgid "Polygon"
 msgstr "多邊形"
 
-#: toolbox.py:259
+#: toolbox.py:349
 msgid "Bucket"
 msgstr "色彩桶"
 
-#: toolbox.py:283
+#: toolbox.py:378
 msgid "Rectangular Marquee"
 msgstr "矩形選擇"
 
-#: toolbox.py:313
-msgid "Square"
-msgstr "方形"
+#: toolbox.py:429 toolbox.py:1102 toolbox.py:1420
+msgid "Size: "
+msgstr ""
 
-#: toolbox.py:314
+#: toolbox.py:442 toolbox.py:1430
 msgid "Circle"
 msgstr "圓形"
 
-#: toolbox.py:333 toolbox.py:949
+#: toolbox.py:451 toolbox.py:1439
+msgid "Square"
+msgstr "方形"
+
+#: toolbox.py:462 toolbox.py:1450
+#, fuzzy
+msgid "Shape"
+msgstr "形狀"
+
+#: toolbox.py:481 toolbox.py:1080
 msgid "Fill"
 msgstr ""
 
-#: toolbox.py:557
-msgid "1"
-msgstr "1"
-
-#: toolbox.py:558
-msgid "2"
-msgstr "2"
-
-#: toolbox.py:559
-msgid "3"
-msgstr "3"
-
-#: toolbox.py:560
-msgid "5"
-msgstr "5"
-
-#: toolbox.py:561 toolbox.py:1306
-msgid "10"
-msgstr "10"
-
-#: toolbox.py:562
-msgid "20"
-msgstr "20"
-
-#: toolbox.py:563 toolbox.py:1304
-msgid "50"
-msgstr "50"
-
-#: toolbox.py:564 toolbox.py:1303
-msgid "100"
-msgstr "100"
-
-#: toolbox.py:657
+#: toolbox.py:491 toolbox.py:795
 msgid "Fill Color"
 msgstr ""
 
-#: toolbox.py:669
+#: toolbox.py:598
+msgid "1"
+msgstr "1"
+
+#: toolbox.py:599
+msgid "2"
+msgstr "2"
+
+#: toolbox.py:600
+msgid "3"
+msgstr "3"
+
+#: toolbox.py:601
+msgid "5"
+msgstr "5"
+
+#: toolbox.py:602 toolbox.py:1503
+msgid "10"
+msgstr "10"
+
+#: toolbox.py:603
+msgid "20"
+msgstr "20"
+
+#: toolbox.py:604 toolbox.py:1501
+msgid "50"
+msgstr "50"
+
+#: toolbox.py:605 toolbox.py:1500
+msgid "100"
+msgstr "100"
+
+#: toolbox.py:807
 msgid "Stroke Color"
 msgstr ""
 
-#: toolbox.py:692
+#: toolbox.py:830
 msgid "Ellipse"
 msgstr "橢圓形"
 
-#: toolbox.py:701
+#: toolbox.py:839
 msgid "Rectangle"
 msgstr "矩形"
 
-#: toolbox.py:710
+#: toolbox.py:848
 msgid "Line"
 msgstr "線條"
 
-#: toolbox.py:733
+#: toolbox.py:875
 msgid "Heart"
 msgstr "中心"
 
-#: toolbox.py:743
+#: toolbox.py:885
 msgid "Parallelogram"
 msgstr "平行四邊形"
 
-#: toolbox.py:752
+#: toolbox.py:894
 msgid "Arrow"
 msgstr "箭頭"
 
-#: toolbox.py:761
+#: toolbox.py:903
 msgid "Star"
 msgstr "星狀"
 
-#: toolbox.py:770
+#: toolbox.py:912
 msgid "Trapezoid"
 msgstr "梯形"
 
-#: toolbox.py:779
+#: toolbox.py:921
 msgid "Triangle"
 msgstr "三角形"
 
-#: toolbox.py:882
+#: toolbox.py:1011
 msgid "Sides: "
 msgstr ""
 
-#: toolbox.py:925
+#: toolbox.py:1053
 msgid "Points: "
 msgstr ""
 
-#: toolbox.py:987
+#: toolbox.py:1145
 msgid "Type"
 msgstr "類型"
 
-#: toolbox.py:1061
+#: toolbox.py:1215
 msgid "Insert Image"
 msgstr "插入物件"
 
-#: toolbox.py:1083
+#: toolbox.py:1237
 msgid "Height"
 msgstr "高度"
 
-#: toolbox.py:1088
+#: toolbox.py:1242
 msgid "Width"
 msgstr "寬度"
 
-#: toolbox.py:1139
+#: toolbox.py:1293
 msgid "Resize (%): "
 msgstr ""
 
-#: toolbox.py:1148
+#: toolbox.py:1302
 msgid "Open File..."
 msgstr "開啟舊檔..."
 
-#: toolbox.py:1188
+#: toolbox.py:1350
 msgid "Grayscale"
 msgstr "灰階"
 
-#: toolbox.py:1193
+#: toolbox.py:1355
 msgid "Rainbow"
 msgstr ""
 
-#: toolbox.py:1262
-msgid "Size"
-msgstr ""
-
-#: toolbox.py:1299
+#: toolbox.py:1496
 msgid "1000"
 msgstr "1000"
 
-#: toolbox.py:1300
+#: toolbox.py:1497
 msgid "500"
 msgstr "500"
 
-#: toolbox.py:1301
+#: toolbox.py:1498
 msgid "200"
 msgstr "200"
 
-#: toolbox.py:1302
+#: toolbox.py:1499
 msgid "150"
 msgstr "150"
 
-#: toolbox.py:1305
+#: toolbox.py:1502
 msgid "25"
 msgstr "25"
 
-#: toolbox.py:1319
+#: toolbox.py:1516
 msgid "ZOOM +"
 msgstr "ZOOM +"
 
-#: toolbox.py:1324
+#: toolbox.py:1521
 msgid "ZOOM -"
 msgstr "ZOOM -"
