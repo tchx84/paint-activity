@@ -8,7 +8,7 @@ Oficina is developed in Brazil at Escola Politécnica of
 Universidade de São Paulo. NATE is part of LSI (Integrable
 Systems Laboratory) and stands for Learning, Work and Entertainment
 Research Group. Visit our web page: 
-www.nate.lsi.usp.br
+www.lsi.usp.br/nate
 Suggestions, bugs and doubts, please email oficina@lsi.usp.br
 
 Oficina is free software; you can redistribute it and/or
@@ -38,6 +38,12 @@ Pedro Kayatt                        (pekayatt@gmail.com)
 Rafael Barbolo Lopes                (barbolo@gmail.com)
 Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
 Bruno Gola                          (brunogola@gmail.com)
+
+Group Manager:
+Irene Karaguilla Ficheman           (irene@lsi.usp.br)
+
+Cientific Coordinator:
+Roseli de Deus Lopes                (roseli@lsi.usp.br)
 
 */
 #include <pygobject.h>

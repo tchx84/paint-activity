@@ -10,7 +10,7 @@ Oficina is developed in Brazil at Escola Politécnica of
 Universidade de São Paulo. NATE is part of LSI (Integrable
 Systems Laboratory) and stands for Learning, Work and Entertainment
 Research Group. Visit our web page: 
-www.nate.lsi.usp.br
+www.lsi.usp.br/nate
 Suggestions, bugs and doubts, please email oficina@lsi.usp.br
 
 Oficina is free software; you can redistribute it and/or
@@ -40,24 +40,38 @@ Pedro Kayatt                        (pekayatt@gmail.com)
 Rafael Barbolo Lopes                (barbolo@gmail.com)
 Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
 
+Colaborators:
+Bruno Gola                          (brunogola@gmail.com)
+
+Group Manager:
+Irene Karaguilla Ficheman           (irene@lsi.usp.br)
+
+Cientific Coordinator:
+Roseli de Deus Lopes                (roseli@lsi.usp.br)
+
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
 
 /*to implement a queue */
-typedef int ElementType;
-struct Node;
-typedef struct Node *PtrToNode;
-typedef PtrToNode List;
-typedef PtrToNode Position;
-typedef struct QueueL  *Queue;
-int IsEmpty( Queue Q );
-Queue CreateQueue( void );
-void DisposeQueue( Queue Q );
-void MakeEmpty( Queue Q );
-void Enqueue( ElementType X, Queue Q );
-ElementType Front( Queue Q );
-void Dequeue( Queue Q );
+typedef struct _tno {
+    int info;
+   struct _tno *next;
+} no;
+
+typedef struct _tqueue{
+    no *front;
+    no *rear;
+} queue;
+
+
+int queue_is_empty(queue *q);
+queue *queue_init(void);
+void disposequeue(queue *q);
+void queue_make_empty(queue *q);
+void queue_enqueue(int element, queue *q);
+void queue_dequeue(queue *q);
 /*end of queue*/
+
 void fill(GdkDrawable *drawable, GdkGC *gc, int x, int y, int width, int height, int color);

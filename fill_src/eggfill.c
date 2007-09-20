@@ -10,7 +10,7 @@ Oficina is developed in Brazil at Escola Politécnica of
 Universidade de São Paulo. NATE is part of LSI (Integrable
 Systems Laboratory) and stands for Learning, Work and Entertainment
 Research Group. Visit our web page: 
-www.nate.lsi.usp.br
+www.lsi.usp.br/nate
 Suggestions, bugs and doubts, please email oficina@lsi.usp.br
 
 Oficina is free software; you can redistribute it and/or
@@ -40,154 +40,155 @@ Pedro Kayatt                        (pekayatt@gmail.com)
 Rafael Barbolo Lopes                (barbolo@gmail.com)
 Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
 
+Colaborators:
+Bruno Gola                          (brunogola@gmail.com)
+
+Group Manager:
+Irene Karaguilla Ficheman           (irene@lsi.usp.br)
+
+Cientific Coordinator:
+Roseli de Deus Lopes                (roseli@lsi.usp.br)
+
 */
+
 #include <gtk/gtk.h>
 #include "eggfill.h"
 
-/*for queue*/
-#define front(Q)   ( (Q)->Front )
-#define rear(Q)    ( (Q)->Rear )
-
-struct Node {
-    ElementType Element;
-    PtrToNode   Next;
-   };
-
-struct  QueueL{
-     PtrToNode  Front;
-     PtrToNode  Rear;
-    } ;
+#define front(q)   ( (q)->front )
+#define rear(q)    ( (q)->rear )
 
 /* this queue has a Header that points to the Front and Rear elements */
-/* empty queue: Q->Front = NULL and Q->Rear = NULL                      */
+/* empty queue: q->front = NULL and q->rear = NULL                      */
 
-/* check if queue Q is empty */
-int IsEmpty( Queue Q ){
-	return ((front(Q)==NULL) && (rear(Q)==NULL));
-}
- 
-Queue CreateQueue( void ){
-	Queue Q;
-	Q = malloc ( sizeof (struct Node));
-	
-	/* check if there is enough space */
-	if( Q == NULL )
-		printf( "Out of space!!!" );
-		
-    front(Q) = NULL;
-    rear(Q) = NULL;
-    
-    return Q;
+/* check if queue q is empty */
+int queue_is_empty(queue *q){
+	return ((front(q)==NULL) && (rear(q)==NULL));
 }
 
-void DisposeQueue( Queue Q ){
-	MakeEmpty(Q);
-	free(Q);
-}
-
-void MakeEmpty( Queue Q ){
-    if( Q == NULL )
-    	printf( "Must use CreateQueue first" );
-	else
-   		while( !IsEmpty( Q ) )
-        Dequeue( Q );
-}
-
-
-void Enqueue( ElementType X, Queue Q ){
-	PtrToNode TmpCell;
-    TmpCell = malloc( sizeof( struct Node ) );
-    if( TmpCell == NULL )
+queue *queue_init(void){
+    queue *q;
+    q = (queue*)malloc(sizeof(queue));
+    /* check if there is enough space */
+    if( q == NULL )
         printf( "Out of space!!!" );
-    else {
-		TmpCell->Element = X;
-	    TmpCell->Next = NULL;//rear(Q);
-	    if (IsEmpty(Q)){
-			//printf("The Queue is empty\n");	
-			front(Q)=TmpCell;
-		} else rear(Q)->Next = TmpCell;
-		rear(Q) = TmpCell;
-    }
+    q->front = NULL;
+    q->rear = NULL;
+    
+    return q;
+}
+
+void queue_destroy(queue *q){
+	queue_make_empty(q);
+	free(q);
+}
+
+void queue_make_empty(queue *q){
+    if( q == NULL )
+    	printf( "Must use CreateQueue first" );
+    else
+        while( !queue_is_empty(q) )
+            queue_dequeue(q);
 }
 
 
-//Mostra o Elemento e 1o da Fila
-ElementType Front( Queue Q ){
-	if (IsEmpty(Q)){
-		printf( "Empty queue" );
-        return 0;  /* Return value used to avoid warning */
-	} else {
-    	return front(Q)->Element;
+void queue_enqueue(int element, queue *q){
+    no *tmp;
+    tmp = (no*)malloc(sizeof(no));
+    if(tmp == NULL) {
+        printf("Out of space!!!");
+        return;
+    } else {
+        tmp->info = element;
+	tmp->next = NULL;
+	if (queue_is_empty(q)){
+	    q->front = tmp;
+	} else { 
+	    q->rear->next = tmp;
 	}
+	q->rear = tmp;
+    }
 }
 
-void Dequeue( Queue Q ){
-	PtrToNode tmpCell;
-	tmpCell = malloc( sizeof( struct Node ) );
-    if( IsEmpty( Q ) )
-        printf( "Empty queue" );
-    else {
-		tmpCell=front(Q);
-        front(Q)=front(Q)->Next;
-        if (front(Q)==NULL)
-			rear(Q)=NULL;
-        free(tmpCell);
+void queue_dequeue(queue *q){
+    no *tmp;
+    if(tmp == NULL) {
+        printf("Out of space!!!");
+    } else {
+	if(queue_is_empty(q)) {
+            printf( "Empty queue" );
+	}
+        else {
+    	    tmp = q->front;
+            q->front = q->front->next;
+            if (q->front==NULL) {
+		q->rear=NULL;
+	    }
+        }
     }
-}/* end of queue*/
+    free(tmp);
+}/* end of queue*/
 
 void fill(GdkDrawable *drawable, GdkGC *gc, int x, int y, int width, int height, int color){
 
+    printf("Entrando no fill\n");
     int color_start;
+    queue *lista_xy;
     
-    Queue lista_xy;
-    
-    lista_xy = CreateQueue();
+    lista_xy = queue_init();
 
     GdkImage *image;
     image = gdk_drawable_get_image(drawable,0,0,width,height);
+    printf("0x%x\n", image);
     
     color_start = gdk_image_get_pixel(image, x, y);
-    
+   
     if (color!=color_start) {
-        Enqueue(x, lista_xy);
-        Enqueue(y, lista_xy);
+        queue_enqueue(x, lista_xy);
+	queue_enqueue(y, lista_xy);
         gdk_image_put_pixel(image, x, y, color);
-        while (!IsEmpty(lista_xy)) {
+        while (!queue_is_empty(lista_xy)) {
             if (x+1 < width){
                 if (gdk_image_get_pixel(image, x+1, y) == color_start){
                     gdk_image_put_pixel(image, x+1, y, color);
-                    Enqueue(x+1, lista_xy);
-                    Enqueue(y, lista_xy);
+                    queue_enqueue(x+1, lista_xy);
+                    queue_enqueue(y, lista_xy);
                 }
-            }
+	    }
+            
             if (x-1 >= 0){
                 if (gdk_image_get_pixel(image, x-1, y) == color_start){
                     gdk_image_put_pixel(image, x-1, y, color);
-                    Enqueue(x-1, lista_xy);
-                    Enqueue(y, lista_xy);
+                    queue_enqueue(x-1, lista_xy);
+                    queue_enqueue(y, lista_xy);
                 }
             }
             if (y+1 < height){
                 if (gdk_image_get_pixel(image, x, y+1) == color_start){
                     gdk_image_put_pixel(image, x, y+1, color);
-                    Enqueue(x, lista_xy);
-                    Enqueue(y+1, lista_xy);
+                    queue_enqueue(x, lista_xy);
+                    queue_enqueue(y+1, lista_xy);
                 }
             }
             if (y-1 >= 0){
                 if (gdk_image_get_pixel(image, x, y-1) == color_start){
                     gdk_image_put_pixel(image, x, y-1, color);
-                    Enqueue(x, lista_xy);
-                    Enqueue(y-1, lista_xy);
+                    queue_enqueue(x, lista_xy);
+                    queue_enqueue(y-1, lista_xy);
                 }
             }
-            x = Front(lista_xy);
-            Dequeue(lista_xy);
-            y = Front(lista_xy);
-            Dequeue(lista_xy);
+            x = lista_xy->front->info;
+            queue_dequeue(lista_xy);
+            y = lista_xy->front->info;
+            queue_dequeue(lista_xy);
        }
    }
-    
    gdk_draw_image(drawable, gc, image, 0,0,0,0,width,height);
+   if (image != NULL) {
+	   g_object_unref(image);
+	   printf("Imagem %x\n", image);
+   } else {
+	   printf("Image = null\n");
+   }
+   queue_destroy(lista_xy);
+} 
 
-}       
