@@ -76,7 +76,7 @@ class OficinaActivity(activity.Activity):
 
         """
         activity.Activity.__init__(self, handle)
-        self.set_title(_('Paint'))
+        #self.set_title(_('Paint'))
         
         logging.debug('Starting Paint activity (Oficina)')
 
