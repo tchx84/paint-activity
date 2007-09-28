@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-19 09:32-0400\n"
-"PO-Revision-Date: 2007-09-18 09:26-0300\n"
+"PO-Revision-Date: 2007-09-24 12:41-0300\n"
 "Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -16,10 +16,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Spanish\n"
 
-#: activity/activity.info:2 OficinaActivity.py:79
-#, fuzzy
+#: activity/activity.info:2
+#: OficinaActivity.py:79
 msgid "Paint"
-msgstr "Puntos: "
+msgstr "Pintar"
 
 #: toolbox.py:76
 msgid "Edit"
@@ -81,7 +81,8 @@ msgstr "Pincel"
 msgid "Eraser"
 msgstr "Borrador"
 
-#: toolbox.py:340 toolbox.py:857
+#: toolbox.py:340
+#: toolbox.py:857
 msgid "Polygon"
 msgstr "Polígono"
 
@@ -93,29 +94,34 @@ msgstr "Balde"
 msgid "Rectangular Marquee"
 msgstr "Selección Rectangular"
 
-#: toolbox.py:429 toolbox.py:1102 toolbox.py:1420
-#, fuzzy
+#: toolbox.py:429
+#: toolbox.py:1102
+#: toolbox.py:1420
 msgid "Size: "
-msgstr "Tamaño"
+msgstr "Tamaño:"
 
-#: toolbox.py:442 toolbox.py:1430
+#: toolbox.py:442
+#: toolbox.py:1430
 msgid "Circle"
 msgstr "Círculo"
 
-#: toolbox.py:451 toolbox.py:1439
+#: toolbox.py:451
+#: toolbox.py:1439
 msgid "Square"
 msgstr "Cuadrado"
 
-#: toolbox.py:462 toolbox.py:1450
-#, fuzzy
+#: toolbox.py:462
+#: toolbox.py:1450
 msgid "Shape"
-msgstr "Formas"
+msgstr "Forma"
 
-#: toolbox.py:481 toolbox.py:1080
+#: toolbox.py:481
+#: toolbox.py:1080
 msgid "Fill"
 msgstr "Llenar"
 
-#: toolbox.py:491 toolbox.py:795
+#: toolbox.py:491
+#: toolbox.py:795
 msgid "Fill Color"
 msgstr "Color de llenado"
 
@@ -135,7 +141,8 @@ msgstr "3"
 msgid "5"
 msgstr "5"
 
-#: toolbox.py:602 toolbox.py:1503
+#: toolbox.py:602
+#: toolbox.py:1503
 msgid "10"
 msgstr "10"
 
@@ -143,11 +150,13 @@ msgstr "10"
 msgid "20"
 msgstr "20"
 
-#: toolbox.py:604 toolbox.py:1501
+#: toolbox.py:604
+#: toolbox.py:1501
 msgid "50"
 msgstr "50"
 
-#: toolbox.py:605 toolbox.py:1500
+#: toolbox.py:605
+#: toolbox.py:1500
 msgid "100"
 msgstr "100"
 
@@ -258,3 +267,4 @@ msgstr "ZOOM +"
 #: toolbox.py:1521
 msgid "ZOOM -"
 msgstr "ZOOM -"
+
