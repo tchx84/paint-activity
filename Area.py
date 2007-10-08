@@ -82,7 +82,8 @@ class Area(gtk.DrawingArea):
         logging.debug('Area.__init__(self, janela)')
         
         gtk.DrawingArea.__init__(self)
-        self.set_size_request(800, 600)
+        #self.set_size_request(800, 600)
+        self.set_size_request(1185, 770)
         self.set_events(gtk.gdk.POINTER_MOTION_MASK |
                 gtk.gdk.POINTER_MOTION_HINT_MASK |
                 gtk.gdk.BUTTON_PRESS_MASK |
@@ -519,8 +520,8 @@ class Area(gtk.DrawingArea):
         self.undo_surf = True
 
 
-	    #special case for func polygon
-        if self.tool['name'] == 'polygon':		
+        #special case for func polygon
+        if self.tool['name'] == 'polygon':        
                 self.polygon_start = True #start the polygon again
         
 
@@ -637,7 +638,7 @@ class Area(gtk.DrawingArea):
             if (os.path.exists(data)):
                 os.remove( data )
         data = None
-	       
+           
     def past(self):
         """ Past image.
         Past image that is in pixmap

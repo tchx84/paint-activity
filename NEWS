@@ -1,3 +1,5 @@
+* Drawing area now fits usable area (alexandre)
+
 11
 
 * Bug #3749 fixed; resuming from Journal is working again (alexandre)

@@ -525,9 +525,9 @@ class Desenho:
         if widget.estadoTexto == 0:
             widget.estadoTexto = 1
             
-            widget.janela.fixed.move(widget.janela.textview, int(event.x)+200, int(event.y)+100)
+            #widget.janela.fixed.move(widget.janela.textview, int(event.x)+200, int(event.y)+100)
             # Area size has changed...
-            #widget.janela.fixed.move(widget.janela.textview, int(event.x), int(event.y))
+            widget.janela.fixed.move(widget.janela.textview, int(event.x), int(event.y))
             widget.janela.textview.show()
             widget.janela.textview.grab_focus()
             
@@ -702,7 +702,7 @@ class Desenho:
         
         widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,0,0,0,0, width, height)  
 
-	    #to draw the selection black and white line rectangle
+        #to draw the selection black and white line rectangle
         widget.pixmap_sel.draw_rectangle(widget.gc_selection, False ,x0- delta_x -1, y0- delta_y-1,int(width_percent*w+1), int(height_percent*h+1))
         widget.pixmap_sel.draw_rectangle(widget.gc_selection1, False ,x0- delta_x -2, y0- delta_y-2,int(width_percent*w +1), int(height_percent*h +1))
         
