@@ -1,3 +1,5 @@
+12
+
 * Journal is now used to import images - using Sugar's ObjectChooser (alexandre)
 * Drawing area now fits usable area (alexandre)
 * Fixed bug in "Insert Image" (andre)
