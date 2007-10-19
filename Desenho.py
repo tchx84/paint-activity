@@ -56,15 +56,13 @@ Roseli de Deus Lopes                (roseli@lsi.usp.br)
 import  pygtk
 pygtk.require('2.0')
 import gtk
-import sys, gobject, socket
+import sys, gobject, logging
 from gtk import gdk
 import math
 import pango
 import gc
 
 
-WIDTH = 1195
-HEIGHT = 800
 ##Pixmap manipulation
 class Desenho:
     def __init__(self, widget):
@@ -105,13 +103,13 @@ class Desenho:
         widget.desenha = False
         if(shape == 'circle'):
             widget.pixmap.draw_arc(widget.gc_eraser, True, coords[0], coords[1], size, size, 0, 360*64)
-            if last[0] != -1:
+            if last:
                 widget.gc_eraser.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
                 widget.pixmap.draw_line(widget.gc_eraser,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
                 widget.gc_eraser.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         if(shape == 'square'):
             widget.pixmap.draw_rectangle(widget.gc_eraser, True, coords[0], coords[1], size, size)
-            if last[0] != -1:
+            if last:
                 points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
                 widget.pixmap.draw_polygon(widget.gc_eraser,True,points)
                 points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
@@ -132,13 +130,13 @@ class Desenho:
         widget.desenha = False
         if(shape == 'circle'):
             widget.pixmap.draw_arc(widget.gc_brush, True, coords[0], coords[1], size, size, 0, 360*64)
-            if last[0] != -1:
+            if last:
                 widget.gc_brush.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
                 widget.pixmap.draw_line(widget.gc_brush,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
                 widget.gc_brush.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         if(shape == 'square'):
             widget.pixmap.draw_rectangle(widget.gc_brush, True, coords[0], coords[1], size, size)
-            if last[0] != -1:
+            if last:
                 points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
                 widget.pixmap.draw_polygon(widget.gc_brush,True,points)
                 points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
@@ -177,12 +175,12 @@ class Desenho:
         widget.desenha = False
         if(shape == 'circle'):
             widget.pixmap.draw_arc(widget.gc_rainbow, True, coords[0], coords[1], size, size, 0, 360*64)
-            if last[0] != -1:
+            if last:
                 widget.gc_rainbow.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
                 widget.pixmap.draw_line(widget.gc_rainbow,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
                 widget.gc_rainbow.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         if(shape == 'square'):
-            if last[0] != -1:
+            if last:
                 widget.pixmap.draw_rectangle(widget.gc_rainbow, True, last[0], last[1], size, size)
                 points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
                 widget.pixmap.draw_polygon(widget.gc_rainbow,True,points)
@@ -207,17 +205,7 @@ class Desenho:
             pixmap = widget.pixmap
         width, height = widget.window.get_size()
         
-        dx = math.fabs(coords[0] - widget.oldx)
-        dy = math.fabs(coords[1] - widget.oldy)
-        
-        if coords[0] < widget.oldx:
-            x = coords[0]
-        else:
-            x = widget.oldx
-        if coords[1] < widget.oldy:
-            y = coords[1]
-        else:
-            y = widget.oldy
+        x, y, dx, dy, = self.adjust(widget,coords)
         
         pixmap.draw_drawable(widget.gc,widget.pixmap,0,0,0,0,width,height)
         if fill == True:
@@ -466,17 +454,7 @@ class Desenho:
             pixmap = widget.pixmap
         width, height = widget.window.get_size()
 
-        if coords[0] < widget.oldx:
-            x = coords[0]
-        else:
-            x = widget.oldx
-        if coords[1] < widget.oldy:
-            y = coords[1]
-        else:
-            y = widget.oldy
-        
-        dx = math.fabs(coords[0] - widget.oldx)
-        dy = math.fabs(coords[1] - widget.oldy)
+        x, y, dx, dy = self.adjust(widget,coords)
         
         pixmap.draw_drawable(widget.gc,widget.pixmap,0,0,0,0,width,height)
         if fill == True:
@@ -506,11 +484,32 @@ class Desenho:
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
         """
-        width, height = widget.window.get_size()
+        logging.debug('Desenho.clear')
+        
         widget.desenho = []
-        widget.textos = []      
-        widget.pixmap.draw_rectangle(widget.get_style().white_gc, True,0, 0, width, height)
-        widget.pixmap_temp.draw_rectangle(widget.get_style().white_gc, True,0, 0, width, height)
+        widget.textos = []
+        
+        # try to clear a selected area first
+        if widget.is_selected():
+            try:
+                width, height = widget.pixmap_sel.get_size()
+                
+                # Clear the selected area
+                widget.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True,0, 0, width, height)
+                # Draw the selected area in the displayed pixmap
+                widget.pixmap_temp.draw_drawable(widget.gc,widget.pixmap_sel,0,0,widget.orig_x,widget.orig_y, width, height)
+                # Draw the selection rectangle
+                widget.pixmap_temp.draw_rectangle(widget.gc_selection, False, widget.orig_x,widget.orig_y, width, height)
+                widget.pixmap_temp.draw_rectangle(widget.gc_selection1,False, widget.orig_x-1,widget.orig_y-1, width+2, height+2)
+                
+            except NameError, message:
+                logging.debug(message)
+            except Exception, message:
+                logging.debug('Unexpected error: %s', message)
+        else:
+            width, height = widget.window.get_size()
+            widget.pixmap.draw_rectangle(widget.get_style().white_gc, True,0, 0, width, height)
+            widget.pixmap_temp.draw_rectangle(widget.get_style().white_gc, True,0, 0, width, height)
         widget.queue_draw() 
     
     def text(self,widget,event):
@@ -560,7 +559,7 @@ class Desenho:
             widget.queue_draw()
             
 
-    def selection(self, widget, coords, temp, fill):
+    def selection(self, widget, coords, temp=True):
         """Make a selection.
 
             @param  self -- Desenho.Desenho instance
@@ -571,38 +570,30 @@ class Desenho:
             
             @return (x0,y0,x1,y1) -- coords of corners 
         """ 
-        
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
+      
         width, height = widget.window.get_size()
-        
-        dx = int(math.fabs(coords[0] - widget.oldx))
-        dy = int(math.fabs(coords[1] - widget.oldy))
-        
-        if coords[0] < widget.oldx:
-            x = int(coords[0])
-        else:
-            x = widget.oldx
-        if coords[1] < widget.oldy:
-            y = int(coords[1])
-        else:
-            y = widget.oldy
 
-        self.coords = (x,y)
-        
-        pixmap.draw_drawable(widget.gc,widget.pixmap,0,0,0,0,width,height)
-        if fill:
-            pixmap.draw_rectangle(widget.gc,True,x,y,dx,dy)
-            
-        pixmap.draw_rectangle(widget.gc_selection,False,x,y,dx,dy)
-        pixmap.draw_rectangle(widget.gc_selection1,False,x-1,y-1,dx+2,dy+2)
+        x, y, dx, dy = self.adjust(widget,coords,True)
+
+        widget.pixmap_temp.draw_drawable(widget.gc,widget.pixmap,0,0,0,0,width,height)
+        if temp:
+            widget.pixmap_temp.draw_rectangle(widget.gc_selection,False,x,y,dx,dy)
+            widget.pixmap_temp.draw_rectangle(widget.gc_selection1,False,x-1,y-1,dx+2,dy+2)
+        else:
+            try:
+                del (widget.pixmap_sel)
+            except: pass
+            widget.pixmap_sel = gtk.gdk.Pixmap(widget.window,dx,dy,-1)
+            widget.pixmap_sel.draw_drawable(widget.gc,widget.pixmap,x,y,0,0,dx,dy)
+            widget.pixmap.draw_rectangle(widget.get_style().white_gc,True,x,y,dx,dy)
+            widget.orig_x = x
+            widget.orig_y = y
+            widget.pixmap_temp.draw_rectangle(widget.gc_selection,False,x,y,dx,dy)
+            widget.pixmap_temp.draw_rectangle(widget.gc_selection1,False,x-1,y-1,dx+2,dy+2)
+
         widget.queue_draw()
         
-        return x,y,x+dx,y+dy
-        
-    def moveSelection(self, widget, coords, mvcopy=False, pixbuf_copy=None):
+    def moveSelection(self, widget, coords):
         """Move the selection.
 
             @param  self -- Desenho.Desenho instance
@@ -611,47 +602,22 @@ class Desenho:
             @param  mvcopy -- Copy or Move
             @param  pixbuf_copy -- For import image
 
-        """ 
-        
+        """
+
         width, height = widget.window.get_size()
 
-        widget.pixmap_sel.draw_drawable(widget.gc,widget.pixmap,0,0,0,0, width, height)   
-        
-        if widget.sx > widget.oldx:
-            x0 = int(widget.oldx)
-        else:
-            x0 = int(widget.sx)
-            
-        if widget.sy > widget.oldy:
-            y0 = int(widget.oldy)
-        else:
-            y0 = int(widget.sy)
-            
-        w = int(math.fabs(widget.sx - widget.oldx))
-        h = int(math.fabs(widget.sy - widget.oldy))
-        
-        self.coords = (coords[0] -w/2,coords[1]-h/2)
+        widget.pixmap_temp.draw_drawable(widget.gc,widget.pixmap,0,0,0,0, width, height)
 
-        widget._set_selection_bounds(coords[0]-w/2, coords[1]-h/2, coords[0]+w/2, coords[1]+h/2)             
-        if not mvcopy:
-            widget.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True, x0, y0, w, h)
-            
-        try: # test if resizing has been done
-            w, h = self.resized.get_width(), self.resized.get_height()
-            widget.pixmap_sel.draw_pixbuf(widget.gc,self.resized,0,0,coords[0] - w/2, coords[1] - h/2, w, h) 
-            widget.pixmap_temp.draw_pixbuf(widget.gc,self.resized,0,0,coords[0] - w/2, coords[1] - h/2, w, h)
-        except:
-            if pixbuf_copy!=None: #to import or paste image
-                widget.pixmap_sel.draw_pixbuf(widget.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-                widget.pixmap_temp.draw_pixbuf(widget.gc, pixbuf_copy, 0, 0, coords[0] - w/2, coords[1]- h/2, w, h, dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-            else:    
-                widget.pixmap_sel.draw_drawable(widget.gc, widget.pixmap, x0, y0, coords[0] - w/2, coords[1]- h/2, w, h)
-                
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,0,0,0,0, width, height)
+        dx = int(coords[0]-widget.oldx)
+        dy = int(coords[1]-widget.oldy)
         
-        #to draw the selection black and white line rectangle
-        widget.pixmap_sel.draw_rectangle(widget.gc_selection, False ,coords[0] - w/2, coords[1]- h/2, w, h)
-        widget.pixmap_sel.draw_rectangle(widget.gc_selection1, False ,coords[0] - w/2-1, coords[1]- h/2-1, w+2, h+2)
+        size = widget.pixmap_sel.get_size()
+
+        widget.pixmap_temp.draw_drawable(widget.gc,widget.pixmap_sel,0,0,widget.orig_x+dx,widget.orig_y+dy, size[0], size[1])
+        
+        widget.pixmap_temp.draw_rectangle(widget.gc_selection, False ,widget.orig_x+dx,widget.orig_y+dy, size[0], size[1])
+        widget.pixmap_temp.draw_rectangle(widget.gc_selection1,False,widget.orig_x+dx-1,widget.orig_y+dy-1,size[0]+2,size[1]+2)
+
         widget.queue_draw()
 
     def resizeSelection(self, widget, width_percent, height_percent):
@@ -662,54 +628,43 @@ class Desenho:
             @param  height_percent -- Percent of y scale
 
         """ 
+        width, height = widget.window.get_size()
         widget.desenha = True
         widget.selmove = True
-
-        width, height = widget.window.get_size()
-        widget.pixmap_sel.draw_drawable(widget.gc,widget.pixmap_temp,0,0,0,0, width, height)
         
-        if widget.sx > widget.oldx:
-            x0 = int(widget.oldx)
-        else:
-            x0 = int(widget.sx)
-            
-        if widget.sy > widget.oldy:
-            y0 = int(widget.oldy)
-        else:
-            y0 = int(widget.sy)
-            
-        w = int(math.fabs(widget.sx - widget.oldx))
-        h = int(math.fabs(widget.sy - widget.oldy))
-        delta_x = int( w*(width_percent-1)/2 )
-        delta_y = int( h*(height_percent-1)/2 )
         gc.collect()
-        
-        try: self.resize_pixbuf
-        except:
-            self.resize_pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, w, h)
-            self.resize_pixbuf.get_from_drawable(widget.pixmap, gtk.gdk.colormap_get_system(), x0, y0, 0, 0, int(w), int(h))
-
-        x0,y0 = self.coords
-        
+        #Create the pixbuf for future resizes
         try:
-            del(self.resized)
+            self.pixbuf_resize
+        except:
+            size = widget.pixmap_sel.get_size()
+            self.pixbuf_resize = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,False,8,size[0],size[1])
+            self.pixbuf_resize.get_from_drawable(widget.pixmap_sel,gtk.gdk.colormap_get_system(),0,0,0,0,size[0],size[1])
+
+        w = self.pixbuf_resize.get_width()
+        h = self.pixbuf_resize.get_height()
+        wr = int(w*width_percent)
+        hr = int(h*height_percent)
+        
+        resized = self.pixbuf_resize.scale_simple(wr,hr,gtk.gdk.INTERP_HYPER)
+
+        #Copy the resized picture to pixmap_sel
+        try:
+            del (widget.pixmap_sel)
         except: pass
-
-        self.resized = self.resize_pixbuf.scale_simple(int(w*width_percent), int(h*height_percent), gtk.gdk.INTERP_HYPER)
-    
-        widget.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True, x0 - delta_x, y0 - delta_y, int(w*width_percent), int(h*height_percent))
-        widget.pixmap_sel.draw_pixbuf(widget.get_style().white_gc,self.resized,0,0,x0 - delta_x, y0 - delta_y,int(w*width_percent), int(h*height_percent))
+        widget.pixmap_sel = gtk.gdk.Pixmap(widget.window,wr,hr,-1)
+        widget.pixmap_sel.draw_pixbuf(widget.get_style().white_gc,resized,0,0,0,0,wr,hr)
         
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,0,0,0,0, width, height)  
+        #Draw the new pixmap_sel
+        widget.pixmap_temp.draw_drawable(widget.gc,widget.pixmap,0,0,0,0,width,height)
+        widget.pixmap_temp.draw_drawable(widget.gc,widget.pixmap_sel,0,0,widget.orig_x,widget.orig_y,wr,hr)
+        widget.pixmap_temp.draw_rectangle(widget.gc_selection,False,widget.orig_x,widget.orig_y,wr,hr)
+        widget.pixmap_temp.draw_rectangle(widget.gc_selection1,False,widget.orig_x-1,widget.orig_y-1,wr+2,hr+2)
 
-        #to draw the selection black and white line rectangle
-        widget.pixmap_sel.draw_rectangle(widget.gc_selection, False ,x0- delta_x -1, y0- delta_y-1,int(width_percent*w+1), int(height_percent*h+1))
-        widget.pixmap_sel.draw_rectangle(widget.gc_selection1, False ,x0- delta_x -2, y0- delta_y-2,int(width_percent*w +1), int(height_percent*h +1))
-        
         widget.queue_draw()
         gc.collect()
         
-    def polygon(self, widget, coords, temp, fill):
+    def polygon(self, widget, coords, temp, fill, param = None):
         """Draw polygon.
 
             @param  self -- Desenho.Desenho instance
@@ -727,21 +682,48 @@ class Desenho:
         width, height = widget.window.get_size()
 
         pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0, width, height)
-        
-        if widget.polygon_start == True: # Starting a new polygon ?
-            if temp == True:
-                pixmap.draw_line(widget.gc_line,widget.oldx,widget.oldy, coords[0], coords[1])
-            else:
-                pixmap.draw_line(widget.gc_line,widget.oldx,widget.oldy, coords[0], coords[1])
+
+        if param == "moving":
+            # mouse not pressed moving
+            if not widget.polygon_start:
+                pixmap.draw_line(widget.gc_line,widget.last[0],widget.last[1], coords[0], coords[1])
+        elif widget.polygon_start == True: # Starting a new polygon ?
+            if param == "motion":
+                # first press
+                try:
+                    pixmap.draw_line(widget.gc_line,widget.last[0],widget.last[1], coords[0], coords[1])
+                    widget.pixmap.draw_line(widget.gc_line,widget.last[0],widget.last[1], coords[0], coords[1])
+                    widget.points.append(coords)
+                except:
+                    pixmap.draw_line(widget.gc_line,widget.oldx,widget.oldy, coords[0], coords[1])
+                    widget.pixmap.draw_line(widget.gc_line,widget.oldx,widget.oldy, coords[0], coords[1])
+                    widget.first = widget.oldx, widget.oldy
+                    widget.points = [widget.first, coords]
+                widget.enableUndo(widget)
+                widget.last = coords                    
+            else: # param == "release"
+                # first release
+                try:
+                    widget.first
+                    widget.points.append(coords)
+                    widget.pixmap.draw_line(widget.gc_line,widget.last[0],widget.last[1], coords[0], coords[1])
+                except:
+                    widget.first = widget.oldx, widget.oldy
+                    widget.points = [widget.first, coords]                
+                    widget.pixmap.draw_line(widget.gc_line,widget.oldx,widget.oldy, coords[0], coords[1])
                 widget.enableUndo(widget)
                 widget.last = coords
-                widget.first = widget.oldx, widget.oldy
                 widget.polygon_start = False
-                widget.points = [widget.first, coords]
         else:
-            if temp == True:
+            if param == "motion":
+     #           print "press"
                 pixmap.draw_line(widget.gc_line,widget.last[0],widget.last[1],coords[0],coords[1])
-            else:
+                widget.pixmap.draw_line(widget.gc_line,widget.last[0],widget.last[1], coords[0], coords[1])
+                widget.enableUndo(widget)
+                widget.last = coords
+                widget.points.append(coords)
+            elif param == "release":
+         #       print "release"
                 x = coords[0] - widget.first[0]
                 y = coords[1] - widget.first[1]
                 d = math.hypot(x,y)
@@ -754,11 +736,40 @@ class Desenho:
                     if fill == True:
                         pixmap.draw_polygon(widget.gc, True, tp)
                     pixmap.draw_polygon(widget.gc_line, False, tp)
-                    widget.last = -1, -1
+                    widget.last = []
                     widget.polygon_start = True
                     widget.undo_times -= 1#destroy the undo screen of polygon start 
                     widget.enableUndo(widget)
         widget.queue_draw()
         
+    def adjust(self, widget, coords, locked=False):
+        width, height = widget.window.get_size()
+        if widget.oldx > int(coords[0]):
+            xi = int(coords[0])
+            xf = widget.oldx
+        else:
+            xi = widget.oldx
+            xf = int(coords[0])
+
+        if widget.oldy > int(coords[1]):
+            yi = int(coords[1])
+            yf = widget.oldy
+        else:
+            yi = widget.oldy
+            yf = int(coords[1])
         
+        if locked == True:
+            if xi < 0:
+                xi = 0
+            if yi < 0:
+                yi = 0
+            if xf > width:
+                xf = width
+            if yf > height:
+                yf = height
+
+        dx = xf-xi
+        dy = yf-yi
+        return xi, yi, dx, dy
+       
 
