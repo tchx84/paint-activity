@@ -89,12 +89,19 @@ class Area(gtk.DrawingArea):
                 gtk.gdk.POINTER_MOTION_HINT_MASK |
                 gtk.gdk.BUTTON_PRESS_MASK |
                 gtk.gdk.BUTTON_RELEASE_MASK|
-                gtk.gdk.EXPOSURE_MASK)  
+                gtk.gdk.EXPOSURE_MASK |
+                gtk.gdk.KEY_PRESS_MASK |
+                gtk.gdk.KEY_RELEASE_MASK) 
                 
         self.connect("expose_event",self.expose)
         self.connect("motion_notify_event", self.mousemove)
         self.connect("button_press_event", self.mousedown)
-        self.connect("button_release_event", self.mouseup)      
+        self.connect("button_release_event", self.mouseup)
+        self.connect("key_press_event", self.key_press)
+        self.connect("key_release_event", self.key_release)
+
+        self.set_flags(gtk.CAN_FOCUS)
+        self.grab_focus()
 
         self.set_extension_events(gtk.gdk.EXTENSION_EVENTS_CURSOR)
         ## Define which tool is been used. It is now described as a dictionnary,
@@ -240,12 +247,13 @@ class Area(gtk.DrawingArea):
 
         """
         #logging.debug('Area.expose(self, widget, event)')
-        
-        area = event.area      
+        area = event.area
+        if self.tool['name'] is not 'text':
+            self.grab_focus()
         if self.desenha or self.selmove:
-            widget.window.draw_drawable(self.gc,self.pixmap_temp,area[0],area[1],area[0],area[1],area[2],area[3])  
+            widget.window.draw_drawable(self.gc,self.pixmap_temp,area[0],area[1],area[0],area[1],area[2],area[3])
         else:
-            widget.window.draw_drawable(self.gc,self.pixmap,area[0],area[1],area[0],area[1],area[2],area[3])     
+            widget.window.draw_drawable(self.gc,self.pixmap,area[0],area[1],area[0],area[1],area[2],area[3])
         return False
 
     def mousedown(self,widget,event):
@@ -280,42 +288,50 @@ class Area(gtk.DrawingArea):
             self.janela.textview.hide()
             
         self.oldx, self.oldy = coords
-        if self.selmove and self.tool['name'] != 'marquee-rectangular': #get out of the func selection
-            self.getout()
-            self.selmove = False
-        if self.tool['name'] == 'eraser':
-            self.last = []
-            self.d.eraser(widget, coords, self.last, self.line_size, self.tool['line shape'])
-            self.last = coords
-        elif self.tool['name'] == 'brush':
-            self.last = []
-            self.d.brush(widget, coords, self.last, self.line_size, self.tool['line shape'])
-            self.last = coords
-        elif self.tool['name'] == 'rainbow':
-            self.last = []
-            self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.tool['line shape'])
-            self.last = coords
-        elif self.tool['name'] == 'polygon':
-            self.configure_line(self.line_size)
-            
+        
+        if self.polygon_start is False and self.tool['name'] is not 'polygon':
+            self.d.polygon(widget, coords, False, self.tool['fill'],"bug")
+        
         x , y, state = event.window.get_pointer()
 
-        if (state & gtk.gdk.BUTTON3_MASK):#Handle with the right button click event.
-            self.sel_get_out = True
+        if state & gtk.gdk.BUTTON3_MASK:#Handle with the right button click event.
+            if self.tool['name'] == 'marquee-rectangular':
+                self.sel_get_out = True
         elif state & gtk.gdk.BUTTON1_MASK: #Handle with the left button click event.
+            if self.tool['name'] == 'eraser':
+                self.last = []
+                self.d.eraser(widget, coords, self.last, self.line_size, self.tool['line shape'])
+                self.last = coords
+            elif self.tool['name'] == 'brush':
+                self.last = []
+                self.d.brush(widget, coords, self.last, self.line_size, self.tool['line shape'])
+                self.last = coords
+            elif self.tool['name'] == 'rainbow':
+                self.last = []
+                self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.tool['line shape'])
+                self.last = coords
+            elif self.tool['name'] == 'polygon':
+                self.configure_line(self.line_size)
+                if self.polygon_start == False:
+                    self.desenha = True
             if self.selmove:
-                size = self.pixmap_sel.get_size()
-                xi = self.orig_x
-                yi = self.orig_y
-                xf = xi + size[0]
-                yf = yi + size[1]
-                if (coords[0] < xi) or (coords[0] > xf) or (coords[1] < yi) or (coords[1] > yf):
-                    self.sel_get_out = True
+                if self.tool['name'] != 'marquee-rectangular': #get out of the func selection
+                    self.getout()
+                    self.selmove = False
+                else:
+                    size = self.pixmap_sel.get_size()
+                    xi = self.orig_x
+                    yi = self.orig_y
+                    xf = xi + size[0]
+                    yf = yi + size[1]
+                    if (coords[0] < xi) or (coords[0] > xf) or (coords[1] < yi) or (coords[1] > yf):
+                        self.sel_get_out = True
             else:
                 self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0,0,0,0, width, height)
+            self.desenha = True
         widget.queue_draw()
-        self.desenha = True  
-           
+
+
         
     def mousemove(self,widget,event):
         """Make the Area object (GtkDrawingArea) recognize that the mouse is moving.
@@ -356,7 +372,7 @@ class Area(gtk.DrawingArea):
                     
                 elif self.tool['name'] == 'rectangle':
                     self.configure_line(self.line_size)
-                    self.d.square(widget,coords,True,self.tool['fill'])
+                    self.d.square(widget,event,coords,True,self.tool['fill'])
                     
                 elif self.tool['name'] == 'marquee-rectangular' and not self.selmove:
                     self.d.selection(widget,coords)
@@ -408,7 +424,7 @@ class Area(gtk.DrawingArea):
                 else:
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
 
-            elif self.tool['name'] == 'polygon':
+            elif self.tool['name'] == 'polygon' and not self.selmove:
                 self.desenha = True
                 self.configure_line(self.line_size)
                 self.d.polygon(widget,coords,True,self.tool['fill'],"moving")
@@ -423,7 +439,7 @@ class Area(gtk.DrawingArea):
         """
         coords = int(event.x), int(event.y)
         width, height = self.window.get_size()
-        if self.desenha == True:
+        if self.desenha or self.sel_get_out:
             if self.tool['name'] == 'line':
                 self.pixmap.draw_line(self.gc_line,self.oldx,self.oldy, int (event.x), int(event.y))                
                 widget.queue_draw()
@@ -434,7 +450,7 @@ class Area(gtk.DrawingArea):
                 self.enableUndo(widget)
             
             elif self.tool['name'] == 'rectangle':
-                self.d.square(widget,coords,False,self.tool['fill'])
+                self.d.square(widget,event,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
 
             elif self.tool['name'] == 'marquee-rectangular':
@@ -1050,3 +1066,46 @@ class Area(gtk.DrawingArea):
         except Exception, message:
             logging.debug('Unexpected error: %s', message)
 
+    def key_press(self,widget,event):
+        if event.keyval == gtk.keysyms.BackSpace:
+            if self.selmove:
+                self.selmove = False
+                try:
+                    del(self.pixmap_sel)
+                    del(self.pixbuf_resize)
+                except: pass
+                if self.tool['name'] == 'marquee-rectangular':
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                widget.queue_draw()
+                self.enableUndo(widget)
+        elif event.keyval == gtk.keysyms.a and gtk.gdk.CONTROL_MASK:
+            if self.selmove:
+                self.getout()
+            width, height = self.window.get_size()
+            if self.tool['name'] == 'marquee-rectangular':
+                self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
+            self.pixmap_sel = gtk.gdk.Pixmap(self.window,width,height,-1)
+            self.pixmap_sel.draw_drawable(self.gc,self.pixmap,0,0,0,0,width,height)
+            self.pixmap_temp.draw_drawable(self.gc,self.pixmap,0,0,0,0,width,height)
+            self.pixmap.draw_rectangle(self.get_style().white_gc,True,0,0,width,height)
+            self.orig_x = 0
+            self.orig_y = 0
+            self.pixmap_temp.draw_rectangle(self.gc_selection,False,0,0,width-1,height-1)
+            self.selmove = True
+            self.sel_get_out = False
+            self.emit('select')
+            widget.queue_draw()
+        elif event.keyval == gtk.keysyms.d and gtk.gdk.CONTROL_MASK:
+            if self.selmove:
+                self.getout(True,widget)
+                if self.tool['name'] == 'marquee-rectangular':
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                widget.queue_draw()
+        elif event.keyval == gtk.keysyms.Return:
+            self.getout(True,widget)
+            if self.tool['name'] == 'marquee-rectangular':
+                self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+            widget.queue_draw()
+
+    def key_release(self,widget,event):
+        pass

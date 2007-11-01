@@ -190,7 +190,7 @@ class Desenho:
         widget.queue_draw()
 
     
-    def square(self, widget, coords, temp, fill):
+    def square(self, widget, event, coords, temp, fill):
         """Draw a square.
 
             @param  self -- Desenho.Desenho instance
@@ -713,7 +713,7 @@ class Desenho:
                     widget.pixmap.draw_line(widget.gc_line,widget.oldx,widget.oldy, coords[0], coords[1])
                 widget.enableUndo(widget)
                 widget.last = coords
-                widget.polygon_start = False
+            widget.polygon_start = False
         else:
             if param == "motion":
      #           print "press"
@@ -740,6 +740,15 @@ class Desenho:
                     widget.polygon_start = True
                     widget.undo_times -= 1#destroy the undo screen of polygon start 
                     widget.enableUndo(widget)
+            elif param == "bug":
+                tp = tuple(widget.points)
+                if fill == True:
+                    pixmap.draw_polygon(widget.gc, True, tp)
+                pixmap.draw_polygon(widget.gc_line, False, tp)
+                widget.last = []
+                widget.polygon_start = True
+                widget.undo_times -= 1#destroy the undo screen of polygon start 
+                widget.enableUndo(widget)
         widget.queue_draw()
         
     def adjust(self, widget, coords, locked=False):
