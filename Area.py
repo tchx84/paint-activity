@@ -51,6 +51,15 @@ Irene Karaguilla Ficheman           (irene@lsi.usp.br)
 Cientific Coordinator:
 Roseli de Deus Lopes                (roseli@lsi.usp.br)
 
+UI Design (OLPC):
+Eben Eliason                        (eben@laptop.org)
+
+Project Coordinator (OLPC):
+Manusheel Gupta                     (manu@laptop.org)
+
+Project Advisor (OLPC):
+Walter Bender                       (walter@laptop.org)
+
 """
 
 
