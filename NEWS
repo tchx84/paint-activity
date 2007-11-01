@@ -1,3 +1,5 @@
+13
+
 * Bug #3709 fixed; Right click only works with 'selection' and 'free polygon' (andre)
 * Fixed bug with free polygon (andre)
 * Bug #3703 fixed; 'Crtl+A' select all and 'Crtl+D' deselect, without buttons for now (andre)
