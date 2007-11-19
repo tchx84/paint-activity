@@ -14,11 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? "
-"3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: KBabel 1.11.4\n"
+"nplurals=6; plural=n==0 ? 0: n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 "
+": n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -210,8 +210,9 @@ msgid "Rainbow"
 msgstr ""
 
 #: toolbox.py:1487
+#, fuzzy
 msgid "1000"
-msgstr ""
+msgstr "١٠٠"
 
 #: toolbox.py:1488
 msgid "500"

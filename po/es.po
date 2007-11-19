@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-19 19:13+0000\n"
+"PO-Revision-Date: 2007-11-19 20:55+0000\n"
 "Last-Translator: Xavier Alvarez <xavi.alvarez@gmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr "pintar"
+msgstr "Pintar"
 
 #: toolbox.py:77
 msgid "Edit"
@@ -95,7 +95,7 @@ msgstr "Selección Rectangular"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr "Tamaño:"
+msgstr "Tamaño: "
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
@@ -195,11 +195,11 @@ msgstr "Anchura"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "Seleccione imagen"
 
 #: toolbox.py:1345
 msgid "Grayscale"
-msgstr "Escala de Gris"
+msgstr "Escala de gris"
 
 #: toolbox.py:1350
 msgid "Rainbow"
@@ -288,7 +288,7 @@ msgstr "20"
 
 #: toolbox.py:1293
 msgid "Resize (%): "
-msgstr "Retamañar (%)"
+msgstr "Retamañar (%): "
 
 #: toolbox.py:1302
 msgid "Open File..."
