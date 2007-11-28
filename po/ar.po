@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-09-11 14:09-0300\n"
+"PO-Revision-Date: 2007-11-21 09:59+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
+"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
+"X-Generator: Pootle 1.0.2\n"
 "nplurals=6; plural=n==0 ? 0: n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 "
 ": n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr ""
+msgstr "ارسم"
 
 #: toolbox.py:77
 msgid "Edit"
@@ -50,27 +50,27 @@ msgstr "مؤثِّرات"
 
 #: toolbox.py:115
 msgid "Undo"
-msgstr ""
+msgstr "تراجع"
 
 #: toolbox.py:116
 msgid "Redo"
-msgstr ""
+msgstr "أعِد"
 
 #: toolbox.py:117
 msgid "Copy"
-msgstr ""
+msgstr "انسخ"
 
 #: toolbox.py:118
 msgid "Paste"
-msgstr ""
+msgstr "الصق"
 
 #: toolbox.py:128
 msgid "Clear"
-msgstr ""
+msgstr "امسح"
 
 #: toolbox.py:282
 msgid "Tool Color"
-msgstr ""
+msgstr "لون الأداة"
 
 #: toolbox.py:300
 msgid "Pencil"
@@ -98,7 +98,7 @@ msgstr "معلِّمة مربّعة"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr ""
+msgstr "المقاس: "
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
@@ -109,25 +109,24 @@ msgid "Square"
 msgstr "مربّع"
 
 #: toolbox.py:457 toolbox.py:1441
-#, fuzzy
 msgid "Shape"
-msgstr "أشكال"
+msgstr "شكل"
 
 #: toolbox.py:477 toolbox.py:1030
 msgid "Fill"
-msgstr ""
+msgstr "املأ"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr ""
+msgstr "لون الملء: "
 
 #: toolbox.py:740
 msgid "Fill Color"
-msgstr ""
+msgstr "لون الملء"
 
 #: toolbox.py:752
 msgid "Stroke Color"
-msgstr ""
+msgstr "لون الخط:"
 
 #: toolbox.py:770
 msgid "Ellipse"
@@ -147,7 +146,7 @@ msgstr "قلب"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr "متوازي أضلا"
+msgstr "متوازي أضلاع"
 
 #: toolbox.py:834
 msgid "Arrow"
@@ -167,15 +166,15 @@ msgstr "مثلّث"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr ""
+msgstr "الجوانب: "
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr ""
+msgstr "النقاط: "
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr "نوع"
+msgstr "اكتب"
 
 #: toolbox.py:1166
 msgid "Insert Image"
@@ -183,15 +182,15 @@ msgstr "أدرج صورة"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr ""
+msgstr "أدِر لليسار"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr ""
+msgstr "أدِر لليمين"
 
 #: toolbox.py:1191
 msgid "Height"
-msgstr "الارتفا"
+msgstr "الارتفاع"
 
 #: toolbox.py:1203
 msgid "Width"
@@ -199,7 +198,7 @@ msgstr "العرض"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "اختر صورة"
 
 #: toolbox.py:1345
 msgid "Grayscale"
@@ -207,24 +206,23 @@ msgstr "تدرج رمادي"
 
 #: toolbox.py:1350
 msgid "Rainbow"
-msgstr ""
+msgstr "ألوان الطيف"
 
 #: toolbox.py:1487
-#, fuzzy
 msgid "1000"
-msgstr "١٠٠"
+msgstr "١٠٠٠"
 
 #: toolbox.py:1488
 msgid "500"
-msgstr ""
+msgstr "٥٠٠"
 
 #: toolbox.py:1489
 msgid "200"
-msgstr ""
+msgstr "٢٠٠"
 
 #: toolbox.py:1490
 msgid "150"
-msgstr ""
+msgstr "١٥٠"
 
 #: toolbox.py:1491
 msgid "100"
@@ -236,7 +234,7 @@ msgstr "٥٠"
 
 #: toolbox.py:1493
 msgid "25"
-msgstr ""
+msgstr "٢٥"
 
 #: toolbox.py:1494
 msgid "10"
@@ -244,11 +242,11 @@ msgstr "١٠"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
-msgstr "زووم +"
+msgstr "كبّر +"
 
 #: toolbox.py:1512
 msgid "ZOOM -"
-msgstr "زووم -"
+msgstr "صغّر -"
 
 #~ msgid "1"
 #~ msgstr "١"
