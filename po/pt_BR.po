@@ -8,19 +8,18 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-09-11 14:00-0300\n"
-"Last-Translator: Nathalia <nathalia.sautchuk@gmail.com>\n"
+"PO-Revision-Date: 2007-11-20 15:21+0000\n"
+"Last-Translator: Ricardo Staudt <ricardost@gmail.com>\n"
 "Language-Team: Language locale/pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2
-#, fuzzy
 msgid "Paint"
-msgstr "Pontos: "
+msgstr "Pintar "
 
 #: toolbox.py:77
 msgid "Edit"
@@ -95,9 +94,8 @@ msgid "Rectangular Marquee"
 msgstr "Seleção Rectangular"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
-#, fuzzy
 msgid "Size: "
-msgstr "Tamanho"
+msgstr "Tamanho:"
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
@@ -108,16 +106,14 @@ msgid "Square"
 msgstr "Quadrado"
 
 #: toolbox.py:457 toolbox.py:1441
-#, fuzzy
 msgid "Shape"
-msgstr "Formas"
+msgstr "Forma"
 
 #: toolbox.py:477 toolbox.py:1030
 msgid "Fill"
 msgstr "Preenchimento"
 
 #: toolbox.py:490
-#, fuzzy
 msgid "Fill Color: "
 msgstr "Cor do Preenchimento"
 
@@ -183,11 +179,11 @@ msgstr "Inserir Imagem"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr ""
+msgstr "Girar para Esquerda"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr ""
+msgstr "Girar para a Direita"
 
 #: toolbox.py:1191
 msgid "Height"
@@ -199,7 +195,7 @@ msgstr "Largura"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "Escolher imagem"
 
 #: toolbox.py:1345
 msgid "Grayscale"

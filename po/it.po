@@ -2,92 +2,92 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2007-11-27 23:24+0000\n"
+"Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr ""
+msgstr "Disegna"
 
 #: toolbox.py:77
 msgid "Edit"
-msgstr ""
+msgstr "Modifica"
 
 #: toolbox.py:81
 msgid "Tools"
-msgstr ""
+msgstr "Strumenti"
 
 #: toolbox.py:85
 msgid "Shapes"
-msgstr ""
+msgstr "Forme"
 
 #: toolbox.py:89
 msgid "Text"
-msgstr ""
+msgstr "Testo"
 
 #: toolbox.py:93
 msgid "Image"
-msgstr ""
+msgstr "Immagine"
 
 #: toolbox.py:97
 msgid "Effects"
-msgstr ""
+msgstr "Effetti"
 
 #: toolbox.py:115
 msgid "Undo"
-msgstr ""
+msgstr "Annulla"
 
 #: toolbox.py:116
 msgid "Redo"
-msgstr ""
+msgstr "Riesegui"
 
 #: toolbox.py:117
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #: toolbox.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Incolla"
 
 #: toolbox.py:128
+#, fuzzy
 msgid "Clear"
-msgstr ""
+msgstr "Pulisci"
 
 #: toolbox.py:282
 msgid "Tool Color"
-msgstr ""
+msgstr "Colore Strumento"
 
 #: toolbox.py:300
 msgid "Pencil"
-msgstr ""
+msgstr "Matita"
 
 #: toolbox.py:309
 msgid "Brush"
-msgstr ""
+msgstr "Pennello"
 
 #: toolbox.py:318
 msgid "Eraser"
-msgstr ""
+msgstr "Gomma"
 
 #: toolbox.py:327 toolbox.py:797
 msgid "Polygon"
-msgstr ""
+msgstr "Poligono"
 
 #: toolbox.py:336
 msgid "Bucket"
-msgstr ""
+msgstr "Secchio"
 
 #: toolbox.py:365
 msgid "Rectangular Marquee"
@@ -95,31 +95,33 @@ msgstr ""
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr ""
+msgstr "Dimensione:"
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
-msgstr ""
+msgstr "Cerchio"
 
 #: toolbox.py:446 toolbox.py:1430
 msgid "Square"
-msgstr ""
+msgstr "Quadrato"
 
 #: toolbox.py:457 toolbox.py:1441
 msgid "Shape"
-msgstr ""
+msgstr "Forma"
 
 #: toolbox.py:477 toolbox.py:1030
+#, fuzzy
 msgid "Fill"
-msgstr ""
+msgstr "Riempi"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr ""
+msgstr "Colore Riempimento:"
 
 #: toolbox.py:740
+#, fuzzy
 msgid "Fill Color"
-msgstr ""
+msgstr "Colore Riempimento"
 
 #: toolbox.py:752
 msgid "Stroke Color"
@@ -127,120 +129,123 @@ msgstr ""
 
 #: toolbox.py:770
 msgid "Ellipse"
-msgstr ""
+msgstr "Ellisse"
 
 #: toolbox.py:779
 msgid "Rectangle"
-msgstr ""
+msgstr "Rettangolo"
 
 #: toolbox.py:788
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 #: toolbox.py:815
+#, fuzzy
 msgid "Heart"
-msgstr ""
+msgstr "Cuore"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr ""
+msgstr "Parallelogramma"
 
 #: toolbox.py:834
 msgid "Arrow"
-msgstr ""
+msgstr "Freccia"
 
 #: toolbox.py:843
 msgid "Star"
-msgstr ""
+msgstr "Stella"
 
 #: toolbox.py:852
+#, fuzzy
 msgid "Trapezoid"
-msgstr ""
+msgstr "Trapezio"
 
 #: toolbox.py:861
 msgid "Triangle"
-msgstr ""
+msgstr "Triangolo"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr ""
+msgstr "Lati:"
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr ""
+msgstr "Punti:"
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: toolbox.py:1166
 msgid "Insert Image"
-msgstr ""
+msgstr "Inserisci Immagine"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr ""
+msgstr "Ruota a Sinistra"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr ""
+msgstr "Ruota a Destra"
 
 #: toolbox.py:1191
 msgid "Height"
-msgstr ""
+msgstr "Altezza"
 
 #: toolbox.py:1203
 msgid "Width"
-msgstr ""
+msgstr "Larghezza"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "Scegli immagine"
 
 #: toolbox.py:1345
 msgid "Grayscale"
-msgstr ""
+msgstr "Scala di grigi"
 
 #: toolbox.py:1350
 msgid "Rainbow"
-msgstr ""
+msgstr "Arcobaleno"
 
 #: toolbox.py:1487
 msgid "1000"
-msgstr ""
+msgstr "1000"
 
 #: toolbox.py:1488
 msgid "500"
-msgstr ""
+msgstr "500"
 
 #: toolbox.py:1489
 msgid "200"
-msgstr ""
+msgstr "200"
 
 #: toolbox.py:1490
 msgid "150"
-msgstr ""
+msgstr "150"
 
 #: toolbox.py:1491
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #: toolbox.py:1492
 msgid "50"
-msgstr ""
+msgstr "50"
 
 #: toolbox.py:1493
 msgid "25"
-msgstr ""
+msgstr "25"
 
 #: toolbox.py:1494
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
-msgstr ""
+msgstr "ZOOM +"
 
 #: toolbox.py:1512
+#, fuzzy
 msgid "ZOOM -"
-msgstr ""
+msgstr "ZOOM -"

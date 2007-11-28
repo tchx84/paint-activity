@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-19 19:56+0000\n"
+"PO-Revision-Date: 2007-11-23 20:59+0000\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Language locale/fr/LC\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,6 @@ msgstr ""
 "X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2
-#, fuzzy
 msgid "Paint"
 msgstr "Dessiner"
 
@@ -44,7 +43,7 @@ msgstr "Image"
 
 #: toolbox.py:97
 msgid "Effects"
-msgstr "Effet"
+msgstr "Effets"
 
 #: toolbox.py:115
 msgid "Undo"
@@ -64,7 +63,7 @@ msgstr "Coller"
 
 #: toolbox.py:128
 msgid "Clear"
-msgstr "Nettoyer"
+msgstr "Effacer"
 
 #: toolbox.py:282
 msgid "Tool Color"
@@ -112,7 +111,7 @@ msgstr "Forme"
 
 #: toolbox.py:477 toolbox.py:1030
 msgid "Fill"
-msgstr "Remplir"
+msgstr "Remplissage"
 
 #: toolbox.py:490
 msgid "Fill Color: "
@@ -172,7 +171,7 @@ msgstr "Points : "
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr "Type"
+msgstr "Écrire"
 
 #: toolbox.py:1166
 msgid "Insert Image"
@@ -196,7 +195,7 @@ msgstr "Largeur"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr "Choisir une image"
+msgstr "Séléctionner une image"
 
 #: toolbox.py:1345
 msgid "Grayscale"

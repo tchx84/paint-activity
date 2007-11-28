@@ -2,245 +2,246 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2007-11-22 23:43+0000\n"
+"Last-Translator: Adi Roiban <adiroiban@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Pootle 1.0.2\n"
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr ""
+msgstr "Desenează"
 
 #: toolbox.py:77
 msgid "Edit"
-msgstr ""
+msgstr "Modifică"
 
 #: toolbox.py:81
 msgid "Tools"
-msgstr ""
+msgstr "Unelte"
 
 #: toolbox.py:85
 msgid "Shapes"
-msgstr ""
+msgstr "Forme"
 
 #: toolbox.py:89
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: toolbox.py:93
 msgid "Image"
-msgstr ""
+msgstr "Imagini"
 
 #: toolbox.py:97
 msgid "Effects"
-msgstr ""
+msgstr "Efecte"
 
 #: toolbox.py:115
 msgid "Undo"
-msgstr ""
+msgstr "Anulează"
 
 #: toolbox.py:116
 msgid "Redo"
-msgstr ""
+msgstr "Refă"
 
 #: toolbox.py:117
 msgid "Copy"
-msgstr ""
+msgstr "Copiază"
 
 #: toolbox.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Lipește"
 
 #: toolbox.py:128
 msgid "Clear"
-msgstr ""
+msgstr "Șterge"
 
 #: toolbox.py:282
 msgid "Tool Color"
-msgstr ""
+msgstr "Unealtă culori"
 
 #: toolbox.py:300
 msgid "Pencil"
-msgstr ""
+msgstr "Creion"
 
 #: toolbox.py:309
 msgid "Brush"
-msgstr ""
+msgstr "Pensulă"
 
 #: toolbox.py:318
 msgid "Eraser"
-msgstr ""
+msgstr "Radieră"
 
 #: toolbox.py:327 toolbox.py:797
 msgid "Polygon"
-msgstr ""
+msgstr "Poligon"
 
 #: toolbox.py:336
 msgid "Bucket"
-msgstr ""
+msgstr "Găleată"
 
 #: toolbox.py:365
+#, fuzzy
 msgid "Rectangular Marquee"
-msgstr ""
+msgstr "Marcaj dreptunghiular"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr ""
+msgstr "Mărime: "
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
-msgstr ""
+msgstr "Cerc"
 
 #: toolbox.py:446 toolbox.py:1430
 msgid "Square"
-msgstr ""
+msgstr "Pătrat"
 
 #: toolbox.py:457 toolbox.py:1441
 msgid "Shape"
-msgstr ""
+msgstr "Formă"
 
 #: toolbox.py:477 toolbox.py:1030
 msgid "Fill"
-msgstr ""
+msgstr "Umple"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr ""
+msgstr "Culoare de umplere: "
 
 #: toolbox.py:740
 msgid "Fill Color"
-msgstr ""
+msgstr "Culoare de umplere"
 
 #: toolbox.py:752
 msgid "Stroke Color"
-msgstr ""
+msgstr "Culoare pensulă"
 
 #: toolbox.py:770
 msgid "Ellipse"
-msgstr ""
+msgstr "Elipsă"
 
 #: toolbox.py:779
 msgid "Rectangle"
-msgstr ""
+msgstr "Dreptunghi"
 
 #: toolbox.py:788
 msgid "Line"
-msgstr ""
+msgstr "Linie"
 
 #: toolbox.py:815
 msgid "Heart"
-msgstr ""
+msgstr "Inimă"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr ""
+msgstr "Paralelogram"
 
 #: toolbox.py:834
 msgid "Arrow"
-msgstr ""
+msgstr "Săgeată"
 
 #: toolbox.py:843
 msgid "Star"
-msgstr ""
+msgstr "Stea"
 
 #: toolbox.py:852
 msgid "Trapezoid"
-msgstr ""
+msgstr "Trapez"
 
 #: toolbox.py:861
 msgid "Triangle"
-msgstr ""
+msgstr "Triunghi"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr ""
+msgstr "Laturi: "
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr ""
+msgstr "Puncte: "
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: toolbox.py:1166
 msgid "Insert Image"
-msgstr ""
+msgstr "Introdu o imagine"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr ""
+msgstr "Rotește la stânga"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr ""
+msgstr "Rotește la dreapta"
 
 #: toolbox.py:1191
 msgid "Height"
-msgstr ""
+msgstr "Înălțime"
 
 #: toolbox.py:1203
 msgid "Width"
-msgstr ""
+msgstr " Lățime"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "Alege imaginea"
 
 #: toolbox.py:1345
 msgid "Grayscale"
-msgstr ""
+msgstr "Nuanţe de gri"
 
 #: toolbox.py:1350
 msgid "Rainbow"
-msgstr ""
+msgstr "Curcubeu"
 
 #: toolbox.py:1487
 msgid "1000"
-msgstr ""
+msgstr "1000"
 
 #: toolbox.py:1488
 msgid "500"
-msgstr ""
+msgstr "500"
 
 #: toolbox.py:1489
 msgid "200"
-msgstr ""
+msgstr "200"
 
 #: toolbox.py:1490
 msgid "150"
-msgstr ""
+msgstr "150"
 
 #: toolbox.py:1491
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #: toolbox.py:1492
 msgid "50"
-msgstr ""
+msgstr "50"
 
 #: toolbox.py:1493
 msgid "25"
-msgstr ""
+msgstr "25"
 
 #: toolbox.py:1494
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
-msgstr ""
+msgstr "Lupă +"
 
 #: toolbox.py:1512
 msgid "ZOOM -"
-msgstr ""
+msgstr "Lupă -"
