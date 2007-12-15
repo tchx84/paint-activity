@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-27 23:24+0000\n"
+"PO-Revision-Date: 2007-12-01 23:16+0000\n"
 "Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr ""
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr "Dimensione:"
+msgstr "Dimensione: "
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
@@ -116,7 +116,7 @@ msgstr "Riempi"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr "Colore Riempimento:"
+msgstr "Colore Riempimento: "
 
 #: toolbox.py:740
 #, fuzzy
@@ -167,11 +167,11 @@ msgstr "Triangolo"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr "Lati:"
+msgstr "Lati: "
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr "Punti:"
+msgstr "Punti: "
 
 #: toolbox.py:1095
 msgid "Type"
@@ -246,6 +246,5 @@ msgid "ZOOM +"
 msgstr "ZOOM +"
 
 #: toolbox.py:1512
-#, fuzzy
 msgid "ZOOM -"
 msgstr "ZOOM -"
