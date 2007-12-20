@@ -1353,7 +1353,7 @@ class EffectsToolbar(gtk.Toolbar):
         self._effect_grayscale.show()
         self._effect_grayscale.set_tooltip(_('Grayscale'))
         
-        self._effect_rainbow = ToolButton('effect-raindow')
+        self._effect_rainbow = ToolButton('effect-rainbow')
         self.insert(self._effect_rainbow, -1)
         self._effect_rainbow.show()
         self._effect_rainbow.set_tooltip(_('Rainbow'))
