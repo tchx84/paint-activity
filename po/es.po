@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-19 20:55+0000\n"
+"PO-Revision-Date: 2007-11-25 15:17+0000\n"
 "Last-Translator: Xavier Alvarez <xavi.alvarez@gmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Limpiar"
 
 #: toolbox.py:282
 msgid "Tool Color"
-msgstr "Color da Herramienta"
+msgstr "Color de la Herramienta"
 
 #: toolbox.py:300
 msgid "Pencil"
@@ -187,11 +187,11 @@ msgstr "Rotar derecha"
 
 #: toolbox.py:1191
 msgid "Height"
-msgstr "Altura"
+msgstr "Alto"
 
 #: toolbox.py:1203
 msgid "Width"
-msgstr "Anchura"
+msgstr "Ancho"
 
 #: toolbox.py:1298
 msgid "Choose image"
