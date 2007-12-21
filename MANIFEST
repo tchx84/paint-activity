@@ -14,11 +14,13 @@ fill_src/fill.defs
 fill_src/fill.override
 fill_src/fillmodule.c
 icons/bg.svg
+icons/edit-clear.svg
 icons/edit-copy.svg
 icons/edit-paste.svg
 icons/edit-redo.svg
 icons/edit-undo.svg
 icons/effect-grayscale.svg
+icons/effect-rainbow.svg
 icons/format-justify-center.svg
 icons/format-justify-left.svg
 icons/format-justify-right.svg
