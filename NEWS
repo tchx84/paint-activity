@@ -1,3 +1,9 @@
+14
+
+Bug #4806 solved: icons missing (Clear and Rainbow) (alexandre)
+MANIFEST file updated (now it includes new languages from pootle) (alexandre)
+Translations updated (from pootle)
+
 13
 
 * Bug #3709 fixed; Right click only works with 'selection' and 'free polygon' (andre)
