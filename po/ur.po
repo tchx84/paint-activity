@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-27 11:14+0000\n"
-"Last-Translator: Waqas Nasir Toor <waqastoor@gmail.com>\n"
+"PO-Revision-Date: 2007-12-29 19:24+0000\n"
+"Last-Translator: Huda Sarfraz <huda.sarfraz@nu.edu.pk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr "رنگ و روغن"
 
 #: toolbox.py:77
 msgid "Edit"
-msgstr "مرتب کریں"
+msgstr "تدوین کریں"
 
 #: toolbox.py:81
 msgid "Tools"
@@ -34,23 +34,23 @@ msgstr "شکلیں"
 
 #: toolbox.py:89
 msgid "Text"
-msgstr "عبارت"
+msgstr "متن"
 
 #: toolbox.py:93
 msgid "Image"
-msgstr "تصویر"
+msgstr "نقش"
 
 #: toolbox.py:97
 msgid "Effects"
-msgstr "اثر"
+msgstr "اثرات"
 
 #: toolbox.py:115
 msgid "Undo"
-msgstr "منسوخ کریں"
+msgstr "کالعدم کریں"
 
 #: toolbox.py:116
 msgid "Redo"
-msgstr "دوباره کریں"
+msgstr "اعادہ کریں"
 
 #: toolbox.py:117
 msgid "Copy"
@@ -78,11 +78,11 @@ msgstr "برش"
 
 #: toolbox.py:318
 msgid "Eraser"
-msgstr "ربڑ"
+msgstr "ربر"
 
 #: toolbox.py:327 toolbox.py:797
 msgid "Polygon"
-msgstr "کثيرالاضلاع"
+msgstr "کثیرالاضلاع"
 
 #: toolbox.py:336
 msgid "Bucket"
@@ -90,11 +90,11 @@ msgstr "بالٹی"
 
 #: toolbox.py:365
 msgid "Rectangular Marquee"
-msgstr "تکونی مارکوی"
+msgstr "مستطيل مارقی"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr "مقدار:_"
+msgstr "سائز:_"
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
@@ -114,19 +114,19 @@ msgstr "بهریں"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr "رنگ بهریں:_"
+msgstr "بھرنے کا رنگ:_"
 
 #: toolbox.py:740
 msgid "Fill Color"
-msgstr "رنگ بهریں"
+msgstr "بھرنے کا رنگ"
 
 #: toolbox.py:752
 msgid "Stroke Color"
-msgstr "رنگ بهریں"
+msgstr "جنبش کا رنگ"
 
 #: toolbox.py:770
 msgid "Ellipse"
-msgstr "ترخيم"
+msgstr "بیضوی شکل"
 
 #: toolbox.py:779
 msgid "Rectangle"
@@ -138,11 +138,11 @@ msgstr "لکير"
 
 #: toolbox.py:815
 msgid "Heart"
-msgstr "مرکزی حصه"
+msgstr "دل"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr "متوازی الاضلاع"
+msgstr "متوازی اضلاع"
 
 #: toolbox.py:834
 msgid "Arrow"
@@ -158,7 +158,7 @@ msgstr "مربع منحرف نما"
 
 #: toolbox.py:861
 msgid "Triangle"
-msgstr "تکون"
+msgstr "مثلث"
 
 #: toolbox.py:948
 msgid "Sides: "
@@ -166,23 +166,23 @@ msgstr "اطراف:_"
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr "نکتے:_"
+msgstr "پوائنٹ:_"
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr "نمونه"
+msgstr "قسم"
 
 #: toolbox.py:1166
 msgid "Insert Image"
-msgstr "تصوير ڈاليں"
+msgstr "نقش داخل کریں"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr "بائیں گهومیں"
+msgstr "بائیں گھمائیں"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr "دائیں گهومیں"
+msgstr "دائیں گھمائیں"
 
 #: toolbox.py:1191
 msgid "Height"
@@ -194,7 +194,7 @@ msgstr "چوڑائی"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr "تصویر چنیں"
+msgstr "نقش منتخب کریں"
 
 #: toolbox.py:1345
 msgid "Grayscale"
@@ -206,35 +206,35 @@ msgstr "قوس قزح"
 
 #: toolbox.py:1487
 msgid "1000"
-msgstr "١٠٠٠"
+msgstr "1000"
 
 #: toolbox.py:1488
 msgid "500"
-msgstr "۵٠٠"
+msgstr "500"
 
 #: toolbox.py:1489
 msgid "200"
-msgstr "٢٠٠"
+msgstr "200"
 
 #: toolbox.py:1490
 msgid "150"
-msgstr "١۵٠"
+msgstr "150"
 
 #: toolbox.py:1491
 msgid "100"
-msgstr "١٠٠"
+msgstr "100"
 
 #: toolbox.py:1492
 msgid "50"
-msgstr "۵٠"
+msgstr "50"
 
 #: toolbox.py:1493
 msgid "25"
-msgstr "٢۵"
+msgstr "25"
 
 #: toolbox.py:1494
 msgid "10"
-msgstr "١٠"
+msgstr "10"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
