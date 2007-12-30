@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-12-11 06:43+0000\n"
-"Last-Translator: Jamil Ahmed <itsjamil@gmail.com>\n"
+"PO-Revision-Date: 2007-12-21 19:44+0000\n"
+"Last-Translator: Khandakar Mujahidul Islam <suzan229@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,19 +81,19 @@ msgstr "ইরেজার"
 
 #: toolbox.py:327 toolbox.py:797
 msgid "Polygon"
-msgstr ""
+msgstr "বহুভূজ"
 
 #: toolbox.py:336
 msgid "Bucket"
-msgstr ""
+msgstr "ঝুড়ি"
 
 #: toolbox.py:365
 msgid "Rectangular Marquee"
-msgstr ""
+msgstr "চতুর্ভূজাকার মার্কিউই"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr "আকার:"
+msgstr "আকার: "
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
@@ -113,75 +113,75 @@ msgstr "ভর্তি করো"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr ""
+msgstr "রং ভর্তি করো: "
 
 #: toolbox.py:740
 msgid "Fill Color"
-msgstr ""
+msgstr "রং ভর্তি করো"
 
 #: toolbox.py:752
 msgid "Stroke Color"
-msgstr ""
+msgstr "রং দিয়ে আঘাত করো"
 
 #: toolbox.py:770
 msgid "Ellipse"
-msgstr ""
+msgstr "উপবৃত্ত"
 
 #: toolbox.py:779
 msgid "Rectangle"
-msgstr ""
+msgstr "আয়তক্ষেত্র"
 
 #: toolbox.py:788
 msgid "Line"
-msgstr "সরল রেখা"
+msgstr "রেখা"
 
 #: toolbox.py:815
 msgid "Heart"
-msgstr ""
+msgstr "হৃদয়"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr ""
+msgstr "সামান্তরিক"
 
 #: toolbox.py:834
 msgid "Arrow"
-msgstr ""
+msgstr "তীর"
 
 #: toolbox.py:843
 msgid "Star"
-msgstr ""
+msgstr "তারা"
 
 #: toolbox.py:852
 msgid "Trapezoid"
-msgstr ""
+msgstr "ট্রাপিজিয়ম"
 
 #: toolbox.py:861
 msgid "Triangle"
-msgstr ""
+msgstr "ত্রিভুজ"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr ""
+msgstr "পার্শ্ব: "
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr ""
+msgstr "বিন্দু: "
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr ""
+msgstr "ধরণ"
 
 #: toolbox.py:1166
 msgid "Insert Image"
-msgstr ""
+msgstr "ছবি প্রবেশ করাও"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr ""
+msgstr "বামে ঘোরাও"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr ""
+msgstr "ডানে ঘোরাও"
 
 #: toolbox.py:1191
 msgid "Height"
@@ -193,15 +193,15 @@ msgstr "প্রস্থ"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "ছবি বেছে নাও"
 
 #: toolbox.py:1345
 msgid "Grayscale"
-msgstr ""
+msgstr "সাদাকালো"
 
 #: toolbox.py:1350
 msgid "Rainbow"
-msgstr ""
+msgstr "রংধনু"
 
 #: toolbox.py:1487
 msgid "1000"
