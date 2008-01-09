@@ -64,7 +64,7 @@ Walter Bender                       (walter@laptop.org)
 
 
 
-import gtk, gobject, logging, os
+import gtk, gobject, logging, os, tempfile
 import math
 import pango
 from fill import *
@@ -621,18 +621,20 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
         """
         clipBoard = gtk.Clipboard()
-        tempPath = os.path.join("/tmp", "tempFile")
-        tempPath = os.path.abspath(tempPath)  
+        temp_dir = os.environ.get('SUGAR_ACTIVITY_ROOT', None)
+        if temp_dir is None:
+            temp_dir = '/tmp'
+
+        f, tempPath = tempfile.mkstemp(suffix='.png', dir=temp_dir)
+        del f
         
         if self.selmove:
             size = self.pixmap_sel.get_size()
             pixbuf_copy = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,True,8,size[0],size[1])
             pixbuf_copy.get_from_drawable(self.pixmap_sel, gtk.gdk.colormap_get_system(),0,0,0,0,size[0],size[1])
             pixbuf_copy.save(tempPath,'png')
-            #with this func we can send the image to the clipboard with right MIME type, but we cannot past the image!
-            #gtk.Clipboard().set_with_data( [('text/uri-list', 0, 0)], self._copyGetFunc, self._copyClearFunc, tempPath ) this make the icon seens right, but with none data
-            clipBoard.set_image(pixbuf_copy)
-            
+
+            clipBoard.set_with_data( [('text/uri-list', 0, 0)], self._copyGetFunc, self._copyClearFunc, tempPath)
         else :
             logging.debug('Area.copy(self): Please select some area first')
             
@@ -645,7 +647,10 @@ class Area(gtk.DrawingArea):
             @param  info -- the application assigned integer associated with a target
             @param  data -- user data (tempPath)
         """
-        selection_data.set( "text/uri-list", 8, data)
+        tempPath = data
+
+        if selection_data.target == "text/uri-list":
+            selection_data.set_uris(['file://' + tempPath])
 
     def _copyClearFunc( self, clipboard, data ):
         """ Clear the clipboard
