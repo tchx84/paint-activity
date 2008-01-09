@@ -18,228 +18,228 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr ""
+msgstr "Рисуване"
 
 #: toolbox.py:77
 msgid "Edit"
-msgstr ""
+msgstr "Редактиране"
 
 #: toolbox.py:81
 msgid "Tools"
-msgstr ""
+msgstr "Инструменти"
 
 #: toolbox.py:85
 msgid "Shapes"
-msgstr ""
+msgstr "Форми"
 
 #: toolbox.py:89
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
 #: toolbox.py:93
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #: toolbox.py:97
 msgid "Effects"
-msgstr ""
+msgstr "Ефекти"
 
 #: toolbox.py:115
 msgid "Undo"
-msgstr ""
+msgstr "Отмяна"
 
 #: toolbox.py:116
 msgid "Redo"
-msgstr ""
+msgstr "Възстановяване"
 
 #: toolbox.py:117
 msgid "Copy"
-msgstr ""
+msgstr "Копиране"
 
 #: toolbox.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Вмъкване"
 
 #: toolbox.py:128
 msgid "Clear"
-msgstr ""
+msgstr "Изтриване"
 
 #: toolbox.py:282
 msgid "Tool Color"
-msgstr ""
+msgstr "Цвят на инструмента"
 
 #: toolbox.py:300
 msgid "Pencil"
-msgstr ""
+msgstr "Молив"
 
 #: toolbox.py:309
 msgid "Brush"
-msgstr ""
+msgstr "Четка"
 
 #: toolbox.py:318
 msgid "Eraser"
-msgstr ""
+msgstr "Гума"
 
 #: toolbox.py:327 toolbox.py:797
 msgid "Polygon"
-msgstr ""
+msgstr "Многоъгълник"
 
 #: toolbox.py:336
 msgid "Bucket"
-msgstr ""
+msgstr "Заливка"
 
 #: toolbox.py:365
 msgid "Rectangular Marquee"
-msgstr ""
+msgstr "Правоъгълно маркиране"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr ""
+msgstr "Големина:"
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
-msgstr ""
+msgstr "Кръг"
 
 #: toolbox.py:446 toolbox.py:1430
 msgid "Square"
-msgstr ""
+msgstr "Квадрат"
 
 #: toolbox.py:457 toolbox.py:1441
 msgid "Shape"
-msgstr ""
+msgstr "Форма"
 
 #: toolbox.py:477 toolbox.py:1030
 msgid "Fill"
-msgstr ""
+msgstr "Запълване"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr ""
+msgstr "Цвят на запълването:"
 
 #: toolbox.py:740
 msgid "Fill Color"
-msgstr ""
+msgstr "Цвят на запълването"
 
 #: toolbox.py:752
 msgid "Stroke Color"
-msgstr ""
+msgstr "Цвят на линията"
 
 #: toolbox.py:770
 msgid "Ellipse"
-msgstr ""
+msgstr "Елипса"
 
 #: toolbox.py:779
 msgid "Rectangle"
-msgstr ""
+msgstr "Правоъгълник"
 
 #: toolbox.py:788
 msgid "Line"
-msgstr ""
+msgstr "Линия"
 
 #: toolbox.py:815
 msgid "Heart"
-msgstr ""
+msgstr "Сърце"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr ""
+msgstr "Успоредник"
 
 #: toolbox.py:834
 msgid "Arrow"
-msgstr ""
+msgstr "Стрелка"
 
 #: toolbox.py:843
 msgid "Star"
-msgstr ""
+msgstr "Звезда"
 
 #: toolbox.py:852
 msgid "Trapezoid"
-msgstr ""
+msgstr "Трапец"
 
 #: toolbox.py:861
 msgid "Triangle"
-msgstr ""
+msgstr "Триъгълник"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr ""
+msgstr "Страни:"
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr ""
+msgstr "Точки:"
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr ""
+msgstr "Писане"
 
 #: toolbox.py:1166
 msgid "Insert Image"
-msgstr ""
+msgstr "Вмъкване на изображение"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr ""
+msgstr "Завъртане наляво"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr ""
+msgstr "Завъртане надясно"
 
 #: toolbox.py:1191
 msgid "Height"
-msgstr ""
+msgstr "Дължина"
 
 #: toolbox.py:1203
 msgid "Width"
-msgstr ""
+msgstr "Ширина"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "Избор на изображение"
 
 #: toolbox.py:1345
 msgid "Grayscale"
-msgstr ""
+msgstr "Черно-бял"
 
 #: toolbox.py:1350
 msgid "Rainbow"
-msgstr ""
+msgstr "Дъга"
 
 #: toolbox.py:1487
 msgid "1000"
-msgstr ""
+msgstr "1000"
 
 #: toolbox.py:1488
 msgid "500"
-msgstr ""
+msgstr "500"
 
 #: toolbox.py:1489
 msgid "200"
-msgstr ""
+msgstr "200"
 
 #: toolbox.py:1490
 msgid "150"
-msgstr ""
+msgstr "150"
 
 #: toolbox.py:1491
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #: toolbox.py:1492
 msgid "50"
-msgstr ""
+msgstr "50"
 
 #: toolbox.py:1493
 msgid "25"
-msgstr ""
+msgstr "25"
 
 #: toolbox.py:1494
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
-msgstr ""
+msgstr "Увеличаване"
 
 #: toolbox.py:1512
 msgid "ZOOM -"
-msgstr ""
+msgstr "Намаляване"
