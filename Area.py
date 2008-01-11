@@ -621,8 +621,9 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
         """
         clipBoard = gtk.Clipboard()
-        temp_dir = os.environ.get('SUGAR_ACTIVITY_ROOT', None)
-        if temp_dir is None:
+        if 'SUGAR_ACTIVITY_ROOT' in os.environ:
+            temp_dir = os.path.join(os.environ.get('SUGAR_ACTIVITY_ROOT'), 'instance')
+        else:
             temp_dir = '/tmp'
 
         f, tempPath = tempfile.mkstemp(suffix='.png', dir=temp_dir)
@@ -633,6 +634,7 @@ class Area(gtk.DrawingArea):
             pixbuf_copy = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,True,8,size[0],size[1])
             pixbuf_copy.get_from_drawable(self.pixmap_sel, gtk.gdk.colormap_get_system(),0,0,0,0,size[0],size[1])
             pixbuf_copy.save(tempPath,'png')
+            os.chmod(tempPath, 0604)
 
             clipBoard.set_with_data( [('text/uri-list', 0, 0)], self._copyGetFunc, self._copyClearFunc, tempPath)
         else :

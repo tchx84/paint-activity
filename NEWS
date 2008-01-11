@@ -1,3 +1,5 @@
+* Make the fix for #5586 work with security. (tomeu)
+
 16
 
 * #5586: Copy clippings as text/uri-list. (tomeu)
