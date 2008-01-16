@@ -1,3 +1,5 @@
+* #5903: Fix the rotate left icon. (erikos)
+
 17
 
 * Make the fix for #5586 work with security. (tomeu)
