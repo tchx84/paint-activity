@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-23 20:59+0000\n"
+"PO-Revision-Date: 2008-01-25 14:40-0500\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Language locale/fr/LC\n"
 "MIME-Version: 1.0\n"
@@ -179,11 +179,11 @@ msgstr "Insérer une image"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr "Pivotement à gauche"
+msgstr "Tourner à gauche"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr "Pivotement à droite"
+msgstr "Tourner à droite"
 
 #: toolbox.py:1191
 msgid "Height"
@@ -195,7 +195,7 @@ msgstr "Largeur"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr "Séléctionner une image"
+msgstr "Sélectionner une image"
 
 #: toolbox.py:1345
 msgid "Grayscale"
