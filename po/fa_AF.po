@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2008-01-09 08:28+0000\n"
+"PO-Revision-Date: 2008-01-28 05:53-0500\n"
 "Last-Translator: Sohaib Obaidi <ebtihaj_obaidi@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "سایبان مستطیل شکل"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
-msgstr "اندازه:ـ"
+msgstr "اندازه: "
 
 #: toolbox.py:437 toolbox.py:1421
 msgid "Circle"
@@ -114,7 +114,7 @@ msgstr "پر کردن"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr "رنگ پر کردن:ـ"
+msgstr "رنگ پر کردن: "
 
 #: toolbox.py:740
 msgid "Fill Color"
@@ -162,11 +162,11 @@ msgstr "مثلث"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr "کناره‌ها:ـ"
+msgstr "کناره‌ها: "
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr "نقاط:ـ"
+msgstr "نقاط: "
 
 #: toolbox.py:1095
 msgid "Type"
@@ -206,40 +206,40 @@ msgstr "رنگین کمان"
 
 #: toolbox.py:1487
 msgid "1000"
-msgstr "۱۰۰۰"
+msgstr "1000"
 
 #: toolbox.py:1488
 msgid "500"
-msgstr "۵۰۰"
+msgstr "500"
 
 #: toolbox.py:1489
 msgid "200"
-msgstr "۲۰۰"
+msgstr "200"
 
 #: toolbox.py:1490
 msgid "150"
-msgstr "۱۵۰"
+msgstr "150"
 
 #: toolbox.py:1491
 msgid "100"
-msgstr "۱۰۰"
+msgstr "100"
 
 #: toolbox.py:1492
 msgid "50"
-msgstr "۵۰"
+msgstr "50"
 
 #: toolbox.py:1493
 msgid "25"
-msgstr "۲۵"
+msgstr "25"
 
 #: toolbox.py:1494
 msgid "10"
-msgstr "۱۰"
+msgstr "10"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
-msgstr "بزرگنمایی +"
+msgstr "نمایش +"
 
 #: toolbox.py:1512
 msgid "ZOOM -"
-msgstr "کوچکنمایی -"
+msgstr "نمایش -"

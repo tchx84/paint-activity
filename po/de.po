@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-12-19 12:17+0000\n"
+"PO-Revision-Date: 2008-01-31 06:35-0500\n"
 "Last-Translator: Gerhard Steiner <gerhard.steiner@duichwir.at>\n"
 "Language-Team: Language locale/de/LC\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr "Rückgängig"
 
 #: toolbox.py:116
 msgid "Redo"
-msgstr "Wiederherstellen"
+msgstr "Wiederholen"
 
 #: toolbox.py:117
 msgid "Copy"
@@ -115,7 +115,7 @@ msgstr "Füllen"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr "Füllfarbe"
+msgstr "Füllfarbe: "
 
 #: toolbox.py:740
 msgid "Fill Color"
@@ -163,7 +163,7 @@ msgstr "Dreieck"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr "Seiten:"
+msgstr "Seiten: "
 
 #: toolbox.py:995
 msgid "Points: "

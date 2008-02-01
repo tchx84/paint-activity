@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-22 17:39+0000\n"
-"Last-Translator: Behnam B.Marandi <blixbox@gmail.com>\n"
+"PO-Revision-Date: 2008-01-09 08:28+0000\n"
+"Last-Translator: Sohaib Obaidi <ebtihaj_obaidi@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +89,6 @@ msgid "Bucket"
 msgstr "سطل"
 
 #: toolbox.py:365
-#, fuzzy
 msgid "Rectangular Marquee"
 msgstr "سایبان مستطیل شکل"
 
@@ -122,7 +121,6 @@ msgid "Fill Color"
 msgstr "رنگ پر کردن"
 
 #: toolbox.py:752
-#, fuzzy
 msgid "Stroke Color"
 msgstr "رنگ روکش"
 
@@ -199,9 +197,8 @@ msgid "Choose image"
 msgstr "انتخاب تصویر"
 
 #: toolbox.py:1345
-#, fuzzy
 msgid "Grayscale"
-msgstr "سایه خاکستری"
+msgstr "تناسب خاکستری"
 
 #: toolbox.py:1350
 msgid "Rainbow"
