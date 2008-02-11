@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2008-02-06 09:50+0100\n"
+"PO-Revision-Date: 2008-02-11 05:29+0100\n"
 "Last-Translator: Satyanarayana Murthy Saladi <saladism@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "చెరపడానికి రబ్బరు"
 #: toolbox.py:327
 #: toolbox.py:797
 msgid "Polygon"
-msgstr "పోలిగోన్"
+msgstr "బహుకోణి"
 
 #: toolbox.py:336
 msgid "Bucket"
@@ -144,11 +144,11 @@ msgstr "గీత"
 
 #: toolbox.py:815
 msgid "Heart"
-msgstr "గుండెకాయ"
+msgstr "హ్రుదయము"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr "పారలెల్లో గ్రామ్"
+msgstr "నిలువువాటు చదరము"
 
 #: toolbox.py:834
 msgid "Arrow"
