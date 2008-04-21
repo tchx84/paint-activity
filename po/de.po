@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2008-01-31 06:35-0500\n"
+"PO-Revision-Date: 2008-04-15 05:24-0400\n"
 "Last-Translator: Gerhard Steiner <gerhard.steiner@duichwir.at>\n"
 "Language-Team: Language locale/de/LC\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -67,7 +67,7 @@ msgstr "Löschen"
 
 #: toolbox.py:282
 msgid "Tool Color"
-msgstr "Werkzeug Farbe"
+msgstr "Werkzeug-Farbe"
 
 #: toolbox.py:300
 msgid "Pencil"
@@ -111,19 +111,19 @@ msgstr "Form"
 
 #: toolbox.py:477 toolbox.py:1030
 msgid "Fill"
-msgstr "Füllen"
+msgstr "Anfüllen"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr "Füllfarbe: "
+msgstr "Füll-Farbe: "
 
 #: toolbox.py:740
 msgid "Fill Color"
-msgstr "Füllfarbe"
+msgstr "Füll-Farbe"
 
 #: toolbox.py:752
 msgid "Stroke Color"
-msgstr "Stiftfarbe"
+msgstr "Strich-Farbe"
 
 #: toolbox.py:770
 msgid "Ellipse"
@@ -179,7 +179,7 @@ msgstr "Bild einfügen"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr "Nach links drehen"
+msgstr "Links-Rotieren"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
