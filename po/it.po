@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2008-01-02 17:45+0000\n"
-"Last-Translator: Carlo Falciola <cfalciola@yahoo.it>\n"
+"PO-Revision-Date: 2008-03-18 10:20-0400\n"
+"Last-Translator: Torello Querci <torello@torosoft.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -61,7 +61,6 @@ msgid "Paste"
 msgstr "Incolla"
 
 #: toolbox.py:128
-#, fuzzy
 msgid "Clear"
 msgstr "Pulisci"
 
@@ -90,9 +89,8 @@ msgid "Bucket"
 msgstr "Secchio"
 
 #: toolbox.py:365
-#, fuzzy
 msgid "Rectangular Marquee"
-msgstr "Rettangolo "
+msgstr "Selezione Rettangolare"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
@@ -111,7 +109,6 @@ msgid "Shape"
 msgstr "Forma"
 
 #: toolbox.py:477 toolbox.py:1030
-#, fuzzy
 msgid "Fill"
 msgstr "Riempi"
 
@@ -120,7 +117,6 @@ msgid "Fill Color: "
 msgstr "Colore Riempimento: "
 
 #: toolbox.py:740
-#, fuzzy
 msgid "Fill Color"
 msgstr "Colore Riempimento"
 
@@ -141,7 +137,6 @@ msgid "Line"
 msgstr "Linea"
 
 #: toolbox.py:815
-#, fuzzy
 msgid "Heart"
 msgstr "Cuore"
 
@@ -158,7 +153,6 @@ msgid "Star"
 msgstr "Stella"
 
 #: toolbox.py:852
-#, fuzzy
 msgid "Trapezoid"
 msgstr "Trapezio"
 
