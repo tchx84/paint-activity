@@ -245,30 +245,23 @@ msgstr "ZOOM +"
 msgid "ZOOM -"
 msgstr "ZOOM -"
 
-#: toolbox.py:598
-msgid "1"
-msgstr "1"
+#~ msgid "1"
+#~ msgstr "1"
 
-#: toolbox.py:599
-msgid "2"
-msgstr "2"
+#~ msgid "2"
+#~ msgstr "2"
 
-#: toolbox.py:600
-msgid "3"
-msgstr "3"
+#~ msgid "3"
+#~ msgstr "3"
 
-#: toolbox.py:601
-msgid "5"
-msgstr "5"
+#~ msgid "5"
+#~ msgstr "5"
 
-#: toolbox.py:603
-msgid "20"
-msgstr "20"
+#~ msgid "20"
+#~ msgstr "20"
 
-#: toolbox.py:1293
-msgid "Resize (%): "
-msgstr "Retamañar (%): "
+#~ msgid "Resize (%): "
+#~ msgstr "Retamañar (%): "
 
-#: toolbox.py:1302
-msgid "Open File..."
-msgstr "Abrir Archivo..."
+#~ msgid "Open File..."
+#~ msgstr "Abrir Archivo..."
