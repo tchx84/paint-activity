@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2008-01-29 04:05-0500\n"
+"PO-Revision-Date: 2008-02-12 00:33-0500\n"
 "Last-Translator: Enkhzul <enkhzul@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr "Зурах"
 
 #: toolbox.py:77
 msgid "Edit"
-msgstr "Засах"
+msgstr "Засварлах"
 
 #: toolbox.py:81
 msgid "Tools"
@@ -41,7 +41,7 @@ msgstr "Зураг"
 
 #: toolbox.py:97
 msgid "Effects"
-msgstr ""
+msgstr "эффект"
 
 #: toolbox.py:115
 msgid "Undo"
