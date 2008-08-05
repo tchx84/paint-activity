@@ -2,14 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2008-07-31 11:50+0200\n"
+"Last-Translator: GASHAYIJA Guillaume <gashayija2002@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,228 +17,236 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr ""
+msgstr "gusiga irange"
 
 #: toolbox.py:77
 msgid "Edit"
-msgstr ""
+msgstr "guhindura"
 
 #: toolbox.py:81
 msgid "Tools"
-msgstr ""
+msgstr "ibikoresho"
 
 #: toolbox.py:85
 msgid "Shapes"
-msgstr ""
+msgstr "guforoma kwikintu"
 
 #: toolbox.py:89
 msgid "Text"
-msgstr ""
+msgstr "Umwandiko"
 
 #: toolbox.py:93
 msgid "Image"
-msgstr ""
+msgstr "ishusho"
 
 #: toolbox.py:97
 msgid "Effects"
-msgstr ""
+msgstr "Ingaruka "
 
 #: toolbox.py:115
 msgid "Undo"
-msgstr ""
+msgstr "Kugarura ikintu cyabuze"
 
 #: toolbox.py:116
 msgid "Redo"
-msgstr ""
+msgstr "Gukuraho ikigaruwe"
 
 #: toolbox.py:117
 msgid "Copy"
-msgstr ""
+msgstr "gukoporora"
 
 #: toolbox.py:118
 msgid "Paste"
-msgstr ""
+msgstr "Komeka ibyakoporowe"
 
 #: toolbox.py:128
 msgid "Clear"
-msgstr ""
+msgstr "ikintu gisobanutse"
 
 #: toolbox.py:282
 msgid "Tool Color"
-msgstr ""
+msgstr "ibara ryigikoresho"
 
 #: toolbox.py:300
 msgid "Pencil"
-msgstr ""
+msgstr "ikaramu yigiti"
 
 #: toolbox.py:309
 msgid "Brush"
-msgstr ""
+msgstr "igikoresho bahanaguza ikintu"
 
 #: toolbox.py:318
 msgid "Eraser"
-msgstr ""
+msgstr "Igisibisho"
 
-#: toolbox.py:327 toolbox.py:797
+#: toolbox.py:327
+#: toolbox.py:797
 msgid "Polygon"
-msgstr ""
+msgstr "Ikinyampande"
 
 #: toolbox.py:336
 msgid "Bucket"
-msgstr ""
+msgstr "indobo"
 
 #: toolbox.py:365
 msgid "Rectangular Marquee"
-msgstr ""
+msgstr " Marquee y`Urukiramende"
 
-#: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
+#: toolbox.py:417
+#: toolbox.py:1049
+#: toolbox.py:1412
 msgid "Size: "
-msgstr ""
+msgstr "Ingano"
 
-#: toolbox.py:437 toolbox.py:1421
+#: toolbox.py:437
+#: toolbox.py:1421
 msgid "Circle"
-msgstr ""
+msgstr "uruziga"
 
-#: toolbox.py:446 toolbox.py:1430
+#: toolbox.py:446
+#: toolbox.py:1430
 msgid "Square"
-msgstr ""
+msgstr "kare"
 
-#: toolbox.py:457 toolbox.py:1441
+#: toolbox.py:457
+#: toolbox.py:1441
 msgid "Shape"
-msgstr ""
+msgstr "Iforome y`icyintu"
 
-#: toolbox.py:477 toolbox.py:1030
+#: toolbox.py:477
+#: toolbox.py:1030
 msgid "Fill"
-msgstr ""
+msgstr "kuzuza"
 
 #: toolbox.py:490
 msgid "Fill Color: "
-msgstr ""
+msgstr "Uzuzamwo ibara"
 
 #: toolbox.py:740
 msgid "Fill Color"
-msgstr ""
+msgstr "Uzuzamo  ibara"
 
 #: toolbox.py:752
 msgid "Stroke Color"
-msgstr ""
+msgstr "Stroke ibara"
 
 #: toolbox.py:770
 msgid "Ellipse"
-msgstr ""
+msgstr "Ellipse"
 
 #: toolbox.py:779
 msgid "Rectangle"
-msgstr ""
+msgstr "Urukiramende"
 
 #: toolbox.py:788
 msgid "Line"
-msgstr ""
+msgstr "umurongo"
 
 #: toolbox.py:815
 msgid "Heart"
-msgstr ""
+msgstr "umutima"
 
 #: toolbox.py:825
 msgid "Parallelogram"
-msgstr ""
+msgstr "Parallelogram"
 
 #: toolbox.py:834
 msgid "Arrow"
-msgstr ""
+msgstr "Akerekana ikerekezo"
 
 #: toolbox.py:843
 msgid "Star"
-msgstr ""
+msgstr "Inyenyeri"
 
 #: toolbox.py:852
 msgid "Trapezoid"
-msgstr ""
+msgstr "Trapezoid"
 
 #: toolbox.py:861
 msgid "Triangle"
-msgstr ""
+msgstr "Mpandeshatu"
 
 #: toolbox.py:948
 msgid "Sides: "
-msgstr ""
+msgstr "Impande"
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr ""
+msgstr "Ingingo"
 
 #: toolbox.py:1095
 msgid "Type"
-msgstr ""
+msgstr "Andika"
 
 #: toolbox.py:1166
 msgid "Insert Image"
-msgstr ""
+msgstr "shyiramo ishusho"
 
 #: toolbox.py:1179
 msgid "Rotate Left"
-msgstr ""
+msgstr "zengurutsa uganisha ubumosa"
 
 #: toolbox.py:1185
 msgid "Rotate Right"
-msgstr ""
+msgstr "zengurutsa uganisha iburyo"
 
 #: toolbox.py:1191
 msgid "Height"
-msgstr ""
+msgstr "ubuhagarike"
 
 #: toolbox.py:1203
 msgid "Width"
-msgstr ""
+msgstr "Ubugali"
 
 #: toolbox.py:1298
 msgid "Choose image"
-msgstr ""
+msgstr "toranya ishusho"
 
 #: toolbox.py:1345
 msgid "Grayscale"
-msgstr ""
+msgstr "Grayscale"
 
 #: toolbox.py:1350
 msgid "Rainbow"
-msgstr ""
+msgstr "umukororombya"
 
 #: toolbox.py:1487
 msgid "1000"
-msgstr ""
+msgstr "1000"
 
 #: toolbox.py:1488
 msgid "500"
-msgstr ""
+msgstr "500"
 
 #: toolbox.py:1489
 msgid "200"
-msgstr ""
+msgstr "200"
 
 #: toolbox.py:1490
 msgid "150"
-msgstr ""
+msgstr "150"
 
 #: toolbox.py:1491
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #: toolbox.py:1492
 msgid "50"
-msgstr ""
+msgstr "50"
 
 #: toolbox.py:1493
 msgid "25"
-msgstr ""
+msgstr "25"
 
 #: toolbox.py:1494
 msgid "10"
-msgstr ""
+msgstr "10"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
-msgstr ""
+msgstr "Kwagura"
 
 #: toolbox.py:1512
 msgid "ZOOM -"
-msgstr ""
+msgstr "Kugabanya"
+
