@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2008-08-26 19:11-0400\n"
+"PO-Revision-Date: 2008-08-27 06:03-0400\n"
 "Last-Translator: Eduardo H. Silva <HoboPrimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -238,8 +238,8 @@ msgstr "10"
 
 #: toolbox.py:1507
 msgid "ZOOM +"
-msgstr "Aproximar"
+msgstr "Aproximar Zoom"
 
 #: toolbox.py:1512
 msgid "ZOOM -"
-msgstr "Afastar"
+msgstr "Afastar Zoom"
