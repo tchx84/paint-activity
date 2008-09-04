@@ -110,22 +110,17 @@ void queue_enqueue(int element, queue *q){
 }
 
 void queue_dequeue(queue *q){
-    no *tmp;
-    if(tmp == NULL) {
-        printf("Out of space!!!");
-    } else {
-	if(queue_is_empty(q)) {
-            printf( "Empty queue" );
-	}
-        else {
-    	    tmp = q->front;
-            q->front = q->front->next;
-            if (q->front==NULL) {
-		q->rear=NULL;
-	    }
-        }
+    if(queue_is_empty(q)) {
+        printf( "Empty queue" );
     }
-    free(tmp);
+    else {
+        no *tmp = q->front;
+        q->front = q->front->next;
+        if (q->front==NULL) {
+		    q->rear=NULL;
+        }
+        free(tmp);
+    }
 }/* end of queue*/
 
 void fill(GdkDrawable *drawable, GdkGC *gc, int x, int y, int width, int height, int color){
