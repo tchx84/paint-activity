@@ -1,6 +1,6 @@
-21
-
 22
+
+* #8285: Try to use queue_draw_area() instead of queue_draw() (unmadindu)
 
 21
 
