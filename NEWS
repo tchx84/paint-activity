@@ -1,3 +1,15 @@
+21
+
+22
+
+21
+
+* #8285 Make pencil tool use the brush - partial workaround (unmadindu)
+* #8180 Local variables (in the stack) may be initialized NULL by default
+ (tomeu)
+* Fix MANIFEST
+* Updated translation: ja
+
 20
 
 * Updated translations from Pootle. (various translators)
