@@ -471,22 +471,6 @@ class Desenho:
         pixmap.draw_arc(widget.gc_line,False,x,y,dx,dy,0,360*64)     
         widget.queue_draw()
 
-
-    def pencil(self, widget, coords):
-        """Draw a pencil.
-
-            @param  self -- Desenho.Desenho instance
-            @param  widget -- Area object (GtkDrawingArea)
-            @param  coords -- Two value tuple
-
-        """
-        width, height = widget.window.get_size()
-        widget.pixmap_temp.draw_drawable(widget.gc,widget.pixmap,  0 , 0 ,0,0, width, height)
-        widget.pixmap.draw_line(widget.gc_line,widget.oldx,widget.oldy,coords[0],coords[1]) 
-        widget.oldx = coords[0]
-        widget.oldy = coords[1]
-        widget.queue_draw()
-
     def clear(self, widget):
         """Clear the drawing.
 

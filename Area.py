@@ -350,11 +350,17 @@ class Area(gtk.DrawingArea):
             @param  event -- GdkEvent
 
         """
-        x , y, state = event.window.get_pointer()   
+        x = event.x
+        y = event.y
+        state = event.state
+
         coords = int(x), int(y)
                         
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
-            if self.tool['name'] == 'eraser':
+            if self.tool['name'] == 'pencil':
+                self.d.brush(widget, coords, self.last, 2, 'circle')
+                self.last = coords
+            elif self.tool['name'] == 'eraser':
                 self.d.eraser(widget, coords, self.last, self.line_size, self.tool['line shape'])
                 self.last = coords
             elif self.tool['name'] == 'brush':
@@ -371,10 +377,6 @@ class Area(gtk.DrawingArea):
                     self.configure_line(self.line_size)
                     self.d.line(widget, coords)
                     
-                elif self.tool['name'] == 'pencil':
-                    self.configure_line(self.line_size)
-                    self.d.pencil(widget, coords)  
-                     
                 elif self.tool['name'] == 'ellipse':
                     self.configure_line(self.line_size)
                     self.d.circle(widget,coords,True,self.tool['fill'])
@@ -437,6 +439,8 @@ class Area(gtk.DrawingArea):
                 self.desenha = True
                 self.configure_line(self.line_size)
                 self.d.polygon(widget,coords,True,self.tool['fill'],"moving")
+
+        gtk.gdk.event_request_motions (event)
 
     def mouseup(self,widget,event): 
         """Make the Area object (GtkDrawingArea) recognize that the mouse was released.
