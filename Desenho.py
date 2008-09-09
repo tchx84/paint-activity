@@ -150,7 +150,15 @@ class Desenho:
                 widget.pixmap.draw_polygon(widget.gc_brush,True,points)
                 points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
                 widget.pixmap.draw_polygon(widget.gc_brush,True,points)
-        widget.queue_draw()
+
+        if last:
+            x = min(coords[0], last[0])
+            width = max(coords[0], last[0]) - x
+            y = min(coords[1], last[1])
+            height = max(coords[1], last[1]) - y
+            widget.queue_draw_area(x, y, width+size, height+size) # We add size to avoid drawing dotted lines
+        else:
+            widget.queue_draw()
 
     def rainbow(self, widget, coords, last, color, size = 5, shape = 'circle'):
         """Paint with rainbow.
