@@ -1,3 +1,5 @@
+* #8411: Add license to activity.info
+
 22
 
 * #8285: Try to use queue_draw_area() instead of queue_draw() (unmadindu)
