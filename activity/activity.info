@@ -1,6 +1,6 @@
 [Activity]
 name = Paint
-activity_version = 22
+activity_version = 23
 service_name = org.laptop.Oficina
 icon = activity-paint
 class = OficinaActivity.OficinaActivity
