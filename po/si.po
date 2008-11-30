@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2008-02-14 05:15-0500\n"
-"Last-Translator: Ruwan Asanka Wasala <wasala@gmail.com>\n"
+"PO-Revision-Date: 2008-05-23 09:24-0400\n"
+"Last-Translator: Rashan Anushka <rashan.uoc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 1.1.0rc2\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -89,7 +89,7 @@ msgstr "පනිට්ටුව"
 
 #: toolbox.py:365
 msgid "Rectangular Marquee"
-msgstr ""
+msgstr "චතුරස්‍ර අනුචලනය"
 
 #: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
 msgid "Size: "
@@ -165,7 +165,7 @@ msgstr "පැති: "
 
 #: toolbox.py:995
 msgid "Points: "
-msgstr ""
+msgstr "ලක්ෂ්‍ය: "
 
 #: toolbox.py:1095
 msgid "Type"
