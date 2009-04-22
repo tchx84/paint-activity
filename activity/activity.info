@@ -1,8 +1,8 @@
 [Activity]
 name = Paint
-activity_version = 23
-service_name = org.laptop.Oficina
+activity_version = 24
+bundle_id = org.laptop.Oficina
+exec = sugar-activity OficinaActivity.OficinaActivity
 icon = activity-paint
-class = OficinaActivity.OficinaActivity
 mime_types = image/svg+xml; image/svg; image/svg-xml; image/vnd.adobe.svg+xml; text/xml-svg; image/png; image/jpeg; image/gif; image/x-icon; image/x-ico; application/x-navi-animation; image/x-cmu-raster; image/x-sun-raster; image/x-xpixmap; image/tiff; image/x-portable-anymap; image/x-portable-bitmap; image/x-portable-graymap; image/x-portable-pixmap; image/bmp; image/x-bmp; image/x-MS-bmp; image/vnd.wap.wbmp; image/x-xbitmap; image/x-tga; image/x-pcx; image/x-wmf
 license = GPLv2
