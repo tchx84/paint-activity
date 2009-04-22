@@ -5,7 +5,7 @@ headers
 #include "pygobject.h"
 #include "eggfill.h"
 %%
-modulename fill
+modulename _fill
 %%
 import gtk.gdk.Drawable as PyGdkDrawable_Type
 import gtk.gdk.GC as PyGdkGC_Type

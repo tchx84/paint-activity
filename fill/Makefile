@@ -34,11 +34,26 @@
 #Rafael Barbolo Lopes                (barbolo@gmail.com)
 #Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
 
-CFLAGS = `pkg-config --cflags gtk+-2.0 pygtk-2.0` -I/usr/include/python2.5/ -I. -I/usr/include/pygtk-2.0/
-LDFLAGS = `pkg-config --libs gtk+-2.0 pygtk-2.0`
+CFLAGS = $(shell pkg-config --cflags gtk+-2.0 pygtk-2.0) \
+		 $(shell python-config --cflags) \
+		-fPIC
 
-fill.so: fill.o eggfill.o fillmodule.o
-	$(CC) $(LDFLAGS) -shared $^ -o $@
+LDFLAGS = $(shell pkg-config --libs gtk+-2.0 pygtk-2.0) \
+          $(shell python-config --libs)
+
+ARCH = $(shell arch | grep 64 >/dev/null && echo linux64 || echo linux32)
+PYTHON_VERSION = $(shell python -c 'import sys; print "%d%d" % sys.version_info[0:2]')
+LIB_DIR = $(ARCH)_$(PYTHON_VERSION)
+
+all: _fill.so
+	rm -rf $(LIB_DIR)
+	mkdir $(LIB_DIR)
+	strip -s _fill.so
+	mv _fill.so $(LIB_DIR)/
+	touch $(LIB_DIR)/__init__.py
+
+_fill.so: fill.o eggfill.o fillmodule.o
+	$(LD) $(LDFLAGS) -shared $^ -o $@
 
 DEFS=`pkg-config --variable=defsdir pygtk-2.0`
 # Generate the C wrapper
@@ -51,5 +66,5 @@ fill.c: fill.defs fill.override
 	fill.defs > $@
 
 clean:
-	rm -f fill.so *.o fill.c *~ 
+	rm -f *.so *.o fill.c *~ 
 

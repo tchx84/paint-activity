@@ -53,13 +53,13 @@ void fill_register_classes (PyObject *d);
 extern PyMethodDef fill_functions[];
 
 DL_EXPORT(void)
-initfill(void)
+init_fill(void)
 {
     PyObject *m, *d;
 	
     init_pygobject ();
 
-    m = Py_InitModule ("fill", fill_functions);
+    m = Py_InitModule ("_fill", fill_functions);
     d = PyModule_GetDict (m);
 	
     fill_register_classes (d);
