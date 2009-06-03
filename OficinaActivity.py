@@ -68,6 +68,7 @@ from gettext import gettext as _
 import gtk
 
 from sugar.activity import activity
+from sugar.graphics import style
 
 from toolbox import Toolbox
 from Area import Area
@@ -83,79 +84,82 @@ class OficinaActivity(activity.Activity):
 
         """
         activity.Activity.__init__(self, handle)
-        #self.set_title(_('Paint'))
-        
+
         logging.debug('Starting Paint activity (Oficina)')
 
-        os.chdir(activity.get_bundle_path())
-        #print activity.get_bundle_path()
-        
-        # These attributes are used in other classes, so they should be public
         self.fixed = gtk.Fixed()
-        self.area = Area(self) 
-        
-        toolbox = Toolbox(self)
-        self.set_toolbox(toolbox)
-        toolbox.show()       
-  
+        self.fixed.show()
+        self.fixed.modify_bg(gtk.STATE_NORMAL,
+                style.COLOR_WHITE.get_gdk_color())
 
-        sw = gtk.ScrolledWindow()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-
-        
-        color = gtk.gdk.color_parse("white")
-        self.fixed.modify_bg(gtk.STATE_NORMAL, color)
-        
         #self._bg = gtk.Image()
         #self._bg.set_from_file('./icons/bg.svg')
         #self.fixed.put(self._bg, 200, 100)
         #self._bg.show
-        
+
+        # These attributes are used in other classes, so they should be public
+        self.area = Area(self)
+        self.area.show()
+        self.fixed.put(self.area, 0 , 0)
+
         self.textview = gtk.TextView()
         # If we use this, text viewer will have constant size, we don't want that
         #self.textview.set_size_request(100,100)
-        
-        #self.fixed.put(self.area, 200 , 100)
-        # Area size increased
-        self.fixed.put(self.area, 0 , 0)
-        
-        sw.add_with_viewport(self.fixed)
-        self.area.show()
-        self.fixed.show()
         self.fixed.put(self.textview, 0, 0)
-        self.textview.hide()
-        sw.show()
 
-        # setting scrolledwindow as activity canvas...
+        sw = gtk.ScrolledWindow()
+        sw.show()
+        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.set_canvas(sw)
 
+        toolbox = Toolbox(self)
+        self.set_toolbox(toolbox)
+        toolbox.show()
+
+        # setup self.area only once
+
+        def map_cp(widget):
+            def size_allocate_cb(widget, allocation):
+                self.disconnect(self._setup_handle)
+                self._setup_handle = None
+                self.area.setup(allocation.width, allocation.height)
+
+            self.disconnect(self._setup_handle)
+            self.canvas.add_with_viewport(self.fixed)
+            self._setup_handle = self.fixed.connect('size_allocate',
+                    size_allocate_cb)
+
+        self._setup_handle = self.connect('map', map_cp)
+
     def read_file(self, file_path):
-        '''Read file from Sugar Journal.
+        '''Read file from Sugar Journal.'''
 
-            @param  self
-            @param  file_path 
-
-        '''
         logging.debug('reading file %s', file_path)
-#         logging.debug(file_path)
-        
-        self.area.loadImage(file_path, self.area, False)
 
+        if self._setup_handle:
+            self.disconnect(self._setup_handle)
+
+        pixbuf = gtk.gdk.pixbuf_new_from_file(file_path)
+
+        def size_allocate_cb(widget, allocation):
+            self.disconnect(self._setup_handle)
+            self._setup_handle = None
+            self.area.setup(pixbuf.get_width(), pixbuf.get_height())
+            self.area.loadImageFromJournal(pixbuf)
+
+        self.canvas.add_with_viewport(self.fixed)
+        self._setup_handle = self.fixed.connect('size_allocate',
+                size_allocate_cb)
 
     def write_file(self, file_path):
-        '''Save file on Sugar Journal.
+        '''Save file on Sugar Journal. '''
 
-            @param  self 
-            @param  file_path 
+        width, height = self.area.get_size_request()
 
-        '''
-        logging.debug('saving as PNG')
-        logging.debug('writting file %s', file_path)
-        
-        width, height = self.area.window.get_size()
+        logging.debug('writting file=%s w=%s h=%s' % (file_path, width, height))
+
         self.area.getout()
         pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, width, height)
         pixbuf.get_from_drawable(self.area.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
         self.metadata['mime_type'] = 'image/png'
-        pixbuf.save(file_path, 'png', {})   
-
+        pixbuf.save(file_path, 'png', {})

@@ -91,8 +91,6 @@ class Area(gtk.DrawingArea):
         logging.debug('Area.__init__(self, janela)')
         
         gtk.DrawingArea.__init__(self)
-        #self.set_size_request(800, 600)
-        self.set_size_request(1185, 770)
         
         self.set_events(gtk.gdk.POINTER_MOTION_MASK |
                 gtk.gdk.POINTER_MOTION_HINT_MASK |
@@ -135,7 +133,6 @@ class Area(gtk.DrawingArea):
         self.desenha = False
         self.selmove = False
         self.sel_get_out = False
-        self.connect("configure_event", self.configure_event)
         self.oldx = 0
         self.oldy = 0
         self.polygon_start = True
@@ -179,30 +176,27 @@ class Area(gtk.DrawingArea):
         self.fill = True
 
 
-    def configure_event(self, widget, event):
-        """Configure the Area object.
+    def setup(self, width, height):
+        """Configure the Area object."""
 
-        @param self -- the Area object (GtkDrawingArea)
-        @param widget -- the Area object (GtkDrawingArea)
-        @param event -- GdkEvent
+        if self.pixmap:
+            return
 
-        """
-        logging.debug('Area.configure_event(self, widget, event)')
-        
-        win = widget.window
-        width = win.get_geometry()[2]
-        height = win.get_geometry()[3]  
+        logging.debug('Area.configure_event: w=%s h=%s' % (width, height))
+
+        win = self.window
+        self.set_size_request(width, height)
         
         ##It is the main pixmap, who is display most of the time.
         self.pixmap = gtk.gdk.Pixmap(win, width, height, -1)
-        self.pixmap.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
+        self.pixmap.draw_rectangle(self.get_style().white_gc, True, 0, 0, width, height)
         ##This pixmap is showed when we need show something and not draw it.
         self.pixmap_temp = gtk.gdk.Pixmap(win, width, height, -1)
-        self.pixmap_temp.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
+        self.pixmap_temp.draw_rectangle(self.get_style().white_gc, True, 0, 0, width, height)
         
         ##When something is selected this pixmap draw and rectangular box out of the selection
         #self.pixmap_sel = gtk.gdk.Pixmap(win, width, height, -1)
-        #self.pixmap_sel.draw_rectangle(widget.get_style().white_gc, True, 0, 0, width, height)
+        #self.pixmap_sel.draw_rectangle(self.get_style().white_gc, True, 0, 0, width, height)
         
         self.gc = win.new_gc()    
         self.gc_eraser = win.new_gc()
@@ -226,7 +220,7 @@ class Area(gtk.DrawingArea):
         self.gc_selection1.set_foreground(white)
         
         
-        self.enableUndo(widget)
+        self.enableUndo(self)
         
         # Setting a initial tool
         # If not set here, cursor icon can't be load
@@ -704,7 +698,7 @@ class Area(gtk.DrawingArea):
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
             self.emit('select')
         else:
-            self.loadImage(tempPath, self, True)
+            self.loadImage(tempPath, self)
             logging.debug('Area.past(self): Load from clipboard fails, loading from tempPatch')
         
         self.queue_draw()
@@ -937,52 +931,55 @@ class Area(gtk.DrawingArea):
         """
         return self._selection_corners[0], self._selection_corners[1], self._selection_corners[2], self._selection_corners[3]
 
-    def loadImage(self, name, widget=None, load_selected=True):
+    def loadImageFromJournal(self, pixbuf):
+        size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
+
+        self.setup(size[0], size[1])
+
+        self.pixmap.draw_pixbuf(self.gc, pixbuf,0,0,0,0,size[0],size[1],
+                dither=gtk.gdk.RGB_DITHER_NORMAL,x_dither=0, y_dither=0)
+        self.undo_times -= 1
+        self.enableUndo(self)
+        self.queue_draw()
+
+    def loadImage(self, name, widget=None):
         """Load an image.
 
             @param  self -- Area instance
             @param  name -- string (image file path)
             @param  widget -- GtkDrawingArea
-            @param  load_selected -- False if loading file from Journal
 
         """
         logging.debug('Area.loadImage')
         logging.debug('Loading file %s', name)
-        logging.debug('From Journal? %s', not load_selected)
-        
-        if not load_selected :
-            pixbuf = gtk.gdk.pixbuf_new_from_file(name)
-            size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
-            self.pixmap.draw_pixbuf(self.gc, pixbuf,0,0,0,0,size[0],size[1],dither=gtk.gdk.RGB_DITHER_NORMAL,x_dither=0, y_dither=0)
-            self.undo_times -= 1
-            self.enableUndo(widget)
-        else :
-            pixbuf = gtk.gdk.pixbuf_new_from_file(name)
-            size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
-            #self.getout(True,widget)
-            self.getout(True)
-            #self.pixmap_sel = gtk.gdk.Pixmap(widget.window,size[0],size[1],-1)
-            self.pixmap_sel = gtk.gdk.Pixmap(self.window,size[0],size[1],-1)
-            self.pixmap_sel.draw_pixbuf(self.gc,pixbuf,0,0,0,0,size[0],size[1],dither=gtk.gdk.RGB_DITHER_NORMAL,x_dither=0,y_dither=0)
 
-            self.sel_get_out = False
-            self.selmove = True
-            self.desenha = True
-            self.orig_x, self.orig_y = 0,0
-            #width, height = widget.window.get_size()
-            width, height = self.window.get_size()
-            
-            self.pixmap_temp.draw_drawable(self.gc,self.pixmap,0,0,0,0,width,height)
-            self.pixmap_temp.draw_drawable(self.gc,self.pixmap_sel,0,0,0,0,size[0],size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection,False,0,0,size[0],size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection1,False,-1,-1,size[0]+2,size[1]+2)
-            
-            self.tool['name'] = 'marquee-rectangular'
-            self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
-            self.emit('select')
+        pixbuf = gtk.gdk.pixbuf_new_from_file(name)
+        size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
+        #self.getout(True,widget)
+        self.getout(True)
+        #self.pixmap_sel = gtk.gdk.Pixmap(widget.window,size[0],size[1],-1)
+        self.pixmap_sel = gtk.gdk.Pixmap(self.window,size[0],size[1],-1)
+        self.pixmap_sel.draw_pixbuf(self.gc,pixbuf,0,0,0,0,size[0],size[1],dither=gtk.gdk.RGB_DITHER_NORMAL,x_dither=0,y_dither=0)
+
+        self.sel_get_out = False
+        self.selmove = True
+        self.desenha = True
+        self.orig_x, self.orig_y = 0,0
+        #width, height = widget.window.get_size()
+        width, height = self.window.get_size()
+
+        self.pixmap_temp.draw_drawable(self.gc,self.pixmap,0,0,0,0,width,height)
+        self.pixmap_temp.draw_drawable(self.gc,self.pixmap_sel,0,0,0,0,size[0],size[1])
+        self.pixmap_temp.draw_rectangle(self.gc_selection,False,0,0,size[0],size[1])
+        self.pixmap_temp.draw_rectangle(self.gc_selection1,False,-1,-1,size[0]+2,size[1]+2)
+
+        self.tool['name'] = 'marquee-rectangular'
+        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
+        self.emit('select')
+
         #widget.queue_draw()
         self.queue_draw()
-        
+
     def clear(self):
         """ Clear Canvas
             @param self -- Area instance
