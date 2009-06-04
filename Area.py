@@ -381,15 +381,7 @@ class Area(gtk.DrawingArea):
                     
                 elif self.tool['name'] == 'marquee-rectangular' and not self.selmove:
                     if state & gtk.gdk.CONTROL_MASK:
-                        xdiff = abs(coords[0] - self.oldx)
-                        ydiff = abs(coords[1] - self.oldy)
-                        if xdiff >= ydiff:
-                            y = self.oldy + xdiff
-                            x = coords[0]
-                        else:    
-                            x = self.oldx + ydiff
-                            y = coords[1]
-                        coords = (x, y)
+                        coords = self._keep_selection_ratio(coords)
                     self.d.selection(widget,coords)
                 # selected
                 elif self.tool['name'] == 'marquee-rectangular' and self.selmove:
@@ -473,15 +465,7 @@ class Area(gtk.DrawingArea):
             elif self.tool['name'] == 'marquee-rectangular':
                 if self.selmove == False:
                     if event.state & gtk.gdk.CONTROL_MASK:
-                        xdiff = abs(coords[0] - self.oldx)
-                        ydiff = abs(coords[1] - self.oldy)
-                        if xdiff >= ydiff:
-                            y = self.oldy + xdiff
-                            x = coords[0]
-                        else:    
-                            x = self.oldx + ydiff
-                            y = coords[1]
-                        coords = (x, y)
+                        coords = self._keep_selection_ratio(coords)
                     self.d.selection(widget,coords,False)
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
                     self.selmove = True
@@ -1146,3 +1130,14 @@ class Area(gtk.DrawingArea):
 
     def key_release(self,widget,event):
         pass
+
+    def _keep_selection_ratio(self, coords):
+        def sign(x):
+            return x and x/abs(x) or 0
+
+        dx = int(coords[0]) - self.oldx
+        dy = int(coords[1]) - self.oldy
+        size = max(abs(dx), abs(dy))
+
+        return (self.oldx + sign(dx) * size,
+                self.oldy + sign(dy) * size)
