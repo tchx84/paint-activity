@@ -380,6 +380,16 @@ class Area(gtk.DrawingArea):
                     self.d.square(widget,event,coords,True,self.tool['fill'])
                     
                 elif self.tool['name'] == 'marquee-rectangular' and not self.selmove:
+                    if state & gtk.gdk.CONTROL_MASK:
+                        xdiff = abs(coords[0] - self.oldx)
+                        ydiff = abs(coords[1] - self.oldy)
+                        if xdiff >= ydiff:
+                            y = self.oldy + xdiff
+                            x = coords[0]
+                        else:    
+                            x = self.oldx + ydiff
+                            y = coords[1]
+                        coords = (x, y)
                     self.d.selection(widget,coords)
                 # selected
                 elif self.tool['name'] == 'marquee-rectangular' and self.selmove:
@@ -462,6 +472,16 @@ class Area(gtk.DrawingArea):
 
             elif self.tool['name'] == 'marquee-rectangular':
                 if self.selmove == False:
+                    if event.state & gtk.gdk.CONTROL_MASK:
+                        xdiff = abs(coords[0] - self.oldx)
+                        ydiff = abs(coords[1] - self.oldy)
+                        if xdiff >= ydiff:
+                            y = self.oldy + xdiff
+                            x = coords[0]
+                        else:    
+                            x = self.oldx + ydiff
+                            y = coords[1]
+                        coords = (x, y)
                     self.d.selection(widget,coords,False)
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
                     self.selmove = True
