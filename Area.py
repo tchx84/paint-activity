@@ -251,8 +251,6 @@ class Area(gtk.DrawingArea):
         """
         #logging.debug('Area.expose(self, widget, event)')
         area = event.area
-        if self.tool['name'] is not 'text':
-            self.grab_focus()
         if self.desenha or self.selmove:
             widget.window.draw_drawable(self.gc,self.pixmap_temp,area[0],area[1],area[0],area[1],area[2],area[3])
         else:
