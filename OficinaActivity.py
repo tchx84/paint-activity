@@ -120,14 +120,11 @@ class OficinaActivity(activity.Activity):
 
         def map_cp(widget):
             def size_allocate_cb(widget, allocation):
-                if self._setup_handle:
-                    self.disconnect(self._setup_handle)
-                    self._setup_handle = None
+                self.fixed.disconnect(self._setup_handle)
                 self.area.setup(allocation.width, allocation.height)
 
-            if self._setup_handle:
-                self.disconnect(self._setup_handle)
             self.canvas.add_with_viewport(self.fixed)
+            self.disconnect(self._setup_handle)
             self._setup_handle = self.fixed.connect('size_allocate',
                     size_allocate_cb)
 
@@ -141,15 +138,12 @@ class OficinaActivity(activity.Activity):
         pixbuf = gtk.gdk.pixbuf_new_from_file(file_path)
 
         def size_allocate_cb(widget, allocation):
-            if self._setup_handle:
-                self.disconnect(self._setup_handle)
-                self._setup_handle = None
+            self.fixed.disconnect(self._setup_handle)
             self.area.setup(pixbuf.get_width(), pixbuf.get_height())
             self.area.loadImageFromJournal(pixbuf)
 
-        if self._setup_handle:
-            self.disconnect(self._setup_handle)
         self.canvas.add_with_viewport(self.fixed)
+        self.disconnect(self._setup_handle)
         self._setup_handle = self.fixed.connect('size_allocate',
                 size_allocate_cb)
 
