@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generator: Adobe Illustrator 13.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
+<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  ' http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd' [
+    <!ENTITY stroke_color "#010101">
+    <!ENTITY fill_color "#FFFFFF">
+]>
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://web.resource.org/cc/"
@@ -48,9 +50,10 @@
    inkscape:current-layer="svg2" />
 
 <path
-   style="fill:#ffffff;display:inline"
+   style="fill:&fill_color;;display:inline;stroke-opacity:1" stroke-width="3"
    d="M 48.897307,33.594988 C 48.897307,44.525692 24.353188,48.898307 15.889502,42.513082 C 7.1635122,35.929969 8.1442163,21.098901 17.129718,14.87467 C 22.64423,11.054784 34.272782,10.165018 36.496363,19.452618 C 39.041402,30.082908 48.897307,22.664284 48.897307,33.594988 z "
    id="circle5"
    sodipodi:nodetypes="csssc" />
 
 </svg>
+

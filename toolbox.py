@@ -72,6 +72,7 @@ from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.combobox import ComboBox
 from sugar.graphics.palette import Palette
 from sugar.graphics.menuitem import MenuItem
+from sugar.graphics.colorbutton import ColorToolButton
 from sugar.graphics.objectchooser import ObjectChooser
 
 ##Create toolbars for the activity
@@ -84,27 +85,27 @@ class Toolbox(ActivityToolbox):
         
         self._edit_toolbar = DrawEditToolbar(activity)
         self.add_toolbar(_('Edit'), self._edit_toolbar)
-        self._edit_toolbar.show()
+        self._edit_toolbar.show_all()
         
         self._tools_toolbar = ToolsToolbar(activity)
         self.add_toolbar(_('Tools'), self._tools_toolbar)
-        self._tools_toolbar.show()
+        self._tools_toolbar.show_all()
 
         self._shapes_toolbar = ShapesToolbar(activity)
         self.add_toolbar(_('Shapes'), self._shapes_toolbar)
-        self._shapes_toolbar.show()
+        self._shapes_toolbar.show_all()
 
         self._text_toolbar = TextToolbar(activity)
         self.add_toolbar(_('Text'), self._text_toolbar)
-        self._text_toolbar.show()   
+        self._text_toolbar.show_all()
 
         self._image_toolbar = ImageToolbar(activity)
         self.add_toolbar(_('Image'), self._image_toolbar)
-        self._image_toolbar.show()
+        self._image_toolbar.show_all()
 
         self._effects_toolbar = EffectsToolbar(activity)
         self.add_toolbar(_('Effects'), self._effects_toolbar)
-        self._effects_toolbar.show()
+        self._effects_toolbar.show_all()
 
         #self._view_toolbar = ViewToolbar(activity)
         #self.add_toolbar(_('View'), self._view_toolbar)
@@ -129,11 +130,9 @@ class DrawEditToolbar(EditToolbar):
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
-        separator.show()
         
         self._clear_all = ToolButton('edit-clear')
         self.insert(self._clear_all, -1)
-        self._clear_all.show()
         self._clear_all.set_tooltip(_('Clear'))
         
         self.undo.connect('clicked', self._undo_cb)
@@ -285,27 +284,19 @@ class ToolsToolbar(gtk.Toolbar):
          
         self._activity = activity
 
-        self._icon_stroke = ToolButton('icon-stroke')
-        self.insert(self._icon_stroke, -1)
-        self._icon_stroke.show()
-        self._icon_stroke.set_tooltip(_('Tool Color'))
-        
         self._stroke_color = ButtonStrokeColor(activity)
-        self._stroke_color.show()
-#         self._stroke_color.set_tooltip(_('Stroke Color'))
+        self._stroke_color.set_icon_name('icon-stroke')
+        self._stroke_color.set_title(_('Stroke Color'))
         item = gtk.ToolItem()
         item.add(self._stroke_color)
         self.insert(item, -1)
-        item.show()
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
-        separator.show()
 
         self._tool_pencil = ToolButton('tool-pencil')
         self.insert(self._tool_pencil, -1)
-        self._tool_pencil.show()
         self._tool_pencil.set_tooltip(_('Pencil'))
         try:
             self._configure_palette(self._tool_pencil, self._TOOL_PENCIL)
@@ -314,7 +305,6 @@ class ToolsToolbar(gtk.Toolbar):
         
         self._tool_brush = ToolButton('tool-brush')
         self.insert(self._tool_brush, -1)
-        self._tool_brush.show()
         self._tool_brush.set_tooltip(_('Brush'))
         try:
             self._configure_palette(self._tool_brush, self._TOOL_BRUSH)
@@ -323,7 +313,6 @@ class ToolsToolbar(gtk.Toolbar):
         
         self._tool_eraser = ToolButton('tool-eraser')
         self.insert(self._tool_eraser, -1)
-        self._tool_eraser.show()
         self._tool_eraser.set_tooltip(_('Eraser'))
         try:
             self._configure_palette(self._tool_eraser, self._TOOL_ERASER)
@@ -332,7 +321,6 @@ class ToolsToolbar(gtk.Toolbar):
         
         self._tool_polygon = ToolButton('tool-polygon')
         self.insert(self._tool_polygon, -1)
-        self._tool_polygon.show()
         self._tool_polygon.set_tooltip(_('Polygon'))
         try:
             self._configure_palette(self._tool_polygon, self._TOOL_POLYGON)
@@ -341,13 +329,11 @@ class ToolsToolbar(gtk.Toolbar):
         
         self._tool_bucket = ToolButton('tool-bucket')
         self.insert(self._tool_bucket, -1)
-        self._tool_bucket.show()
         self._tool_bucket.set_tooltip(_('Bucket'))
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
-        separator.show()
         
         """
 
@@ -370,11 +356,8 @@ class ToolsToolbar(gtk.Toolbar):
         
         self._tool_marquee_rectangular = ToolButton('tool-marquee-rectangular')
         self.insert(self._tool_marquee_rectangular, -1)
-        self._tool_marquee_rectangular.show()
         self._tool_marquee_rectangular.set_tooltip(_('Rectangular Marquee'))
-        
-        self._icon_stroke.connect('clicked', self._on_icon_stroke_clicked)
-        
+
         # New connect method
         # Using dictionnaries to control tool's properties
         self._tool_polygon.connect('clicked', self.set_tool, self._TOOL_POLYGON)
@@ -544,8 +527,6 @@ class ToolsToolbar(gtk.Toolbar):
         
         #setting cursor: Moved to Area
         
-    def _on_icon_stroke_clicked(self, widget, data=None):
-        self._stroke_color.clicked()
         
     def _on_fill_checkbutton_toggled(self, checkbutton, button=None, tool=None):
         logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
@@ -584,10 +565,10 @@ class ToolsToolbar(gtk.Toolbar):
 
 
 ##Class to manage the Fill Color of a Button
-class ButtonFillColor(gtk.ColorButton):
+class ButtonFillColor(ColorToolButton):
     ##The Constructor
     def __init__(self, activity):
-        gtk.ColorButton.__init__(self)
+        ColorToolButton.__init__(self)
         self._activity = activity
         
         self.connect('color-set', self._color_button_cb)
@@ -605,10 +586,10 @@ class ButtonFillColor(gtk.ColorButton):
         self._activity.area.set_fill_color(new_color)
 
 ##Class to manage the Stroke Color of a Button
-class ButtonStrokeColor(gtk.ColorButton):
+class ButtonStrokeColor(ColorToolButton):
     ##The Constructor
     def __init__(self, activity):
-        gtk.ColorButton.__init__(self)
+        ColorToolButton.__init__(self)
         self._activity = activity
         
         self.connect('color-set', self._color_button_cb)
@@ -743,39 +724,26 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._activity = activity
         
-        self._icon_fill = ToolButton('icon-fill')
-        self.insert(self._icon_fill, -1)
-        self._icon_fill.show()
-        self._icon_fill.set_tooltip(_('Fill Color'))
-        
         self._fill_color = ButtonFillColor(activity)
-        self._fill_color.show()
+        self._fill_color.set_icon_name('icon-fill')
+        self._fill_color.set_title(_('Fill Color'))
         item = gtk.ToolItem()
         item.add(self._fill_color)
         self.insert(item, -1)
-        item.show()
-        
-        self._icon_stroke = ToolButton('icon-stroke')
-        self.insert(self._icon_stroke, -1)
-        self._icon_stroke.show()
-        self._icon_stroke.set_tooltip(_('Stroke Color'))
-        
         
         self._stroke_color = ButtonStrokeColor(activity)
-        self._stroke_color.show()
+        self._stroke_color.set_icon_name('icon-stroke')
+        self._stroke_color.set_title(_('Stroke Color'))
         item = gtk.ToolItem()
         item.add(self._stroke_color)
         self.insert(item, -1)
-        item.show()
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
-        separator.show()
 
         self._shape_ellipse = ToolButton('tool-shape-ellipse')
         self.insert(self._shape_ellipse, -1)
-        self._shape_ellipse.show()
         self._shape_ellipse.set_tooltip(_('Ellipse'))
         try:
             self._configure_palette_shape_ellipse()
@@ -784,7 +752,6 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._shape_rectangle = ToolButton('tool-shape-rectangle')
         self.insert(self._shape_rectangle, -1)
-        self._shape_rectangle.show()
         self._shape_rectangle.set_tooltip(_('Rectangle'))
         try:
             self._configure_palette_shape_rectangle()
@@ -793,7 +760,6 @@ class ShapesToolbar(gtk.Toolbar):
         
         self._shape_line = ToolButton('tool-shape-line')
         self.insert(self._shape_line, -1)
-        self._shape_line.show()
         self._shape_line.set_tooltip(_('Line'))
         try:
             self._configure_palette_shape_line()
@@ -802,7 +768,6 @@ class ShapesToolbar(gtk.Toolbar):
         
         self._shape_polygon = ToolButton('tool-shape-polygon')
         self.insert(self._shape_polygon, -1)
-        self._shape_polygon.show()
         self._shape_polygon.set_tooltip(_('Polygon'))
         try:
             self._configure_palette_shape_polygon()
@@ -820,7 +785,6 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._shape_heart = ToolButton('tool-shape-heart')
         self.insert(self._shape_heart, -1)
-        self._shape_heart.show()
         self._shape_heart.set_tooltip(_('Heart'))
         try:
             self._configure_palette_shape_heart()
@@ -830,7 +794,6 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._shape_parallelogram = ToolButton('tool-shape-parallelogram')
         self.insert(self._shape_parallelogram, -1)
-        self._shape_parallelogram.show()
         self._shape_parallelogram.set_tooltip(_('Parallelogram'))
         try:
             self._configure_palette_shape_parallelogram()
@@ -839,7 +802,6 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._shape_arrow = ToolButton('tool-shape-arrow')
         self.insert(self._shape_arrow, -1)
-        self._shape_arrow.show()
         self._shape_arrow.set_tooltip(_('Arrow'))
         try:
             self._configure_palette_shape_arrow()
@@ -848,7 +810,6 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._shape_star = ToolButton('tool-shape-star')
         self.insert(self._shape_star, -1)
-        self._shape_star.show()
         self._shape_star.set_tooltip(_('Star'))
         try:
             self._configure_palette_shape_star()
@@ -857,7 +818,6 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._shape_trapezoid = ToolButton('tool-shape-trapezoid')
         self.insert(self._shape_trapezoid, -1)
-        self._shape_trapezoid.show()
         self._shape_trapezoid.set_tooltip(_('Trapezoid'))
         try:
             self._configure_palette_shape_trapezoid()
@@ -866,7 +826,6 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._shape_triangle = ToolButton('tool-shape-triangle')
         self.insert(self._shape_triangle, -1)
-        self._shape_triangle.show()
         self._shape_triangle.set_tooltip(_('Triangle'))
         try:
             self._configure_palette_shape_triangle()
@@ -874,9 +833,6 @@ class ShapesToolbar(gtk.Toolbar):
             logging.debug('Could not create palette for Shape Triangle')
         
         
-        self._icon_stroke.connect('clicked', self._on_icon_stroke_clicked)
-        self._icon_fill.connect('clicked', self._on_icon_fill_clicked)
-
         self._shape_arrow.connect('clicked', self.set_tool, self._SHAPE_ARROW)
         self._shape_ellipse.connect('clicked', self.set_tool, self._SHAPE_ELLIPSE)
         #self._shape_freeform.connect('clicked', self.set_tool, self._SHAPE_FREEFORM)
@@ -902,15 +858,7 @@ class ShapesToolbar(gtk.Toolbar):
         self._activity.area.set_tool(tool)
         
         #setting cursor: moved to Area
-        
-        
-    def _on_icon_stroke_clicked(self, widget, data=None):
-        self._stroke_color.clicked()
-        
-    def _on_icon_fill_clicked(self, widget, data=None):
-        self._fill_color.clicked()
-        
-            
+
     def _on_vertices_value_changed(self, spinbutton, tool):
         #self._activity.area.polygon_sides = spinbutton.get_value_as_int()
         tool['vertices'] = spinbutton.get_value_as_int()
@@ -1100,21 +1048,17 @@ class TextToolbar(gtk.Toolbar):
 
         self._text = ToolButton('text')
         self.insert(self._text, -1)
-        self._text.show()
         self._text.set_tooltip(_('Type'))
         self._text.connect('clicked', self.set_tool, self._ACTION_TEXT)
         
         self._text_color = ButtonFillColor(activity)
-        self._text_color.show()
         item = gtk.ToolItem()
         item.add(self._text_color)
         self.insert(item, -1)
-        item.show()
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
-        separator.show()
         
         
         """
@@ -1171,32 +1115,27 @@ class ImageToolbar(gtk.Toolbar):
         
         self._object_insert = ToolButton('object-insert')
         self.insert(self._object_insert, -1)
-        self._object_insert.show()
         self._object_insert.set_tooltip(_('Insert Image'))
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
-        separator.show()
         
         self.width_percent = 1.
         self.height_percent = 1.
         
         self._object_rotate_left = ToolButton('object-rotate-left')
         self.insert(self._object_rotate_left, -1)
-        self._object_rotate_left.show()
         self._object_rotate_left.set_tooltip(_('Rotate Left'))
         self._object_rotate_left.set_sensitive( self._activity.area.is_selected() )
         
         self._object_rotate_right = ToolButton('object-rotate-right')
         self.insert(self._object_rotate_right, -1)
-        self._object_rotate_right.show()
         self._object_rotate_right.set_tooltip(_('Rotate Right'))
         self._object_rotate_right.set_sensitive( self._activity.area.is_selected() )
         
         self._object_height = ToolButton('object-height')
         self.insert(self._object_height, -1)
-        self._object_height.show()
         self._object_height.set_tooltip(_('Height'))           
 
         height_spinButton = self._create_spinButton(self._object_height, 'object-height', activity)
@@ -1204,11 +1143,9 @@ class ImageToolbar(gtk.Toolbar):
         item = gtk.ToolItem()
         item.add(height_spinButton)
         self.insert(item, -1)
-        item.show()
 
         self._object_width = ToolButton('object-width')
         self.insert(self._object_width, -1)
-        self._object_width.show()
         self._object_width.set_tooltip(_('Width'))
 
         width_spinButton = self._create_spinButton(self._object_width, 'object-width', activity)
@@ -1216,7 +1153,6 @@ class ImageToolbar(gtk.Toolbar):
         item = gtk.ToolItem()
         item.add(width_spinButton)
         self.insert(item, -1)
-        item.show()
 
         self._object_insert.connect('clicked', self.insertImage, activity)
         self._object_rotate_left.connect('clicked', self.rotate_left, activity)
@@ -1350,18 +1286,15 @@ class EffectsToolbar(gtk.Toolbar):
 
         self._effect_grayscale = ToolButton('effect-grayscale')
         self.insert(self._effect_grayscale, -1)
-        self._effect_grayscale.show()
         self._effect_grayscale.set_tooltip(_('Grayscale'))
         
         self._effect_rainbow = ToolButton('effect-rainbow')
         self.insert(self._effect_rainbow, -1)
-        self._effect_rainbow.show()
         self._effect_rainbow.set_tooltip(_('Rainbow'))
         self._configure_palette(self._effect_rainbow, self._EFFECT_RAINBOW)
     
         separator = gtk.SeparatorToolItem()
         self.insert(separator, -1)
-        separator.show()
         
         """
         #FIXME: Must be implemented
@@ -1504,20 +1437,16 @@ class ViewToolbar(gtk.Toolbar):
         self._view_percent.set_active(0)
         self._view_percent.connect('changed', self._combo_changed_cb)
         self.insert(tool_item, -1)
-        tool_item.show()
         
         separator = gtk.SeparatorToolItem()
         self.insert(separator, -1)
-        separator.show()
 
         self._zoom_plus = ToolButton('zoom-plus')
         self.insert(self._zoom_plus, -1)
-        self._zoom_plus.show()
         self._zoom_plus.set_tooltip(_('ZOOM +'))
 
         self._zoom_minus = ToolButton('zoom-minus')
         self.insert(self._zoom_minus, -1)
-        self._zoom_minus.show()
         self._zoom_minus.set_tooltip(_('ZOOM -'))
 
         '''
