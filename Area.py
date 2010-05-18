@@ -350,7 +350,7 @@ class Area(gtk.DrawingArea):
                         
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
             if self.tool['name'] == 'pencil':
-                self.d.brush(widget, coords, self.last, 2, 'circle')
+                self.d.brush(widget, coords, self.last, self.line_size, 'circle')
                 self.last = coords
             elif self.tool['name'] == 'eraser':
                 self.d.eraser(widget, coords, self.last, self.line_size, self.tool['line shape'])
