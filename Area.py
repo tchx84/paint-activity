@@ -155,6 +155,7 @@ class Area(gtk.DrawingArea):
         self.line_shape = 'circle'
         self.last = []
         self.rainbow_counter = 0
+        self.keep_aspect_ratio = False
                 
         self.font = pango.FontDescription('Sans 9')
         self._set_selection_bounds(0,0,0,0)
@@ -378,7 +379,7 @@ class Area(gtk.DrawingArea):
                     self.d.square(widget,event,coords,True,self.tool['fill'])
                     
                 elif self.tool['name'] == 'marquee-rectangular' and not self.selmove:
-                    if state & gtk.gdk.CONTROL_MASK:
+                    if (state & gtk.gdk.CONTROL_MASK) or self.keep_aspect_ratio:
                         coords = self._keep_selection_ratio(coords)
                     self.d.selection(widget,coords)
                 # selected
@@ -462,7 +463,7 @@ class Area(gtk.DrawingArea):
 
             elif self.tool['name'] == 'marquee-rectangular':
                 if self.selmove == False:
-                    if event.state & gtk.gdk.CONTROL_MASK:
+                    if (event.state & gtk.gdk.CONTROL_MASK) or self.keep_aspect_ratio:
                         coords = self._keep_selection_ratio(coords)
                     self.d.selection(widget,coords,False)
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))

@@ -357,6 +357,11 @@ class ToolsToolbar(gtk.Toolbar):
         self._tool_marquee_rectangular = ToolButton('tool-marquee-rectangular')
         self.insert(self._tool_marquee_rectangular, -1)
         self._tool_marquee_rectangular.set_tooltip(_('Rectangular Marquee'))
+        try:
+            self._configure_palette(self._tool_marquee_rectangular, self._TOOL_MARQUEE_RECTANGULAR)
+        except:
+            logging.debug('Could not create palette for tool Rectangular Marquee')
+
 
         # New connect method
         # Using dictionnaries to control tool's properties
@@ -483,7 +488,7 @@ class ToolsToolbar(gtk.Toolbar):
             label.show()
             
             colorbutton = ButtonFillColor(self._activity)
-            colorbutton.show()
+            colorbutton.show_all()
             
             hbox.pack_start(label)
             hbox.pack_start(colorbutton)
@@ -493,7 +498,19 @@ class ToolsToolbar(gtk.Toolbar):
             content_box.pack_start(hbox)
             
             colorbutton.connect_after('color-set', self._on_color_set, self._TOOL_POLYGON)
+        if tool['name'] is self._TOOL_MARQUEE_RECTANGULAR['name']:
+            # Creating a CheckButton named "Fill".
+            keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
+            keep_aspect_checkbutton.show()
+            keep_aspect_checkbutton.set_active(self._activity.area.keep_aspect_ratio)
+
+            keep_aspect_checkbutton.connect('toggled', self._keep_aspect_checkbutton_toggled, widget)
+            palette.action_bar.pack_start(keep_aspect_checkbutton)
     
+
+    def _keep_aspect_checkbutton_toggled(self, checkbutton, button=None):
+        logging.debug('Keep aspect is Active: %s', checkbutton.get_active())
+        self._activity.area.keep_aspect_ratio = checkbutton.get_active()
 
     def set_shape(self, widget=None, tool=None, shape=None):
         """
