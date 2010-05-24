@@ -84,6 +84,7 @@ class OficinaActivity(activity.Activity):
 
         """
         activity.Activity.__init__(self, handle)
+        self.max_participants = 1
 
         logging.debug('Starting Paint activity (Oficina)')
 
