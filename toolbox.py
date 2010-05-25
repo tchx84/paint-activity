@@ -216,15 +216,6 @@ class ToolsToolbar(gtk.Toolbar):
         'vertices'      : None
     }
     
-    _TOOL_POLYGON = {
-        'name'          : 'polygon',
-        'line size'     : 2,
-        'fill color'    : None,
-        'stroke color'  : None,
-        'line shape'    : 'circle',
-        'fill'          : True,
-        'vertices'      : None
-    }
     
     _TOOL_BUCKET = {
         'name'          : 'bucket',
@@ -319,13 +310,6 @@ class ToolsToolbar(gtk.Toolbar):
         except:
             logging.debug('Could not create palette for tool Eraser')
         
-        self._tool_polygon = ToolButton('tool-polygon')
-        self.insert(self._tool_polygon, -1)
-        self._tool_polygon.set_tooltip(_('Polygon'))
-        try:
-            self._configure_palette(self._tool_polygon, self._TOOL_POLYGON)
-        except:
-            logging.debug('Could not create palette for tool Polygon')
         
         self._tool_bucket = ToolButton('tool-bucket')
         self.insert(self._tool_bucket, -1)
@@ -365,7 +349,6 @@ class ToolsToolbar(gtk.Toolbar):
 
         # New connect method
         # Using dictionnaries to control tool's properties
-        self._tool_polygon.connect('clicked', self.set_tool, self._TOOL_POLYGON)
         self._tool_pencil.connect('clicked', self.set_tool, self._TOOL_PENCIL)
         self._tool_brush.connect('clicked', self.set_tool, self._TOOL_BRUSH)
         self._tool_eraser.connect('clicked', self.set_tool, self._TOOL_ERASER)
@@ -397,7 +380,6 @@ class ToolsToolbar(gtk.Toolbar):
             
         # We can set size when using either Pencil, Free Polygon, Brush or Eraser
         if tool['name'] is self._TOOL_PENCIL['name'] or \
-             tool['name'] is self._TOOL_POLYGON['name'] or \
              tool['name'] is self._TOOL_BRUSH['name'] or \
              tool['name'] is self._TOOL_ERASER['name']:
             
@@ -468,36 +450,6 @@ class ToolsToolbar(gtk.Toolbar):
             #vbox.pack_end(separator)
             #separator.show()
 
-        # User is able to fill or not a polygon, and choose its fill color
-        if tool['name'] is self._TOOL_POLYGON['name']:
-            # Creating a CheckButton named "Fill".
-            fill_checkbutton = gtk.CheckButton(_('Fill'))
-            fill_checkbutton.show()
-            fill_checkbutton.set_active(self._TOOL_POLYGON['fill'])
-            
-            fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, widget, self._TOOL_POLYGON)
-            
-            #palette.set_content(fill_checkbutton)
-            palette.action_bar.pack_start(fill_checkbutton)
-            
-            # Creating Fill Color Button
-            hbox = gtk.HBox()
-            hbox.show()
-            
-            label = gtk.Label(_('Fill Color: '))
-            label.show()
-            
-            colorbutton = ButtonFillColor(self._activity)
-            colorbutton.show_all()
-            
-            hbox.pack_start(label)
-            hbox.pack_start(colorbutton)
-            
-            #palette.action_bar.pack_start(label)
-            #palette.action_bar.pack_start(colorbutton)
-            content_box.pack_start(hbox)
-            
-            colorbutton.connect_after('color-set', self._on_color_set, self._TOOL_POLYGON)
         if tool['name'] is self._TOOL_MARQUEE_RECTANGULAR['name']:
             # Creating a CheckButton named "Fill".
             keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
@@ -545,13 +497,6 @@ class ToolsToolbar(gtk.Toolbar):
         #setting cursor: Moved to Area
         
         
-    def _on_fill_checkbutton_toggled(self, checkbutton, button=None, tool=None):
-        logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
-        
-        # New method for setting tools
-        #self._activity.area.fill = checkbutton.get_active()
-        tool['fill'] = checkbutton.get_active()
-        self.set_tool(tool=tool)
         
 #     def _on_fill_checkbutton_map(self, checkbutton, data=None):
 #         """
@@ -734,6 +679,17 @@ class ShapesToolbar(gtk.Toolbar):
         'fill'          : True,
         'vertices'      : None
     }
+
+    _TOOL_POLYGON = {
+        'name'          : 'polygon',
+        'line size'     : 2,
+        'fill color'    : None,
+        'stroke color'  : None,
+        'line shape'    : 'circle',
+        'fill'          : True,
+        'vertices'      : None
+    }
+
     
     ##The Constructor
     def __init__(self, activity):
@@ -782,6 +738,14 @@ class ShapesToolbar(gtk.Toolbar):
             self._configure_palette_shape_line()
         except:
             logging.debug('Could not create palette for Shape Line')
+
+        self._tool_polygon = ToolButton('tool-polygon')
+        self.insert(self._tool_polygon, -1)
+        self._tool_polygon.set_tooltip(_('Free form'))
+        try:
+            self._create_simple_palette(self._tool_polygon, self._TOOL_POLYGON)
+        except:
+            logging.debug('Could not create palette for tool Polygon')
         
         self._shape_polygon = ToolButton('tool-shape-polygon')
         self.insert(self._shape_polygon, -1)
@@ -853,6 +817,7 @@ class ShapesToolbar(gtk.Toolbar):
         self._shape_arrow.connect('clicked', self.set_tool, self._SHAPE_ARROW)
         self._shape_ellipse.connect('clicked', self.set_tool, self._SHAPE_ELLIPSE)
         #self._shape_freeform.connect('clicked', self.set_tool, self._SHAPE_FREEFORM)
+        self._tool_polygon.connect('clicked', self.set_tool, self._TOOL_POLYGON)
         self._shape_heart.connect('clicked', self.set_tool, self._SHAPE_HEART)
         self._shape_line.connect('clicked', self.set_tool, self._SHAPE_LINE)
         self._shape_parallelogram.connect('clicked', self.set_tool, self._SHAPE_PARALLELOGRAM)
@@ -934,6 +899,13 @@ class ShapesToolbar(gtk.Toolbar):
         
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_POLYGON)
         
+    def _on_fill_checkbutton_toggled(self, checkbutton, button=None, tool=None):
+        logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
+        
+        # New method for setting tools
+        #self._activity.area.fill = checkbutton.get_active()
+        tool['fill'] = checkbutton.get_active()
+        self.set_tool(tool=tool)
         
     def _configure_palette_shape_heart(self):
         logging.debug('Creating palette to shape heart')
@@ -980,6 +952,9 @@ class ShapesToolbar(gtk.Toolbar):
         palette.content_box.pack_start(hbox)
         
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_STAR)
+
+            
+
     
     def _configure_palette_shape_trapezoid(self):
         logging.debug('Creating palette to shape trapezoid')
@@ -1039,6 +1014,18 @@ class ShapesToolbar(gtk.Toolbar):
         palette.content_box.pack_start(hbox)
         
         size_spinbutton.connect('value-changed', self._on_line_size_value_changed, tool)
+
+        # User is able to fill or not a polygon, and choose its fill color
+        if tool['name'] is self._TOOL_POLYGON['name']:
+            # Creating a CheckButton named "Fill".
+            fill_checkbutton = gtk.CheckButton(_('Fill'))
+            fill_checkbutton.show()
+            fill_checkbutton.set_active(self._TOOL_POLYGON['fill'])
+            
+            fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, widget, self._TOOL_POLYGON)
+            
+            #palette.set_content(fill_checkbutton)
+            palette.action_bar.pack_start(fill_checkbutton)
     
     
     def _configure_palette_shape_line(self):
