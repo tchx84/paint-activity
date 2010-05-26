@@ -1057,8 +1057,18 @@ class Area(gtk.DrawingArea):
         
         # Setting the cursor
         try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file('./images/' + tool['name'] + '.png')
-            cursor = gtk.gdk.Cursor(gtk.gdk.display_get_default() , pixbuf, 6, 21)
+            cursors = { 'pencil': 'pencil',
+                        'brush': 'paintbrush',
+                        'eraser': 'eraser',
+                        'bucket': 'paint-bucket' }
+            display = gtk.gdk.display_get_default()
+            if self.tool['name'] in cursors:
+                name = cursors[self.tool['name']]
+                cursor = gtk.gdk.cursor_new_from_name(display, name)
+            else:
+                filename = os.path.join('images', tool['name'] + '.png')
+                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                cursor = gtk.gdk.Cursor(display, pixbuf, 6, 21)
         except gobject.GError:
             cursor = None
         
