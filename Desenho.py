@@ -110,20 +110,8 @@ class Desenho:
 
         """
         widget.desenha = False
-        if(shape == 'circle'):
-            widget.pixmap.draw_arc(widget.gc_eraser, True, coords[0], coords[1], size, size, 0, 360*64)
-            if last:
-                widget.gc_eraser.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-                widget.pixmap.draw_line(widget.gc_eraser,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
-                widget.gc_eraser.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        if(shape == 'square'):
-            widget.pixmap.draw_rectangle(widget.gc_eraser, True, coords[0], coords[1], size, size)
-            if last:
-                points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
-                widget.pixmap.draw_polygon(widget.gc_eraser,True,points)
-                points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
-                widget.pixmap.draw_polygon(widget.gc_eraser,True,points)
-        widget.queue_draw()
+        self._trace(widget,widget.gc_eraser, coords, last, size, shape)
+        #widget.queue_draw()
         
     def brush(self, widget, coords, last, size = 5, shape = 'circle'):
         """Paint with brush.
@@ -137,28 +125,9 @@ class Desenho:
 
         """
         widget.desenha = False
-        if(shape == 'circle'):
-            widget.pixmap.draw_arc(widget.gc_brush, True, coords[0], coords[1], size, size, 0, 360*64)
-            if last:
-                widget.gc_brush.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-                widget.pixmap.draw_line(widget.gc_brush,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
-                widget.gc_brush.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        if(shape == 'square'):
-            widget.pixmap.draw_rectangle(widget.gc_brush, True, coords[0], coords[1], size, size)
-            if last:
-                points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
-                widget.pixmap.draw_polygon(widget.gc_brush,True,points)
-                points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
-                widget.pixmap.draw_polygon(widget.gc_brush,True,points)
+        self._trace(widget,widget.gc_brush, coords, last, size, shape)
 
-        if last:
-            x = min(coords[0], last[0])
-            width = max(coords[0], last[0]) - x
-            y = min(coords[1], last[1])
-            height = max(coords[1], last[1]) - y
-            widget.queue_draw_area(x, y, width+size, height+size) # We add size to avoid drawing dotted lines
-        else:
-            widget.queue_draw()
+
 
     def rainbow(self, widget, coords, last, color, size = 5, shape = 'circle'):
         """Paint with rainbow.
@@ -190,23 +159,40 @@ class Desenho:
 
         widget.gc_rainbow.set_foreground(rainbow_colors[color])
         widget.desenha = False
+        self._trace(widget,widget.gc_rainbow, coords, last, size, shape)
+
+
+    def _trace(self, widget,gc, coords, last, size, shape):
         if(shape == 'circle'):
-            widget.pixmap.draw_arc(widget.gc_rainbow, True, coords[0], coords[1], size, size, 0, 360*64)
+            widget.pixmap.draw_arc(gc, True, coords[0] - size/2, coords[1] - size/2, size, size, 0, 360*64)
             if last:
-                widget.gc_rainbow.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-                widget.pixmap.draw_line(widget.gc_rainbow,last[0]+size/2,last[1]+size/2,coords[0]+size/2,coords[1]+size/2)
-                widget.gc_rainbow.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+                gc.set_line_attributes(size, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+                widget.pixmap.draw_line(gc, last[0], last[1], coords[0], coords[1])
+                gc.set_line_attributes(0, gtk.gdk.LINE_SOLID, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         if(shape == 'square'):
+            widget.pixmap.draw_rectangle(gc, True, coords[0] - size/2, coords[1] - size/2, size, size)
             if last:
-                widget.pixmap.draw_rectangle(widget.gc_rainbow, True, last[0], last[1], size, size)
-                points = [coords, last, (last[0]+size,last[1]+size), (coords[0]+size,coords[1]+size)]
-                widget.pixmap.draw_polygon(widget.gc_rainbow,True,points)
-                points = [(last[0]+size,last[1]), (coords[0]+size,coords[1]), (coords[0],coords[1]+size), (last[0],last[1]+size)]
-                widget.pixmap.draw_polygon(widget.gc_rainbow,True,points)
-            widget.pixmap.draw_rectangle(widget.gc_rainbow, True, coords[0], coords[1], size, size)
-        widget.queue_draw()
+                points = [(last[0] - size/2,last[1] - size/2), (coords[0] - size/2, coords[1] - size/2), 
+                            (coords[0] + size/2, coords[1] + size/2) , (last[0] + size/2,last[1] + size/2)]
+                widget.pixmap.draw_polygon(gc,True,points)
+                points = [(last[0] + size/2,last[1] - size/2), (coords[0] + size/2, coords[1] - size/2), 
+                            (coords[0] - size/2, coords[1] + size/2) , (last[0] - size/2,last[1] + size/2)]
+                widget.pixmap.draw_polygon(gc,True,points)
+
+
+        if last:
+            x = min(coords[0], last[0])
+            width = max(coords[0], last[0]) - x
+            y = min(coords[1], last[1])
+            height = max(coords[1] , last[1]) - y
+            widget.queue_draw_area(x-size, y-size, width+size*2, height+size*2) # We add size to avoid drawing dotted lines
+        else:
+            widget.queue_draw()
+
 
     
+
+
     def square(self, widget, event, coords, temp, fill):
         """Draw a square.
 

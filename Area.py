@@ -176,6 +176,11 @@ class Area(gtk.DrawingArea):
         ##Shapes will be filled or not?
         self.fill = True
 
+        # variables to show the tool shape
+        self.drawing = False
+        self.x_cursor = 0
+        self.y_cursor = 0
+
 
     def setup(self, width, height):
         """Configure the Area object."""
@@ -256,7 +261,21 @@ class Area(gtk.DrawingArea):
             widget.window.draw_drawable(self.gc,self.pixmap_temp,area[0],area[1],area[0],area[1],area[2],area[3])
         else:
             widget.window.draw_drawable(self.gc,self.pixmap,area[0],area[1],area[0],area[1],area[2],area[3])
+            self.show_tool_shape(widget)    
         return False
+
+    def show_tool_shape(self,widget):
+        """ 
+        Show the shape of the tool selected for pencil, brush, rainbow and eraser
+        """
+        if self.tool['name'] in ['pencil','eraser','brush','rainbow']:
+            if not self.drawing:
+                size = self.tool['line size']
+                if self.tool['line shape'] == 'circle':
+                    widget.window.draw_arc(self.gc_brush, False, self.x_cursor - size/2, self.y_cursor - size/2, size, size, 0, 360*64)
+                else:
+                    widget.window.draw_rectangle(self.gc_brush, False, self.x_cursor - size/2, self.y_cursor - size/2, size, size)
+
 
     def mousedown(self,widget,event):
         """Make the Area object (GtkDrawingArea) recognize that the mouse button has been pressed.
@@ -304,14 +323,17 @@ class Area(gtk.DrawingArea):
                 self.last = []
                 self.d.eraser(widget, coords, self.last, self.line_size, self.tool['line shape'])
                 self.last = coords
+                self.drawing = True
             elif self.tool['name'] == 'brush':
                 self.last = []
                 self.d.brush(widget, coords, self.last, self.line_size, self.tool['line shape'])
                 self.last = coords
+                self.drawing = True
             elif self.tool['name'] == 'rainbow':
                 self.last = []
                 self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.tool['line shape'])
                 self.last = coords
+                self.drawing = True
             elif self.tool['name'] == 'polygon':
                 self.configure_line(self.line_size)
                 if self.polygon_start == False:
@@ -346,6 +368,8 @@ class Area(gtk.DrawingArea):
         x = event.x
         y = event.y
         state = event.state
+
+        self.x_cursor,self.y_cursor = int(x), int(y)
 
         coords = int(x), int(y)
                         
@@ -419,6 +443,8 @@ class Area(gtk.DrawingArea):
                     self.configure_line(self.line_size)
                     self.d.heart(widget,coords,True,self.tool['fill'])
         else:
+            if self.tool['name'] in ['brush','eraser','rainbow','pencil'] :
+                widget.queue_draw()
             if self.tool['name'] == 'marquee-rectangular' and self.selmove:
                 size = self.pixmap_sel.get_size()
                 xi = self.orig_x
@@ -520,10 +546,11 @@ class Area(gtk.DrawingArea):
                 self.d.heart(widget,coords,False,self.tool['fill'])
                 self.enableUndo(widget)
 
-        if self.tool['name'] == 'brush' or self.tool['name'] == 'eraser' or self.tool['name'] == 'rainbow' or self.tool['name'] == 'pencil' :
+        if self.tool['name'] in ['brush','eraser','rainbow','pencil'] :
             self.last = []
             widget.queue_draw() 
             self.enableUndo(widget)
+            self.drawing = False
         self.desenha = False
         
     def undo(self):
