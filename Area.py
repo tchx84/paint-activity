@@ -97,6 +97,8 @@ class Area(gtk.DrawingArea):
                 gtk.gdk.BUTTON_PRESS_MASK |
                 gtk.gdk.BUTTON_RELEASE_MASK|
                 gtk.gdk.EXPOSURE_MASK |
+                gtk.gdk.LEAVE_NOTIFY_MASK |
+                gtk.gdk.ENTER_NOTIFY_MASK |
                 gtk.gdk.KEY_PRESS_MASK) 
                 
         self.connect("expose_event",self.expose)
@@ -104,6 +106,8 @@ class Area(gtk.DrawingArea):
         self.connect("button_press_event", self.mousedown)
         self.connect("button_release_event", self.mouseup)
         self.connect("key_press_event", self.key_press)
+        self.connect("leave_notify_event", self.mouseleave)
+        self.connect("enter_notify_event", self.mouseenter)
 
         self.set_flags(gtk.CAN_FOCUS)
         self.grab_focus()
@@ -550,7 +554,19 @@ class Area(gtk.DrawingArea):
             self.enableUndo(widget)
             self.drawing = False
         self.desenha = False
-        
+       
+    def mouseleave(self, widget, event):
+        if self.tool['name'] in ['pencil','eraser','brush','rainbow']:
+            self.drawing = True
+            size = self.tool['line size']
+            widget.queue_draw_area(self.x_cursor-size, self.y_cursor-size, size*2, size*2)
+
+    def mouseenter(self, widget, event):
+        if self.tool['name'] in ['pencil','eraser','brush','rainbow']:
+            self.drawing = False
+            size = self.tool['line size']
+            widget.queue_draw_area(self.x_cursor-size, self.y_cursor-size, size*2, size*2)
+ 
     def undo(self):
         """Undo the last drawing change.
 
