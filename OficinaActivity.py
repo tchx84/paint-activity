@@ -117,6 +117,8 @@ class OficinaActivity(activity.Activity):
         self.set_toolbox(toolbox)
         toolbox.show()
 
+        self.connect("key_press_event", self.key_press)
+
         # setup self.area only once
 
         def map_cp(widget):
@@ -130,6 +132,11 @@ class OficinaActivity(activity.Activity):
                     size_allocate_cb)
 
         self._setup_handle = self.connect('map', map_cp)
+
+    def key_press(self, widget, event):
+        sliders = {65474: -5, 65475: -1, 65476: 1, 65477: 5}
+        if event.keyval in sliders:
+            self.area.change_line_size(sliders[event.keyval])
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.'''

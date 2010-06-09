@@ -97,15 +97,13 @@ class Area(gtk.DrawingArea):
                 gtk.gdk.BUTTON_PRESS_MASK |
                 gtk.gdk.BUTTON_RELEASE_MASK|
                 gtk.gdk.EXPOSURE_MASK |
-                gtk.gdk.KEY_PRESS_MASK |
-                gtk.gdk.KEY_RELEASE_MASK) 
+                gtk.gdk.KEY_PRESS_MASK) 
                 
         self.connect("expose_event",self.expose)
         self.connect("motion_notify_event", self.mousemove)
         self.connect("button_press_event", self.mousedown)
         self.connect("button_release_event", self.mouseup)
         self.connect("key_press_event", self.key_press)
-        self.connect("key_release_event", self.key_release)
 
         self.set_flags(gtk.CAN_FOCUS)
         self.grab_focus()
@@ -1164,8 +1162,14 @@ class Area(gtk.DrawingArea):
                 self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
             widget.queue_draw()
 
-    def key_release(self,widget,event):
-        pass
+    def change_line_size(self, delta):
+        if self.tool['name'] in ['pencil','eraser','brush','rainbow']:
+            size = self.tool['line size'] + delta
+            if size < 1:
+                size = 1
+            self.tool['line size'] = size
+            self.configure_line(size)
+            self.queue_draw()
 
     def _keep_selection_ratio(self, coords):
         def sign(x):
