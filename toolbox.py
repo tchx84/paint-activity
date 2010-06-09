@@ -766,7 +766,7 @@ class ShapesToolbar(gtk.Toolbar):
             logging.debug('Could not create palette for Shape Line')
 
         self._tool_polygon = RadioToolButton()
-        self._tool_polygon.props.icon_name = 'tool-polygon'
+        self._tool_polygon.props.icon_name = 'tool-shape-freeform'
         self._tool_polygon.props.group = activity.tool_group
         self.insert(self._tool_polygon, -1)
         self._tool_polygon.set_tooltip(_('Free form'))
