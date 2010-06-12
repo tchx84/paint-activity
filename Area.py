@@ -69,6 +69,7 @@ import math
 import pango
 from fill import *
 from Desenho import Desenho
+from urlparse import urlparse
 
 ##Tools and events manipulation are handle with this class.
 class Area(gtk.DrawingArea):
@@ -741,6 +742,11 @@ class Area(gtk.DrawingArea):
             self.tool['name'] = 'marquee-rectangular'
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR)) 
             self.emit('select')
+        elif clipBoard.wait_is_uris_available():
+            selection = clipBoard.wait_for_contents('text/uri-list') 
+            if selection != None:
+                for uri in selection.get_uris():
+                    self.loadImage(urlparse(uri).path, self)
         else:
             self.loadImage(tempPath, self)
             logging.debug('Area.past(self): Load from clipboard fails, loading from tempPatch')
