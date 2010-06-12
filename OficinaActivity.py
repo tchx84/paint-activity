@@ -140,8 +140,7 @@ class OficinaActivity(activity.Activity):
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.'''
-
-        logging.debug('reading file %s', file_path)
+        logging.debug('reading file %s, mimetype: %s, title: %s', file_path, self.metadata['mime_type'],self.metadata['title'])
 
         pixbuf = gtk.gdk.pixbuf_new_from_file(file_path)
 
@@ -154,6 +153,14 @@ class OficinaActivity(activity.Activity):
         self.disconnect(self._setup_handle)
         self._setup_handle = self.fixed.connect('size_allocate',
                 size_allocate_cb)
+
+        # disassociate with journal entry to avoid overwrite (SL #1771) 
+        if self.metadata['mime_type'] != "image/png":
+            self._jobject.object_id = None
+            last_point_posi = self.metadata['title'].rfind('.')
+            if last_point_posi > -1:
+                self.metadata['title'] = self.metadata['title'][0:last_point_posi] + '.png'    
+            logging.error('title: %s', self.metadata['title'])
 
     def write_file(self, file_path):
         '''Save file on Sugar Journal. '''
