@@ -72,6 +72,9 @@ from Desenho import Desenho
 from urlparse import urlparse
 
 ##Tools and events manipulation are handle with this class.
+
+TARGET_URI = 0
+
 class Area(gtk.DrawingArea):
 
 
@@ -109,6 +112,11 @@ class Area(gtk.DrawingArea):
         self.connect("key_press_event", self.key_press)
         self.connect("leave_notify_event", self.mouseleave)
         self.connect("enter_notify_event", self.mouseenter)
+
+        target = [('text/uri-list', 0, TARGET_URI)]
+        self.drag_dest_set(gtk.DEST_DEFAULT_ALL, target,
+                gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
+        self.connect('drag_data_received', self.drag_data_received)
 
         self.set_flags(gtk.CAN_FOCUS)
         self.grab_focus()
@@ -709,6 +717,13 @@ class Area(gtk.DrawingArea):
                 os.remove( data )
         data = None
            
+    def drag_data_received(self, w, context, x, y, data, info, time):
+        if data and data.format == 8:
+            self.loadImage(urlparse(data.data).path, self)
+            context.finish(True, False, time)
+        else:
+            context.finish(False, False, time)
+
     def past(self,widget):
         """ Past image.
         Past image that is in pixmap
