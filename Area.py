@@ -218,23 +218,24 @@ class Area(gtk.DrawingArea):
         self.gc = win.new_gc()    
         self.gc_eraser = win.new_gc()
         colormap = self.get_colormap()
-        white = colormap.alloc_color('#ffffff', True, True) # white      
-        self.gc_eraser.set_foreground(white)
+        self.white = colormap.alloc_color('#ffffff', True, True) # white
+        self.black = colormap.alloc_color('#000000', True, True)  # black
+
+        self.gc_eraser.set_foreground(self.white)
         self.gc_rainbow = win.new_gc()
         
         self.gc_brush = win.new_gc()      
-        self.gc_brush.set_foreground(white)
+        self.gc_brush.set_foreground(self.black)
                 
         self.gc_line = win.new_gc()   
 
         self.gc_selection = win.new_gc()  
         self.gc_selection.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        black = colormap.alloc_color('#000000', True, True)  # black
-        self.gc_selection.set_foreground(black)
+        self.gc_selection.set_foreground(self.black)
         
         self.gc_selection1 = win.new_gc()  #this make another white line out of the black line
         self.gc_selection1.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH, gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        self.gc_selection1.set_foreground(white)
+        self.gc_selection1.set_foreground(self.white)
         
         
         self.enableUndo(self)
@@ -1080,10 +1081,9 @@ class Area(gtk.DrawingArea):
                        'fill': a Boolean value
                        'vertices': a integer
         '''
-        logging.debug('Area.set_tool')
+        logging.debug('Area.set_tool %s',tool)
         
         #FIXME: self.tool should be a dict too.
-        print tool
         
         self.tool = tool
         
@@ -1095,13 +1095,13 @@ class Area(gtk.DrawingArea):
                 self.set_fill_color(self.tool['fill color'])
             else:
                 # use black
-                self.set_fill_color( gtk.gdk.Color(0,0,0) )
+                self.set_fill_color(self.black)
                 
             if self.tool['stroke color'] is not None:
                 self.set_stroke_color(self.tool['stroke color'])
             else:
                 # use black
-                self.set_stroke_color( gtk.gdk.Color(0,0,0) )
+                self.set_stroke_color(self.black)
         
         except AttributeError:
             pass
