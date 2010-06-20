@@ -188,6 +188,17 @@ class DrawEditToolbar(EditToolbar):
         self._activity.area.clear()
         
 ##Determine Tools of the Toolbar
+
+class DrawToolButton(RadioToolButton):
+
+    def __init__(self, icon_name,tool_group,tooltip):
+        RadioToolButton.__init__(self)
+        self.props.icon_name = icon_name
+        self.props.group = tool_group
+        self.set_active(False)
+        self.set_tooltip(tooltip)
+
+
 class ToolsToolbar(gtk.Toolbar):
         
     #Tool default definitions
@@ -289,45 +300,30 @@ class ToolsToolbar(gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
 
-        self._tool_pencil = RadioToolButton()
-        self._tool_pencil.props.icon_name = 'tool-pencil'
-        self._tool_pencil.props.group = activity.tool_group
-        self._tool_pencil.set_active(False)
+        self._tool_pencil = DrawToolButton('tool-pencil',activity.tool_group,_('Pencil'))
         self.insert(self._tool_pencil, -1)
-        self._tool_pencil.set_tooltip(_('Pencil'))
-
         activity.tool_group = self._tool_pencil
         try:
             self._configure_palette(self._tool_pencil, self._TOOL_PENCIL)
         except:
             logging.debug('Could not create palette for tool Pencil')
-        
-        self._tool_brush = RadioToolButton()
-        self._tool_brush.props.icon_name = 'tool-brush'
-        self._tool_brush.props.group = activity.tool_group
+
+        self._tool_brush = DrawToolButton('tool-brush',activity.tool_group,_('Brush'))
         self.insert(self._tool_brush, -1)
-        self._tool_brush.set_tooltip(_('Brush'))
         try:
             self._configure_palette(self._tool_brush, self._TOOL_BRUSH)
         except:
             logging.debug('Could not create palette for tool Brush')
         
-        self._tool_eraser = RadioToolButton()
-        self._tool_eraser.props.icon_name = 'tool-eraser'
-        self._tool_eraser.props.group = activity.tool_group
+        self._tool_eraser = DrawToolButton('tool-eraser',activity.tool_group,_('Eraser'))
         self.insert(self._tool_eraser, -1)
-        self._tool_eraser.set_tooltip(_('Eraser'))
         try:
             self._configure_palette(self._tool_eraser, self._TOOL_ERASER)
         except:
             logging.debug('Could not create palette for tool Eraser')
-        
-        
-        self._tool_bucket = RadioToolButton()
-        self._tool_bucket.props.icon_name = 'tool-bucket'
-        self._tool_bucket.props.group = activity.tool_group
+
+        self._tool_bucket = DrawToolButton('tool-bucket',activity.tool_group,_('Bucket'))
         self.insert(self._tool_bucket, -1)
-        self._tool_bucket.set_tooltip(_('Bucket'))
         
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -352,11 +348,8 @@ class ToolsToolbar(gtk.Toolbar):
 
         """
         
-        self._tool_marquee_rectangular = RadioToolButton()
-        self._tool_marquee_rectangular.props.icon_name = 'tool-marquee-rectangular'
-        self._tool_marquee_rectangular.props.group = activity.tool_group
+        self._tool_marquee_rectangular = DrawToolButton('tool-marquee-rectangular',activity.tool_group,_('Rectangular Marquee'))
         self.insert(self._tool_marquee_rectangular, -1)
-        self._tool_marquee_rectangular.set_tooltip(_('Rectangular Marquee'))
         try:
             self._configure_palette(self._tool_marquee_rectangular, self._TOOL_MARQUEE_RECTANGULAR)
         except:
@@ -732,124 +725,78 @@ class ShapesToolbar(gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
 
-        group = None
-        self._shape_ellipse = RadioToolButton()
-        self._shape_ellipse.props.icon_name = 'tool-shape-ellipse'
-        self._shape_ellipse.props.group = activity.tool_group
+        self._shape_ellipse = DrawToolButton('tool-shape-ellipse',activity.tool_group,_('Ellipse'))
         self.insert(self._shape_ellipse, -1)
-        self._shape_ellipse.set_tooltip(_('Ellipse'))
         try:
             self._configure_palette_shape_ellipse()
         except:
             logging.debug('Could not create palette for Shape Ellipse')
 
-        group = self._shape_ellipse
-
-        self._shape_rectangle = RadioToolButton()
-        self._shape_rectangle.props.icon_name = 'tool-shape-rectangle'
-        self._shape_rectangle.props.group = activity.tool_group
+        self._shape_rectangle = DrawToolButton('tool-shape-rectangle',activity.tool_group,_('Rectangle'))
         self.insert(self._shape_rectangle, -1)
-        self._shape_rectangle.set_tooltip(_('Rectangle'))
         try:
             self._configure_palette_shape_rectangle()
         except:
             logging.debug('Could not create palette for Shape Ellipse')
         
-        self._shape_line = RadioToolButton()
-        self._shape_line.props.icon_name = 'tool-shape-line'
-        self._shape_line.props.group = activity.tool_group        
+        self._shape_line = DrawToolButton('tool-shape-line',activity.tool_group,_('Line'))
         self.insert(self._shape_line, -1)
-        self._shape_line.set_tooltip(_('Line'))
         try:
             self._configure_palette_shape_line()
         except:
             logging.debug('Could not create palette for Shape Line')
 
-        self._tool_polygon = RadioToolButton()
-        self._tool_polygon.props.icon_name = 'tool-shape-freeform'
-        self._tool_polygon.props.group = activity.tool_group
+        self._tool_polygon = DrawToolButton('tool-shape-freeform',activity.tool_group,_('Free form'))
         self.insert(self._tool_polygon, -1)
-        self._tool_polygon.set_tooltip(_('Free form'))
         try:
             self._create_simple_palette(self._tool_polygon, self._TOOL_POLYGON)
         except:
             logging.debug('Could not create palette for tool Polygon')
         
-        self._shape_polygon = RadioToolButton()
-        self._shape_polygon.props.icon_name = 'tool-shape-polygon'
-        self._shape_polygon.props.group = activity.tool_group
+        self._shape_polygon = DrawToolButton('tool-shape-polygon',activity.tool_group,_('Polygon'))
         self.insert(self._shape_polygon, -1)
-        self._shape_polygon.set_tooltip(_('Polygon'))
         try:
             self._configure_palette_shape_polygon()
         except:
             logging.debug('Could not create palette for Regular Polygon')
         
-        """
-        
-        self._shape_freeform = ToolButton('tool-shape-freeform')
-        self.insert(self._shape_freeform, -1)
-        self._shape_freeform.show()
-        self._shape_freeform.set_tooltip(_('Freeform'))
-
-        """
-
-        self._shape_heart = RadioToolButton()
-        self._shape_heart.props.icon_name = 'tool-shape-heart'
-        self._shape_heart.props.group = activity.tool_group
+        self._shape_heart = DrawToolButton('tool-shape-heart',activity.tool_group,_('Heart'))
         self.insert(self._shape_heart, -1)
-        self._shape_heart.set_tooltip(_('Heart'))
         try:
             self._configure_palette_shape_heart()
         except:
             logging.debug('Could not create palette for Shape Heart')
         
-
-        self._shape_parallelogram = RadioToolButton()
-        self._shape_parallelogram.props.icon_name = 'tool-shape-parallelogram'
-        self._shape_parallelogram.props.group = activity.tool_group
+        self._shape_parallelogram = DrawToolButton('tool-shape-parallelogram',activity.tool_group,_('Parallelogram'))
         self.insert(self._shape_parallelogram, -1)
-        self._shape_parallelogram.set_tooltip(_('Parallelogram'))
         try:
             self._configure_palette_shape_parallelogram()
         except:
             logging.debug('Could not create palette for Shape Parallelogram')
 
-        self._shape_arrow = RadioToolButton()
-        self._shape_arrow.props.icon_name = 'tool-shape-arrow'
-        self._shape_arrow.props.group = activity.tool_group
+        self._shape_arrow = DrawToolButton('tool-shape-arrow',activity.tool_group,_('Arrow'))
         self.insert(self._shape_arrow, -1)
-        self._shape_arrow.set_tooltip(_('Arrow'))
         try:
             self._configure_palette_shape_arrow()
         except:
             logging.debug('Could not create palette for Shape Arrow')
 
-        self._shape_star = RadioToolButton()
-        self._shape_star.props.icon_name = 'tool-shape-star' 
-        self._shape_star.props.group = activity.tool_group
+        self._shape_star = DrawToolButton('tool-shape-star',activity.tool_group,_('Star'))
         self.insert(self._shape_star, -1)
-        self._shape_star.set_tooltip(_('Star'))
         try:
             self._configure_palette_shape_star()
         except:
             logging.debug('Could not create palette for Shape Star')
 
-        self._shape_trapezoid = RadioToolButton()
-        self._shape_trapezoid.props.icon_name = 'tool-shape-trapezoid'
-        self._shape_trapezoid.props.group = activity.tool_group
+        self._shape_trapezoid = DrawToolButton('tool-shape-trapezoid',activity.tool_group,_('Trapezoid'))
         self.insert(self._shape_trapezoid, -1)
-        self._shape_trapezoid.set_tooltip(_('Trapezoid'))
         try:
             self._configure_palette_shape_trapezoid()
         except:
             logging.debug('Could not create palette for Shape Trapezoid')
 
-        self._shape_triangle = RadioToolButton()
-        self._shape_triangle.props.icon_name = 'tool-shape-triangle'
-        self._shape_triangle.props.group = activity.tool_group
+        self._shape_triangle = DrawToolButton('tool-shape-triangle',activity.tool_group,_('Triangle'))
         self.insert(self._shape_triangle, -1)
-        self._shape_triangle.set_tooltip(_('Triangle'))
         try:
             self._configure_palette_shape_triangle()
         except:
@@ -1092,11 +1039,8 @@ class TextToolbar(gtk.Toolbar):
 
         self._activity = activity
 
-        self._text = RadioToolButton()
-        self._text.props.icon_name = 'text' 
-        self._text.props.group = activity.tool_group
+        self._text = DrawToolButton('text',activity.tool_group,_('Type'))
         self.insert(self._text, -1)
-        self._text.set_tooltip(_('Type'))
         self._text.connect('clicked', self.set_tool, self._ACTION_TEXT)
         
         self._text_color = ButtonFillColor(activity)
@@ -1336,11 +1280,8 @@ class EffectsToolbar(gtk.Toolbar):
         self.insert(self._effect_grayscale, -1)
         self._effect_grayscale.set_tooltip(_('Grayscale'))
         
-        self._effect_rainbow = RadioToolButton()
-        self._effect_rainbow.props.icon_name = 'effect-rainbow' 
-        self._effect_rainbow.props.group = activity.tool_group
+        self._effect_rainbow = DrawToolButton('effect-rainbow',activity.tool_group,_('Rainbow'))
         self.insert(self._effect_rainbow, -1)
-        self._effect_rainbow.set_tooltip(_('Rainbow'))
         self._configure_palette(self._effect_rainbow, self._EFFECT_RAINBOW)
     
         separator = gtk.SeparatorToolItem()
