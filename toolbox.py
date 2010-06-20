@@ -1333,7 +1333,6 @@ class EffectsToolbar(gtk.Toolbar):
             
             # Line Size
             size_spinbutton = gtk.SpinButton()
-            size_spinbutton.show()
             
             # This is where we set restrictions for Rainbow:
             # Initial value, minimum value, maximum value, step
@@ -1343,48 +1342,40 @@ class EffectsToolbar(gtk.Toolbar):
             size_spinbutton.set_numeric(True)
             
             label = gtk.Label(_('Size: '))
-            label.show()
             
-            palette.action_bar.pack_start(label)
-            palette.action_bar.pack_start(size_spinbutton)
+            hbox = gtk.HBox()
+            hbox.pack_start(label)
+            hbox.pack_start(size_spinbutton)
+
+            vbox = gtk.VBox()
+            vbox.pack_start(hbox)
             
             size_spinbutton.connect('value-changed', self._on_size_value_changed, tool)
             
             # Line Shape
             item1 = gtk.RadioButton(None, _('Circle'))
-            item1.show()
             item1.set_active(True)
             
             image1 = gtk.Image()
             image1.set_from_file('./icons/tool-shape-ellipse.svg')
-            image1.show()
             item1.set_image(image1)
             
             item2 = gtk.RadioButton(item1, _('Square'))
-            item2.show()
             
             image2 = gtk.Image()
             image2.set_from_file('./icons/tool-shape-rectangle.svg')
-            image2.show()
             item2.set_image(image2)
             
             item1.connect('toggled', self._on_radio_toggled, tool, 'circle')
             item2.connect('toggled', self._on_radio_toggled, tool, 'square')
             
             label = gtk.Label(_('Shape'))
-            label.show()
-            
-            vbox = gtk.VBox()
-            vbox.show()
             
             vbox.pack_start(label)
             vbox.pack_start(item1)
             vbox.pack_start(item2)
-            
-            separator = gtk.HSeparator()
-            vbox.pack_end(separator)
-            separator.show()
-            
+            vbox.show_all()
+
             palette.set_content(vbox)
             
     def _on_size_value_changed(self, spinbutton, tool):
