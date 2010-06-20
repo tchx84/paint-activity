@@ -381,7 +381,6 @@ class ToolsToolbar(gtk.Toolbar):
         palette = widget.get_palette()
         
         content_box = gtk.VBox()
-        content_box.show()
         palette.set_content(content_box)
         
         if tool is None:
@@ -393,7 +392,6 @@ class ToolsToolbar(gtk.Toolbar):
              tool['name'] is self._TOOL_ERASER['name']:
             
             size_spinbutton = gtk.SpinButton()
-            size_spinbutton.show()
             
             # This is where we set restrictions for size:
             # Initial value, minimum value, maximum value, step
@@ -403,13 +401,11 @@ class ToolsToolbar(gtk.Toolbar):
             size_spinbutton.set_numeric(True)
             
             label = gtk.Label(_('Size: '))
-            label.show()
             
             # Palette's action_bar should pack buttons only
             #palette.action_bar.pack_start(label)
             #palette.action_bar.pack_start(size_spinbutton)
             hbox = gtk.HBox()
-            hbox.show()
             content_box.pack_start(hbox)
             
             hbox.pack_start(label)
@@ -423,51 +419,35 @@ class ToolsToolbar(gtk.Toolbar):
             
             # Changing to gtk.RadioButton
             item1 = gtk.RadioButton(None, _('Circle'))
-            item1.show()
             item1.set_active(True)
             
             image1 = gtk.Image()
             image1.set_from_file('./icons/tool-shape-ellipse.svg')
-            image1.show()
             item1.set_image(image1)
             
             item2 = gtk.RadioButton(item1, _('Square'))
-            item2.show()
             
             image2 = gtk.Image()
             image2.set_from_file('./icons/tool-shape-rectangle.svg')
-            image2.show()
             item2.set_image(image2)
             
             item1.connect('toggled', self._on_toggled, tool, 'circle')
             item2.connect('toggled', self._on_toggled, tool, 'square')
             
             label = gtk.Label(_('Shape'))
-            label.show()
             
-            vbox = gtk.VBox()
-            vbox.show()
-            
-            vbox.pack_start(label)
-            vbox.pack_start(item1)
-            vbox.pack_start(item2)
-            
-            #palette.set_content(vbox)
-            content_box.pack_start(vbox)
-            
-            #separator = gtk.HSeparator()
-            #vbox.pack_end(separator)
-            #separator.show()
+            content_box.pack_start(label)
+            content_box.pack_start(item1)
+            content_box.pack_start(item2)
 
         if tool['name'] is self._TOOL_MARQUEE_RECTANGULAR['name']:
             # Creating a CheckButton named "Fill".
             keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
-            keep_aspect_checkbutton.show()
             keep_aspect_checkbutton.set_active(self._activity.area.keep_aspect_ratio)
-
             keep_aspect_checkbutton.connect('toggled', self._keep_aspect_checkbutton_toggled, widget)
-            palette.action_bar.pack_start(keep_aspect_checkbutton)
-    
+            content_box.pack_start(keep_aspect_checkbutton)
+
+        palette.show_all()
 
     def _keep_aspect_checkbutton_toggled(self, checkbutton, button=None):
         logging.debug('Keep aspect is Active: %s', checkbutton.get_active())
@@ -689,16 +669,6 @@ class ShapesToolbar(gtk.Toolbar):
         'vertices'      : None
     }
 
-    _TOOL_POLYGON = {
-        'name'          : 'polygon',
-        'line size'     : 2,
-        'fill color'    : None,
-        'stroke color'  : None,
-        'line shape'    : 'circle',
-        'fill'          : True,
-        'vertices'      : None
-    }
-
     
     ##The Constructor
     def __init__(self, activity):
@@ -746,12 +716,12 @@ class ShapesToolbar(gtk.Toolbar):
         except:
             logging.debug('Could not create palette for Shape Line')
 
-        self._tool_polygon = DrawToolButton('tool-shape-freeform',activity.tool_group,_('Free form'))
-        self.insert(self._tool_polygon, -1)
+        self._shape_freeform = DrawToolButton('tool-shape-freeform',activity.tool_group,_('Free form'))
+        self.insert(self._shape_freeform, -1)
         try:
-            self._create_simple_palette(self._tool_polygon, self._TOOL_POLYGON)
+            self._create_simple_palette(self._shape_freeform, self._SHAPE_FREEFORM)
         except:
-            logging.debug('Could not create palette for tool Polygon')
+            logging.debug('Could not create palette for Shape Free Form')
         
         self._shape_polygon = DrawToolButton('tool-shape-polygon',activity.tool_group,_('Polygon'))
         self.insert(self._shape_polygon, -1)
@@ -805,8 +775,7 @@ class ShapesToolbar(gtk.Toolbar):
         
         self._shape_arrow.connect('clicked', self.set_tool, self._SHAPE_ARROW)
         self._shape_ellipse.connect('clicked', self.set_tool, self._SHAPE_ELLIPSE)
-        #self._shape_freeform.connect('clicked', self.set_tool, self._SHAPE_FREEFORM)
-        self._tool_polygon.connect('clicked', self.set_tool, self._TOOL_POLYGON)
+        self._shape_freeform.connect('clicked', self.set_tool, self._SHAPE_FREEFORM)
         self._shape_heart.connect('clicked', self.set_tool, self._SHAPE_HEART)
         self._shape_line.connect('clicked', self.set_tool, self._SHAPE_LINE)
         self._shape_parallelogram.connect('clicked', self.set_tool, self._SHAPE_PARALLELOGRAM)
@@ -864,8 +833,6 @@ class ShapesToolbar(gtk.Toolbar):
         palette = self._shape_polygon.get_palette()
                 
         spin = gtk.SpinButton()
-        spin.show()
-        
         
         # This is where we set restrictions for sides in Regular Polygon:
         # Initial value, minimum value, maximum value, step
@@ -874,28 +841,16 @@ class ShapesToolbar(gtk.Toolbar):
         spin.set_numeric(True)
         
         label = gtk.Label(_('Sides: '))
-        label.show()
         
         hbox = gtk.HBox()
-        hbox.show()
+        hbox.show_all()
         hbox.pack_start(label)
         hbox.pack_start(spin)
         
-        # changing layout due to problems with palette's action_bar
-        #palette.action_bar.pack_start(label)
-        #palette.action_bar.pack_start(spin)
         palette.content_box.pack_start(hbox)
-        
+        palette.show_all()
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_POLYGON)
-        
-    def _on_fill_checkbutton_toggled(self, checkbutton, button=None, tool=None):
-        logging.debug('Checkbutton is Active: %s', checkbutton.get_active() )
-        
-        # New method for setting tools
-        #self._activity.area.fill = checkbutton.get_active()
-        tool['fill'] = checkbutton.get_active()
-        self.set_tool(tool=tool)
-        
+       
     def _configure_palette_shape_heart(self):
         logging.debug('Creating palette to shape heart')
         self._create_simple_palette(self._shape_heart, self._SHAPE_HEART)
@@ -917,9 +872,7 @@ class ShapesToolbar(gtk.Toolbar):
         # We want choose the number of sides to our star
         palette = self._shape_star.get_palette()
         
-        spin = gtk.SpinButton()
-        spin.show()
-        
+        spin = gtk.SpinButton()        
         
         # This is where we set restrictions for Star:
         # Initial value, minimum value, maximum value, step
@@ -928,21 +881,16 @@ class ShapesToolbar(gtk.Toolbar):
         spin.set_numeric(True)
         
         label = gtk.Label(_('Points: '))
-        label.show()
         
         hbox = gtk.HBox()
-        hbox.show()
+        hbox.show_all()
         hbox.pack_start(label)
         hbox.pack_start(spin)
         
         # changing layout due to problems with palette's action_bar
-        #palette.action_bar.pack_start(label)
-        #palette.action_bar.pack_start(spin)
         palette.content_box.pack_start(hbox)
-        
+        palette.show_all()        
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_STAR)
-
-            
 
     
     def _configure_palette_shape_trapezoid(self):
@@ -966,16 +914,13 @@ class ShapesToolbar(gtk.Toolbar):
         # Fill option
         if not line_size_only:
             fill_checkbutton = gtk.CheckButton(_('Fill'))
-            fill_checkbutton.show()
             fill_checkbutton.set_active(tool['fill'])
             
             fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, tool)
             
-            #palette.set_content(fill_checkbutton)
             palette.action_bar.pack_start(fill_checkbutton)
             
         size_spinbutton = gtk.SpinButton()
-        size_spinbutton.show()
         
         # This is where we set restrictions for size:
         # Initial value, minimum value, maximum value, step
@@ -985,36 +930,21 @@ class ShapesToolbar(gtk.Toolbar):
         size_spinbutton.set_numeric(True)
         
         label = gtk.Label(_('Size: '))
-        label.show()
         
-        #palette.action_bar.pack_start(label)
-        #palette.action_bar.pack_start(size_spinbutton)
         hbox = gtk.HBox()
-        hbox.show()
         hbox.pack_start(label)
         hbox.pack_start(size_spinbutton)
         
         # Creating a public content box
         # palette's action_bar should pack only buttons; changing layout
         palette.content_box = gtk.VBox()
-        palette.content_box.show()
         palette.set_content(palette.content_box)
         
         palette.content_box.pack_start(hbox)
         
         size_spinbutton.connect('value-changed', self._on_line_size_value_changed, tool)
 
-        # User is able to fill or not a polygon, and choose its fill color
-        if tool['name'] is self._TOOL_POLYGON['name']:
-            # Creating a CheckButton named "Fill".
-            fill_checkbutton = gtk.CheckButton(_('Fill'))
-            fill_checkbutton.show()
-            fill_checkbutton.set_active(self._TOOL_POLYGON['fill'])
-            
-            fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, widget, self._TOOL_POLYGON)
-            
-            #palette.set_content(fill_checkbutton)
-            palette.action_bar.pack_start(fill_checkbutton)
+        palette.show_all()
     
     
     def _configure_palette_shape_line(self):
