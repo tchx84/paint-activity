@@ -447,7 +447,7 @@ class ToolsToolbar(gtk.Toolbar):
             keep_aspect_checkbutton.connect('toggled', self._keep_aspect_checkbutton_toggled, widget)
             content_box.pack_start(keep_aspect_checkbutton)
 
-        palette.show_all()
+        content_box.show_all()
 
     def _keep_aspect_checkbutton_toggled(self, checkbutton, button=None):
         logging.debug('Keep aspect is Active: %s', checkbutton.get_active())
@@ -848,7 +848,7 @@ class ShapesToolbar(gtk.Toolbar):
         hbox.pack_start(spin)
         
         palette.content_box.pack_start(hbox)
-        palette.show_all()
+        hbox.show_all()
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_POLYGON)
        
     def _configure_palette_shape_heart(self):
@@ -889,7 +889,7 @@ class ShapesToolbar(gtk.Toolbar):
         
         # changing layout due to problems with palette's action_bar
         palette.content_box.pack_start(hbox)
-        palette.show_all()        
+        hbox.show_all()
         spin.connect('value-changed', self._on_vertices_value_changed, self._SHAPE_STAR)
 
     
@@ -910,15 +910,15 @@ class ShapesToolbar(gtk.Toolbar):
             @param line_size_only -- indicates if palette should only display Line Size option. Default value is False.
         """
         palette = button.get_palette()
+        palette.content_box = gtk.VBox()
+        palette.set_content(palette.content_box)
         
         # Fill option
         if not line_size_only:
             fill_checkbutton = gtk.CheckButton(_('Fill'))
             fill_checkbutton.set_active(tool['fill'])
-            
             fill_checkbutton.connect('toggled', self._on_fill_checkbutton_toggled, tool)
-            
-            palette.action_bar.pack_start(fill_checkbutton)
+            palette.content_box.pack_start(fill_checkbutton)
             
         size_spinbutton = gtk.SpinButton()
         
@@ -937,14 +937,12 @@ class ShapesToolbar(gtk.Toolbar):
         
         # Creating a public content box
         # palette's action_bar should pack only buttons; changing layout
-        palette.content_box = gtk.VBox()
-        palette.set_content(palette.content_box)
         
         palette.content_box.pack_start(hbox)
         
         size_spinbutton.connect('value-changed', self._on_line_size_value_changed, tool)
 
-        palette.show_all()
+        palette.content_box.show_all()
     
     
     def _configure_palette_shape_line(self):
