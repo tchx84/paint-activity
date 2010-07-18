@@ -322,7 +322,7 @@ class Area(gtk.DrawingArea):
             
         self.oldx, self.oldy = coords
         
-        if self.polygon_start is False and self.tool['name'] is not 'polygon':
+        if self.polygon_start is False and self.tool['name'] is not 'freeform':
             self.d.polygon(widget, coords, False, self.tool['fill'],"bug")
         
         x , y, state = event.window.get_pointer()
@@ -346,7 +346,7 @@ class Area(gtk.DrawingArea):
                 self.d.rainbow(widget, coords, self.last, self.rainbow_counter,self.line_size, self.tool['line shape'])
                 self.last = coords
                 self.drawing = True
-            elif self.tool['name'] == 'polygon':
+            elif self.tool['name'] == 'freeform':
                 self.configure_line(self.line_size)
                 if self.polygon_start == False:
                     self.desenha = True
@@ -423,7 +423,7 @@ class Area(gtk.DrawingArea):
                     if not self.sel_get_out:
                         self.d.moveSelection(widget,coords)
                         
-                elif self.tool['name'] == 'polygon':
+                elif self.tool['name'] == 'freeform':
                     self.configure_line(self.line_size)
                     self.d.polygon(widget,coords,True,self.tool['fill'],"motion")
                     
@@ -468,7 +468,7 @@ class Area(gtk.DrawingArea):
                 else:
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
 
-            elif self.tool['name'] == 'polygon' and not self.selmove:
+            elif self.tool['name'] == 'freeform' and not self.selmove:
                 self.desenha = True
                 self.configure_line(self.line_size)
                 self.d.polygon(widget,coords,True,self.tool['fill'],"moving")
@@ -521,7 +521,7 @@ class Area(gtk.DrawingArea):
                     self.orig_y = self.orig_y + coords[1] - self.oldy
                 self.emit('select')
 
-            elif self.tool['name'] == 'polygon':
+            elif self.tool['name'] == 'freeform':
                 self.d.polygon(widget, coords, False, self.tool['fill'],"release")
 
             elif self.tool['name'] == 'bucket':
@@ -608,7 +608,7 @@ class Area(gtk.DrawingArea):
 
 
         #special case for func polygon
-        if self.tool['name'] == 'polygon':        
+        if self.tool['name'] == 'freeform':
                 self.polygon_start = True #start the polygon again
         
 
