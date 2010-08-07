@@ -2,73 +2,98 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-01 15:03-0200\n"
-"PO-Revision-Date: 2007-11-20 18:51+0000\n"
-"Last-Translator: Pascal Scheffers <pascal@scheffers.net>\n"
+"POT-Creation-Date: 2010-06-11 00:31-0400\n"
+"PO-Revision-Date: 2010-07-01 22:49+0200\n"
+"Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0.2\n"
+"X-Generator: Pootle 2.0.3\n"
 
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Tekenen"
 
-#: toolbox.py:77
+#: toolbox.py:90
 msgid "Edit"
 msgstr "Bewerken"
 
-#: toolbox.py:81
+#: toolbox.py:94
 msgid "Tools"
 msgstr "Werktuigen"
 
-#: toolbox.py:85
+#: toolbox.py:98
 msgid "Shapes"
 msgstr "Vormen"
 
-#: toolbox.py:89
+#: toolbox.py:102
 msgid "Text"
 msgstr "Tekst"
 
-#: toolbox.py:93
+#: toolbox.py:106
 msgid "Image"
 msgstr "Afbeelding"
 
-#: toolbox.py:97
+#: toolbox.py:110
 msgid "Effects"
 msgstr "Effecten"
 
-#: toolbox.py:115
+#: toolbox.py:128
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: toolbox.py:116
+#: toolbox.py:129
 msgid "Redo"
 msgstr "Herhalen"
 
-#: toolbox.py:117
+#: toolbox.py:130
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: toolbox.py:118
+#: toolbox.py:131
 msgid "Paste"
 msgstr "Plakken"
 
-#: toolbox.py:128
+#: toolbox.py:139
 msgid "Clear"
 msgstr "Leeg maken"
 
-#: toolbox.py:282
-msgid "Tool Color"
-msgstr "Werktuig kleur"
+#: toolbox.py:283 toolbox.py:726
+msgid "Stroke Color"
+msgstr "Pen kleur"
 
-#: toolbox.py:300
+#: toolbox.py:297
 msgid "Pencil"
 msgstr "Penseel"
 
@@ -76,99 +101,99 @@ msgstr "Penseel"
 msgid "Brush"
 msgstr "Kwast"
 
-#: toolbox.py:318
+#: toolbox.py:319
 msgid "Eraser"
 msgstr "Gum"
 
-#: toolbox.py:327 toolbox.py:797
-msgid "Polygon"
-msgstr "Polygoon"
-
-#: toolbox.py:336
+#: toolbox.py:330
 msgid "Bucket"
 msgstr "Emmer"
 
-#: toolbox.py:365
+#: toolbox.py:359
 msgid "Rectangular Marquee"
 msgstr "Rechthoekig markeren"
 
-#: toolbox.py:417 toolbox.py:1049 toolbox.py:1412
+#: toolbox.py:412 toolbox.py:1040 toolbox.py:1404
 msgid "Size: "
-msgstr "Grootte:"
+msgstr "Grootte: "
 
-#: toolbox.py:437 toolbox.py:1421
+#: toolbox.py:432 toolbox.py:1413
 msgid "Circle"
 msgstr "Cirkel"
 
-#: toolbox.py:446 toolbox.py:1430
+#: toolbox.py:441 toolbox.py:1422
 msgid "Square"
 msgstr "Vierkant"
 
-#: toolbox.py:457 toolbox.py:1441
+#: toolbox.py:452 toolbox.py:1433
 msgid "Shape"
 msgstr "Vorm"
 
-#: toolbox.py:477 toolbox.py:1030
-msgid "Fill"
-msgstr "Vullen"
+#: toolbox.py:471
+msgid "Keep aspect"
+msgstr "Bewaar aanzicht"
 
-#: toolbox.py:490
-msgid "Fill Color: "
-msgstr "Invul kleur:"
-
-#: toolbox.py:740
+#: toolbox.py:718
 msgid "Fill Color"
 msgstr "Invul kleur"
 
-#: toolbox.py:752
-msgid "Stroke Color"
-msgstr "Pen kleur"
-
-#: toolbox.py:770
+#: toolbox.py:740
 msgid "Ellipse"
 msgstr "Ellips"
 
-#: toolbox.py:779
+#: toolbox.py:752
 msgid "Rectangle"
 msgstr "Rechthoek"
 
-#: toolbox.py:788
+#: toolbox.py:762
 msgid "Line"
 msgstr "Lijn"
 
-#: toolbox.py:815
+#: toolbox.py:772
+msgid "Free form"
+msgstr "Vrij formaat"
+
+#: toolbox.py:782
+msgid "Polygon"
+msgstr "Polygoon"
+
+#: toolbox.py:801
 msgid "Heart"
 msgstr "Hart"
 
-#: toolbox.py:825
+#: toolbox.py:812
 msgid "Parallelogram"
-msgstr "Parallelogram"
+msgstr "Parallellogram"
 
-#: toolbox.py:834
+#: toolbox.py:822
 msgid "Arrow"
 msgstr "Pijl"
 
-#: toolbox.py:843
+#: toolbox.py:832
 msgid "Star"
 msgstr "Ster"
 
-#: toolbox.py:852
+#: toolbox.py:842
 msgid "Trapezoid"
 msgstr "Trapezium"
 
-#: toolbox.py:861
+#: toolbox.py:852
 msgid "Triangle"
 msgstr "Driehoek"
 
-#: toolbox.py:948
+#: toolbox.py:929
 msgid "Sides: "
-msgstr "Kanten:"
+msgstr "Kanten: "
 
-#: toolbox.py:995
+#: toolbox.py:983
 msgid "Points: "
-msgstr "Punten:"
+msgstr "Punten: "
 
-#: toolbox.py:1095
+#: toolbox.py:1021 toolbox.py:1063
+msgid "Fill"
+msgstr "Vullen"
+
+#: toolbox.py:1099
 msgid "Type"
 msgstr "Type"
 
@@ -176,70 +201,76 @@ msgstr "Type"
 msgid "Insert Image"
 msgstr "Afbeelding invoegen"
 
-#: toolbox.py:1179
+#: toolbox.py:1177
 msgid "Rotate Left"
 msgstr "Linksom draaien"
 
-#: toolbox.py:1185
+#: toolbox.py:1182
 msgid "Rotate Right"
 msgstr "Rechtsom draaien"
 
-#: toolbox.py:1191
+#: toolbox.py:1187
 msgid "Height"
 msgstr "Hoogte"
 
-#: toolbox.py:1203
+#: toolbox.py:1197
 msgid "Width"
 msgstr "Breedte"
 
-#: toolbox.py:1298
+#: toolbox.py:1291
 msgid "Choose image"
 msgstr "Afbeelding kiezen"
 
-#: toolbox.py:1345
+#: toolbox.py:1337
 msgid "Grayscale"
 msgstr "Grijswaarden"
 
-#: toolbox.py:1350
+#: toolbox.py:1343
 msgid "Rainbow"
 msgstr "Regenboog"
 
-#: toolbox.py:1487
+#: toolbox.py:1479
 msgid "1000"
 msgstr "1000"
 
-#: toolbox.py:1488
+#: toolbox.py:1480
 msgid "500"
 msgstr "500"
 
-#: toolbox.py:1489
+#: toolbox.py:1481
 msgid "200"
 msgstr "200"
 
-#: toolbox.py:1490
+#: toolbox.py:1482
 msgid "150"
 msgstr "150"
 
-#: toolbox.py:1491
+#: toolbox.py:1483
 msgid "100"
 msgstr "100"
 
-#: toolbox.py:1492
+#: toolbox.py:1484
 msgid "50"
 msgstr "50"
 
-#: toolbox.py:1493
+#: toolbox.py:1485
 msgid "25"
 msgstr "25"
 
-#: toolbox.py:1494
+#: toolbox.py:1486
 msgid "10"
 msgstr "10"
 
-#: toolbox.py:1507
+#: toolbox.py:1496
 msgid "ZOOM +"
-msgstr "Inzoomen"
+msgstr "ZOOM +"
 
-#: toolbox.py:1512
+#: toolbox.py:1500
 msgid "ZOOM -"
-msgstr "Uitzoomen"
+msgstr "ZOOM -"
+
+#~ msgid "Tool Color"
+#~ msgstr "Werktuig kleur"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Invul kleur: "
