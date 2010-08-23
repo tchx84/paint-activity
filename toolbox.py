@@ -73,8 +73,95 @@ from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.combobox import ComboBox
 from sugar.graphics.palette import Palette
 from sugar.graphics.menuitem import MenuItem
-from sugar.graphics.colorbutton import ColorToolButton
 from sugar.graphics.objectchooser import ObjectChooser
+
+WITH_COLOR_BUTTON = True
+try:
+    from sugar.graphics.colorbutton import ColorToolButton
+
+    ##Class to manage the Fill Color of a Button
+    class ButtonFillColor(ColorToolButton):
+        ##The Constructor
+        def __init__(self, activity):
+            ColorToolButton.__init__(self)
+            self._activity = activity
+            self.connect('color-set', self._color_button_cb)
+
+        def _color_button_cb(self, widget):
+            color = self.get_color()
+            self.set_fill_color(color)
+
+        def alloc_color(self, color):
+            colormap = self._activity.area.get_colormap()
+            return colormap.alloc_color(color.red, color.green, color.blue)
+
+        def set_fill_color(self, color):
+            new_color = self.alloc_color(color)
+            self._activity.area.set_fill_color(new_color)
+
+    ##Class to manage the Stroke Color of a Button
+    class ButtonStrokeColor(ColorToolButton):
+        ##The Constructor
+        def __init__(self, activity):
+            ColorToolButton.__init__(self)
+            self._activity = activity
+            self.connect('color-set', self._color_button_cb)
+
+        def _color_button_cb(self, widget):
+            color = self.get_color()
+            self.set_stroke_color(color)
+
+        def alloc_color(self, color):
+            colormap = self._activity.area.get_colormap()
+            return colormap.alloc_color(color.red, color.green, color.blue)
+
+        def set_stroke_color(self, color):
+            new_color = self.alloc_color(color)
+            self._activity.area.set_stroke_color(new_color)
+
+except:
+    WITH_COLOR_BUTTON = False
+
+    ##Class to manage the Fill Color of a Button
+    class ButtonFillColor(gtk.ColorButton):
+        ##The Constructor
+        def __init__(self, activity):
+            gtk.ColorButton.__init__(self)
+            self._activity = activity
+            self.connect('color-set', self._color_button_cb)
+
+        def _color_button_cb(self, widget):
+            color = self.get_color()
+            self.set_fill_color(color)
+
+        def alloc_color(self, color):
+            colormap = self._activity.area.get_colormap()
+            return colormap.alloc_color(color.red, color.green, color.blue)
+
+        def set_fill_color(self, color):
+            new_color = self.alloc_color(color)
+            self._activity.area.set_fill_color(new_color)
+
+    ##Class to manage the Stroke Color of a Button
+    class ButtonStrokeColor(gtk.ColorButton):
+        ##The Constructor
+        def __init__(self, activity):
+            gtk.ColorButton.__init__(self)
+            self._activity = activity
+            self.connect('color-set', self._color_button_cb)
+
+        def _color_button_cb(self, widget):
+            color = self.get_color()
+            self.set_stroke_color(color)
+
+        def alloc_color(self, color):
+            colormap = self._activity.area.get_colormap()
+            return colormap.alloc_color(color.red, color.green, color.blue)
+
+        def set_stroke_color(self, color):
+            new_color = self.alloc_color(color)
+            self._activity.area.set_stroke_color(new_color)
+
 
 ##Create toolbars for the activity
 class Toolbox(ActivityToolbox):
@@ -285,12 +372,11 @@ class ToolsToolbar(gtk.Toolbar):
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
 
-         # FIXME: This should be a file picker instead of a combobox
-         
         self._activity = activity
 
         self._stroke_color = ButtonStrokeColor(activity)
-        self._stroke_color.set_icon_name('icon-stroke')
+        if WITH_COLOR_BUTTON:
+            self._stroke_color.set_icon_name('icon-stroke')
         self._stroke_color.set_title(_('Stroke Color'))
         item = gtk.ToolItem()
         item.add(self._stroke_color)
@@ -515,48 +601,6 @@ class ToolsToolbar(gtk.Toolbar):
             self.set_shape(tool=tool, shape=shape)
 
 
-##Class to manage the Fill Color of a Button
-class ButtonFillColor(ColorToolButton):
-    ##The Constructor
-    def __init__(self, activity):
-        ColorToolButton.__init__(self)
-        self._activity = activity
-        
-        self.connect('color-set', self._color_button_cb)
-        
-    def _color_button_cb(self, widget):
-        color = self.get_color()
-        self.set_fill_color(color)
-        
-    def alloc_color(self, color):
-        colormap = self._activity.area.get_colormap()
-        return colormap.alloc_color(color.red, color.green, color.blue)
-        
-    def set_fill_color(self, color):
-        new_color = self.alloc_color(color)
-        self._activity.area.set_fill_color(new_color)
-
-##Class to manage the Stroke Color of a Button
-class ButtonStrokeColor(ColorToolButton):
-    ##The Constructor
-    def __init__(self, activity):
-        ColorToolButton.__init__(self)
-        self._activity = activity
-        
-        self.connect('color-set', self._color_button_cb)
-        
-    def _color_button_cb(self, widget):
-        color = self.get_color()
-        self.set_stroke_color(color)
-        
-    def alloc_color(self, color):
-        colormap = self._activity.area.get_colormap()
-        return colormap.alloc_color(color.red, color.green, color.blue)
-        
-    def set_stroke_color(self, color):
-        new_color = self.alloc_color(color)
-        self._activity.area.set_stroke_color(new_color)
-
 ##Make the Shapes Toolbar
 class ShapesToolbar(gtk.Toolbar):
 
@@ -677,15 +721,16 @@ class ShapesToolbar(gtk.Toolbar):
         self._activity = activity
         
         self._fill_color = ButtonFillColor(activity)
-        self._fill_color.set_icon_name('icon-fill')
+        if WITH_COLOR_BUTTON:
+            self._fill_color.set_icon_name('icon-fill')
         self._fill_color.set_title(_('Fill Color'))
         item = gtk.ToolItem()
         item.add(self._fill_color)
         self.insert(item, -1)
         
         self._stroke_color = ButtonStrokeColor(activity)
-        self._stroke_color.set_icon_name('icon-stroke')
-
+        if WITH_COLOR_BUTTON:
+            self._stroke_color.set_icon_name('icon-stroke')
         self._stroke_color.set_title(_('Stroke Color'))
         item = gtk.ToolItem()
         item.add(self._stroke_color)
