@@ -434,7 +434,7 @@ class ToolsToolbar(gtk.Toolbar):
 
         """
         
-        self._tool_marquee_rectangular = DrawToolButton('tool-marquee-rectangular',activity.tool_group,_('Rectangular Marquee'))
+        self._tool_marquee_rectangular = DrawToolButton('tool-marquee-rectangular',activity.tool_group,_('Select Area'))
         self.insert(self._tool_marquee_rectangular, -1)
         try:
             self._configure_palette(self._tool_marquee_rectangular, self._TOOL_MARQUEE_RECTANGULAR)
