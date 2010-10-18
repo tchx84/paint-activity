@@ -1310,6 +1310,8 @@ class Area(gtk.DrawingArea):
             if self.tool['name'] in cursors:
                 name = cursors[self.tool['name']]
                 cursor = gtk.gdk.cursor_new_from_name(display, name)
+            elif tool['name'] == 'marquee-rectangular':
+                cursor = gtk.gdk.Cursor(gtk.gdk.TCROSS)
             else:
                 filename = os.path.join('images', tool['name'] + '.png')
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
