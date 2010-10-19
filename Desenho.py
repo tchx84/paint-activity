@@ -65,12 +65,8 @@ Walter Bender                       (walter@laptop.org)
 import  pygtk
 pygtk.require('2.0')
 import gtk
-import sys
-import gobject
 import logging
-from gtk import gdk
 import math
-import pango
 import gc
 
 

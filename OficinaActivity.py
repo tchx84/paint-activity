@@ -61,10 +61,6 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
-
-import os
-from gettext import gettext as _
-
 import gtk
 
 from sugar.activity import activity

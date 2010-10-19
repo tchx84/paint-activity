@@ -70,10 +70,6 @@ from sugar.activity.activity import ActivityToolbox, EditToolbar
 from sugar.graphics.toolcombobox import ToolComboBox
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
-from sugar.graphics.toggletoolbutton import ToggleToolButton
-from sugar.graphics.combobox import ComboBox
-from sugar.graphics.palette import Palette
-from sugar.graphics.menuitem import MenuItem
 from sugar.graphics.objectchooser import ObjectChooser
 
 WITH_COLOR_BUTTON = True
