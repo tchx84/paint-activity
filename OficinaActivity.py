@@ -7,16 +7,16 @@ Create Oficina Activity
 
 Copyright 2007, NATE-LSI-EPUSP
 
-Oficina is developed in Brazil at Escola Politécnica of 
+Oficina is developed in Brazil at Escola Politécnica of
 Universidade de São Paulo. NATE is part of LSI (Integrable
 Systems Laboratory) and stands for Learning, Work and Entertainment
-Research Group. Visit our web page: 
+Research Group. Visit our web page:
 www.lsi.usp.br/nate
 Suggestions, bugs and doubts, please email oficina@lsi.usp.br
 
 Oficina is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License 
-as published by the Free Software Foundation version 2 of 
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation version 2 of
 the License.
 
 Oficina is distributed in the hope that it will be useful,
@@ -26,9 +26,9 @@ General Public License for more details.
 
 You should have received a copy of the GNU General Public
 License along with Oficina; if not, write to the
-Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, 
+Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 Boston, MA  02110-1301  USA.
-The copy of the GNU General Public License is found in the 
+The copy of the GNU General Public License is found in the
 COPYING file included in the source distribution.
 
 
@@ -74,6 +74,7 @@ from toolbox import Toolbox
 from Area import Area
 import logging
 
+
 class OficinaActivity(activity.Activity):
 
     def __init__(self, handle):
@@ -101,10 +102,11 @@ class OficinaActivity(activity.Activity):
         # These attributes are used in other classes, so they should be public
         self.area = Area(self)
         self.area.show()
-        self.fixed.put(self.area, 0 , 0)
+        self.fixed.put(self.area, 0, 0)
 
         self.textview = gtk.TextView()
-        # If we use this, text viewer will have constant size, we don't want that
+        # If we use this, text viewer will have constant size,
+        # we don't want that
         #self.textview.set_size_request(100,100)
         self.fixed.put(self.textview, 0, 0)
 
@@ -122,6 +124,7 @@ class OficinaActivity(activity.Activity):
         # setup self.area only once
 
         def map_cp(widget):
+
             def size_allocate_cb(widget, allocation):
                 self.fixed.disconnect(self._setup_handle)
                 self.area.setup(allocation.width, allocation.height)
@@ -140,7 +143,8 @@ class OficinaActivity(activity.Activity):
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.'''
-        logging.debug('reading file %s, mimetype: %s, title: %s', file_path, self.metadata['mime_type'],self.metadata['title'])
+        logging.debug('reading file %s, mimetype: %s, title: %s',
+            file_path, self.metadata['mime_type'], self.metadata['title'])
 
         pixbuf = gtk.gdk.pixbuf_new_from_file(file_path)
 
@@ -154,12 +158,13 @@ class OficinaActivity(activity.Activity):
         self._setup_handle = self.fixed.connect('size_allocate',
                 size_allocate_cb)
 
-        # disassociate with journal entry to avoid overwrite (SL #1771) 
+        # disassociate with journal entry to avoid overwrite (SL #1771)
         if self.metadata['mime_type'] != "image/png":
             self._jobject.object_id = None
             last_point_posi = self.metadata['title'].rfind('.')
             if last_point_posi > -1:
-                self.metadata['title'] = self.metadata['title'][0:last_point_posi] + '.png'    
+                title = self.metadata['title'][0:last_point_posi] + '.png'
+                self.metadata['title'] = title
             logging.error('title: %s', self.metadata['title'])
 
     def write_file(self, file_path):
@@ -167,10 +172,12 @@ class OficinaActivity(activity.Activity):
 
         width, height = self.area.get_size_request()
 
-        logging.debug('writting file=%s w=%s h=%s' % (file_path, width, height))
+        logging.debug('writting %s w=%s h=%s' % (file_path, width, height))
 
         self.area.getout()
-        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8, width, height)
-        pixbuf.get_from_drawable(self.area.pixmap, gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
+        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+            width, height)
+        pixbuf.get_from_drawable(self.area.pixmap,
+            gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
         self.metadata['mime_type'] = 'image/png'
         pixbuf.save(file_path, 'png', {})
