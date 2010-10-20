@@ -69,9 +69,11 @@ import os
 import tempfile
 import math
 import pango
+import numpy
 from fill import *
 from Desenho import Desenho
 from urlparse import urlparse
+
 
 ##Tools and events manipulation are handle with this class.
 
@@ -79,7 +81,6 @@ TARGET_URI = 0
 
 
 class Area(gtk.DrawingArea):
-
 
     __gsignals__ = {
         'undo': (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
@@ -227,7 +228,7 @@ class Area(gtk.DrawingArea):
         self.gc = win.new_gc()
         self.gc_eraser = win.new_gc()
         colormap = self.get_colormap()
-        self.white = colormap.alloc_color('#ffffff', True, True) # white
+        self.white = colormap.alloc_color('#ffffff', True, True)  # white
         self.black = colormap.alloc_color('#000000', True, True)  # black
 
         self.gc_eraser.set_foreground(self.white)
@@ -555,7 +556,7 @@ class Area(gtk.DrawingArea):
                     self.selmove = True
                     self.sel_get_out = False
                     self.emit('select')
-                elif self.sel_get_out: #get out of the func selection
+                elif self.sel_get_out:  # get out of the func selection
                     self.getout()
                     try:
                         del(self.d.pixbuf_resize)
@@ -648,7 +649,7 @@ class Area(gtk.DrawingArea):
         if self.undo_times > 0:
             self.undo_times -= 1
             self.redo_times += 1
-            try: #to not try paint someting wrong
+            try:  # to not try paint someting wrong
                 self.pixmap.draw_drawable(self.gc,
                     self.undo_list[self.undo_times], 0, 0, 0, 0, width, height)
             except:
@@ -663,7 +664,7 @@ class Area(gtk.DrawingArea):
 
         #special case for func polygon
         if self.tool['name'] == 'freeform':
-                self.polygon_start = True #start the polygon again
+                self.polygon_start = True  # start the polygon again
 
         self.emit('undo')
 
@@ -680,7 +681,7 @@ class Area(gtk.DrawingArea):
             self.redo_times -= 1
             self.undo_times += 1
 
-            try: #to not try paint someting wrong
+            try:  # to not try paint someting wrong
                 self.pixmap.draw_drawable(self.gc,
                     self.undo_list[self.undo_times], 0, 0, 0, 0,
                     width, height)
@@ -705,11 +706,11 @@ class Area(gtk.DrawingArea):
         if self.undo_surf:
             self.undo_times += 1
 
-        self.undo_list.append(None)#alloc memory
+        self.undo_list.append(None)  # alloc memory
         self.undo_list[self.undo_times] = gtk.gdk.Pixmap(widget.window,
-            width, height, -1) #define type
+            width, height, -1)  # define type
         self.undo_list[self.undo_times].draw_drawable(self.gc, self.pixmap,
-            0, 0, 0, 0, width, height) #copy workarea
+            0, 0, 0, 0, width, height)  # copy workarea
         self.undo_times += 1
         self.redo_times = 0
         self.first_undo = True
@@ -892,6 +893,56 @@ class Area(gtk.DrawingArea):
             0, 0)
         except:
             pass
+
+        if self.selmove:
+            self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
+                size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL,
+                x_dither=0, y_dither=0)
+
+            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
+                width, height)
+            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
+                0, 0, self.orig_x, self.orig_y, size[0], size[1])
+            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
+                self.orig_x, self.orig_y, size[0], size[1])
+            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
+                self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
+
+        else:
+            self.pixmap.draw_pixbuf(self.gc, pix, 0, 0, 0, 0, width, height,
+                dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+
+        self.queue_draw()
+        if not self.selmove:
+            self.enableUndo(widget)
+
+    def invert_colors(self, widget):
+        """Apply invert effect.
+
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
+
+        """
+
+        width, height = self.window.get_size()
+
+        if self.selmove:
+            size = self.pixmap_sel.get_size()
+            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+                size[0], size[1])
+            pix.get_from_drawable(self.pixmap_sel,
+                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
+        else:
+            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+                width, height)
+            pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(),
+                0, 0, 0, 0, width, height)
+
+        pix_manip2 = pix.get_pixels_array()
+        pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) * 255
+        pix_manip2 = pix_manip - pix_manip2
+        pix = gtk.gdk.pixbuf_new_from_array(pix_manip2, gtk.gdk.COLORSPACE_RGB,
+                                            8)
 
         if self.selmove:
             self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
@@ -1274,7 +1325,7 @@ class Area(gtk.DrawingArea):
             self.orig_x = 0
             self.orig_y = 0
             self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-                0, 0, width-1, height-1)
+                0, 0, width - 1, height - 1)
             self.selmove = True
             self.sel_get_out = False
             self.emit('select')

@@ -430,7 +430,6 @@ class ToolsToolbar(gtk.Toolbar):
         except:
             logging.debug('Could not create palette for tool selection area')
 
-
         # New connect method
         # Using dictionnaries to control tool's properties
         self._tool_pencil.connect('clicked', self.set_tool, self._TOOL_PENCIL)
@@ -563,8 +562,6 @@ class ToolsToolbar(gtk.Toolbar):
         self._activity.area.set_tool(tool)
 
         #setting cursor: Moved to Area
-
-
 
 #     def _on_fill_checkbutton_map(self, checkbutton, data=None):
 #         """
@@ -809,7 +806,6 @@ class ShapesToolbar(gtk.Toolbar):
         except:
             logging.debug('Could not create palette for Shape Triangle')
 
-
         self._shape_arrow.connect('clicked', self.set_tool, self._SHAPE_ARROW)
         self._shape_ellipse.connect('clicked', self.set_tool,
             self._SHAPE_ELLIPSE)
@@ -1031,7 +1027,6 @@ class TextToolbar(gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
 
-
         """
         #FIXME: this button is not connected to the right callback
         self._bold = ToggleToolButton('format-text-bold')
@@ -1249,6 +1244,7 @@ class ImageToolbar(gtk.Toolbar):
 class EffectsToolbar(gtk.Toolbar):
 
     _EFFECT_GRAYSCALE = 'grayscale'
+    _INVERT_COLOR = 'invert-colors'
     # Rainbow acts as a tool in Area, and it has to be described as a dict
     _EFFECT_RAINBOW = {'name': 'rainbow',
                         'line size': 10,
@@ -1272,6 +1268,11 @@ class EffectsToolbar(gtk.Toolbar):
         self.insert(self._effect_rainbow, -1)
         self._configure_palette(self._effect_rainbow, self._EFFECT_RAINBOW)
 
+        self._invert_colors = ToolButton('invert-colors')
+        self.insert(self._invert_colors, -1)
+        self._invert_colors.show()
+        self._invert_colors.set_tooltip(_('Invert Colors'))
+
         separator = gtk.SeparatorToolItem()
         self.insert(separator, -1)
 
@@ -1284,16 +1285,11 @@ class EffectsToolbar(gtk.Toolbar):
             'effect-black-and-white')
         self._black_and_white.set_tooltip(_('Black and White'))
 
-        self._invert_colors = ToolButton('invert_colors')
-        self.insert(self._invert_colors, -1)
-        self._invert_colors.show()
-        self._invert_colors.connect('clicked', test_connect, activity,
-            'invert-colors')
-        self._invert_colors.set_tooltip(_('Invert Colors'))
-
         """
+
         self._effect_grayscale.connect('clicked', self.grayscale)
         self._effect_rainbow.connect('clicked', self.rainbow)
+        self._invert_colors.connect('clicked', self.invert_colors)
 
     ##Make the colors be in grayscale
     def grayscale(self, widget):
@@ -1302,6 +1298,9 @@ class EffectsToolbar(gtk.Toolbar):
     ##Like the brush, but change it color when painting
     def rainbow(self, widget):
         self._activity.area.set_tool(self._EFFECT_RAINBOW)
+
+    def invert_colors(self, widget):
+        self._activity.area.invert_colors(widget)
 
         # setting cursor: moved to Area
 
