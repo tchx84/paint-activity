@@ -966,6 +966,53 @@ class Area(gtk.DrawingArea):
         if not self.selmove:
             self.enableUndo(widget)
 
+    def mirror(self, widget, horizontal=True):
+        """Apply mirror horizontal/vertical effect.
+
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
+            @param  horizontal -- If true sets flip as horizontal else vertical
+
+        """
+
+        width, height = self.window.get_size()
+
+        if self.selmove:
+            size = self.pixmap_sel.get_size()
+            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+                size[0], size[1])
+            pix.get_from_drawable(self.pixmap_sel,
+                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
+        else:
+            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+                width, height)
+            pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(),
+                0, 0, 0, 0, width, height)
+
+        pix = pix.flip(horizontal)
+
+        if self.selmove:
+            self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
+                size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL,
+                x_dither=0, y_dither=0)
+
+            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
+                width, height)
+            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
+                0, 0, self.orig_x, self.orig_y, size[0], size[1])
+            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
+                self.orig_x, self.orig_y, size[0], size[1])
+            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
+                self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
+
+        else:
+            self.pixmap.draw_pixbuf(self.gc, pix, 0, 0, 0, 0, width, height,
+                dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+
+        self.queue_draw()
+        if not self.selmove:
+            self.enableUndo(widget)
+
     def _pixbuf2Image(self, pb):
         """change a pixbuf to RGB image
 
