@@ -509,7 +509,7 @@ class Area(gtk.DrawingArea):
                 yf = yi + size[1]
                 if (coords[0] < xi) or (coords[0] > xf) or \
                     (coords[1] < yi) or (coords[1] > yf):
-                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 else:
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
 
@@ -562,7 +562,7 @@ class Area(gtk.DrawingArea):
                         del(self.d.pixbuf_resize)
                     except:
                         pass
-                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                     widget.queue_draw()
                     self.enableUndo(widget)
                 elif self.selmove:
@@ -1311,7 +1311,7 @@ class Area(gtk.DrawingArea):
                 name = cursors[self.tool['name']]
                 cursor = gtk.gdk.cursor_new_from_name(display, name)
             elif tool['name'] == 'marquee-rectangular':
-                cursor = gtk.gdk.Cursor(gtk.gdk.TCROSS)
+                cursor = gtk.gdk.Cursor(gtk.gdk.CROSS)
             else:
                 filename = os.path.join('images', tool['name'] + '.png')
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
@@ -1355,7 +1355,7 @@ class Area(gtk.DrawingArea):
                     pass
 
                 if self.tool['name'] == 'marquee-rectangular':
-                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 widget.queue_draw()
                 self.enableUndo(widget)
         elif event.keyval == gtk.keysyms.a and gtk.gdk.CONTROL_MASK:
@@ -1383,12 +1383,12 @@ class Area(gtk.DrawingArea):
             if self.selmove:
                 self.getout(True, widget)
                 if self.tool['name'] == 'marquee-rectangular':
-                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 widget.queue_draw()
         elif event.keyval == gtk.keysyms.Return:
             self.getout(True, widget)
             if self.tool['name'] == 'marquee-rectangular':
-                self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.TCROSS))
+                self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
             widget.queue_draw()
 
     def change_line_size(self, delta):
