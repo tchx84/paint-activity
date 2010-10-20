@@ -1102,6 +1102,16 @@ class ImageToolbar(gtk.Toolbar):
         self._object_rotate_right.set_tooltip(_('Rotate Right'))
         self._object_rotate_right.set_sensitive(is_selected)
 
+        self._mirror_horizontal = ToolButton('mirror-horizontal')
+        self.insert(self._mirror_horizontal, -1)
+        self._mirror_horizontal.show()
+        self._mirror_horizontal.set_tooltip(_('Mirror Horizontal'))
+
+        self._mirror_vertical = ToolButton('mirror-vertical')
+        self.insert(self._mirror_vertical, -1)
+        self._mirror_vertical.show()
+        self._mirror_vertical.set_tooltip(_('Mirror Vertical'))
+
         self._object_height = ToolButton('object-height')
         self.insert(self._object_height, -1)
         self._object_height.set_tooltip(_('Height'))
@@ -1129,6 +1139,8 @@ class ImageToolbar(gtk.Toolbar):
             activity)
         self._object_rotate_right.connect('clicked', self.rotate_right,
             activity)
+        self._mirror_vertical.connect('clicked', self.mirror_vertical)
+        self._mirror_horizontal.connect('clicked', self.mirror_horizontal)
 
         self._activity.area.connect('select', self._on_signal_select_cb)
 
@@ -1151,6 +1163,12 @@ class ImageToolbar(gtk.Toolbar):
 
     def rotate_right(self, widget, activity):
         activity.area._rotate_right(activity.area)
+
+    def mirror_horizontal(self, widget):
+        self._activity.area.mirror(widget)
+
+    def mirror_vertical(self, widget):
+        self._activity.area.mirror(widget, horizontal=False)
 
     def resize(self, spinButton, tool, activity):
         if activity.area.tool['name'] == 'marquee-rectangular' and \
@@ -1276,16 +1294,6 @@ class EffectsToolbar(gtk.Toolbar):
         separator = gtk.SeparatorToolItem()
         self.insert(separator, -1)
 
-        self._mirror_horizontal = ToolButton('mirror-horizontal')
-        self.insert(self._mirror_horizontal, -1)
-        self._mirror_horizontal.show()
-        self._mirror_horizontal.set_tooltip(_('Mirror Horizontal'))
-
-        self._mirror_vertical = ToolButton('mirror-vertical')
-        self.insert(self._mirror_vertical, -1)
-        self._mirror_vertical.show()
-        self._mirror_vertical.set_tooltip(_('Mirror Vertical'))
-
         """
         #FIXME: Must be implemented
         self._black_and_white = ToolButton('black_and_white')
@@ -1300,8 +1308,6 @@ class EffectsToolbar(gtk.Toolbar):
         self._effect_grayscale.connect('clicked', self.grayscale)
         self._effect_rainbow.connect('clicked', self.rainbow)
         self._invert_colors.connect('clicked', self.invert_colors)
-        self._mirror_vertical.connect('clicked', self.mirror_vertical)
-        self._mirror_horizontal.connect('clicked', self.mirror_horizontal)
 
     ##Make the colors be in grayscale
     def grayscale(self, widget):
@@ -1313,12 +1319,6 @@ class EffectsToolbar(gtk.Toolbar):
 
     def invert_colors(self, widget):
         self._activity.area.invert_colors(widget)
-
-    def mirror_horizontal(self, widget):
-        self._activity.area.mirror(widget)
-
-    def mirror_vertical(self, widget):
-        self._activity.area.mirror(widget, horizontal=False)
 
         # setting cursor: moved to Area
 
