@@ -165,7 +165,7 @@ class Area(gtk.DrawingArea):
         self.pixmap_sel = None
         self.desenho = []
         self.textos = []
-        self.estadoTexto = 0
+        self.text_in_progress = False
         self.janela = janela
         self.d = Desenho(self)
         self.line_size = 2
@@ -325,7 +325,7 @@ class Area(gtk.DrawingArea):
             self.d.text(widget, event)
 
         # This fixes a bug that made the text viewer get stuck in the canvas
-        elif self.estadoTexto is 1:
+        elif self.text_in_progress:
             try:
             # This works for a gtk.Entry
                 text = self.janela.textview.get_text()
@@ -337,7 +337,7 @@ class Area(gtk.DrawingArea):
 
             if text is not None:
                 self.d.text(widget, event)
-            self.estadoTexto = 0
+            self.text_in_progress = False
             self.janela.textview.hide()
 
         self.oldx, self.oldy = coords

@@ -169,6 +169,8 @@ class OficinaActivity(activity.Activity):
         width, height = self.area.get_size_request()
 
         logging.debug('writting %s w=%s h=%s' % (file_path, width, height))
+        if self.area.text_in_progress:
+            self.area.d.text(self.area, event=None)
 
         self.area.getout()
         pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
