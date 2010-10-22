@@ -294,18 +294,31 @@ class Desenho:
 
         x = coords[0] - widget.oldx
         y = coords[1] - widget.oldy
-        points = [(widget.oldx, widget.oldy),\
-            (widget.oldx + int(x / 6), widget.oldy + y), \
-            (widget.oldx + int(x / 6), widget.oldy + int(y / 3)), \
-            (widget.oldx + x, widget.oldy + int(y / 3)), \
-            (widget.oldx + x, widget.oldy - int(y / 3)), \
-            (widget.oldx + int(x / 6), widget.oldy - int(y / 3)),\
-            (widget.oldx + int(x / 6), widget.oldy - y)]
+        A = math.atan2(y, x)
+        dA = 2 * math.pi / 2
+        r = math.hypot(y, x)
+        m = math.sin(A)
+        p = [(widget.oldx, widget.oldy)]
+        p.append((widget.oldx + int(r * math.cos(A)),\
+                  widget.oldy + int(r * math.sin(A))))
+        p.append((widget.oldx + int(0.74 * r * math.cos(A + dA / 6)),\
+                  widget.oldy + int(0.74 * r * math.sin(A + dA / 6))))
+        p.append((widget.oldx + int(2 * r * math.cos(A + dA / 6 + dA / 20)),\
+                  widget.oldy + int(2 * r * math.sin(A + dA / 6 + dA / 20))))
+        p.append((widget.oldx +\
+                  int(2 * r * math.cos(A + dA / 6 - dA / 20 + dA / 6)),\
+                  widget.oldy +\
+                  int(2 * r * math.sin(A + dA / 6 - dA / 20 + dA / 6))))
+        p.append((widget.oldx + int(0.74 * r * math.cos(A + dA / 6 + dA / 6)),\
+                  widget.oldy + int(0.74 * r * math.sin(A + dA / 6 + dA / 6))))
+        p.append((widget.oldx + int(r * math.cos(A + dA / 2)),\
+                  widget.oldy + int(r * math.sin(A + dA / 2))))
         pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
             width, height)
+        tp = tuple(p)
         if fill == True:
-            pixmap.draw_polygon(widget.gc, True, points)
-        pixmap.draw_polygon(widget.gc_line, False, points)
+            pixmap.draw_polygon(widget.gc, True, tp)
+        pixmap.draw_polygon(widget.gc_line, False, tp)
         widget.queue_draw()
 
     def parallelogram(self, widget, coords, temp, fill):
