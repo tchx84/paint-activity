@@ -855,6 +855,11 @@ class ShapesToolbar(gtk.Toolbar):
         tool['fill'] = checkbutton.get_active()
         self.set_tool(tool=tool)
 
+    def _on_keep_aspect_checkbutton_toggled(self, checkbutton, tool):
+        self._activity.area.keep_shape_ratio[tool['name']] = \
+                checkbutton.get_active()
+        self.set_tool(tool=tool)
+
     def _configure_palette_shape_ellipse(self):
         logging.debug('Creating palette to shape ellipse')
         self._create_simple_palette(self._shape_ellipse, self._SHAPE_ELLIPSE)
@@ -990,6 +995,14 @@ class ShapesToolbar(gtk.Toolbar):
 
         size_spinbutton.connect('value-changed',
             self._on_line_size_value_changed, tool)
+
+        if tool['name'] in ['rectangle', 'ellipse', 'line']:
+            keep_aspect_checkbutton = gtk.CheckButton(_('Keep Aspect'))
+            ratio = self._activity.area.keep_shape_ratio[tool['name']]
+            keep_aspect_checkbutton.set_active(ratio)
+            keep_aspect_checkbutton.connect('toggled',
+                self._on_keep_aspect_checkbutton_toggled, tool)
+            palette.content_box.pack_start(keep_aspect_checkbutton)
 
         palette.content_box.show_all()
 

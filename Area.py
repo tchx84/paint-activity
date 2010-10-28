@@ -173,6 +173,10 @@ class Area(gtk.DrawingArea):
         self.last = []
         self.rainbow_counter = 0
         self.keep_aspect_ratio = False
+        self.keep_shape_ratio = {
+            'line': False,
+            'rectangle': False,
+            'ellipse': False}
 
         self.font = pango.FontDescription('Sans 9')
         self._set_selection_bounds(0, 0, 0, 0)
@@ -411,6 +415,13 @@ class Area(gtk.DrawingArea):
         self.x_cursor, self.y_cursor = int(x), int(y)
 
         coords = int(x), int(y)
+        if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
+            if (state & gtk.gdk.SHIFT_MASK) or \
+                self.keep_shape_ratio[self.tool['name']]:
+                if self.tool['name'] in ['rectangle', 'ellipse']:
+                    coords = self._keep_selection_ratio(coords)
+                elif self.tool['name'] == 'line':
+                    coords = self._keep_line_ratio(coords)
 
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
             if self.tool['name'] == 'pencil':
@@ -530,11 +541,19 @@ class Area(gtk.DrawingArea):
             @param  event -- GdkEvent
         """
         coords = int(event.x), int(event.y)
+        if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
+            if (event.state & gtk.gdk.SHIFT_MASK) or \
+                self.keep_shape_ratio[self.tool['name']]:
+                if self.tool['name'] in ['rectangle', 'ellipse']:
+                    coords = self._keep_selection_ratio(coords)
+                if self.tool['name'] == 'line':
+                    coords = self._keep_line_ratio(coords)
+
         width, height = self.window.get_size()
         if self.desenha or self.sel_get_out:
             if self.tool['name'] == 'line':
                 self.pixmap.draw_line(self.gc_line, self.oldx, self.oldy,
-                    int(event.x), int(event.y))
+                    coords[0], coords[1])
                 widget.queue_draw()
                 self.enableUndo(widget)
 
@@ -1411,3 +1430,22 @@ class Area(gtk.DrawingArea):
 
         return (self.oldx + sign(dx) * size,
                 self.oldy + sign(dy) * size)
+
+    def _keep_line_ratio(self, coords):
+
+        def sign(x):
+            return x and x / abs(x) or 0
+
+        dx = int(coords[0]) - self.oldx
+        dy = int(coords[1]) - self.oldy
+        size = max(abs(dx), abs(dy))
+
+        if abs(dx) > 0.5 * size and abs(dy) > 0.5 * size:
+            return (self.oldx + sign(dx) * size,
+                   self.oldy + sign(dy) * size)
+        elif abs(dx) < 0.5 * size and abs(dy) > 0.5 * size:
+            return (self.oldx,
+                   self.oldy + sign(dy) * size)
+        elif abs(dx) > 0.5 * size and abs(dy) < 0.5 * size:
+            return (self.oldx + sign(dx) * size,
+                   self.oldy)
