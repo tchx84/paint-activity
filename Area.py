@@ -1334,7 +1334,7 @@ class Area(gtk.DrawingArea):
             else:
                 filename = os.path.join('images', tool['name'] + '.png')
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
-                cursor = gtk.gdk.Cursor(display, pixbuf, 6, 21)
+                cursor = gtk.gdk.Cursor(display, pixbuf, 0, 0)
         except gobject.GError:
             cursor = None
 
