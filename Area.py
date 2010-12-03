@@ -1245,7 +1245,6 @@ class Area(gtk.DrawingArea):
         self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
         self.emit('select')
 
-        #widget.queue_draw()
         self.queue_draw()
 
     def clear(self):
@@ -1259,16 +1258,6 @@ class Area(gtk.DrawingArea):
         # after it is unselected
         if not self.is_selected():
             self.enableUndo(self)
-
-    # Changing to public methods
-    def _set_fill_color(self, color):
-        self.set_fill_color(color)
-
-    def _set_stroke_color(self, color):
-        self.set_stroke_color(color)
-
-    def _set_grayscale(self, widget):
-        self.grayscale(widget)
 
     def set_tool(self, tool):
         '''

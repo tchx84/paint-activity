@@ -90,20 +90,12 @@ class OficinaActivity(activity.Activity):
         self.fixed.modify_bg(gtk.STATE_NORMAL,
                 style.COLOR_WHITE.get_gdk_color())
 
-        #self._bg = gtk.Image()
-        #self._bg.set_from_file('./icons/bg.svg')
-        #self.fixed.put(self._bg, 200, 100)
-        #self._bg.show
-
         # These attributes are used in other classes, so they should be public
         self.area = Area(self)
         self.area.show()
         self.fixed.put(self.area, 0, 0)
 
         self.textview = gtk.TextView()
-        # If we use this, text viewer will have constant size,
-        # we don't want that
-        #self.textview.set_size_request(100,100)
         self.fixed.put(self.textview, 0, 0)
 
         sw = gtk.ScrolledWindow()
