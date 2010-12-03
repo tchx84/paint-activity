@@ -867,6 +867,7 @@ class Area(gtk.DrawingArea):
         logging.debug('Area._set_fill_color(self, color)')
 
         self.gc.set_foreground(color)
+        self.janela.textview.modify_text(gtk.STATE_NORMAL, color)
 
     def set_stroke_color(self, color):
         """Set stroke color.
