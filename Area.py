@@ -178,7 +178,10 @@ class Area(gtk.DrawingArea):
             'rectangle': False,
             'ellipse': False}
 
-        self.font = pango.FontDescription('Sans 9')
+        self.font_description = pango.FontDescription()
+        self.font_description.set_family('Sans')
+        self.font_description.set_size(12)
+
         self._set_selection_bounds(0, 0, 0, 0)
 
         #start of UNDO and REDO

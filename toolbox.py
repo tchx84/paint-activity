@@ -64,12 +64,15 @@ Walter Bender                       (walter@laptop.org)
 from gettext import gettext as _
 
 import gtk
+import pango
 import logging
 
+from sugar.graphics.icon import Icon
 from sugar.activity.activity import ActivityToolbox, EditToolbar
 from sugar.graphics.toolcombobox import ToolComboBox
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
+from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.objectchooser import ObjectChooser
 
 WITH_COLOR_BUTTON = True
@@ -1031,6 +1034,20 @@ class TextToolbar(gtk.Toolbar):
         self.insert(self._text, -1)
         self._text.connect('clicked', self.set_tool, self._ACTION_TEXT)
 
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        self.insert(separator, -1)
+
+        self._bold = ToggleToolButton('format-text-bold')
+        self.insert(self._bold, -1)
+        self._bold.show()
+        self._bold.connect('clicked', self.__bold_bt_cb)
+
+        self._italic = ToggleToolButton('format-text-italic')
+        self.insert(self._italic, -1)
+        self._italic.show()
+        self._italic.connect('clicked', self.__italic_bt_cb)
+
         self._text_color = ButtonFillColor(activity)
         item = gtk.ToolItem()
         item.add(self._text_color)
@@ -1040,37 +1057,76 @@ class TextToolbar(gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
 
-        """
-        #FIXME: this button is not connected to the right callback
-        self._bold = ToggleToolButton('format-text-bold')
-        self.insert(self._bold, -1)
-        self._bold.show()
-        self._bold.connect('clicked', test_connect, activity, 'bold')
+        self._font_size_icon = Icon(icon_name="format-text-size",
+            icon_size=gtk.ICON_SIZE_LARGE_TOOLBAR)
+        tool_item = gtk.ToolItem()
+        tool_item.add(self._font_size_icon)
+        self.insert(tool_item, -1)
 
-        #FIXME: this button is not connected to the right callback
-        self._italic = ToggleToolButton('format-text-italic')
-        self.insert(self._italic, -1)
-        self._italic.show()
-        self._italic.connect('clicked', test_connect, activity, 'italic')
+        self._font_size_combo = gtk.combo_box_new_text()
+        self._font_sizes = ['8', '10', '12', '14', '16', '20',
+                            '22', '24', '26', '28', '36', '48', '72']
+        self._font_size_changed_id = self._font_size_combo.connect('changed',
+                self.__font_size_changed_cb)
+        for i, s in enumerate(self._font_sizes):
+            self._font_size_combo.append_text(s)
+            if int(s) == activity.area.font_description.get_size():
+                self._font_size_combo.set_active(i)
 
-        #FIXME: this button is not connected to the right callback
-        self._underline = ToggleToolButton('format-text-underline')
-        self.insert(self._underline, -1)
-        self._underline.show()
-        self._underline.connect('clicked', test_connect, activity, 'underline')
+        tool_item = ToolComboBox(self._font_size_combo)
+        self.insert(tool_item, -1)
 
-        # Displays a few colors in a ComboBox
-        # TODO: User's choice is done when clicking at the first Combo item
-        # TODO: Keep previous choices at the list
+        self._fonts = []
+        pango_context = self.get_pango_context()
+        pango_context.set_language(pango.Language("en"))
+        for family in pango_context.list_families():
+            self._fonts.append(family.get_name())
+        self._fonts.sort()
 
-        self._text_color = ComboBox()
-        self._text_color.append_text('red')
+        self._font_combo = gtk.combo_box_new_text()
+        self._fonts_changed_id = self._font_combo.connect('changed',
+                self.__font_changed_cb)
+        for i, f in enumerate(self._fonts):
+            self._font_combo.append_text(f)
+            if f == activity.area.font_description.get_family():
+                self._font_combo.set_active(i)
+        tool_item = ToolComboBox(self._font_combo)
+        self.insert(tool_item, -1)
 
+    def __bold_bt_cb(self, button):
+        activity = self._activity
+        if button.get_active():
+            activity.area.font_description.set_weight(pango.WEIGHT_BOLD)
+        else:
+            activity.area.font_description.set_weight(pango.WEIGHT_NORMAL)
+        activity.textview.modify_font(activity.area.font_description)
 
-        #FIXME: must use a gtk.ToolItem to use 'insert' method
-        #self.insert(self._text_color, -1)
-        self._text_color.show()
-        """
+    def __italic_bt_cb(self, button):
+        activity = self._activity
+        if button.get_active():
+            activity.area.font_description.set_style(pango.STYLE_ITALIC)
+        else:
+            activity.area.font_description.set_style(pango.STYLE_NORMAL)
+        activity.textview.modify_font(activity.area.font_description)
+
+    def __font_size_changed_cb(self, combo):
+        activity = self._activity
+        value = self.get_active_text(combo)
+        activity.area.font_description.set_size(int(value) * pango.SCALE)
+        activity.textview.modify_font(activity.area.font_description)
+
+    def __font_changed_cb(self, combo):
+        activity = self._activity
+        value = self.get_active_text(combo)
+        activity.area.font_description.set_family(value)
+        activity.textview.modify_font(activity.area.font_description)
+
+    def get_active_text(self, combobox):
+        model = combobox.get_model()
+        active = combobox.get_active()
+        if active < 0:
+            return None
+        return model[active][0]
 
     def set_tool(self, widget, tool):
         #FIXME: this callback must change as others buttons get enabled

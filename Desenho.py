@@ -568,9 +568,6 @@ class Desenho:
         if not widget.text_in_progress:
             widget.text_in_progress = True
 
-            #widget.janela.fixed.move(widget.janela.textview,
-            # int(event.x)+200, int(event.y)+100)
-            # Area size has changed...
             widget.janela.fixed.move(widget.janela.textview,
                 int(event.x), int(event.y))
             widget.janela.textview.show()
@@ -588,8 +585,7 @@ class Desenho:
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end)
 
-            layout = widget.create_pango_layout(text)
-            #layout.set_font_description(widget.font)
+            layout = widget.janela.textview.create_pango_layout(text)
 
             widget.pixmap.draw_layout(widget.gc,
                 widget.oldx, widget.oldy, layout)
