@@ -893,50 +893,10 @@ class Area(gtk.DrawingArea):
 
         """
 
-        logging.debug('Area._set_grayscale(self,widget)')
-        width, height = self.window.get_size()
+        def proc_grayscale():
+            self.temp_pix.saturate_and_pixelate(self.temp_pix, 0, 0)
 
-        if self.selmove:
-            size = self.pixmap_sel.get_size()
-            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                size[0], size[1])
-            pix.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
-        else:
-            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                width, height)
-            pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(),
-                0, 0, 0, 0, width, height)
-
-        pix.saturate_and_pixelate(pix, 0, 0)
-
-        try:
-            self.d.pixbuf_resize.saturate_and_pixelate(self.d.pixbuf_resize,
-            0, 0)
-        except:
-            pass
-
-        if self.selmove:
-            self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
-                size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL,
-                x_dither=0, y_dither=0)
-
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-                width, height)
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
-                0, 0, self.orig_x, self.orig_y, size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-                self.orig_x, self.orig_y, size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-                self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
-
-        else:
-            self.pixmap.draw_pixbuf(self.gc, pix, 0, 0, 0, 0, width, height,
-                dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-
-        self.queue_draw()
-        if not self.selmove:
-            self.enableUndo(widget)
+        self._do_process(proc_grayscale)
 
     def invert_colors(self, widget):
         """Apply invert effect.
@@ -946,59 +906,31 @@ class Area(gtk.DrawingArea):
 
         """
 
-        width, height = self.window.get_size()
+        def proc_invert_color():
+            try:
+                import numpy
+                pix_manip2 = self.temp_pix.get_pixels_array()
+                pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) \
+                            * 255
+                pix_manip2 = pix_manip - pix_manip2
+                self.temp_pix = gtk.gdk.pixbuf_new_from_array(pix_manip2,
+                        gtk.gdk.COLORSPACE_RGB, 8)
+            except:
+                import string
+                a = self.temp_pix.get_pixels()
+                b = len(a) * ['\0']
+                for i in range(len(a)):
+                    b[i] = chr(255 - ord(a[i]))
+                buff = string.join(b, '')
+                self.temp_pix = gtk.gdk.pixbuf_new_from_data(buff,
+                        self.temp_pix.get_colorspace(),
+                        self.temp_pix.get_has_alpha(),
+                        self.temp_pix.get_bits_per_sample(),
+                        self.temp_pix.get_width(),
+                        self.temp_pix.get_height(),
+                        self.temp_pix.get_rowstride())
 
-        if self.selmove:
-            size = self.pixmap_sel.get_size()
-            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                size[0], size[1])
-            pix.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
-        else:
-            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                width, height)
-            pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(),
-                0, 0, 0, 0, width, height)
-
-        try:
-            import numpy
-            pix_manip2 = pix.get_pixels_array()
-            pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) * 255
-            pix_manip2 = pix_manip - pix_manip2
-            pix = gtk.gdk.pixbuf_new_from_array(pix_manip2,
-                    gtk.gdk.COLORSPACE_RGB, 8)
-        except:
-            import string
-            a = pix.get_pixels()
-            b = len(a) * ['\0']
-            for i in range(len(a)):
-                b[i] = chr(255 - ord(a[i]))
-            buff = string.join(b, '')
-            pix = gtk.gdk.pixbuf_new_from_data(buff, pix.get_colorspace(),
-                    pix.get_has_alpha(), pix.get_bits_per_sample(),
-                    pix.get_width(), pix.get_height(), pix.get_rowstride())
-
-        if self.selmove:
-            self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
-                size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL,
-                x_dither=0, y_dither=0)
-
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-                width, height)
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
-                0, 0, self.orig_x, self.orig_y, size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-                self.orig_x, self.orig_y, size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-                self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
-
-        else:
-            self.pixmap.draw_pixbuf(self.gc, pix, 0, 0, 0, 0, width, height,
-                dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-
-        self.queue_draw()
-        if not self.selmove:
-            self.enableUndo(widget)
+        self._do_process(proc_invert_color)
 
     def mirror(self, widget, horizontal=True):
         """Apply mirror horizontal/vertical effect.
@@ -1009,24 +941,31 @@ class Area(gtk.DrawingArea):
 
         """
 
+        def proc_mirror():
+            self.temp_pix = self.temp_pix.flip(self.horizontal)
+
+        self.horizontal = horizontal
+        self._do_process(proc_mirror)
+
+    def _do_process(self, apply_process):
         width, height = self.window.get_size()
 
         if self.selmove:
             size = self.pixmap_sel.get_size()
-            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+            self.temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
                 size[0], size[1])
-            pix.get_from_drawable(self.pixmap_sel,
+            self.temp_pix.get_from_drawable(self.pixmap_sel,
                 gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
         else:
-            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+            self.temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
                 width, height)
-            pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(),
-                0, 0, 0, 0, width, height)
+            self.temp_pix.get_from_drawable(self.pixmap,
+                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
 
-        pix = pix.flip(horizontal)
+        apply_process()
 
         if self.selmove:
-            self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
+            self.pixmap_sel.draw_pixbuf(self.gc, self.temp_pix, 0, 0, 0, 0,
                 size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL,
                 x_dither=0, y_dither=0)
 
@@ -1040,8 +979,11 @@ class Area(gtk.DrawingArea):
                 self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
 
         else:
-            self.pixmap.draw_pixbuf(self.gc, pix, 0, 0, 0, 0, width, height,
-                dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+            self.pixmap.draw_pixbuf(self.gc, self.temp_pix, 0, 0, 0, 0,
+                width, height, dither=gtk.gdk.RGB_DITHER_NORMAL,
+                x_dither=0, y_dither=0)
+
+        del self.temp_pix
 
         self.queue_draw()
         if not self.selmove:
