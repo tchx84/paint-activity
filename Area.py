@@ -69,7 +69,6 @@ import os
 import tempfile
 import math
 import pango
-import numpy
 from fill import *
 from Desenho import Desenho
 from urlparse import urlparse
@@ -961,11 +960,23 @@ class Area(gtk.DrawingArea):
             pix.get_from_drawable(self.pixmap, gtk.gdk.colormap_get_system(),
                 0, 0, 0, 0, width, height)
 
-        pix_manip2 = pix.get_pixels_array()
-        pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) * 255
-        pix_manip2 = pix_manip - pix_manip2
-        pix = gtk.gdk.pixbuf_new_from_array(pix_manip2, gtk.gdk.COLORSPACE_RGB,
-                                            8)
+        try:
+            import numpy
+            pix_manip2 = pix.get_pixels_array()
+            pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) * 255
+            pix_manip2 = pix_manip - pix_manip2
+            pix = gtk.gdk.pixbuf_new_from_array(pix_manip2,
+                    gtk.gdk.COLORSPACE_RGB, 8)
+        except:
+            import string
+            a = pix.get_pixels()
+            b = len(a) * ['\0']
+            for i in range(len(a)):
+                b[i] = chr(255 - ord(a[i]))
+            buff = string.join(b, '')
+            pix = gtk.gdk.pixbuf_new_from_data(buff, pix.get_colorspace(),
+                    pix.get_has_alpha(), pix.get_bits_per_sample(),
+                    pix.get_width(), pix.get_height(), pix.get_rowstride())
 
         if self.selmove:
             self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
