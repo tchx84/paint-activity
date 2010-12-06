@@ -85,9 +85,9 @@ try:
         def __init__(self, activity):
             ColorToolButton.__init__(self)
             self._activity = activity
-            self.connect('color-set', self._color_button_cb)
+            self.connect('notify::color', self._color_button_cb)
 
-        def _color_button_cb(self, widget):
+        def _color_button_cb(self, widget, pspec):
             color = self.get_color()
             self.set_fill_color(color)
 
@@ -105,9 +105,9 @@ try:
         def __init__(self, activity):
             ColorToolButton.__init__(self)
             self._activity = activity
-            self.connect('color-set', self._color_button_cb)
+            self.connect('notify::color', self._color_button_cb)
 
-        def _color_button_cb(self, widget):
+        def _color_button_cb(self, widget, pspec):
             color = self.get_color()
             self.set_stroke_color(color)
 
