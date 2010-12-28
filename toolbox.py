@@ -1174,12 +1174,12 @@ class ImageToolbar(gtk.Toolbar):
         self._mirror_horizontal = ToolButton('mirror-horizontal')
         self.insert(self._mirror_horizontal, -1)
         self._mirror_horizontal.show()
-        self._mirror_horizontal.set_tooltip(_('Mirror Horizontal'))
+        self._mirror_horizontal.set_tooltip(_('Horizontal Mirror'))
 
         self._mirror_vertical = ToolButton('mirror-vertical')
         self.insert(self._mirror_vertical, -1)
         self._mirror_vertical.show()
-        self._mirror_vertical.set_tooltip(_('Mirror Vertical'))
+        self._mirror_vertical.set_tooltip(_('Vertical Mirror'))
 
         self._object_height = ToolButton('object-height')
         self.insert(self._object_height, -1)
