@@ -243,11 +243,11 @@ msgid "Rotate Right"
 msgstr "Rotar derecha"
 
 #: toolbox.py:1121
-msgid "Horizontal Mirror"
+msgid "Mirror Horizontal"
 msgstr "Espejo horizontal"
 
 #: toolbox.py:1126
-msgid "Vertical Mirror"
+msgid "Mirror Vertical"
 msgstr "Espejo vertical"
 
 #: toolbox.py:1130
