@@ -1,0 +1,278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-30 00:31-0400\n"
+"PO-Revision-Date: 2011-01-21 12:12+0200\n"
+"Last-Translator: rubina <rubina@aua.am>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: hy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.3\n"
+
+#: activity/activity.info:2
+msgid "Paint"
+msgstr "Նկարել"
+
+#: toolbox.py:174
+msgid "Edit"
+msgstr "խմբագրել"
+
+#: toolbox.py:178
+msgid "Tools"
+msgstr "Գործիքներ"
+
+#: toolbox.py:182
+msgid "Shapes"
+msgstr "Ձևեր"
+
+#: toolbox.py:186
+msgid "Text"
+msgstr "Տեքստ"
+
+#: toolbox.py:190
+msgid "Image"
+msgstr "Պատկեր"
+
+#: toolbox.py:194
+msgid "Effects"
+msgstr "Էֆֆեկտներ"
+
+#: toolbox.py:212
+msgid "Undo"
+msgstr "Չեղյալ հայտարարել"
+
+#: toolbox.py:213
+msgid "Redo"
+msgstr "Կրկնել"
+
+#: toolbox.py:214
+msgid "Copy"
+msgstr "Կրկնօրինակ"
+
+#: toolbox.py:215
+msgid "Paste"
+msgstr "Տեղադրել"
+
+#: toolbox.py:223
+msgid "Clear"
+msgstr "Մաքրել"
+
+#: toolbox.py:362 toolbox.py:711
+msgid "Stroke Color"
+msgstr "Գծի Գույնը"
+
+#: toolbox.py:372
+msgid "Pencil"
+msgstr "Մատիտ"
+
+#: toolbox.py:381
+msgid "Brush"
+msgstr "Վրձին"
+
+#: toolbox.py:389
+msgid "Eraser"
+msgstr "Ջնջիչ"
+
+#: toolbox.py:397
+msgid "Bucket"
+msgstr "Դույլ"
+
+#: toolbox.py:425
+msgid "Select Area"
+msgstr "Ընտրել Մակերեսը"
+
+#: toolbox.py:476 toolbox.py:985 toolbox.py:1364
+msgid "Size: "
+msgstr "Չափս. "
+
+#: toolbox.py:495 toolbox.py:1377
+msgid "Circle"
+msgstr "Օղակ"
+
+#: toolbox.py:502 toolbox.py:1384
+msgid "Square"
+msgstr "Քառակուսի"
+
+#: toolbox.py:511 toolbox.py:1393
+msgid "Shape"
+msgstr "Ձև"
+
+#: toolbox.py:519
+msgid "Keep aspect"
+msgstr "Պահել արտաքին տեսքը"
+
+#: toolbox.py:703
+msgid "Fill Color"
+msgstr "Լցման Գույն"
+
+#: toolbox.py:721
+msgid "Ellipse"
+msgstr "Էլիպս"
+
+#: toolbox.py:729
+msgid "Rectangle"
+msgstr "Ուղղանկյուն"
+
+#: toolbox.py:737
+msgid "Line"
+msgstr "Գիծ"
+
+#: toolbox.py:745
+msgid "Free form"
+msgstr "Ազատ տեսք"
+
+#: toolbox.py:754
+msgid "Polygon"
+msgstr "Բազմանկյուն"
+
+#: toolbox.py:762
+msgid "Heart"
+msgstr "Սիրտ"
+
+#: toolbox.py:770
+msgid "Parallelogram"
+msgstr "Զուգահեռագիծ"
+
+#: toolbox.py:778
+msgid "Arrow"
+msgstr "Սլաք"
+
+#: toolbox.py:786
+msgid "Star"
+msgstr "Աստղ"
+
+#: toolbox.py:794
+msgid "Trapezoid"
+msgstr "Սեղան"
+
+#: toolbox.py:802
+msgid "Triangle"
+msgstr "Եռանկյուն"
+
+#: toolbox.py:889
+msgid "Sides: "
+msgstr "Կողմեր."
+
+#: toolbox.py:931
+msgid "Points: "
+msgstr "Կետեր."
+
+#: toolbox.py:970
+msgid "Fill"
+msgstr "Լիցք"
+
+#: toolbox.py:1000
+msgid "Keep Aspect"
+msgstr "Պահել արտաքին ձևը"
+
+#: toolbox.py:1030
+msgid "Type"
+msgstr "Տպել"
+
+#: toolbox.py:1097
+msgid "Insert Image"
+msgstr "Ներդնել պատկեր"
+
+#: toolbox.py:1110
+msgid "Rotate Left"
+msgstr "Շրջել Ձախ"
+
+#: toolbox.py:1115
+msgid "Rotate Right"
+msgstr "Շրջել Աջ"
+
+#: toolbox.py:1121
+msgid "Mirror Horizontal"
+msgstr "Հորիզոնական Հայելապատկեր"
+
+#: toolbox.py:1126
+msgid "Mirror Vertical"
+msgstr "Ուղղաձիգ Հայելապատկեր"
+
+#: toolbox.py:1130
+msgid "Height"
+msgstr "Բարձրություն"
+
+#: toolbox.py:1141
+msgid "Width"
+msgstr "Լայնք"
+
+#: toolbox.py:1250
+msgid "Choose image"
+msgstr "Ընտրել պատկերը"
+
+#: toolbox.py:1295
+msgid "Grayscale"
+msgstr "Գորշասանդղակ"
+
+#: toolbox.py:1298
+msgid "Rainbow"
+msgstr "Ծիածան"
+
+#: toolbox.py:1305
+msgid "Invert Colors"
+msgstr "Հակադարձել Գույները"
+
+#: toolbox.py:1433
+msgid "1000"
+msgstr "1000"
+
+#: toolbox.py:1434
+msgid "500"
+msgstr "500"
+
+#: toolbox.py:1435
+msgid "200"
+msgstr "200"
+
+#: toolbox.py:1436
+msgid "150"
+msgstr "150"
+
+#: toolbox.py:1437
+msgid "100"
+msgstr "100"
+
+#: toolbox.py:1438
+msgid "50"
+msgstr "50"
+
+#: toolbox.py:1439
+msgid "25"
+msgstr "25"
+
+#: toolbox.py:1440
+msgid "10"
+msgstr "10"
+
+#: toolbox.py:1450
+msgid "ZOOM +"
+msgstr "Մեծացնել"
+
+#: toolbox.py:1454
+msgid "ZOOM -"
+msgstr "Փոքրացնել"
