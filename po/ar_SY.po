@@ -1,0 +1,325 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Arabian translation for Oficina package.
+# Copyright (C) 2007 NATE LSI-USP
+# This file is distributed under the same license as the Oficina package.
+# 
+# Khaled Hosny <khaledhosny@eglug.org>, 2007, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: drawing.master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-30 00:31-0400\n"
+"PO-Revision-Date: 2010-02-19 18:19+0300\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.5.2\n"
+"Nplurals=6; Plural=N==0 ? 0: n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 "
+": n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: activity/activity.info:2
+msgid "Paint"
+msgstr "ارسم"
+
+#: toolbox.py:174
+msgid "Edit"
+msgstr "تحرير"
+
+#: toolbox.py:178
+msgid "Tools"
+msgstr "أدوات"
+
+#: toolbox.py:182
+msgid "Shapes"
+msgstr "أشكال"
+
+#: toolbox.py:186
+msgid "Text"
+msgstr "نص"
+
+#: toolbox.py:190
+msgid "Image"
+msgstr "صورة"
+
+#: toolbox.py:194
+msgid "Effects"
+msgstr "مؤثِّرات"
+
+#: toolbox.py:212
+msgid "Undo"
+msgstr "تراجع"
+
+#: toolbox.py:213
+msgid "Redo"
+msgstr "أعِد"
+
+#: toolbox.py:214
+msgid "Copy"
+msgstr "انسخ"
+
+#: toolbox.py:215
+msgid "Paste"
+msgstr "الصق"
+
+#: toolbox.py:223
+msgid "Clear"
+msgstr "امسح"
+
+#: toolbox.py:362 toolbox.py:711
+msgid "Stroke Color"
+msgstr "لون الخط:"
+
+#: toolbox.py:372
+msgid "Pencil"
+msgstr "قلم"
+
+#: toolbox.py:381
+msgid "Brush"
+msgstr "فرشاة"
+
+#: toolbox.py:389
+msgid "Eraser"
+msgstr "ممحاة"
+
+#: toolbox.py:397
+msgid "Bucket"
+msgstr "محفظة"
+
+#: toolbox.py:425
+msgid "Select Area"
+msgstr ""
+
+#: toolbox.py:476 toolbox.py:985 toolbox.py:1364
+msgid "Size: "
+msgstr "الحجم: "
+
+#: toolbox.py:495 toolbox.py:1377
+msgid "Circle"
+msgstr "دائرة"
+
+#: toolbox.py:502 toolbox.py:1384
+msgid "Square"
+msgstr "مربّع"
+
+#: toolbox.py:511 toolbox.py:1393
+msgid "Shape"
+msgstr "شكل"
+
+#: toolbox.py:519
+msgid "Keep aspect"
+msgstr ""
+
+#: toolbox.py:703
+msgid "Fill Color"
+msgstr "لون الملء"
+
+#: toolbox.py:721
+msgid "Ellipse"
+msgstr "بيضاوي"
+
+#: toolbox.py:729
+msgid "Rectangle"
+msgstr "مستطيل"
+
+#: toolbox.py:737
+msgid "Line"
+msgstr "خط"
+
+#: toolbox.py:745
+msgid "Free form"
+msgstr ""
+
+#: toolbox.py:754
+msgid "Polygon"
+msgstr "مضلع"
+
+#: toolbox.py:762
+msgid "Heart"
+msgstr "قلب"
+
+#: toolbox.py:770
+msgid "Parallelogram"
+msgstr "متوازي أضلاع"
+
+#: toolbox.py:778
+msgid "Arrow"
+msgstr "سهم"
+
+#: toolbox.py:786
+msgid "Star"
+msgstr "نجمة"
+
+#: toolbox.py:794
+msgid "Trapezoid"
+msgstr "معيّن"
+
+#: toolbox.py:802
+msgid "Triangle"
+msgstr "مثلّث"
+
+#: toolbox.py:889
+msgid "Sides: "
+msgstr "الجوانب: "
+
+#: toolbox.py:931
+msgid "Points: "
+msgstr "النقاط: "
+
+#: toolbox.py:970
+msgid "Fill"
+msgstr "املأ"
+
+#: toolbox.py:1000
+msgid "Keep Aspect"
+msgstr ""
+
+#: toolbox.py:1030
+msgid "Type"
+msgstr "اكتب"
+
+#: toolbox.py:1097
+msgid "Insert Image"
+msgstr "أدرج صورة"
+
+#: toolbox.py:1110
+msgid "Rotate Left"
+msgstr "أدِر لليسار"
+
+#: toolbox.py:1115
+msgid "Rotate Right"
+msgstr "أدِر لليمين"
+
+#: toolbox.py:1121
+msgid "Mirror Horizontal"
+msgstr ""
+
+#: toolbox.py:1126
+msgid "Mirror Vertical"
+msgstr ""
+
+#: toolbox.py:1130
+msgid "Height"
+msgstr "الارتفاع"
+
+#: toolbox.py:1141
+msgid "Width"
+msgstr "العرض"
+
+#: toolbox.py:1250
+msgid "Choose image"
+msgstr "اختر صورة"
+
+#: toolbox.py:1295
+msgid "Grayscale"
+msgstr "تدرج رمادي"
+
+#: toolbox.py:1298
+msgid "Rainbow"
+msgstr "ألوان الطيف"
+
+#: toolbox.py:1305
+msgid "Invert Colors"
+msgstr ""
+
+#: toolbox.py:1433
+msgid "1000"
+msgstr "1000"
+
+#: toolbox.py:1434
+msgid "500"
+msgstr "500"
+
+#: toolbox.py:1435
+msgid "200"
+msgstr "200"
+
+#: toolbox.py:1436
+msgid "150"
+msgstr "150"
+
+#: toolbox.py:1437
+msgid "100"
+msgstr "100"
+
+#: toolbox.py:1438
+msgid "50"
+msgstr "50"
+
+#: toolbox.py:1439
+msgid "25"
+msgstr "25"
+
+#: toolbox.py:1440
+msgid "10"
+msgstr "10"
+
+#: toolbox.py:1450
+msgid "ZOOM +"
+msgstr "قرّب +"
+
+#: toolbox.py:1454
+msgid "ZOOM -"
+msgstr "بعّد -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "معلِّمة مربّعة"
+
+#~ msgid "Tool Color"
+#~ msgstr "لون الأداة"
+
+#~ msgid "Fill Color: "
+#~ msgstr "لون الملء: "
+
+#~ msgid "1"
+#~ msgstr "١"
+
+#~ msgid "2"
+#~ msgstr "٢"
+
+#~ msgid "3"
+#~ msgstr "٣"
+
+#~ msgid "5"
+#~ msgstr "٥"
+
+#~ msgid "20"
+#~ msgstr "٢٠"
+
+#~ msgid "Open File..."
+#~ msgstr "افتح ملف..."
