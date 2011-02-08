@@ -34,11 +34,11 @@
 #Rafael Barbolo Lopes                (barbolo@gmail.com)
 #Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
 
-CFLAGS = $(shell pkg-config --cflags gtk+-2.0 pygtk-2.0) \
+CFLAGS = $(shell pkg-config --cflags gtk+-2.0 pygtk-2.0 | sed 's/-pthread//') \
 		 $(shell python-config --cflags) \
 		-fPIC
 
-LDFLAGS = $(shell pkg-config --libs gtk+-2.0 pygtk-2.0) \
+LDFLAGS = $(shell pkg-config --libs gtk+-2.0 pygtk-2.0 | sed 's/-pthread//') \
           $(shell python-config --libs)
 
 ARCH = $(shell arch | grep 64 >/dev/null && echo linux64 || echo linux32)
