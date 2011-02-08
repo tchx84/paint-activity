@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-30 00:31-0400\n"
+"PO-Revision-Date: 2010-12-28 04:20+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.3\n"
+
+#: activity/activity.info:2
+msgid "Paint"
+msgstr "Paint"
+
+#: toolbox.py:174
+msgid "Edit"
+msgstr "Edit"
+
+#: toolbox.py:178
+msgid "Tools"
+msgstr "Tools"
+
+#: toolbox.py:182
+msgid "Shapes"
+msgstr "Shapes"
+
+#: toolbox.py:186
+msgid "Text"
+msgstr "Text"
+
+#: toolbox.py:190
+msgid "Image"
+msgstr "Image"
+
+#: toolbox.py:194
+msgid "Effects"
+msgstr "Effects"
+
+#: toolbox.py:212
+msgid "Undo"
+msgstr "Undo"
+
+#: toolbox.py:213
+msgid "Redo"
+msgstr "Redo"
+
+#: toolbox.py:214
+msgid "Copy"
+msgstr "Copy"
+
+#: toolbox.py:215
+msgid "Paste"
+msgstr "Paste"
+
+#: toolbox.py:223
+msgid "Clear"
+msgstr "Clear"
+
+#: toolbox.py:362 toolbox.py:711
+msgid "Stroke Color"
+msgstr "Stroke Color"
+
+#: toolbox.py:372
+msgid "Pencil"
+msgstr "Pencil"
+
+#: toolbox.py:381
+msgid "Brush"
+msgstr "Brush"
+
+#: toolbox.py:389
+msgid "Eraser"
+msgstr "Eraser"
+
+#: toolbox.py:397
+msgid "Bucket"
+msgstr "Bucket"
+
+#: toolbox.py:425
+msgid "Select Area"
+msgstr "Select Area"
+
+#: toolbox.py:476 toolbox.py:985 toolbox.py:1364
+msgid "Size: "
+msgstr "Size: "
+
+#: toolbox.py:495 toolbox.py:1377
+msgid "Circle"
+msgstr "Circle"
+
+#: toolbox.py:502 toolbox.py:1384
+msgid "Square"
+msgstr "Square"
+
+#: toolbox.py:511 toolbox.py:1393
+msgid "Shape"
+msgstr "Shape"
+
+#: toolbox.py:519
+msgid "Keep aspect"
+msgstr "Keep aspect"
+
+#: toolbox.py:703
+msgid "Fill Color"
+msgstr "Fill Color"
+
+#: toolbox.py:721
+msgid "Ellipse"
+msgstr "Ellipse"
+
+#: toolbox.py:729
+msgid "Rectangle"
+msgstr "Rectangle"
+
+#: toolbox.py:737
+msgid "Line"
+msgstr "Line"
+
+#: toolbox.py:745
+msgid "Free form"
+msgstr "Free form"
+
+#: toolbox.py:754
+msgid "Polygon"
+msgstr "Polygon"
+
+#: toolbox.py:762
+msgid "Heart"
+msgstr "Heart"
+
+#: toolbox.py:770
+msgid "Parallelogram"
+msgstr "Parallelogram"
+
+#: toolbox.py:778
+msgid "Arrow"
+msgstr "Arrow"
+
+#: toolbox.py:786
+msgid "Star"
+msgstr "Star"
+
+#: toolbox.py:794
+msgid "Trapezoid"
+msgstr "Trapezoid"
+
+#: toolbox.py:802
+msgid "Triangle"
+msgstr "Triangle"
+
+#: toolbox.py:889
+msgid "Sides: "
+msgstr "Sides: "
+
+#: toolbox.py:931
+msgid "Points: "
+msgstr "Points: "
+
+#: toolbox.py:970
+msgid "Fill"
+msgstr "Fill"
+
+#: toolbox.py:1000
+msgid "Keep Aspect"
+msgstr "Keep Aspect"
+
+#: toolbox.py:1030
+msgid "Type"
+msgstr "Type"
+
+#: toolbox.py:1097
+msgid "Insert Image"
+msgstr "Insert Image"
+
+#: toolbox.py:1110
+msgid "Rotate Left"
+msgstr "Rotate Left"
+
+#: toolbox.py:1115
+msgid "Rotate Right"
+msgstr "Rotate Right"
+
+#: toolbox.py:1121
+msgid "Mirror Horizontal"
+msgstr "Mirror Horizontal"
+
+#: toolbox.py:1126
+msgid "Mirror Vertical"
+msgstr "Mirror Vertical"
+
+#: toolbox.py:1130
+msgid "Height"
+msgstr "Height"
+
+#: toolbox.py:1141
+msgid "Width"
+msgstr "Width"
+
+#: toolbox.py:1250
+msgid "Choose image"
+msgstr "Choose image"
+
+#: toolbox.py:1295
+msgid "Grayscale"
+msgstr "Grayscale"
+
+#: toolbox.py:1298
+msgid "Rainbow"
+msgstr "Rainbow"
+
+#: toolbox.py:1305
+msgid "Invert Colors"
+msgstr "Invert Colors"
+
+#: toolbox.py:1433
+msgid "1000"
+msgstr "1000"
+
+#: toolbox.py:1434
+msgid "500"
+msgstr "500"
+
+#: toolbox.py:1435
+msgid "200"
+msgstr "200"
+
+#: toolbox.py:1436
+msgid "150"
+msgstr "150"
+
+#: toolbox.py:1437
+msgid "100"
+msgstr "100"
+
+#: toolbox.py:1438
+msgid "50"
+msgstr "50"
+
+#: toolbox.py:1439
+msgid "25"
+msgstr "25"
+
+#: toolbox.py:1440
+msgid "10"
+msgstr "10"
+
+#: toolbox.py:1450
+msgid "ZOOM +"
+msgstr "ZOOM +"
+
+#: toolbox.py:1454
+msgid "ZOOM -"
+msgstr "ZOOM -"
