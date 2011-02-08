@@ -660,7 +660,7 @@ class ShapesToolbar(gtk.Toolbar):
                     'stroke color': None,
                     'line shape': 'circle',
                     'fill': True,
-                    'vertices': 5}
+                    'vertices': 6}
 
     _SHAPE_RECTANGLE = {'name': 'rectangle',
                     'line size': 2,

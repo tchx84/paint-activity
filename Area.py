@@ -195,7 +195,7 @@ class Area(gtk.DrawingArea):
         self.undo_list = []
 
         ##Number of sides for regular polygon
-        self.vertices = 5
+        self.vertices = 6
 
         ##Shapes will be filled or not?
         self.fill = True
