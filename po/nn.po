@@ -2,6 +2,10 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #, fuzzy
 msgid ""
 msgstr ""
@@ -188,11 +192,13 @@ msgstr ""
 msgid "Rotate Right"
 msgstr ""
 
-#~ msgid "Horizontal Mirror"
-#~ msgstr ""
+#: toolbox.py:1177
+msgid "Horizontal Mirror"
+msgstr ""
 
-#~ msgid "Vertical Mirror"
-#~ msgstr ""
+#: toolbox.py:1182
+msgid "Vertical Mirror"
+msgstr ""
 
 #: toolbox.py:1186
 msgid "Height"
@@ -256,12 +262,4 @@ msgstr ""
 
 #: toolbox.py:1510
 msgid "ZOOM -"
-msgstr ""
-
-#: toolbox.py:1126
-msgid "Mirror Vertical"
-msgstr ""
-
-#: toolbox.py:1121
-msgid "Mirror Horizontal"
 msgstr ""

@@ -18,6 +18,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # French translation of Drawing activity.
 # Copyright (C) 2007 NATE LSI-USP
 # This file is distributed under the same license as the Oficina package.
@@ -27,8 +43,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-11 00:31-0400\n"
-"PO-Revision-Date: 2010-06-30 14:52+0200\n"
+"POT-Creation-Date: 2011-01-10 14:52-0500\n"
+"PO-Revision-Date: 2011-02-13 15:24+0200\n"
 "Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Language locale/fr/LC\n"
 "Language: fr\n"
@@ -42,171 +58,183 @@ msgstr ""
 msgid "Paint"
 msgstr "Dessiner"
 
-#: toolbox.py:90
+#: toolbox.py:177
 msgid "Edit"
 msgstr "Éditer"
 
-#: toolbox.py:94
+#: toolbox.py:181
 msgid "Tools"
 msgstr "Outils"
 
-#: toolbox.py:98
+#: toolbox.py:185
 msgid "Shapes"
 msgstr "Formes"
 
-#: toolbox.py:102
+#: toolbox.py:189
 msgid "Text"
 msgstr "Texte"
 
-#: toolbox.py:106
+#: toolbox.py:193
 msgid "Image"
 msgstr "Image"
 
-#: toolbox.py:110
+#: toolbox.py:197
 msgid "Effects"
 msgstr "Effets"
 
-#: toolbox.py:128
+#: toolbox.py:215
 msgid "Undo"
 msgstr "Défaire"
 
-#: toolbox.py:129
+#: toolbox.py:216
 msgid "Redo"
 msgstr "Refaire"
 
-#: toolbox.py:130
+#: toolbox.py:217
 msgid "Copy"
 msgstr "Copier"
 
-#: toolbox.py:131
+#: toolbox.py:218
 msgid "Paste"
 msgstr "Coller"
 
-#: toolbox.py:139
+#: toolbox.py:226
 msgid "Clear"
 msgstr "Effacer"
 
-#: toolbox.py:283 toolbox.py:726
+#: toolbox.py:365 toolbox.py:714
 msgid "Stroke Color"
 msgstr "Couleur du trait"
 
-#: toolbox.py:297
+#: toolbox.py:375
 msgid "Pencil"
 msgstr "Crayon"
 
-#: toolbox.py:309
+#: toolbox.py:384
 msgid "Brush"
 msgstr "Pinceau"
 
-#: toolbox.py:319
+#: toolbox.py:392
 msgid "Eraser"
 msgstr "Gomme"
 
-#: toolbox.py:330
+#: toolbox.py:400
 msgid "Bucket"
 msgstr "Seau"
 
-#: toolbox.py:359
-msgid "Rectangular Marquee"
-msgstr "Sélection rectangulaire"
+#: toolbox.py:428
+msgid "Select Area"
+msgstr "Sélectionner une zone"
 
-#: toolbox.py:412 toolbox.py:1040 toolbox.py:1404
+#: toolbox.py:479 toolbox.py:988 toolbox.py:1420
 msgid "Size: "
 msgstr "Taille : "
 
-#: toolbox.py:432 toolbox.py:1413
+#: toolbox.py:498 toolbox.py:1433
 msgid "Circle"
 msgstr "Cercle"
 
-#: toolbox.py:441 toolbox.py:1422
+#: toolbox.py:505 toolbox.py:1440
 msgid "Square"
 msgstr "Carré"
 
-#: toolbox.py:452 toolbox.py:1433
+#: toolbox.py:514 toolbox.py:1449
 msgid "Shape"
 msgstr "Forme"
 
-#: toolbox.py:471
+#: toolbox.py:522
 msgid "Keep aspect"
 msgstr "Conserver l'aspect"
 
-#: toolbox.py:718
+#: toolbox.py:706
 msgid "Fill Color"
 msgstr "Couleur de remplissage"
 
-#: toolbox.py:740
+#: toolbox.py:724
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: toolbox.py:752
+#: toolbox.py:732
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: toolbox.py:762
+#: toolbox.py:740
 msgid "Line"
 msgstr "Ligne"
 
-#: toolbox.py:772
+#: toolbox.py:748
 msgid "Free form"
 msgstr "Forme libre"
 
-#: toolbox.py:782
+#: toolbox.py:757
 msgid "Polygon"
 msgstr "Polygone"
 
-#: toolbox.py:801
+#: toolbox.py:765
 msgid "Heart"
 msgstr "Coeur"
 
-#: toolbox.py:812
+#: toolbox.py:773
 msgid "Parallelogram"
 msgstr "Parallélogramme"
 
-#: toolbox.py:822
+#: toolbox.py:781
 msgid "Arrow"
 msgstr "Flèche"
 
-#: toolbox.py:832
+#: toolbox.py:789
 msgid "Star"
 msgstr "Étoile"
 
-#: toolbox.py:842
+#: toolbox.py:797
 msgid "Trapezoid"
 msgstr "Trapèze"
 
-#: toolbox.py:852
+#: toolbox.py:805
 msgid "Triangle"
 msgstr "Triangle"
 
-#: toolbox.py:929
+#: toolbox.py:892
 msgid "Sides: "
 msgstr "Côtés : "
 
-#: toolbox.py:983
+#: toolbox.py:934
 msgid "Points: "
 msgstr "Points : "
 
-#: toolbox.py:1021 toolbox.py:1063
+#: toolbox.py:973
 msgid "Fill"
 msgstr "Remplissage"
 
-#: toolbox.py:1099
+#: toolbox.py:1003
+msgid "Keep Aspect"
+msgstr "Conserver l'aspect"
+
+#: toolbox.py:1033
 msgid "Type"
 msgstr "Écrire"
 
-#: toolbox.py:1166
+#: toolbox.py:1153
 msgid "Insert Image"
 msgstr "Insérer une image"
 
-#: toolbox.py:1177
+#: toolbox.py:1166
 msgid "Rotate Left"
 msgstr "Tourner à gauche"
 
-#: toolbox.py:1182
+#: toolbox.py:1171
 msgid "Rotate Right"
 msgstr "Tourner à droite"
 
-#: toolbox.py:1187
+#: toolbox.py:1177
+msgid "Horizontal Mirror"
+msgstr "Miroir horizontal"
+
+#: toolbox.py:1182
+msgid "Vertical Mirror"
+msgstr "Miroir vertical"
+
+#: toolbox.py:1186
 msgid "Height"
 msgstr "Hauteur"
 
@@ -214,57 +242,70 @@ msgstr "Hauteur"
 msgid "Width"
 msgstr "Largeur"
 
-#: toolbox.py:1291
+#: toolbox.py:1306
 msgid "Choose image"
 msgstr "Sélectionner une image"
 
-#: toolbox.py:1337
+#: toolbox.py:1351
 msgid "Grayscale"
 msgstr "Niveau de gris"
 
-#: toolbox.py:1343
+#: toolbox.py:1354
 msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
-#: toolbox.py:1479
+#: toolbox.py:1361
+msgid "Invert Colors"
+msgstr "Inverser les couleurs"
+
+#: toolbox.py:1489
 msgid "1000"
 msgstr "1000"
 
-#: toolbox.py:1480
+#: toolbox.py:1490
 msgid "500"
 msgstr "500"
 
-#: toolbox.py:1481
+#: toolbox.py:1491
 msgid "200"
 msgstr "200"
 
-#: toolbox.py:1482
+#: toolbox.py:1492
 msgid "150"
 msgstr "150"
 
-#: toolbox.py:1483
+#: toolbox.py:1493
 msgid "100"
 msgstr "100"
 
-#: toolbox.py:1484
+#: toolbox.py:1494
 msgid "50"
 msgstr "50"
 
-#: toolbox.py:1485
+#: toolbox.py:1495
 msgid "25"
 msgstr "25"
 
-#: toolbox.py:1486
+#: toolbox.py:1496
 msgid "10"
 msgstr "10"
 
-#: toolbox.py:1496
+#: toolbox.py:1506
 msgid "ZOOM +"
 msgstr "ZOOM +"
 
-#: toolbox.py:1500
+#: toolbox.py:1510
 msgid "ZOOM -"
 msgstr "ZOOM -"
+
+#~ msgid "Mirror Horizontal"
+#~ msgstr "Miroir Horizontal"
+
+#~ msgid "Mirror Vertical"
+#~ msgstr "Miroir vertical"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Sélection rectangulaire"
 
 #~ msgid "Tool Color"
 #~ msgstr "Couleur de l'outil"
