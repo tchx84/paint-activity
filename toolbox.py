@@ -75,96 +75,53 @@ from sugar.graphics.radiotoolbutton import RadioToolButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.objectchooser import ObjectChooser
 
-WITH_COLOR_BUTTON = True
-try:
-    from sugar.graphics.colorbutton import ColorToolButton
-
-    ##Class to manage the Fill Color of a Button
-    class ButtonFillColor(ColorToolButton):
-
-        def __init__(self, activity):
-            ColorToolButton.__init__(self)
-            self._activity = activity
-            self.connect('notify::color', self._color_button_cb)
-
-        def _color_button_cb(self, widget, pspec):
-            color = self.get_color()
-            self.set_fill_color(color)
-
-        def alloc_color(self, color):
-            colormap = self._activity.area.get_colormap()
-            return colormap.alloc_color(color.red, color.green, color.blue)
-
-        def set_fill_color(self, color):
-            new_color = self.alloc_color(color)
-            self._activity.area.set_fill_color(new_color)
-
-    ##Class to manage the Stroke Color of a Button
-    class ButtonStrokeColor(ColorToolButton):
-
-        def __init__(self, activity):
-            ColorToolButton.__init__(self)
-            self._activity = activity
-            self.connect('notify::color', self._color_button_cb)
-
-        def _color_button_cb(self, widget, pspec):
-            color = self.get_color()
-            self.set_stroke_color(color)
-
-        def alloc_color(self, color):
-            colormap = self._activity.area.get_colormap()
-            return colormap.alloc_color(color.red, color.green, color.blue)
-
-        def set_stroke_color(self, color):
-            new_color = self.alloc_color(color)
-            self._activity.area.set_stroke_color(new_color)
-
-except:
-    WITH_COLOR_BUTTON = False
-
-    ##Class to manage the Fill Color of a Button
-    class ButtonFillColor(gtk.ColorButton):
-
-        def __init__(self, activity):
-            gtk.ColorButton.__init__(self)
-            self._activity = activity
-            self.connect('color-set', self._color_button_cb)
-
-        def _color_button_cb(self, widget):
-            color = self.get_color()
-            self.set_fill_color(color)
-
-        def alloc_color(self, color):
-            colormap = self._activity.area.get_colormap()
-            return colormap.alloc_color(color.red, color.green, color.blue)
-
-        def set_fill_color(self, color):
-            new_color = self.alloc_color(color)
-            self._activity.area.set_fill_color(new_color)
-
-    ##Class to manage the Stroke Color of a Button
-    class ButtonStrokeColor(gtk.ColorButton):
-
-        def __init__(self, activity):
-            gtk.ColorButton.__init__(self)
-            self._activity = activity
-            self.connect('color-set', self._color_button_cb)
-
-        def _color_button_cb(self, widget):
-            color = self.get_color()
-            self.set_stroke_color(color)
-
-        def alloc_color(self, color):
-            colormap = self._activity.area.get_colormap()
-            return colormap.alloc_color(color.red, color.green, color.blue)
-
-        def set_stroke_color(self, color):
-            new_color = self.alloc_color(color)
-            self._activity.area.set_stroke_color(new_color)
+from sugar.graphics.colorbutton import ColorToolButton
 
 
-##Create toolbars for the activity
+class ButtonFillColor(ColorToolButton):
+    """Class to manage the Fill Color of a Button"""
+
+    def __init__(self, activity):
+        ColorToolButton.__init__(self)
+        self._activity = activity
+        self.connect('notify::color', self._color_button_cb)
+
+    def _color_button_cb(self, widget, pspec):
+        color = self.get_color()
+        self.set_fill_color(color)
+
+    def alloc_color(self, color):
+        colormap = self._activity.area.get_colormap()
+        return colormap.alloc_color(color.red, color.green, color.blue)
+
+    def set_fill_color(self, color):
+        new_color = self.alloc_color(color)
+        self._activity.area.set_fill_color(new_color)
+
+
+class ButtonStrokeColor(ColorToolButton):
+    """Class to manage the Stroke Color of a Button"""
+
+    def __init__(self, activity):
+        ColorToolButton.__init__(self)
+        self._activity = activity
+        self.connect('notify::color', self._color_button_cb)
+
+    def _color_button_cb(self, widget, pspec):
+        color = self.get_color()
+        self.set_stroke_color(color)
+
+    def alloc_color(self, color):
+        colormap = self._activity.area.get_colormap()
+        return colormap.alloc_color(color.red, color.green, color.blue)
+
+    def set_stroke_color(self, color):
+        new_color = self.alloc_color(color)
+        self._activity.area.set_stroke_color(new_color)
+
+
 class Toolbox(ActivityToolbox):
+    """Create toolbars for the activity"""
 
     def __init__(self, activity):
         ActivityToolbox.__init__(self, activity)
@@ -360,8 +317,7 @@ class ToolsToolbar(gtk.Toolbar):
         self._activity = activity
 
         self._stroke_color = ButtonStrokeColor(activity)
-        if WITH_COLOR_BUTTON:
-            self._stroke_color.set_icon_name('icon-stroke')
+        self._stroke_color.set_icon_name('icon-stroke')
         self._stroke_color.set_title(_('Stroke Color'))
         item = gtk.ToolItem()
         item.add(self._stroke_color)
@@ -701,16 +657,14 @@ class ShapesToolbar(gtk.Toolbar):
         self._activity = activity
 
         self._fill_color = ButtonFillColor(activity)
-        if WITH_COLOR_BUTTON:
-            self._fill_color.set_icon_name('icon-fill')
+        self._fill_color.set_icon_name('icon-fill')
         self._fill_color.set_title(_('Fill Color'))
         item = gtk.ToolItem()
         item.add(self._fill_color)
         self.insert(item, -1)
 
         self._stroke_color = ButtonStrokeColor(activity)
-        if WITH_COLOR_BUTTON:
-            self._stroke_color.set_icon_name('icon-stroke')
+        self._stroke_color.set_icon_name('icon-stroke')
         self._stroke_color.set_title(_('Stroke Color'))
         item = gtk.ToolItem()
         item.add(self._stroke_color)
