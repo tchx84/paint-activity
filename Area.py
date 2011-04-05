@@ -1006,7 +1006,7 @@ class Area(gtk.DrawingArea):
         loader.close()
         return pixbuf
 
-    def _rotate_left(self, widget):
+    def rotate_left(self, widget):
         """Rotate the image.
 
             @param  self -- the Area object (GtkDrawingArea)
@@ -1014,7 +1014,7 @@ class Area(gtk.DrawingArea):
         """
         self._rotate(widget, 90)
 
-    def _rotate_right(self, widget):
+    def rotate_right(self, widget):
         """Rotate the image.
 
             @param  self -- the Area object (GtkDrawingArea)

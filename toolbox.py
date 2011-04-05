@@ -63,7 +63,6 @@ Walter Bender                       (walter@laptop.org)
 
 from gettext import gettext as _
 
-import gobject
 import gtk
 import pango
 import logging
@@ -233,6 +232,7 @@ class ButtonStrokeColor(ColorToolButton):
     def set_stroke_color(self, color):
         new_color = self.alloc_color(color)
         self._activity.area.set_stroke_color(new_color)
+        self.properties['stroke color'] = new_color
 
     def create_palette(self):
         self._palette = self.get_child().create_palette()
@@ -378,43 +378,26 @@ class ToolsToolbarBuilder():
         # New connect method
         # Using dictionnaries to control tool's properties
         self._tool_pencil.connect('clicked', self.set_tool,
-            self.properties, self._TOOL_PENCIL_NAME)
+            self._TOOL_PENCIL_NAME)
         self._tool_brush.connect('clicked', self.set_tool,
-            self.properties, self._TOOL_BRUSH_NAME)
+            self._TOOL_BRUSH_NAME)
         self._tool_eraser.connect('clicked', self.set_tool,
-            self.properties, self._TOOL_ERASER_NAME)
+            self._TOOL_ERASER_NAME)
         self._tool_bucket.connect('clicked', self.set_tool,
-            self.properties, self._TOOL_BUCKET_NAME)
+            self._TOOL_BUCKET_NAME)
         self._tool_marquee_rectangular.connect('clicked', self.set_tool,
-            self.properties, self._TOOL_MARQUEE_RECT_NAME)
+            self._TOOL_MARQUEE_RECT_NAME)
 
-    def set_tool(self, widget, tool, tool_name):
+    def set_tool(self, widget, tool_name):
         """
         Set tool to the Area object. Configures tool's color and size.
 
             @param self -- gtk.Toolbar
             @param widget -- The connected widget, if any;
                           necessary in case this method is used in a connect()
-            @param tool -- A dictionnary to determine which tool is been using
+            @param tool_name --The name of the selected tool
         """
-
-        tool['name'] = tool_name
-        # Color must be allocated; if not, it will be displayed as black
-        new_color = self._stroke_color.get_color()
-        tool['stroke color'] = self._stroke_color.alloc_color(new_color)
-
-        self._activity.area.set_tool(tool)
-
-    def _on_color_set(self, colorbutton, tool):
-        logging.debug('toolbox.ToolsToolbar._on_color_set')
-
-        # Color must be allocated; if not, it will be displayed as black
-        new_color = colorbutton.get_color()
-        tool['fill color'] = colorbutton.alloc_color(new_color)
-        self.set_tool(tool=tool)
-
-    def _tool_props_updated(self):
-        logging.error('Setting tool')
+        self.properties['name'] = tool_name
         self._activity.area.set_tool(self.properties)
 
 
@@ -438,6 +421,7 @@ class ButtonFillColor(ColorToolButton):
     def set_fill_color(self, color):
         new_color = self.alloc_color(color)
         self._activity.area.set_fill_color(new_color)
+        self.properties['fill color'] = new_color
 
     def create_palette(self):
         self._palette = self.get_child().create_palette()
@@ -848,10 +832,10 @@ class ImageToolbar(gtk.Toolbar):
         #except: pass
 
     def rotate_left(self, widget, activity):
-        activity.area._rotate_left(activity.area)
+        activity.area.rotate_left(activity.area)
 
     def rotate_right(self, widget, activity):
-        activity.area._rotate_right(activity.area)
+        activity.area.rotate_right(activity.area)
 
     def mirror_horizontal(self, widget):
         self._activity.area.mirror(widget)
@@ -929,8 +913,8 @@ class ImageToolbar(gtk.Toolbar):
         try:
             result = chooser.run()
             if result == gtk.RESPONSE_ACCEPT:
-                logging.debug('ObjectChooser: %r' %
-                    chooser.get_selected_object())
+                logging.debug('ObjectChooser: %r',
+                        chooser.get_selected_object())
                 jobject = chooser.get_selected_object()
                 if jobject and jobject.file_path:
                     self._activity.area.loadImage(jobject.file_path)
