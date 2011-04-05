@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 13.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   width="55px"
+   height="55px"
+   viewBox="0 0 55 55"
+   enable-background="new 0 0 55 55"
+   xml:space="preserve"
+   id="svg3023"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="tool-shape-ellipse.svg"><metadata
+   id="metadata3032"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs3030" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1007"
+   id="namedview3028"
+   showgrid="false"
+   inkscape:zoom="5.4363636"
+   inkscape:cx="-5.6103679"
+   inkscape:cy="27.5"
+   inkscape:window-x="0"
+   inkscape:window-y="24"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg3023" />
+
+<g
+   id="Ellipse"
+   transform="matrix(0.66094098,0,0,0.46586592,2.6097375,-1.0387376)">
+	<circle
+   display="inline"
+   cx="27.499001"
+   cy="27.5"
+   r="19.802"
+   id="circle3026"
+   d="m 47.301001,27.5 c 0,10.936343 -8.865658,19.802 -19.802,19.802 -10.936343,0 -19.8020005,-8.865657 -19.8020005,-19.802 0,-10.936343 8.8656575,-19.802 19.8020005,-19.802 10.936342,0 19.802,8.865657 19.802,19.802 z"
+   sodipodi:cx="27.499001"
+   sodipodi:cy="27.5"
+   sodipodi:rx="19.802"
+   sodipodi:ry="19.802"
+   style="fill:#ffffff;display:inline" />
+</g>
+
+<g
+   transform="matrix(0.5095074,0,0,0.52047684,2.1880805,26.879449)"
+   id="Polygon"
+   style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"><polygon
+     display="inline"
+     points="49.844,27.522 38.841,46.58 16.834,46.58 5.83,27.522 16.834,8.464 38.841,8.464 "
+     id="polygon5"
+     style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-opacity:1;display:inline" /></g><g
+   transform="matrix(0.54769814,0,0,0.50391109,25.266398,12.944377)"
+   id="Star"><polygon
+     style="fill:#ffffff;display:inline"
+     display="inline"
+     points="3.832,20.67 21.307,19.92 27.42,3.532 33.533,19.92 51.008,20.67 37.311,31.548 41.998,48.398 27.42,38.734 12.842,48.398 17.529,31.548 "
+     id="polygon3905" /></g></svg>

@@ -106,7 +106,7 @@ class DrawToolbarBox(ToolbarBox):
 
         shapes_button = ToolbarButton()
         shapes_button.props.page = ShapesToolbar(self._activity)
-        shapes_button.props.icon_name = 'tool-shape-freeform'
+        shapes_button.props.icon_name = 'shapes'
         shapes_button.props.label = _('Shapes')
         self.toolbar.insert(shapes_button, -1)
 
