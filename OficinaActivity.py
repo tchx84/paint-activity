@@ -62,13 +62,13 @@ Walter Bender                       (walter@laptop.org)
 """
 
 import gtk
+import logging
 
 from sugar.activity import activity
 from sugar.graphics import style
 
-from toolbox import Toolbox
 from Area import Area
-import logging
+from toolbox import DrawToolbarBox
 
 
 class OficinaActivity(activity.Activity):
@@ -103,9 +103,9 @@ class OficinaActivity(activity.Activity):
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.set_canvas(sw)
 
-        toolbox = Toolbox(self)
-        self.set_toolbox(toolbox)
-        toolbox.show()
+        toolbar_box = DrawToolbarBox(self)
+
+        toolbar_box.show_all()
 
         self.connect("key_press_event", self.key_press)
 

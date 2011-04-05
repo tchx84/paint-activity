@@ -138,13 +138,13 @@ class Area(gtk.DrawingArea):
         ## - 'vertices'      : a integer
         ## All values migth be None, execept in 'name' key.
         self.tool = {
-        'name': 'pencil',
-        'line size': 2,
-        'fill color': None,
-        'stroke color': None,
-        'line shape': 'circle',
-        'fill': True,
-        'vertices': None}
+            'name': 'pencil',
+            'line size': 2,
+            'fill color': None,
+            'stroke color': None,
+            'line shape': 'circle',
+            'fill': True,
+            'vertices': 6.0}
 
         self.desenha = False
         self.selmove = False
@@ -167,15 +167,10 @@ class Area(gtk.DrawingArea):
         self.text_in_progress = False
         self.janela = janela
         self.d = Desenho(self)
-        self.line_size = 2
-        self.line_shape = 'circle'
         self.last = []
         self.rainbow_counter = 0
         self.keep_aspect_ratio = False
-        self.keep_shape_ratio = {
-            'line': False,
-            'rectangle': False,
-            'ellipse': False}
+        self.keep_shape_ratio = False
 
         self.font_description = pango.FontDescription()
         self.font_description.set_family('Sans')
@@ -193,12 +188,6 @@ class Area(gtk.DrawingArea):
         self.redo_times = 0
         ##pixmaps list to Undo func
         self.undo_list = []
-
-        ##Number of sides for regular polygon
-        self.vertices = 6
-
-        ##Shapes will be filled or not?
-        self.fill = True
 
         # variables to show the tool shape
         self.drawing = False
@@ -259,7 +248,6 @@ class Area(gtk.DrawingArea):
         self.enableUndo(self)
 
         # Setting a initial tool
-        # If not set here, cursor icon can't be load
         self.set_tool(self.tool)
 
         return True
@@ -271,9 +259,6 @@ class Area(gtk.DrawingArea):
             @param  size -- the size of the new line
 
         """
-        #logging.debug('Area.configure_line(self, size)')
-
-        self.line_size = size
         self.gc_line.set_line_attributes(size, gtk.gdk.LINE_SOLID,
             gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
 
@@ -286,7 +271,6 @@ class Area(gtk.DrawingArea):
             @param  event -- GdkEvent
 
         """
-        #logging.debug('Area.expose(self, widget, event)')
         area = event.area
         if self.desenha or self.selmove:
             widget.window.draw_drawable(self.gc, self.pixmap_temp,
@@ -361,25 +345,25 @@ class Area(gtk.DrawingArea):
             #Handle with the left button click event.
             if self.tool['name'] == 'eraser':
                 self.last = []
-                self.d.eraser(widget, coords, self.last, self.line_size,
-                    self.tool['line shape'])
+                self.d.eraser(widget, coords, self.last,
+                    self.tool['line size'], self.tool['line shape'])
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'brush':
                 self.last = []
-                self.d.brush(widget, coords, self.last, self.line_size,
+                self.d.brush(widget, coords, self.last, self.tool['line size'],
                     self.tool['line shape'])
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'rainbow':
                 self.last = []
                 self.d.rainbow(widget, coords, self.last,
-                    self.rainbow_counter, self.line_size,
+                    self.rainbow_counter, self.tool['line size'],
                     self.tool['line shape'])
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'freeform':
-                self.configure_line(self.line_size)
+                self.configure_line(self.tool['line size'])
                 if self.polygon_start == False:
                     self.desenha = True
             if self.selmove:
@@ -419,7 +403,7 @@ class Area(gtk.DrawingArea):
         coords = int(x), int(y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
             if (state & gtk.gdk.SHIFT_MASK) or \
-                self.keep_shape_ratio[self.tool['name']]:
+                self.keep_shape_ratio:
                 if self.tool['name'] in ['rectangle', 'ellipse']:
                     coords = self._keep_selection_ratio(coords)
                 elif self.tool['name'] == 'line':
@@ -428,22 +412,22 @@ class Area(gtk.DrawingArea):
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
             if self.tool['name'] == 'pencil':
                 self.d.brush(widget, coords, self.last,
-                    self.line_size, 'circle')
+                    self.tool['line size'], 'circle')
                 self.last = coords
 
             elif self.tool['name'] == 'eraser':
                 self.d.eraser(widget, coords, self.last,
-                    self.line_size, self.tool['line shape'])
+                    self.tool['line size'], self.tool['line shape'])
                 self.last = coords
 
             elif self.tool['name'] == 'brush':
                 self.d.brush(widget, coords, self.last,
-                    self.line_size, self.tool['line shape'])
+                    self.tool['line size'], self.tool['line shape'])
                 self.last = coords
 
             elif self.tool['name'] == 'rainbow':
                 self.d.rainbow(widget, coords, self.last,
-                    self.rainbow_counter, self.line_size,
+                    self.rainbow_counter, self.tool['line size'],
                     self.tool['line shape'])
                 self.rainbow_counter += 1
                 if self.rainbow_counter > 11:
@@ -452,15 +436,15 @@ class Area(gtk.DrawingArea):
 
             if self.desenha:
                 if self.tool['name'] == 'line':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.line(widget, coords)
 
                 elif self.tool['name'] == 'ellipse':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.circle(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'rectangle':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.square(widget, event, coords, True,
                         self.tool['fill'])
 
@@ -477,39 +461,39 @@ class Area(gtk.DrawingArea):
                         self.d.moveSelection(widget, coords)
 
                 elif self.tool['name'] == 'freeform':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.polygon(widget, coords, True,
                         self.tool['fill'], "motion")
 
                 elif self.tool['name'] == 'triangle':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.triangle(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'trapezoid':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.trapezoid(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'arrow':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.arrow(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'parallelogram':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.parallelogram(widget, coords, True,
                         self.tool['fill'])
 
                 elif self.tool['name'] == 'star':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.star(widget, coords, self.tool['vertices'],
                         True, self.tool['fill'])
 
                 elif self.tool['name'] == 'polygon_regular':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.polygon_regular(widget, coords,
                         self.tool['vertices'], True, self.tool['fill'])
 
                 elif self.tool['name'] == 'heart':
-                    self.configure_line(self.line_size)
+                    self.configure_line(self.tool['line size'])
                     self.d.heart(widget, coords, True, self.tool['fill'])
         else:
             if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil']:
@@ -528,7 +512,7 @@ class Area(gtk.DrawingArea):
 
             elif self.tool['name'] == 'freeform' and not self.selmove:
                 self.desenha = True
-                self.configure_line(self.line_size)
+                self.configure_line(self.tool['line size'])
                 self.d.polygon(widget, coords, True,
                     self.tool['fill'], "moving")
 
@@ -545,7 +529,7 @@ class Area(gtk.DrawingArea):
         coords = int(event.x), int(event.y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
             if (event.state & gtk.gdk.SHIFT_MASK) or \
-                self.keep_shape_ratio[self.tool['name']]:
+                self.keep_shape_ratio:
                 if self.tool['name'] in ['rectangle', 'ellipse']:
                     coords = self._keep_selection_ratio(coords)
                 if self.tool['name'] == 'line':
@@ -1232,8 +1216,6 @@ class Area(gtk.DrawingArea):
         '''
         logging.debug('Area.set_tool %s', tool)
 
-        #FIXME: self.tool should be a dict too.
-
         self.tool = tool
 
         try:
@@ -1254,17 +1236,6 @@ class Area(gtk.DrawingArea):
 
         except AttributeError:
             pass
-
-        if self.tool['line shape'] is not None:
-            self.line_shape = self.tool['line shape']
-
-        if self.tool['fill'] is not None:
-            self.fill = self.tool['fill']
-
-        if (self.tool['name'] is 'polygon_regular' \
-           or self.tool['name'] is 'star') \
-           and (self.tool['vertices'] is not None):
-            self.vertices = self.tool['vertices']
 
         # Setting the cursor
         try:

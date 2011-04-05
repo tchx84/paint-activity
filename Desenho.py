@@ -142,18 +142,18 @@ class Desenho:
         """
         colormap = widget.get_colormap()
         rainbow_colors = [
-        colormap.alloc_color('#ff0000', True, True), # vermelho
-        colormap.alloc_color('#ff8000', True, True), # laranja
-        colormap.alloc_color('#ffff00', True, True), # amarelo
-        colormap.alloc_color('#80ff00', True, True), # verde lima
-        colormap.alloc_color('#00ff00', True, True), # verde
-        colormap.alloc_color('#00ff80', True, True), # verde agua
-        colormap.alloc_color('#00ffff', True, True), # azul claro
-        colormap.alloc_color('#007fff', True, True), # quase azul
-        colormap.alloc_color('#0000ff', True, True), # azul
-        colormap.alloc_color('#8000ff', True, True), # anil
-        colormap.alloc_color('#ff00ff', True, True), # rosa violeta
-        colormap.alloc_color('#ff0080', True, True), # violeta
+        colormap.alloc_color('#ff0000', True, True),  # vermelho
+        colormap.alloc_color('#ff8000', True, True),  # laranja
+        colormap.alloc_color('#ffff00', True, True),  # amarelo
+        colormap.alloc_color('#80ff00', True, True),  # verde lima
+        colormap.alloc_color('#00ff00', True, True),  # verde
+        colormap.alloc_color('#00ff80', True, True),  # verde agua
+        colormap.alloc_color('#00ffff', True, True),  # azul claro
+        colormap.alloc_color('#007fff', True, True),  # quase azul
+        colormap.alloc_color('#0000ff', True, True),  # azul
+        colormap.alloc_color('#8000ff', True, True),  # anil
+        colormap.alloc_color('#ff00ff', True, True),  # rosa violeta
+        colormap.alloc_color('#ff0080', True, True),  # violeta
         ]
 
         widget.gc_rainbow.set_foreground(rainbow_colors[color])
@@ -372,7 +372,7 @@ class Desenho:
              widget.oldy + int(r * math.sin(A))), \
              (widget.oldx + int(0.4 * r * math.cos(A + dA / 2)),
              widget.oldy + int(0.4 * r * math.sin(A + dA / 2)))]
-        for i in range(n - 1):
+        for i in range(int(n) - 1):
             A = A + dA
             p.append((widget.oldx + int(r * math.cos(A)), \
                      widget.oldy + int(r * math.sin(A))))
@@ -411,7 +411,7 @@ class Desenho:
         r = math.hypot(y, x)
         p = [(widget.oldx + int(r * math.cos(A)), \
              widget.oldy + int(r * math.sin(A)))]
-        for i in range(n-1):
+        for i in range(int(n) - 1):
             A = A + dA
             p.append((widget.oldx + int(r * math.cos(A)), \
                  widget.oldy + int(r * math.sin(A))))
@@ -672,7 +672,7 @@ class Desenho:
         widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
             widget.orig_x + dx, widget.orig_y + dy, size[0], size[1])
         widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
-            widget.orig_x + dx-1, widget.orig_y + dy - 1,
+            widget.orig_x + dx - 1, widget.orig_y + dy - 1,
             size[0] + 2, size[1] + 2)
 
         widget.queue_draw()
@@ -754,7 +754,7 @@ class Desenho:
             if not widget.polygon_start:
                 pixmap.draw_line(widget.gc_line,
                     widget.last[0], widget.last[1], coords[0], coords[1])
-        elif widget.polygon_start == True: # Starting a new polygon ?
+        elif widget.polygon_start == True:  # Starting a new polygon ?
             if param == "motion":
                 # first press
                 try:
@@ -772,7 +772,7 @@ class Desenho:
                     widget.points = [widget.first, coords]
                 widget.enableUndo(widget)
                 widget.last = coords
-            else: # param == "release"
+            else:  # param == "release"
                 # first release
                 try:
                     widget.first
@@ -802,7 +802,7 @@ class Desenho:
                 x = coords[0] - widget.first[0]
                 y = coords[1] - widget.first[1]
                 d = math.hypot(x, y)
-                if d > 20: # close the polygon ?
+                if d > 20:  # close the polygon ?
                     pixmap.draw_line(widget.gc_line,
                         widget.last[0], widget.last[1], coords[0], coords[1])
                     widget.last = coords
