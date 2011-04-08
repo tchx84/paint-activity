@@ -73,6 +73,7 @@ from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.objectchooser import ObjectChooser
+from widgets import ButtonStrokeColor
 from sugar.graphics.colorbutton import ColorToolButton
 
 from sugar.graphics import style
@@ -130,6 +131,14 @@ class DrawToolbarBox(ToolbarBox):
 
         stop = StopButton(self._activity)
         self.toolbar.insert(stop, -1)
+
+        # TODO: workaround
+        # the BrushButton does not starts
+        brush_button = tools_builder._stroke_color.color_button
+        brush_button.set_brush_shape(self._activity.area.tool['line shape'])
+        brush_button.set_brush_size(self._activity.area.tool['line size'])
+        if self._activity.area.tool['stroke color'] is not None:
+            brush_button.set_color(self._activity.area.tool['stroke color'])
 
 
 ##Make the Edit Toolbar
@@ -212,117 +221,6 @@ class DrawToolButton(RadioToolButton):
         self.set_tooltip(tooltip)
 
 
-class ButtonStrokeColor(ColorToolButton):
-    """Class to manage the Stroke Color of a Button"""
-
-    def __init__(self, activity):
-        ColorToolButton.__init__(self)
-        self._activity = activity
-        self.properties = self._activity.area.tool
-        self.connect('notify::color', self._color_button_cb)
-
-    def _color_button_cb(self, widget, pspec):
-        color = self.get_color()
-        self.set_stroke_color(color)
-
-    def alloc_color(self, color):
-        colormap = self._activity.area.get_colormap()
-        return colormap.alloc_color(color.red, color.green, color.blue)
-
-    def set_stroke_color(self, color):
-        new_color = self.alloc_color(color)
-        self._activity.area.set_stroke_color(new_color)
-        self.properties['stroke color'] = new_color
-
-    def create_palette(self):
-        self._palette = self.get_child().create_palette()
-
-        color_palette_hbox = self._palette._picker_hbox
-
-        content_box = gtk.VBox()
-        # We can set size when using either
-
-        size_spinbutton = gtk.SpinButton()
-
-        # This is where we set restrictions for size:
-        # Initial value, minimum value, maximum value, step
-        adj = gtk.Adjustment(self.properties['line size'], 1.0, 100.0, 1.0)
-        size_spinbutton.set_adjustment(adj)
-
-        size_spinbutton.set_numeric(True)
-
-        label = gtk.Label(_('Size: '))
-
-        hbox = gtk.HBox()
-        content_box.pack_start(hbox)
-
-        hbox.pack_start(label)
-        hbox.pack_start(size_spinbutton)
-
-        size_spinbutton.connect('value-changed', self._on_value_changed)
-
-        # User is able to choose Shapes for 'Brush' and 'Eraser'
-
-        # Changing to gtk.RadioButton
-        item1 = gtk.RadioButton(None, _('Circle'))
-        item1.set_active(True)
-
-        image1 = gtk.Image()
-        pixbuf1 = gtk.gdk.pixbuf_new_from_file_at_size(
-                                './icons/tool-shape-ellipse.svg',
-                                style.SMALL_ICON_SIZE,
-                                style.SMALL_ICON_SIZE)
-        image1.set_from_pixbuf(pixbuf1)
-        item1.set_image(image1)
-
-        item2 = gtk.RadioButton(item1, _('Square'))
-
-        image2 = gtk.Image()
-        pixbuf2 = gtk.gdk.pixbuf_new_from_file_at_size(
-                                './icons/tool-shape-rectangle.svg',
-                                style.SMALL_ICON_SIZE,
-                                style.SMALL_ICON_SIZE)
-        image2.set_from_pixbuf(pixbuf2)
-        item2.set_image(image2)
-
-        item1.connect('toggled', self._on_toggled, self.properties, 'circle')
-        item2.connect('toggled', self._on_toggled, self.properties, 'square')
-
-        label = gtk.Label(_('Shape'))
-
-        content_box.pack_start(label)
-        content_box.pack_start(item1)
-        content_box.pack_start(item2)
-
-        # Creating a CheckButton
-        keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
-        ratio = self._activity.area.keep_aspect_ratio
-        keep_aspect_checkbutton.set_active(ratio)
-        keep_aspect_checkbutton.connect('toggled',
-            self._keep_aspect_checkbutton_toggled)
-        content_box.pack_start(keep_aspect_checkbutton)
-
-        color_palette_hbox.pack_start(gtk.VSeparator(),
-                                     padding=style.DEFAULT_SPACING)
-        color_palette_hbox.pack_start(content_box)
-        color_palette_hbox.show_all()
-
-        return self._palette
-
-    def _keep_aspect_checkbutton_toggled(self, checkbutton):
-        logging.debug('Keep aspect is Active: %s', checkbutton.get_active())
-        self._activity.area.keep_aspect_ratio = checkbutton.get_active()
-
-    def _on_value_changed(self, spinbutton):
-        size = spinbutton.get_value_as_int()
-        self.properties['line size'] = size
-        self._activity.area.set_tool(self.properties)
-
-    def _on_toggled(self, radiobutton, tool, shape):
-        if radiobutton.get_active():
-            self.properties['line shape'] = shape
-
-
 class ToolsToolbarBuilder():
 
     #Tool default definitions
@@ -339,8 +237,9 @@ class ToolsToolbarBuilder():
         self.properties = self._activity.area.tool
 
         self._stroke_color = ButtonStrokeColor(activity)
-        self._stroke_color.set_icon_name('icon-stroke')
-        self._stroke_color.set_title(_('Stroke Color'))
+        #self._stroke_color.set_icon_name('icon-stroke')
+        self._stroke_color.set_title(_('Brush properties'))
+        self._stroke_color.connect('notify::color', self._color_button_cb)
         item = gtk.ToolItem()
         item.add(self._stroke_color)
         toolbar.insert(item, -1)
@@ -349,13 +248,15 @@ class ToolsToolbarBuilder():
         separator.set_draw(True)
         toolbar.insert(separator, -1)
 
+        """
         self._tool_pencil = DrawToolButton('tool-pencil',
             activity.tool_group, _('Pencil'))
         toolbar.insert(self._tool_pencil, -1)
-        activity.tool_group = self._tool_pencil
+        """
 
         self._tool_brush = DrawToolButton('tool-brush',
             activity.tool_group, _('Brush'))
+        activity.tool_group = self._tool_brush
         toolbar.insert(self._tool_brush, -1)
 
         self._tool_eraser = DrawToolButton('tool-eraser',
@@ -377,8 +278,8 @@ class ToolsToolbarBuilder():
 
         # New connect method
         # Using dictionnaries to control tool's properties
-        self._tool_pencil.connect('clicked', self.set_tool,
-            self._TOOL_PENCIL_NAME)
+        #self._tool_pencil.connect('clicked', self.set_tool,
+        #    self._TOOL_PENCIL_NAME)
         self._tool_brush.connect('clicked', self.set_tool,
             self._TOOL_BRUSH_NAME)
         self._tool_eraser.connect('clicked', self.set_tool,
@@ -399,6 +300,13 @@ class ToolsToolbarBuilder():
         """
         self.properties['name'] = tool_name
         self._activity.area.set_tool(self.properties)
+
+    def _color_button_cb(self, widget, pspec):
+        logging.error('ToolsToolbarBuilder._color_button_cb')
+
+        new_color = widget.alloc_color(widget.get_color())
+        self._activity.area.set_stroke_color(new_color)
+        self.properties['stroke color'] = new_color
 
 
 class ButtonFillColor(ColorToolButton):
@@ -508,7 +416,7 @@ class ShapesToolbar(gtk.Toolbar):
 
         self._fill_color = ButtonFillColor(activity)
         self._fill_color.set_icon_name('icon-fill')
-        self._fill_color.set_title(_('Fill Color'))
+        self._fill_color.set_title(_('Shapes properties'))
         item = gtk.ToolItem()
         item.add(self._fill_color)
         self.insert(item, -1)
@@ -599,22 +507,17 @@ class ShapesToolbar(gtk.Toolbar):
 ##Make the Text Toolbar
 class TextToolbar(gtk.Toolbar):
 
-    _ACTION_TEXT = {'name': 'text',
-                    'line size': None,
-                    'fill color': None,
-                    'stroke color': None,
-                    'line shape': None,
-                    'fill': True,
-                    'vertices': None}
+    _ACTION_TEXT_NAME = 'text'
 
     def __init__(self, activity):
         gtk.Toolbar.__init__(self)
 
         self._activity = activity
+        self.properties = self._activity.area.tool
 
         self._text = DrawToolButton('text', activity.tool_group, _('Type'))
         self.insert(self._text, -1)
-        self._text.connect('clicked', self.set_tool, self._ACTION_TEXT)
+        self._text.connect('clicked', self.set_tool, self._ACTION_TEXT_NAME)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -630,10 +533,12 @@ class TextToolbar(gtk.Toolbar):
         self._italic.show()
         self._italic.connect('clicked', self.__italic_bt_cb)
 
+        """
         self._text_color = ButtonFillColor(activity)
         item = gtk.ToolItem()
         item.add(self._text_color)
         self.insert(item, -1)
+        """
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -713,11 +618,9 @@ class TextToolbar(gtk.Toolbar):
             return None
         return model[active][0]
 
-    def set_tool(self, widget, tool):
-        #FIXME: this callback must change as others buttons get enabled
-        new_color = self._text_color.get_color()
-        tool['fill color'] = self._text_color.alloc_color(new_color)
-        self._activity.area.set_tool(tool)
+    def set_tool(self, widget, tool_name):
+        self.properties['name'] = tool_name
+        self._activity.area.set_tool(self.properties)
 
 
 ##Make the Images Toolbar

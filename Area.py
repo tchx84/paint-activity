@@ -69,7 +69,7 @@ import os
 import tempfile
 import math
 import pango
-from fill import *
+from fill import fill
 from Desenho import Desenho
 from urlparse import urlparse
 
@@ -139,7 +139,7 @@ class Area(gtk.DrawingArea):
         ## All values migth be None, execept in 'name' key.
         self.tool = {
             'name': 'pencil',
-            'line size': 2,
+            'line size': 4,
             'fill color': None,
             'stroke color': None,
             'line shape': 'circle',
@@ -853,7 +853,6 @@ class Area(gtk.DrawingArea):
         logging.debug('Area._set_fill_color(self, color)')
 
         self.gc.set_foreground(color)
-        self.janela.textview.modify_text(gtk.STATE_NORMAL, color)
 
     def set_stroke_color(self, color):
         """Set stroke color.
@@ -868,6 +867,7 @@ class Area(gtk.DrawingArea):
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH,
             gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         self.gc_brush.set_foreground(color)
+        self.janela.textview.modify_text(gtk.STATE_NORMAL, color)
 
     def grayscale(self, widget):
         """Apply grayscale effect.

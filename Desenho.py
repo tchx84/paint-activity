@@ -587,7 +587,7 @@ class Desenho:
 
             layout = widget.janela.textview.create_pango_layout(text)
 
-            widget.pixmap.draw_layout(widget.gc,
+            widget.pixmap.draw_layout(widget.gc_brush,
                 widget.oldx, widget.oldy, layout)
             widget.pixmap_temp.draw_layout(widget.gc,
                 widget.oldx, widget.oldy, layout)
