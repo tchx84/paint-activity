@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-06 00:31-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: activity/activity.info:2
+msgid "Paint"
+msgstr ""
+
+#: toolbox.py:100
+msgid "Edit"
+msgstr ""
+
+#: toolbox.py:110
+msgid "Shapes"
+msgstr ""
+
+#: toolbox.py:116
+msgid "Fonts"
+msgstr ""
+
+#: toolbox.py:122
+msgid "Image"
+msgstr ""
+
+#: toolbox.py:143
+msgid "Undo"
+msgstr ""
+
+#: toolbox.py:144
+msgid "Redo"
+msgstr ""
+
+#: toolbox.py:145
+msgid "Copy"
+msgstr ""
+
+#: toolbox.py:146
+msgid "Paste"
+msgstr ""
+
+#: toolbox.py:154
+msgid "Clear"
+msgstr ""
+
+#: toolbox.py:254
+msgid "Size: "
+msgstr ""
+
+#: toolbox.py:267
+msgid "Circle"
+msgstr ""
+
+#: toolbox.py:278
+msgid "Square"
+msgstr ""
+
+#: toolbox.py:291
+msgid "Shape"
+msgstr ""
+
+#: toolbox.py:298
+msgid "Keep aspect"
+msgstr ""
+
+#: toolbox.py:343
+msgid "Stroke Color"
+msgstr ""
+
+#: toolbox.py:353
+msgid "Pencil"
+msgstr ""
+
+#: toolbox.py:358
+msgid "Brush"
+msgstr ""
+
+#: toolbox.py:362
+msgid "Eraser"
+msgstr ""
+
+#: toolbox.py:366
+msgid "Bucket"
+msgstr ""
+
+#: toolbox.py:371
+msgid "Select Area"
+msgstr ""
+
+#: toolbox.py:433
+msgid "Fill"
+msgstr ""
+
+#: toolbox.py:439
+msgid "Keep Aspect"
+msgstr ""
+
+#: toolbox.py:456
+msgid "Sides: "
+msgstr ""
+
+#: toolbox.py:511
+msgid "Fill Color"
+msgstr ""
+
+#: toolbox.py:523
+msgid "Ellipse"
+msgstr ""
+
+#: toolbox.py:527
+msgid "Rectangle"
+msgstr ""
+
+#: toolbox.py:531
+msgid "Line"
+msgstr ""
+
+#: toolbox.py:535
+msgid "Free form"
+msgstr ""
+
+#: toolbox.py:539
+msgid "Polygon"
+msgstr ""
+
+#: toolbox.py:543
+msgid "Heart"
+msgstr ""
+
+#: toolbox.py:547
+msgid "Parallelogram"
+msgstr ""
+
+#: toolbox.py:551
+msgid "Arrow"
+msgstr ""
+
+#: toolbox.py:555
+msgid "Star"
+msgstr ""
+
+#: toolbox.py:559
+msgid "Trapezoid"
+msgstr ""
+
+#: toolbox.py:563
+msgid "Triangle"
+msgstr ""
+
+#: toolbox.py:615
+msgid "Type"
+msgstr ""
+
+#: toolbox.py:735
+msgid "Insert Image"
+msgstr ""
+
+#: toolbox.py:748
+msgid "Rotate Left"
+msgstr ""
+
+#: toolbox.py:753
+msgid "Rotate Right"
+msgstr ""
+
+#: toolbox.py:759
+msgid "Horizontal Mirror"
+msgstr ""
+
+#: toolbox.py:764
+msgid "Vertical Mirror"
+msgstr ""
+
+#: toolbox.py:768
+msgid "Height"
+msgstr ""
+
+#: toolbox.py:779
+msgid "Width"
+msgstr ""
+
+#: toolbox.py:794
+msgid "Grayscale"
+msgstr ""
+
+#: toolbox.py:797
+msgid "Rainbow"
+msgstr ""
+
+#: toolbox.py:802
+msgid "Invert Colors"
+msgstr ""
+
+#: toolbox.py:910
+msgid "Choose image"
+msgstr ""
