@@ -1,0 +1,209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-09 00:31-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: activity/activity.info:2
+msgid "Paint"
+msgstr ""
+
+#: toolbox.py:101
+msgid "Edit"
+msgstr ""
+
+#: toolbox.py:111
+msgid "Shapes"
+msgstr ""
+
+#: toolbox.py:117
+msgid "Fonts"
+msgstr ""
+
+#: toolbox.py:123
+msgid "Image"
+msgstr ""
+
+#: toolbox.py:152
+msgid "Undo"
+msgstr ""
+
+#: toolbox.py:153
+msgid "Redo"
+msgstr ""
+
+#: toolbox.py:154
+msgid "Copy"
+msgstr ""
+
+#: toolbox.py:155
+msgid "Paste"
+msgstr ""
+
+#: toolbox.py:163
+msgid "Clear"
+msgstr ""
+
+#: toolbox.py:241
+msgid "Brush properties"
+msgstr ""
+
+#: toolbox.py:258
+msgid "Brush"
+msgstr ""
+
+#: toolbox.py:263
+msgid "Eraser"
+msgstr ""
+
+#: toolbox.py:267
+msgid "Bucket"
+msgstr ""
+
+#: toolbox.py:272
+msgid "Select Area"
+msgstr ""
+
+#: toolbox.py:341
+msgid "Fill"
+msgstr ""
+
+#: toolbox.py:347
+msgid "Keep Aspect"
+msgstr ""
+
+#: toolbox.py:364
+msgid "Sides: "
+msgstr ""
+
+#: toolbox.py:419
+msgid "Shapes properties"
+msgstr ""
+
+#: toolbox.py:431
+msgid "Ellipse"
+msgstr ""
+
+#: toolbox.py:435
+msgid "Rectangle"
+msgstr ""
+
+#: toolbox.py:439
+msgid "Line"
+msgstr ""
+
+#: toolbox.py:443
+msgid "Free form"
+msgstr ""
+
+#: toolbox.py:447
+msgid "Polygon"
+msgstr ""
+
+#: toolbox.py:451
+msgid "Heart"
+msgstr ""
+
+#: toolbox.py:455
+msgid "Parallelogram"
+msgstr ""
+
+#: toolbox.py:459
+msgid "Arrow"
+msgstr ""
+
+#: toolbox.py:463
+msgid "Star"
+msgstr ""
+
+#: toolbox.py:467
+msgid "Trapezoid"
+msgstr ""
+
+#: toolbox.py:471
+msgid "Triangle"
+msgstr ""
+
+#: toolbox.py:518
+msgid "Type"
+msgstr ""
+
+#: toolbox.py:638
+msgid "Insert Image"
+msgstr ""
+
+#: toolbox.py:651
+msgid "Rotate Left"
+msgstr ""
+
+#: toolbox.py:656
+msgid "Rotate Right"
+msgstr ""
+
+#: toolbox.py:662
+msgid "Horizontal Mirror"
+msgstr ""
+
+#: toolbox.py:667
+msgid "Vertical Mirror"
+msgstr ""
+
+#: toolbox.py:671
+msgid "Height"
+msgstr ""
+
+#: toolbox.py:682
+msgid "Width"
+msgstr ""
+
+#: toolbox.py:697
+msgid "Grayscale"
+msgstr ""
+
+#: toolbox.py:700
+msgid "Rainbow"
+msgstr ""
+
+#: toolbox.py:705
+msgid "Invert Colors"
+msgstr ""
+
+#: toolbox.py:813
+msgid "Choose image"
+msgstr ""
+
+#: widgets.py:24
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:203
+msgid "Size: "
+msgstr ""
+
+#: widgets.py:212
+msgid "Circle"
+msgstr ""
+
+#: widgets.py:222
+msgid "Square"
+msgstr ""
+
+#: widgets.py:234
+msgid "Shape"
+msgstr ""
+
+#: widgets.py:240
+msgid "Keep aspect"
+msgstr ""
