@@ -137,6 +137,7 @@ class DrawToolbarBox(ToolbarBox):
         brush_button = tools_builder._stroke_color.color_button
         brush_button.set_brush_shape(self._activity.area.tool['line shape'])
         brush_button.set_brush_size(self._activity.area.tool['line size'])
+        brush_button.set_stamp_size(self._activity.area.tool['stamp size'])
         if self._activity.area.tool['stroke color'] is not None:
             brush_button.set_color(self._activity.area.tool['stroke color'])
 
@@ -228,6 +229,7 @@ class ToolsToolbarBuilder():
     _TOOL_BRUSH_NAME = 'brush'
     _TOOL_ERASER_NAME = 'eraser'
     _TOOL_BUCKET_NAME = 'bucket'
+    _TOOL_STAMP_NAME = 'stamp'
     _TOOL_MARQUEE_RECT_NAME = 'marquee-rectangular'
 
     ##The Constructor
@@ -267,6 +269,14 @@ class ToolsToolbarBuilder():
             activity.tool_group, _('Bucket'))
         toolbar.insert(self._tool_bucket, -1)
 
+        self._tool_stamp = DrawToolButton('tool-stamp',
+            activity.tool_group, _('Stamp'))
+        toolbar.insert(self._tool_stamp, -1)
+
+        is_selected = self._activity.area.is_selected()
+        self._tool_stamp.set_sensitive(is_selected)
+        self._activity.area.connect('select', self._on_signal_select_cb)
+
         self._tool_marquee_rectangular = \
             DrawToolButton('tool-marquee-rectangular',
             activity.tool_group, _('Select Area'))
@@ -286,6 +296,8 @@ class ToolsToolbarBuilder():
             self._TOOL_ERASER_NAME)
         self._tool_bucket.connect('clicked', self.set_tool,
             self._TOOL_BUCKET_NAME)
+        self._tool_stamp.connect('clicked', self.set_tool,
+            self._TOOL_STAMP_NAME)
         self._tool_marquee_rectangular.connect('clicked', self.set_tool,
             self._TOOL_MARQUEE_RECT_NAME)
 
@@ -298,6 +310,12 @@ class ToolsToolbarBuilder():
                           necessary in case this method is used in a connect()
             @param tool_name --The name of the selected tool
         """
+        if tool_name == 'stamp':
+            resized_stamp = self._activity.area.setup_stamp()
+            self._stroke_color.color_button.set_resized_stamp(resized_stamp)
+        else:
+            self._stroke_color.color_button.stop_stamping()
+        self._stroke_color.update_stamping()
         self.properties['name'] = tool_name
         self._activity.area.set_tool(self.properties)
 
@@ -307,6 +325,10 @@ class ToolsToolbarBuilder():
         new_color = widget.alloc_color(widget.get_color())
         self._activity.area.set_stroke_color(new_color)
         self.properties['stroke color'] = new_color
+
+    def _on_signal_select_cb(self, widget, data=None):
+        is_selected = self._activity.area.is_selected()
+        self._tool_stamp.set_sensitive(is_selected)
 
 
 class ButtonFillColor(ColorToolButton):

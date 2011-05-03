@@ -131,6 +131,7 @@ class Area(gtk.DrawingArea):
         ## with the following keys:
         ## - 'name'          : a string
         ## - 'line size'     : a integer
+        ## - 'stamp size'    : a integer
         ## - 'fill color'    : a gtk.gdk.Color object
         ## - 'stroke color'  : a gtk.gdk.Color object
         ## - 'line shape'    : a string - 'circle' or 'square', for now
@@ -140,6 +141,7 @@ class Area(gtk.DrawingArea):
         self.tool = {
             'name': 'pencil',
             'line size': 4,
+            'stamp size': 20,
             'fill color': None,
             'stroke color': None,
             'line shape': 'circle',
@@ -286,14 +288,24 @@ class Area(gtk.DrawingArea):
         Show the shape of the tool selected for pencil, brush,
         rainbow and eraser
         """
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow']:
+        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
+                                 'stamp']:
             if not self.drawing:
-                size = self.tool['line size']
-                if self.tool['line shape'] == 'circle':
+                # draw stamp border in widget.window
+                if self.tool['name'] == 'stamp':
+                    wr, hr = self.stamp_dimentions
+                    widget.window.draw_rectangle(self.gc_brush, False,
+                        self.x_cursor - wr / 2, self.y_cursor - hr / 2,
+                        wr, hr)
+
+                # draw shape of the brush, square or circle
+                elif self.tool['line shape'] == 'circle':
+                    size = self.tool['line size']
                     widget.window.draw_arc(self.gc_brush, False,
                         self.x_cursor - size / 2, self.y_cursor - size / 2,
                         size, size, 0, 360 * 64)
                 else:
+                    size = self.tool['line size']
                     widget.window.draw_rectangle(self.gc_brush, False,
                         self.x_cursor - size / 2, self.y_cursor - size / 2,
                         size, size)
@@ -355,6 +367,12 @@ class Area(gtk.DrawingArea):
                     self.tool['line shape'])
                 self.last = coords
                 self.drawing = True
+            elif self.tool['name'] == 'stamp':
+                self.last = []
+                self.d.stamp(widget, coords, self.last,
+                             self.tool['stamp size'])
+                self.last = coords
+                self.drawing = True
             elif self.tool['name'] == 'rainbow':
                 self.last = []
                 self.d.rainbow(widget, coords, self.last,
@@ -412,7 +430,7 @@ class Area(gtk.DrawingArea):
         if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
             if self.tool['name'] == 'pencil':
                 self.d.brush(widget, coords, self.last,
-                    self.tool['line size'], 'circle')
+                    self.tool['line size'], self.tool['line shape'])
                 self.last = coords
 
             elif self.tool['name'] == 'eraser':
@@ -423,6 +441,11 @@ class Area(gtk.DrawingArea):
             elif self.tool['name'] == 'brush':
                 self.d.brush(widget, coords, self.last,
                     self.tool['line size'], self.tool['line shape'])
+                self.last = coords
+
+            elif self.tool['name'] == 'stamp':
+                self.d.stamp(widget, coords, self.last,
+                             self.tool['stamp size'])
                 self.last = coords
 
             elif self.tool['name'] == 'rainbow':
@@ -496,7 +519,8 @@ class Area(gtk.DrawingArea):
                     self.configure_line(self.tool['line size'])
                     self.d.heart(widget, coords, True, self.tool['fill'])
         else:
-            if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil']:
+            if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
+                                     'stamp']:
                 widget.queue_draw()
             if self.tool['name'] == 'marquee-rectangular' and self.selmove:
                 size = self.pixmap_sel.get_size()
@@ -616,7 +640,8 @@ class Area(gtk.DrawingArea):
                 self.d.heart(widget, coords, False, self.tool['fill'])
                 self.enableUndo(widget)
 
-        if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil']:
+        if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
+                                 'stamp']:
             self.last = []
             widget.queue_draw()
             self.enableUndo(widget)
@@ -624,18 +649,64 @@ class Area(gtk.DrawingArea):
         self.desenha = False
 
     def mouseleave(self, widget, event):
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow']:
+        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
+                                 'stamp']:
             self.drawing = True
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
                 size * 2, size * 2)
 
     def mouseenter(self, widget, event):
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow']:
+        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
+                                 'stamp']:
             self.drawing = False
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
                 size * 2, size * 2)
+
+    def setup_stamp(self):
+        """Prepare for stamping from the selected area.
+
+            @param  self -- the Area object (GtkDrawingArea)
+        """
+        logging.debug('Area.setup_stamp(self)')
+
+        if self.is_selected():
+            # Change stamp, get it from selection:
+            width, height = self.pixmap_sel.get_size()
+            self.pixbuf_stamp = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False,
+                8, width, height)
+            self.pixbuf_stamp.get_from_drawable(self.pixmap_sel,
+                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
+            self.stamp_size = 0
+            # Set white color as transparent:
+            stamp_alpha = self.pixbuf_stamp.add_alpha(True, 255, 255, 255)
+            self.pixbuf_stamp = stamp_alpha
+
+        return self.resize_stamp(self.tool['stamp size'])
+
+    def resize_stamp(self, stamp_size):
+        """Change stamping pixbuffer from the given size.
+
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  stamp_size -- the stamp will be inscripted in this size
+        """
+
+        # Area.setup_stamp needs to be called first:
+        assert self.pixbuf_stamp
+
+        self.stamp_size = stamp_size
+        w = self.pixbuf_stamp.get_width()
+        h = self.pixbuf_stamp.get_height()
+        if w >= h:
+            wr, hr = stamp_size, int(stamp_size * h * 1.0 / w)
+        else:
+            wr, hr = int(stamp_size * w * 1.0 / h), stamp_size
+        self.stamp_dimentions = wr, hr
+        self.resized_stamp = self.pixbuf_stamp.scale_simple(wr, hr,
+                                 gtk.gdk.INTERP_HYPER)
+
+        return self.resized_stamp
 
     def undo(self):
         """Undo the last drawing change.
@@ -1242,7 +1313,8 @@ class Area(gtk.DrawingArea):
             cursors = {'pencil': 'pencil',
                        'brush': 'paintbrush',
                        'eraser': 'eraser',
-                       'bucket': 'paint-bucket'}
+                       'bucket': 'paint-bucket',
+                       'stamp': 'pencil'}
 
             display = gtk.gdk.display_get_default()
             if self.tool['name'] in cursors:
@@ -1329,8 +1401,10 @@ class Area(gtk.DrawingArea):
                 self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
             widget.queue_draw()
 
+    # TODO: unused method?
     def change_line_size(self, delta):
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow']:
+        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
+                                 'stamp']:
             size = self.tool['line size'] + delta
             if size < 1:
                 size = 1

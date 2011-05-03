@@ -28,7 +28,9 @@ class BrushButton(_ColorButton):
         self._palette = None
         self._accept_drag = True
         self._brush_size = 2
+        self._stamp_size = 20
         self._brush_shape = 'circle'
+        self._resized_stamp = None
         self._preview = gtk.DrawingArea()
         self._preview.set_size_request(style.STANDARD_ICON_SIZE,
                                         style.STANDARD_ICON_SIZE)
@@ -83,6 +85,26 @@ class BrushButton(_ColorButton):
         self._color = color
         self._preview.queue_draw()
 
+    def get_stamp_size(self):
+        return self._stamp_size
+
+    def set_stamp_size(self, stamp_size):
+        self._stamp_size = stamp_size
+        self._preview.queue_draw()
+
+    stamp_size = gobject.property(type=int, getter=get_stamp_size,
+                    setter=set_stamp_size)
+
+    def set_resized_stamp(self, resized_stamp):
+        self._resized_stamp = resized_stamp
+
+    def stop_stamping(self):
+        self._resized_stamp = None
+        self._preview.queue_draw()
+
+    def is_stamping(self):
+        return self._resized_stamp != None
+
     def expose(self, widget, event):
         if self._gc is None:
             self._setup()
@@ -93,16 +115,26 @@ class BrushButton(_ColorButton):
             True, 0, 0, style.STANDARD_ICON_SIZE, style.STANDARD_ICON_SIZE)
             self._gc.set_foreground(self._color)
 
-            if(self._brush_shape == 'circle'):
-                self.pixmap.draw_arc(self._gc, True,
-                    center - self._brush_size / 2,
-                    center - self._brush_size / 2,
-                    self._brush_size, self._brush_size, 0, 360 * 64)
-            if(self._brush_shape == 'square'):
-                self.pixmap.draw_rectangle(self._gc, True,
-                    center - self._brush_size / 2,
-                    center - self._brush_size / 2,
-                    self._brush_size, self._brush_size)
+            if self.is_stamping():
+                width = self._resized_stamp.get_width()
+                height = self._resized_stamp.get_height()
+                dx = center - width / 2
+                dy = center - height / 2
+                self.pixmap.draw_pixbuf(self._gc, self._resized_stamp,
+                    0, 0, dx, dy, width, height)
+
+            else:
+                if self._brush_shape == 'circle':
+                    self.pixmap.draw_arc(self._gc, True,
+                        center - self._brush_size / 2,
+                        center - self._brush_size / 2,
+                        self._brush_size, self._brush_size, 0, 360 * 64)
+
+                elif self._brush_shape == 'square':
+                    self.pixmap.draw_rectangle(self._gc, True,
+                        center - self._brush_size / 2,
+                        center - self._brush_size / 2,
+                        self._brush_size, self._brush_size)
 
         area = event.area
         widget.window.draw_drawable(self._gc, self.pixmap,
@@ -157,6 +189,7 @@ class ButtonStrokeColor(gtk.ToolItem):
         self.add(self.color_button)
         self.color_button.set_brush_size(2)
         self.color_button.set_brush_shape('circle')
+        self.color_button.set_stamp_size(20)
 
         # The following is so that the behaviour on the toolbar is correct.
         self.color_button.set_relief(gtk.RELIEF_NONE)
@@ -170,6 +203,8 @@ class ButtonStrokeColor(gtk.ToolItem):
         self.color_button.connect('notify::title', self.__notify_change)
         self.color_button.connect('can-activate-accel',
                              self.__button_can_activate_accel_cb)
+
+        self.create_palette()
 
     def __button_can_activate_accel_cb(self, button, signal_id):
         # Accept activation via accelerators regardless of this widget's state
@@ -193,20 +228,22 @@ class ButtonStrokeColor(gtk.ToolItem):
 
         color_palette_hbox = self._palette._picker_hbox
         content_box = gtk.VBox()
-        size_spinbutton = gtk.SpinButton()
+        self.size_spinbutton = gtk.SpinButton()
         # This is where we set restrictions for size:
         # Initial value, minimum value, maximum value, step
         adj = gtk.Adjustment(self.properties['line size'], 1.0, 100.0, 1.0)
-        size_spinbutton.set_adjustment(adj)
-        size_spinbutton.set_numeric(True)
+        self.size_spinbutton.set_adjustment(adj)
+        self.size_spinbutton.set_numeric(True)
 
         label = gtk.Label(_('Size: '))
-        hbox = gtk.HBox()
-        content_box.pack_start(hbox)
+        hbox_size = gtk.HBox()
+        self.vbox_brush_options = gtk.VBox()
+        content_box.pack_start(hbox_size)
+        content_box.pack_start(self.vbox_brush_options)
 
-        hbox.pack_start(label)
-        hbox.pack_start(size_spinbutton)
-        size_spinbutton.connect('value-changed', self._on_value_changed)
+        hbox_size.pack_start(label)
+        hbox_size.pack_start(self.size_spinbutton)
+        self.size_spinbutton.connect('value-changed', self._on_value_changed)
 
         # User is able to choose Shapes for 'Brush' and 'Eraser'
         item1 = gtk.RadioButton(None, _('Circle'))
@@ -233,37 +270,73 @@ class ButtonStrokeColor(gtk.ToolItem):
 
         label = gtk.Label(_('Shape'))
 
-        content_box.pack_start(label)
-        content_box.pack_start(item1)
-        content_box.pack_start(item2)
+        self.vbox_brush_options.pack_start(label)
+        self.vbox_brush_options.pack_start(item1)
+        self.vbox_brush_options.pack_start(item2)
 
         keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
         ratio = self._activity.area.keep_aspect_ratio
         keep_aspect_checkbutton.set_active(ratio)
         keep_aspect_checkbutton.connect('toggled',
             self._keep_aspect_checkbutton_toggled)
-        content_box.pack_start(keep_aspect_checkbutton)
+        self.vbox_brush_options.pack_start(keep_aspect_checkbutton)
 
         color_palette_hbox.pack_start(gtk.VSeparator(),
                                      padding=style.DEFAULT_SPACING)
         color_palette_hbox.pack_start(content_box)
         color_palette_hbox.show_all()
+        self._update_palette()
         return self._palette
 
     def _keep_aspect_checkbutton_toggled(self, checkbutton):
         self._activity.area.keep_aspect_ratio = checkbutton.get_active()
 
+    def _update_palette(self):
+        palette_children = self._palette._picker_hbox.get_children()
+        if self.color_button.is_stamping():
+            # Hide palette color widgets:
+            for ch in palette_children[:4]:
+                ch.hide_all()
+            # Hide brush options:
+            self.vbox_brush_options.hide_all()
+            # Change title:
+            self.set_title(_('Stamp properties'))
+        else:
+            # Show palette color widgets:
+            for ch in palette_children[:4]:
+                ch.show_all()
+            # Show brush options:
+            self.vbox_brush_options.show_all()
+            # Change title:
+            self.set_title(_('Brush properties'))
+
+        self._palette._picker_hbox.resize_children()
+        self._palette._picker_hbox.queue_draw()
+
+    def update_stamping(self):
+        if self.color_button.is_stamping():
+            self.size_spinbutton.set_value(self.color_button.stamp_size)
+        else:
+            self.size_spinbutton.set_value(self.color_button.brush_size)
+        self._update_palette()
+
     def _on_value_changed(self, spinbutton):
         size = spinbutton.get_value_as_int()
-        self.properties['line size'] = size
+        if self.color_button.is_stamping():
+            self.properties['stamp size'] = size
+            resized_stamp = self._activity.area.resize_stamp(size)
+            self.color_button.set_resized_stamp(resized_stamp)
+            self.color_button.set_stamp_size(self.properties['stamp size'])
+        else:
+            self.properties['line size'] = size
+            self.color_button.set_brush_size(self.properties['line size'])
         self._activity.area.set_tool(self.properties)
-        self.color_button.set_brush_size(self.properties['line size'])
 
     def _on_toggled(self, radiobutton, tool, shape):
         if radiobutton.get_active():
             self.properties['line shape'] = shape
             self.color_button.set_brush_shape(shape)
-        self.color_button.set_brush_size(self.properties['line size'])
+            self.color_button.set_brush_size(self.properties['line size'])
 
     def get_palette_invoker(self):
         return self._palette_invoker

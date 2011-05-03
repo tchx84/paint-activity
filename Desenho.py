@@ -128,6 +128,28 @@ class Desenho:
         widget.desenha = False
         self._trace(widget, widget.gc_brush, coords, last, size, shape)
 
+    def stamp(self, widget, coords, last, stamp_size=20):
+        """Paint with stamp.
+
+            @param  self -- Desenho.Desenho instance
+            @param  last -- last of oldx
+            @param  widget -- Area object (GtkDrawingArea)
+            @param  coords -- Two value tuple
+            @param  stamp_size -- integer (default 20)
+
+        """
+        widget.desenha = False
+        gc = widget.gc_brush
+
+        width = widget.resized_stamp.get_width()
+        height = widget.resized_stamp.get_height()
+        dx = coords[0] - width / 2
+        dy = coords[1] - height / 2
+        widget.pixmap.draw_pixbuf(gc, widget.resized_stamp,
+            0, 0, dx, dy, width, height)
+
+        widget.queue_draw()
+
     def rainbow(self, widget, coords, last, color, size=5, shape='circle'):
         """Paint with rainbow.
 
@@ -161,7 +183,7 @@ class Desenho:
         self._trace(widget, widget.gc_rainbow, coords, last, size, shape)
 
     def _trace(self, widget, gc, coords, last, size, shape):
-        if(shape == 'circle'):
+        if shape == 'circle':
             widget.pixmap.draw_arc(gc, True,
                 coords[0] - size / 2, coords[1] - size / 2,
                 size, size, 0, 360 * 64)
@@ -172,7 +194,7 @@ class Desenho:
                     last[0], last[1], coords[0], coords[1])
                 gc.set_line_attributes(0, gtk.gdk.LINE_SOLID,
                     gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        if(shape == 'square'):
+        elif shape == 'square':
             widget.pixmap.draw_rectangle(gc, True,
                 coords[0] - size / 2, coords[1] - size / 2, size, size)
             if last:
@@ -186,7 +208,6 @@ class Desenho:
                     (coords[0] - size / 2, coords[1] + size / 2),
                     (last[0] - size / 2, last[1] + size / 2)]
                 widget.pixmap.draw_polygon(gc, True, points)
-
         if last:
             x = min(coords[0], last[0])
             width = max(coords[0], last[0]) - x
