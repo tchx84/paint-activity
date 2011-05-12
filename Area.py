@@ -95,8 +95,6 @@ class Area(gtk.DrawingArea):
             @param  janela -- the parent window
 
         """
-        logging.debug('Area.__init__(self, janela)')
-
         gtk.DrawingArea.__init__(self)
 
         self.set_events(gtk.gdk.POINTER_MOTION_MASK |
@@ -201,7 +199,7 @@ class Area(gtk.DrawingArea):
         if self.pixmap:
             return
 
-        logging.debug('Area.configure_event: w=%s h=%s' % (width, height))
+        logging.debug('Area.setup: w=%s h=%s' % (width, height))
 
         win = self.window
         self.set_size_request(width, height)
@@ -668,8 +666,6 @@ class Area(gtk.DrawingArea):
 
             @param  self -- the Area object (GtkDrawingArea)
         """
-        logging.debug('Area.setup_stamp(self)')
-
         if self.is_selected():
             # Change stamp, get it from selection:
             width, height = self.pixmap_sel.get_size()
@@ -909,7 +905,7 @@ class Area(gtk.DrawingArea):
         else:
             self.loadImage(tempPath, self)
             logging.debug('Area.past(self): Load from clipboard fails')
-            logging.debug('loading from tempPatch')
+            logging.debug('loading from tempPath')
 
         self.queue_draw()
 
@@ -920,8 +916,6 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
-        logging.debug('Area._set_fill_color(self, color)')
-
         self.gc.set_foreground(color)
 
     def set_stroke_color(self, color):
@@ -931,8 +925,6 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
-        logging.debug('Area._set_stroke_color(self, color)')
-
         self.gc_line.set_foreground(color)
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH,
             gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
@@ -1106,7 +1098,6 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
             @param  widget -- the Area object (GtkDrawingArea)
         """
-        logging.debug('Area._rotate_left(self)')
         if self.selmove:
             width, height = self.window.get_size()
             size = self.pixmap_sel.get_size()
@@ -1147,12 +1138,8 @@ class Area(gtk.DrawingArea):
     def can_undo(self):
         """
         Indicate if is there some action to undo
-
             @param  self -- the Area object (GtkDrawingArea)
-
         """
-#        logging.debug('Area.can_undo(self)')
-
         undo_times = self.undo_times
 
         if self.first_undo:
@@ -1166,12 +1153,8 @@ class Area(gtk.DrawingArea):
     def can_redo(self):
         """
         Indicate if is there some action to redo
-
             @param  self -- the Area object (GtkDrawingArea)
-
         """
-        #logging.debug('Area.can_redo(self)')
-
         if self.redo_times < 1:
             return False
         else:
@@ -1182,11 +1165,7 @@ class Area(gtk.DrawingArea):
         Return True if there is some thing selected
 
             @param  self -- the Area object (GtkDrawingArea)
-
         """
-
-        #logging.debug('Area.is_selected(self)')
-
         if self.selmove:
             return True
         else:
@@ -1232,8 +1211,7 @@ class Area(gtk.DrawingArea):
             @param  widget -- GtkDrawingArea
 
         """
-        logging.debug('Area.loadImage')
-        logging.debug('Loading file %s', name)
+        logging.debug('Area.loadImage Loading file %s', name)
 
         pixbuf = gtk.gdk.pixbuf_new_from_file(name)
         size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
@@ -1292,10 +1270,8 @@ class Area(gtk.DrawingArea):
                        'fill': a Boolean value
                        'vertices': a integer
         '''
-        logging.debug('Area.set_tool %s', tool)
-
+        # logging.debug('Area.set_tool %s', tool)
         self.tool = tool
-
         try:
             if self.tool['line size'] is not None:
                 self.configure_line(self.tool['line size'])
