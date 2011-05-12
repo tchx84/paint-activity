@@ -73,7 +73,6 @@ from fill import fill
 from Desenho import Desenho
 from urlparse import urlparse
 
-
 ##Tools and events manipulation are handle with this class.
 
 TARGET_URI = 0
@@ -1007,6 +1006,9 @@ class Area(gtk.DrawingArea):
     def _do_process(self, widget, apply_process):
         width, height = self.window.get_size()
 
+        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.drain_events()
+
         if self.selmove:
             size = self.pixmap_sel.get_size()
             temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
@@ -1045,6 +1047,11 @@ class Area(gtk.DrawingArea):
         self.queue_draw()
         if not self.selmove:
             self.enableUndo(widget)
+        self.set_tool_cursor()
+
+    def drain_events(self, block=gtk.FALSE):
+	    while gtk.events_pending():
+		    gtk.mainiteration(block)
 
     def _pixbuf2Image(self, pb):
         """change a pixbuf to RGB image
@@ -1308,6 +1315,9 @@ class Area(gtk.DrawingArea):
         except AttributeError:
             pass
 
+        self.set_tool_cursor()
+
+    def set_tool_cursor(self):
         # Setting the cursor
         try:
             cursors = {'pencil': 'pencil',
@@ -1328,7 +1338,6 @@ class Area(gtk.DrawingArea):
                 cursor = gtk.gdk.Cursor(display, pixbuf, 0, 0)
         except gobject.GError:
             cursor = None
-
         self.window.set_cursor(cursor)
 
     def getout(self, undo=False, widget=None):
