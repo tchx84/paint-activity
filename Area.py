@@ -1050,8 +1050,8 @@ class Area(gtk.DrawingArea):
         self.set_tool_cursor()
 
     def drain_events(self, block=gtk.FALSE):
-	    while gtk.events_pending():
-		    gtk.mainiteration(block)
+        while gtk.events_pending():
+            gtk.mainiteration(block)
 
     def _pixbuf2Image(self, pb):
         """change a pixbuf to RGB image
@@ -1410,15 +1410,17 @@ class Area(gtk.DrawingArea):
                 self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
             widget.queue_draw()
 
-    # TODO: unused method?
     def change_line_size(self, delta):
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
-                                 'stamp']:
+        # Used from OficinaActivity
+        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow']:
             size = self.tool['line size'] + delta
             if size < 1:
                 size = 1
             self.tool['line size'] = size
             self.configure_line(size)
+            self.queue_draw()
+        if self.tool['name'] == 'stamp':
+            self.resize_stamp(self.stamp_size + delta)
             self.queue_draw()
 
     def _keep_selection_ratio(self, coords):

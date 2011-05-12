@@ -125,9 +125,11 @@ class OficinaActivity(activity.Activity):
         self._setup_handle = self.connect('map', map_cp)
 
     def key_press(self, widget, event):
-        sliders = {65474: -5, 65475: -1, 65476: 1, 65477: 5}
-        if event.keyval in sliders:
-            self.area.change_line_size(sliders[event.keyval])
+        print event.keyval
+        if event.keyval == 45:
+            self.area.change_line_size(-1)
+        if event.keyval == 43:
+            self.area.change_line_size(1)
 
     def read_file(self, file_path):
         '''Read file from Sugar Journal.'''
