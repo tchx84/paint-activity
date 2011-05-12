@@ -162,6 +162,7 @@ class DrawEditToolbar(EditToolbar):
         self._clear_all = ToolButton('edit-clear')
         self.insert(self._clear_all, -1)
         self._clear_all.set_tooltip(_('Clear'))
+        self._clear_all.show()
 
         self.undo.connect('clicked', self._undo_cb)
         self.redo.connect('clicked', self._redo_cb)
