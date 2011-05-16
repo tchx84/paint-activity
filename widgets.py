@@ -56,7 +56,7 @@ class BrushButton(_ColorButton):
             self._preview.show()
             self.pixmap = gtk.gdk.Pixmap(self.get_window(),
                                             style.STANDARD_ICON_SIZE,
-                                            style.STANDARD_ICON_SIZE, 24)
+                                            style.STANDARD_ICON_SIZE, -1)
             self._gc = self.get_window().new_gc()
             self.show_all()
 
