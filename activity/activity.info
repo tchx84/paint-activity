@@ -1,6 +1,6 @@
 [Activity]
 name = Paint
-activity_version = 32
+activity_version = 33
 service_name = org.laptop.Oficina
 exec = sugar-activity OficinaActivity.OficinaActivity
 icon = activity-paint
