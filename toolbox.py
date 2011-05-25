@@ -688,12 +688,10 @@ class ImageToolbar(gtk.Toolbar):
         self._object_rotate_left = ToolButton('object-rotate-left')
         self.insert(self._object_rotate_left, -1)
         self._object_rotate_left.set_tooltip(_('Rotate Left'))
-        self._object_rotate_left.set_sensitive(is_selected)
 
         self._object_rotate_right = ToolButton('object-rotate-right')
         self.insert(self._object_rotate_right, -1)
         self._object_rotate_right.set_tooltip(_('Rotate Right'))
-        self._object_rotate_right.set_sensitive(is_selected)
 
         self._mirror_horizontal = ToolButton('mirror-horizontal')
         self.insert(self._mirror_horizontal, -1)
@@ -867,8 +865,6 @@ class ImageToolbar(gtk.Toolbar):
 
     def _verify_sensitive_buttons(self):
         is_selected = self._activity.area.is_selected()
-        self._object_rotate_right.set_sensitive(is_selected)
-        self._object_rotate_left.set_sensitive(is_selected)
         self.width_spinButton.set_sensitive(is_selected)
         self.height_spinButton.set_sensitive(is_selected)
 
