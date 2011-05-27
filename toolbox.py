@@ -276,7 +276,11 @@ class ToolsToolbarBuilder():
 
         is_selected = self._activity.area.is_selected()
         self._tool_stamp.set_sensitive(is_selected)
+        self._activity.area.connect('undo', self._on_signal_undo_cb)
+        self._activity.area.connect('redo', self._on_signal_redo_cb)
         self._activity.area.connect('select', self._on_signal_select_cb)
+        self._activity.area.connect('action-saved',
+            self._on_signal_action_saved_cb)
 
         self._tool_marquee_rectangular = \
             DrawToolButton('tool-marquee-rectangular',
@@ -327,7 +331,19 @@ class ToolsToolbarBuilder():
         self._activity.area.set_stroke_color(new_color)
         self.properties['stroke color'] = new_color
 
+    def _on_signal_undo_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+
+    def _on_signal_redo_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+
     def _on_signal_select_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+
+    def _on_signal_action_saved_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+
+    def _verify_sensitive_buttons(self):
         is_selected = self._activity.area.is_selected()
         self._tool_stamp.set_sensitive(is_selected)
 
@@ -672,12 +688,10 @@ class ImageToolbar(gtk.Toolbar):
         self._object_rotate_left = ToolButton('object-rotate-left')
         self.insert(self._object_rotate_left, -1)
         self._object_rotate_left.set_tooltip(_('Rotate Left'))
-        self._object_rotate_left.set_sensitive(is_selected)
 
         self._object_rotate_right = ToolButton('object-rotate-right')
         self.insert(self._object_rotate_right, -1)
         self._object_rotate_right.set_tooltip(_('Rotate Right'))
-        self._object_rotate_right.set_sensitive(is_selected)
 
         self._mirror_horizontal = ToolButton('mirror-horizontal')
         self.insert(self._mirror_horizontal, -1)
@@ -693,22 +707,22 @@ class ImageToolbar(gtk.Toolbar):
         self.insert(self._object_height, -1)
         self._object_height.set_tooltip(_('Height'))
 
-        height_spinButton = self._create_spinButton(self._object_height,
+        self.height_spinButton = self._create_spinButton(self._object_height,
             'object-height', activity)
 
         item = gtk.ToolItem()
-        item.add(height_spinButton)
+        item.add(self.height_spinButton)
         self.insert(item, -1)
 
         self._object_width = ToolButton('object-width')
         self.insert(self._object_width, -1)
         self._object_width.set_tooltip(_('Width'))
 
-        width_spinButton = self._create_spinButton(self._object_width,
+        self.width_spinButton = self._create_spinButton(self._object_width,
             'object-width', activity)
 
         item = gtk.ToolItem()
-        item.add(width_spinButton)
+        item.add(self.width_spinButton)
         self.insert(item, -1)
 
         separator = gtk.SeparatorToolItem()
@@ -735,27 +749,17 @@ class ImageToolbar(gtk.Toolbar):
         self._mirror_vertical.connect('clicked', self.mirror_vertical)
         self._mirror_horizontal.connect('clicked', self.mirror_horizontal)
 
+        self._activity.area.connect('undo', self._on_signal_undo_cb)
+        self._activity.area.connect('redo', self._on_signal_redo_cb)
         self._activity.area.connect('select', self._on_signal_select_cb)
+        self._activity.area.connect('action-saved',
+            self._on_signal_action_saved_cb)
 
         self._effect_grayscale.connect('clicked', self.grayscale)
         self._effect_rainbow.connect('clicked', self.rainbow)
         self._invert_colors.connect('clicked', self.invert_colors)
 
         self.show_all()
-
-    def _selected(self, widget, spin, activity):
-        if not activity.area.is_selected():
-            spin.set_value(100)
-            self.width_percent = 1.
-            self.height_percent = 1.
-
-        # get active only if something is selected
-        spin.set_sensitive(self._activity.area.is_selected())
-
-        #try:
-            #del(activity.area.d.resize_pixbuf)
-            #del(activity.area.d.resized)
-        #except: pass
 
     def rotate_left(self, widget, activity):
         activity.area.rotate_left(activity.area)
@@ -805,7 +809,6 @@ class ImageToolbar(gtk.Toolbar):
         spin.set_sensitive(self._activity.area.is_selected())
 
         spin.connect('value-changed', self.resize, tool, activity)
-        activity.area.connect('select', self._selected, spin, activity)
 
         return spin
 
@@ -848,13 +851,28 @@ class ImageToolbar(gtk.Toolbar):
             chooser.destroy()
             del chooser
 
+    def _on_signal_undo_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+
+    def _on_signal_redo_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+
     def _on_signal_select_cb(self, widget, data=None):
+        self._verify_sensitive_buttons()
+
+    def _on_signal_action_saved_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
 
     def _verify_sensitive_buttons(self):
         is_selected = self._activity.area.is_selected()
-        self._object_rotate_right.set_sensitive(is_selected)
-        self._object_rotate_left.set_sensitive(is_selected)
+        self.width_spinButton.set_sensitive(is_selected)
+        self.height_spinButton.set_sensitive(is_selected)
+
+        if not is_selected:
+            self.width_spinButton.set_value(100)
+            self.height_spinButton.set_value(100)
+            self.width_percent = 1.
+            self.height_percent = 1.
 
     ##Make the colors be in grayscale
     def grayscale(self, widget):

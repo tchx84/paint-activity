@@ -1098,14 +1098,26 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
             @param  widget -- the Area object (GtkDrawingArea)
         """
+        width, height = self.window.get_size()
+
+        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.drain_events()
+
         if self.selmove:
-            width, height = self.window.get_size()
             size = self.pixmap_sel.get_size()
-            pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+            temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
                 size[0], size[1])
-            pix.get_from_drawable(self.pixmap_sel,
+            temp_pix.get_from_drawable(self.pixmap_sel,
                 gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
-            pix = pix.rotate_simple(angle)
+        else:
+            temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
+                width, height)
+            temp_pix.get_from_drawable(self.pixmap,
+                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
+
+        temp_pix = temp_pix.rotate_simple(angle)
+
+        if self.selmove:
             try:
                 self.d.pixbuf_resize = \
                     self.d.pixbuf_resize.rotate_simple(angle)
@@ -1117,23 +1129,39 @@ class Area(gtk.DrawingArea):
             except:
                 pass
 
-            self.pixmap_sel = gtk.gdk.Pixmap(widget. window,
+            self.pixmap_sel = gtk.gdk.Pixmap(widget.window,
                 size[1], size[0], -1)
-            self.pixmap_sel.draw_pixbuf(self.gc, pix, 0, 0, 0, 0,
+            self.pixmap_sel.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
                 width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL,
                 x_dither=0, y_dither=0)
+
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
                 width, height)
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel, 0, 0,
-                self.orig_x, self.orig_y, size[1], size[0])
+            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
+                0, 0, self.orig_x, self.orig_y, size[1], size[0])
             self.pixmap_temp.draw_rectangle(self.gc_selection, False,
                 self.orig_x, self.orig_y, size[1], size[0])
             self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
                 self.orig_x - 1, self.orig_y - 1, size[1] + 2, size[0] + 2)
-            self.queue_draw()
 
         else:
-            logging.debug('Please select some area first')
+            win = self.window
+            self.set_size_request(height, width)
+            self.pixmap = gtk.gdk.Pixmap(win, height, width, -1)
+            self.pixmap.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
+                height, width, dither=gtk.gdk.RGB_DITHER_NORMAL,
+                x_dither=0, y_dither=0)
+            self.pixmap_temp = gtk.gdk.Pixmap(win, height, width, -1)
+            self.pixmap_temp.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
+                height, width, dither=gtk.gdk.RGB_DITHER_NORMAL,
+                x_dither=0, y_dither=0)
+
+        del temp_pix
+
+        self.queue_draw()
+        if not self.selmove:
+            self.enableUndo(widget)
+        self.set_tool_cursor()
 
     def can_undo(self):
         """
