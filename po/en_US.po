@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-10 14:52-0500\n"
-"PO-Revision-Date: 2011-02-10 07:43+0200\n"
+"PO-Revision-Date: 2011-06-02 07:53+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_US\n"
@@ -39,7 +39,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.3\n"
+"X-Generator: Translate Toolkit 1.6.0\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -284,6 +284,24 @@ msgstr "ZOOM +"
 #: toolbox.py:1510
 msgid "ZOOM -"
 msgstr "ZOOM -"
+
+#~ msgid "Fonts"
+#~ msgstr "Fonts"
+
+#~ msgid "Brush properties"
+#~ msgstr "Brush properties"
+
+#~ msgid "Stamp"
+#~ msgstr "Stamp"
+
+#~ msgid "Shapes properties"
+#~ msgstr "Shapes properties"
+
+#~ msgid "Choose brush properties"
+#~ msgstr "Choose brush properties"
+
+#~ msgid "Stamp properties"
+#~ msgstr "Stamp properties"
 
 #~ msgid "Mirror Horizontal"
 #~ msgstr "Mirror Horizontal"
