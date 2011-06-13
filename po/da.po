@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-10 14:52-0500\n"
-"PO-Revision-Date: 2011-04-29 07:16+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2011-06-02 18:22+0200\n"
+"Last-Translator: Aputsiaq <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.1\n"
+"X-Generator: Translate Toolkit 1.6.0\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -260,3 +260,21 @@ msgstr "ZOOM +"
 #: toolbox.py:1510
 msgid "ZOOM -"
 msgstr "ZOOM -"
+
+#~ msgid "Fonts"
+#~ msgstr "Skrifttyper"
+
+#~ msgid "Brush properties"
+#~ msgstr "Egenskaber for pensel"
+
+#~ msgid "Stamp"
+#~ msgstr "Stempel"
+
+#~ msgid "Shapes properties"
+#~ msgstr "Egenskaber for former"
+
+#~ msgid "Choose brush properties"
+#~ msgstr "Vælg egenskaber for pensel"
+
+#~ msgid "Stamp properties"
+#~ msgstr "Egenskaber for stempel"

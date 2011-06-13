@@ -35,13 +35,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-10 14:52-0500\n"
-"PO-Revision-Date: 2008-03-21 15:49-0400\n"
-"Last-Translator: Shankar Pokharel <memshankar@gmail.com>\n"
+"PO-Revision-Date: 2011-06-13 12:28+0200\n"
+"Last-Translator:  <aman.maharjan@olenepal.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Pootle 1.1.0rc2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -113,7 +115,7 @@ msgstr "बाल्टिन"
 
 #: toolbox.py:428
 msgid "Select Area"
-msgstr ""
+msgstr "क्षेत्र चयन गर्नुहोस्"
 
 #: toolbox.py:479 toolbox.py:988 toolbox.py:1420
 msgid "Size: "
@@ -133,7 +135,7 @@ msgstr "आकार"
 
 #: toolbox.py:522
 msgid "Keep aspect"
-msgstr ""
+msgstr "आकार राख्नुहोस"
 
 #: toolbox.py:706
 msgid "Fill Color"
@@ -153,7 +155,7 @@ msgstr "रेखा"
 
 #: toolbox.py:748
 msgid "Free form"
-msgstr ""
+msgstr "  स्वतन्त्र रुप"
 
 #: toolbox.py:757
 msgid "Polygon"
@@ -197,7 +199,7 @@ msgstr "भर"
 
 #: toolbox.py:1003
 msgid "Keep Aspect"
-msgstr ""
+msgstr "आकार राख्नुहोस"
 
 #: toolbox.py:1033
 msgid "Type"
@@ -217,11 +219,11 @@ msgstr "दायाँ तिर घुमाऊ"
 
 #: toolbox.py:1177
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "तेर्सो ऐना"
 
 #: toolbox.py:1182
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "ठाडो ऐना"
 
 #: toolbox.py:1186
 msgid "Height"
@@ -245,7 +247,7 @@ msgstr "इन्द्रेणी"
 
 #: toolbox.py:1361
 msgid "Invert Colors"
-msgstr ""
+msgstr " रङहरु उल्टाउनुहोस्"
 
 #: toolbox.py:1489
 msgid "1000"
