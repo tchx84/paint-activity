@@ -1155,6 +1155,7 @@ class Area(gtk.DrawingArea):
             self.pixmap_temp.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
                 height, width, dither=gtk.gdk.RGB_DITHER_NORMAL,
                 x_dither=0, y_dither=0)
+            self.janela.center_area()
 
         del temp_pix
 

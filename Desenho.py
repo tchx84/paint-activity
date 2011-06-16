@@ -589,8 +589,8 @@ class Desenho:
         if not widget.text_in_progress:
             widget.text_in_progress = True
 
-            widget.janela.fixed.move(widget.janela.textview,
-                int(event.x), int(event.y))
+            x, y = int(event.x), int(event.y)
+            widget.janela.move_textview(x, y)
             widget.janela.textview.show()
             widget.janela.textview.grab_focus()
 

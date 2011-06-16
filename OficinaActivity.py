@@ -116,6 +116,7 @@ class OficinaActivity(activity.Activity):
             def size_allocate_cb(widget, allocation):
                 self.fixed.disconnect(self._setup_handle)
                 self.area.setup(allocation.width, allocation.height)
+                self.center_area()
 
             self.canvas.add_with_viewport(self.fixed)
             self.disconnect(self._setup_handle)
@@ -142,6 +143,7 @@ class OficinaActivity(activity.Activity):
             self.fixed.disconnect(self._setup_handle)
             self.area.setup(pixbuf.get_width(), pixbuf.get_height())
             self.area.loadImageFromJournal(pixbuf)
+            self.center_area()
 
         self.canvas.add_with_viewport(self.fixed)
         self.disconnect(self._setup_handle)
@@ -173,3 +175,23 @@ class OficinaActivity(activity.Activity):
             gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
         self.metadata['mime_type'] = 'image/png'
         pixbuf.save(file_path, 'png', {})
+
+    def _get_area_displacement(self):
+        """Return the point to use as top left corner in order to move
+        the drawing area and center it on the canvas.
+
+        """
+        canvas_width = self.canvas.allocation.width
+        canvas_height = self.canvas.allocation.height
+        area_width, area_height = self.area.get_size_request()
+        x = (canvas_width - area_width) / 2
+        y = (canvas_height - area_height) / 2
+        return x, y
+
+    def center_area(self):
+        x, y = self._get_area_displacement()
+        self.fixed.move(self.area, x, y)
+
+    def move_textview(self, dx, dy):
+        x, y = self._get_area_displacement()
+        self.fixed.move(self.textview, x + dx, y + dy)
