@@ -1328,8 +1328,7 @@ class Area(gtk.DrawingArea):
             cursors = {'pencil': 'pencil',
                        'brush': 'paintbrush',
                        'eraser': 'eraser',
-                       'bucket': 'paint-bucket',
-                       'stamp': 'pencil'}
+                       'bucket': 'paint-bucket'}
 
             display = gtk.gdk.display_get_default()
             if self.tool['name'] in cursors:
@@ -1337,6 +1336,10 @@ class Area(gtk.DrawingArea):
                 cursor = gtk.gdk.cursor_new_from_name(display, name)
             elif self.tool['name'] == 'marquee-rectangular':
                 cursor = gtk.gdk.Cursor(gtk.gdk.CROSS)
+            elif self.tool['name'] == 'stamp':
+                filename = os.path.join('images', 'stamp.png')
+                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                cursor = gtk.gdk.Cursor(display, pixbuf, 20, 38)
             else:
                 filename = os.path.join('images', self.tool['name'] + '.png')
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
