@@ -76,6 +76,7 @@ from urlparse import urlparse
 ##Tools and events manipulation are handle with this class.
 
 TARGET_URI = 0
+MAX_UNDO_STEPS = 12
 
 
 class Area(gtk.DrawingArea):
@@ -177,16 +178,9 @@ class Area(gtk.DrawingArea):
 
         self._set_selection_bounds(0, 0, 0, 0)
 
-        #start of UNDO and REDO
-        ## This flag is used when is the first time you click on Undo
-        self.first_undo = True
-        ## When you are just clicking on undo or redo and not
-        # drawing undo_surf is True
-        self.undo_surf = False
-        self.undo_times = 0
-        self.redo_times = 0
-        ##pixmaps list to Undo func
-        self.undo_list = []
+        # List of pixmaps for the Undo function:
+        self._undo_list = []
+        self._undo_index = None
 
         # variables to show the tool shape
         self.drawing = False
@@ -197,6 +191,7 @@ class Area(gtk.DrawingArea):
         """Configure the Area object."""
 
         if self.pixmap:
+            # Already set up
             return
 
         logging.debug('Area.setup: w=%s h=%s' % (width, height))
@@ -244,7 +239,7 @@ class Area(gtk.DrawingArea):
             gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         self.gc_selection1.set_foreground(self.white)
 
-        self.enableUndo(self)
+        self.enableUndo(self, size=(width, height))
 
         # Setting a initial tool
         self.set_tool(self.tool)
@@ -557,20 +552,19 @@ class Area(gtk.DrawingArea):
                     coords = self._keep_line_ratio(coords)
 
         width, height = self.window.get_size()
+
+        private_undo = False
         if self.desenha or self.sel_get_out:
             if self.tool['name'] == 'line':
                 self.pixmap.draw_line(self.gc_line, self.oldx, self.oldy,
                     coords[0], coords[1])
                 widget.queue_draw()
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'ellipse':
                 self.d.circle(widget, coords, False, self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'rectangle':
                 self.d.square(widget, event, coords, False, self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'marquee-rectangular':
                 if self.selmove == False:
@@ -595,55 +589,50 @@ class Area(gtk.DrawingArea):
                     self.orig_x = self.orig_x + coords[0] - self.oldx
                     self.orig_y = self.orig_y + coords[1] - self.oldy
                 self.emit('select')
+                private_undo = True
 
             elif self.tool['name'] == 'freeform':
                 self.d.polygon(widget, coords, False,
                     self.tool['fill'], 'release')
+                private_undo = True
 
             elif self.tool['name'] == 'bucket':
                 width, height = self.window.get_size()
                 fill(self.pixmap, self.gc, coords[0], coords[1],
                     width, height, self.gc_line.foreground.pixel)
                 widget.queue_draw()
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'triangle':
                 self.d.triangle(widget, coords, False, self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'trapezoid':
                 self.d.trapezoid(widget, coords, False, self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'arrow':
                 self.d.arrow(widget, coords, False, self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'parallelogram':
                 self.d.parallelogram(widget, coords, False, self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'star':
                 self.d.star(widget, coords, self.tool['vertices'], False,
                     self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'polygon_regular':
                 self.d.polygon_regular(widget, coords, self.tool['vertices'],
                     False, self.tool['fill'])
-                self.enableUndo(widget)
 
             elif self.tool['name'] == 'heart':
                 self.d.heart(widget, coords, False, self.tool['fill'])
-                self.enableUndo(widget)
 
         if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                  'stamp']:
             self.last = []
             widget.queue_draw()
-            self.enableUndo(widget)
             self.drawing = False
         self.desenha = False
+        if not private_undo:
+            self.enableUndo(widget)
 
     def mouseleave(self, widget, event):
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
@@ -711,27 +700,19 @@ class Area(gtk.DrawingArea):
         logging.debug('Area.undo(self)')
         width, height = self.window.get_size()
 
-        # if is the first time you click on UNDO
-        # (because undo_list always wait for the NEXT image)
-        if self.first_undo:
-            self.undo_times -= 1
+        if self.selmove:
+            self.getout(undo=True)
 
-        #print "Undo no.%d" %(self.undo_times)
-        if self.undo_times > 0:
-            self.undo_times -= 1
-            self.redo_times += 1
-            try:  # to not try paint someting wrong
-                self.pixmap.draw_drawable(self.gc,
-                    self.undo_list[self.undo_times], 0, 0, 0, 0, width, height)
-            except:
-                logging.debug('Cant draw')
-                pass
-            self.queue_draw()
-        else:
-            self.undo_times = 0
+        if self.text_in_progress:
+            self.d.text(self, None)
+            self.janela.textview.hide()
 
-        self.first_undo = False
-        self.undo_surf = True
+        if self._undo_index > 0:
+            self._undo_index -= 1
+
+        undo_pix = self._undo_list[self._undo_index]
+        self.pixmap.draw_drawable(self.gc, undo_pix, 0, 0, 0, 0, -1, -1)
+        self.queue_draw()
 
         #special case for func polygon
         if self.tool['name'] == 'freeform':
@@ -747,23 +728,19 @@ class Area(gtk.DrawingArea):
         logging.debug('Area.redo(self)')
         width, height = self.window.get_size()
 
-        #print "REDO no.%d" %(self.redo_times)
-        if self.redo_times > 0:
-            self.redo_times -= 1
-            self.undo_times += 1
+        if self.selmove:
+            self.getout()
 
-            try:  # to not try paint someting wrong
-                self.pixmap.draw_drawable(self.gc,
-                    self.undo_list[self.undo_times], 0, 0, 0, 0,
-                    width, height)
-            except:
-                logging.debug('Cant draw')
-                self.undo_times -= 1
+        if self._undo_index < len(self._undo_list)-1:
+            self._undo_index += 1
+
+        undo_pix = self._undo_list[self._undo_index]
+        self.pixmap.draw_drawable(self.gc, undo_pix, 0, 0, 0, 0, -1, -1)
         self.queue_draw()
 
         self.emit('redo')
 
-    def enableUndo(self, widget):
+    def enableUndo(self, widget, size=None, overrite=False):
         """Keep the last change in a list for Undo/Redo commands.
 
             @param  self -- the Area object (GtkDrawingArea)
@@ -773,24 +750,33 @@ class Area(gtk.DrawingArea):
         #logging.debug('Area.enableUndo(self,widget)')
 
         width, height = self.window.get_size()
+        # We need to pass explicitly the size on set up, because the
+        # window size is not allocated yet.
+        if size is not None:
+            width, height = size
 
-        if self.undo_surf:
-            self.undo_times += 1
+        if len(self._undo_list) == 0:
+            # first undo pix, start index:
+            self._undo_index = 0
+        elif len(self._undo_list) == MAX_UNDO_STEPS:
+            # drop the oldest undo pix:
+            self._undo_list.pop(0)
+        else:
+            self._undo_index += 1
+            # Forget the redos after this one:
+            self._undo_list = self._undo_list[:self._undo_index]
 
-        self.undo_list.append(None)  # alloc memory
-        self.undo_list[self.undo_times] = gtk.gdk.Pixmap(widget.window,
-            width, height, -1)  # define type
-        self.undo_list[self.undo_times].draw_drawable(self.gc, self.pixmap,
-            0, 0, 0, 0, width, height)  # copy workarea
-        self.undo_times += 1
-        self.redo_times = 0
-        self.first_undo = True
-        self.undo_surf = False
+        # If a tool needs to do several drawings, uses overrite to
+        # undo them in only one step.  In that case, the index is not
+        # changed:
+        if overrite and self._undo_index != 0:
+            self._undo_index -= 1
 
-        #This is the part where we can limit the steps of undo/redo
-        if self.undo_times == 12:
-            self.undo_list.pop(0)
-            self.undo_times -= 1
+        undo_pix = gtk.gdk.Pixmap(widget.window, width, height, -1)
+        undo_pix.draw_drawable(self.gc, self.pixmap,
+            0, 0, 0, 0, width, height)
+
+        self._undo_list.append(undo_pix)
 
         self.emit('action-saved')
 
@@ -1155,6 +1141,7 @@ class Area(gtk.DrawingArea):
             self.pixmap_temp.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
                 height, width, dither=gtk.gdk.RGB_DITHER_NORMAL,
                 x_dither=0, y_dither=0)
+
             self.janela.center_area()
 
         del temp_pix
@@ -1169,25 +1156,14 @@ class Area(gtk.DrawingArea):
         Indicate if is there some action to undo
             @param  self -- the Area object (GtkDrawingArea)
         """
-        undo_times = self.undo_times
-
-        if self.first_undo:
-            undo_times -= 1
-
-        if undo_times < 1:
-            return False
-        else:
-            return True
+        return self._undo_index > 0
 
     def can_redo(self):
         """
         Indicate if is there some action to redo
             @param  self -- the Area object (GtkDrawingArea)
         """
-        if self.redo_times < 1:
-            return False
-        else:
-            return True
+        return self._undo_index < len(self._undo_list) - 1
 
     def is_selected(self):
         """
@@ -1222,14 +1198,12 @@ class Area(gtk.DrawingArea):
             self._selection_corners[2], self._selection_corners[3]
 
     def loadImageFromJournal(self, pixbuf):
-        size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
+        width, height = pixbuf.get_width(), pixbuf.get_height()
 
-        self.setup(size[0], size[1])
-
-        self.pixmap.draw_pixbuf(self.gc, pixbuf, 0, 0, 0, 0, size[0], size[1],
-                dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
-        self.undo_times -= 1
-        self.enableUndo(self)
+        self.pixmap.draw_pixbuf(self.gc, pixbuf, 0, 0, 0, 0,
+            width, height, dither=gtk.gdk.RGB_DITHER_NORMAL,
+            x_dither=0, y_dither=0)
+        self.enableUndo(self, size=(width, height))
         self.queue_draw()
 
     def loadImage(self, name, widget=None):

@@ -791,7 +791,7 @@ class Desenho:
                         widget.oldx, widget.oldy, coords[0], coords[1])
                     widget.first = widget.oldx, widget.oldy
                     widget.points = [widget.first, coords]
-                widget.enableUndo(widget)
+                widget.enableUndo(widget, overrite=True)
                 widget.last = coords
             else:  # param == "release"
                 # first release
@@ -805,7 +805,7 @@ class Desenho:
                     widget.points = [widget.first, coords]
                     widget.pixmap.draw_line(widget.gc_line,
                         widget.oldx, widget.oldy, coords[0], coords[1])
-                widget.enableUndo(widget)
+                widget.enableUndo(widget, overrite=True)
                 widget.last = coords
             widget.polygon_start = False
         else:
@@ -815,7 +815,7 @@ class Desenho:
                     widget.last[0], widget.last[1], coords[0], coords[1])
                 widget.pixmap.draw_line(widget.gc_line,
                     widget.last[0], widget.last[1], coords[0], coords[1])
-                widget.enableUndo(widget)
+                widget.enableUndo(widget, overrite=True)
                 widget.last = coords
                 widget.points.append(coords)
             elif param == "release":
@@ -835,9 +835,7 @@ class Desenho:
                     pixmap.draw_polygon(widget.gc_line, False, tp)
                     widget.last = []
                     widget.polygon_start = True
-                    #destroy the undo screen of polygon start
-                    widget.undo_times -= 1
-                    widget.enableUndo(widget)
+                    widget.enableUndo(widget, overrite=True)
             elif param == "bug":
                 tp = tuple(widget.points)
                 if fill == True:
@@ -845,9 +843,7 @@ class Desenho:
                 pixmap.draw_polygon(widget.gc_line, False, tp)
                 widget.last = []
                 widget.polygon_start = True
-                #destroy the undo screen of polygon start
-                widget.undo_times -= 1
-                widget.enableUndo(widget)
+                widget.enableUndo(widget, overrite=True)
         widget.queue_draw()
 
     def adjust(self, widget, coords, locked=False):
