@@ -68,6 +68,10 @@ import gtk
 import logging
 import math
 import gc
+import gobject
+
+RESIZE_DELAY = 500  # The time to wait for the resize operation to be
+                    # executed, after the resize controls are pressed.
 
 
 ##Pixmap manipulation
@@ -80,6 +84,7 @@ class Desenho:
             @param  widget -- Area object (GtkDrawingArea)
 
         """
+        self._resize_timer = None
         #self.d = widget
 
     def line(self, widget, coords):
@@ -710,7 +715,6 @@ class Desenho:
         widget.desenha = True
         widget.selmove = True
 
-        gc.collect()
         #Create the pixbuf for future resizes
         try:
             self.pixbuf_resize
@@ -726,6 +730,18 @@ class Desenho:
         wr = int(w * width_percent)
         hr = int(h * height_percent)
 
+        self._draw_selection(widget, wr, hr, is_preview=True)
+
+        # Add a timer for resize or update it if there is one already:
+        if self._resize_timer is not None:
+            gobject.source_remove(self._resize_timer)
+        self._resize_timer = gobject.timeout_add(RESIZE_DELAY,
+            self._do_resize, widget, wr, hr)
+
+    def _do_resize(self, widget, wr, hr):
+        """Do the resize calculation.
+
+        """
         resized = self.pixbuf_resize.scale_simple(wr, hr, gtk.gdk.INTERP_HYPER)
 
         #Copy the resized picture to pixmap_sel
@@ -738,10 +754,24 @@ class Desenho:
             0, 0, 0, 0, wr, hr)
 
         #Draw the new pixmap_sel
+        self._draw_selection(widget, wr, hr)
+
+        # Clean the timer:
+        self.resize_timer = None
+        return False
+
+    def _draw_selection(self, widget, wr, hr, is_preview=False):
+        gc.collect()
+        width, height = widget.window.get_size()
+
         widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap,
             0, 0, 0, 0, width, height)
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,
-            0, 0, widget.orig_x, widget.orig_y, wr, hr)
+        if is_preview:
+            widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,
+                0, 0, widget.orig_x, widget.orig_y, -1, -1)
+        else:
+            widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,
+                0, 0, widget.orig_x, widget.orig_y, wr, hr)
         widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
             widget.orig_x, widget.orig_y, wr, hr)
         widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
