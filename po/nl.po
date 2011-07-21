@@ -39,15 +39,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-10 14:52-0500\n"
-"PO-Revision-Date: 2010-12-31 11:14+0200\n"
-"Last-Translator: whe <heppew@yahoo.com>\n"
+"PO-Revision-Date: 2011-07-21 21:22+0200\n"
+"Last-Translator: Myckel Habets <myckel@sdf.lonestar.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -223,11 +223,11 @@ msgstr "Rechtsom draaien"
 
 #: toolbox.py:1177
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Horizontale spiegel"
 
 #: toolbox.py:1182
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Verticale spiegel"
 
 #: toolbox.py:1186
 msgid "Height"
