@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-10 14:52-0500\n"
-"PO-Revision-Date: 2011-03-04 13:45+0200\n"
+"POT-Creation-Date: 2011-06-04 00:31-0400\n"
+"PO-Revision-Date: 2011-07-07 07:18+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -35,251 +35,258 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Paint"
 
-#: toolbox.py:177
+#: toolbox.py:101
 msgid "Edit"
 msgstr "Edit"
 
-#: toolbox.py:181
-msgid "Tools"
-msgstr "Tools"
-
-#: toolbox.py:185
+#: toolbox.py:111
 msgid "Shapes"
 msgstr "Shapes"
 
-#: toolbox.py:189
-msgid "Text"
-msgstr "Text"
+#: toolbox.py:117
+msgid "Fonts"
+msgstr "Fonts"
 
-#: toolbox.py:193
+#: toolbox.py:123
 msgid "Image"
 msgstr "Image"
 
-#: toolbox.py:197
-msgid "Effects"
-msgstr "Effects"
-
-#: toolbox.py:215
+#: toolbox.py:153
 msgid "Undo"
 msgstr "Undo"
 
-#: toolbox.py:216
+#: toolbox.py:154
 msgid "Redo"
 msgstr "Redo"
 
-#: toolbox.py:217
+#: toolbox.py:155
 msgid "Copy"
 msgstr "Copy"
 
-#: toolbox.py:218
+#: toolbox.py:156
 msgid "Paste"
 msgstr "Paste"
 
-#: toolbox.py:226
+#: toolbox.py:164
 msgid "Clear"
 msgstr "Clear"
 
-#: toolbox.py:365 toolbox.py:714
-msgid "Stroke Color"
-msgstr "Stroke Colour"
+#: toolbox.py:244 widgets.py:311
+msgid "Brush properties"
+msgstr "Brush properties"
 
-#: toolbox.py:375
-msgid "Pencil"
-msgstr "Pencil"
-
-#: toolbox.py:384
+#: toolbox.py:261
 msgid "Brush"
 msgstr "Brush"
 
-#: toolbox.py:392
+#: toolbox.py:266
 msgid "Eraser"
 msgstr "Eraser"
 
-#: toolbox.py:400
+#: toolbox.py:270
 msgid "Bucket"
 msgstr "Bucket"
 
-#: toolbox.py:428
+#: toolbox.py:274
+msgid "Stamp"
+msgstr "Stamp"
+
+#: toolbox.py:287
 msgid "Select Area"
 msgstr "Select Area"
 
-#: toolbox.py:479 toolbox.py:988 toolbox.py:1420
-msgid "Size: "
-msgstr "Size: "
-
-#: toolbox.py:498 toolbox.py:1433
-msgid "Circle"
-msgstr "Circle"
-
-#: toolbox.py:505 toolbox.py:1440
-msgid "Square"
-msgstr "Square"
-
-#: toolbox.py:514 toolbox.py:1449
-msgid "Shape"
-msgstr "Shape"
-
-#: toolbox.py:522
-msgid "Keep aspect"
-msgstr "Keep aspect"
-
-#: toolbox.py:706
-msgid "Fill Color"
-msgstr "Fill Colour"
-
-#: toolbox.py:724
-msgid "Ellipse"
-msgstr "Ellipse"
-
-#: toolbox.py:732
-msgid "Rectangle"
-msgstr "Rectangle"
-
-#: toolbox.py:740
-msgid "Line"
-msgstr "Line"
-
-#: toolbox.py:748
-msgid "Free form"
-msgstr "Free form"
-
-#: toolbox.py:757
-msgid "Polygon"
-msgstr "Polygon"
-
-#: toolbox.py:765
-msgid "Heart"
-msgstr "Heart"
-
-#: toolbox.py:773
-msgid "Parallelogram"
-msgstr "Parallelogram"
-
-#: toolbox.py:781
-msgid "Arrow"
-msgstr "Arrow"
-
-#: toolbox.py:789
-msgid "Star"
-msgstr "Star"
-
-#: toolbox.py:797
-msgid "Trapezoid"
-msgstr "Trapezoid"
-
-#: toolbox.py:805
-msgid "Triangle"
-msgstr "Triangle"
-
-#: toolbox.py:892
-msgid "Sides: "
-msgstr "Sides: "
-
-#: toolbox.py:934
-msgid "Points: "
-msgstr "Points: "
-
-#: toolbox.py:973
+#: toolbox.py:380
 msgid "Fill"
 msgstr "Fill"
 
-#: toolbox.py:1003
+#: toolbox.py:386
 msgid "Keep Aspect"
 msgstr "Keep Aspect"
 
-#: toolbox.py:1033
+#: toolbox.py:403
+msgid "Sides: "
+msgstr "Sides: "
+
+#: toolbox.py:458
+msgid "Shapes properties"
+msgstr "Shapes properties"
+
+#: toolbox.py:470
+msgid "Ellipse"
+msgstr "Ellipse"
+
+#: toolbox.py:474
+msgid "Rectangle"
+msgstr "Rectangle"
+
+#: toolbox.py:478
+msgid "Line"
+msgstr "Line"
+
+#: toolbox.py:482
+msgid "Free form"
+msgstr "Free form"
+
+#: toolbox.py:486
+msgid "Polygon"
+msgstr "Polygon"
+
+#: toolbox.py:490
+msgid "Heart"
+msgstr "Heart"
+
+#: toolbox.py:494
+msgid "Parallelogram"
+msgstr "Parallelogram"
+
+#: toolbox.py:498
+msgid "Arrow"
+msgstr "Arrow"
+
+#: toolbox.py:502
+msgid "Star"
+msgstr "Star"
+
+#: toolbox.py:506
+msgid "Trapezoid"
+msgstr "Trapezoid"
+
+#: toolbox.py:510
+msgid "Triangle"
+msgstr "Triangle"
+
+#: toolbox.py:557
 msgid "Type"
 msgstr "Type"
 
-#: toolbox.py:1153
+#: toolbox.py:677
 msgid "Insert Image"
 msgstr "Insert Image"
 
-#: toolbox.py:1166
+#: toolbox.py:690
 msgid "Rotate Left"
 msgstr "Rotate Left"
 
-#: toolbox.py:1171
+#: toolbox.py:694
 msgid "Rotate Right"
 msgstr "Rotate Right"
 
-#: toolbox.py:1177
+#: toolbox.py:699
 msgid "Horizontal Mirror"
 msgstr "Horizontal Mirror"
 
-#: toolbox.py:1182
+#: toolbox.py:704
 msgid "Vertical Mirror"
 msgstr "Vertical Mirror"
 
-#: toolbox.py:1186
+#: toolbox.py:708
 msgid "Height"
 msgstr "Height"
 
-#: toolbox.py:1197
+#: toolbox.py:719
 msgid "Width"
 msgstr "Width"
 
-#: toolbox.py:1306
-msgid "Choose image"
-msgstr "Choose image"
-
-#: toolbox.py:1351
+#: toolbox.py:734
 msgid "Grayscale"
 msgstr "Greyscale"
 
-#: toolbox.py:1354
+#: toolbox.py:737
 msgid "Rainbow"
 msgstr "Rainbow"
 
-#: toolbox.py:1361
+#: toolbox.py:742
 msgid "Invert Colors"
 msgstr "Invert Colors"
 
-#: toolbox.py:1489
-msgid "1000"
-msgstr "1000"
+#: toolbox.py:839
+msgid "Choose image"
+msgstr "Choose image"
 
-#: toolbox.py:1490
-msgid "500"
-msgstr "500"
+#: widgets.py:24
+msgid "Choose brush properties"
+msgstr "Choose brush properties"
 
-#: toolbox.py:1491
-msgid "200"
-msgstr "200"
+#: widgets.py:238
+msgid "Size: "
+msgstr "Size: "
 
-#: toolbox.py:1492
-msgid "150"
-msgstr "150"
+#: widgets.py:249
+msgid "Circle"
+msgstr "Circle"
 
-#: toolbox.py:1493
-msgid "100"
-msgstr "100"
+#: widgets.py:259
+msgid "Square"
+msgstr "Square"
 
-#: toolbox.py:1494
-msgid "50"
-msgstr "50"
+#: widgets.py:271
+msgid "Shape"
+msgstr "Shape"
 
-#: toolbox.py:1495
-msgid "25"
-msgstr "25"
+#: widgets.py:277
+msgid "Keep aspect"
+msgstr "Keep aspect"
 
-#: toolbox.py:1496
-msgid "10"
-msgstr "10"
+#: widgets.py:303
+msgid "Stamp properties"
+msgstr "Stamp properties"
 
-#: toolbox.py:1506
-msgid "ZOOM +"
-msgstr "ZOOM +"
+#~ msgid "Tools"
+#~ msgstr "Tools"
 
-#: toolbox.py:1510
-msgid "ZOOM -"
-msgstr "ZOOM -"
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Effects"
+#~ msgstr "Effects"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Stroke Colour"
+
+#~ msgid "Pencil"
+#~ msgstr "Pencil"
+
+#~ msgid "Fill Color"
+#~ msgstr "Fill Colour"
+
+#~ msgid "Points: "
+#~ msgstr "Points: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ZOOM +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ZOOM -"
 
 #~ msgid "Mirror Horizontal"
 #~ msgstr "Mirror Horizontal"
