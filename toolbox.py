@@ -383,7 +383,7 @@ class ButtonFillColor(ColorToolButton):
             self._on_fill_checkbutton_toggled)
         content_box.pack_start(fill_checkbutton)
 
-        keep_aspect_checkbutton = gtk.CheckButton(_('Keep Aspect'))
+        keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
         logging.error('Create palette : tool name %s', self.properties['name'])
         ratio = self._activity.area.keep_shape_ratio
         keep_aspect_checkbutton.set_active(ratio)
