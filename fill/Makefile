@@ -41,7 +41,14 @@ CFLAGS = $(shell pkg-config --cflags gtk+-2.0 pygtk-2.0 | sed 's/-pthread//') \
 LDFLAGS = $(shell pkg-config --libs gtk+-2.0 pygtk-2.0 | sed 's/-pthread//') \
           $(shell python-config --libs)
 
-ARCH = $(shell arch | grep 64 >/dev/null && echo linux64 || echo linux32)
+ARCH_OUT = $(shell arch)
+
+ARCH = $(shell if [ -z "$(shell arch | grep arm)" ]; then \
+        echo $(ARCH_OUT) | grep 64 >/dev/null && echo linux64 || echo linux32; \
+    else \
+        echo $(ARCH_OUT); \
+    fi)
+
 PYTHON_VERSION = $(shell python -c 'import sys; print "%d%d" % sys.version_info[0:2]')
 LIB_DIR = $(ARCH)_$(PYTHON_VERSION)
 
