@@ -2,32 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-06-04 00:31-0400\n"
-"PO-Revision-Date: 2011-07-28 23:33+0200\n"
+"PO-Revision-Date: 2011-08-04 20:52+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
@@ -49,8 +30,9 @@ msgstr "խմբագրել"
 msgid "Shapes"
 msgstr "Ձևեր"
 
-#~ msgid "Fonts"
-#~ msgstr ""
+#: toolbox.py:117
+msgid "Fonts"
+msgstr "տառատեսակները"
 
 #: toolbox.py:123
 msgid "Image"
@@ -76,8 +58,9 @@ msgstr "Տեղադրել"
 msgid "Clear"
 msgstr "Մաքրել"
 
-#~ msgid "Brush properties"
-#~ msgstr ""
+#: toolbox.py:244 widgets.py:311
+msgid "Brush properties"
+msgstr "Վրձին Հատկությունները"
 
 #: toolbox.py:261
 msgid "Brush"
@@ -91,8 +74,9 @@ msgstr "Ջնջիչ"
 msgid "Bucket"
 msgstr "Դույլ"
 
-#~ msgid "Stamp"
-#~ msgstr ""
+#: toolbox.py:274
+msgid "Stamp"
+msgstr "կնիք"
 
 #: toolbox.py:287
 msgid "Select Area"
@@ -102,16 +86,17 @@ msgstr "Ընտրել Մակերեսը"
 msgid "Fill"
 msgstr "Լիցք"
 
-#: toolbox.py:386
-msgid "Keep Aspect"
-msgstr "Պահել արտաքին ձևը"
+#: toolbox.py:386 widgets.py:277
+msgid "Keep aspect"
+msgstr "Պահել արտաքին տեսքը"
 
 #: toolbox.py:403
 msgid "Sides: "
 msgstr "Կողմեր. "
 
-#~ msgid "Shapes properties"
-#~ msgstr ""
+#: toolbox.py:458
+msgid "Shapes properties"
+msgstr "ձեւավորում հատկությունները"
 
 #: toolbox.py:470
 msgid "Ellipse"
@@ -205,8 +190,9 @@ msgstr "Հակադարձել Գույները"
 msgid "Choose image"
 msgstr "Ընտրել պատկերը"
 
-#~ msgid "Choose brush properties"
-#~ msgstr ""
+#: widgets.py:24
+msgid "Choose brush properties"
+msgstr "Ընտրեք խոզանակ հատկությունները"
 
 #: widgets.py:238
 msgid "Size: "
@@ -224,134 +210,6 @@ msgstr "Քառակուսի"
 msgid "Shape"
 msgstr "Ձև"
 
-#: widgets.py:277
-msgid "Keep aspect"
-msgstr "Պահել արտաքին տեսքը"
-
-#~ msgid "Stamp properties"
-#~ msgstr ""
-
-#~ msgid "Tools"
-#~ msgstr "Գործիքներ"
-
-#~ msgid "Text"
-#~ msgstr "Տեքստ"
-
-#~ msgid "Effects"
-#~ msgstr "Էֆֆեկտներ"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Գծի Գույնը"
-
-#~ msgid "Pencil"
-#~ msgstr "Մատիտ"
-
-#~ msgid "Fill Color"
-#~ msgstr "Լցման Գույն"
-
-#~ msgid "Points: "
-#~ msgstr "Կետեր."
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Մեծացնել"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Փոքրացնել"
-
-#~ msgid "Mirror Horizontal"
-#~ msgstr "Հորիզոնական Հայելապատկեր"
-
-#~ msgid "Mirror Vertical"
-#~ msgstr "Ուղղաձիգ Հայելապատկեր"
-
-#: toolbox.py:1492
-msgid "150"
-msgstr "150"
-
-#: toolbox.py:375
-msgid "Pencil"
-msgstr "Մատիտ"
-
-#: toolbox.py:1491
-msgid "200"
-msgstr "200"
-
-#: toolbox.py:189
-msgid "Text"
-msgstr "Տեքստ"
-
-#: toolbox.py:934
-msgid "Points: "
-msgstr "Կետեր "
-
-#: toolbox.py:706
-msgid "Fill Color"
-msgstr "Լրացնել գույն"
-
-#: toolbox.py:1494
-msgid "50"
-msgstr "50"
-
-#: toolbox.py:1496
-msgid "10"
-msgstr "10"
-
-#: toolbox.py:1495
-msgid "25"
-msgstr "25"
-
-#: toolbox.py:365 toolbox.py:714
-msgid "Stroke Color"
-msgstr "Գծել գույն"
-
-#: toolbox.py:181
-msgid "Tools"
-msgstr "Գործիքներ"
-
-#: toolbox.py:1493
-msgid "100"
-msgstr "100"
-
-#: toolbox.py:1489
-msgid "1000"
-msgstr "1000"
-
-#: toolbox.py:1506
-msgid "ZOOM +"
-msgstr "Մեծացնել +"
-
-#: toolbox.py:1510
-msgid "ZOOM -"
-msgstr "Փոքրացնել -"
-
-#: toolbox.py:1490
-msgid "500"
-msgstr "500"
-
-#: toolbox.py:197
-msgid "Effects"
-msgstr "Էֆեկտներ"
+#: widgets.py:303
+msgid "Stamp properties"
+msgstr "կնիք հատկությունները"
