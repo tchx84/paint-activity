@@ -72,6 +72,8 @@ import pango
 from fill import fill
 from Desenho import Desenho
 from urlparse import urlparse
+from sugar.graphics.style import zoom
+
 
 ##Tools and events manipulation are handle with this class.
 
@@ -139,7 +141,7 @@ class Area(gtk.DrawingArea):
         self.tool = {
             'name': 'pencil',
             'line size': 4,
-            'stamp size': 20,
+            'stamp size': self._get_stamp_size(),
             'fill color': None,
             'stroke color': None,
             'line shape': 'circle',
@@ -186,6 +188,10 @@ class Area(gtk.DrawingArea):
         self.drawing = False
         self.x_cursor = 0
         self.y_cursor = 0
+
+    def _get_stamp_size(self):
+        """Set the stamp initial size, based on the display DPI."""
+        return zoom(44)
 
     def setup(self, width, height):
         """Configure the Area object."""
