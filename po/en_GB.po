@@ -26,11 +26,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-04 00:31-0400\n"
+"POT-Creation-Date: 2011-08-04 15:26-0300\n"
 "PO-Revision-Date: 2011-07-07 07:18+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: en_GB\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -105,9 +105,9 @@ msgstr "Select Area"
 msgid "Fill"
 msgstr "Fill"
 
-#: toolbox.py:386
-msgid "Keep Aspect"
-msgstr "Keep Aspect"
+#: toolbox.py:386 widgets.py:277
+msgid "Keep aspect"
+msgstr "Keep aspect"
 
 #: toolbox.py:403
 msgid "Sides: "
@@ -229,13 +229,12 @@ msgstr "Square"
 msgid "Shape"
 msgstr "Shape"
 
-#: widgets.py:277
-msgid "Keep aspect"
-msgstr "Keep aspect"
-
 #: widgets.py:303
 msgid "Stamp properties"
 msgstr "Stamp properties"
+
+#~ msgid "Keep Aspect"
+#~ msgstr "Keep Aspect"
 
 #~ msgid "Tools"
 #~ msgstr "Tools"
