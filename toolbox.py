@@ -813,32 +813,14 @@ class ImageToolbar(gtk.Toolbar):
         return spin
 
     def insertImage(self, widget, activity):
-        # FIXME: this should be a ObjectChooser
-        # TODO: add a filter to display images only.
-        #dialog = gtk.FileChooserDialog(title=(_('Open File...')),
-                     #action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                     #buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                     #gtk.STOCK_OK, gtk.RESPONSE_OK))
-        #dialog.show_all()
-
-        #logging.debug('Importing image from file')
-        #response = dialog.run()
-
-        #if response == gtk.RESPONSE_OK:
-            #file_path = dialog.get_filename()
-            #logging.debug('file selected')
-            #logging.debug(file_path)
-            ##file_path = decode_path((file_path,))[0]
-            ##open(activity, file_path)
-            #activity.area.loadImage(file_path,widget,True)
-        #elif response == gtk.RESPONSE_CANCEL:
-            #logging.debug('Closed, no files selected')
-
-        #dialog.destroy()
-
-        chooser = ObjectChooser(_('Choose image'), self._activity,
-                                gtk.DIALOG_MODAL |
-                                gtk.DIALOG_DESTROY_WITH_PARENT)
+        try:
+            chooser = ObjectChooser(_('Choose image'),
+                self._activity, gtk.DIALOG_MODAL |
+                gtk.DIALOG_DESTROY_WITH_PARENT, what_filter='Image')
+        except:
+            chooser = ObjectChooser(_('Choose image'),
+                self._activity, gtk.DIALOG_MODAL |
+                gtk.DIALOG_DESTROY_WITH_PARENT)
         try:
             result = chooser.run()
             if result == gtk.RESPONSE_ACCEPT:
