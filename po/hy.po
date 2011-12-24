@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-04 15:26-0300\n"
-"PO-Revision-Date: 2011-12-22 02:27+0200\n"
-"Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
+"PO-Revision-Date: 2011-12-23 04:32+0200\n"
+"Last-Translator: Jasmine <udea_jasmine@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "Նկարել"
 
 #: toolbox.py:101
 msgid "Edit"
-msgstr "խմբագրել"
+msgstr "Խմբագրել"
 
 #: toolbox.py:111
 msgid "Shapes"
@@ -31,7 +31,7 @@ msgstr "Ձևեր"
 
 #: toolbox.py:117
 msgid "Fonts"
-msgstr "տառատեսակները"
+msgstr "Տառատեսակները"
 
 #: toolbox.py:123
 msgid "Image"
@@ -39,7 +39,7 @@ msgstr "Պատկեր"
 
 #: toolbox.py:153
 msgid "Undo"
-msgstr "Չեղյալ համարել"
+msgstr "Ետարկել"
 
 #: toolbox.py:154
 msgid "Redo"
@@ -47,11 +47,11 @@ msgstr "Կրկին կատարել"
 
 #: toolbox.py:155
 msgid "Copy"
-msgstr "կրկնօրինակել"
+msgstr "Պատճենել"
 
 #: toolbox.py:156
 msgid "Paste"
-msgstr "Տեղադրել"
+msgstr "Փակցնել"
 
 #: toolbox.py:164
 msgid "Clear"
@@ -59,7 +59,7 @@ msgstr "Մաքրել"
 
 #: toolbox.py:244 widgets.py:311
 msgid "Brush properties"
-msgstr "Վրձնի Հատկությունները"
+msgstr "Վրձնի Հատկանիշները"
 
 #: toolbox.py:261
 msgid "Brush"
@@ -75,11 +75,11 @@ msgstr "Դույլ"
 
 #: toolbox.py:274
 msgid "Stamp"
-msgstr "կնիք"
+msgstr "Դրոշմ"
 
 #: toolbox.py:287
 msgid "Select Area"
-msgstr "Ընտրել Մակերեսը"
+msgstr "Ընտրել տարածքը"
 
 #: toolbox.py:380
 msgid "Fill"
@@ -95,7 +95,7 @@ msgstr "Կողմեր. "
 
 #: toolbox.py:458
 msgid "Shapes properties"
-msgstr "ձևավորման հատկությունները"
+msgstr "Ձևերի հատկանիշները"
 
 #: toolbox.py:470
 msgid "Ellipse"
@@ -147,7 +147,7 @@ msgstr "Տպել"
 
 #: toolbox.py:677
 msgid "Insert Image"
-msgstr "Ներդնել պատկեր"
+msgstr "Զետեղել պատկեր"
 
 #: toolbox.py:690
 msgid "Rotate Left"
@@ -191,7 +191,7 @@ msgstr "Ընտրել պատկերը"
 
 #: widgets.py:24
 msgid "Choose brush properties"
-msgstr "Ընտրեք խոզանակ հատկությունները"
+msgstr "Ընտրեք խոզանակի հատկանիշները"
 
 #: widgets.py:238
 msgid "Size: "
@@ -199,7 +199,7 @@ msgstr "Չափս. "
 
 #: widgets.py:249
 msgid "Circle"
-msgstr "Օղակ"
+msgstr "Շրջանագիծ"
 
 #: widgets.py:259
 msgid "Square"
@@ -211,4 +211,4 @@ msgstr "Ձև"
 
 #: widgets.py:303
 msgid "Stamp properties"
-msgstr "կնիք հատկությունները"
+msgstr "Դրոշմի հատկանիշները"
