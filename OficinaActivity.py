@@ -145,10 +145,24 @@ class OficinaActivity(activity.Activity):
         def size_allocate_cb(widget, allocation):
             self.fixed.disconnect(self._setup_handle)
             self.area.setup(pixbuf.get_width(), pixbuf.get_height())
+            # The scrolled window is confused with a image of the same size
+            # of the canvas when the toolbars popup and the scrolls
+            # keep visible.
+            if pixbuf.get_height() > allocation.height or \
+                    pixbuf.get_width() > allocation.width:
+                self.canvas.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            else:
+                self.canvas.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+
             self.area.loadImageFromJournal(pixbuf)
             self.center_area()
 
         self.canvas.add_with_viewport(self.fixed)
+        # to remove the border, we need set the shadowtype
+        # in the viewport child of the scrolledwindow
+        self.canvas.get_children()[0].set_shadow_type(gtk.SHADOW_NONE)
+        self.canvas.get_children()[0].set_border_width(0)
+
         self.disconnect(self._setup_handle)
         self._setup_handle = self.fixed.connect('size_allocate',
                 size_allocate_cb)
