@@ -119,6 +119,9 @@ class OficinaActivity(activity.Activity):
                 self.center_area()
 
             self.canvas.add_with_viewport(self.fixed)
+            # to remove the border, we need set the shadowtype
+            # in the viewport child of the scrolledwindow
+            self.canvas.get_children()[0].set_shadow_type(gtk.SHADOW_NONE)
             self.disconnect(self._setup_handle)
             self._setup_handle = self.fixed.connect('size_allocate',
                     size_allocate_cb)
