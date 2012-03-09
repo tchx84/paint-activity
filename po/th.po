@@ -35,8 +35,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-04 15:26-0300\n"
-"PO-Revision-Date: 2012-02-29 07:35+0200\n"
-"Last-Translator: sit_Noina <orawan_noina@hotmail.com>\n"
+"PO-Revision-Date: 2012-03-09 10:24+0200\n"
+"Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -187,11 +187,11 @@ msgstr "หมุนขวา"
 
 #: toolbox.py:699
 msgid "Horizontal Mirror"
-msgstr "ภาพสะท้อนในแนวนอน"
+msgstr "กลับภาพในแนวนอน"
 
 #: toolbox.py:704
 msgid "Vertical Mirror"
-msgstr "ภาพสะท้อนในแนวตั้ง"
+msgstr "กลับภาพในแนวตั้ง"
 
 #: toolbox.py:708
 msgid "Height"
@@ -211,7 +211,7 @@ msgstr "รุ้ง"
 
 #: toolbox.py:742
 msgid "Invert Colors"
-msgstr "กลับค่าสีต่าง ๆ"
+msgstr "สลับค่าสี"
 
 #: toolbox.py:839
 msgid "Choose image"
@@ -239,7 +239,7 @@ msgstr "รูปทรง"
 
 #: widgets.py:303
 msgid "Stamp properties"
-msgstr "คุณสมบัติของรูปร่าง"
+msgstr "คุณสมบัติของประทับ"
 
 #~ msgid "Tools"
 #~ msgstr "เครื่องมือ"
