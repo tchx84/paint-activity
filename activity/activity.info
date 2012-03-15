@@ -1,6 +1,6 @@
 [Activity]
 name = Paint
-activity_version = 39
+activity_version = 40
 bundle_id = org.laptop.Oficina
 exec = sugar-activity OficinaActivity.OficinaActivity
 icon = activity-paint
