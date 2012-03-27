@@ -69,10 +69,18 @@ import os
 import tempfile
 import math
 import pango
-from fill import fill
+
 from Desenho import Desenho
 from urlparse import urlparse
 from sugar.graphics.style import zoom
+
+FALLBACK_FILL = True
+try:
+    from fill import fill
+    FALLBACK_FILL = False
+except:
+    logging.debug('No valid fill binaries. Using slower python code')
+    pass
 
 
 ##Tools and events manipulation are handle with this class.
@@ -603,10 +611,25 @@ class Area(gtk.DrawingArea):
                 private_undo = True
 
             elif self.tool['name'] == 'bucket':
-                width, height = self.window.get_size()
-                fill(self.pixmap, self.gc, coords[0], coords[1],
-                    width, height, self.gc_line.foreground.pixel)
-                widget.queue_draw()
+                if FALLBACK_FILL:
+                    if self.tool['stroke color'] is not None:
+                        stroke_color = self.tool['stroke color']
+                        color_r = int(stroke_color.red_float * 65535)
+                        color_g = int(stroke_color.green_float * 65535)
+                        color_b = int(stroke_color.blue_float * 65535)
+                    else:
+                        color_r, color_g, color_b = 0, 0, 0
+                    cmap = self.pixmap.get_colormap()
+                    fill_color = \
+                            cmap.alloc_color(color_r, color_g, color_b).pixel
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+                    gobject.idle_add(self.flood_fill, coords[0], coords[1],
+                            fill_color)
+                else:
+                    width, height = self.window.get_size()
+                    fill(self.pixmap, self.gc, coords[0], coords[1], width,
+                            height, self.gc_line.foreground.pixel)
+                    widget.queue_draw()
 
             elif self.tool['name'] == 'triangle':
                 self.d.triangle(widget, coords, False, self.tool['fill'])
@@ -639,6 +662,43 @@ class Area(gtk.DrawingArea):
         self.desenha = False
         if not private_undo:
             self.enableUndo(widget)
+
+    def flood_fill(self, x, y, fill_color):
+        width, height = self.window.get_size()
+
+        gdk_image = self.pixmap.get_image(0, 0, width, height)
+
+        def within(x, y):
+            if x < 0 or x >= width:
+                return False
+            if y < 0 or y >= height:
+                return False
+            return True
+
+        if not within(x, y):
+            return
+        edge = [(x, y)]
+
+        old_color = gdk_image.get_pixel(x, y)
+        if old_color == fill_color:
+            logging.debug('Already filled')
+            return
+
+        gdk_image.put_pixel(x, y, fill_color)
+
+        while len(edge) > 0:
+            newedge = []
+            for (x, y) in edge:
+                for (s, t) in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                    if within(s, t) and \
+                            gdk_image.get_pixel(s, t) == old_color:
+                        gdk_image.put_pixel(s, t, fill_color)
+                        newedge.append((s, t))
+            edge = newedge
+
+        self.pixmap.draw_image(self.gc, gdk_image, 0, 0, 0, 0, width, height)
+        self.queue_draw()
+        self.window.set_cursor(None)
 
     def mouseleave(self, widget, event):
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
