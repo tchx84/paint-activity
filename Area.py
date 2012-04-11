@@ -627,9 +627,9 @@ class Area(gtk.DrawingArea):
                             fill_color)
                 else:
                     width, height = self.window.get_size()
-                    fill(self.pixmap, self.gc, coords[0], coords[1], width,
-                            height, self.gc_line.foreground.pixel)
-                    widget.queue_draw()
+                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+                    gobject.idle_add(self.fast_flood_fill, widget, coords[0],
+                            coords[1], width, height)
 
             elif self.tool['name'] == 'triangle':
                 self.d.triangle(widget, coords, False, self.tool['fill'])
@@ -662,6 +662,12 @@ class Area(gtk.DrawingArea):
         self.desenha = False
         if not private_undo:
             self.enableUndo(widget)
+
+    def fast_flood_fill(self, widget, x, y, width, height):
+        fill(self.pixmap, self.gc, x, y, width,
+                height, self.gc_line.foreground.pixel)
+        widget.queue_draw()
+        self.window.set_cursor(None)
 
     def flood_fill(self, x, y, fill_color):
         width, height = self.window.get_size()
@@ -1048,10 +1054,12 @@ class Area(gtk.DrawingArea):
         self._do_process(widget, proc_mirror)
 
     def _do_process(self, widget, apply_process):
-        width, height = self.window.get_size()
-
         self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.drain_events()
+        gobject.idle_add(self._do_process_internal, widget, apply_process)
+
+    def _do_process_internal(self, widget, apply_process):
+
+        width, height = self.window.get_size()
 
         if self.selmove:
             size = self.pixmap_sel.get_size()
@@ -1092,6 +1100,7 @@ class Area(gtk.DrawingArea):
         if not self.selmove:
             self.enableUndo(widget)
         self.set_tool_cursor()
+
 
     def drain_events(self, block=gtk.FALSE):
         while gtk.events_pending():
