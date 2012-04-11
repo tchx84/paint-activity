@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-04 15:26-0300\n"
-"PO-Revision-Date: 2012-02-14 03:12+0200\n"
+"PO-Revision-Date: 2012-03-30 07:12+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: rw\n"
@@ -47,19 +47,19 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr "gusiga irange"
+msgstr "Gusiga irange"
 
 #: toolbox.py:101
 msgid "Edit"
-msgstr "guhindura"
+msgstr "Hindura"
 
 #: toolbox.py:111
 msgid "Shapes"
-msgstr "guforoma kwikintu"
+msgstr "Guforoma kwikintu"
 
 #: toolbox.py:117
 msgid "Fonts"
-msgstr ""
+msgstr "Intego-nyuguti"
 
 #: toolbox.py:123
 msgid "Image"
@@ -75,7 +75,7 @@ msgstr "Gukuraho ikigaruwe"
 
 #: toolbox.py:155
 msgid "Copy"
-msgstr "gukoporora"
+msgstr "Gukoporora"
 
 #: toolbox.py:156
 msgid "Paste"
@@ -83,7 +83,7 @@ msgstr "Komeka ibyakoporowe"
 
 #: toolbox.py:164
 msgid "Clear"
-msgstr "ikintu gisobanutse"
+msgstr "Ikintu gisobanutse"
 
 #: toolbox.py:244 widgets.py:311
 msgid "Brush properties"
@@ -91,7 +91,7 @@ msgstr ""
 
 #: toolbox.py:261
 msgid "Brush"
-msgstr "igikoresho bahanaguza ikintu"
+msgstr "Igikoresho bahanaguza ikintu"
 
 #: toolbox.py:266
 msgid "Eraser"
@@ -99,7 +99,7 @@ msgstr "Igisibisho"
 
 #: toolbox.py:270
 msgid "Bucket"
-msgstr "indobo"
+msgstr "Indobo"
 
 #: toolbox.py:274
 msgid "Stamp"
@@ -111,7 +111,7 @@ msgstr ""
 
 #: toolbox.py:380
 msgid "Fill"
-msgstr "kuzuza"
+msgstr "Kuzuza"
 
 #: toolbox.py:386 widgets.py:277
 msgid "Keep aspect"
@@ -119,7 +119,7 @@ msgstr ""
 
 #: toolbox.py:403
 msgid "Sides: "
-msgstr "Impande"
+msgstr "Impande: "
 
 #: toolbox.py:458
 msgid "Shapes properties"
@@ -135,7 +135,7 @@ msgstr "Urukiramende"
 
 #: toolbox.py:478
 msgid "Line"
-msgstr "umurongo"
+msgstr "Umurongo"
 
 #: toolbox.py:482
 msgid "Free form"
@@ -147,7 +147,7 @@ msgstr "Ikinyampande"
 
 #: toolbox.py:490
 msgid "Heart"
-msgstr "umutima"
+msgstr "Umutima"
 
 #: toolbox.py:494
 msgid "Parallelogram"
@@ -175,15 +175,15 @@ msgstr "Andika"
 
 #: toolbox.py:677
 msgid "Insert Image"
-msgstr "shyiramo ishusho"
+msgstr "Shyiramo ishusho"
 
 #: toolbox.py:690
 msgid "Rotate Left"
-msgstr "zengurutsa uganisha ubumosa"
+msgstr "Zengurutsa uganisha ubumosa"
 
 #: toolbox.py:694
 msgid "Rotate Right"
-msgstr "zengurutsa uganisha iburyo"
+msgstr "Zengurutsa uganisha iburyo"
 
 #: toolbox.py:699
 msgid "Horizontal Mirror"
@@ -195,7 +195,7 @@ msgstr ""
 
 #: toolbox.py:708
 msgid "Height"
-msgstr "ubuhagarike"
+msgstr "Ubuhagarike"
 
 #: toolbox.py:719
 msgid "Width"
@@ -207,7 +207,7 @@ msgstr "Grayscale"
 
 #: toolbox.py:737
 msgid "Rainbow"
-msgstr "umukororombya"
+msgstr "Umukororombya"
 
 #: toolbox.py:742
 msgid "Invert Colors"
@@ -215,7 +215,7 @@ msgstr ""
 
 #: toolbox.py:839
 msgid "Choose image"
-msgstr "toranya ishusho"
+msgstr "Toranya ishusho"
 
 #: widgets.py:24
 msgid "Choose brush properties"
@@ -223,15 +223,15 @@ msgstr ""
 
 #: widgets.py:238
 msgid "Size: "
-msgstr "Ingano"
+msgstr "Ingano: "
 
 #: widgets.py:249
 msgid "Circle"
-msgstr "uruziga"
+msgstr "Uruziga"
 
 #: widgets.py:259
 msgid "Square"
-msgstr "kare"
+msgstr "Kare"
 
 #: widgets.py:271
 msgid "Shape"

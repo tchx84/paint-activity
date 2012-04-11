@@ -35,10 +35,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-04 15:26-0300\n"
-"PO-Revision-Date: 2012-01-15 05:14+0200\n"
+"PO-Revision-Date: 2012-04-03 00:07+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -107,7 +107,7 @@ msgstr "Carimbo"
 
 #: toolbox.py:287
 msgid "Select Area"
-msgstr "Selecciona a Área"
+msgstr "Seleciona a Área"
 
 #: toolbox.py:380
 msgid "Fill"
@@ -131,7 +131,7 @@ msgstr "Elipse"
 
 #: toolbox.py:474
 msgid "Rectangle"
-msgstr "Rectângulo"
+msgstr "Retângulo"
 
 #: toolbox.py:478
 msgid "Line"
@@ -151,7 +151,7 @@ msgstr "Coração"
 
 #: toolbox.py:494
 msgid "Parallelogram"
-msgstr "Paralelograma"
+msgstr "Paralelogramo"
 
 #: toolbox.py:498
 msgid "Arrow"
@@ -163,7 +163,7 @@ msgstr "Estrela"
 
 #: toolbox.py:506
 msgid "Trapezoid"
-msgstr "Trapézio"
+msgstr "Trapezoide"
 
 #: toolbox.py:510
 msgid "Triangle"
@@ -187,11 +187,11 @@ msgstr "Rodar para a Direita"
 
 #: toolbox.py:699
 msgid "Horizontal Mirror"
-msgstr "Espelho Horizontal"
+msgstr "Espelhar Horizontalmente"
 
 #: toolbox.py:704
 msgid "Vertical Mirror"
-msgstr "Espelho Vertical"
+msgstr "Espelhar Verticalmente"
 
 #: toolbox.py:708
 msgid "Height"
@@ -203,7 +203,7 @@ msgstr "Largura"
 
 #: toolbox.py:734
 msgid "Grayscale"
-msgstr "Escala de cinzas"
+msgstr "Tons de cinzento"
 
 #: toolbox.py:737
 msgid "Rainbow"
