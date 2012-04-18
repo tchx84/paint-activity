@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-08-04 15:26-0300\n"
-"PO-Revision-Date: 2012-04-03 00:07+0200\n"
+"PO-Revision-Date: 2012-04-13 11:31+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -107,7 +107,7 @@ msgstr "Carimbo"
 
 #: toolbox.py:287
 msgid "Select Area"
-msgstr "Seleciona a Área"
+msgstr "Selecionar Área"
 
 #: toolbox.py:380
 msgid "Fill"
@@ -115,7 +115,7 @@ msgstr "Preencher"
 
 #: toolbox.py:386 widgets.py:277
 msgid "Keep aspect"
-msgstr "Manter aspecto"
+msgstr "Manter aspeto"
 
 #: toolbox.py:403
 msgid "Sides: "
@@ -123,7 +123,7 @@ msgstr "Lados: "
 
 #: toolbox.py:458
 msgid "Shapes properties"
-msgstr "Propriedades das Formas"
+msgstr "Propriedades da Forma"
 
 #: toolbox.py:470
 msgid "Ellipse"
