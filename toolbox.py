@@ -82,6 +82,8 @@ from sugar.activity.widgets import ActivityToolbarButton
 from sugar.graphics.toolbarbox import ToolbarButton, ToolbarBox
 from sugar.activity.widgets import StopButton
 
+from fontcombobox import FontComboBox
+
 
 class DrawToolbarBox(ToolbarBox):
     """Create toolbars for the activity"""
@@ -604,20 +606,11 @@ class TextToolbar(gtk.Toolbar):
         tool_item = ToolComboBox(self._font_size_combo)
         self.insert(tool_item, -1)
 
-        self._fonts = []
-        pango_context = self.get_pango_context()
-        pango_context.set_language(pango.Language("en"))
-        for family in pango_context.list_families():
-            self._fonts.append(family.get_name())
-        self._fonts.sort()
-
-        self._font_combo = gtk.combo_box_new_text()
+        self._font_combo = FontComboBox()
         self._fonts_changed_id = self._font_combo.connect('changed',
                 self.__font_changed_cb)
-        for i, f in enumerate(self._fonts):
-            self._font_combo.append_text(f)
-            if f == activity.area.font_description.get_family():
-                self._font_combo.set_active(i)
+        font_name = activity.area.font_description.get_family()
+        self._font_combo.set_font_name(font_name)
         tool_item = ToolComboBox(self._font_combo)
         self.insert(tool_item, -1)
         self.show_all()
@@ -646,8 +639,8 @@ class TextToolbar(gtk.Toolbar):
 
     def __font_changed_cb(self, combo):
         activity = self._activity
-        value = self.get_active_text(combo)
-        activity.area.font_description.set_family(value)
+        font_name = combo.get_font_name()
+        activity.area.font_description.set_family(font_name)
         activity.textview.modify_font(activity.area.font_description)
 
     def get_active_text(self, combobox):
