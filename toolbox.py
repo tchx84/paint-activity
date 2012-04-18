@@ -125,12 +125,6 @@ class DrawToolbarBox(ToolbarBox):
         image_button.props.label = _('Image')
         self.toolbar.insert(image_button, -1)
 
-        separator = gtk.SeparatorToolItem()
-        separator.props.draw = False
-        separator.set_expand(True)
-        separator.show()
-        self.toolbar.insert(separator, -1)
-
         stop = StopButton(self._activity)
         self.toolbar.insert(stop, -1)
 
