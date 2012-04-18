@@ -136,12 +136,13 @@ class DrawToolbarBox(ToolbarBox):
 
         # TODO: workaround
         # the BrushButton does not starts
-        brush_button = tools_builder._stroke_color.color_button
-        brush_button.set_brush_shape(self._activity.area.tool['line shape'])
-        brush_button.set_brush_size(self._activity.area.tool['line size'])
-        brush_button.set_stamp_size(self._activity.area.tool['stamp size'])
+        self.brush_button = tools_builder._stroke_color.color_button
+        area = self._activity.area
+        self.brush_button.set_brush_shape(area.tool['line shape'])
+        self.brush_button.set_brush_size(area.tool['line size'])
+        self.brush_button.set_stamp_size(area.tool['stamp size'])
         if self._activity.area.tool['stroke color'] is not None:
-            brush_button.set_color(self._activity.area.tool['stroke color'])
+            self.brush_button.set_color(area.tool['stroke color'])
 
 
 ##Make the Edit Toolbar
@@ -232,6 +233,7 @@ class ToolsToolbarBuilder():
     _TOOL_BRUSH_NAME = 'brush'
     _TOOL_ERASER_NAME = 'eraser'
     _TOOL_BUCKET_NAME = 'bucket'
+    _TOOL_PICKER_NAME = 'picker'
     _TOOL_STAMP_NAME = 'stamp'
     _TOOL_MARQUEE_RECT_NAME = 'marquee-rectangular'
 
@@ -253,12 +255,6 @@ class ToolsToolbarBuilder():
         separator.set_draw(True)
         toolbar.insert(separator, -1)
 
-        """
-        self._tool_pencil = DrawToolButton('tool-pencil',
-            activity.tool_group, _('Pencil'))
-        toolbar.insert(self._tool_pencil, -1)
-        """
-
         self._tool_brush = DrawToolButton('tool-brush',
             activity.tool_group, _('Brush'))
         activity.tool_group = self._tool_brush
@@ -271,6 +267,10 @@ class ToolsToolbarBuilder():
         self._tool_bucket = DrawToolButton('tool-bucket',
             activity.tool_group, _('Bucket'))
         toolbar.insert(self._tool_bucket, -1)
+
+        self._tool_picker = DrawToolButton('tool-picker',
+            activity.tool_group, _('Picker'))
+        toolbar.insert(self._tool_picker, -1)
 
         self._tool_stamp = DrawToolButton('tool-stamp',
             activity.tool_group, _('Stamp'))
@@ -303,6 +303,8 @@ class ToolsToolbarBuilder():
             self._TOOL_ERASER_NAME)
         self._tool_bucket.connect('clicked', self.set_tool,
             self._TOOL_BUCKET_NAME)
+        self._tool_picker.connect('clicked', self.set_tool,
+            self._TOOL_PICKER_NAME)
         self._tool_stamp.connect('clicked', self.set_tool,
             self._TOOL_STAMP_NAME)
         self._tool_marquee_rectangular.connect('clicked', self.set_tool,

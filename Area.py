@@ -98,12 +98,12 @@ class Area(gtk.DrawingArea):
         'select': (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
     }
 
-    def __init__(self, janela):
+    def __init__(self, activity):
         """ Initialize the object from class Area which is derived
             from gtk.DrawingArea.
 
             @param  self -- the Area object (GtkDrawingArea)
-            @param  janela -- the parent window
+            @param  activity -- the parent window
 
         """
         gtk.DrawingArea.__init__(self)
@@ -175,7 +175,7 @@ class Area(gtk.DrawingArea):
         self.desenho = []
         self.textos = []
         self.text_in_progress = False
-        self.janela = janela
+        self.activity = activity
         self.d = Desenho(self)
         self.last = []
         self.rainbow_counter = 0
@@ -336,17 +336,17 @@ class Area(gtk.DrawingArea):
         elif self.text_in_progress:
             try:
             # This works for a gtk.Entry
-                text = self.janela.textview.get_text()
+                text = self.activity.textview.get_text()
             except AttributeError:
             # This works for a gtk.TextView
-                buf = self.janela.textview.get_buffer()
+                buf = self.activity.textview.get_buffer()
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end)
 
             if text is not None:
                 self.d.text(widget, event)
             self.text_in_progress = False
-            self.janela.textview.hide()
+            self.activity.textview.hide()
 
         self.oldx, self.oldy = coords
 
@@ -354,6 +354,9 @@ class Area(gtk.DrawingArea):
             self.d.polygon(widget, coords, False, self.tool['fill'], "bug")
 
         x, y, state = event.window.get_pointer()
+
+        if self.tool['name'] == 'picker':
+            self.pick_color(x, y)
 
         if state & gtk.gdk.BUTTON3_MASK:
             #Handle with the right button click event.
@@ -706,6 +709,22 @@ class Area(gtk.DrawingArea):
         self.queue_draw()
         self.window.set_cursor(None)
 
+    def pick_color(self, x, y):
+        gdk_image = self.pixmap.get_image(x, y, 1, 1)
+        pixel = gdk_image.get_pixel(0, 0)
+        cmap = gdk_image.get_colormap()
+        gdk_color = cmap.query_color(pixel)
+
+        # set in the area
+        pixmap_cmap = self.pixmap.get_colormap()
+        stroke_color = pixmap_cmap.alloc_color(gdk_color)
+        self.tool['stroke color'] = stroke_color
+        self.set_stroke_color(self.tool['stroke color'])
+
+        # update the stroke color button
+        self.activity.get_toolbar_box().brush_button.set_color(stroke_color)
+        self.activity.get_toolbar_box().brush_button.stop_stamping()
+
     def mouseleave(self, widget, event):
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
                                  'stamp']:
@@ -777,7 +796,7 @@ class Area(gtk.DrawingArea):
 
         if self.text_in_progress:
             self.d.text(self, None)
-            self.janela.textview.hide()
+            self.activity.textview.hide()
 
         if self._undo_index > 0:
             self._undo_index -= 1
@@ -987,7 +1006,7 @@ class Area(gtk.DrawingArea):
         self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH,
             gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
         self.gc_brush.set_foreground(color)
-        self.janela.textview.modify_text(gtk.STATE_NORMAL, color)
+        self.activity.textview.modify_text(gtk.STATE_NORMAL, color)
 
     def grayscale(self, widget):
         """Apply grayscale effect.
@@ -1217,7 +1236,7 @@ class Area(gtk.DrawingArea):
                 height, width, dither=gtk.gdk.RGB_DITHER_NORMAL,
                 x_dither=0, y_dither=0)
 
-            self.janela.center_area()
+            self.activity.center_area()
 
         del temp_pix
 

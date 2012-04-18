@@ -595,32 +595,32 @@ class Desenho:
             widget.text_in_progress = True
 
             x, y = int(event.x), int(event.y)
-            widget.janela.move_textview(x, y)
-            widget.janela.textview.show()
-            widget.janela.textview.grab_focus()
+            widget.activity.move_textview(x, y)
+            widget.activity.textview.show()
+            widget.activity.textview.grab_focus()
 
         else:
             widget.text_in_progress = False
 
             try:
             # This works for a gtk.Entry
-                text = widget.janela.textview.get_text()
+                text = widget.activity.textview.get_text()
             except AttributeError:
             # This works for a gtk.TextView
-                buf = widget.janela.textview.get_buffer()
+                buf = widget.activity.textview.get_buffer()
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end)
 
-            layout = widget.janela.textview.create_pango_layout(text)
+            layout = widget.activity.textview.create_pango_layout(text)
 
             widget.pixmap.draw_layout(widget.gc_brush,
                 widget.oldx, widget.oldy, layout)
             widget.pixmap_temp.draw_layout(widget.gc,
                 widget.oldx, widget.oldy, layout)
-            widget.janela.textview.hide()
+            widget.activity.textview.hide()
 
             try:
-                widget.janela.textview.set_text('')
+                widget.activity.textview.set_text('')
             except AttributeError:
                 buf.set_text('')
 
