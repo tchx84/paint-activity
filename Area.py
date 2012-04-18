@@ -822,7 +822,7 @@ class Area(gtk.DrawingArea):
         if self.selmove:
             self.getout()
 
-        if self._undo_index < len(self._undo_list)-1:
+        if self._undo_index < len(self._undo_list) - 1:
             self._undo_index += 1
 
         undo_pix = self._undo_list[self._undo_index]
@@ -1119,7 +1119,6 @@ class Area(gtk.DrawingArea):
         if not self.selmove:
             self.enableUndo(widget)
         self.set_tool_cursor()
-
 
     def drain_events(self, block=gtk.FALSE):
         while gtk.events_pending():
