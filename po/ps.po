@@ -34,10 +34,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-10 14:52-0500\n"
+"POT-Creation-Date: 2011-08-04 15:26-0300\n"
 "PO-Revision-Date: 2008-03-02 05:00-0500\n"
 "Last-Translator: Ahmad Jawed Samsor <jawedsamsor@gmail.com>\n"
 "Language-Team: PASHTO <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,245 +48,248 @@ msgstr ""
 msgid "Paint"
 msgstr "رسامي"
 
-#: toolbox.py:177
+#: toolbox.py:101
 msgid "Edit"
 msgstr "اېډېټ"
 
-#: toolbox.py:181
-msgid "Tools"
-msgstr "وسيلې"
-
-#: toolbox.py:185
+#: toolbox.py:111
 msgid "Shapes"
 msgstr "بڼې"
 
-#: toolbox.py:189
-msgid "Text"
-msgstr "متن"
+#: toolbox.py:117
+msgid "Fonts"
+msgstr ""
 
-#: toolbox.py:193
+#: toolbox.py:123
 msgid "Image"
 msgstr "انځور"
 
-#: toolbox.py:197
-msgid "Effects"
-msgstr "اغيزې"
-
-#: toolbox.py:215
+#: toolbox.py:153
 msgid "Undo"
 msgstr "ناکول"
 
-#: toolbox.py:216
+#: toolbox.py:154
 msgid "Redo"
 msgstr "بیاکول"
 
-#: toolbox.py:217
+#: toolbox.py:155
 msgid "Copy"
 msgstr "کاپي"
 
-#: toolbox.py:218
+#: toolbox.py:156
 msgid "Paste"
 msgstr "سرېښل"
 
-#: toolbox.py:226
+#: toolbox.py:164
 msgid "Clear"
 msgstr "پاکول"
 
-#: toolbox.py:365 toolbox.py:714
-msgid "Stroke Color"
-msgstr "رنګ وهل"
+#: toolbox.py:244 widgets.py:311
+msgid "Brush properties"
+msgstr ""
 
-#: toolbox.py:375
-msgid "Pencil"
-msgstr "پنسل"
-
-#: toolbox.py:384
+#: toolbox.py:261
 msgid "Brush"
 msgstr "برس"
 
-#: toolbox.py:392
+#: toolbox.py:266
 msgid "Eraser"
 msgstr "پاكوونكی"
 
-#: toolbox.py:400
+#: toolbox.py:270
 msgid "Bucket"
 msgstr "سلواغه"
 
-#: toolbox.py:428
+#: toolbox.py:274
+msgid "Stamp"
+msgstr ""
+
+#: toolbox.py:287
 msgid "Select Area"
 msgstr ""
 
-#: toolbox.py:479 toolbox.py:988 toolbox.py:1420
-msgid "Size: "
-msgstr "اندازه "
-
-#: toolbox.py:498 toolbox.py:1433
-msgid "Circle"
-msgstr "دايره"
-
-#: toolbox.py:505 toolbox.py:1440
-msgid "Square"
-msgstr "مربع"
-
-#: toolbox.py:514 toolbox.py:1449
-msgid "Shape"
-msgstr "بڼه"
-
-#: toolbox.py:522
-msgid "Keep aspect"
-msgstr ""
-
-#: toolbox.py:706
-msgid "Fill Color"
-msgstr "رنګ ډكول"
-
-#: toolbox.py:724
-msgid "Ellipse"
-msgstr "هګيز"
-
-#: toolbox.py:732
-msgid "Rectangle"
-msgstr "مستطيل"
-
-#: toolbox.py:740
-msgid "Line"
-msgstr "ليکه"
-
-#: toolbox.py:748
-msgid "Free form"
-msgstr ""
-
-#: toolbox.py:757
-msgid "Polygon"
-msgstr "څو ضلعي"
-
-#: toolbox.py:765
-msgid "Heart"
-msgstr "زړه"
-
-#: toolbox.py:773
-msgid "Parallelogram"
-msgstr "متوازي الاضلاع"
-
-#: toolbox.py:781
-msgid "Arrow"
-msgstr "غشى"
-
-#: toolbox.py:789
-msgid "Star"
-msgstr "ستورى"
-
-#: toolbox.py:797
-msgid "Trapezoid"
-msgstr "منحرف-ډوله څلورضلعي"
-
-#: toolbox.py:805
-msgid "Triangle"
-msgstr "مثلث"
-
-#: toolbox.py:892
-msgid "Sides: "
-msgstr "خواوې: "
-
-#: toolbox.py:934
-msgid "Points: "
-msgstr "نقطې: "
-
-#: toolbox.py:973
+#: toolbox.py:380
 msgid "Fill"
 msgstr "ډكول"
 
-#: toolbox.py:1003
-msgid "Keep Aspect"
+#: toolbox.py:386 widgets.py:277
+msgid "Keep aspect"
 msgstr ""
 
-#: toolbox.py:1033
+#: toolbox.py:403
+msgid "Sides: "
+msgstr "خواوې: "
+
+#: toolbox.py:458
+msgid "Shapes properties"
+msgstr ""
+
+#: toolbox.py:470
+msgid "Ellipse"
+msgstr "هګيز"
+
+#: toolbox.py:474
+msgid "Rectangle"
+msgstr "مستطيل"
+
+#: toolbox.py:478
+msgid "Line"
+msgstr "ليکه"
+
+#: toolbox.py:482
+msgid "Free form"
+msgstr ""
+
+#: toolbox.py:486
+msgid "Polygon"
+msgstr "څو ضلعي"
+
+#: toolbox.py:490
+msgid "Heart"
+msgstr "زړه"
+
+#: toolbox.py:494
+msgid "Parallelogram"
+msgstr "متوازي الاضلاع"
+
+#: toolbox.py:498
+msgid "Arrow"
+msgstr "غشى"
+
+#: toolbox.py:502
+msgid "Star"
+msgstr "ستورى"
+
+#: toolbox.py:506
+msgid "Trapezoid"
+msgstr "منحرف-ډوله څلورضلعي"
+
+#: toolbox.py:510
+msgid "Triangle"
+msgstr "مثلث"
+
+#: toolbox.py:557
 msgid "Type"
 msgstr "ډول"
 
-#: toolbox.py:1153
+#: toolbox.py:677
 msgid "Insert Image"
 msgstr "انځور ننويستل"
 
-#: toolbox.py:1166
+#: toolbox.py:690
 msgid "Rotate Left"
 msgstr "كيڼ چورلول"
 
-#: toolbox.py:1171
+#: toolbox.py:694
 msgid "Rotate Right"
 msgstr "ښی چورلول"
 
-#: toolbox.py:1177
+#: toolbox.py:699
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:1182
+#: toolbox.py:704
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:1186
+#: toolbox.py:708
 msgid "Height"
 msgstr "لوړوالی"
 
-#: toolbox.py:1197
+#: toolbox.py:719
 msgid "Width"
 msgstr "عرض"
 
-#: toolbox.py:1306
-msgid "Choose image"
-msgstr "انځور انتخابول"
-
-#: toolbox.py:1351
+#: toolbox.py:734
 msgid "Grayscale"
 msgstr "خړ-مېچ"
 
-#: toolbox.py:1354
+#: toolbox.py:737
 msgid "Rainbow"
 msgstr "بوډۍ-ټال"
 
-#: toolbox.py:1361
+#: toolbox.py:742
 msgid "Invert Colors"
 msgstr ""
 
-#: toolbox.py:1489
-msgid "1000"
-msgstr "۱۰۰۰"
+#: toolbox.py:839
+msgid "Choose image"
+msgstr "انځور انتخابول"
 
-#: toolbox.py:1490
-msgid "500"
-msgstr "۵۰۰"
+#: widgets.py:24
+msgid "Choose brush properties"
+msgstr ""
 
-#: toolbox.py:1491
-msgid "200"
-msgstr "۲۰۰"
+#: widgets.py:238
+msgid "Size: "
+msgstr "اندازه "
 
-#: toolbox.py:1492
-msgid "150"
-msgstr "۱۵۰"
+#: widgets.py:249
+msgid "Circle"
+msgstr "دايره"
 
-#: toolbox.py:1493
-msgid "100"
-msgstr "۱۰۰"
+#: widgets.py:259
+msgid "Square"
+msgstr "مربع"
 
-#: toolbox.py:1494
-msgid "50"
-msgstr "۵۰"
+#: widgets.py:271
+msgid "Shape"
+msgstr "بڼه"
 
-#: toolbox.py:1495
-msgid "25"
-msgstr "۲۵"
+#: widgets.py:303
+msgid "Stamp properties"
+msgstr ""
 
-#: toolbox.py:1496
-msgid "10"
-msgstr "۱۰"
+#~ msgid "Tools"
+#~ msgstr "وسيلې"
 
-#: toolbox.py:1506
-msgid "ZOOM +"
-msgstr "لويوالی ډېرول"
+#~ msgid "Text"
+#~ msgstr "متن"
 
-#: toolbox.py:1510
-msgid "ZOOM -"
-msgstr "لويوالی کمول"
+#~ msgid "Effects"
+#~ msgstr "اغيزې"
+
+#~ msgid "Stroke Color"
+#~ msgstr "رنګ وهل"
+
+#~ msgid "Pencil"
+#~ msgstr "پنسل"
+
+#~ msgid "Fill Color"
+#~ msgstr "رنګ ډكول"
+
+#~ msgid "Points: "
+#~ msgstr "نقطې: "
+
+#~ msgid "1000"
+#~ msgstr "۱۰۰۰"
+
+#~ msgid "500"
+#~ msgstr "۵۰۰"
+
+#~ msgid "200"
+#~ msgstr "۲۰۰"
+
+#~ msgid "150"
+#~ msgstr "۱۵۰"
+
+#~ msgid "100"
+#~ msgstr "۱۰۰"
+
+#~ msgid "50"
+#~ msgstr "۵۰"
+
+#~ msgid "25"
+#~ msgstr "۲۵"
+
+#~ msgid "10"
+#~ msgstr "۱۰"
+
+#~ msgid "ZOOM +"
+#~ msgstr "لويوالی ډېرول"
+
+#~ msgid "ZOOM -"
+#~ msgstr "لويوالی کمول"
 
 #~ msgid "Rectangular Marquee"
 #~ msgstr "مستطيل ډوله خوځمتن"

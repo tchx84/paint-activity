@@ -42,11 +42,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-10 14:52-0500\n"
+"POT-Creation-Date: 2011-08-04 15:26-0300\n"
 "PO-Revision-Date: 2010-03-27 20:54+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: mr\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,245 +57,248 @@ msgstr ""
 msgid "Paint"
 msgstr "रंगवणे"
 
-#: toolbox.py:177
+#: toolbox.py:101
 msgid "Edit"
 msgstr "संपादन करणे"
 
-#: toolbox.py:181
-msgid "Tools"
-msgstr "साधने"
-
-#: toolbox.py:185
+#: toolbox.py:111
 msgid "Shapes"
 msgstr "आकार"
 
-#: toolbox.py:189
-msgid "Text"
-msgstr "शब्द"
+#: toolbox.py:117
+msgid "Fonts"
+msgstr ""
 
-#: toolbox.py:193
+#: toolbox.py:123
 msgid "Image"
 msgstr "छायाचित्र"
 
-#: toolbox.py:197
-msgid "Effects"
-msgstr "परिणाम"
-
-#: toolbox.py:215
+#: toolbox.py:153
 msgid "Undo"
 msgstr "केलेल्या गोष्टीवर बोला फिरवने"
 
-#: toolbox.py:216
+#: toolbox.py:154
 msgid "Redo"
 msgstr "परत करा"
 
-#: toolbox.py:217
+#: toolbox.py:155
 msgid "Copy"
 msgstr "नक्कल"
 
-#: toolbox.py:218
+#: toolbox.py:156
 msgid "Paste"
 msgstr "छापणे"
 
-#: toolbox.py:226
+#: toolbox.py:164
 msgid "Clear"
 msgstr "साफ करणे"
 
-#: toolbox.py:365 toolbox.py:714
-msgid "Stroke Color"
-msgstr "स्ट्रोक कलर"
+#: toolbox.py:244 widgets.py:311
+msgid "Brush properties"
+msgstr ""
 
-#: toolbox.py:375
-msgid "Pencil"
-msgstr "पेन्सिल"
-
-#: toolbox.py:384
+#: toolbox.py:261
 msgid "Brush"
 msgstr "ब्रश"
 
-#: toolbox.py:392
+#: toolbox.py:266
 msgid "Eraser"
 msgstr "खोडरब्बर"
 
-#: toolbox.py:400
+#: toolbox.py:270
 msgid "Bucket"
 msgstr "बादली"
 
-#: toolbox.py:428
+#: toolbox.py:274
+msgid "Stamp"
+msgstr ""
+
+#: toolbox.py:287
 msgid "Select Area"
 msgstr ""
 
-#: toolbox.py:479 toolbox.py:988 toolbox.py:1420
-msgid "Size: "
-msgstr "आकार: "
-
-#: toolbox.py:498 toolbox.py:1433
-msgid "Circle"
-msgstr "वर्तुळ"
-
-#: toolbox.py:505 toolbox.py:1440
-msgid "Square"
-msgstr "चौकोन"
-
-#: toolbox.py:514 toolbox.py:1449
-msgid "Shape"
-msgstr "आकार"
-
-#: toolbox.py:522
-msgid "Keep aspect"
-msgstr ""
-
-#: toolbox.py:706
-msgid "Fill Color"
-msgstr "रंग भरा"
-
-#: toolbox.py:724
-msgid "Ellipse"
-msgstr "लंबवर्तुळ"
-
-#: toolbox.py:732
-msgid "Rectangle"
-msgstr "आयत"
-
-#: toolbox.py:740
-msgid "Line"
-msgstr "रेषा"
-
-#: toolbox.py:748
-msgid "Free form"
-msgstr ""
-
-#: toolbox.py:757
-msgid "Polygon"
-msgstr "बहूभूज"
-
-#: toolbox.py:765
-msgid "Heart"
-msgstr "हृदय"
-
-#: toolbox.py:773
-msgid "Parallelogram"
-msgstr "समांतरभुज चौकोन"
-
-#: toolbox.py:781
-msgid "Arrow"
-msgstr "बाण"
-
-#: toolbox.py:789
-msgid "Star"
-msgstr "तारे"
-
-#: toolbox.py:797
-msgid "Trapezoid"
-msgstr "असमांतरभुज चौकोन"
-
-#: toolbox.py:805
-msgid "Triangle"
-msgstr "त्रिकोण"
-
-#: toolbox.py:892
-msgid "Sides: "
-msgstr "बाजू: "
-
-#: toolbox.py:934
-msgid "Points: "
-msgstr "बिंदू: "
-
-#: toolbox.py:973
+#: toolbox.py:380
 msgid "Fill"
 msgstr "भरणे"
 
-#: toolbox.py:1003
-msgid "Keep Aspect"
+#: toolbox.py:386 widgets.py:277
+msgid "Keep aspect"
 msgstr ""
 
-#: toolbox.py:1033
+#: toolbox.py:403
+msgid "Sides: "
+msgstr "बाजू: "
+
+#: toolbox.py:458
+msgid "Shapes properties"
+msgstr ""
+
+#: toolbox.py:470
+msgid "Ellipse"
+msgstr "लंबवर्तुळ"
+
+#: toolbox.py:474
+msgid "Rectangle"
+msgstr "आयत"
+
+#: toolbox.py:478
+msgid "Line"
+msgstr "रेषा"
+
+#: toolbox.py:482
+msgid "Free form"
+msgstr ""
+
+#: toolbox.py:486
+msgid "Polygon"
+msgstr "बहूभूज"
+
+#: toolbox.py:490
+msgid "Heart"
+msgstr "हृदय"
+
+#: toolbox.py:494
+msgid "Parallelogram"
+msgstr "समांतरभुज चौकोन"
+
+#: toolbox.py:498
+msgid "Arrow"
+msgstr "बाण"
+
+#: toolbox.py:502
+msgid "Star"
+msgstr "तारे"
+
+#: toolbox.py:506
+msgid "Trapezoid"
+msgstr "असमांतरभुज चौकोन"
+
+#: toolbox.py:510
+msgid "Triangle"
+msgstr "त्रिकोण"
+
+#: toolbox.py:557
 msgid "Type"
 msgstr "टाइप"
 
-#: toolbox.py:1153
+#: toolbox.py:677
 msgid "Insert Image"
 msgstr "छायाचित्र आत घाला"
 
-#: toolbox.py:1166
+#: toolbox.py:690
 msgid "Rotate Left"
 msgstr "डावीकडे फिरवा"
 
-#: toolbox.py:1171
+#: toolbox.py:694
 msgid "Rotate Right"
 msgstr "उजवीकडे फिरवा"
 
-#: toolbox.py:1177
+#: toolbox.py:699
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:1182
+#: toolbox.py:704
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:1186
+#: toolbox.py:708
 msgid "Height"
 msgstr "उंची"
 
-#: toolbox.py:1197
+#: toolbox.py:719
 msgid "Width"
 msgstr "रुंदी"
 
-#: toolbox.py:1306
-msgid "Choose image"
-msgstr "चित्र निवडा"
-
-#: toolbox.py:1351
+#: toolbox.py:734
 msgid "Grayscale"
 msgstr "राखाडी छटा"
 
-#: toolbox.py:1354
+#: toolbox.py:737
 msgid "Rainbow"
 msgstr "इंद्रधनुष्य"
 
-#: toolbox.py:1361
+#: toolbox.py:742
 msgid "Invert Colors"
 msgstr ""
 
-#: toolbox.py:1489
-msgid "1000"
-msgstr "१०००"
+#: toolbox.py:839
+msgid "Choose image"
+msgstr "चित्र निवडा"
 
-#: toolbox.py:1490
-msgid "500"
-msgstr "५००"
+#: widgets.py:24
+msgid "Choose brush properties"
+msgstr ""
 
-#: toolbox.py:1491
-msgid "200"
-msgstr "२००"
+#: widgets.py:238
+msgid "Size: "
+msgstr "आकार: "
 
-#: toolbox.py:1492
-msgid "150"
-msgstr "१५०"
+#: widgets.py:249
+msgid "Circle"
+msgstr "वर्तुळ"
 
-#: toolbox.py:1493
-msgid "100"
-msgstr "१००"
+#: widgets.py:259
+msgid "Square"
+msgstr "चौकोन"
 
-#: toolbox.py:1494
-msgid "50"
-msgstr "५०"
+#: widgets.py:271
+msgid "Shape"
+msgstr "आकार"
 
-#: toolbox.py:1495
-msgid "25"
-msgstr "२५"
+#: widgets.py:303
+msgid "Stamp properties"
+msgstr ""
 
-#: toolbox.py:1496
-msgid "10"
-msgstr "१०"
+#~ msgid "Tools"
+#~ msgstr "साधने"
 
-#: toolbox.py:1506
-msgid "ZOOM +"
-msgstr "झूम +"
+#~ msgid "Text"
+#~ msgstr "शब्द"
 
-#: toolbox.py:1510
-msgid "ZOOM -"
-msgstr "झूम -"
+#~ msgid "Effects"
+#~ msgstr "परिणाम"
+
+#~ msgid "Stroke Color"
+#~ msgstr "स्ट्रोक कलर"
+
+#~ msgid "Pencil"
+#~ msgstr "पेन्सिल"
+
+#~ msgid "Fill Color"
+#~ msgstr "रंग भरा"
+
+#~ msgid "Points: "
+#~ msgstr "बिंदू: "
+
+#~ msgid "1000"
+#~ msgstr "१०००"
+
+#~ msgid "500"
+#~ msgstr "५००"
+
+#~ msgid "200"
+#~ msgstr "२००"
+
+#~ msgid "150"
+#~ msgstr "१५०"
+
+#~ msgid "100"
+#~ msgstr "१००"
+
+#~ msgid "50"
+#~ msgstr "५०"
+
+#~ msgid "25"
+#~ msgstr "२५"
+
+#~ msgid "10"
+#~ msgstr "१०"
+
+#~ msgid "ZOOM +"
+#~ msgstr "झूम +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "झूम -"
 
 #~ msgid "Rectangular Marquee"
 #~ msgstr "आयताकृती तंबू"

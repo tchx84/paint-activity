@@ -2,216 +2,215 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-04 00:31-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-08-04 15:26-0300\n"
+"PO-Revision-Date: 2011-08-29 07:22+0200\n"
+"Last-Translator: <saulleoart@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr ""
+msgstr "Mukuy"
 
 #: toolbox.py:101
 msgid "Edit"
-msgstr ""
+msgstr "Dhu'cha'"
 
 #: toolbox.py:111
 msgid "Shapes"
-msgstr ""
+msgstr "in wal"
 
 #: toolbox.py:117
 msgid "Fonts"
-msgstr ""
+msgstr "Eleltalábchik"
 
 #: toolbox.py:123
 msgid "Image"
-msgstr ""
+msgstr "T'iplab"
 
 #: toolbox.py:153
 msgid "Undo"
-msgstr ""
+msgstr "Wichk'ow"
 
 #: toolbox.py:154
 msgid "Redo"
-msgstr ""
+msgstr "Tsáb ts'ejka'"
 
 #: toolbox.py:155
 msgid "Copy"
-msgstr ""
+msgstr "K'otbiy"
 
 #: toolbox.py:156
 msgid "Paste"
-msgstr ""
+msgstr "Ts'at'k'a'"
 
 #: toolbox.py:164
 msgid "Clear"
-msgstr ""
+msgstr "T'oka'"
 
 #: toolbox.py:244 widgets.py:311
 msgid "Brush properties"
-msgstr ""
+msgstr "In alwá' an pedh mukux"
 
 #: toolbox.py:261
 msgid "Brush"
-msgstr ""
+msgstr "Pedh mukux"
 
 #: toolbox.py:266
 msgid "Eraser"
-msgstr ""
+msgstr "Pakuxtaláb"
 
 #: toolbox.py:270
 msgid "Bucket"
-msgstr ""
+msgstr "Balixtaláb"
 
 #: toolbox.py:274
 msgid "Stamp"
-msgstr ""
+msgstr "Ts'o'om"
 
 #: toolbox.py:287
 msgid "Select Area"
-msgstr ""
+msgstr "Takudh puwel"
 
 #: toolbox.py:380
 msgid "Fill"
-msgstr ""
+msgstr "T'uchiy"
 
-#: toolbox.py:386
-msgid "Keep Aspect"
-msgstr ""
+#: toolbox.py:386 widgets.py:277
+msgid "Keep aspect"
+msgstr "Ka ko'onchij antsaná' in majúl"
 
 #: toolbox.py:403
 msgid "Sides: "
-msgstr ""
+msgstr "Walte'lichik: "
 
 #: toolbox.py:458
 msgid "Shapes properties"
-msgstr ""
+msgstr "In alwá'chik an aytaláb"
 
 #: toolbox.py:470
 msgid "Ellipse"
-msgstr ""
+msgstr "Chek’wnib"
 
 #: toolbox.py:474
 msgid "Rectangle"
-msgstr ""
+msgstr "Pekmadh tse' walté'"
 
 #: toolbox.py:478
 msgid "Line"
-msgstr ""
+msgstr "Kilodh"
 
+# ayláb = forma
 #: toolbox.py:482
 msgid "Free form"
-msgstr ""
+msgstr "Walkadh ayláb"
 
 #: toolbox.py:486
 msgid "Polygon"
-msgstr ""
+msgstr "Yan walte'"
 
 #: toolbox.py:490
 msgid "Heart"
-msgstr ""
+msgstr "ichích"
 
+# ts'aklachik walte' = paralelogramo
 #: toolbox.py:494
 msgid "Parallelogram"
-msgstr ""
+msgstr "Ts'ak walte'"
 
 #: toolbox.py:498
 msgid "Arrow"
-msgstr ""
+msgstr "T'ich'ok'láb"
 
 #: toolbox.py:502
 msgid "Star"
-msgstr ""
+msgstr "ót"
 
 #: toolbox.py:506
 msgid "Trapezoid"
-msgstr ""
+msgstr "Yab junat ts'ak walte'"
 
 #: toolbox.py:510
 msgid "Triangle"
-msgstr ""
+msgstr "Óx ts'uptal"
 
 #: toolbox.py:557
 msgid "Type"
-msgstr ""
+msgstr "Ni’ninchij"
 
 #: toolbox.py:677
 msgid "Insert Image"
-msgstr ""
+msgstr "Ki punk'unchij i t'iplab"
 
 #: toolbox.py:690
 msgid "Rotate Left"
-msgstr ""
+msgstr "Ka wilk'iy ta k'watab"
 
 #: toolbox.py:694
 msgid "Rotate Right"
-msgstr ""
+msgstr "Ka wilk'iy ta winab"
 
 #: toolbox.py:699
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Pelat lam"
 
 #: toolbox.py:704
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Kubat lám"
 
 #: toolbox.py:708
 msgid "Height"
-msgstr ""
+msgstr "T'ek'em"
 
 #: toolbox.py:719
 msgid "Width"
-msgstr ""
+msgstr "Ts'ikwel"
 
 #: toolbox.py:734
 msgid "Grayscale"
-msgstr ""
+msgstr "Aytal an aku'"
 
 #: toolbox.py:737
 msgid "Rainbow"
-msgstr ""
+msgstr "Pits'al"
 
 #: toolbox.py:742
 msgid "Invert Colors"
-msgstr ""
+msgstr "Ka Wenk´ow an mukuxtalábl"
 
 #: toolbox.py:839
 msgid "Choose image"
-msgstr ""
+msgstr "Ka takuy an t'iplab"
 
 #: widgets.py:24
 msgid "Choose brush properties"
-msgstr ""
+msgstr "Takuy in alwá'"
 
 #: widgets.py:238
 msgid "Size: "
-msgstr ""
+msgstr "Puwél: "
 
 #: widgets.py:249
 msgid "Circle"
-msgstr ""
+msgstr "Kwechodh"
 
 #: widgets.py:259
 msgid "Square"
-msgstr ""
+msgstr "Tsé' in walté'"
 
 #: widgets.py:271
 msgid "Shape"
-msgstr ""
-
-#: widgets.py:277
-msgid "Keep aspect"
-msgstr ""
+msgstr "Aykíl"
 
 #: widgets.py:303
 msgid "Stamp properties"
-msgstr ""
+msgstr "In alwá'"

@@ -34,10 +34,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-10 14:52-0500\n"
+"POT-Creation-Date: 2011-08-04 15:26-0300\n"
 "PO-Revision-Date: 2008-06-01 04:39-0400\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,245 +48,248 @@ msgstr ""
 msgid "Paint"
 msgstr "Sơn"
 
-#: toolbox.py:177
+#: toolbox.py:101
 msgid "Edit"
 msgstr "Sửa"
 
-#: toolbox.py:181
-msgid "Tools"
-msgstr "Công cụ"
-
-#: toolbox.py:185
+#: toolbox.py:111
 msgid "Shapes"
 msgstr "Hình"
 
-#: toolbox.py:189
-msgid "Text"
-msgstr "Văn bản"
+#: toolbox.py:117
+msgid "Fonts"
+msgstr ""
 
-#: toolbox.py:193
+#: toolbox.py:123
 msgid "Image"
 msgstr "Ảnh"
 
-#: toolbox.py:197
-msgid "Effects"
-msgstr "Hiệu ứng"
-
-#: toolbox.py:215
+#: toolbox.py:153
 msgid "Undo"
 msgstr "Hủy bước"
 
-#: toolbox.py:216
+#: toolbox.py:154
 msgid "Redo"
 msgstr "Hoàn lại"
 
-#: toolbox.py:217
+#: toolbox.py:155
 msgid "Copy"
 msgstr "Chép"
 
-#: toolbox.py:218
+#: toolbox.py:156
 msgid "Paste"
 msgstr "Dán"
 
-#: toolbox.py:226
+#: toolbox.py:164
 msgid "Clear"
 msgstr "Dọn"
 
-#: toolbox.py:365 toolbox.py:714
-msgid "Stroke Color"
-msgstr "Màu nét"
+#: toolbox.py:244 widgets.py:311
+msgid "Brush properties"
+msgstr ""
 
-#: toolbox.py:375
-msgid "Pencil"
-msgstr "Bút chì"
-
-#: toolbox.py:384
+#: toolbox.py:261
 msgid "Brush"
 msgstr "Chổi"
 
-#: toolbox.py:392
+#: toolbox.py:266
 msgid "Eraser"
 msgstr "Cái cạo"
 
-#: toolbox.py:400
+#: toolbox.py:270
 msgid "Bucket"
 msgstr "Xô"
 
-#: toolbox.py:428
+#: toolbox.py:274
+msgid "Stamp"
+msgstr ""
+
+#: toolbox.py:287
 msgid "Select Area"
 msgstr ""
 
-#: toolbox.py:479 toolbox.py:988 toolbox.py:1420
-msgid "Size: "
-msgstr "Kích cỡ : "
-
-#: toolbox.py:498 toolbox.py:1433
-msgid "Circle"
-msgstr "Hình tròn"
-
-#: toolbox.py:505 toolbox.py:1440
-msgid "Square"
-msgstr "Hình vuông"
-
-#: toolbox.py:514 toolbox.py:1449
-msgid "Shape"
-msgstr "Hình"
-
-#: toolbox.py:522
-msgid "Keep aspect"
-msgstr ""
-
-#: toolbox.py:706
-msgid "Fill Color"
-msgstr "Màu tô đầy"
-
-#: toolbox.py:724
-msgid "Ellipse"
-msgstr "Hình bầu dục"
-
-#: toolbox.py:732
-msgid "Rectangle"
-msgstr "Hình chữ nhật"
-
-#: toolbox.py:740
-msgid "Line"
-msgstr "Đường"
-
-#: toolbox.py:748
-msgid "Free form"
-msgstr ""
-
-#: toolbox.py:757
-msgid "Polygon"
-msgstr "Hình đa giác"
-
-#: toolbox.py:765
-msgid "Heart"
-msgstr "Hình tim"
-
-#: toolbox.py:773
-msgid "Parallelogram"
-msgstr "Hình bình hành"
-
-#: toolbox.py:781
-msgid "Arrow"
-msgstr "Mũi tên"
-
-#: toolbox.py:789
-msgid "Star"
-msgstr "Hình sao"
-
-#: toolbox.py:797
-msgid "Trapezoid"
-msgstr "Hình thang"
-
-#: toolbox.py:805
-msgid "Triangle"
-msgstr "Hình tam giác"
-
-#: toolbox.py:892
-msgid "Sides: "
-msgstr "Mặt: "
-
-#: toolbox.py:934
-msgid "Points: "
-msgstr "Đỉnh: "
-
-#: toolbox.py:973
+#: toolbox.py:380
 msgid "Fill"
 msgstr "Tô đầy"
 
-#: toolbox.py:1003
-msgid "Keep Aspect"
+#: toolbox.py:386 widgets.py:277
+msgid "Keep aspect"
 msgstr ""
 
-#: toolbox.py:1033
+#: toolbox.py:403
+msgid "Sides: "
+msgstr "Mặt: "
+
+#: toolbox.py:458
+msgid "Shapes properties"
+msgstr ""
+
+#: toolbox.py:470
+msgid "Ellipse"
+msgstr "Hình bầu dục"
+
+#: toolbox.py:474
+msgid "Rectangle"
+msgstr "Hình chữ nhật"
+
+#: toolbox.py:478
+msgid "Line"
+msgstr "Đường"
+
+#: toolbox.py:482
+msgid "Free form"
+msgstr ""
+
+#: toolbox.py:486
+msgid "Polygon"
+msgstr "Hình đa giác"
+
+#: toolbox.py:490
+msgid "Heart"
+msgstr "Hình tim"
+
+#: toolbox.py:494
+msgid "Parallelogram"
+msgstr "Hình bình hành"
+
+#: toolbox.py:498
+msgid "Arrow"
+msgstr "Mũi tên"
+
+#: toolbox.py:502
+msgid "Star"
+msgstr "Hình sao"
+
+#: toolbox.py:506
+msgid "Trapezoid"
+msgstr "Hình thang"
+
+#: toolbox.py:510
+msgid "Triangle"
+msgstr "Hình tam giác"
+
+#: toolbox.py:557
 msgid "Type"
 msgstr "Dạng"
 
-#: toolbox.py:1153
+#: toolbox.py:677
 msgid "Insert Image"
 msgstr "Chèn ảnh"
 
-#: toolbox.py:1166
+#: toolbox.py:690
 msgid "Rotate Left"
 msgstr "Xoay sang trái"
 
-#: toolbox.py:1171
+#: toolbox.py:694
 msgid "Rotate Right"
 msgstr "Xoay sang phải"
 
-#: toolbox.py:1177
+#: toolbox.py:699
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:1182
+#: toolbox.py:704
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:1186
+#: toolbox.py:708
 msgid "Height"
 msgstr "Bề cao"
 
-#: toolbox.py:1197
+#: toolbox.py:719
 msgid "Width"
 msgstr "Bề rộng"
 
-#: toolbox.py:1306
-msgid "Choose image"
-msgstr "Chọn ảnh"
-
-#: toolbox.py:1351
+#: toolbox.py:734
 msgid "Grayscale"
 msgstr "Mức xám"
 
-#: toolbox.py:1354
+#: toolbox.py:737
 msgid "Rainbow"
 msgstr "Cầu vồng"
 
-#: toolbox.py:1361
+#: toolbox.py:742
 msgid "Invert Colors"
 msgstr ""
 
-#: toolbox.py:1489
-msgid "1000"
-msgstr "1000"
+#: toolbox.py:839
+msgid "Choose image"
+msgstr "Chọn ảnh"
 
-#: toolbox.py:1490
-msgid "500"
-msgstr "500"
+#: widgets.py:24
+msgid "Choose brush properties"
+msgstr ""
 
-#: toolbox.py:1491
-msgid "200"
-msgstr "200"
+#: widgets.py:238
+msgid "Size: "
+msgstr "Kích cỡ : "
 
-#: toolbox.py:1492
-msgid "150"
-msgstr "150"
+#: widgets.py:249
+msgid "Circle"
+msgstr "Hình tròn"
 
-#: toolbox.py:1493
-msgid "100"
-msgstr "100"
+#: widgets.py:259
+msgid "Square"
+msgstr "Hình vuông"
 
-#: toolbox.py:1494
-msgid "50"
-msgstr "50"
+#: widgets.py:271
+msgid "Shape"
+msgstr "Hình"
 
-#: toolbox.py:1495
-msgid "25"
-msgstr "25"
+#: widgets.py:303
+msgid "Stamp properties"
+msgstr ""
 
-#: toolbox.py:1496
-msgid "10"
-msgstr "10"
+#~ msgid "Tools"
+#~ msgstr "Công cụ"
 
-#: toolbox.py:1506
-msgid "ZOOM +"
-msgstr "Phóng to"
+#~ msgid "Text"
+#~ msgstr "Văn bản"
 
-#: toolbox.py:1510
-msgid "ZOOM -"
-msgstr "Thu nhỏ"
+#~ msgid "Effects"
+#~ msgstr "Hiệu ứng"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Màu nét"
+
+#~ msgid "Pencil"
+#~ msgstr "Bút chì"
+
+#~ msgid "Fill Color"
+#~ msgstr "Màu tô đầy"
+
+#~ msgid "Points: "
+#~ msgstr "Đỉnh: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Phóng to"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Thu nhỏ"
 
 #~ msgid "Rectangular Marquee"
 #~ msgstr "Bảng chữ chạy hình chữ nhật"

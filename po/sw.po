@@ -42,11 +42,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-10 14:52-0500\n"
+"POT-Creation-Date: 2011-08-04 15:26-0300\n"
 "PO-Revision-Date: 2011-04-24 12:46+0200\n"
 "Last-Translator: Christian <kryskaka@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: sw\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,242 +57,248 @@ msgstr ""
 msgid "Paint"
 msgstr "Rangi"
 
-#: toolbox.py:177
+#: toolbox.py:101
 msgid "Edit"
 msgstr "Hariri"
 
-#: toolbox.py:181
-msgid "Tools"
-msgstr "vifaa"
-
-#: toolbox.py:185
+#: toolbox.py:111
 msgid "Shapes"
 msgstr "sura"
 
-#: toolbox.py:189
-msgid "Text"
-msgstr "nakala"
+#: toolbox.py:117
+msgid "Fonts"
+msgstr ""
 
-#: toolbox.py:193
+#: toolbox.py:123
 msgid "Image"
 msgstr "Tawsira or image"
 
-#: toolbox.py:197
-msgid "Effects"
-msgstr "athari"
-
-#: toolbox.py:215
+#: toolbox.py:153
 msgid "Undo"
 msgstr "tengua"
 
-#: toolbox.py:216
+#: toolbox.py:154
 msgid "Redo"
 msgstr "fanya mara mbili, redo"
 
-#: toolbox.py:217
+#: toolbox.py:155
 msgid "Copy"
 msgstr "Nakili, or nakala"
 
-#: toolbox.py:218
+#: toolbox.py:156
 msgid "Paste"
 msgstr "kuweka"
 
-#: toolbox.py:226
+#: toolbox.py:164
 msgid "Clear"
 msgstr "wazi or kuvuta"
 
-#: toolbox.py:365 toolbox.py:714
-msgid "Stroke Color"
-msgstr "kiharusi michezo"
+#: toolbox.py:244 widgets.py:311
+msgid "Brush properties"
+msgstr ""
 
-#: toolbox.py:375
-msgid "Pencil"
-msgstr "penseli"
-
-#: toolbox.py:384
+#: toolbox.py:261
 msgid "Brush"
 msgstr "brush"
 
-#: toolbox.py:392
+#: toolbox.py:266
 msgid "Eraser"
 msgstr "raba"
 
-#: toolbox.py:400
+#: toolbox.py:270
 msgid "Bucket"
 msgstr "ndoo"
 
-#: toolbox.py:428
+#: toolbox.py:274
+msgid "Stamp"
+msgstr ""
+
+#: toolbox.py:287
 msgid "Select Area"
 msgstr "kuchagua eneo"
 
-#: toolbox.py:479 toolbox.py:988 toolbox.py:1420
-msgid "Size: "
-msgstr "michezo"
-
-#: toolbox.py:498 toolbox.py:1433
-msgid "Circle"
-msgstr "duara"
-
-#: toolbox.py:505 toolbox.py:1440
-msgid "Square"
-msgstr "mraba"
-
-#: toolbox.py:514 toolbox.py:1449
-msgid "Shape"
-msgstr "sura"
-
-#: toolbox.py:522
-msgid "Keep aspect"
-msgstr "kweka kipengele"
-
-#: toolbox.py:706
-msgid "Fill Color"
-msgstr "kujaza michezo"
-
-#: toolbox.py:724
-msgid "Ellipse"
-msgstr "duaradufu"
-
-#: toolbox.py:732
-msgid "Rectangle"
-msgstr "mstatili"
-
-#: toolbox.py:740
-msgid "Line"
-msgstr "mpya"
-
-#: toolbox.py:748
-msgid "Free form"
-msgstr "fomu ya bure"
-
-#: toolbox.py:757
-msgid "Polygon"
-msgstr "pembenyingi"
-
-#: toolbox.py:765
-msgid "Heart"
-msgstr "moyo"
-
-#: toolbox.py:773
-msgid "Parallelogram"
-msgstr "msambamba"
-
-#: toolbox.py:781
-msgid "Arrow"
-msgstr "arrow"
-
-#: toolbox.py:789
-msgid "Star"
-msgstr "nyota"
-
-#: toolbox.py:797
-msgid "Trapezoid"
-msgstr "trapezoid"
-
-#: toolbox.py:805
-msgid "Triangle"
-msgstr "triangle"
-
-#: toolbox.py:892
-msgid "Sides: "
-msgstr "pande"
-
-#: toolbox.py:934
-msgid "Points: "
-msgstr "pointi"
-
-#: toolbox.py:973
+#: toolbox.py:380
 msgid "Fill"
 msgstr "kujaza"
 
-#: toolbox.py:1003
-msgid "Keep Aspect"
-msgstr "kuweka kipengle"
+#: toolbox.py:386 widgets.py:277
+msgid "Keep aspect"
+msgstr "kweka kipengele"
 
-#: toolbox.py:1033
+#: toolbox.py:403
+msgid "Sides: "
+msgstr "pande"
+
+#: toolbox.py:458
+msgid "Shapes properties"
+msgstr ""
+
+#: toolbox.py:470
+msgid "Ellipse"
+msgstr "duaradufu"
+
+#: toolbox.py:474
+msgid "Rectangle"
+msgstr "mstatili"
+
+#: toolbox.py:478
+msgid "Line"
+msgstr "mpya"
+
+#: toolbox.py:482
+msgid "Free form"
+msgstr "fomu ya bure"
+
+#: toolbox.py:486
+msgid "Polygon"
+msgstr "pembenyingi"
+
+#: toolbox.py:490
+msgid "Heart"
+msgstr "moyo"
+
+#: toolbox.py:494
+msgid "Parallelogram"
+msgstr "msambamba"
+
+#: toolbox.py:498
+msgid "Arrow"
+msgstr "arrow"
+
+#: toolbox.py:502
+msgid "Star"
+msgstr "nyota"
+
+#: toolbox.py:506
+msgid "Trapezoid"
+msgstr "trapezoid"
+
+#: toolbox.py:510
+msgid "Triangle"
+msgstr "triangle"
+
+#: toolbox.py:557
 msgid "Type"
 msgstr "aina"
 
-#: toolbox.py:1153
+#: toolbox.py:677
 msgid "Insert Image"
 msgstr "kutiya image, ku insert image"
 
-#: toolbox.py:1166
+#: toolbox.py:690
 msgid "Rotate Left"
 msgstr "muzunguko wa kushoto"
 
-#: toolbox.py:1171
+#: toolbox.py:694
 msgid "Rotate Right"
 msgstr "muzunguko wa haki"
 
-#: toolbox.py:1177
+#: toolbox.py:699
 msgid "Horizontal Mirror"
 msgstr "kioo usawa"
 
-#: toolbox.py:1182
+#: toolbox.py:704
 msgid "Vertical Mirror"
 msgstr "kioo wima"
 
-#: toolbox.py:1186
+#: toolbox.py:708
 msgid "Height"
 msgstr "urefu"
 
-#: toolbox.py:1197
+#: toolbox.py:719
 msgid "Width"
 msgstr "upana"
 
-#: toolbox.py:1306
-msgid "Choose image"
-msgstr "chagua image, chagua picture,"
-
-#: toolbox.py:1351
+#: toolbox.py:734
 msgid "Grayscale"
 msgstr "grayscale"
 
-#: toolbox.py:1354
+#: toolbox.py:737
 msgid "Rainbow"
 msgstr "upunde wa mvua"
 
-#: toolbox.py:1361
+#: toolbox.py:742
 msgid "Invert Colors"
 msgstr "geuza michezo"
 
-#: toolbox.py:1489
-msgid "1000"
-msgstr "elfu moja"
+#: toolbox.py:839
+msgid "Choose image"
+msgstr "chagua image, chagua picture,"
 
-#: toolbox.py:1490
-msgid "500"
-msgstr "mia tano"
+#: widgets.py:24
+msgid "Choose brush properties"
+msgstr ""
 
-#: toolbox.py:1491
-msgid "200"
-msgstr "mia mbili"
+#: widgets.py:238
+msgid "Size: "
+msgstr "michezo"
 
-#: toolbox.py:1492
-msgid "150"
-msgstr "mia moja na hamsini"
+#: widgets.py:249
+msgid "Circle"
+msgstr "duara"
 
-#: toolbox.py:1493
-msgid "100"
-msgstr "mia moja"
+#: widgets.py:259
+msgid "Square"
+msgstr "mraba"
 
-#: toolbox.py:1494
-msgid "50"
-msgstr "hamsini"
+#: widgets.py:271
+msgid "Shape"
+msgstr "sura"
 
-#: toolbox.py:1495
-msgid "25"
-msgstr "ishirini na tano"
+#: widgets.py:303
+msgid "Stamp properties"
+msgstr ""
 
-#: toolbox.py:1496
-msgid "10"
-msgstr "kumi"
+#~ msgid "Tools"
+#~ msgstr "vifaa"
 
-#: toolbox.py:1506
-msgid "ZOOM +"
-msgstr "zoom+; zoom mingi"
+#~ msgid "Text"
+#~ msgstr "nakala"
 
-#: toolbox.py:1510
-msgid "ZOOM -"
-msgstr "zoom -; zoom kidogo"
+#~ msgid "Effects"
+#~ msgstr "athari"
+
+#~ msgid "Stroke Color"
+#~ msgstr "kiharusi michezo"
+
+#~ msgid "Pencil"
+#~ msgstr "penseli"
+
+#~ msgid "Fill Color"
+#~ msgstr "kujaza michezo"
+
+#~ msgid "Points: "
+#~ msgstr "pointi"
+
+#~ msgid "Keep Aspect"
+#~ msgstr "kuweka kipengle"
+
+#~ msgid "1000"
+#~ msgstr "elfu moja"
+
+#~ msgid "500"
+#~ msgstr "mia tano"
+
+#~ msgid "200"
+#~ msgstr "mia mbili"
+
+#~ msgid "150"
+#~ msgstr "mia moja na hamsini"
+
+#~ msgid "100"
+#~ msgstr "mia moja"
+
+#~ msgid "50"
+#~ msgstr "hamsini"
+
+#~ msgid "25"
+#~ msgstr "ishirini na tano"
+
+#~ msgid "10"
+#~ msgstr "kumi"
+
+#~ msgid "ZOOM +"
+#~ msgstr "zoom+; zoom mingi"
+
+#~ msgid "ZOOM -"
+#~ msgstr "zoom -; zoom kidogo"
