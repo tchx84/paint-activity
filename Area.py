@@ -1403,14 +1403,22 @@ class Area(gtk.DrawingArea):
                 cursor = gtk.gdk.cursor_new_from_name(display, name)
             elif self.tool['name'] == 'marquee-rectangular':
                 cursor = gtk.gdk.Cursor(gtk.gdk.CROSS)
-            elif self.tool['name'] == 'stamp':
-                filename = os.path.join('images', 'stamp.png')
-                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
-                cursor = gtk.gdk.Cursor(display, pixbuf, 20, 38)
             else:
                 filename = os.path.join('images', self.tool['name'] + '.png')
                 pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
-                cursor = gtk.gdk.Cursor(display, pixbuf, 0, 0)
+
+                # Decide which is the cursor hot spot offset:
+                if self.tool['name'] == 'stamp':
+                    hotspot_x, hotspot_y  = 20, 38  # horizontal
+                                                    # center and
+                                                    # bottom
+                elif self.tool['name'] == 'picker':
+                    hotspot_x, hotspot_y  = 1, 38  # bottom left
+                                                   # corner
+                else:
+                    hotspot_x, hotspot_y  = 0, 0
+
+                cursor = gtk.gdk.Cursor(display, pixbuf, hotspot_x, hotspot_y)
         except gobject.GError:
             cursor = None
         self.window.set_cursor(cursor)
