@@ -207,7 +207,7 @@ class OficinaActivity(activity.Activity):
 
     def center_area(self):
         x, y = self._get_area_displacement()
-        self.fixed.move(self.area, x, y)
+        self.fixed.move(self.area, x, 0)
 
     def move_textview(self, dx, dy):
         x, y = self._get_area_displacement()
