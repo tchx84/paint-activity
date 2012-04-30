@@ -670,7 +670,9 @@ class Area(gtk.DrawingArea):
         fill(self.pixmap, self.gc, x, y, width,
                 height, self.gc_line.foreground.pixel)
         widget.queue_draw()
-        self.window.set_cursor(None)
+        display = gtk.gdk.display_get_default()
+        cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
+        self.window.set_cursor(cursor)
 
     def flood_fill(self, x, y, fill_color):
         width, height = self.window.get_size()
@@ -707,7 +709,10 @@ class Area(gtk.DrawingArea):
 
         self.pixmap.draw_image(self.gc, gdk_image, 0, 0, 0, 0, width, height)
         self.queue_draw()
-        self.window.set_cursor(None)
+
+        display = gtk.gdk.display_get_default()
+        cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
+        self.window.set_cursor(cursor)
 
     def pick_color(self, x, y):
         gdk_image = self.pixmap.get_image(x, y, 1, 1)
