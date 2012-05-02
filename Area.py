@@ -1038,13 +1038,22 @@ class Area(gtk.DrawingArea):
         def proc_invert_color(temp_pix):
             try:
                 import numpy
+                # HACK: This numpy version has a bug and breaks the
+                # 'invert_color' function
+                # http://bugs.sugarlabs.org/ticket/3509
+                if numpy.__version__ == '1.6.1':
+                    logging.warning('You have installed a version of numpy '
+                                    '(1.6.1) that has a bug and can\'t be '
+                                    'used. Using string module instead '
+                                    '(slower)')
+                    raise ImportWarning
                 pix_manip2 = temp_pix.get_pixels_array()
                 pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) \
                             * 255
                 pix_manip2 = pix_manip - pix_manip2
                 temp_pix = gtk.gdk.pixbuf_new_from_array(pix_manip2,
                         gtk.gdk.COLORSPACE_RGB, 8)
-            except:
+            except (ImportError, ImportWarning):
                 import string
                 a = temp_pix.get_pixels()
                 b = len(a) * ['\0']
