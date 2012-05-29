@@ -349,8 +349,11 @@ class ToolsToolbarBuilder():
         self._verify_sensitive_buttons()
 
     def _verify_sensitive_buttons(self):
-        is_selected = self._activity.area.is_selected()
-        self._tool_stamp.set_sensitive(is_selected)
+        # Check if there is an area selected or if the "stamp" tool is
+        # being used
+        sensitive = self._activity.area.is_selected() or \
+            self.tool['name'] == 'stamp'
+        self._tool_stamp.set_sensitive(sensitive)
 
 
 class ButtonFillColor(ColorToolButton):
