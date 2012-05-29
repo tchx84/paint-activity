@@ -891,6 +891,11 @@ class Area(Gtk.DrawingArea):
         elif len(self._undo_list) == MAX_UNDO_STEPS:
             # drop the oldest undo pix:
             self._undo_list.pop(0)
+
+            # it could be at the middle of the list (clicked many
+            # times undo) and after that draw anything, so we should
+            # discart the next redos because they are obsolete now.
+            self._undo_list = self._undo_list[:self._undo_index]
         else:
             self._undo_index += 1
             # Forget the redos after this one:
