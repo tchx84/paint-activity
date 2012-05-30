@@ -786,6 +786,9 @@ class Area(gtk.DrawingArea):
         self.resized_stamp = self.pixbuf_stamp.scale_simple(wr, hr,
                                  gtk.gdk.INTERP_HYPER)
 
+        # Remove selected area
+        self.getout()
+
         return self.resized_stamp
 
     def undo(self):
