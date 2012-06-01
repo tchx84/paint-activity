@@ -663,13 +663,18 @@ class Area(gtk.DrawingArea):
             widget.queue_draw()
             self.drawing = False
         self.desenha = False
-        if not private_undo:
+        if not private_undo and self.tool['name'] != 'bucket':
+            # We have to avoid saving an undo state if the bucket tool
+            # is selected because this undo state is called before the
+            # gobject.idle_add (with the fill_flood function) finishes
+            # and an unconsistent undo state is saved
             self.enableUndo(widget)
 
     def fast_flood_fill(self, widget, x, y, width, height):
         fill(self.pixmap, self.gc, x, y, width,
                 height, self.gc_line.foreground.pixel)
         widget.queue_draw()
+        self.enableUndo(widget)
         display = gtk.gdk.display_get_default()
         cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
         self.window.set_cursor(cursor)
@@ -709,6 +714,7 @@ class Area(gtk.DrawingArea):
 
         self.pixmap.draw_image(self.gc, gdk_image, 0, 0, 0, 0, width, height)
         self.queue_draw()
+        self.enableUndo(self)
 
         display = gtk.gdk.display_get_default()
         cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
