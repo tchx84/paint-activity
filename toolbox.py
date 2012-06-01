@@ -352,7 +352,7 @@ class ToolsToolbarBuilder():
         # Check if there is an area selected or if the "stamp" tool is
         # being used
         sensitive = self._activity.area.is_selected() or \
-            self.tool['name'] == 'stamp'
+            self.properties['name'] == 'stamp'
         self._tool_stamp.set_sensitive(sensitive)
 
 
