@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 15:26-0300\n"
+"POT-Creation-Date: 2012-04-19 00:33-0400\n"
 "PO-Revision-Date: 2011-11-19 02:58+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,212 +23,216 @@ msgid "Paint"
 msgstr "Llimp'iy"
 
 #  "Editar"
-#: toolbox.py:101
+#: toolbox.py:103
 msgid "Edit"
 msgstr "Allinchay"
 
 #  "Formas"
-#: toolbox.py:111
+#: toolbox.py:113
 msgid "Shapes"
 msgstr "Siq'ichasqakuna"
 
 #  "Fuentes"
-#: toolbox.py:117
+#: toolbox.py:119
 msgid "Fonts"
 msgstr "Imaymana qillqakuna"
 
 #  "Imagen"
-#: toolbox.py:123
+#: toolbox.py:125
 msgid "Image"
 msgstr "Wanki"
 
 #  "Deshacer"
-#: toolbox.py:153
+#: toolbox.py:150
 msgid "Undo"
 msgstr "P'ichay"
 
 #  "Rehacer"
-#: toolbox.py:154
+#: toolbox.py:151
 msgid "Redo"
 msgstr "Wakmanta ruway"
 
 #  "Copiar"
-#: toolbox.py:155
+#: toolbox.py:152
 msgid "Copy"
 msgstr "Kikinchay"
 
 #  "Pegar"
-#: toolbox.py:156
+#: toolbox.py:153
 msgid "Paste"
 msgstr "K'askachiy"
 
 #  "Limpiar"
-#: toolbox.py:164
+#: toolbox.py:161
 msgid "Clear"
 msgstr "Pichay"
 
 #  "Propiedades del pincel"
-#: toolbox.py:244 widgets.py:311
+#: toolbox.py:242 widgets.py:311
 msgid "Brush properties"
 msgstr "Llimp'iqpa kaqninkuna"
 
 #  "Pincel"
-#: toolbox.py:261
+#: toolbox.py:253
 msgid "Brush"
 msgstr "Llimp'iq"
 
 #  "Borrador"
-#: toolbox.py:266
+#: toolbox.py:258
 msgid "Eraser"
 msgstr "Pichana"
 
 #  "Balde"
-#: toolbox.py:270
+#: toolbox.py:262
 msgid "Bucket"
 msgstr "Llimp'i apana"
 
+#: toolbox.py:266
+msgid "Picker"
+msgstr ""
+
 #  "Sello"
-#: toolbox.py:274
+#: toolbox.py:270
 msgid "Stamp"
 msgstr "Ñit'ina"
 
 #  "Área seleccionada"
-#: toolbox.py:287
+#: toolbox.py:283
 msgid "Select Area"
 msgstr "Akllarisqa K'iti"
 
 #  "Llenar"
-#: toolbox.py:380
+#: toolbox.py:378
 msgid "Fill"
 msgstr "Hunt'achiy"
 
 #  "Mantener relación de aspecto"
-#: toolbox.py:386 widgets.py:277
+#: toolbox.py:384 widgets.py:277
 msgid "Keep aspect"
 msgstr "Sayaynin kaqtaqa masichallay"
 
 #  "Lados: "
-#: toolbox.py:403
+#: toolbox.py:401
 msgid "Sides: "
 msgstr "K'inraykuna: "
 
 #  "Propiedades de las formas"
-#: toolbox.py:458
+#: toolbox.py:456
 msgid "Shapes properties"
 msgstr "Siq'ichasqakunap imayninkuna"
 
 #  "Elipse"
-#: toolbox.py:470
+#: toolbox.py:468
 msgid "Ellipse"
 msgstr "Muyu chutarasqa"
 
 #  "Rectángulo"
-#: toolbox.py:474
+#: toolbox.py:472
 msgid "Rectangle"
 msgstr "Suyt'u"
 
 #  "Línea"
-#: toolbox.py:478
+#: toolbox.py:476
 msgid "Line"
 msgstr "Siq'i"
 
 #  "Forma libre"
-#: toolbox.py:482
+#: toolbox.py:480
 msgid "Free form"
 msgstr "Qispi siq'ichasqa"
 
 #  "Polígono"
-#: toolbox.py:486
+#: toolbox.py:484
 msgid "Polygon"
 msgstr "Imaymana k'uchuyuq"
 
 #  "Corazón"
-#: toolbox.py:490
+#: toolbox.py:488
 msgid "Heart"
 msgstr "Sunqu"
 
 #  "Paralelogramo"
-#: toolbox.py:494
+#: toolbox.py:492
 msgid "Parallelogram"
 msgstr "Suyt'u kinrayasqa"
 
 #  "Flecha"
-#: toolbox.py:498
+#: toolbox.py:496
 msgid "Arrow"
 msgstr "Wach'i"
 
 #  "Estrella"
-#: toolbox.py:502
+#: toolbox.py:500
 msgid "Star"
 msgstr "Ch'aska"
 
 #  "Trapezoide"
-#: toolbox.py:506
+#: toolbox.py:504
 msgid "Trapezoid"
 msgstr "Trapezoide nisqa"
 
 #  "Triángulo"
-#: toolbox.py:510
+#: toolbox.py:508
 msgid "Triangle"
 msgstr "Kimsa k'uchuyuq"
 
 #  "Teclear"
-#: toolbox.py:557
+#: toolbox.py:555
 msgid "Type"
 msgstr "Qillqay"
 
 #  "Añadir imagen"
-#: toolbox.py:677
+#: toolbox.py:666
 msgid "Insert Image"
 msgstr "Wankita yapay"
 
 #  "Rotar izquierda"
-#: toolbox.py:690
+#: toolbox.py:679
 msgid "Rotate Left"
 msgstr "Lluq'iman muyuy"
 
 #  "Rotar derecha"
-#: toolbox.py:694
+#: toolbox.py:683
 msgid "Rotate Right"
 msgstr "Pañaman muyuy"
 
 #  "Espejo Horizontal"
-#: toolbox.py:699
+#: toolbox.py:688
 msgid "Horizontal Mirror"
 msgstr "Iskayasqa k'iranpa"
 
 #  "Espejo Vertical"
-#: toolbox.py:704
+#: toolbox.py:693
 msgid "Vertical Mirror"
 msgstr "Iskayasqa Sayanpa"
 
 #  "Altura"
-#: toolbox.py:708
+#: toolbox.py:697
 msgid "Height"
 msgstr "Sayaynin"
 
 #  "Anchura"
-#: toolbox.py:719
+#: toolbox.py:708
 msgid "Width"
 msgstr "Sakhaynin"
 
 #  "Escala de grises"
-#: toolbox.py:734
+#: toolbox.py:723
 msgid "Grayscale"
 msgstr "Ch'iqchiynin"
 
 #  "Arco iris"
-#: toolbox.py:737
+#: toolbox.py:726
 msgid "Rainbow"
 msgstr "K'uychi"
 
 #  "Invertir colores"
-#: toolbox.py:742
+#: toolbox.py:731
 msgid "Invert Colors"
 msgstr "Llimp'ita t'ikray"
 
 #  "Seleccionar imagen"
-#: toolbox.py:839
+#: toolbox.py:806 toolbox.py:810
 msgid "Choose image"
 msgstr "Wankita akllay"
 

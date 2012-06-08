@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-04 15:26-0300\n"
+"POT-Creation-Date: 2012-04-19 00:33-0400\n"
 "PO-Revision-Date: 2011-11-23 06:15+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,212 +23,216 @@ msgid "Paint"
 msgstr "Samichaña"
 
 #  "Editar"
-#: toolbox.py:101
+#: toolbox.py:103
 msgid "Edit"
 msgstr "Chiqachaña"
 
 #  "Formas"
-#: toolbox.py:111
+#: toolbox.py:113
 msgid "Shapes"
 msgstr "Rixiñanaka"
 
 #  "Fuentes"
-#: toolbox.py:117
+#: toolbox.py:119
 msgid "Fonts"
 msgstr "Qillqanaka"
 
 #  "Imagen"
-#: toolbox.py:123
+#: toolbox.py:125
 msgid "Image"
 msgstr "Uñjasiwi"
 
 #  "Deshacer"
-#: toolbox.py:153
+#: toolbox.py:150
 msgid "Undo"
 msgstr "Nayriri lurawi"
 
 #  "Rehacer"
-#: toolbox.py:154
+#: toolbox.py:151
 msgid "Redo"
 msgstr "Wasitata luraña"
 
 #  "Copiar"
-#: toolbox.py:155
+#: toolbox.py:152
 msgid "Copy"
 msgstr "Talliqaña"
 
 #  "Pegar"
-#: toolbox.py:156
+#: toolbox.py:153
 msgid "Paste"
 msgstr "Lip'katayaña"
 
 #  "Limpiar"
-#: toolbox.py:164
+#: toolbox.py:161
 msgid "Clear"
 msgstr "Pichsuña"
 
 #  "Propiedades del pincel"
-#: toolbox.py:244 widgets.py:311
+#: toolbox.py:242 widgets.py:311
 msgid "Brush properties"
 msgstr "Rixinaka ajlliña"
 
 #  "Pincel"
-#: toolbox.py:261
+#: toolbox.py:253
 msgid "Brush"
 msgstr "Rixiña"
 
 #  "Borrador"
-#: toolbox.py:266
+#: toolbox.py:258
 msgid "Eraser"
 msgstr "Pichaña"
 
 #  "Balde"
-#: toolbox.py:270
+#: toolbox.py:262
 msgid "Bucket"
 msgstr "Walti"
 
+#: toolbox.py:266
+msgid "Picker"
+msgstr ""
+
 #  "Sello"
-#: toolbox.py:274
+#: toolbox.py:270
 msgid "Stamp"
 msgstr "Chimpu"
 
 #  "Área seleccionada"
-#: toolbox.py:287
+#: toolbox.py:283
 msgid "Select Area"
 msgstr "Laksutanaka"
 
 #  "Llenar"
-#: toolbox.py:380
+#: toolbox.py:378
 msgid "Fill"
 msgstr "Phuqachhaña"
 
 #  "Mantener relación de aspecto"
-#: toolbox.py:386 widgets.py:277
+#: toolbox.py:384 widgets.py:277
 msgid "Keep aspect"
 msgstr "Ukhamaru uñjasiri"
 
 #  "Lados: "
-#: toolbox.py:403
+#: toolbox.py:401
 msgid "Sides: "
 msgstr "Qawayanaka: "
 
 #  "Propiedades de las formas"
-#: toolbox.py:458
+#: toolbox.py:456
 msgid "Shapes properties"
 msgstr "Rixinakata ajlliwinakapa"
 
 #  "Elipse"
-#: toolbox.py:470
+#: toolbox.py:468
 msgid "Ellipse"
 msgstr "Walja muyunaka"
 
 #  "Rectángulo"
-#: toolbox.py:474
+#: toolbox.py:472
 msgid "Rectangle"
 msgstr "Pusi k'uchuni"
 
 #  "Línea"
-#: toolbox.py:478
+#: toolbox.py:476
 msgid "Line"
 msgstr "Chiq'a luraña"
 
 #  "Forma libre"
-#: toolbox.py:482
+#: toolbox.py:480
 msgid "Free form"
 msgstr "Kunaymana luraña"
 
 #  "Polígono"
-#: toolbox.py:486
+#: toolbox.py:484
 msgid "Polygon"
 msgstr "K'uchunakani luraña"
 
 #  "Corazón"
-#: toolbox.py:490
+#: toolbox.py:488
 msgid "Heart"
 msgstr "Lluqu"
 
 #  "Paralelogramo"
-#: toolbox.py:494
+#: toolbox.py:492
 msgid "Parallelogram"
 msgstr "Kichjtata kajuna"
 
 #  "Flecha"
-#: toolbox.py:498
+#: toolbox.py:496
 msgid "Arrow"
 msgstr "Uñtuyawi"
 
 #  "Estrella"
-#: toolbox.py:502
+#: toolbox.py:500
 msgid "Star"
 msgstr "Warawara"
 
 #  "Trapezoide"
-#: toolbox.py:506
+#: toolbox.py:504
 msgid "Trapezoid"
 msgstr "K'uchuta saytata kajuna"
 
 #  "Triángulo"
-#: toolbox.py:510
+#: toolbox.py:508
 msgid "Triangle"
 msgstr "Kimsa k'uchu"
 
 #  "Teclear"
-#: toolbox.py:557
+#: toolbox.py:555
 msgid "Type"
 msgstr "Qillqantaña"
 
 #  "Añadir imagen"
-#: toolbox.py:677
+#: toolbox.py:666
 msgid "Insert Image"
 msgstr "Uñtasiwi apantaña"
 
 #  "Rotar izquierda"
-#: toolbox.py:690
+#: toolbox.py:679
 msgid "Rotate Left"
 msgstr "Ch'iqaru Muyuña"
 
 #  "Rotar derecha"
-#: toolbox.py:694
+#: toolbox.py:683
 msgid "Rotate Right"
 msgstr "Kupiru muyuña"
 
 #  "Espejo Horizontal"
-#: toolbox.py:699
+#: toolbox.py:688
 msgid "Horizontal Mirror"
 msgstr "Saytata Uñjasiña"
 
 #  "Espejo Vertical"
-#: toolbox.py:704
+#: toolbox.py:693
 msgid "Vertical Mirror"
 msgstr "Liwtata uñjaña"
 
 #  "Altura"
-#: toolbox.py:708
+#: toolbox.py:697
 msgid "Height"
 msgstr "Sayt'aru"
 
 #  "Anchura"
-#: toolbox.py:719
+#: toolbox.py:708
 msgid "Width"
 msgstr "Lankhu"
 
 #  "Escala de grises"
-#: toolbox.py:734
+#: toolbox.py:723
 msgid "Grayscale"
 msgstr "Jayphuru uñtasiri"
 
 #  "Arco iris"
-#: toolbox.py:737
+#: toolbox.py:726
 msgid "Rainbow"
 msgstr "Kurmi"
 
 #  "Invertir colores"
-#: toolbox.py:742
+#: toolbox.py:731
 msgid "Invert Colors"
 msgstr "Suminaka mayjt'ayaña"
 
 #  "Seleccionar imagen"
-#: toolbox.py:839
+#: toolbox.py:806 toolbox.py:810
 msgid "Choose image"
 msgstr "Uñjasiwi ajlliña"
 
