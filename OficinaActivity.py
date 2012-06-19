@@ -201,13 +201,15 @@ class OficinaActivity(activity.Activity):
         canvas_width = self.canvas.allocation.width
         canvas_height = self.canvas.allocation.height
         area_width, area_height = self.area.get_size_request()
-        x = (canvas_width - area_width) / 2
-        y = (canvas_height - area_height) / 2
+
+        # Avoid 'x' and 'y' to be outside the screen
+        x = max(0, (canvas_width - area_width) / 2)
+        y = max(0, (canvas_height - area_height) / 2)
         return x, y
 
     def center_area(self):
         x, y = self._get_area_displacement()
-        self.fixed.move(self.area, x, 0)
+        self.fixed.move(self.area, x, y)
 
     def move_textview(self, dx, dy):
         x, y = self._get_area_displacement()
