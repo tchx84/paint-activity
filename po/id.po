@@ -35,7 +35,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-19 00:33-0400\n"
-"PO-Revision-Date: 2012-05-22 03:27+0200\n"
+"PO-Revision-Date: 2012-06-25 19:21+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -46,7 +46,6 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
-#, fuzzy
 msgid "Paint"
 msgstr "Lukis"
 
@@ -55,212 +54,193 @@ msgid "Edit"
 msgstr "Sunting"
 
 #: toolbox.py:113
-#, fuzzy
 msgid "Shapes"
-msgstr "Membentuk"
+msgstr "Bentuk"
 
 #: toolbox.py:119
 msgid "Fonts"
-msgstr ""
+msgstr "Fonta"
 
 #: toolbox.py:125
-#, fuzzy
 msgid "Image"
 msgstr "Gambar"
 
 #: toolbox.py:150
 msgid "Undo"
-msgstr ""
+msgstr "Tak jadi"
 
 #: toolbox.py:151
 msgid "Redo"
-msgstr ""
+msgstr "Jadi lagi"
 
 #: toolbox.py:152
-#, fuzzy
 msgid "Copy"
 msgstr "Salin"
 
 #: toolbox.py:153
-#, fuzzy
 msgid "Paste"
 msgstr "Tempel"
 
 #: toolbox.py:161
 msgid "Clear"
-msgstr ""
+msgstr "Bersihkan"
 
 #: toolbox.py:242 widgets.py:311
 msgid "Brush properties"
-msgstr ""
+msgstr "Properti kuas"
 
 #: toolbox.py:253
 msgid "Brush"
-msgstr ""
+msgstr "Kuas"
 
 #: toolbox.py:258
 msgid "Eraser"
-msgstr ""
+msgstr "Penghapus"
 
 #: toolbox.py:262
 msgid "Bucket"
-msgstr ""
+msgstr "Ember"
 
 #: toolbox.py:266
 msgid "Picker"
-msgstr ""
+msgstr "Pemungut"
 
 #: toolbox.py:270
 msgid "Stamp"
-msgstr ""
+msgstr "Stempel"
 
 #: toolbox.py:283
 msgid "Select Area"
-msgstr ""
+msgstr "Pilih Area"
 
 #: toolbox.py:378
 msgid "Fill"
-msgstr ""
+msgstr "Penuhi"
 
 #: toolbox.py:384 widgets.py:277
 msgid "Keep aspect"
-msgstr ""
+msgstr "Pertahankan aspek"
 
 #: toolbox.py:401
 msgid "Sides: "
-msgstr ""
+msgstr "Sisi: "
 
 #: toolbox.py:456
 msgid "Shapes properties"
-msgstr ""
+msgstr "Properti bentuk"
 
 #: toolbox.py:468
-#, fuzzy
 msgid "Ellipse"
 msgstr "Elips"
 
 #: toolbox.py:472
-#, fuzzy
 msgid "Rectangle"
 msgstr "Kotak"
 
 #: toolbox.py:476
-#, fuzzy
 msgid "Line"
-msgstr "Baris"
+msgstr "Garis"
 
 #: toolbox.py:480
 msgid "Free form"
-msgstr ""
+msgstr "Bentuk bebas"
 
 #: toolbox.py:484
-#, fuzzy
 msgid "Polygon"
 msgstr "Poligon"
 
 #: toolbox.py:488
-#, fuzzy
 msgid "Heart"
 msgstr "Hati"
 
 #: toolbox.py:492
 msgid "Parallelogram"
-msgstr ""
+msgstr "Paralelogram"
 
 #: toolbox.py:496
-#, fuzzy
 msgid "Arrow"
 msgstr "Panah"
 
 #: toolbox.py:500
 msgid "Star"
-msgstr ""
+msgstr "Bintang"
 
 #: toolbox.py:504
-#, fuzzy
 msgid "Trapezoid"
-msgstr "Trapezoid"
+msgstr "Trapesium"
 
 #: toolbox.py:508
-#, fuzzy
 msgid "Triangle"
 msgstr "Segitiga"
 
 #: toolbox.py:555
-#, fuzzy
 msgid "Type"
-msgstr "Jenis"
+msgstr "Tipe"
 
 #: toolbox.py:666
 msgid "Insert Image"
-msgstr ""
+msgstr "Sisipkan Gambar"
 
 #: toolbox.py:679
 msgid "Rotate Left"
-msgstr ""
+msgstr "Putar Kiri"
 
 #: toolbox.py:683
 msgid "Rotate Right"
-msgstr ""
+msgstr "Putar Kanan"
 
 #: toolbox.py:688
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Cermin Horisontal"
 
 #: toolbox.py:693
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Cermin Vertikal"
 
 #: toolbox.py:697
-#, fuzzy
 msgid "Height"
 msgstr "Tinggi"
 
 #: toolbox.py:708
-#, fuzzy
 msgid "Width"
 msgstr "Lebar"
 
 #: toolbox.py:723
 msgid "Grayscale"
-msgstr ""
+msgstr "Skala kelabu"
 
 #: toolbox.py:726
 msgid "Rainbow"
-msgstr ""
+msgstr "Pelangi"
 
 #: toolbox.py:731
 msgid "Invert Colors"
-msgstr ""
+msgstr "Balikkan Warna"
 
 #: toolbox.py:806 toolbox.py:810
 msgid "Choose image"
-msgstr ""
+msgstr "Pilih gambar"
 
 #: widgets.py:24
 msgid "Choose brush properties"
-msgstr ""
+msgstr "Pilih properti kuas"
 
 #: widgets.py:238
-#, fuzzy
 msgid "Size: "
 msgstr "Ukuran: "
 
 #: widgets.py:249
-#, fuzzy
 msgid "Circle"
 msgstr "Lingkaran"
 
 #: widgets.py:259
-#, fuzzy
 msgid "Square"
-msgstr "Persegi"
+msgstr "Kotak"
 
 #: widgets.py:271
-#, fuzzy
 msgid "Shape"
-msgstr "Membentuk"
+msgstr "Bentuk"
 
 #: widgets.py:303
 msgid "Stamp properties"
-msgstr ""
+msgstr "Properti stempel"
