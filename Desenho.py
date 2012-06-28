@@ -69,6 +69,7 @@ import logging
 import math
 import gc
 import gobject
+import cairo
 
 RESIZE_DELAY = 500  # The time to wait for the resize operation to be
                     # executed, after the resize controls are pressed.
@@ -85,9 +86,23 @@ class Desenho:
 
         """
         self._resize_timer = None
-        #self.d = widget
+        self._rainbow_color_list = ['#ff0000',  # red
+                '#ff8000',  # orange
+                '#ffff00',  # yellow
+                '#80ff00',  # lime
+                '#00ff00',  # green
+                '#00ff80',  # green water
+                '#00ffff',  # light blue
+                '#007fff',  # almost blue
+                '#0000ff',  # blue
+                '#8000ff',  # indigo
+                '#ff00ff',  # pink violet
+                '#ff0080']  # violet
+        self._rainbow_counter = 0
 
-    def line(self, widget, coords):
+        self.points = []
+
+    def line(self, widget, coords, temp):
         """Draw line.
 
             @param  self -- Desenho.Desenho instance
@@ -96,15 +111,21 @@ class Desenho:
 
         """
         width, height = widget.window.get_size()
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        widget.pixmap_temp.draw_line(widget.gc_line, widget.oldx, widget.oldy,
-            coords[0], coords[1])
-        #widget.newx = coords[0]
-        #widget.newy = coords[1]
+
+        if temp == True:
+            ctx = widget.temp_ctx
+        else:
+            ctx = widget.drawing_ctx
+
+        ctx.set_line_width(widget.tool['line size'])
+        ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+        ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        ctx.move_to(widget.oldx, widget.oldy)
+        ctx.line_to(coords[0], coords[1])
+        ctx.stroke()
         widget.queue_draw()
 
-    def eraser(self, widget, coords, last, size=30, shape='circle'):
+    def eraser(self, widget, coords, last):
         """Erase part of the drawing.
 
             @param  self -- Desenho.Desenho instance
@@ -115,11 +136,10 @@ class Desenho:
             @param  shape -- string (default 'circle')
 
         """
-        widget.desenha = False
-        self._trace(widget, widget.gc_eraser, coords, last, size, shape)
-        #widget.queue_draw()
+        widget.drawing_ctx.set_source_rgba(1.0, 1.0, 1.0, 1.0)
+        self._trace(widget, coords, last)
 
-    def brush(self, widget, coords, last, size=5, shape='circle'):
+    def brush(self, widget, coords, last):
         """Paint with brush.
 
             @param  self -- Desenho.Desenho instance
@@ -130,8 +150,9 @@ class Desenho:
             @param  shape -- string (default 'circle')
 
         """
-        widget.desenha = False
-        self._trace(widget, widget.gc_brush, coords, last, size, shape)
+        widget.drawing_ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        logging.error('brush')
+        self._trace(widget, coords, last)
 
     def stamp(self, widget, coords, last, stamp_size=20):
         """Paint with stamp.
@@ -155,7 +176,7 @@ class Desenho:
 
         widget.queue_draw()
 
-    def rainbow(self, widget, coords, last, color, size=5, shape='circle'):
+    def rainbow(self, widget, coords, last):
         """Paint with rainbow.
 
             @param  self -- Desenho.Desenho instance
@@ -167,52 +188,61 @@ class Desenho:
             @param  shape -- string (default 'circle')
 
         """
-        colormap = widget.get_colormap()
-        rainbow_colors = [
-        colormap.alloc_color('#ff0000', True, True),  # vermelho
-        colormap.alloc_color('#ff8000', True, True),  # laranja
-        colormap.alloc_color('#ffff00', True, True),  # amarelo
-        colormap.alloc_color('#80ff00', True, True),  # verde lima
-        colormap.alloc_color('#00ff00', True, True),  # verde
-        colormap.alloc_color('#00ff80', True, True),  # verde agua
-        colormap.alloc_color('#00ffff', True, True),  # azul claro
-        colormap.alloc_color('#007fff', True, True),  # quase azul
-        colormap.alloc_color('#0000ff', True, True),  # azul
-        colormap.alloc_color('#8000ff', True, True),  # anil
-        colormap.alloc_color('#ff00ff', True, True),  # rosa violeta
-        colormap.alloc_color('#ff0080', True, True),  # violeta
-        ]
+        _color_str = self._rainbow_color_list[self._rainbow_counter]
+        _color = gtk.gdk.color_parse(_color_str)
+        self._rainbow_counter += 1
+        if self._rainbow_counter > 11:
+            self._rainbow_counter = 0
 
-        widget.gc_rainbow.set_foreground(rainbow_colors[color])
+        widget.drawing_ctx.set_source_rgba(_color.red, _color.green,
+                _color.blue, 0.3)
+        self._trace(widget, coords, last)
+
+    def _trace(self, widget, coords, last):
         widget.desenha = False
-        self._trace(widget, widget.gc_rainbow, coords, last, size, shape)
-
-    def _trace(self, widget, gc, coords, last, size, shape):
+        size = widget.tool['line size']
+        shape = widget.tool['line shape']
         if shape == 'circle':
-            widget.pixmap.draw_arc(gc, True,
-                coords[0] - size / 2, coords[1] - size / 2,
-                size, size, 0, 360 * 64)
+            logging.error('trace circle')
             if last:
-                gc.set_line_attributes(size, gtk.gdk.LINE_SOLID,
-                    gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-                widget.pixmap.draw_line(gc,
-                    last[0], last[1], coords[0], coords[1])
-                gc.set_line_attributes(0, gtk.gdk.LINE_SOLID,
-                    gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+                logging.error('trace circle last')
+                widget.drawing_ctx.set_line_width(size)
+
+                widget.drawing_ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+                widget.drawing_ctx.set_line_join(cairo.LINE_JOIN_ROUND)
+                widget.drawing_ctx.move_to(last[0], last[1])
+                widget.drawing_ctx.line_to(coords[0], coords[1])
+                widget.drawing_ctx.stroke()
+            else:
+                widget.drawing_ctx.move_to(coords[0],
+                        coords[1])
+                widget.drawing_ctx.arc(coords[0], coords[1],
+                        size / 2, 0., 2 * math.pi)
+                widget.drawing_ctx.fill()
+
         elif shape == 'square':
-            widget.pixmap.draw_rectangle(gc, True,
-                coords[0] - size / 2, coords[1] - size / 2, size, size)
             if last:
                 points = [(last[0] - size / 2, last[1] - size / 2),
                     (coords[0] - size / 2, coords[1] - size / 2),
                     (coords[0] + size / 2, coords[1] + size / 2),
                     (last[0] + size / 2, last[1] + size / 2)]
-                widget.pixmap.draw_polygon(gc, True, points)
+                for point in points:
+                    widget.drawing_ctx.line_to(*point)
+                widget.drawing_ctx.fill()
                 points = [(last[0] + size / 2, last[1] - size / 2),
                     (coords[0] + size / 2, coords[1] - size / 2),
                     (coords[0] - size / 2, coords[1] + size / 2),
                     (last[0] - size / 2, last[1] + size / 2)]
-                widget.pixmap.draw_polygon(gc, True, points)
+                for point in points:
+                    widget.drawing_ctx.line_to(*point)
+                widget.drawing_ctx.fill()
+            else:
+                widget.drawing_ctx.move_to(coords[0] - size / 2,
+                        coords[1] - size / 2)
+                widget.drawing_ctx.rectangle(coords[0] - size / 2,
+                        coords[1] - size / 2, size, size)
+                widget.drawing_ctx.fill()
+
         if last:
             x = min(coords[0], last[0])
             width = max(coords[0], last[0]) - x
@@ -230,94 +260,86 @@ class Desenho:
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between drawing context and temp context
             @param  fill -- Fill object
         """
         if temp == True:
-            pixmap = widget.pixmap_temp
+            ctx = widget.temp_ctx
         else:
-            pixmap = widget.pixmap
+            ctx = widget.drawing_ctx
         width, height = widget.window.get_size()
 
         x, y, dx, dy, = self.adjust(widget, coords)
 
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
+        ctx.rectangle(x, y, dx, dy)
         if fill == True:
-            pixmap.draw_rectangle(widget.gc, True, x, y, dx, dy)
-        pixmap.draw_rectangle(widget.gc_line, False, x, y, dx, dy)
+            ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
+            ctx.fill_preserve()
+        ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        ctx.stroke()
+        widget.queue_draw_area(x, y, dx, dy)
+
+    def _draw_polygon(self, widget, temp, fill, points, closed=True):
+        if not points:
+            return
+        if temp == True:
+            ctx = widget.temp_ctx
+        else:
+            ctx = widget.drawing_ctx
+        width, height = widget.window.get_size()
+
+        ctx.save()
+        ctx.move_to(*points[0])
+        for point in points:
+            ctx.line_to(*point)
+        if closed:
+            ctx.close_path()
+        ctx.set_line_join(cairo.LINE_JOIN_MITER)
+        ctx.set_line_width(widget.tool['line size'])
+        if fill:
+            ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
+            ctx.fill_preserve()
+        ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        ctx.stroke()
+        ctx.restore()
         widget.queue_draw()
 
     def triangle(self, widget, coords, temp, fill):
         """Draw a triangle.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between drawing context and temp context
             @param  fill -- Fill object
-
         """
-
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
-        width, height = widget.window.get_size()
 
         points = [(widget.oldx, widget.oldy),
              (widget.oldx + int((coords[0] - widget.oldx) / 2), coords[1]),
              (coords[0], widget.oldy)]
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        if fill == True:
-            pixmap.draw_polygon(widget.gc, True, points)
-        pixmap.draw_polygon(widget.gc_line, False, points)
-        widget.queue_draw()
+        self._draw_polygon(widget, temp, fill, points)
 
     def trapezoid(self, widget, coords, temp, fill):
         """Draw a trapezoid.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between context and temp context
             @param  fill -- Fill object
-
         """
-
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
-        width, height = widget.window.get_size()
 
         dif = int((coords[0] - widget.oldx) / 4)
         points = [(widget.oldx, widget.oldy), (widget.oldx + dif, coords[1]),
                   (coords[0] - dif, coords[1]), (coords[0], widget.oldy)]
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        if fill == True:
-            pixmap.draw_polygon(widget.gc, True, points)
-        pixmap.draw_polygon(widget.gc_line, False, points)
-        widget.queue_draw()
+        self._draw_polygon(widget, temp, fill, points)
 
     def arrow(self, widget, coords, temp, fill):
         """Draw a arrow.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between context and temp context
             @param  fill -- Fill object
-
         """
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
-        width, height = widget.window.get_size()
-
         x = coords[0] - widget.oldx
         y = coords[1] - widget.oldy
         A = math.atan2(y, x)
@@ -339,56 +361,31 @@ class Desenho:
                   widget.oldy + int(0.74 * r * math.sin(A + dA / 6 + dA / 6))))
         p.append((widget.oldx + int(r * math.cos(A + dA / 2)),\
                   widget.oldy + int(r * math.sin(A + dA / 2))))
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        tp = tuple(p)
-        if fill == True:
-            pixmap.draw_polygon(widget.gc, True, tp)
-        pixmap.draw_polygon(widget.gc_line, False, tp)
-        widget.queue_draw()
+
+        self._draw_polygon(widget, temp, fill, p)
 
     def parallelogram(self, widget, coords, temp, fill):
         """Draw a parallelogram.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between context and temp context
             @param  fill -- Fill object
         """
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
-        width, height = widget.window.get_size()
-
         x = int((coords[0] - widget.oldx) / 4)
         points = [(widget.oldx, widget.oldy), (coords[0] - x, widget.oldy),
                   (coords[0], coords[1]), (widget.oldx + x, coords[1])]
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        if fill == True:
-            pixmap.draw_polygon(widget.gc, True, points)
-        pixmap.draw_polygon(widget.gc_line, False, points)
-        widget.queue_draw()
+        self._draw_polygon(widget, temp, fill, points)
 
     def star(self, widget, coords, n, temp, fill):
         """Draw polygon with n sides.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
             @param  n -- number of sides
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between context and temp context
             @param  fill -- Fill object
-
         """
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
-        width, height = widget.window.get_size()
-
         x = coords[0] - widget.oldx
         y = coords[1] - widget.oldy
         A = math.atan2(y, x)
@@ -404,32 +401,17 @@ class Desenho:
                      widget.oldy + int(r * math.sin(A))))
             p.append((widget.oldx + int(0.4 * r * math.cos(A + dA / 2)), \
                      widget.oldy + int(0.4 * r * math.sin(A + dA / 2))))
-        tp = tuple(p)
-
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        if fill == True:
-            pixmap.draw_polygon(widget.gc, True, tp)
-        pixmap.draw_polygon(widget.gc_line, False, tp)
-        widget.queue_draw()
+        self._draw_polygon(widget, temp, fill, p)
 
     def polygon_regular(self, widget, coords, n, temp, fill):
         """Draw polygon with n sides.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
             @param  n -- number of sides
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between context and temp context
             @param  fill -- Fill object
-
         """
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
-        width, height = widget.window.get_size()
-
         x = coords[0] - widget.oldx
         y = coords[1] - widget.oldy
         A = math.atan2(y, x)
@@ -441,29 +423,21 @@ class Desenho:
             A = A + dA
             p.append((widget.oldx + int(r * math.cos(A)), \
                  widget.oldy + int(r * math.sin(A))))
-        tp = tuple(p)
-
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        if fill == True:
-            pixmap.draw_polygon(widget.gc, True, tp)
-        pixmap.draw_polygon(widget.gc_line, False, tp)
-        widget.queue_draw()
+        self._draw_polygon(widget, temp, fill, p)
 
     def heart(self, widget, coords, temp, fill):
         """Draw polygon with n sides.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between context and temp context
             @param  fill -- Fill object
-
         """
         if temp == True:
-            pixmap = widget.pixmap_temp
+            ctx = widget.temp_ctx
         else:
-            pixmap = widget.pixmap
+            ctx = widget.drawing_ctx
+
         width, height = widget.window.get_size()
 
         if coords[0] < widget.oldx:
@@ -477,118 +451,95 @@ class Desenho:
 
         dx = math.fabs(coords[0] - widget.oldx)
         dy = math.fabs(coords[1] - widget.oldy)
+        r = math.hypot(dy, dy)
+        w = r / 10.0
 
-        w = int(4 * dx)
-        e = int(4 * dx / math.sqrt(3))
+        if w == 0:
+            # non invertible cairo matrix
+            return
 
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        if fill == True:
-            pixmap.draw_arc(widget.gc, True,
-                    int(widget.oldx - dx),
-                    int(widget.oldy - e / 2), w, e, 180 * 64, 60 * 64)
-            pixmap.draw_arc(widget.gc, True,
-                    int(widget.oldx - 3 * dx),
-                    int(widget.oldy - e / 2), w, e, 300 * 64, 60 * 64)
-            pixmap.draw_arc(widget.gc, True,
-                    int(widget.oldx - dx * 0.2),
-                    int(widget.oldy - 0.6 * dx + 2),
-                    int(1.2 * dx), int(1.2 * dx), 0, 180 * 64)
-            pixmap.draw_arc(widget.gc, True,
-                    int(widget.oldx - dx),
-                    int(widget.oldy - 0.6 * dx + 2),
-                    int(1.2 * dx), int(1.2 * dx), 0, 180 * 64)
-        pixmap.draw_arc(widget.gc_line, False,
-                    int(widget.oldx - dx),
-                    int(widget.oldy - e / 2), w, e, 180 * 64, 60 * 64)
-        pixmap.draw_arc(widget.gc_line, False,
-                    int(widget.oldx - dx - w / 2),
-                    int(widget.oldy - e / 2), w, e, 300 * 64, 60 * 64)
-        pixmap.draw_arc(widget.gc_line, False,
-                    int(widget.oldx - dx * 0.2),
-                    int(widget.oldy - 0.6 * dx + 2),
-                    int(1.2 * dx), int(1.2 * dx), 0, 132 * 64)
-        pixmap.draw_arc(widget.gc_line, False,
-                    int(widget.oldx - dx),
-                    int(widget.oldy - 0.6 * dx + 2),
-                    int(1.2 * dx), int(1.2 * dx), 48 * 64, 132 * 64)
+        ctx.set_line_width(widget.tool['line size'])
+        line_width = ctx.get_line_width()
+
+        ctx.save()
+        ctx.translate(widget.oldx, widget.oldy)
+        ctx.scale(w, w)
+        ctx.move_to(0, 0)
+        ctx.curve_to(0, -30, -50, -30, -50, 0)
+        ctx.curve_to(-50, 30, 0, 35, 0, 60)
+        ctx.curve_to (0, 35, 50, 30, 50, 0)
+        ctx.curve_to (50, -30, 0, -30, 0, 0)
+
+        ctx.set_line_width(line_width / w)
+        if fill:
+            ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
+            ctx.fill_preserve()
+        ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        ctx.stroke()
+        ctx.restore()
 
         widget.queue_draw()
 
     def circle(self, widget, coords, temp, fill):
         """Draw a circle.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between context and temp context
             @param  fill -- Fill object
-
         """
-
         if temp == True:
-            pixmap = widget.pixmap_temp
+            ctx = widget.temp_ctx
         else:
-            pixmap = widget.pixmap
+            ctx = widget.drawing_ctx
         width, height = widget.window.get_size()
 
         x, y, dx, dy = self.adjust(widget, coords)
-
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-        if fill == True:
-            pixmap.draw_arc(widget.gc, True, x, y, dx, dy, 0, 360 * 64)
-        pixmap.draw_arc(widget.gc_line, False, x, y, dx, dy, 0, 360 * 64)
+        if dx == 0 or dy == 0:
+            # scale by 0 gives error
+            return
+        ctx.set_line_width(widget.tool['line size'])
+        line_width = ctx.get_line_width()
+        ctx.save()
+        ctx.translate(x, y)
+        ctx.scale(dx, dy)
+        ctx.arc(0., 0., 1., 0., 2 * math.pi)
+        ctx.set_line_width(line_width / float(min(dx, dy)))
+        if fill:
+            ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
+            ctx.fill_preserve()
+        ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        ctx.stroke()
+        ctx.restore()
         widget.queue_draw()
 
     def clear(self, widget):
         """Clear the drawing.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
         """
         logging.debug('Desenho.clear')
+        widget.desenha = False
 
-        widget.desenho = []
         widget.textos = []
-
+        x, y = 0, 0
+        width, height = widget.window.get_size()
         # try to clear a selected area first
         if widget.is_selected():
-            try:
-                width, height = widget.pixmap_sel.get_size()
+            x, y, width, height = widget.get_selection_bounds()
+        logging.error('clear %s', (x, y, width, height))
 
-                # Clear the selected area
-                widget.pixmap_sel.draw_rectangle(widget.get_style().white_gc,
-                    True, 0, 0, width, height)
-                # Draw the selected area in the displayed pixmap
-                widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,
-                    0, 0, widget.orig_x, widget.orig_y, width, height)
-                # Draw the selection rectangle
-                widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
-                    widget.orig_x, widget.orig_y, width, height)
-                widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
-                    widget.orig_x - 1, widget.orig_y - 1,
-                    width + 2, height + 2)
+        widget.drawing_ctx.rectangle(x, y, width, height)
+        widget.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
+        widget.drawing_ctx.fill()
 
-            except NameError, message:
-                logging.debug(message)
-            except Exception, message:
-                logging.debug('Unexpected error: %s', message)
-        else:
-            width, height = widget.window.get_size()
-            widget.pixmap.draw_rectangle(widget.get_style().white_gc, True,
-                0, 0, width, height)
-            widget.pixmap_temp.draw_rectangle(widget.get_style().white_gc,
-                True, 0, 0, width, height)
         widget.queue_draw()
 
     def text(self, widget, event):
         """Display and draw text in the drawing area.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  event -- GdkEvent
-
         """
 
         if not widget.text_in_progress:
@@ -628,47 +579,18 @@ class Desenho:
 
             widget.queue_draw()
 
-    def selection(self, widget, coords, temp=True):
+    def selection(self, widget, coords):
         """Make a selection.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
             @param  fill -- Fill object
-
-            @return (x0,y0,x1,y1) -- coords of corners
         """
 
         width, height = widget.window.get_size()
 
         x, y, dx, dy = self.adjust(widget, coords, True)
-
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap,
-            0, 0, 0, 0, width, height)
-        if temp:
-            widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
-               x, y, dx, dy)
-            widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
-               x - 1, y - 1, dx + 2, dy + 2)
-        else:
-            try:
-                del (widget.pixmap_sel)
-            except:
-                pass
-
-            widget.pixmap_sel = gtk.gdk.Pixmap(widget.window, dx, dy, -1)
-            widget.pixmap_sel.draw_drawable(widget.gc, widget.pixmap,
-                x, y, 0, 0, dx, dy)
-            widget.pixmap.draw_rectangle(widget.get_style().white_gc, True,
-                x, y, dx, dy)
-            widget.orig_x = x
-            widget.orig_y = y
-            widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
-                x, y, dx, dy)
-            widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
-                x - 1, y - 1, dx + 2, dy + 2)
-
+        widget.set_selection_bounds(x, y, dx, dy)
         widget.queue_draw()
 
     def moveSelection(self, widget, coords):
@@ -695,11 +617,14 @@ class Desenho:
         widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,
             0, 0, widget.orig_x + dx, widget.orig_y + dy, size[0], size[1])
 
-        widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
-            widget.orig_x + dx, widget.orig_y + dy, size[0], size[1])
-        widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
-            widget.orig_x + dx - 1, widget.orig_y + dy - 1,
-            size[0] + 2, size[1] + 2)
+        widget.set_selection_bounds(widget.orig_x + dx, widget.orig_y + dy,
+                size[0], size[1])
+
+#        widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
+#            widget.orig_x + dx, widget.orig_y + dy, size[0], size[1])
+#        widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
+#            widget.orig_x + dx - 1, widget.orig_y + dy - 1,
+#            size[0] + 2, size[1] + 2)
 
         widget.queue_draw()
 
@@ -772,108 +697,69 @@ class Desenho:
         else:
             widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,
                 0, 0, widget.orig_x, widget.orig_y, wr, hr)
-        widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
-            widget.orig_x, widget.orig_y, wr, hr)
-        widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
-            widget.orig_x - 1, widget.orig_y - 1, wr + 2, hr + 2)
+
+        widget.set_selection_bounds(widget.orig_x, widget.orig_y, wr, hr)
+#        widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
+#            widget.orig_x, widget.orig_y, wr, hr)
+#        widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
+#            widget.orig_x - 1, widget.orig_y - 1, wr + 2, hr + 2)
 
         widget.queue_draw()
         gc.collect()
 
-    def polygon(self, widget, coords, temp, fill, param=None):
+    def freeform(self, widget, coords, temp, fill, param=None):
         """Draw polygon.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  temp -- switch between pixmap and pixmap_temp
+            @param  temp -- switch between drawing context and temp context
             @param  fill -- Fill object
-
         """
 
-        if temp == True:
-            pixmap = widget.pixmap_temp
-        else:
-            pixmap = widget.pixmap
         width, height = widget.window.get_size()
 
-        pixmap.draw_drawable(widget.gc, widget.pixmap, 0, 0, 0, 0,
-            width, height)
-
+        logging.error('freeform param %s', param)
         if param == "moving":
             # mouse not pressed moving
-            if not widget.polygon_start:
-                pixmap.draw_line(widget.gc_line,
-                    widget.last[0], widget.last[1], coords[0], coords[1])
-        elif widget.polygon_start == True:  # Starting a new polygon ?
-            if param == "motion":
-                # first press
-                try:
-                    pixmap.draw_line(widget.gc_line,
-                        widget.last[0], widget.last[1], coords[0], coords[1])
-                    widget.pixmap.draw_line(widget.gc_line,
-                        widget.last[0], widget.last[1], coords[0], coords[1])
-                    widget.points.append(coords)
-                except:
-                    pixmap.draw_line(widget.gc_line, widget.oldx, widget.oldy,
-                        coords[0], coords[1])
-                    widget.pixmap.draw_line(widget.gc_line,
-                        widget.oldx, widget.oldy, coords[0], coords[1])
-                    widget.first = widget.oldx, widget.oldy
-                    widget.points = [widget.first, coords]
-                widget.enableUndo(widget, overrite=True)
-                widget.last = coords
-            else:  # param == "release"
-                # first release
-                try:
-                    widget.first
-                    widget.points.append(coords)
-                    widget.pixmap.draw_line(widget.gc_line,
-                        widget.last[0], widget.last[1], coords[0], coords[1])
-                except:
-                    widget.first = widget.oldx, widget.oldy
-                    widget.points = [widget.first, coords]
-                    widget.pixmap.draw_line(widget.gc_line,
-                        widget.oldx, widget.oldy, coords[0], coords[1])
-                widget.enableUndo(widget, overrite=True)
-                widget.last = coords
-            widget.polygon_start = False
-        else:
-            if param == "motion":
-                # print "press"
-                pixmap.draw_line(widget.gc_line,
-                    widget.last[0], widget.last[1], coords[0], coords[1])
-                widget.pixmap.draw_line(widget.gc_line,
-                    widget.last[0], widget.last[1], coords[0], coords[1])
-                widget.enableUndo(widget, overrite=True)
-                widget.last = coords
-                widget.points.append(coords)
-            elif param == "release":
-                # print "release"
-                x = coords[0] - widget.first[0]
-                y = coords[1] - widget.first[1]
-                d = math.hypot(x, y)
-                if d > 20:  # close the polygon ?
-                    pixmap.draw_line(widget.gc_line,
-                        widget.last[0], widget.last[1], coords[0], coords[1])
-                    widget.last = coords
-                    widget.points.append(coords)
-                else:
-                    tp = tuple(widget.points)
-                    if fill == True:
-                        pixmap.draw_polygon(widget.gc, True, tp)
-                    pixmap.draw_polygon(widget.gc_line, False, tp)
+            if self.points:
+                if widget.last:
+                    self.points.append((coords[0], coords[1]))
                     widget.last = []
-                    widget.polygon_start = True
+                else:
+                    self.points[-1] = (coords[0], coords[1])
+        elif param == "motion":
+            # when mousepress or mousemove
+            if widget.last:
+                self.points.append((widget.last[0], widget.last[1]))
+                self.points.append((coords[0], coords[1]))
+            else:
+                self.points.append((widget.oldx, widget.oldy))
+                self.points.append((coords[0], coords[1]))
+            widget.enableUndo(widget, overrite=True)
+            widget.last = coords
+        elif param == "release":
+            if len(self.points) > 2:
+                first = self.points[0]
+                dx = coords[0] - first[0]
+                dy = coords[1] - first[1]
+                d = math.hypot(dx, dy)
+                if d > 20:
+                    widget.last = coords
+                    self.points.append(coords)
+                else:
+                    # close the polygon
+                    logging.error('freeform ending')
+                    self._draw_polygon(widget, False, fill, self.points)
+                    widget.last = []
+                    self.points = []
                     widget.enableUndo(widget, overrite=True)
-            elif param == "bug":
-                tp = tuple(widget.points)
-                if fill == True:
-                    pixmap.draw_polygon(widget.gc, True, tp)
-                pixmap.draw_polygon(widget.gc_line, False, tp)
-                widget.last = []
-                widget.polygon_start = True
-                widget.enableUndo(widget, overrite=True)
+                    widget.queue_draw()
+                    return
+
+        logging.error('freeform points (2) %s', self.points)
+        widget.desenha = True
+        # Display the polygon open in the temp canvas
+        self._draw_polygon(widget, True, False, self.points, closed=False)
         widget.queue_draw()
 
     def adjust(self, widget, coords, locked=False):

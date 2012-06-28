@@ -69,6 +69,7 @@ import os
 import tempfile
 import math
 import pango
+import cairo
 
 from Desenho import Desenho
 from urlparse import urlparse
@@ -130,7 +131,7 @@ class Area(gtk.DrawingArea):
                 gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
         self.connect('drag_data_received', self.drag_data_received)
 
-        self.set_flags(gtk.CAN_FOCUS)
+        self.set_can_focus(True)
         self.grab_focus()
 
         self.set_extension_events(gtk.gdk.EXTENSION_EVENTS_CURSOR)
@@ -147,13 +148,15 @@ class Area(gtk.DrawingArea):
         ## - 'vertices'      : a integer
         ## All values migth be None, execept in 'name' key.
         self.tool = {
-            'name': 'pencil',
+            'name': 'brush',
             'line size': 4,
             'stamp size': self._get_stamp_size(),
             'fill color': None,
             'stroke color': None,
             'line shape': 'circle',
             'fill': True,
+            'cairo_stroke_color': (0.0, 0.0, 0.0, 0.3),
+            'cairo_fill_color': (0.0, 0.0, 0.0, 0.3),
             'vertices': 6.0}
 
         self.desenha = False
@@ -161,24 +164,12 @@ class Area(gtk.DrawingArea):
         self.sel_get_out = False
         self.oldx = 0
         self.oldy = 0
-        self.polygon_start = True
-        self.points = []
-        self.gc = None
-        self.gc_rainbow = None
-        self.gc_line = None
-        self.gc_eraser = None
-        self.gc_brush = None
-        self.gc_selection = None
-        self.pixmap = None
-        self.pixmap_temp = None
-        self.pixmap_sel = None
-        self.desenho = []
+        self.drawing_canvas = None
         self.textos = []
         self.text_in_progress = False
         self.activity = activity
         self.d = Desenho(self)
         self.last = []
-        self.rainbow_counter = 0
         self.keep_aspect_ratio = False
         self.keep_shape_ratio = False
 
@@ -186,7 +177,7 @@ class Area(gtk.DrawingArea):
         self.font_description.set_family('Sans')
         self.font_description.set_size(12)
 
-        self._set_selection_bounds(0, 0, 0, 0)
+        self.set_selection_bounds(0, 0, 0, 0)
 
         # List of pixmaps for the Undo function:
         self._undo_list = []
@@ -201,57 +192,32 @@ class Area(gtk.DrawingArea):
         """Set the stamp initial size, based on the display DPI."""
         return zoom(44)
 
+    def load_from_file(self, file_path):
+        self.drawing_canvas = cairo.ImageSurface.create_from_png(file_path)
+
     def setup(self, width, height):
         """Configure the Area object."""
-
-        if self.pixmap:
-            # Already set up
-            return
 
         logging.debug('Area.setup: w=%s h=%s' % (width, height))
 
         win = self.window
         self.set_size_request(width, height)
 
-        ##It is the main pixmap, who is display most of the time.
-        self.pixmap = gtk.gdk.Pixmap(win, width, height, -1)
-        self.pixmap.draw_rectangle(self.get_style().white_gc, True,
-            0, 0, width, height)
-        ##This pixmap is showed when we need show something and not draw it.
-        self.pixmap_temp = gtk.gdk.Pixmap(win, width, height, -1)
-        self.pixmap_temp.draw_rectangle(self.get_style().white_gc, True,
-            0, 0, width, height)
+        ##It is the main canvas, who is display most of the time
+        # if is not None was read from a file
+        if self.drawing_canvas is None:
+            self.drawing_canvas = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                                      width, height)
+            self.drawing_ctx = cairo.Context(self.drawing_canvas)
+            # paint background white
+            self.drawing_ctx.rectangle(0, 0, width, height)
+            self.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
+            self.drawing_ctx.fill()
+        else:
+            self.drawing_ctx = cairo.Context(self.drawing_canvas)
 
-        ##When something is selected this pixmap draw and rectangular box
-        # out of the selection
-        #self.pixmap_sel = gtk.gdk.Pixmap(win, width, height, -1)
-        #self.pixmap_sel.draw_rectangle(self.get_style().white_gc, True,
-        # 0, 0, width, height)
-
-        self.gc = win.new_gc()
-        self.gc_eraser = win.new_gc()
-        colormap = self.get_colormap()
-        self.white = colormap.alloc_color('#ffffff', True, True)  # white
-        self.black = colormap.alloc_color('#000000', True, True)  # black
-
-        self.gc_eraser.set_foreground(self.white)
-        self.gc_rainbow = win.new_gc()
-
-        self.gc_brush = win.new_gc()
-        self.gc_brush.set_foreground(self.black)
-
-        self.gc_line = win.new_gc()
-
-        self.gc_selection = win.new_gc()
-        self.gc_selection.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH,
-            gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        self.gc_selection.set_foreground(self.black)
-
-        #this make another white line out of the black line
-        self.gc_selection1 = win.new_gc()
-        self.gc_selection1.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH,
-            gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        self.gc_selection1.set_foreground(self.white)
+        ##This canvas is showed when we need show something and not draw it.
+        self._init_temp_canvas(width, height)
 
         self.enableUndo(self, size=(width, height))
 
@@ -260,6 +226,31 @@ class Area(gtk.DrawingArea):
 
         return True
 
+    def _init_temp_canvas(self, width, height):
+        self.temp_canvas = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                                  width, height)
+        self.temp_ctx = cairo.Context(self.temp_canvas)
+        self.temp_ctx.set_source_rgba(1.0, 1.0, 1.0, 1.0)
+        self.temp_ctx.rectangle(0, 0, width, height)
+        self.temp_ctx.fill()
+        self.temp_ctx.set_source_surface(self.drawing_canvas)
+        self.temp_ctx.paint()
+
+    def display_selection_border(self, ctx):
+        x, y, x2, y2 = self.get_selection_bounds()
+        if (x, y, x2, y2) == (0, 0, 0, 0):
+            return
+
+        ctx.save()
+        ctx.set_line_width(1)
+        ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+        ctx.set_line_join(cairo.LINE_JOIN_ROUND)
+        ctx.set_dash([5, 5], 0)
+        ctx.set_source_rgba(0., 0., 0., 1.)
+        ctx.rectangle(x, y, x2, y2)
+        ctx.stroke()
+        ctx.restore()
+
     def configure_line(self, size):
         """Configure the new line's size.
 
@@ -267,11 +258,12 @@ class Area(gtk.DrawingArea):
             @param  size -- the size of the new line
 
         """
-        self.gc_line.set_line_attributes(size, gtk.gdk.LINE_SOLID,
-            gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
+        self.drawing_ctx.set_line_width(size)
+        self.drawing_ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+        self.drawing_ctx.set_line_join(cairo.LINE_JOIN_ROUND)
 
     def expose(self, widget, event):
-        """ This function define which pixmap will be showed to the user.
+        """ This function define which canvas will be showed to the user.
             Show up the Area object (GtkDrawingArea).
 
             @param  self -- the Area object (GtkDrawingArea)
@@ -280,41 +272,58 @@ class Area(gtk.DrawingArea):
 
         """
         area = event.area
-        if self.desenha or self.selmove:
-            widget.window.draw_drawable(self.gc, self.pixmap_temp,
-                area[0], area[1], area[0], area[1], area[2], area[3])
-        else:
-            widget.window.draw_drawable(self.gc, self.pixmap,
-                area[0], area[1], area[0], area[1], area[2], area[3])
-            self.show_tool_shape(widget)
-        return False
+        #logging.error('expose area %s', area)
+        width, height = self.window.get_size()
 
-    def show_tool_shape(self, widget):
+        context = self.window.cairo_create()
+
+        if self.desenha or self.selmove:
+            # Paint the canvas in the widget:
+            # TODO: clipping
+            context.set_source_surface(self.temp_canvas)
+            context.paint()
+        else:
+            # TODO: clipping
+            context.set_source_surface(self.drawing_canvas)
+            context.paint()
+            self.show_tool_shape(context)
+        self._init_temp_canvas(width, height)
+        self.display_selection_border(context)
+
+    def show_tool_shape(self, context):
         """
         Show the shape of the tool selected for pencil, brush,
         rainbow and eraser
         """
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
                                  'stamp']:
+            context.set_source_rgba(*self.tool['cairo_stroke_color'])
+            context.set_line_width(1)
             if not self.drawing:
                 # draw stamp border in widget.window
                 if self.tool['name'] == 'stamp':
                     wr, hr = self.stamp_dimentions
-                    widget.window.draw_rectangle(self.gc_brush, False,
-                        self.x_cursor - wr / 2, self.y_cursor - hr / 2,
-                        wr, hr)
+                    context.rectangle(self.x_cursor - wr / 2,
+                            self.y_cursor - hr / 2, wr, hr)
+                    # TODO: stroke style
+                    context.stroke()
 
                 # draw shape of the brush, square or circle
                 elif self.tool['line shape'] == 'circle':
                     size = self.tool['line size']
-                    widget.window.draw_arc(self.gc_brush, False,
-                        self.x_cursor - size / 2, self.y_cursor - size / 2,
-                        size, size, 0, 360 * 64)
+                    context.move_to(self.x_cursor,
+                            self.y_cursor)
+                    context.arc(self.x_cursor,
+                            self.y_cursor, size / 2, 0.,
+                            2 * math.pi)
+                    context.stroke()
                 else:
                     size = self.tool['line size']
-                    widget.window.draw_rectangle(self.gc_brush, False,
-                        self.x_cursor - size / 2, self.y_cursor - size / 2,
-                        size, size)
+                    context.move_to(self.x_cursor - size / 2,
+                            self.y_cursor - size / 2)
+                    context.rectangle(self.x_cursor - size / 2,
+                            self.y_cursor - size / 2, size, size)
+                    context.stroke()
 
     def mousedown(self, widget, event):
         """Make the Area object (GtkDrawingArea) recognize
@@ -350,9 +359,6 @@ class Area(gtk.DrawingArea):
 
         self.oldx, self.oldy = coords
 
-        if self.polygon_start is False and self.tool['name'] is not 'freeform':
-            self.d.polygon(widget, coords, False, self.tool['fill'], "bug")
-
         x, y, state = event.window.get_pointer()
 
         if self.tool['name'] == 'picker':
@@ -366,33 +372,29 @@ class Area(gtk.DrawingArea):
             #Handle with the left button click event.
             if self.tool['name'] == 'eraser':
                 self.last = []
-                self.d.eraser(widget, coords, self.last,
-                    self.tool['line size'], self.tool['line shape'])
+                self.d.eraser(widget, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'brush':
                 self.last = []
-                self.d.brush(widget, coords, self.last, self.tool['line size'],
-                    self.tool['line shape'])
+                self.d.brush(widget, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'stamp':
                 self.last = []
-                self.d.stamp(widget, coords, self.last,
-                             self.tool['stamp size'])
+                self.d.stamp(widget, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'rainbow':
                 self.last = []
-                self.d.rainbow(widget, coords, self.last,
-                    self.rainbow_counter, self.tool['line size'],
-                    self.tool['line shape'])
+                self.d.rainbow(widget, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'freeform':
+                logging.error('mousedown')
                 self.configure_line(self.tool['line size'])
-                if self.polygon_start == False:
-                    self.desenha = True
+                self.d.freeform(widget, coords, True,
+                    self.tool['fill'], "motion")
             if self.selmove:
                 #get out of the func selection
                 if self.tool['name'] != 'marquee-rectangular':
@@ -408,8 +410,10 @@ class Area(gtk.DrawingArea):
                         (coords[1] < yi) or (coords[1] > yf):
                         self.sel_get_out = True
             else:
-                self.pixmap_temp.draw_drawable(self.gc, self.pixmap,
-                    0, 0, 0, 0, width, height)
+                self.temp_ctx.set_source_surface(self.drawing_canvas, 0, 0)
+                self.temp_ctx.rectangle(0, 0, width, height)
+                self.temp_ctx.paint()
+
             self.desenha = True
         widget.queue_draw()
 
@@ -436,20 +440,13 @@ class Area(gtk.DrawingArea):
                 elif self.tool['name'] == 'line':
                     coords = self._keep_line_ratio(coords)
 
-        if state & gtk.gdk.BUTTON1_MASK and self.pixmap != None:
-            if self.tool['name'] == 'pencil':
-                self.d.brush(widget, coords, self.last,
-                    self.tool['line size'], self.tool['line shape'])
-                self.last = coords
-
-            elif self.tool['name'] == 'eraser':
-                self.d.eraser(widget, coords, self.last,
-                    self.tool['line size'], self.tool['line shape'])
+        if state & gtk.gdk.BUTTON1_MASK:
+            if self.tool['name'] == 'eraser':
+                self.d.eraser(widget, coords, self.last)
                 self.last = coords
 
             elif self.tool['name'] == 'brush':
-                self.d.brush(widget, coords, self.last,
-                    self.tool['line size'], self.tool['line shape'])
+                self.d.brush(widget, coords, self.last)
                 self.last = coords
 
             elif self.tool['name'] == 'stamp':
@@ -458,25 +455,17 @@ class Area(gtk.DrawingArea):
                 self.last = coords
 
             elif self.tool['name'] == 'rainbow':
-                self.d.rainbow(widget, coords, self.last,
-                    self.rainbow_counter, self.tool['line size'],
-                    self.tool['line shape'])
-                self.rainbow_counter += 1
-                if self.rainbow_counter > 11:
-                    self.rainbow_counter = 0
+                self.d.rainbow(widget, coords, self.last)
                 self.last = coords
 
             if self.desenha:
                 if self.tool['name'] == 'line':
-                    self.configure_line(self.tool['line size'])
-                    self.d.line(widget, coords)
+                    self.d.line(widget, coords, True)
 
                 elif self.tool['name'] == 'ellipse':
-                    self.configure_line(self.tool['line size'])
                     self.d.circle(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'rectangle':
-                    self.configure_line(self.tool['line size'])
                     self.d.square(widget, event, coords, True,
                         self.tool['fill'])
 
@@ -493,52 +482,44 @@ class Area(gtk.DrawingArea):
                         self.d.moveSelection(widget, coords)
 
                 elif self.tool['name'] == 'freeform':
+                    logging.error('mousemove')
                     self.configure_line(self.tool['line size'])
-                    self.d.polygon(widget, coords, True,
+                    self.d.freeform(widget, coords, True,
                         self.tool['fill'], "motion")
 
                 elif self.tool['name'] == 'triangle':
-                    self.configure_line(self.tool['line size'])
                     self.d.triangle(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'trapezoid':
-                    self.configure_line(self.tool['line size'])
                     self.d.trapezoid(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'arrow':
-                    self.configure_line(self.tool['line size'])
                     self.d.arrow(widget, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'parallelogram':
-                    self.configure_line(self.tool['line size'])
                     self.d.parallelogram(widget, coords, True,
                         self.tool['fill'])
 
                 elif self.tool['name'] == 'star':
-                    self.configure_line(self.tool['line size'])
                     self.d.star(widget, coords, self.tool['vertices'],
                         True, self.tool['fill'])
 
                 elif self.tool['name'] == 'polygon_regular':
-                    self.configure_line(self.tool['line size'])
                     self.d.polygon_regular(widget, coords,
                         self.tool['vertices'], True, self.tool['fill'])
 
                 elif self.tool['name'] == 'heart':
-                    self.configure_line(self.tool['line size'])
                     self.d.heart(widget, coords, True, self.tool['fill'])
         else:
             if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                      'stamp']:
                 widget.queue_draw()
             if self.tool['name'] == 'marquee-rectangular' and self.selmove:
-                size = self.pixmap_sel.get_size()
-                xi = self.orig_x
-                yi = self.orig_y
-                xf = xi + size[0]
-                yf = yi + size[1]
-                if (coords[0] < xi) or (coords[0] > xf) or \
-                    (coords[1] < yi) or (coords[1] > yf):
+                sel_x, sel_y, sel_width, sel_height = \
+                        self.get_selection_bounds()
+
+                if (coords[0] < sel_x) or (coords[0] > sel_x + sel_width) or \
+                    (coords[1] < sel_y) or (coords[1] > sel_y + sel_height):
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 else:
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
@@ -546,7 +527,7 @@ class Area(gtk.DrawingArea):
             elif self.tool['name'] == 'freeform' and not self.selmove:
                 self.desenha = True
                 self.configure_line(self.tool['line size'])
-                self.d.polygon(widget, coords, True,
+                self.d.freeform(widget, coords, True,
                     self.tool['fill'], "moving")
 
         gtk.gdk.event_request_motions(event)
@@ -573,9 +554,7 @@ class Area(gtk.DrawingArea):
         private_undo = False
         if self.desenha or self.sel_get_out:
             if self.tool['name'] == 'line':
-                self.pixmap.draw_line(self.gc_line, self.oldx, self.oldy,
-                    coords[0], coords[1])
-                widget.queue_draw()
+                self.d.line(widget, coords, False)
 
             elif self.tool['name'] == 'ellipse':
                 self.d.circle(widget, coords, False, self.tool['fill'])
@@ -588,7 +567,7 @@ class Area(gtk.DrawingArea):
                     if (event.state & gtk.gdk.CONTROL_MASK) or \
                         self.keep_aspect_ratio:
                         coords = self._keep_selection_ratio(coords)
-                    self.d.selection(widget, coords, False)
+                    self.d.selection(widget, coords)
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
                     self.selmove = True
                     self.sel_get_out = False
@@ -609,7 +588,7 @@ class Area(gtk.DrawingArea):
                 private_undo = True
 
             elif self.tool['name'] == 'freeform':
-                self.d.polygon(widget, coords, False,
+                self.d.freeform(widget, coords, False,
                     self.tool['fill'], 'release')
                 private_undo = True
 
@@ -819,10 +798,6 @@ class Area(gtk.DrawingArea):
         self.pixmap.draw_drawable(self.gc, undo_pix, 0, 0, 0, 0, -1, -1)
         self.queue_draw()
 
-        #special case for func polygon
-        if self.tool['name'] == 'freeform':
-                self.polygon_start = True  # start the polygon again
-
         self.emit('undo')
 
     def redo(self):
@@ -852,6 +827,9 @@ class Area(gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
 
         """
+        #TODO
+        return
+
         #logging.debug('Area.enableUndo(self,widget)')
 
         width, height = self.window.get_size()
@@ -980,10 +958,8 @@ class Area(gtk.DrawingArea):
                 width, height)
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
                 0, 0, 0, 0, size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection, False, 0, 0,
-                size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection1, False, -1, -1,
-                size[0] + 2, size[1] + 2)
+
+            self.set_selection_bounds(0, 0, size[0], size[1])
 
             self.tool['name'] = 'marquee-rectangular'
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
@@ -1007,7 +983,9 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
-        self.gc.set_foreground(color)
+        logging.error("TODO: Area.set_stroke_color %s", color)
+        self.tool['cairo_fill_color'] = (color.red_float,
+                color.green_float, color.blue_float, 0.3)
 
     def set_stroke_color(self, color):
         """Set stroke color.
@@ -1016,10 +994,10 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
-        self.gc_line.set_foreground(color)
-        self.gc_line.set_line_attributes(1, gtk.gdk.LINE_ON_OFF_DASH,
-            gtk.gdk.CAP_ROUND, gtk.gdk.JOIN_ROUND)
-        self.gc_brush.set_foreground(color)
+        logging.error("TODO: Area.set_stroke_color %s", color)
+        self.tool['cairo_stroke_color'] = (color.red_float,
+                color.green_float, color.blue_float, 0.3)
+        return
         self.activity.textview.modify_text(gtk.STATE_NORMAL, color)
 
     def grayscale(self, widget):
@@ -1126,10 +1104,13 @@ class Area(gtk.DrawingArea):
                 width, height)
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
                 0, 0, self.orig_x, self.orig_y, size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-                self.orig_x, self.orig_y, size[0], size[1])
-            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-                self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
+            self.set_selection_bounds(self.orig_x, self.orig_y, size[0],
+                    size[1])
+
+#            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
+#                self.orig_x, self.orig_y, size[0], size[1])
+#            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
+#                self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
 
         else:
             self.pixmap.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
@@ -1146,37 +1127,6 @@ class Area(gtk.DrawingArea):
     def drain_events(self, block=gtk.FALSE):
         while gtk.events_pending():
             gtk.mainiteration(block)
-
-    def _pixbuf2Image(self, pb):
-        """change a pixbuf to RGB image
-
-            @param  self -- the Area object (GtkDrawingArea)
-            @param  pb -- the pixbuf object (gtk.gdk.Pixbuf)
-
-            @return RGB Image
-
-        """
-        width, height = pb.get_width(), pb.get_height()
-        return Image.fromstring("RGB", (width, height), pb.get_pixels())
-
-    def _image2pixbuf(self, im):
-        """change a RGB image to a pixbuf
-
-            @param  self -- the Area object (GtkDrawingArea)
-            @param  im -- a RGB image
-
-            @return pixbuf
-
-        """
-        file1 = StringIO.StringIO()
-        im.save(file1, "ppm")
-        contents = file1.getvalue()
-        file1.close()
-        loader = gtk.gdk.PixbufLoader("pnm")
-        loader.write(contents, len(contents))
-        pixbuf = loader.get_pixbuf()
-        loader.close()
-        return pixbuf
 
     def rotate_left(self, widget):
         """Rotate the image.
@@ -1241,10 +1191,14 @@ class Area(gtk.DrawingArea):
                 width, height)
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
                 0, 0, self.orig_x, self.orig_y, size[1], size[0])
-            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-                self.orig_x, self.orig_y, size[1], size[0])
-            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-                self.orig_x - 1, self.orig_y - 1, size[1] + 2, size[0] + 2)
+
+            self.set_selection_bounds(self.orig_x, self.orig_y, size[0],
+                    size[1])
+
+#            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
+#                self.orig_x, self.orig_y, size[1], size[0])
+#            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
+#                self.orig_x - 1, self.orig_y - 1, size[1] + 2, size[0] + 2)
 
         else:
             win = self.window
@@ -1292,14 +1246,14 @@ class Area(gtk.DrawingArea):
         else:
             return False
 
-    def _set_selection_bounds(self, x1, y1, x2, y2):
+    def set_selection_bounds(self, x1, y1, width, height):
         """
             Set selection bounds
 
             @param  self -- the Area object (GtkDrawingArea)
             @param  x1,y1,x2,y2 -- the coords of limit points
         """
-        self._selection_corners = (x1, y1, x2, y2)
+        self._selection_corners = (x1, y1, width, height)
 
     def get_selection_bounds(self):
         """
@@ -1312,15 +1266,6 @@ class Area(gtk.DrawingArea):
         """
         return self._selection_corners[0], self._selection_corners[1], \
             self._selection_corners[2], self._selection_corners[3]
-
-    def loadImageFromJournal(self, pixbuf):
-        width, height = pixbuf.get_width(), pixbuf.get_height()
-
-        self.pixmap.draw_pixbuf(self.gc, pixbuf, 0, 0, 0, 0,
-            width, height, dither=gtk.gdk.RGB_DITHER_NORMAL,
-            x_dither=0, y_dither=0)
-        self.enableUndo(self, size=(width, height))
-        self.queue_draw()
 
     def loadImage(self, name, widget=None):
         """Load an image.
@@ -1353,10 +1298,13 @@ class Area(gtk.DrawingArea):
             width, height)
         self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel, 0, 0, 0, 0,
             size[0], size[1])
-        self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-            0, 0, size[0], size[1])
-        self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-            -1, -1, size[0] + 2, size[1] + 2)
+
+        self.set_selection_bounds(0, 0, size[0], size[1])
+
+#        self.pixmap_temp.draw_rectangle(self.gc_selection, False,
+#            0, 0, size[0], size[1])
+#        self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
+#            -1, -1, size[0] + 2, size[1] + 2)
 
         self.tool['name'] = 'marquee-rectangular'
         self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
@@ -1498,8 +1446,10 @@ class Area(gtk.DrawingArea):
                 width, height)
             self.orig_x = 0
             self.orig_y = 0
-            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-                0, 0, width - 1, height - 1)
+
+            self.set_selection_bounds(0, 0, width - 1, height - 1)
+#            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
+#                0, 0, width - 1, height - 1)
             self.selmove = True
             self.sel_get_out = False
             self.emit('select')

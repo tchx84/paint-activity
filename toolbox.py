@@ -336,6 +336,12 @@ class ToolsToolbarBuilder():
         self._activity.area.set_stroke_color(new_color)
         self.properties['stroke color'] = new_color
 
+        if isinstance(new_color, unicode):
+            new_color = gtk.gdk.Color(new_color)
+        self.properties['cairo_stroke_color'] = (new_color.red_float,
+                                          new_color.green_float,
+                                          new_color.blue_float, 0.3)
+
     def _on_signal_undo_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
 
@@ -377,6 +383,12 @@ class ButtonFillColor(ColorToolButton):
         new_color = self.alloc_color(color)
         self._activity.area.set_fill_color(new_color)
         self.properties['fill color'] = new_color
+
+        if isinstance(new_color, unicode):
+            new_color = gtk.gdk.Color(new_color)
+        self.properties['cairo_fill_color'] = (new_color.red_float,
+                                          new_color.green_float,
+                                          new_color.blue_float, 0.3)
 
     def create_palette(self):
         self._palette = self.get_child().create_palette()
