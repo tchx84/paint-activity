@@ -140,21 +140,23 @@ class OficinaActivity(activity.Activity):
         logging.debug('reading file %s, mimetype: %s, title: %s',
             file_path, self.metadata['mime_type'], self.metadata['title'])
 
-        pixbuf = gtk.gdk.pixbuf_new_from_file(file_path)
+        self.area.load_from_file(file_path)
 
         def size_allocate_cb(widget, allocation):
+            logging.error('read file size allocate')
             self.fixed.disconnect(self._setup_handle)
-            self.area.setup(pixbuf.get_width(), pixbuf.get_height())
+            width = self.area.drawing_canvas.get_width()
+            height = self.area.drawing_canvas.get_height()
+            self.area.setup(width, height)
             # The scrolled window is confused with a image of the same size
             # of the canvas when the toolbars popup and the scrolls
             # keep visible.
-            if pixbuf.get_height() > allocation.height or \
-                    pixbuf.get_width() > allocation.width:
-                self.canvas.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            if height > allocation.height or width > allocation.width:
+                self.canvas.set_policy(gtk.POLICY_AUTOMATIC,
+                        gtk.POLICY_AUTOMATIC)
             else:
                 self.canvas.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
-            self.area.loadImageFromJournal(pixbuf)
             self.center_area()
 
         self.canvas.add_with_viewport(self.fixed)
@@ -186,12 +188,8 @@ class OficinaActivity(activity.Activity):
             self.area.d.text(self.area, event=None)
 
         self.area.getout()
-        pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-            width, height)
-        pixbuf.get_from_drawable(self.area.pixmap,
-            gtk.gdk.colormap_get_system(), 0, 0, 0, 0, -1, -1)
+        self.area.drawing_canvas.write_to_png(file_path)
         self.metadata['mime_type'] = 'image/png'
-        pixbuf.save(file_path, 'png', {})
 
     def _get_area_displacement(self):
         """Return the point to use as top left corner in order to move
