@@ -191,7 +191,7 @@ class DrawEditToolbar(EditToolbar):
         self._activity.area.copy()
 
     def _paste_cb(self, widget, data=None):
-        self._activity.area.past(self._activity.area)
+        self._activity.area.paste(self._activity.area)
 
     def _on_signal_undo_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
@@ -786,7 +786,7 @@ class ImageToolbar(gtk.Toolbar):
 
     def resize(self, spinButton, tool, activity):
         if activity.area.tool['name'] == 'marquee-rectangular' and \
-           activity.area.selmove:
+           activity.area.is_selected():
             if tool == "object-height":
                 self.height_percent = spinButton.get_value_as_int() / 100.
                 activity.area.d.resizeSelection(activity.area,
@@ -839,7 +839,7 @@ class ImageToolbar(gtk.Toolbar):
                         chooser.get_selected_object())
                 jobject = chooser.get_selected_object()
                 if jobject and jobject.file_path:
-                    self._activity.area.loadImage(jobject.file_path)
+                    self._activity.area.load_image(jobject.file_path)
         finally:
             chooser.destroy()
             del chooser
