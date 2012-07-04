@@ -160,8 +160,7 @@ class Area(gtk.DrawingArea):
             'vertices': 6.0}
 
         self.desenha = False
-        self.selmove = False
-        self.sel_get_out = False
+        self._selmove = False
         self.oldx = 0
         self.oldy = 0
         self.drawing_canvas = None
@@ -178,6 +177,7 @@ class Area(gtk.DrawingArea):
         self.font_description.set_size(12)
 
         self.set_selection_bounds(0, 0, 0, 0)
+        self.pending_clean_selection_background = False
 
         # List of pixmaps for the Undo function:
         self._undo_list = []
@@ -217,7 +217,7 @@ class Area(gtk.DrawingArea):
             self.drawing_ctx = cairo.Context(self.drawing_canvas)
 
         ##This canvas is showed when we need show something and not draw it.
-        self._init_temp_canvas(width, height)
+        self._init_temp_canvas()
 
         self.enableUndo(self, size=(width, height))
 
@@ -226,28 +226,28 @@ class Area(gtk.DrawingArea):
 
         return True
 
-    def _init_temp_canvas(self, width, height):
+    def _init_temp_canvas(self):
+        #logging.error('init_temp_canvas.')
+        #self.drawing_canvas.flush()
+        width, height = self.window.get_size()
         self.temp_canvas = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                                                   width, height)
         self.temp_ctx = cairo.Context(self.temp_canvas)
-        self.temp_ctx.set_source_rgba(1.0, 1.0, 1.0, 1.0)
         self.temp_ctx.rectangle(0, 0, width, height)
-        self.temp_ctx.fill()
         self.temp_ctx.set_source_surface(self.drawing_canvas)
         self.temp_ctx.paint()
 
     def display_selection_border(self, ctx):
-        x, y, x2, y2 = self.get_selection_bounds()
-        if (x, y, x2, y2) == (0, 0, 0, 0):
+        if not self.is_selected():
             return
-
+        x, y, width, height = self.get_selection_bounds()
         ctx.save()
         ctx.set_line_width(1)
         ctx.set_line_cap(cairo.LINE_CAP_ROUND)
         ctx.set_line_join(cairo.LINE_JOIN_ROUND)
         ctx.set_dash([5, 5], 0)
         ctx.set_source_rgba(0., 0., 0., 1.)
-        ctx.rectangle(x, y, x2, y2)
+        ctx.rectangle(x, y, width, height)
         ctx.stroke()
         ctx.restore()
 
@@ -277,17 +277,19 @@ class Area(gtk.DrawingArea):
 
         context = self.window.cairo_create()
 
-        if self.desenha or self.selmove:
+        if self.desenha:
+            #logging.error('Expose use temp canvas')
             # Paint the canvas in the widget:
             # TODO: clipping
             context.set_source_surface(self.temp_canvas)
             context.paint()
         else:
+            #logging.error('Expose use drawing canvas')
             # TODO: clipping
             context.set_source_surface(self.drawing_canvas)
             context.paint()
             self.show_tool_shape(context)
-        self._init_temp_canvas(width, height)
+        self._init_temp_canvas()
         self.display_selection_border(context)
 
     def show_tool_shape(self, context):
@@ -305,7 +307,6 @@ class Area(gtk.DrawingArea):
                     wr, hr = self.stamp_dimentions
                     context.rectangle(self.x_cursor - wr / 2,
                             self.y_cursor - hr / 2, wr, hr)
-                    # TODO: stroke style
                     context.stroke()
 
                 # draw shape of the brush, square or circle
@@ -364,11 +365,8 @@ class Area(gtk.DrawingArea):
         if self.tool['name'] == 'picker':
             self.pick_color(x, y)
 
-        if state & gtk.gdk.BUTTON3_MASK:
-            #Handle with the right button click event.
-            if self.tool['name'] == 'marquee-rectangular':
-                self.sel_get_out = True
-        elif state & gtk.gdk.BUTTON1_MASK:
+        design_mode = True
+        if state & gtk.gdk.BUTTON1_MASK:
             #Handle with the left button click event.
             if self.tool['name'] == 'eraser':
                 self.last = []
@@ -391,30 +389,31 @@ class Area(gtk.DrawingArea):
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'freeform':
-                logging.error('mousedown')
                 self.configure_line(self.tool['line size'])
                 self.d.freeform(widget, coords, True,
                     self.tool['fill'], "motion")
-            if self.selmove:
-                #get out of the func selection
-                if self.tool['name'] != 'marquee-rectangular':
-                    self.getout()
-                    self.selmove = False
-                else:
-                    size = self.pixmap_sel.get_size()
-                    xi = self.orig_x
-                    yi = self.orig_y
-                    xf = xi + size[0]
-                    yf = yi + size[1]
+            if self.tool['name'] == 'marquee-rectangular':
+                logging.error(' mousedown marquee')
+                if self.is_selected():
+                    xi, yi, width, height = self.get_selection_bounds()
+                    xf = xi + width
+                    yf = yi + height
+                    # verify is out of the selected area
                     if (coords[0] < xi) or (coords[0] > xf) or \
                         (coords[1] < yi) or (coords[1] > yf):
-                        self.sel_get_out = True
-            else:
-                self.temp_ctx.set_source_surface(self.drawing_canvas, 0, 0)
-                self.temp_ctx.rectangle(0, 0, width, height)
-                self.temp_ctx.paint()
+                        logging.error('out of selection area')
+                        self.getout()
+                        self._selmove = False
+                        design_mode = False
+                    else:
+                        # if is inside the selected area move the selection
+                        self.d.move_selection(widget, coords)
+                        self._selmove = True
+                else:
+                    self._selmove = False
 
-            self.desenha = True
+            if design_mode:
+                self.desenha = True
         widget.queue_draw()
 
     def mousemove(self, widget, event):
@@ -469,17 +468,16 @@ class Area(gtk.DrawingArea):
                     self.d.square(widget, event, coords, True,
                         self.tool['fill'])
 
-                elif self.tool['name'] == 'marquee-rectangular' and \
-                    not self.selmove:
-                    if (state & gtk.gdk.CONTROL_MASK) or \
-                        self.keep_aspect_ratio:
-                        coords = self._keep_selection_ratio(coords)
-                    self.d.selection(widget, coords)
-                # selected
-                elif self.tool['name'] == 'marquee-rectangular' and \
-                    self.selmove:
-                    if not self.sel_get_out:
-                        self.d.moveSelection(widget, coords)
+                elif self.tool['name'] == 'marquee-rectangular':
+                    if self._selmove:
+                        # is inside a selected area, move it
+                        self.d.move_selection(widget, coords)
+                    else:
+                        # create a selected area
+                        if (state & gtk.gdk.CONTROL_MASK) or \
+                            self.keep_aspect_ratio:
+                            coords = self._keep_selection_ratio(coords)
+                        self.d.selection(widget, coords)
 
                 elif self.tool['name'] == 'freeform':
                     logging.error('mousemove')
@@ -514,17 +512,17 @@ class Area(gtk.DrawingArea):
             if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                      'stamp']:
                 widget.queue_draw()
-            if self.tool['name'] == 'marquee-rectangular' and self.selmove:
+            if self.tool['name'] == 'marquee-rectangular':
                 sel_x, sel_y, sel_width, sel_height = \
                         self.get_selection_bounds()
-
+                # show appropiate cursor
                 if (coords[0] < sel_x) or (coords[0] > sel_x + sel_width) or \
                     (coords[1] < sel_y) or (coords[1] > sel_y + sel_height):
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 else:
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
 
-            elif self.tool['name'] == 'freeform' and not self.selmove:
+            elif self.tool['name'] == 'freeform':
                 self.desenha = True
                 self.configure_line(self.tool['line size'])
                 self.d.freeform(widget, coords, True,
@@ -552,7 +550,7 @@ class Area(gtk.DrawingArea):
         width, height = self.window.get_size()
 
         private_undo = False
-        if self.desenha or self.sel_get_out:
+        if self.desenha:
             if self.tool['name'] == 'line':
                 self.d.line(widget, coords, False)
 
@@ -563,29 +561,11 @@ class Area(gtk.DrawingArea):
                 self.d.square(widget, event, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'marquee-rectangular':
-                if self.selmove == False:
-                    if (event.state & gtk.gdk.CONTROL_MASK) or \
-                        self.keep_aspect_ratio:
-                        coords = self._keep_selection_ratio(coords)
-                    self.d.selection(widget, coords)
-                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
-                    self.selmove = True
-                    self.sel_get_out = False
+                logging.error('mouseup marquee-rectangular')
+                if self.is_selected() and not self._selmove:
+                    self.create_selection_surface()
                     self.emit('select')
-                elif self.sel_get_out:  # get out of the func selection
-                    self.getout()
-                    try:
-                        del(self.d.pixbuf_resize)
-                    except:
-                        pass
-                    self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
-                    widget.queue_draw()
-                    self.enableUndo(widget)
-                elif self.selmove:
-                    self.orig_x = self.orig_x + coords[0] - self.oldx
-                    self.orig_y = self.orig_y + coords[1] - self.oldy
-                self.emit('select')
-                private_undo = True
+                    private_undo = True
 
             elif self.tool['name'] == 'freeform':
                 self.d.freeform(widget, coords, False,
@@ -738,7 +718,7 @@ class Area(gtk.DrawingArea):
         """
         if self.is_selected():
             # Change stamp, get it from selection:
-            width, height = self.pixmap_sel.get_size()
+            _x, _y, width, height = self.get_selection_bounds()
             self.pixbuf_stamp = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False,
                 8, width, height)
             self.pixbuf_stamp.get_from_drawable(self.pixmap_sel,
@@ -784,7 +764,7 @@ class Area(gtk.DrawingArea):
         logging.debug('Area.undo(self)')
         width, height = self.window.get_size()
 
-        if self.selmove:
+        if self.is_selected():
             self.getout(undo=True)
 
         if self.text_in_progress:
@@ -808,7 +788,7 @@ class Area(gtk.DrawingArea):
         logging.debug('Area.redo(self)')
         width, height = self.window.get_size()
 
-        if self.selmove:
+        if self.is_selected():
             self.getout()
 
         if self._undo_index < len(self._undo_list) - 1:
@@ -880,21 +860,18 @@ class Area(gtk.DrawingArea):
         f, tempPath = tempfile.mkstemp(suffix='.png', dir=temp_dir)
         del f
 
-        if self.selmove:
-            size = self.pixmap_sel.get_size()
-            pixbuf_copy = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
-                size[0], size[1])
-            pixbuf_copy.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
-            pixbuf_copy.save(tempPath, 'png')
-            os.chmod(tempPath, 0604)
+        _x, _y, width, height = self.get_selection_bounds()
+        selection_surface = self.get_selection()
+        if selection_surface is None:
+            selection_surface = self.drawing_canvas
+        logging.error('Saving file %s', tempPath)
+        selection_surface.write_to_png(tempPath)
+        os.chmod(tempPath, 0604)
 
-            clipBoard.set_with_data([('text/uri-list', 0, 0)],
-                self._copyGetFunc, self._copyClearFunc, tempPath)
-        else:
-            logging.debug('Area.copy(self): Please select some area first')
+        clipBoard.set_with_data([('text/uri-list', 0, 0)],
+            self._copy_get_func, self._copy_clear_func, tempPath)
 
-    def _copyGetFunc(self, clipboard, selection_data, info, data):
+    def _copy_get_func(self, clipboard, selection_data, info, data):
         """  Determine type data to put in clipboard
 
             @param  self -- the Area object (GtkDrawingArea)
@@ -908,7 +885,7 @@ class Area(gtk.DrawingArea):
         if selection_data.target == "text/uri-list":
             selection_data.set_uris(['file://' + tempPath])
 
-    def _copyClearFunc(self, clipboard, data):
+    def _copy_clear_func(self, clipboard, data):
         """ Clear the clipboard
 
             @param  self -- the Area object (GtkDrawingArea)
@@ -922,14 +899,14 @@ class Area(gtk.DrawingArea):
 
     def drag_data_received(self, w, context, x, y, data, info, time):
         if data and data.format == 8:
-            self.loadImage(urlparse(data.data).path, self)
+            self.load_image(urlparse(data.data).path, self)
             context.finish(True, False, time)
         else:
             context.finish(False, False, time)
 
-    def past(self, widget):
-        """ Past image.
-        Past image that is in pixmap
+    def paste(self, widget):
+        """ Paste image.
+        Paste image that is in pixmap
 
             @param  self -- the Area object (GtkDrawingArea)
         """
@@ -941,37 +918,28 @@ class Area(gtk.DrawingArea):
         clipBoard = gtk.Clipboard()
 
         if clipBoard.wait_is_image_available():
-            self.getout(True, widget)
+            logging.debug('Area.paste(self): Wait is image available')
+            self.getout(True)
             pixbuf_sel = clipBoard.wait_for_image()
-            size = int(pixbuf_sel.get_width()), int(pixbuf_sel.get_height())
-            self.pixmap_sel = gtk.gdk.Pixmap(self.window, size[0], size[1], -1)
-            self.pixmap_sel.draw_pixbuf(self.gc, pixbuf_sel,
-                0, 0, 0, 0, size[0], size[1],
-                dither=gtk.gdk.RGB_DITHER_NORMAL, x_dither=0, y_dither=0)
+            width, height = pixbuf_sel.get_width(), pixbuf_sel.get_height()
 
-            self.selmove = True
+            self.temp_ctx.rectangle(0, 0, width, height)
+            temp_ctx = gtk.gdk.CairoContext(self.temp_ctx)
+            temp_ctx.set_source_pixbuf(pixbuf_sel)
+            self.temp_ctx.paint()
+            self.set_selection_bounds(0, 0, width, height)
             self.desenha = True
-            self.sel_get_out = False
-            self.orig_x, self.orig_y = 0, 0
-
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-                width, height)
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
-                0, 0, 0, 0, size[0], size[1])
-
-            self.set_selection_bounds(0, 0, size[0], size[1])
-
-            self.tool['name'] = 'marquee-rectangular'
-            self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
+            self.tool['name'] = 'marquee-rectangular'  # TODO: change toolbar?
             self.emit('select')
         elif clipBoard.wait_is_uris_available():
+            logging.debug('Area.paste(self): is uris available')
             selection = clipBoard.wait_for_contents('text/uri-list')
             if selection != None:
                 for uri in selection.get_uris():
-                    self.loadImage(urlparse(uri).path, self)
+                    self.load_image(urlparse(uri).path, self)
         else:
-            self.loadImage(tempPath, self)
-            logging.debug('Area.past(self): Load from clipboard fails')
+            self.load_image(tempPath, self)
+            logging.debug('Area.paste(self): Load from clipboard fails')
             logging.debug('loading from tempPath')
 
         self.queue_draw()
@@ -1081,12 +1049,12 @@ class Area(gtk.DrawingArea):
 
         width, height = self.window.get_size()
 
-        if self.selmove:
-            size = self.pixmap_sel.get_size()
+        if self.is_selected():
+            _x, _y, width, height = self.get_selection_bounds()
             temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                size[0], size[1])
+                width, height)
             temp_pix.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
+                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
         else:
             temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
                 width, height)
@@ -1095,17 +1063,17 @@ class Area(gtk.DrawingArea):
 
         temp_pix = apply_process(temp_pix)
 
-        if self.selmove:
+        if self.is_selected():
             self.pixmap_sel.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
-                size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL,
+                width, height, dither=gtk.gdk.RGB_DITHER_NORMAL,
                 x_dither=0, y_dither=0)
 
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
                 width, height)
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
-                0, 0, self.orig_x, self.orig_y, size[0], size[1])
-            self.set_selection_bounds(self.orig_x, self.orig_y, size[0],
-                    size[1])
+                0, 0, self.orig_x, self.orig_y, width, height)
+            self.set_selection_bounds(self.orig_x, self.orig_y, width,
+                    height)
 
 #            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
 #                self.orig_x, self.orig_y, size[0], size[1])
@@ -1120,7 +1088,7 @@ class Area(gtk.DrawingArea):
         del temp_pix
 
         self.queue_draw()
-        if not self.selmove:
+        if not self.is_selected():
             self.enableUndo(widget)
         self.set_tool_cursor()
 
@@ -1155,12 +1123,12 @@ class Area(gtk.DrawingArea):
         self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.drain_events()
 
-        if self.selmove:
-            size = self.pixmap_sel.get_size()
+        if self.is_selected():
+            _x, _y, width, height = self.get_selection_bounds()
             temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                size[0], size[1])
+                width, height)
             temp_pix.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, size[0], size[1])
+                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
         else:
             temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
                 width, height)
@@ -1169,7 +1137,7 @@ class Area(gtk.DrawingArea):
 
         temp_pix = temp_pix.rotate_simple(angle)
 
-        if self.selmove:
+        if self.is_selected():
             try:
                 self.d.pixbuf_resize = \
                     self.d.pixbuf_resize.rotate_simple(angle)
@@ -1182,7 +1150,7 @@ class Area(gtk.DrawingArea):
                 pass
 
             self.pixmap_sel = gtk.gdk.Pixmap(widget.window,
-                size[1], size[0], -1)
+                width, height, -1)
             self.pixmap_sel.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
                 width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL,
                 x_dither=0, y_dither=0)
@@ -1190,10 +1158,10 @@ class Area(gtk.DrawingArea):
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
                 width, height)
             self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
-                0, 0, self.orig_x, self.orig_y, size[1], size[0])
+                0, 0, self.orig_x, self.orig_y, width, height)
 
-            self.set_selection_bounds(self.orig_x, self.orig_y, size[0],
-                    size[1])
+            self.set_selection_bounds(self.orig_x, self.orig_y, width,
+                    height)
 
 #            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
 #                self.orig_x, self.orig_y, size[1], size[0])
@@ -1217,7 +1185,7 @@ class Area(gtk.DrawingArea):
         del temp_pix
 
         self.queue_draw()
-        if not self.selmove:
+        if not self.is_selected():
             self.enableUndo(widget)
         self.set_tool_cursor()
 
@@ -1238,36 +1206,45 @@ class Area(gtk.DrawingArea):
     def is_selected(self):
         """
         Return True if there is some thing selected
-
-            @param  self -- the Area object (GtkDrawingArea)
         """
-        if self.selmove:
-            return True
-        else:
-            return False
+        return self.get_selection_bounds() != (0, 0, 0, 0)
+
+    def clear_selection(self):
+        self.set_selection_bounds(0, 0, 0, 0)
 
     def set_selection_bounds(self, x1, y1, width, height):
         """
             Set selection bounds
-
-            @param  self -- the Area object (GtkDrawingArea)
-            @param  x1,y1,x2,y2 -- the coords of limit points
+            @param x1, y1, width, height - the rectangle to define the area
         """
-        self._selection_corners = (x1, y1, width, height)
+        self._selection_bounds = (x1, y1, width, height)
 
     def get_selection_bounds(self):
         """
-            Get points of selection
-
-            @param  self -- the Area object (GtkDrawingArea)
-
-            @return selection_corners
-
+            @return x1, y1, width, height - the rectangle to define the area
         """
-        return self._selection_corners[0], self._selection_corners[1], \
-            self._selection_corners[2], self._selection_corners[3]
+        return self._selection_bounds[0], self._selection_bounds[1], \
+            self._selection_bounds[2], self._selection_bounds[3]
 
-    def loadImage(self, name, widget=None):
+    def create_selection_surface(self, clear_background=True):
+        x, y, width, height = self.get_selection_bounds()
+        logging.error('create_selection_surface %s', (x, y, width, height))
+        self.selection_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                width, height)
+        selection_ctx = cairo.Context(self.selection_surface)
+        selection_ctx.translate(-x, -y)
+        selection_ctx.set_source_surface(self.drawing_canvas)
+        selection_ctx.paint()
+        if clear_background:
+            self.pending_clean_selection_background = True
+
+    def get_selection(self):
+        if self.selection_surface is not None:
+            return self.selection_surface
+        else:
+            return None
+
+    def load_image(self, name, widget=None):
         """Load an image.
 
             @param  self -- Area instance
@@ -1275,39 +1252,36 @@ class Area(gtk.DrawingArea):
             @param  widget -- GtkDrawingArea
 
         """
-        logging.debug('Area.loadImage Loading file %s', name)
+        logging.debug('Area.load_image Loading file %s', name)
 
         pixbuf = gtk.gdk.pixbuf_new_from_file(name)
-        size = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
-        #self.getout(True,widget)
-        self.getout(True)
-        #self.pixmap_sel = gtk.gdk.Pixmap(widget.window,size[0],size[1],-1)
-        self.pixmap_sel = gtk.gdk.Pixmap(self.window, size[0], size[1], -1)
-        self.pixmap_sel.draw_pixbuf(self.gc, pixbuf, 0, 0, 0, 0,
-            size[0], size[1], dither=gtk.gdk.RGB_DITHER_NORMAL,
-            x_dither=0, y_dither=0)
+        width, height = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
 
-        self.sel_get_out = False
-        self.selmove = True
+        logging.debug('image size %d x %d', width, height)
+
+        # load in the selection surface
+        self.selection_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                width, height)
+        selection_ctx = cairo.Context(self.selection_surface)
+        sel_gdk_ctx = gtk.gdk.CairoContext(selection_ctx)
+        sel_gdk_ctx.save()
+        sel_gdk_ctx.set_source_pixbuf(pixbuf, 0, 0)
+        sel_gdk_ctx.rectangle(0, 0, width, height)
+        sel_gdk_ctx.paint()
+        sel_gdk_ctx.restore()
+
+        # show in the temp context too
+        self.temp_ctx.save()
+        self.temp_ctx.translate(0, 0)
+        self.temp_ctx.set_source_surface(self.selection_surface)
+        self.temp_ctx.paint()
+        self.temp_ctx.restore()
+
+        self.set_selection_bounds(0, 0, width, height)
         self.desenha = True
-        self.orig_x, self.orig_y = 0, 0
-        #width, height = widget.window.get_size()
-        width, height = self.window.get_size()
-
-        self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-            width, height)
-        self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel, 0, 0, 0, 0,
-            size[0], size[1])
-
-        self.set_selection_bounds(0, 0, size[0], size[1])
-
-#        self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-#            0, 0, size[0], size[1])
-#        self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-#            -1, -1, size[0] + 2, size[1] + 2)
+        self._selmove = True
 
         self.tool['name'] = 'marquee-rectangular'
-        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
         self.emit('select')
 
         self.queue_draw()
@@ -1394,23 +1368,29 @@ class Area(gtk.DrawingArea):
             cursor = None
         self.window.set_cursor(cursor)
 
-    def getout(self, undo=False, widget=None):
-        logging.debug('Area.getout')
+    def getout(self, undo=False):
+        """
+        Apply the selected area in the canvas.
+
+        @param - undo: enable undo
+        """
 
         try:
-            self.pixmap_sel
-            size = self.pixmap_sel.get_size()
-            self.pixmap.draw_drawable(self.gc, self.pixmap_sel, 0, 0,
-                self.orig_x, self.orig_y, size[0], size[1])
-            self.selmove = False
-            if undo:
-                if widget is not None:
-                    self.enableUndo(widget)
-                else:
-                    self.enableUndo(self)
+            # apply selection over canvas
+            if self.is_selected():
+                x, y, width, height = self.get_selection_bounds()
+                selection_surface = self.get_selection()
+                self.drawing_ctx.save()
+                self.drawing_ctx.translate(x, y)
+                self.drawing_ctx.set_source_surface(selection_surface)
+                self.drawing_ctx.rectangle(0, 0, width, height)
+                self.drawing_ctx.paint()
+                self.drawing_ctx.restore()
+                self.desenha = False
 
-            del(self.pixmap_sel)
-            del(self.pixbuf_resize)
+                self.clear_selection()
+                if undo:
+                    self.enableUndo(self)
 
         except NameError, message:
             logging.debug(message)
@@ -1419,20 +1399,16 @@ class Area(gtk.DrawingArea):
 
     def key_press(self, widget, event):
         if event.keyval == gtk.keysyms.BackSpace:
-            if self.selmove:
-                self.selmove = False
-                try:
-                    del(self.pixmap_sel)
-                    del(self.pixbuf_resize)
-                except:
-                    pass
+            if self.is_selected():
+                # Remove selection
+                # TODO
 
                 if self.tool['name'] == 'marquee-rectangular':
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 widget.queue_draw()
                 self.enableUndo(widget)
         elif event.keyval == gtk.keysyms.a and gtk.gdk.CONTROL_MASK:
-            if self.selmove:
+            if self.is_selected():
                 self.getout()
             width, height = self.window.get_size()
             if self.tool['name'] == 'marquee-rectangular':
@@ -1450,18 +1426,16 @@ class Area(gtk.DrawingArea):
             self.set_selection_bounds(0, 0, width - 1, height - 1)
 #            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
 #                0, 0, width - 1, height - 1)
-            self.selmove = True
-            self.sel_get_out = False
             self.emit('select')
             widget.queue_draw()
         elif event.keyval == gtk.keysyms.d and gtk.gdk.CONTROL_MASK:
-            if self.selmove:
-                self.getout(True, widget)
+            if self.is_selected():
+                self.getout(True)
                 if self.tool['name'] == 'marquee-rectangular':
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 widget.queue_draw()
         elif event.keyval == gtk.keysyms.Return:
-            self.getout(True, widget)
+            self.getout(True)
             if self.tool['name'] == 'marquee-rectangular':
                 self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
             widget.queue_draw()

@@ -203,9 +203,7 @@ class Desenho:
         size = widget.tool['line size']
         shape = widget.tool['line shape']
         if shape == 'circle':
-            logging.error('trace circle')
             if last:
-                logging.error('trace circle last')
                 widget.drawing_ctx.set_line_width(size)
 
                 widget.drawing_ctx.set_line_cap(cairo.LINE_CAP_ROUND)
@@ -289,6 +287,7 @@ class Desenho:
         width, height = widget.window.get_size()
 
         ctx.save()
+        ctx.new_path()
         ctx.move_to(*points[0])
         for point in points:
             ctx.line_to(*point)
@@ -584,7 +583,6 @@ class Desenho:
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
-            @param  fill -- Fill object
         """
 
         width, height = widget.window.get_size()
@@ -593,7 +591,7 @@ class Desenho:
         widget.set_selection_bounds(x, y, dx, dy)
         widget.queue_draw()
 
-    def moveSelection(self, widget, coords):
+    def move_selection(self, widget, coords):
         """Move the selection.
 
             @param  self -- Desenho.Desenho instance
@@ -603,28 +601,35 @@ class Desenho:
             @param  pixbuf_copy -- For import image
 
         """
-
-        width, height = widget.window.get_size()
-
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap,
-            0, 0, 0, 0, width, height)
+        widget.desenha = True
 
         dx = int(coords[0] - widget.oldx)
         dy = int(coords[1] - widget.oldy)
 
-        size = widget.pixmap_sel.get_size()
+        x, y, width, height = widget.get_selection_bounds()
 
-        widget.pixmap_temp.draw_drawable(widget.gc, widget.pixmap_sel,
-            0, 0, widget.orig_x + dx, widget.orig_y + dy, size[0], size[1])
+        if widget.pending_clean_selection_background:
+            # clear the selection background
+            logging.error('clean background %s', (x, y, width, height))
+            widget.drawing_ctx.save()
+            widget.drawing_ctx.new_path()
+            widget.drawing_ctx.rectangle(x, y, width, height)
+            widget.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
+            widget.drawing_ctx.fill()
+            widget.drawing_ctx.restore()
+            widget.pending_clean_selection_background = False
 
-        widget.set_selection_bounds(widget.orig_x + dx, widget.orig_y + dy,
-                size[0], size[1])
+        selection_surface = widget.get_selection()
+        widget.oldx = coords[0]
+        widget.oldy = coords[1]
 
-#        widget.pixmap_temp.draw_rectangle(widget.gc_selection, False,
-#            widget.orig_x + dx, widget.orig_y + dy, size[0], size[1])
-#        widget.pixmap_temp.draw_rectangle(widget.gc_selection1, False,
-#            widget.orig_x + dx - 1, widget.orig_y + dy - 1,
-#            size[0] + 2, size[1] + 2)
+        new_x, new_y = x + dx, y + dy
+        widget.temp_ctx.save()
+        widget.temp_ctx.translate(new_x, new_y)
+        widget.temp_ctx.set_source_surface(selection_surface)
+        widget.temp_ctx.paint()
+        widget.temp_ctx.restore()
+        widget.set_selection_bounds(new_x, new_y, width, height)
 
         widget.queue_draw()
 
@@ -638,7 +643,6 @@ class Desenho:
         """
         width, height = widget.window.get_size()
         widget.desenha = True
-        widget.selmove = True
 
         #Create the pixbuf for future resizes
         try:
