@@ -70,6 +70,7 @@ import tempfile
 import math
 import pango
 import cairo
+import StringIO
 
 from Desenho import Desenho
 from urlparse import urlparse
@@ -1047,43 +1048,32 @@ class Area(gtk.DrawingArea):
 
     def _do_process_internal(self, widget, apply_process):
 
-        width, height = self.window.get_size()
-
         if self.is_selected():
-            _x, _y, width, height = self.get_selection_bounds()
-            temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                width, height)
-            temp_pix.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
+            x, y, width, height = self.get_selection_bounds()
+            surface = self.get_selection()
         else:
-            temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                width, height)
-            temp_pix.get_from_drawable(self.pixmap,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
+            x, y = 0, 0
+            width, height = self.window.get_size()
+            surface = self.drawing_canvas
 
+        # copy from the surface to the pixbuf
+        pixbuf_data = StringIO.StringIO()
+        surface.write_to_png(pixbuf_data)
+        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+        pxb_loader.write(pixbuf_data.getvalue())
+        temp_pix = pxb_loader.get_pixbuf()
+
+        # process the pixbuf
         temp_pix = apply_process(temp_pix)
 
-        if self.is_selected():
-            self.pixmap_sel.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
-                width, height, dither=gtk.gdk.RGB_DITHER_NORMAL,
-                x_dither=0, y_dither=0)
-
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-                width, height)
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
-                0, 0, self.orig_x, self.orig_y, width, height)
-            self.set_selection_bounds(self.orig_x, self.orig_y, width,
-                    height)
-
-#            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-#                self.orig_x, self.orig_y, size[0], size[1])
-#            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-#                self.orig_x - 1, self.orig_y - 1, size[0] + 2, size[1] + 2)
-
-        else:
-            self.pixmap.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
-                width, height, dither=gtk.gdk.RGB_DITHER_NORMAL,
-                x_dither=0, y_dither=0)
+        # copy from the pixbuf to the drawing context
+        draw_gdk_ctx = gtk.gdk.CairoContext(self.drawing_ctx)
+        draw_gdk_ctx.save()
+        draw_gdk_ctx.translate(x, y)
+        draw_gdk_ctx.set_source_pixbuf(temp_pix, 0, 0)
+        draw_gdk_ctx.paint()
+        draw_gdk_ctx.restore()
+        self.create_selection_surface()
 
         del temp_pix
 
