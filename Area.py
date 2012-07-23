@@ -1082,17 +1082,14 @@ class Area(gtk.DrawingArea):
             self.enableUndo(widget)
         self.set_tool_cursor()
 
-    def drain_events(self, block=gtk.FALSE):
-        while gtk.events_pending():
-            gtk.mainiteration(block)
-
     def rotate_left(self, widget):
         """Rotate the image.
 
             @param  self -- the Area object (GtkDrawingArea)
             @param  widget -- the Area object (GtkDrawingArea)
         """
-        self._rotate(widget, 90)
+        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        gobject.idle_add(self._rotate, widget, 90)
 
     def rotate_right(self, widget):
         """Rotate the image.
@@ -1100,7 +1097,8 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
             @param  widget -- the Area object (GtkDrawingArea)
         """
-        self._rotate(widget, 270)
+        self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        gobject.idle_add(self._rotate, widget, 270)
 
     def _rotate(self, widget, angle):
         """Rotate the image.
@@ -1111,66 +1109,40 @@ class Area(gtk.DrawingArea):
         width, height = self.window.get_size()
 
         self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.drain_events()
 
         if self.is_selected():
-            _x, _y, width, height = self.get_selection_bounds()
-            temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                width, height)
-            temp_pix.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
+            x, y, width, height = self.get_selection_bounds()
+            surface = self.get_selection()
         else:
-            temp_pix = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False, 8,
-                width, height)
-            temp_pix.get_from_drawable(self.pixmap,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
+            x, y = 0, 0
+            width, height = self.window.get_size()
+            surface = self.drawing_canvas
+
+        # copy from the surface to the pixbuf
+        pixbuf_data = StringIO.StringIO()
+        surface.write_to_png(pixbuf_data)
+        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+        pxb_loader.write(pixbuf_data.getvalue())
+        temp_pix = pxb_loader.get_pixbuf()
 
         temp_pix = temp_pix.rotate_simple(angle)
 
+        # copy from the pixbuf to the drawing context
+
         if self.is_selected():
-            try:
-                self.d.pixbuf_resize = \
-                    self.d.pixbuf_resize.rotate_simple(angle)
-            except:
-                pass
-
-            try:
-                del(self.pixmap_sel)
-            except:
-                pass
-
-            self.pixmap_sel = gtk.gdk.Pixmap(widget.window,
-                width, height, -1)
-            self.pixmap_sel.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
-                width=-1, height=-1, dither=gtk.gdk.RGB_DITHER_NORMAL,
-                x_dither=0, y_dither=0)
-
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-                width, height)
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap_sel,
-                0, 0, self.orig_x, self.orig_y, width, height)
-
-            self.set_selection_bounds(self.orig_x, self.orig_y, width,
-                    height)
-
-#            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-#                self.orig_x, self.orig_y, size[1], size[0])
-#            self.pixmap_temp.draw_rectangle(self.gc_selection1, False,
-#                self.orig_x - 1, self.orig_y - 1, size[1] + 2, size[0] + 2)
-
+            self.set_selection_bounds(x, y, height, width)
         else:
-            win = self.window
-            self.set_size_request(height, width)
-            self.pixmap = gtk.gdk.Pixmap(win, height, width, -1)
-            self.pixmap.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
-                height, width, dither=gtk.gdk.RGB_DITHER_NORMAL,
-                x_dither=0, y_dither=0)
-            self.pixmap_temp = gtk.gdk.Pixmap(win, height, width, -1)
-            self.pixmap_temp.draw_pixbuf(self.gc, temp_pix, 0, 0, 0, 0,
-                height, width, dither=gtk.gdk.RGB_DITHER_NORMAL,
-                x_dither=0, y_dither=0)
+            # create a new canvas with permuted dimensions
+            self.drawing_canvas = None
+            self.setup(height, width)
 
-            self.activity.center_area()
+        draw_gdk_ctx = gtk.gdk.CairoContext(self.drawing_ctx)
+        draw_gdk_ctx.save()
+        draw_gdk_ctx.translate(x, y)
+        draw_gdk_ctx.set_source_pixbuf(temp_pix, 0, 0)
+        draw_gdk_ctx.paint()
+        draw_gdk_ctx.restore()
+        self.create_selection_surface()
 
         del temp_pix
 
