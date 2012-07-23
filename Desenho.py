@@ -466,8 +466,8 @@ class Desenho:
         ctx.move_to(0, 0)
         ctx.curve_to(0, -30, -50, -30, -50, 0)
         ctx.curve_to(-50, 30, 0, 35, 0, 60)
-        ctx.curve_to (0, 35, 50, 30, 50, 0)
-        ctx.curve_to (50, -30, 0, -30, 0, 0)
+        ctx.curve_to(0, 35, 50, 30, 50, 0)
+        ctx.curve_to(50, -30, 0, -30, 0, 0)
 
         ctx.set_line_width(line_width / w)
         if fill:
