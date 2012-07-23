@@ -1344,14 +1344,14 @@ class Area(gtk.DrawingArea):
 
                 # Decide which is the cursor hot spot offset:
                 if self.tool['name'] == 'stamp':
-                    hotspot_x, hotspot_y  = 20, 38  # horizontal
+                    hotspot_x, hotspot_y = 20, 38  # horizontal
                                                     # center and
                                                     # bottom
                 elif self.tool['name'] == 'picker':
-                    hotspot_x, hotspot_y  = 1, 38  # bottom left
+                    hotspot_x, hotspot_y = 1, 38  # bottom left
                                                    # corner
                 else:
-                    hotspot_x, hotspot_y  = 0, 0
+                    hotspot_x, hotspot_y = 0, 0
 
                 cursor = gtk.gdk.Cursor(display, pixbuf, hotspot_x, hotspot_y)
         except gobject.GError:
