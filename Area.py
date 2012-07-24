@@ -732,11 +732,12 @@ class Area(gtk.DrawingArea):
         """
         if self.is_selected():
             # Change stamp, get it from selection:
-            _x, _y, width, height = self.get_selection_bounds()
-            self.pixbuf_stamp = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, False,
-                8, width, height)
-            self.pixbuf_stamp.get_from_drawable(self.pixmap_sel,
-                gtk.gdk.colormap_get_system(), 0, 0, 0, 0, width, height)
+            pixbuf_data = StringIO.StringIO()
+            self.get_selection().write_to_png(pixbuf_data)
+            pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+            pxb_loader.write(pixbuf_data.getvalue())
+
+            self.pixbuf_stamp = pxb_loader.get_pixbuf()
             self.stamp_size = 0
             # Set white color as transparent:
             stamp_alpha = self.pixbuf_stamp.add_alpha(True, 255, 255, 255)
