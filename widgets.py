@@ -123,8 +123,11 @@ class BrushButton(_ColorButton):
                 height = self._resized_stamp.get_height()
                 dx = center - width / 2
                 dy = center - height / 2
-                self.pixmap.draw_pixbuf(self._gc, self._resized_stamp,
-                    0, 0, dx, dy, width, height)
+
+                self._ctx.rectangle(dx, dy, width, height)
+                temp_ctx = gtk.gdk.CairoContext(self._ctx)
+                temp_ctx.set_source_pixbuf(self._resized_stamp, 0, 0)
+                self._ctx.paint()
 
             else:
                 red = float(self._color.red) / 65535.0

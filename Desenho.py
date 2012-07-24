@@ -164,15 +164,21 @@ class Desenho:
             @param  stamp_size -- integer (default 20)
 
         """
+
         widget.desenha = False
-        gc = widget.gc_brush
 
         width = widget.resized_stamp.get_width()
         height = widget.resized_stamp.get_height()
         dx = coords[0] - width / 2
         dy = coords[1] - height / 2
-        widget.pixmap.draw_pixbuf(gc, widget.resized_stamp,
-            0, 0, dx, dy, width, height)
+
+        widget.drawing_ctx.save()
+        widget.drawing_ctx.translate(dx, dy)
+        widget.drawing_ctx.rectangle(dx, dy, width, height)
+        temp_ctx = gtk.gdk.CairoContext(widget.drawing_ctx)
+        temp_ctx.set_source_pixbuf(widget.resized_stamp, 0, 0)
+        widget.drawing_ctx.paint()
+        widget.drawing_ctx.restore()
 
         widget.queue_draw()
 
