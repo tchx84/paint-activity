@@ -681,14 +681,24 @@ class Area(gtk.DrawingArea):
         self.window.set_cursor(cursor)
 
     def pick_color(self, x, y):
-        gdk_image = self.pixmap.get_image(x, y, 1, 1)
-        pixel = gdk_image.get_pixel(0, 0)
-        cmap = gdk_image.get_colormap()
-        gdk_color = cmap.query_color(pixel)
+        # create a new 1x1 cairo surface
+        cairo_surface = cairo.ImageSurface(cairo.FORMAT_RGB24, 1, 1)
+        cairo_context = cairo.Context(cairo_surface)
+        # translate xlib_surface so that target pixel is at 0, 0
+        cairo_context.set_source_surface(self.drawing_canvas, -x, -y)
+        cairo_context.rectangle(0, 0, 1, 1)
+        cairo_context.set_operator(cairo.OPERATOR_SOURCE)
+        cairo_context.fill()
+        cairo_surface.flush()
+        # Read the pixel
+        pixels = cairo_surface.get_data()
+        red = ord(pixels[2]) * 256
+        green = ord(pixels[1]) * 256
+        blue = ord(pixels[0]) * 256
+
+        stroke_color = gtk.gdk.Color(red, green, blue)
 
         # set in the area
-        pixmap_cmap = self.pixmap.get_colormap()
-        stroke_color = pixmap_cmap.alloc_color(gdk_color)
         self.tool['stroke color'] = stroke_color
         self.set_stroke_color(self.tool['stroke color'])
 
