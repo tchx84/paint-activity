@@ -180,7 +180,7 @@ class Area(gtk.DrawingArea):
         self.set_selection_bounds(0, 0, 0, 0)
         self.pending_clean_selection_background = False
 
-        # List of pixmaps for the Undo function:
+        # List of pixbuf for the Undo function:
         self._undo_list = []
         self._undo_index = None
 
@@ -220,7 +220,7 @@ class Area(gtk.DrawingArea):
         ##This canvas is showed when we need show something and not draw it.
         self._init_temp_canvas()
 
-        self.enableUndo(self, size=(width, height))
+        self.enable_undo()
 
         # Setting a initial tool
         self.set_tool(self.tool)
@@ -631,13 +631,13 @@ class Area(gtk.DrawingArea):
             # is selected because this undo state is called before the
             # gobject.idle_add (with the fill_flood function) finishes
             # and an unconsistent undo state is saved
-            self.enableUndo(widget)
+            self.enable_undo()
 
     def fast_flood_fill(self, widget, x, y, width, height):
         fill(self.pixmap, self.gc, x, y, width,
                 height, self.gc_line.foreground.pixel)
         widget.queue_draw()
-        self.enableUndo(widget)
+        self.enable_undo()
         display = gtk.gdk.display_get_default()
         cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
         self.window.set_cursor(cursor)
@@ -677,7 +677,7 @@ class Area(gtk.DrawingArea):
 
         self.pixmap.draw_image(self.gc, gdk_image, 0, 0, 0, 0, width, height)
         self.queue_draw()
-        self.enableUndo(self)
+        self.enable_undo()
 
         display = gtk.gdk.display_get_default()
         cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
@@ -790,7 +790,7 @@ class Area(gtk.DrawingArea):
             self._undo_index -= 1
 
         undo_pix = self._undo_list[self._undo_index]
-        self.pixmap.draw_drawable(self.gc, undo_pix, 0, 0, 0, 0, -1, -1)
+        self._pixbuf_to_context(undo_pix, self.drawing_ctx)
         self.queue_draw()
 
         self.emit('undo')
@@ -810,29 +810,15 @@ class Area(gtk.DrawingArea):
             self._undo_index += 1
 
         undo_pix = self._undo_list[self._undo_index]
-        self.pixmap.draw_drawable(self.gc, undo_pix, 0, 0, 0, 0, -1, -1)
+        self._pixbuf_to_context(undo_pix, self.drawing_ctx)
         self.queue_draw()
 
         self.emit('redo')
 
-    def enableUndo(self, widget, size=None, overrite=False):
+    def enable_undo(self, overrite=False):
         """Keep the last change in a list for Undo/Redo commands.
 
-            @param  self -- the Area object (GtkDrawingArea)
-            @param  widget -- the Area object (GtkDrawingArea)
-
         """
-        #TODO
-        return
-
-        #logging.debug('Area.enableUndo(self,widget)')
-
-        width, height = self.window.get_size()
-        # We need to pass explicitly the size on set up, because the
-        # window size is not allocated yet.
-        if size is not None:
-            width, height = size
-
         if len(self._undo_list) == 0:
             # first undo pix, start index:
             self._undo_index = 0
@@ -850,9 +836,7 @@ class Area(gtk.DrawingArea):
         if overrite and self._undo_index != 0:
             self._undo_index -= 1
 
-        undo_pix = gtk.gdk.Pixmap(widget.window, width, height, -1)
-        undo_pix.draw_drawable(self.gc, self.pixmap,
-            0, 0, 0, 0, width, height)
+        undo_pix = temp_pix = self._surface_to_pixbuf(self.drawing_canvas)
 
         self._undo_list.append(undo_pix)
 
@@ -921,7 +905,7 @@ class Area(gtk.DrawingArea):
 
     def paste(self, widget):
         """ Paste image.
-        Paste image that is in pixmap
+        Paste image that is in canvas
 
             @param  self -- the Area object (GtkDrawingArea)
         """
@@ -1060,6 +1044,23 @@ class Area(gtk.DrawingArea):
         self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         gobject.idle_add(self._do_process_internal, widget, apply_process)
 
+    def _surface_to_pixbuf(self, surface):
+        # copy from the surface to the pixbuf
+        pixbuf_data = StringIO.StringIO()
+        surface.write_to_png(pixbuf_data)
+        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+        pxb_loader.write(pixbuf_data.getvalue())
+        return pxb_loader.get_pixbuf()
+
+    def _pixbuf_to_context(self, pixbuf, context, x=0, y=0):
+        # copy from the pixbuf to the drawing context
+        draw_gdk_ctx = gtk.gdk.CairoContext(context)
+        draw_gdk_ctx.save()
+        draw_gdk_ctx.translate(x, y)
+        draw_gdk_ctx.set_source_pixbuf(pixbuf, 0, 0)
+        draw_gdk_ctx.paint()
+        draw_gdk_ctx.restore()
+
     def _do_process_internal(self, widget, apply_process):
 
         if self.is_selected():
@@ -1070,30 +1071,19 @@ class Area(gtk.DrawingArea):
             width, height = self.window.get_size()
             surface = self.drawing_canvas
 
-        # copy from the surface to the pixbuf
-        pixbuf_data = StringIO.StringIO()
-        surface.write_to_png(pixbuf_data)
-        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
-        pxb_loader.write(pixbuf_data.getvalue())
-        temp_pix = pxb_loader.get_pixbuf()
+        temp_pix = self._surface_to_pixbuf(surface)
 
         # process the pixbuf
         temp_pix = apply_process(temp_pix)
 
-        # copy from the pixbuf to the drawing context
-        draw_gdk_ctx = gtk.gdk.CairoContext(self.drawing_ctx)
-        draw_gdk_ctx.save()
-        draw_gdk_ctx.translate(x, y)
-        draw_gdk_ctx.set_source_pixbuf(temp_pix, 0, 0)
-        draw_gdk_ctx.paint()
-        draw_gdk_ctx.restore()
+        self._pixbuf_to_context(temp_pix, self.drawing_ctx, x, y)
         self.create_selection_surface()
 
         del temp_pix
 
         self.queue_draw()
         if not self.is_selected():
-            self.enableUndo(widget)
+            self.enable_undo()
         self.set_tool_cursor()
 
     def rotate_left(self, widget):
@@ -1132,12 +1122,7 @@ class Area(gtk.DrawingArea):
             width, height = self.window.get_size()
             surface = self.drawing_canvas
 
-        # copy from the surface to the pixbuf
-        pixbuf_data = StringIO.StringIO()
-        surface.write_to_png(pixbuf_data)
-        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
-        pxb_loader.write(pixbuf_data.getvalue())
-        temp_pix = pxb_loader.get_pixbuf()
+        temp_pix = self._surface_to_pixbuf(surface)
 
         temp_pix = temp_pix.rotate_simple(angle)
 
@@ -1150,19 +1135,13 @@ class Area(gtk.DrawingArea):
             self.drawing_canvas = None
             self.setup(height, width)
 
-        draw_gdk_ctx = gtk.gdk.CairoContext(self.drawing_ctx)
-        draw_gdk_ctx.save()
-        draw_gdk_ctx.translate(x, y)
-        draw_gdk_ctx.set_source_pixbuf(temp_pix, 0, 0)
-        draw_gdk_ctx.paint()
-        draw_gdk_ctx.restore()
-        self.create_selection_surface()
+        self._pixbuf_to_context(temp_pix, self.drawing_ctx, x, y)
 
         del temp_pix
 
         self.queue_draw()
         if not self.is_selected():
-            self.enableUndo(widget)
+            self.enable_undo()
         self.set_tool_cursor()
 
     def can_undo(self):
@@ -1239,12 +1218,7 @@ class Area(gtk.DrawingArea):
         self.selection_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                 width, height)
         selection_ctx = cairo.Context(self.selection_surface)
-        sel_gdk_ctx = gtk.gdk.CairoContext(selection_ctx)
-        sel_gdk_ctx.save()
-        sel_gdk_ctx.set_source_pixbuf(pixbuf, 0, 0)
-        sel_gdk_ctx.rectangle(0, 0, width, height)
-        sel_gdk_ctx.paint()
-        sel_gdk_ctx.restore()
+        self._pixbuf_to_context(pixbuf, selection_ctx)
 
         # show in the temp context too
         self.temp_ctx.save()
@@ -1272,7 +1246,7 @@ class Area(gtk.DrawingArea):
         # If something is selected, the action will be saved
         # after it is unselected
         if not self.is_selected():
-            self.enableUndo(self)
+            self.enable_undo()
 
     def set_tool(self, tool):
         '''
@@ -1366,7 +1340,7 @@ class Area(gtk.DrawingArea):
 
                 self.clear_selection()
                 if undo:
-                    self.enableUndo(self)
+                    self.enable_undo()
 
         except NameError, message:
             logging.debug(message)
@@ -1382,7 +1356,7 @@ class Area(gtk.DrawingArea):
                 if self.tool['name'] == 'marquee-rectangular':
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
                 widget.queue_draw()
-                self.enableUndo(widget)
+                self.enable_undo()
         elif event.keyval == gtk.keysyms.a and gtk.gdk.CONTROL_MASK:
             if self.is_selected():
                 self.getout()
