@@ -244,11 +244,14 @@ class Area(gtk.DrawingArea):
         x, y, width, height = self.get_selection_bounds()
         ctx.save()
         ctx.set_line_width(1)
+        ctx.set_source_rgba(1., 1., 1., 1.)
+        ctx.rectangle(x, y, width, height)
+        ctx.stroke_preserve()
+
         ctx.set_line_cap(cairo.LINE_CAP_ROUND)
         ctx.set_line_join(cairo.LINE_JOIN_ROUND)
         ctx.set_dash([5, 5], 0)
         ctx.set_source_rgba(0., 0., 0., 1.)
-        ctx.rectangle(x, y, width, height)
         ctx.stroke()
         ctx.restore()
 
