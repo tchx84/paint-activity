@@ -4,6 +4,8 @@ from gettext import gettext as _
 
 import gtk
 import gobject
+import cairo
+import math
 
 from sugar.graphics import style
 from sugar.graphics.palette import ToolInvoker
@@ -34,6 +36,7 @@ class BrushButton(_ColorButton):
         self._preview = gtk.DrawingArea()
         self._preview.set_size_request(style.STANDARD_ICON_SIZE,
                                         style.STANDARD_ICON_SIZE)
+        self._ctx = None
 
         gobject.GObject.__init__(self, **kwargs)
         self._preview.set_events(gtk.gdk.BUTTON_PRESS_MASK)
@@ -41,8 +44,6 @@ class BrushButton(_ColorButton):
         self._preview.connect('button_press_event', self.__mouse_down_cb)
         self._preview.connect("expose_event", self.expose)
         self.set_image(self._preview)
-
-        self._gc = None
 
         if self._has_palette and self._has_invoker:
             self._invoker = WidgetInvoker(self)
@@ -54,10 +55,9 @@ class BrushButton(_ColorButton):
         if self.get_window() is not None:
             self._preview.fill_color = ''
             self._preview.show()
-            self.pixmap = gtk.gdk.Pixmap(self.get_window(),
-                                            style.STANDARD_ICON_SIZE,
-                                            style.STANDARD_ICON_SIZE, -1)
-            self._gc = self.get_window().new_gc()
+            self._surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                    style.STANDARD_ICON_SIZE, style.STANDARD_ICON_SIZE)
+            self._ctx = cairo.Context(self._surface)
             self.show_all()
 
     def get_brush_size(self):
@@ -81,7 +81,9 @@ class BrushButton(_ColorButton):
                     setter=set_brush_shape)
 
     def set_color(self, color):
-        # receive gtk.gdk.Color
+        """
+        @ param color gtk.gdk.Color
+        """
         self._color = color
         self._preview.queue_draw()
 
@@ -106,14 +108,15 @@ class BrushButton(_ColorButton):
         return self._resized_stamp != None
 
     def expose(self, widget, event):
-        if self._gc is None:
+        if self._ctx is None:
             self._setup()
 
         if self.get_window() is not None:
             center = style.STANDARD_ICON_SIZE / 2
-            self.pixmap.draw_rectangle(self._preview.get_style().white_gc,
-            True, 0, 0, style.STANDARD_ICON_SIZE, style.STANDARD_ICON_SIZE)
-            self._gc.set_foreground(self._color)
+            self._ctx.rectangle(0, 0, style.STANDARD_ICON_SIZE,
+                    style.STANDARD_ICON_SIZE)
+            self._ctx.set_source_rgb(1.0, 1.0, 1.0)
+            self._ctx.fill()
 
             if self.is_stamping():
                 width = self._resized_stamp.get_width()
@@ -124,21 +127,25 @@ class BrushButton(_ColorButton):
                     0, 0, dx, dy, width, height)
 
             else:
+                red = float(self._color.red) / 65535.0
+                green = float(self._color.green) / 65535.0
+                blue = float(self._color.blue) / 65535.0
+                self._ctx.set_source_rgb(red, green, blue)
                 if self._brush_shape == 'circle':
-                    self.pixmap.draw_arc(self._gc, True,
-                        center - self._brush_size / 2,
-                        center - self._brush_size / 2,
-                        self._brush_size, self._brush_size, 0, 360 * 64)
+                    self._ctx.arc(center, center, self._brush_size / 2, 0.,
+                            2 * math.pi)
+                    self._ctx.fill()
 
                 elif self._brush_shape == 'square':
-                    self.pixmap.draw_rectangle(self._gc, True,
-                        center - self._brush_size / 2,
-                        center - self._brush_size / 2,
-                        self._brush_size, self._brush_size)
+                    self._ctx.rectangle(center - self._brush_size / 2,
+                            center - self._brush_size / 2, self._brush_size,
+                            self._brush_size)
+                    self._ctx.fill()
 
-        area = event.area
-        widget.window.draw_drawable(self._gc, self.pixmap,
-            area[0], area[1], area[0], area[1], area[2], area[3])
+        allocation = widget.get_allocation()
+        context = widget.window.cairo_create()
+        context.set_source_surface(self._surface)
+        context.paint()
         return False
 
     def do_style_set(self, previous_style):
