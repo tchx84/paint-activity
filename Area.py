@@ -177,7 +177,8 @@ class Area(gtk.DrawingArea):
         self.font_description.set_family('Sans')
         self.font_description.set_size(12)
 
-        self.set_selection_bounds(0, 0, 0, 0)
+        # selection properties
+        self.clear_selection()
         self.pending_clean_selection_background = False
 
         # List of pixbuf for the Undo function:
@@ -242,6 +243,7 @@ class Area(gtk.DrawingArea):
         if not self.is_selected():
             return
         x, y, width, height = self.get_selection_bounds()
+
         ctx.save()
         ctx.set_line_width(1)
         ctx.set_source_rgba(1., 1., 1., 1.)
@@ -1166,20 +1168,29 @@ class Area(gtk.DrawingArea):
 
     def clear_selection(self):
         self.set_selection_bounds(0, 0, 0, 0)
+        self._selection_horizontal_scale = 1.0
+        self._selection_vertical_scale = 1.0
 
-    def set_selection_bounds(self, x1, y1, width, height):
+    def set_selection_bounds(self, x, y, width, height):
         """
             Set selection bounds
-            @param x1, y1, width, height - the rectangle to define the area
+            @param x, y, width, height - the rectangle to define the area
         """
-        self._selection_bounds = (x1, y1, width, height)
+        self._selection_bounds = (x, y, width, height)
+
+    def set_selection_start(self, x, y):
+        self._selection_bounds = (x, y, self._selection_bounds[2],
+                self._selection_bounds[3])
 
     def get_selection_bounds(self):
         """
             @return x1, y1, width, height - the rectangle to define the area
         """
-        return self._selection_bounds[0], self._selection_bounds[1], \
-            self._selection_bounds[2], self._selection_bounds[3]
+        x, y = self._selection_bounds[0], self._selection_bounds[1]
+        width, height = self._selection_bounds[2], self._selection_bounds[3]
+        width = width * self._selection_horizontal_scale
+        height = height * self._selection_vertical_scale
+        return (x, y, int(width), int(height))
 
     def create_selection_surface(self, clear_background=True):
         x, y, width, height = self.get_selection_bounds()
@@ -1190,10 +1201,37 @@ class Area(gtk.DrawingArea):
         selection_ctx.translate(-x, -y)
         selection_ctx.set_source_surface(self.drawing_canvas)
         selection_ctx.paint()
+        self.selection_resized_surface = None
         if clear_background:
             self.pending_clean_selection_background = True
 
+    def resize_selection_surface(self, horizontal_scale, vertical_scale):
+        x, y = self._selection_bounds[0], self._selection_bounds[1]
+        new_width = int(self .selection_surface.get_width() * horizontal_scale)
+        new_height = int(self.selection_surface.get_height() * vertical_scale)
+
+        # create a surface with the selection scaled to the new size
+        self.selection_resized_surface = cairo.ImageSurface(
+                cairo.FORMAT_ARGB32, new_width, new_height)
+        temp_ctx = cairo.Context(self.selection_resized_surface)
+        temp_ctx.scale(horizontal_scale, vertical_scale)
+        temp_ctx.set_source_surface(self.selection_surface)
+        temp_ctx.paint()
+
+        # draw over temp canvas
+        self.temp_ctx.save()
+        self.temp_ctx.translate(x, y)
+        self.temp_ctx.set_source_surface(self.selection_resized_surface)
+        self.temp_ctx.rectangle(0, 0, new_width, new_height)
+        self.temp_ctx.paint()
+        self.temp_ctx.restore()
+
+        self._selection_horizontal_scale = horizontal_scale
+        self._selection_vertical_scale = vertical_scale
+
     def get_selection(self):
+        if self.selection_resized_surface is not None:
+            return self.selection_resized_surface
         if self.selection_surface is not None:
             return self.selection_surface
         else:
