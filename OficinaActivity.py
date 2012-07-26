@@ -90,13 +90,13 @@ class OficinaActivity(activity.Activity):
         self.fixed.modify_bg(gtk.STATE_NORMAL,
                 style.COLOR_WHITE.get_gdk_color())
 
+        self.textview = gtk.TextView()
+        self.fixed.put(self.textview, 0, 0)
+
         # These attributes are used in other classes, so they should be public
         self.area = Area(self)
         self.area.show()
         self.fixed.put(self.area, 0, 0)
-
-        self.textview = gtk.TextView()
-        self.fixed.put(self.textview, 0, 0)
 
         sw = gtk.ScrolledWindow()
         sw.show()

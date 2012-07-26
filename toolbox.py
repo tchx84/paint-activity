@@ -592,24 +592,11 @@ class TextToolbar(gtk.Toolbar):
         self._italic.show()
         self._italic.connect('clicked', self.__italic_bt_cb)
 
-        """
-        self._text_color = ButtonFillColor(activity)
-        item = gtk.ToolItem()
-        item.add(self._text_color)
-        self.insert(item, -1)
-        """
-
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
 
-        """
-        self._font_size_icon = Icon(icon_name="format-text-size",
-            icon_size=gtk.ICON_SIZE_LARGE_TOOLBAR)
-        tool_item = gtk.ToolItem()
-        tool_item.add(self._font_size_icon)
-        self.insert(tool_item, -1)
-        """
+        fd = activity.area.get_font_description()
 
         self._font_size_combo = gtk.combo_box_new_text()
         self._font_sizes = ['8', '10', '12', '14', '16', '20',
@@ -618,7 +605,7 @@ class TextToolbar(gtk.Toolbar):
                 self.__font_size_changed_cb)
         for i, s in enumerate(self._font_sizes):
             self._font_size_combo.append_text(s)
-            if int(s) == activity.area.font_description.get_size():
+            if int(s) == fd.get_size():
                 self._font_size_combo.set_active(i)
 
         tool_item = ToolComboBox(self._font_size_combo)
@@ -627,39 +614,39 @@ class TextToolbar(gtk.Toolbar):
         self._font_combo = FontComboBox()
         self._fonts_changed_id = self._font_combo.connect('changed',
                 self.__font_changed_cb)
-        font_name = activity.area.font_description.get_family()
+        font_name = fd.get_family()
         self._font_combo.set_font_name(font_name)
         tool_item = ToolComboBox(self._font_combo)
         self.insert(tool_item, -1)
         self.show_all()
 
     def __bold_bt_cb(self, button):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         if button.get_active():
-            activity.area.font_description.set_weight(pango.WEIGHT_BOLD)
+            fd.set_weight(pango.WEIGHT_BOLD)
         else:
-            activity.area.font_description.set_weight(pango.WEIGHT_NORMAL)
-        activity.textview.modify_font(activity.area.font_description)
+            fd.set_weight(pango.WEIGHT_NORMAL)
+        self._activity.area.set_font_description(fd)
 
     def __italic_bt_cb(self, button):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         if button.get_active():
-            activity.area.font_description.set_style(pango.STYLE_ITALIC)
+            fd.set_style(pango.STYLE_ITALIC)
         else:
-            activity.area.font_description.set_style(pango.STYLE_NORMAL)
-        activity.textview.modify_font(activity.area.font_description)
+            fd.set_style(pango.STYLE_NORMAL)
+        self._activity.area.set_font_description(fd)
 
     def __font_size_changed_cb(self, combo):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         value = self.get_active_text(combo)
-        activity.area.font_description.set_size(int(value) * pango.SCALE)
-        activity.textview.modify_font(activity.area.font_description)
+        fd.set_size(int(value) * pango.SCALE)
+        self._activity.area.set_font_description(fd)
 
     def __font_changed_cb(self, combo):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         font_name = combo.get_font_name()
-        activity.area.font_description.set_family(font_name)
-        activity.textview.modify_font(activity.area.font_description)
+        fd.set_family(font_name)
+        self._activity.area.set_font_description(fd)
 
     def get_active_text(self, combobox):
         model = combobox.get_model()

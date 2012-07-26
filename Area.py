@@ -158,7 +158,8 @@ class Area(gtk.DrawingArea):
             'fill': True,
             'cairo_stroke_color': (0.0, 0.0, 0.0, 0.3),
             'cairo_fill_color': (0.0, 0.0, 0.0, 0.3),
-            'vertices': 6.0}
+            'vertices': 6.0,
+            'font_description': 'Sans 12'}
 
         self.desenha = False
         self._selmove = False
@@ -173,9 +174,9 @@ class Area(gtk.DrawingArea):
         self.keep_aspect_ratio = False
         self.keep_shape_ratio = False
 
-        self.font_description = pango.FontDescription()
-        self.font_description.set_family('Sans')
-        self.font_description.set_size(12)
+        self._font_description = None
+        self.set_font_description(
+                pango.FontDescription(self.tool['font_description']))
 
         # selection properties
         self.clear_selection()
@@ -189,6 +190,14 @@ class Area(gtk.DrawingArea):
         self.drawing = False
         self.x_cursor = 0
         self.y_cursor = 0
+
+    def set_font_description(self, fd):
+        self._font_description = fd
+        self.activity.textview.modify_font(fd)
+        self.tool['font_description'] = str(fd)
+
+    def get_font_description(self):
+        return self._font_description
 
     def _get_stamp_size(self):
         """Set the stamp initial size, based on the display DPI."""
@@ -284,13 +293,13 @@ class Area(gtk.DrawingArea):
         context = self.window.cairo_create()
 
         if self.desenha:
-            #logging.error('Expose use temp canvas')
+            logging.error('Expose use temp canvas')
             # Paint the canvas in the widget:
             # TODO: clipping
             context.set_source_surface(self.temp_canvas)
             context.paint()
         else:
-            #logging.error('Expose use drawing canvas')
+            logging.error('Expose use drawing canvas')
             # TODO: clipping
             context.set_source_surface(self.drawing_canvas)
             context.paint()
@@ -345,11 +354,14 @@ class Area(gtk.DrawingArea):
         coords = int(event.x), int(event.y)
 
         # text
+        design_mode = True
         if self.tool['name'] == 'text':
             self.d.text(widget, event)
+            design_mode = False
 
         # This fixes a bug that made the text viewer get stuck in the canvas
         elif self.text_in_progress:
+            design_mode = False
             try:
             # This works for a gtk.Entry
                 text = self.activity.textview.get_text()
@@ -371,7 +383,6 @@ class Area(gtk.DrawingArea):
         if self.tool['name'] == 'picker':
             self.pick_color(x, y)
 
-        design_mode = True
         if state & gtk.gdk.BUTTON1_MASK:
             #Handle with the left button click event.
             if self.tool['name'] == 'eraser':
