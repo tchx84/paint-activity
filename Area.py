@@ -1412,19 +1412,9 @@ class Area(gtk.DrawingArea):
             width, height = self.window.get_size()
             if self.tool['name'] == 'marquee-rectangular':
                 self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
-            self.pixmap_sel = gtk.gdk.Pixmap(self.window, width, height, -1)
-            self.pixmap_sel.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-                width, height)
-            self.pixmap_temp.draw_drawable(self.gc, self.pixmap, 0, 0, 0, 0,
-                width, height)
-            self.pixmap.draw_rectangle(self.get_style().white_gc, True, 0, 0,
-                width, height)
             self.orig_x = 0
             self.orig_y = 0
-
             self.set_selection_bounds(0, 0, width - 1, height - 1)
-#            self.pixmap_temp.draw_rectangle(self.gc_selection, False,
-#                0, 0, width - 1, height - 1)
             self.emit('select')
             widget.queue_draw()
         elif event.keyval == gtk.keysyms.d and gtk.gdk.CONTROL_MASK:
