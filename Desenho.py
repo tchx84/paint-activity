@@ -70,6 +70,7 @@ import math
 import gc
 import gobject
 import cairo
+import pangocairo
 
 RESIZE_DELAY = 500  # The time to wait for the resize operation to be
                     # executed, after the resize controls are pressed.
@@ -558,22 +559,32 @@ class Desenho:
         else:
             widget.text_in_progress = False
 
-            try:
-            # This works for a gtk.Entry
-                text = widget.activity.textview.get_text()
-            except AttributeError:
-            # This works for a gtk.TextView
-                buf = widget.activity.textview.get_buffer()
-                start, end = buf.get_bounds()
-                text = buf.get_text(start, end)
+            buf = widget.activity.textview.get_buffer()
+            start, end = buf.get_bounds()
+            text = buf.get_text(start, end)
 
-            layout = widget.activity.textview.create_pango_layout(text)
+            textview = widget.activity.textview
+            tv_layout = textview.create_pango_layout(text)
 
-            widget.pixmap.draw_layout(widget.gc_brush,
-                widget.oldx, widget.oldy, layout)
-            widget.pixmap_temp.draw_layout(widget.gc,
-                widget.oldx, widget.oldy, layout)
+            ctx = widget.drawing_ctx
+
+            ctx.save()
+            ctx.new_path()
+            pango_context = pangocairo.CairoContext(ctx)
+            pango_context.set_source_rgba(*widget.tool['cairo_stroke_color'])
+
+            pango_layout = pango_context.create_layout()
+            pango_layout.set_font_description(widget.get_font_description())
+            pango_layout.set_text(unicode(text))
+
+            tv_alloc = textview.get_allocation()
+            pango_context.move_to(tv_alloc.x, tv_alloc.y)
+            pango_context.show_layout(pango_layout)
+            ctx.stroke()
+            ctx.restore()
+
             widget.activity.textview.hide()
+            widget.drawing_canvas.flush()
 
             try:
                 widget.activity.textview.set_text('')
