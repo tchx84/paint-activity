@@ -51,15 +51,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-19 00:33-0400\n"
-"PO-Revision-Date: 2009-09-02 01:03-0400\n"
-"Last-Translator: Chris Leonard <cjl@laptop.org>\n"
+"PO-Revision-Date: 2012-07-29 21:40+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -71,23 +71,23 @@ msgstr "Redigeer"
 
 #: toolbox.py:113
 msgid "Shapes"
-msgstr ""
+msgstr "Vorms"
 
 #: toolbox.py:119
 msgid "Fonts"
-msgstr ""
+msgstr "Skriftipes"
 
 #: toolbox.py:125
 msgid "Image"
-msgstr ""
+msgstr "Beeld"
 
 #: toolbox.py:150
 msgid "Undo"
-msgstr ""
+msgstr "Ontdoen"
 
 #: toolbox.py:151
 msgid "Redo"
-msgstr ""
+msgstr "Herdoen"
 
 #: toolbox.py:152
 msgid "Copy"
@@ -95,23 +95,26 @@ msgstr "Kopieer"
 
 #: toolbox.py:153
 msgid "Paste"
-msgstr ""
+msgstr "Plak"
 
 #: toolbox.py:161
 msgid "Clear"
 msgstr "Maak skoon"
 
 #: toolbox.py:242 widgets.py:311
+#, fuzzy
 msgid "Brush properties"
-msgstr ""
+msgstr "Kwas eienskappe"
 
 #: toolbox.py:253
+#, fuzzy
 msgid "Brush"
-msgstr ""
+msgstr "Kwas"
 
 #: toolbox.py:258
+#, fuzzy
 msgid "Eraser"
-msgstr ""
+msgstr "Uitveër"
 
 #: toolbox.py:262
 msgid "Bucket"
@@ -143,51 +146,53 @@ msgstr ""
 
 #: toolbox.py:456
 msgid "Shapes properties"
-msgstr ""
+msgstr "Vorms eienskappe"
 
 #: toolbox.py:468
 msgid "Ellipse"
-msgstr ""
+msgstr "Ellips"
 
 #: toolbox.py:472
 msgid "Rectangle"
-msgstr ""
+msgstr "Reghoek"
 
 #: toolbox.py:476
 msgid "Line"
-msgstr ""
+msgstr "Lyn"
 
 #: toolbox.py:480
+#, fuzzy
 msgid "Free form"
-msgstr ""
+msgstr "Vryvorm"
 
 #: toolbox.py:484
 msgid "Polygon"
-msgstr ""
+msgstr "Veelhoek"
 
 #: toolbox.py:488
 msgid "Heart"
-msgstr ""
+msgstr "Hart"
 
 #: toolbox.py:492
 msgid "Parallelogram"
-msgstr ""
+msgstr "Parallelogram"
 
 #: toolbox.py:496
 msgid "Arrow"
-msgstr ""
+msgstr "Pyltjie"
 
 #: toolbox.py:500
 msgid "Star"
-msgstr ""
+msgstr "Ster"
 
 #: toolbox.py:504
+#, fuzzy
 msgid "Trapezoid"
-msgstr ""
+msgstr "Trepesium"
 
 #: toolbox.py:508
 msgid "Triangle"
-msgstr ""
+msgstr "Driehoek"
 
 #: toolbox.py:555
 msgid "Type"
@@ -198,12 +203,14 @@ msgid "Insert Image"
 msgstr ""
 
 #: toolbox.py:679
+#, fuzzy
 msgid "Rotate Left"
-msgstr ""
+msgstr "Roteer linksom"
 
 #: toolbox.py:683
+#, fuzzy
 msgid "Rotate Right"
-msgstr ""
+msgstr "Roteer regsom"
 
 #: toolbox.py:688
 msgid "Horizontal Mirror"
@@ -215,19 +222,20 @@ msgstr ""
 
 #: toolbox.py:697
 msgid "Height"
-msgstr ""
+msgstr "Hoogte"
 
 #: toolbox.py:708
 msgid "Width"
-msgstr ""
+msgstr "Wydte"
 
 #: toolbox.py:723
 msgid "Grayscale"
-msgstr ""
+msgstr "Gryskleur"
 
 #: toolbox.py:726
+#, fuzzy
 msgid "Rainbow"
-msgstr ""
+msgstr "Reënboog"
 
 #: toolbox.py:731
 msgid "Invert Colors"
@@ -243,19 +251,19 @@ msgstr ""
 
 #: widgets.py:238
 msgid "Size: "
-msgstr ""
+msgstr "Grootte: "
 
 #: widgets.py:249
 msgid "Circle"
-msgstr ""
+msgstr "Sirkel"
 
 #: widgets.py:259
 msgid "Square"
-msgstr ""
+msgstr "Vierkant"
 
 #: widgets.py:271
 msgid "Shape"
-msgstr ""
+msgstr "Vorm"
 
 #: widgets.py:303
 msgid "Stamp properties"
