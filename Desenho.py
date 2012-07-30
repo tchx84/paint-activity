@@ -152,7 +152,6 @@ class Desenho:
 
         """
         widget.drawing_ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
-        logging.error('brush')
         self._trace(widget, coords, last)
 
     def stamp(self, widget, coords, last, stamp_size=20):
@@ -533,7 +532,6 @@ class Desenho:
         # try to clear a selected area first
         if widget.is_selected():
             x, y, width, height = widget.get_selection_bounds()
-        logging.error('clear %s', (x, y, width, height))
 
         widget.drawing_ctx.rectangle(x, y, width, height)
         widget.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
@@ -627,7 +625,6 @@ class Desenho:
 
         if widget.pending_clean_selection_background:
             # clear the selection background
-            logging.error('clean background %s', (x, y, width, height))
             widget.drawing_ctx.save()
             widget.drawing_ctx.new_path()
             widget.drawing_ctx.rectangle(x, y, width, height)
@@ -683,7 +680,6 @@ class Desenho:
 
         width, height = widget.window.get_size()
 
-        logging.error('freeform param %s', param)
         if param == "moving":
             # mouse not pressed moving
             if self.points:
@@ -713,7 +709,6 @@ class Desenho:
                     self.points.append(coords)
                 else:
                     # close the polygon
-                    logging.error('freeform ending')
                     self._draw_polygon(widget, False, fill, self.points)
                     widget.last = []
                     self.points = []
@@ -721,7 +716,6 @@ class Desenho:
                     widget.queue_draw()
                     return
 
-        logging.error('freeform points (2) %s', self.points)
         widget.desenha = True
         # Display the polygon open in the temp canvas
         self._draw_polygon(widget, True, False, self.points, closed=False)

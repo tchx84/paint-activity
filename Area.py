@@ -294,13 +294,13 @@ class Area(gtk.DrawingArea):
         context = self.window.cairo_create()
 
         if self.desenha:
-            logging.error('Expose use temp canvas')
+            #logging.error('Expose use temp canvas')
             # Paint the canvas in the widget:
             # TODO: clipping
             context.set_source_surface(self.temp_canvas)
             context.paint()
         else:
-            logging.error('Expose use drawing canvas')
+            #logging.error('Expose use drawing canvas')
             # TODO: clipping
             context.set_source_surface(self.drawing_canvas)
             context.paint()
@@ -411,7 +411,6 @@ class Area(gtk.DrawingArea):
                 self.d.freeform(widget, coords, True,
                     self.tool['fill'], "motion")
             if self.tool['name'] == 'marquee-rectangular':
-                logging.error(' mousedown marquee')
                 if self.is_selected():
                     xi, yi, width, height = self.get_selection_bounds()
                     xf = xi + width
@@ -419,7 +418,6 @@ class Area(gtk.DrawingArea):
                     # verify is out of the selected area
                     if (coords[0] < xi) or (coords[0] > xf) or \
                         (coords[1] < yi) or (coords[1] > yf):
-                        logging.error('out of selection area')
                         self.getout()
                         self._selmove = False
                         design_mode = False
@@ -498,7 +496,6 @@ class Area(gtk.DrawingArea):
                         self.d.selection(widget, coords)
 
                 elif self.tool['name'] == 'freeform':
-                    logging.error('mousemove')
                     self.configure_line(self.tool['line size'])
                     self.d.freeform(widget, coords, True,
                         self.tool['fill'], "motion")
@@ -579,7 +576,6 @@ class Area(gtk.DrawingArea):
                 self.d.square(widget, event, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'marquee-rectangular':
-                logging.error('mouseup marquee-rectangular')
                 if self.is_selected() and not self._selmove:
                     self.create_selection_surface()
                     self.emit('select')
@@ -988,7 +984,6 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
-        logging.error("TODO: Area.set_stroke_color %s", color)
         self.tool['cairo_fill_color'] = (color.red_float,
                 color.green_float, color.blue_float, 0.3)
 
@@ -999,7 +994,6 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
-        logging.error("TODO: Area.set_stroke_color %s", color)
         self.tool['cairo_stroke_color'] = (color.red_float,
                 color.green_float, color.blue_float, 0.3)
         return
