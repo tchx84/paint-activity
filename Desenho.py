@@ -61,13 +61,9 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
-
-import  pygtk
-pygtk.require('2.0')
 import gtk
 import logging
 import math
-import gc
 import gobject
 import cairo
 import pangocairo
@@ -111,8 +107,6 @@ class Desenho:
             @param  coords -- Two value tuple
 
         """
-        width, height = widget.window.get_size()
-
         if temp == True:
             ctx = widget.temp_ctx
         else:
@@ -271,7 +265,6 @@ class Desenho:
             ctx = widget.temp_ctx
         else:
             ctx = widget.drawing_ctx
-        width, height = widget.window.get_size()
 
         x, y, dx, dy, = self.adjust(widget, coords)
 
@@ -290,7 +283,6 @@ class Desenho:
             ctx = widget.temp_ctx
         else:
             ctx = widget.drawing_ctx
-        width, height = widget.window.get_size()
 
         ctx.save()
         ctx.new_path()
@@ -350,21 +342,20 @@ class Desenho:
         A = math.atan2(y, x)
         dA = 2 * math.pi / 2
         r = math.hypot(y, x)
-        m = math.sin(A)
         p = [(widget.oldx, widget.oldy)]
-        p.append((widget.oldx + int(r * math.cos(A)),\
+        p.append((widget.oldx + int(r * math.cos(A)),
                   widget.oldy + int(r * math.sin(A))))
-        p.append((widget.oldx + int(0.74 * r * math.cos(A + dA / 6)),\
+        p.append((widget.oldx + int(0.74 * r * math.cos(A + dA / 6)),
                   widget.oldy + int(0.74 * r * math.sin(A + dA / 6))))
-        p.append((widget.oldx + int(2 * r * math.cos(A + dA / 6 + dA / 20)),\
+        p.append((widget.oldx + int(2 * r * math.cos(A + dA / 6 + dA / 20)),
                   widget.oldy + int(2 * r * math.sin(A + dA / 6 + dA / 20))))
         p.append((widget.oldx +\
-                  int(2 * r * math.cos(A + dA / 6 - dA / 20 + dA / 6)),\
+                  int(2 * r * math.cos(A + dA / 6 - dA / 20 + dA / 6)), \
                   widget.oldy +\
                   int(2 * r * math.sin(A + dA / 6 - dA / 20 + dA / 6))))
-        p.append((widget.oldx + int(0.74 * r * math.cos(A + dA / 6 + dA / 6)),\
+        p.append((widget.oldx + int(0.74 * r * math.cos(A + dA / 6 + dA / 6)),
                   widget.oldy + int(0.74 * r * math.sin(A + dA / 6 + dA / 6))))
-        p.append((widget.oldx + int(r * math.cos(A + dA / 2)),\
+        p.append((widget.oldx + int(r * math.cos(A + dA / 2)),
                   widget.oldy + int(r * math.sin(A + dA / 2))))
 
         self._draw_polygon(widget, temp, fill, p)
@@ -400,7 +391,7 @@ class Desenho:
              widget.oldy + int(r * math.sin(A))), \
              (widget.oldx + int(0.4 * r * math.cos(A + dA / 2)),
              widget.oldy + int(0.4 * r * math.sin(A + dA / 2)))]
-        for i in range(int(n) - 1):
+        for _i in range(int(n) - 1):
             A = A + dA
             p.append((widget.oldx + int(r * math.cos(A)), \
                      widget.oldy + int(r * math.sin(A))))
@@ -424,7 +415,7 @@ class Desenho:
         r = math.hypot(y, x)
         p = [(widget.oldx + int(r * math.cos(A)), \
              widget.oldy + int(r * math.sin(A)))]
-        for i in range(int(n) - 1):
+        for _i in range(int(n) - 1):
             A = A + dA
             p.append((widget.oldx + int(r * math.cos(A)), \
                  widget.oldy + int(r * math.sin(A))))
@@ -443,18 +434,6 @@ class Desenho:
         else:
             ctx = widget.drawing_ctx
 
-        width, height = widget.window.get_size()
-
-        if coords[0] < widget.oldx:
-            x = coords[0]
-        else:
-            x = widget.oldx
-        if coords[1] < widget.oldy:
-            y = coords[1]
-        else:
-            y = widget.oldy
-
-        dx = math.fabs(coords[0] - widget.oldx)
         dy = math.fabs(coords[1] - widget.oldy)
         r = math.hypot(dy, dy)
         w = r / 10.0
@@ -497,7 +476,6 @@ class Desenho:
             ctx = widget.temp_ctx
         else:
             ctx = widget.drawing_ctx
-        width, height = widget.window.get_size()
 
         x, y, dx, dy = self.adjust(widget, coords)
         if dx == 0 or dy == 0:
@@ -600,8 +578,6 @@ class Desenho:
             @param  coords -- Two value tuple
         """
 
-        width, height = widget.window.get_size()
-
         x, y, dx, dy = self.adjust(widget, coords, True)
         widget.set_selection_bounds(x, y, dx, dy)
         widget.queue_draw()
@@ -677,8 +653,6 @@ class Desenho:
             @param  temp -- switch between drawing context and temp context
             @param  fill -- Fill object
         """
-
-        width, height = widget.window.get_size()
 
         if param == "moving":
             # mouse not pressed moving
