@@ -683,6 +683,7 @@ class Desenho:
                     self.points.append(coords)
                 else:
                     # close the polygon
+                    self.points.append((first[0], first[1]))
                     self._draw_polygon(widget, False, fill, self.points)
                     widget.last = []
                     self.points = []
