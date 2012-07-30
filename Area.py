@@ -71,19 +71,20 @@ import math
 import pango
 import cairo
 import StringIO
+import array
 
 from Desenho import Desenho
 from urlparse import urlparse
 from sugar.graphics.style import zoom
 
 FALLBACK_FILL = True
-try:
-    from fill import fill
-    FALLBACK_FILL = False
-except:
-    logging.debug('No valid fill binaries. Using slower python code')
-    pass
 
+#try:
+#    from fill import fill
+#    FALLBACK_FILL = False
+#except:
+#    logging.debug('No valid fill binaries. Using slower python code')
+#    pass
 
 ##Tools and events manipulation are handle with this class.
 
@@ -591,19 +592,8 @@ class Area(gtk.DrawingArea):
 
             elif self.tool['name'] == 'bucket':
                 if FALLBACK_FILL:
-                    if self.tool['stroke color'] is not None:
-                        stroke_color = self.tool['stroke color']
-                        color_r = int(stroke_color.red_float * 65535)
-                        color_g = int(stroke_color.green_float * 65535)
-                        color_b = int(stroke_color.blue_float * 65535)
-                    else:
-                        color_r, color_g, color_b = 0, 0, 0
-                    cmap = self.pixmap.get_colormap()
-                    fill_color = \
-                            cmap.alloc_color(color_r, color_g, color_b).pixel
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-                    gobject.idle_add(self.flood_fill, coords[0], coords[1],
-                            fill_color)
+                    gobject.idle_add(self.flood_fill, coords[0], coords[1])
                 else:
                     width, height = self.window.get_size()
                     self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
@@ -655,10 +645,29 @@ class Area(gtk.DrawingArea):
         cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
         self.window.set_cursor(cursor)
 
-    def flood_fill(self, x, y, fill_color):
-        width, height = self.window.get_size()
+    def flood_fill(self, x, y):
+        stroke_color = self.tool['cairo_stroke_color']
+        r, g, b = stroke_color[0], stroke_color[1], stroke_color[2]
 
-        gdk_image = self.pixmap.get_image(0, 0, width, height)
+        # pack the color in a int as 0xAARRGGBB
+        fill_color = 0xff000000 + \
+                (int(r * 255 * 65536) + \
+                int(g * 255 * 256) + \
+                int(b * 255))
+        logging.error('fill_color %d', fill_color)
+
+        # load a array with the surface data
+        for type in ['H', 'I', 'L']:
+            pixels = array.array(type)
+            if pixels.itemsize == 4:
+                break
+        else:
+            raise AssertionError()
+        pixels.fromstring(self.drawing_canvas.get_data())
+
+        # process the pixels in the array
+        width = self.drawing_canvas.get_width()
+        height = self.drawing_canvas.get_height()
 
         def within(x, y):
             if x < 0 or x >= width:
@@ -671,24 +680,28 @@ class Area(gtk.DrawingArea):
             return
         edge = [(x, y)]
 
-        old_color = gdk_image.get_pixel(x, y)
+        old_color = pixels[x + y * width]
         if old_color == fill_color:
             logging.debug('Already filled')
             return
 
-        gdk_image.put_pixel(x, y, fill_color)
+        pixels[x + y * width] = fill_color
 
         while len(edge) > 0:
             newedge = []
             for (x, y) in edge:
                 for (s, t) in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
                     if within(s, t) and \
-                            gdk_image.get_pixel(s, t) == old_color:
-                        gdk_image.put_pixel(s, t, fill_color)
+                            pixels[s + t * width] == old_color:
+                        pixels[s + t * width] = fill_color
                         newedge.append((s, t))
             edge = newedge
 
-        self.pixmap.draw_image(self.gc, gdk_image, 0, 0, 0, 0, width, height)
+        # create a updated drawing_canvas
+        self.drawing_canvas = cairo.ImageSurface.create_for_data(pixels,
+                cairo.FORMAT_ARGB32, width, height)
+        self.setup(width, height)
+
         self.queue_draw()
         self.enable_undo()
 
