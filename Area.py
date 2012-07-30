@@ -815,8 +815,10 @@ class Area(gtk.DrawingArea):
         if self._undo_index > 0:
             self._undo_index -= 1
 
-        undo_pix = self._undo_list[self._undo_index]
-        self._pixbuf_to_context(undo_pix, self.drawing_ctx)
+        undo_surface = self._undo_list[self._undo_index]
+        self.drawing_ctx.set_source_surface(undo_surface, 0, 0)
+        self.drawing_ctx.set_operator(cairo.OPERATOR_SOURCE)
+        self.drawing_ctx.paint()
         self.queue_draw()
 
         self.emit('undo')
@@ -835,8 +837,10 @@ class Area(gtk.DrawingArea):
         if self._undo_index < len(self._undo_list) - 1:
             self._undo_index += 1
 
-        undo_pix = self._undo_list[self._undo_index]
-        self._pixbuf_to_context(undo_pix, self.drawing_ctx)
+        undo_surface = self._undo_list[self._undo_index]
+        self.drawing_ctx.set_source_surface(undo_surface, 0, 0)
+        self.drawing_ctx.set_operator(cairo.OPERATOR_SOURCE)
+        self.drawing_ctx.paint()
         self.queue_draw()
 
         self.emit('redo')
@@ -862,9 +866,17 @@ class Area(gtk.DrawingArea):
         if overrite and self._undo_index != 0:
             self._undo_index -= 1
 
-        undo_pix = temp_pix = self._surface_to_pixbuf(self.drawing_canvas)
+        # copy the drawing surface in a new surface
+        width = self.drawing_canvas.get_width()
+        height = self.drawing_canvas.get_height()
+        undo_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+        undo_ctx = cairo.Context(undo_surface)
+        undo_ctx.set_source_surface(self.drawing_canvas, 0, 0)
+        undo_ctx.set_operator(cairo.OPERATOR_SOURCE)
+        undo_ctx.paint()
+        undo_surface.flush()
 
-        self._undo_list.append(undo_pix)
+        self._undo_list.append(undo_surface)
 
         self.emit('action-saved')
 
