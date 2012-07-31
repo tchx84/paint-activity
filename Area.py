@@ -274,8 +274,6 @@ class Area(gtk.DrawingArea):
 
         """
         self.drawing_ctx.set_line_width(size)
-        self.drawing_ctx.set_line_cap(cairo.LINE_CAP_ROUND)
-        self.drawing_ctx.set_line_join(cairo.LINE_JOIN_ROUND)
 
     def expose(self, widget, event):
         """ This function define which canvas will be showed to the user.
@@ -620,6 +618,7 @@ class Area(gtk.DrawingArea):
         if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                  'stamp']:
             self.last = []
+            self.d.finish_trace(self)
             widget.queue_draw()
             self.drawing = False
         self.desenha = False

@@ -131,7 +131,6 @@ class Desenho:
             @param  shape -- string (default 'circle')
 
         """
-        widget.drawing_ctx.set_source_rgba(1.0, 1.0, 1.0, 1.0)
         self._trace(widget, coords, last)
 
     def brush(self, widget, coords, last):
@@ -145,7 +144,6 @@ class Desenho:
             @param  shape -- string (default 'circle')
 
         """
-        widget.drawing_ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
         self._trace(widget, coords, last)
 
     def stamp(self, widget, coords, last, stamp_size=20):
@@ -196,9 +194,12 @@ class Desenho:
 
         widget.drawing_ctx.set_source_rgba(_color.red, _color.green,
                 _color.blue, 0.3)
-        self._trace(widget, coords, last)
+        self._old_trace(widget, coords, last)
 
-    def _trace(self, widget, coords, last):
+    def _old_trace(self, widget, coords, last):
+        """
+        _old_trace is used only by rainbow
+        """
         widget.desenha = False
         size = widget.tool['line size']
         shape = widget.tool['line shape']
@@ -252,6 +253,53 @@ class Desenho:
         else:
             widget.queue_draw()
 
+    def finish_trace(self, widget):
+        widget.desenha = False
+        shape = widget.tool['line shape']
+        rounded = (shape == 'circle')
+        self._draw_polygon(widget, False, False, self.points, False, rounded)
+        if not rounded and len(self.points) == 1:
+            # draw a square if the mouse was not moved
+            size = widget.tool['line size']
+            coords = self.points[0]
+            widget.drawing_ctx.save()
+            if widget.tool['name'] == 'eraser':
+                color = (1.0, 1.0, 1.0, 1.0)
+            else:
+                color = widget.tool['cairo_stroke_color']
+            widget.drawing_ctx.set_source_rgba(*color)
+            widget.drawing_ctx.move_to(coords[0] - size / 2,
+                    coords[1] - size / 2)
+            widget.drawing_ctx.rectangle(coords[0] - size / 2,
+                    coords[1] - size / 2, size, size)
+            widget.drawing_ctx.fill()
+            widget.drawing_ctx.restore()
+
+        self.points = []
+
+    def _trace(self, widget, coords, last):
+        widget.desenha = True
+        size = widget.tool['line size']
+        shape = widget.tool['line shape']
+
+        rounded = (shape == 'circle')
+
+        self.points.append((coords[0], coords[1]))
+        if last:
+            self._draw_polygon(widget, True, False, self.points, False,
+                    rounded)
+
+        if last:
+            x = min(coords[0], last[0])
+            width = max(coords[0], last[0]) - x
+            y = min(coords[1], last[1])
+            height = max(coords[1], last[1]) - y
+            # We add size to avoid drawing dotted lines
+            widget.queue_draw_area(x - size, y - size,
+                width + size * 2, height + size * 2)
+        else:
+            widget.queue_draw()
+
     def square(self, widget, event, coords, temp, fill):
         """Draw a square.
 
@@ -273,10 +321,12 @@ class Desenho:
             ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
             ctx.fill_preserve()
         ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        ctx.set_line_width(widget.tool['line size'])
         ctx.stroke()
         widget.queue_draw_area(x, y, dx, dy)
 
-    def _draw_polygon(self, widget, temp, fill, points, closed=True):
+    def _draw_polygon(self, widget, temp, fill, points, closed=True,
+            rounded=False):
         if not points:
             return
         if temp == True:
@@ -291,12 +341,22 @@ class Desenho:
             ctx.line_to(*point)
         if closed:
             ctx.close_path()
-        ctx.set_line_join(cairo.LINE_JOIN_MITER)
-        ctx.set_line_width(widget.tool['line size'])
+        if rounded:
+            ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+            ctx.set_line_join(cairo.LINE_JOIN_ROUND)
+        else:
+            ctx.set_line_cap(cairo.LINE_CAP_SQUARE)
+            ctx.set_line_join(cairo.LINE_JOIN_MITER)
         if fill:
             ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
+            ctx.set_line_width(0)
             ctx.fill_preserve()
-        ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+
+        if widget.tool['name'] == 'eraser':
+            ctx.set_source_rgba(1.0, 1.0, 1.0, 1.0)
+        else:
+            ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        ctx.set_line_width(widget.tool['line size'])
         ctx.stroke()
         ctx.restore()
         widget.queue_draw()
