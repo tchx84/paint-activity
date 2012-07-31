@@ -228,6 +228,9 @@ class Area(gtk.DrawingArea):
             self.drawing_ctx = cairo.Context(self.drawing_canvas)
 
         ##This canvas is showed when we need show something and not draw it.
+        self.temp_canvas = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                                                  width, height)
+        self.temp_ctx = cairo.Context(self.temp_canvas)
         self._init_temp_canvas()
 
         self.enable_undo()
@@ -237,14 +240,14 @@ class Area(gtk.DrawingArea):
 
         return True
 
-    def _init_temp_canvas(self):
+    def _init_temp_canvas(self, area=None):
         #logging.error('init_temp_canvas.')
         #self.drawing_canvas.flush()
-        width, height = self.get_window().get_size()
-        self.temp_canvas = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                                                  width, height)
-        self.temp_ctx = cairo.Context(self.temp_canvas)
-        self.temp_ctx.rectangle(0, 0, width, height)
+        if area == None:
+            width, height = self.get_window().get_size()
+            self.temp_ctx.rectangle(0, 0, width, height)
+        else:
+            self.temp_ctx.rectangle(area.x, area.y, area.width, area.height)
         self.temp_ctx.set_source_surface(self.drawing_canvas)
         self.temp_ctx.paint()
 
@@ -284,24 +287,23 @@ class Area(gtk.DrawingArea):
             @param  event -- GdkEvent
 
         """
-        #area = event.area
-        #logging.error('expose area %s', area)
+        area = event.area
 
         context = self.get_window().cairo_create()
+        context.rectangle(area.x, area.y, area.width, area.height)
+        context.clip()
 
         if self.desenha:
-            #logging.error('Expose use temp canvas')
+            #logging.error('Expose use temp canvas area %s', area)
             # Paint the canvas in the widget:
-            # TODO: clipping
             context.set_source_surface(self.temp_canvas)
             context.paint()
         else:
-            #logging.error('Expose use drawing canvas')
-            # TODO: clipping
+            #logging.error('Expose use drawing canvas area %s', area)
             context.set_source_surface(self.drawing_canvas)
             context.paint()
             self.show_tool_shape(context)
-        self._init_temp_canvas()
+        self._init_temp_canvas(area)
         self.display_selection_border(context)
 
     def show_tool_shape(self, context):
@@ -311,9 +313,9 @@ class Area(gtk.DrawingArea):
         """
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
                                  'stamp']:
-            context.set_source_rgba(*self.tool['cairo_stroke_color'])
-            context.set_line_width(1)
             if not self.drawing:
+                context.set_source_rgba(*self.tool['cairo_stroke_color'])
+                context.set_line_width(1)
                 # draw stamp border in widget.window
                 if self.tool['name'] == 'stamp':
                     wr, hr = self.stamp_dimentions
@@ -337,6 +339,8 @@ class Area(gtk.DrawingArea):
                     context.rectangle(self.x_cursor - size / 2,
                             self.y_cursor - size / 2, size, size)
                     context.stroke()
+                self.last_x_cursor = self.x_cursor
+                self.last_y_cursor = self.y_cursor
 
     def mousedown(self, widget, event):
         """Make the Area object (GtkDrawingArea) recognize
@@ -426,7 +430,28 @@ class Area(gtk.DrawingArea):
 
             if design_mode:
                 self.desenha = True
-        widget.queue_draw()
+
+    def calculate_damaged_area(self, points):
+        min_x = points[0][0]
+        min_y = points[0][1]
+        max_x = 0
+        max_y = 0
+        for point in points:
+            if point[0] < min_x:
+                min_x = point[0]
+            if point[0] > max_x:
+                max_x = point[0]
+            if point[1] < min_y:
+                min_y = point[1]
+            if point[1] > max_y:
+                max_y = point[1]
+        # add the tool size
+        size = self.tool['line size']
+        min_x = min_x - size
+        min_y = min_y - size
+        max_x = max_x + size
+        max_y = max_y + size
+        return (min_x, min_y, max_x - min_x, max_y - min_y)
 
     def mousemove(self, widget, event):
         """Make the Area object (GtkDrawingArea)
@@ -522,7 +547,10 @@ class Area(gtk.DrawingArea):
         else:
             if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                      'stamp']:
-                widget.queue_draw()
+                # define area to update
+                last_coords = (self.last_x_cursor, self.last_y_cursor)
+                area = self.calculate_damaged_area([last_coords, coords])
+                widget.queue_draw_area(*area)
             if self.tool['name'] == 'marquee-rectangular':
                 sel_x, sel_y, sel_width, sel_height = \
                         self.get_selection_bounds()
@@ -619,7 +647,6 @@ class Area(gtk.DrawingArea):
                                  'stamp']:
             self.last = []
             self.d.finish_trace(self)
-            widget.queue_draw()
             self.drawing = False
         self.desenha = False
         if not private_undo and self.tool['name'] != 'bucket':
@@ -628,6 +655,8 @@ class Area(gtk.DrawingArea):
             # gobject.idle_add (with the fill_flood function) finishes
             # and an unconsistent undo state is saved
             self.enable_undo()
+        widget.queue_draw()
+        self.d.clear_control_points()
 
     def fast_flood_fill(self, widget, x, y, width, height):
         fill(self.pixmap, self.gc, x, y, width,
@@ -1444,9 +1473,11 @@ class Area(gtk.DrawingArea):
                 size = 1
             self.tool['line size'] = size
             self.configure_line(size)
+            # TODO: clip
             self.queue_draw()
         if self.tool['name'] == 'stamp':
             self.resize_stamp(self.stamp_size + delta)
+            # TODO: clip
             self.queue_draw()
 
     def _keep_selection_ratio(self, coords):

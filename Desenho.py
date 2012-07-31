@@ -98,6 +98,10 @@ class Desenho:
         self._rainbow_counter = 0
 
         self.points = []
+        self._last_points_used = self.points
+
+    def clear_control_points(self):
+        self._last_points_used = []
 
     def line(self, widget, coords, temp):
         """Draw line.
@@ -118,6 +122,7 @@ class Desenho:
         ctx.move_to(widget.oldx, widget.oldy)
         ctx.line_to(coords[0], coords[1])
         ctx.stroke()
+        # TODO: clip
         widget.queue_draw()
 
     def eraser(self, widget, coords, last):
@@ -172,7 +177,7 @@ class Desenho:
         widget.drawing_ctx.paint()
         widget.drawing_ctx.restore()
 
-        widget.queue_draw()
+        widget.queue_draw_area(dx, dy, width, height)
 
     def rainbow(self, widget, coords, last):
         """Paint with rainbow.
@@ -288,7 +293,7 @@ class Desenho:
         if last:
             self._draw_polygon(widget, True, False, self.points, False,
                     rounded)
-
+        self.clear_control_points()
         if last:
             x = min(coords[0], last[0])
             width = max(coords[0], last[0]) - x
@@ -297,8 +302,6 @@ class Desenho:
             # We add size to avoid drawing dotted lines
             widget.queue_draw_area(x - size, y - size,
                 width + size * 2, height + size * 2)
-        else:
-            widget.queue_draw()
 
     def square(self, widget, event, coords, temp, fill):
         """Draw a square.
@@ -309,21 +312,10 @@ class Desenho:
             @param  temp -- switch between drawing context and temp context
             @param  fill -- Fill object
         """
-        if temp == True:
-            ctx = widget.temp_ctx
-        else:
-            ctx = widget.drawing_ctx
 
         x, y, dx, dy, = self.adjust(widget, coords)
-
-        ctx.rectangle(x, y, dx, dy)
-        if fill == True:
-            ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
-            ctx.fill_preserve()
-        ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
-        ctx.set_line_width(widget.tool['line size'])
-        ctx.stroke()
-        widget.queue_draw_area(x, y, dx, dy)
+        points = [(x, y), (x + dx, y), (x + dx, y + dy), (x, y + dy)]
+        self._draw_polygon(widget, temp, fill, points)
 
     def _draw_polygon(self, widget, temp, fill, points, closed=True,
             rounded=False):
@@ -359,7 +351,9 @@ class Desenho:
         ctx.set_line_width(widget.tool['line size'])
         ctx.stroke()
         ctx.restore()
-        widget.queue_draw()
+        self._last_points_used.extend(points)
+        area = widget.calculate_damaged_area(self._last_points_used)
+        widget.queue_draw_area(*area)
 
     def triangle(self, widget, coords, temp, fill):
         """Draw a triangle.
@@ -522,6 +516,7 @@ class Desenho:
         ctx.stroke()
         ctx.restore()
 
+        # TODO: clip
         widget.queue_draw()
 
     def circle(self, widget, coords, temp, fill):
@@ -554,6 +549,7 @@ class Desenho:
         ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
         ctx.stroke()
         ctx.restore()
+        # TODO: clip
         widget.queue_draw()
 
     def clear(self, widget):
@@ -628,7 +624,7 @@ class Desenho:
                 buf.set_text('')
 
             widget.enable_undo()
-
+            # TODO: clip
             widget.queue_draw()
 
     def selection(self, widget, coords):
@@ -640,6 +636,7 @@ class Desenho:
 
         x, y, dx, dy = self.adjust(widget, coords, True)
         widget.set_selection_bounds(x, y, dx, dy)
+        # TODO: clip
         widget.queue_draw()
 
     def move_selection(self, widget, coords):
@@ -754,7 +751,7 @@ class Desenho:
         widget.desenha = True
         # Display the polygon open in the temp canvas
         self._draw_polygon(widget, True, False, self.points, closed=False)
-        widget.queue_draw()
+        self.clear_control_points()
 
     def adjust(self, widget, coords, locked=False):
         width, height = widget.window.get_size()
