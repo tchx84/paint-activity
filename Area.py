@@ -445,11 +445,18 @@ class Area(gtk.DrawingArea):
             if point[1] > max_y:
                 max_y = point[1]
         # add the tool size
-        size = self.tool['line size']
-        min_x = min_x - size
-        min_y = min_y - size
-        max_x = max_x + size
-        max_y = max_y + size
+        if self.tool['name'] == 'stamp':
+            wr, hr = self.stamp_dimentions
+            min_x = min_x - wr
+            min_y = min_y - wr
+            max_x = max_x + hr
+            max_y = max_y + hr
+        else:
+            size = self.tool['line size']
+            min_x = min_x - size
+            min_y = min_y - size
+            max_x = max_x + size
+            max_y = max_y + size
         return (min_x, min_y, max_x - min_x, max_y - min_y)
 
     def mousemove(self, widget, event):
