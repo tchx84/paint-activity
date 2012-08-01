@@ -327,8 +327,6 @@ class Area(gtk.DrawingArea):
                 # draw shape of the brush, square or circle
                 elif self.tool['line shape'] == 'circle':
                     size = self.tool['line size']
-                    context.move_to(self.x_cursor,
-                            self.y_cursor)
                     context.arc(self.x_cursor,
                             self.y_cursor, size / 2, 0.,
                             2 * math.pi)
