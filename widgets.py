@@ -10,6 +10,11 @@ import math
 from sugar.graphics import style
 from sugar.graphics.palette import ToolInvoker
 from sugar.graphics.colorbutton import _ColorButton
+from sugar.graphics.radiotoolbutton import RadioToolButton
+
+# this strings are here only to enable pootle to translate them
+# and do not broke the old versions
+_old_strings = [_('Size: '), _('Opacity: '), _('Circle'), _('Square')]
 
 
 class BrushButton(_ColorButton):
@@ -254,7 +259,7 @@ class ButtonStrokeColor(gtk.ToolItem):
         self.size_scale.set_value_pos(gtk.POS_RIGHT)
         self.size_scale.set_digits(0)
         self.size_scale.set_size_request(style.zoom(150), -1)
-        label = gtk.Label(_('Size: '))
+        label = gtk.Label(_('Size'))
         row = 0
         self._brush_table.attach(label, 0, 1, row, row + 1)
         self._brush_table.attach(self.size_scale, 1, 2, row, row + 1)
@@ -270,7 +275,7 @@ class ButtonStrokeColor(gtk.ToolItem):
         self.alpha_scale.set_value_pos(gtk.POS_RIGHT)
         self.alpha_scale.set_digits(0)
         self.alpha_scale.set_size_request(style.zoom(150), -1)
-        self.alpha_label = gtk.Label(_('Opacity: '))
+        self.alpha_label = gtk.Label(_('Opacity'))
         row = row + 1
         self._brush_table.attach(self.alpha_label, 0, 1, row, row + 1)
         self._brush_table.attach(self.alpha_scale, 1, 2, row, row + 1)
@@ -279,34 +284,25 @@ class ButtonStrokeColor(gtk.ToolItem):
 
         # User is able to choose Shapes for 'Brush' and 'Eraser'
         self.vbox_brush_options = gtk.VBox()
+        shape_box = gtk.HBox()
         content_box.pack_start(self.vbox_brush_options)
-        item1 = gtk.RadioButton(None, _('Circle'))
+        item1 = RadioToolButton()
+        item1.set_icon_name('tool-shape-ellipse')
+        item1.set_group(None)
         item1.set_active(True)
-        image1 = gtk.Image()
-        pixbuf1 = gtk.gdk.pixbuf_new_from_file_at_size(
-                                './icons/tool-shape-ellipse.svg',
-                                style.SMALL_ICON_SIZE,
-                                style.SMALL_ICON_SIZE)
-        image1.set_from_pixbuf(pixbuf1)
-        item1.set_image(image1)
 
-        item2 = gtk.RadioButton(item1, _('Square'))
-        image2 = gtk.Image()
-        pixbuf2 = gtk.gdk.pixbuf_new_from_file_at_size(
-                                './icons/tool-shape-rectangle.svg',
-                                style.SMALL_ICON_SIZE,
-                                style.SMALL_ICON_SIZE)
-        image2.set_from_pixbuf(pixbuf2)
-        item2.set_image(image2)
+        item2 = RadioToolButton()
+        item2.set_icon_name('tool-shape-rectangle')
+        item2.set_group(item1)
 
         item1.connect('toggled', self._on_toggled, self.properties, 'circle')
         item2.connect('toggled', self._on_toggled, self.properties, 'square')
 
-        label = gtk.Label(_('Shape'))
+        shape_box.pack_start(gtk.Label(_('Shape')))
+        shape_box.pack_start(item1)
+        shape_box.pack_start(item2)
 
-        self.vbox_brush_options.pack_start(label)
-        self.vbox_brush_options.pack_start(item1)
-        self.vbox_brush_options.pack_start(item2)
+        self.vbox_brush_options.pack_start(shape_box)
 
         keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
         ratio = self._activity.area.keep_aspect_ratio
