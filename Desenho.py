@@ -500,6 +500,7 @@ class Desenho:
         line_width = ctx.get_line_width()
 
         ctx.save()
+        ctx.new_path()
         ctx.translate(widget.oldx, widget.oldy)
         ctx.scale(w, w)
         ctx.move_to(0, 0)
@@ -539,6 +540,7 @@ class Desenho:
         ctx.set_line_width(widget.tool['line size'])
         line_width = ctx.get_line_width()
         ctx.save()
+        ctx.new_path()
         ctx.translate(x, y)
         ctx.scale(dx, dy)
         ctx.arc(0., 0., 1., 0., 2 * math.pi)
