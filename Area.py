@@ -157,8 +157,9 @@ class Area(gtk.DrawingArea):
             'stroke color': None,
             'line shape': 'circle',
             'fill': True,
-            'cairo_stroke_color': (0.0, 0.0, 0.0, 0.3),
-            'cairo_fill_color': (0.0, 0.0, 0.0, 0.3),
+            'cairo_stroke_color': (0.0, 0.0, 0.0, 1.0),
+            'cairo_fill_color': (0.0, 0.0, 0.0, 1.0),
+            'alpha': 1.0,
             'vertices': 6.0,
             'font_description': 'Sans 12'}
 
@@ -1007,8 +1008,9 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
+        alpha = self.tool['alpha']
         self.tool['cairo_fill_color'] = (color.red_float,
-                color.green_float, color.blue_float, 0.3)
+                color.green_float, color.blue_float, alpha)
 
     def set_stroke_color(self, color):
         """Set stroke color.
@@ -1017,9 +1019,24 @@ class Area(gtk.DrawingArea):
             @param  color -- a gdk.Color object
 
         """
+        alpha = self.tool['alpha']
         self.tool['cairo_stroke_color'] = (color.red_float,
-                color.green_float, color.blue_float, 0.3)
+                color.green_float, color.blue_float, alpha)
         self.activity.textview.modify_text(gtk.STATE_NORMAL, color)
+
+    def set_alpha(self, alpha):
+        """
+        Set the alpha value used to draw
+        @ param alpha -- float between 0.0 and 1.0
+        """
+        self.tool['alpha'] = alpha
+        stroke_color = self.tool['cairo_stroke_color']
+        self.tool['cairo_stroke_color'] = (stroke_color[0], stroke_color[1],
+                stroke_color[2], alpha)
+
+        fill_color = self.tool['cairo_fill_color']
+        self.tool['cairo_fill_color'] = (fill_color[0], fill_color[1],
+                fill_color[2], alpha)
 
     def grayscale(self, widget):
         """Apply grayscale effect.

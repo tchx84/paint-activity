@@ -32,6 +32,7 @@ class BrushButton(_ColorButton):
         self._brush_size = 2
         self._stamp_size = 20
         self._brush_shape = 'circle'
+        self._alpha = 1.0
         self._resized_stamp = None
         self._preview = gtk.DrawingArea()
         self._preview.set_size_request(style.STANDARD_ICON_SIZE,
@@ -107,6 +108,10 @@ class BrushButton(_ColorButton):
     def is_stamping(self):
         return self._resized_stamp != None
 
+    def set_alpha(self, alpha):
+        self._alpha = alpha
+        self._preview.queue_draw()
+
     def expose(self, widget, event):
         if self._ctx is None:
             self._setup()
@@ -133,7 +138,7 @@ class BrushButton(_ColorButton):
                 red = float(self._color.red) / 65535.0
                 green = float(self._color.green) / 65535.0
                 blue = float(self._color.blue) / 65535.0
-                self._ctx.set_source_rgb(red, green, blue)
+                self._ctx.set_source_rgba(red, green, blue, self._alpha)
                 if self._brush_shape == 'circle':
                     self._ctx.arc(center, center, self._brush_size / 2, 0.,
                             2 * math.pi)
@@ -238,24 +243,43 @@ class ButtonStrokeColor(gtk.ToolItem):
 
         color_palette_hbox = self._palette._picker_hbox
         content_box = gtk.VBox()
-        self.size_spinbutton = gtk.SpinButton()
+
+        self._brush_table = gtk.Table(2, 2)
+        self._brush_table.set_col_spacing(0, style.DEFAULT_PADDING)
+
         # This is where we set restrictions for size:
         # Initial value, minimum value, maximum value, step
         adj = gtk.Adjustment(self.properties['line size'], 1.0, 100.0, 1.0)
-        self.size_spinbutton.set_adjustment(adj)
-        self.size_spinbutton.set_numeric(True)
-
+        self.size_scale = gtk.HScale(adj)
+        self.size_scale.set_value_pos(gtk.POS_RIGHT)
+        self.size_scale.set_digits(0)
+        self.size_scale.set_size_request(style.zoom(150), -1)
         label = gtk.Label(_('Size: '))
-        hbox_size = gtk.HBox()
-        self.vbox_brush_options = gtk.VBox()
-        content_box.pack_start(hbox_size)
-        content_box.pack_start(self.vbox_brush_options)
+        row = 0
+        self._brush_table.attach(label, 0, 1, row, row + 1)
+        self._brush_table.attach(self.size_scale, 1, 2, row, row + 1)
 
-        hbox_size.pack_start(label)
-        hbox_size.pack_start(self.size_spinbutton)
-        self.size_spinbutton.connect('value-changed', self._on_value_changed)
+        content_box.pack_start(self._brush_table)
+
+        self.size_scale.connect('value-changed', self._on_value_changed)
+
+        # Control alpha
+        alpha = self.properties['alpha'] * 100
+        adj_alpha = gtk.Adjustment(alpha, 10.0, 100.0, 1.0)
+        self.alpha_scale = gtk.HScale(adj_alpha)
+        self.alpha_scale.set_value_pos(gtk.POS_RIGHT)
+        self.alpha_scale.set_digits(0)
+        self.alpha_scale.set_size_request(style.zoom(150), -1)
+        self.alpha_label = gtk.Label(_('Opacity: '))
+        row = row + 1
+        self._brush_table.attach(self.alpha_label, 0, 1, row, row + 1)
+        self._brush_table.attach(self.alpha_scale, 1, 2, row, row + 1)
+
+        self.alpha_scale.connect('value-changed', self._on_alpha_changed)
 
         # User is able to choose Shapes for 'Brush' and 'Eraser'
+        self.vbox_brush_options = gtk.VBox()
+        content_box.pack_start(self.vbox_brush_options)
         item1 = gtk.RadioButton(None, _('Circle'))
         item1.set_active(True)
         image1 = gtk.Image()
@@ -309,6 +333,8 @@ class ButtonStrokeColor(gtk.ToolItem):
                 ch.hide_all()
             # Hide brush options:
             self.vbox_brush_options.hide_all()
+            self.alpha_label.hide()
+            self.alpha_scale.hide()
             # Change title:
             self.set_title(_('Stamp properties'))
         else:
@@ -317,6 +343,8 @@ class ButtonStrokeColor(gtk.ToolItem):
                 ch.show_all()
             # Show brush options:
             self.vbox_brush_options.show_all()
+            self.alpha_label.show()
+            self.alpha_scale.show()
             # Change title:
             self.set_title(_('Brush properties'))
 
@@ -325,13 +353,18 @@ class ButtonStrokeColor(gtk.ToolItem):
 
     def update_stamping(self):
         if self.color_button.is_stamping():
-            self.size_spinbutton.set_value(self.color_button.stamp_size)
+            self.size_scale.set_value(self.color_button.stamp_size)
         else:
-            self.size_spinbutton.set_value(self.color_button.brush_size)
+            self.size_scale.set_value(self.color_button.brush_size)
         self._update_palette()
 
-    def _on_value_changed(self, spinbutton):
-        size = spinbutton.get_value_as_int()
+    def _on_alpha_changed(self, scale):
+        alpha = scale.get_value() / 100.0
+        self._activity.area.set_alpha(alpha)
+        self.color_button.set_alpha(alpha)
+
+    def _on_value_changed(self, scale):
+        size = int(scale.get_value())
         if self.color_button.is_stamping():
             self.properties['stamp size'] = size
             resized_stamp = self._activity.area.resize_stamp(size)
