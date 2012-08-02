@@ -61,11 +61,11 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
-import gtk
+from gi.repository import Gtk
 import logging
 
-from sugar.activity import activity
-from sugar.graphics import style
+from sugar3.activity import activity
+from sugar3.graphics import style
 
 from Area import Area
 from toolbox import DrawToolbarBox
@@ -85,12 +85,12 @@ class OficinaActivity(activity.Activity):
 
         logging.debug('Starting Paint activity (Oficina)')
 
-        self.fixed = gtk.Fixed()
+        self.fixed = Gtk.Fixed()
         self.fixed.show()
-        self.fixed.modify_bg(gtk.STATE_NORMAL,
+        self.fixed.modify_bg(Gtk.StateType.NORMAL,
                 style.COLOR_WHITE.get_gdk_color())
 
-        self.textview = gtk.TextView()
+        self.textview = Gtk.TextView()
         self.fixed.put(self.textview, 0, 0)
 
         # These attributes are used in other classes, so they should be public
@@ -98,10 +98,10 @@ class OficinaActivity(activity.Activity):
         self.area.show()
         self.fixed.put(self.area, 0, 0)
 
-        sw = gtk.ScrolledWindow()
-        sw.show()
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.set_canvas(sw)
+        self._sw = Gtk.ScrolledWindow()
+        self._sw.show()
+        self._sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        self.set_canvas(self._sw)
 
         toolbar_box = DrawToolbarBox(self)
 
@@ -121,9 +121,9 @@ class OficinaActivity(activity.Activity):
             self.canvas.add_with_viewport(self.fixed)
             # to remove the border, we need set the shadowtype
             # in the viewport child of the scrolledwindow
-            self.canvas.get_children()[0].set_shadow_type(gtk.SHADOW_NONE)
+            self.canvas.get_children()[0].set_shadow_type(Gtk.ShadowType.NONE)
             self.disconnect(self._setup_handle)
-            self._setup_handle = self.fixed.connect('size_allocate',
+            self._setup_handle = self._sw.connect('size_allocate',
                     size_allocate_cb)
 
         self._setup_handle = self.connect('map', map_cp)
@@ -152,17 +152,18 @@ class OficinaActivity(activity.Activity):
             # of the canvas when the toolbars popup and the scrolls
             # keep visible.
             if height > allocation.height or width > allocation.width:
-                self.canvas.set_policy(gtk.POLICY_AUTOMATIC,
-                        gtk.POLICY_AUTOMATIC)
+                self.canvas.set_policy(Gtk.PolicyType.AUTOMATIC,
+                        Gtk.PolicyType.AUTOMATIC)
             else:
-                self.canvas.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+                self.canvas.set_policy(Gtk.PolicyType.NEVER,
+                        Gtk.PolicyType.AUTOMATIC)
 
             self.center_area()
 
         self.canvas.add_with_viewport(self.fixed)
         # to remove the border, we need set the shadowtype
         # in the viewport child of the scrolledwindow
-        self.canvas.get_children()[0].set_shadow_type(gtk.SHADOW_NONE)
+        self.canvas.get_children()[0].set_shadow_type(Gtk.ShadowType.NONE)
         self.canvas.get_children()[0].set_border_width(0)
 
         self.disconnect(self._setup_handle)
@@ -196,8 +197,8 @@ class OficinaActivity(activity.Activity):
         the drawing area and center it on the canvas.
 
         """
-        canvas_width = self.canvas.allocation.width
-        canvas_height = self.canvas.allocation.height
+        canvas_width = self.canvas.get_allocation().width
+        canvas_height = self.canvas.get_allocation().height
         area_width, area_height = self.area.get_size_request()
 
         # Avoid 'x' and 'y' to be outside the screen

@@ -61,12 +61,12 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
-import gtk
+from gi.repository import Gdk
+from gi.repository import GObject
+from gi.repository import PangoCairo
 import logging
 import math
-import gobject
 import cairo
-import pangocairo
 
 RESIZE_DELAY = 500  # The time to wait for the resize operation to be
                     # executed, after the resize controls are pressed.
@@ -172,8 +172,8 @@ class Desenho:
         widget.drawing_ctx.save()
         widget.drawing_ctx.translate(dx, dy)
         widget.drawing_ctx.rectangle(dx, dy, width, height)
-        temp_ctx = gtk.gdk.CairoContext(widget.drawing_ctx)
-        temp_ctx.set_source_pixbuf(widget.resized_stamp, 0, 0)
+        Gdk.cairo_set_source_pixbuf(widget.drawing_ctx, widget.resized_stamp,
+                0, 0)
         widget.drawing_ctx.paint()
         widget.drawing_ctx.restore()
 
@@ -192,7 +192,7 @@ class Desenho:
 
         """
         _color_str = self._rainbow_color_list[self._rainbow_counter]
-        _color = gtk.gdk.color_parse(_color_str)
+        _color = Gdk.color_parse(_color_str)
         self._rainbow_counter += 1
         if self._rainbow_counter > 11:
             self._rainbow_counter = 0
@@ -564,7 +564,7 @@ class Desenho:
 
         widget.textos = []
         x, y = 0, 0
-        width, height = widget.window.get_size()
+        width, height = widget.get_size()
         # try to clear a selected area first
         if widget.is_selected():
             x, y, width, height = widget.get_selection_bounds()
@@ -595,7 +595,7 @@ class Desenho:
 
             buf = widget.activity.textview.get_buffer()
             start, end = buf.get_bounds()
-            text = buf.get_text(start, end)
+            text = buf.get_text(start, end, True)
 
             textview = widget.activity.textview
             tv_layout = textview.create_pango_layout(text)
@@ -604,16 +604,15 @@ class Desenho:
 
             ctx.save()
             ctx.new_path()
-            pango_context = pangocairo.CairoContext(ctx)
-            pango_context.set_source_rgba(*widget.tool['cairo_stroke_color'])
+            ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
 
-            pango_layout = pango_context.create_layout()
+            pango_layout = PangoCairo.create_layout(ctx)
             pango_layout.set_font_description(widget.get_font_description())
-            pango_layout.set_text(unicode(text))
+            pango_layout.set_text(unicode(text), len(unicode(text)))
 
             tv_alloc = textview.get_allocation()
-            pango_context.move_to(tv_alloc.x, tv_alloc.y)
-            pango_context.show_layout(pango_layout)
+            ctx.move_to(tv_alloc.x, tv_alloc.y)
+            PangoCairo.show_layout(ctx, pango_layout)
             ctx.stroke()
             ctx.restore()
 
@@ -692,8 +691,8 @@ class Desenho:
         """
         # Add a timer for resize or update it if there is one already:
         if self._resize_timer is not None:
-            gobject.source_remove(self._resize_timer)
-        self._resize_timer = gobject.timeout_add(RESIZE_DELAY,
+            GObject.source_remove(self._resize_timer)
+        self._resize_timer = GObject.timeout_add(RESIZE_DELAY,
             self._do_resize, widget, width_percent, height_percent)
 
     def _do_resize(self, widget, width_percent, height_percent):
@@ -756,7 +755,7 @@ class Desenho:
         self.clear_control_points()
 
     def adjust(self, widget, coords, locked=False):
-        width, height = widget.window.get_size()
+        width, height = widget.get_size()
         if widget.oldx > int(coords[0]):
             xi = int(coords[0])
             xf = widget.oldx
