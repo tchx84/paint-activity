@@ -62,20 +62,23 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
+from gi.repository import GObject
+from gi.repository import Pango
+
 import logging
 import os
 import tempfile
 import math
-import pango
 import cairo
 import StringIO
 import array
 
 from Desenho import Desenho
 from urlparse import urlparse
-from sugar.graphics.style import zoom
+from sugar3.graphics.style import zoom
 
 FALLBACK_FILL = True
 
@@ -92,35 +95,35 @@ TARGET_URI = 0
 MAX_UNDO_STEPS = 12
 
 
-class Area(gtk.DrawingArea):
+class Area(Gtk.DrawingArea):
 
     __gsignals__ = {
-        'undo': (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
-        'redo': (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
-        'action-saved': (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
-        'select': (gobject.SIGNAL_ACTION, gobject.TYPE_NONE, ([])),
+        'undo': (GObject.SignalFlags.ACTION, None, ([])),
+        'redo': (GObject.SignalFlags.ACTION, None, ([])),
+        'action-saved': (GObject.SignalFlags.ACTION, None, ([])),
+        'select': (GObject.SignalFlags.ACTION, None, ([])),
     }
 
     def __init__(self, activity):
         """ Initialize the object from class Area which is derived
-            from gtk.DrawingArea.
+            from Gtk.DrawingArea.
 
             @param  self -- the Area object (GtkDrawingArea)
             @param  activity -- the parent window
 
         """
-        gtk.DrawingArea.__init__(self)
+        GObject.GObject.__init__(self)
 
-        self.set_events(gtk.gdk.POINTER_MOTION_MASK |
-                gtk.gdk.POINTER_MOTION_HINT_MASK |
-                gtk.gdk.BUTTON_PRESS_MASK |
-                gtk.gdk.BUTTON_RELEASE_MASK |
-                gtk.gdk.EXPOSURE_MASK |
-                gtk.gdk.LEAVE_NOTIFY_MASK |
-                gtk.gdk.ENTER_NOTIFY_MASK |
-                gtk.gdk.KEY_PRESS_MASK)
+        self.set_events(Gdk.EventMask.POINTER_MOTION_MASK |
+                Gdk.EventMask.POINTER_MOTION_HINT_MASK |
+                Gdk.EventMask.BUTTON_PRESS_MASK |
+                Gdk.EventMask.BUTTON_RELEASE_MASK |
+                Gdk.EventMask.EXPOSURE_MASK |
+                Gdk.EventMask.LEAVE_NOTIFY_MASK |
+                Gdk.EventMask.ENTER_NOTIFY_MASK |
+                Gdk.EventMask.KEY_PRESS_MASK)
 
-        self.connect("expose_event", self.expose)
+        self.connect("draw", self.draw)
         self.connect("motion_notify_event", self.mousemove)
         self.connect("button_press_event", self.mousedown)
         self.connect("button_release_event", self.mouseup)
@@ -128,23 +131,22 @@ class Area(gtk.DrawingArea):
         self.connect("leave_notify_event", self.mouseleave)
         self.connect("enter_notify_event", self.mouseenter)
 
-        target = [('text/uri-list', 0, TARGET_URI)]
-        self.drag_dest_set(gtk.DEST_DEFAULT_ALL, target,
-                gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
+        target = [Gtk.TargetEntry.new('text/uri-list', 0, TARGET_URI)]
+        self.drag_dest_set(Gtk.DestDefaults.ALL, target,
+                Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
         self.connect('drag_data_received', self.drag_data_received)
 
         self.set_can_focus(True)
         self.grab_focus()
+        # TODO gtk3
+        # self.set_extension_events(Gdk.EXTENSION_EVENTS_CURSOR)
 
-        self.set_extension_events(gtk.gdk.EXTENSION_EVENTS_CURSOR)
         ## Define which tool is been used.
         ## It is now described as a dictionnary,
         ## with the following keys:
         ## - 'name'          : a string
         ## - 'line size'     : a integer
         ## - 'stamp size'    : a integer
-        ## - 'fill color'    : a gtk.gdk.Color object
-        ## - 'stroke color'  : a gtk.gdk.Color object
         ## - 'line shape'    : a string - 'circle' or 'square', for now
         ## - 'fill'          : a Boolean value
         ## - 'vertices'      : a integer
@@ -153,8 +155,6 @@ class Area(gtk.DrawingArea):
             'name': 'brush',
             'line size': 4,
             'stamp size': self._get_stamp_size(),
-            'fill color': None,
-            'stroke color': None,
             'line shape': 'circle',
             'fill': True,
             'cairo_stroke_color': (0.0, 0.0, 0.0, 1.0),
@@ -178,7 +178,7 @@ class Area(gtk.DrawingArea):
 
         self._font_description = None
         self.set_font_description(
-                pango.FontDescription(self.tool['font_description']))
+                Pango.FontDescription(self.tool['font_description']))
 
         # selection properties
         self.clear_selection()
@@ -196,10 +196,10 @@ class Area(gtk.DrawingArea):
     def set_font_description(self, fd):
         self._font_description = fd
         self.activity.textview.modify_font(fd)
-        self.tool['font_description'] = str(fd)
+        self.tool['font_description'] = fd.to_string()
 
     def get_font_description(self):
-        return self._font_description
+        return Pango.FontDescription(self.tool['font_description'])
 
     def _get_stamp_size(self):
         """Set the stamp initial size, based on the display DPI."""
@@ -241,11 +241,15 @@ class Area(gtk.DrawingArea):
 
         return True
 
+    def get_size(self):
+        rect = self.get_allocation()
+        return rect.width, rect.height
+
     def _init_temp_canvas(self, area=None):
         #logging.error('init_temp_canvas.')
         #self.drawing_canvas.flush()
         if area == None:
-            width, height = self.get_window().get_size()
+            width, height = self.get_size()
             self.temp_ctx.rectangle(0, 0, width, height)
         else:
             self.temp_ctx.rectangle(area.x, area.y, area.width, area.height)
@@ -279,7 +283,7 @@ class Area(gtk.DrawingArea):
         """
         self.drawing_ctx.set_line_width(size)
 
-    def expose(self, widget, event):
+    def draw(self, widget, context):
         """ This function define which canvas will be showed to the user.
             Show up the Area object (GtkDrawingArea).
 
@@ -288,11 +292,11 @@ class Area(gtk.DrawingArea):
             @param  event -- GdkEvent
 
         """
-        area = event.area
+#        area = event.area
 
-        context = self.get_window().cairo_create()
-        context.rectangle(area.x, area.y, area.width, area.height)
-        context.clip()
+#        context = self.get_window().cairo_create()
+#        context.rectangle(area.x, area.y, area.width, area.height)
+#        context.clip()
 
         if self.desenha:
             #logging.error('Expose use temp canvas area %s', area)
@@ -304,7 +308,8 @@ class Area(gtk.DrawingArea):
             context.set_source_surface(self.drawing_canvas)
             context.paint()
             self.show_tool_shape(context)
-        self._init_temp_canvas(area)
+        # TODO: gtk3 how get the area to avoid redrawing all ?
+        self._init_temp_canvas()  # area)
         self.display_selection_border(context)
 
     def show_tool_shape(self, context):
@@ -350,7 +355,7 @@ class Area(gtk.DrawingArea):
             @param event -- GdkEvent
 
         """
-        width, height = self.get_window().get_size()
+        width, height = self.get_size()
         coords = int(event.x), int(event.y)
 
         # text
@@ -363,13 +368,13 @@ class Area(gtk.DrawingArea):
         elif self.text_in_progress:
             design_mode = False
             try:
-            # This works for a gtk.Entry
+            # This works for a Gtk.Entry
                 text = self.activity.textview.get_text()
             except AttributeError:
-            # This works for a gtk.TextView
+            # This works for a Gtk.TextView
                 buf = self.activity.textview.get_buffer()
                 start, end = buf.get_bounds()
-                text = buf.get_text(start, end)
+                text = buf.get_text(start, end, True)
 
             if text is not None:
                 self.d.text(widget, event)
@@ -378,12 +383,14 @@ class Area(gtk.DrawingArea):
 
         self.oldx, self.oldy = coords
 
-        x, y, state = event.window.get_pointer()
+        # TODO: get_pointer is deprecated
+# http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
+        _pointer, x, y, state = event.window.get_pointer()
 
         if self.tool['name'] == 'picker':
             self.pick_color(x, y)
 
-        if state & gtk.gdk.BUTTON1_MASK:
+        if state & Gdk.ModifierType.BUTTON1_MASK:
             #Handle with the left button click event.
             if self.tool['name'] == 'eraser':
                 self.last = []
@@ -469,20 +476,20 @@ class Area(gtk.DrawingArea):
         """
         x = event.x
         y = event.y
-        state = event.state
+        state = event.get_state()
 
         self.x_cursor, self.y_cursor = int(x), int(y)
 
         coords = int(x), int(y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
-            if (state & gtk.gdk.SHIFT_MASK) or \
+            if (state & Gdk.ModifierType.SHIFT_MASK) or \
                 self.keep_shape_ratio:
                 if self.tool['name'] in ['rectangle', 'ellipse']:
                     coords = self._keep_selection_ratio(coords)
                 elif self.tool['name'] == 'line':
                     coords = self._keep_line_ratio(coords)
 
-        if state & gtk.gdk.BUTTON1_MASK:
+        if state & Gdk.ModifierType.BUTTON1_MASK:
             if self.tool['name'] == 'eraser':
                 self.d.eraser(widget, coords, self.last)
                 self.last = coords
@@ -517,7 +524,7 @@ class Area(gtk.DrawingArea):
                         self.d.move_selection(widget, coords)
                     else:
                         # create a selected area
-                        if (state & gtk.gdk.CONTROL_MASK) or \
+                        if (state & Gdk.ModifierType.CONTROL_MASK) or \
                             self.keep_aspect_ratio:
                             coords = self._keep_selection_ratio(coords)
                         self.d.selection(widget, coords)
@@ -563,9 +570,11 @@ class Area(gtk.DrawingArea):
                 # show appropiate cursor
                 if (coords[0] < sel_x) or (coords[0] > sel_x + sel_width) or \
                     (coords[1] < sel_y) or (coords[1] > sel_y + sel_height):
-                    self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
+                    self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorType.CROSS))
                 else:
-                    self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
+                    self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorType.FLEUR))
 
             elif self.tool['name'] == 'freeform':
                 self.desenha = True
@@ -573,7 +582,7 @@ class Area(gtk.DrawingArea):
                 self.d.freeform(widget, coords, True,
                     self.tool['fill'], "moving")
 
-        gtk.gdk.event_request_motions(event)
+        Gdk.event_request_motions(event)
 
     def mouseup(self, widget, event):
         """Make the Area object (GtkDrawingArea)
@@ -585,14 +594,14 @@ class Area(gtk.DrawingArea):
         """
         coords = int(event.x), int(event.y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
-            if (event.state & gtk.gdk.SHIFT_MASK) or \
+            if (event.get_state() & Gdk.ModifierType.SHIFT_MASK) or \
                 self.keep_shape_ratio:
                 if self.tool['name'] in ['rectangle', 'ellipse']:
                     coords = self._keep_selection_ratio(coords)
                 if self.tool['name'] == 'line':
                     coords = self._keep_line_ratio(coords)
 
-        width, height = self.get_window().get_size()
+        width, height = self.get_size()
 
         private_undo = False
         if self.desenha:
@@ -618,12 +627,14 @@ class Area(gtk.DrawingArea):
 
             elif self.tool['name'] == 'bucket':
                 if FALLBACK_FILL:
-                    self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-                    gobject.idle_add(self.flood_fill, coords[0], coords[1])
+                    self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorType.WATCH))
+                    GObject.idle_add(self.flood_fill, coords[0], coords[1])
                 else:
-                    width, height = self.get_window().get_size()
-                    self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-                    gobject.idle_add(self.fast_flood_fill, widget, coords[0],
+                    width, height = self.get_size()
+                    self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorType.WATCH))
+                    GObject.idle_add(self.fast_flood_fill, widget, coords[0],
                             coords[1], width, height)
 
             elif self.tool['name'] == 'triangle':
@@ -658,7 +669,7 @@ class Area(gtk.DrawingArea):
         if not private_undo and self.tool['name'] != 'bucket':
             # We have to avoid saving an undo state if the bucket tool
             # is selected because this undo state is called before the
-            # gobject.idle_add (with the fill_flood function) finishes
+            # GObject.idle_add (with the fill_flood function) finishes
             # and an unconsistent undo state is saved
             self.enable_undo()
         widget.queue_draw()
@@ -669,8 +680,8 @@ class Area(gtk.DrawingArea):
                 height, self.gc_line.foreground.pixel)
         widget.queue_draw()
         self.enable_undo()
-        display = gtk.gdk.display_get_default()
-        cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
+        display = Gdk.Display.get_default()
+        cursor = Gdk.Cursor.new_from_name(display, 'paint-bucket')
         self.get_window().set_cursor(cursor)
 
     def flood_fill(self, x, y):
@@ -733,8 +744,8 @@ class Area(gtk.DrawingArea):
         self.queue_draw()
         self.enable_undo()
 
-        display = gtk.gdk.display_get_default()
-        cursor = gtk.gdk.cursor_new_from_name(display, 'paint-bucket')
+        display = Gdk.Display.get_default()
+        cursor = Gdk.Cursor.new_from_name(display, 'paint-bucket')
         self.get_window().set_cursor(cursor)
 
     def pick_color(self, x, y):
@@ -753,13 +764,12 @@ class Area(gtk.DrawingArea):
         green = ord(pixels[1]) * 256
         blue = ord(pixels[0]) * 256
 
-        stroke_color = gtk.gdk.Color(red, green, blue)
+        stroke_color = Gdk.Color(red, green, blue)
 
         # set in the area
-        self.tool['stroke color'] = stroke_color
-        self.set_stroke_color(self.tool['stroke color'])
+        self.set_stroke_color(stroke_color)
 
-        # update the stroke color button
+        # update the stroke_color in the button
         self.activity.get_toolbar_box().brush_button.set_color(stroke_color)
         self.activity.get_toolbar_box().brush_button.stop_stamping()
 
@@ -788,7 +798,7 @@ class Area(gtk.DrawingArea):
             # Change stamp, get it from selection:
             pixbuf_data = StringIO.StringIO()
             self.get_selection().write_to_png(pixbuf_data)
-            pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+            pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
             pxb_loader.write(pixbuf_data.getvalue())
 
             self.pixbuf_stamp = pxb_loader.get_pixbuf()
@@ -818,7 +828,7 @@ class Area(gtk.DrawingArea):
             wr, hr = int(stamp_size * w * 1.0 / h), stamp_size
         self.stamp_dimentions = wr, hr
         self.resized_stamp = self.pixbuf_stamp.scale_simple(wr, hr,
-                                 gtk.gdk.INTERP_HYPER)
+                                 GdkPixbuf.InterpType.HYPER)
 
         # Remove selected area
         self.getout()
@@ -913,7 +923,7 @@ class Area(gtk.DrawingArea):
 
             @param  self -- the Area object (GtkDrawingArea)
         """
-        clipBoard = gtk.Clipboard()
+        clipBoard = Gtk.Clipboard()
         if 'SUGAR_ACTIVITY_ROOT' in os.environ:
             temp_dir = os.path.join(os.environ.get('SUGAR_ACTIVITY_ROOT'),
                 'instance')
@@ -937,7 +947,7 @@ class Area(gtk.DrawingArea):
         """  Determine type data to put in clipboard
 
             @param  self -- the Area object (GtkDrawingArea)
-            @param  clipboard -- a gtk.Clipboard object
+            @param  clipboard -- a Gtk.Clipboard object
             @param  selection_data -- data of selection
             @param  info -- the app assigned integer associated with a target
             @param  data -- user data (tempPath)
@@ -951,7 +961,7 @@ class Area(gtk.DrawingArea):
         """ Clear the clipboard
 
             @param  self -- the Area object (GtkDrawingArea)
-            @param  clipboard -- a gtk.Clipboard object
+            @param  clipboard -- a Gtk.Clipboard object
             @param  data -- user data (tempPath)
         """
         if (data != None):
@@ -972,12 +982,12 @@ class Area(gtk.DrawingArea):
 
             @param  self -- the Area object (GtkDrawingArea)
         """
-        width, height = self.get_window().get_size()
+        width, height = self.get_size()
 
         tempPath = os.path.join("/tmp", "tempFile")
         tempPath = os.path.abspath(tempPath)
 
-        clipBoard = gtk.Clipboard()
+        clipBoard = Gtk.Clipboard()
 
         if clipBoard.wait_is_image_available():
             logging.debug('Area.paste(self): Wait is image available')
@@ -986,8 +996,7 @@ class Area(gtk.DrawingArea):
             width, height = pixbuf_sel.get_width(), pixbuf_sel.get_height()
 
             self.temp_ctx.rectangle(0, 0, width, height)
-            temp_ctx = gtk.gdk.CairoContext(self.temp_ctx)
-            temp_ctx.set_source_pixbuf(pixbuf_sel)
+            Gdk.cairo_set_source_pixbuf(self.temp_ctx, pixbuf_sel, 0, 0)
             self.temp_ctx.paint()
             self.set_selection_bounds(0, 0, width, height)
             self.desenha = True
@@ -1010,24 +1019,28 @@ class Area(gtk.DrawingArea):
         """Set fill color.
 
             @param  self -- the Area object (GtkDrawingArea)
-            @param  color -- a gdk.Color object
+            @param  color -- a Gdk.Color object
 
         """
         alpha = self.tool['alpha']
-        self.tool['cairo_fill_color'] = (color.red_float,
-                color.green_float, color.blue_float, alpha)
+        red = color.red / 65535.0
+        green = color.green / 65535.0
+        blue = color.blue / 65535.0
+        self.tool['cairo_fill_color'] = (red, green, blue, alpha)
 
     def set_stroke_color(self, color):
-        """Set stroke color.
+        """Set cairo_stroke_color.
 
             @param  self -- the Area object (GtkDrawingArea)
-            @param  color -- a gdk.Color object
+            @param  color -- a Gdk.Color object
 
         """
         alpha = self.tool['alpha']
-        self.tool['cairo_stroke_color'] = (color.red_float,
-                color.green_float, color.blue_float, alpha)
-        self.activity.textview.modify_text(gtk.STATE_NORMAL, color)
+        red = color.red / 65535.0
+        green = color.green / 65535.0
+        blue = color.blue / 65535.0
+        self.tool['cairo_stroke_color'] = (red, green, blue, alpha)
+        self.activity.textview.modify_text(Gtk.StateType.NORMAL, color)
 
     def set_alpha(self, alpha):
         """
@@ -1081,8 +1094,8 @@ class Area(gtk.DrawingArea):
                 pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) \
                             * 255
                 pix_manip2 = pix_manip - pix_manip2
-                temp_pix = gtk.gdk.pixbuf_new_from_array(pix_manip2,
-                        gtk.gdk.COLORSPACE_RGB, 8)
+                temp_pix = GdkPixbuf.Pixbuf.new_from_array(pix_manip2,
+                        GdkPixbuf.Colorspace.RGB, 8)
             except (ImportError, ImportWarning):
                 import string
                 a = temp_pix.get_pixels()
@@ -1090,7 +1103,7 @@ class Area(gtk.DrawingArea):
                 for i in range(len(a)):
                     b[i] = chr(255 - ord(a[i]))
                 buff = string.join(b, '')
-                temp_pix = gtk.gdk.pixbuf_new_from_data(buff,
+                temp_pix = GdkPixbuf.Pixbuf.new_from_data(buff,
                         temp_pix.get_colorspace(),
                         temp_pix.get_has_alpha(),
                         temp_pix.get_bits_per_sample(),
@@ -1117,25 +1130,24 @@ class Area(gtk.DrawingArea):
         self._do_process(widget, proc_mirror)
 
     def _do_process(self, widget, apply_process):
-        self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        gobject.idle_add(self._do_process_internal, widget, apply_process)
+        self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        GObject.idle_add(self._do_process_internal, widget, apply_process)
 
     def _surface_to_pixbuf(self, surface):
         # copy from the surface to the pixbuf
         pixbuf_data = StringIO.StringIO()
         surface.write_to_png(pixbuf_data)
-        pxb_loader = gtk.gdk.PixbufLoader(image_type='png')
+        pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
         pxb_loader.write(pixbuf_data.getvalue())
         return pxb_loader.get_pixbuf()
 
     def _pixbuf_to_context(self, pixbuf, context, x=0, y=0):
         # copy from the pixbuf to the drawing context
-        draw_gdk_ctx = gtk.gdk.CairoContext(context)
-        draw_gdk_ctx.save()
-        draw_gdk_ctx.translate(x, y)
-        draw_gdk_ctx.set_source_pixbuf(pixbuf, 0, 0)
-        draw_gdk_ctx.paint()
-        draw_gdk_ctx.restore()
+        context.save()
+        context.translate(x, y)
+        Gdk.cairo_set_source_pixbuf(context, pixbuf, 0, 0)
+        context.paint()
+        context.restore()
 
     def _do_process_internal(self, widget, apply_process):
 
@@ -1167,8 +1179,8 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
             @param  widget -- the Area object (GtkDrawingArea)
         """
-        self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        gobject.idle_add(self._rotate, widget, 90)
+        self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        GObject.idle_add(self._rotate, widget, 90)
 
     def rotate_right(self, widget):
         """Rotate the image.
@@ -1176,8 +1188,8 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
             @param  widget -- the Area object (GtkDrawingArea)
         """
-        self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        gobject.idle_add(self._rotate, widget, 270)
+        self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        GObject.idle_add(self._rotate, widget, 270)
 
     def _rotate(self, widget, angle):
         """Rotate the image.
@@ -1185,14 +1197,14 @@ class Area(gtk.DrawingArea):
             @param  self -- the Area object (GtkDrawingArea)
             @param  widget -- the Area object (GtkDrawingArea)
         """
-        self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
 
         if self.is_selected():
             x, y, width, height = self.get_selection_bounds()
             surface = self.get_selection()
         else:
             x, y = 0, 0
-            width, height = self.get_window().get_size()
+            width, height = self.get_size()
             surface = self.drawing_canvas
 
         temp_pix = self._surface_to_pixbuf(surface)
@@ -1318,7 +1330,7 @@ class Area(gtk.DrawingArea):
         """
         logging.debug('Area.load_image Loading file %s', name)
 
-        pixbuf = gtk.gdk.pixbuf_new_from_file(name)
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(name)
         width, height = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
 
         logging.debug('image size %d x %d', width, height)
@@ -1361,14 +1373,7 @@ class Area(gtk.DrawingArea):
         '''
         Method to configure all tools.
 
-        @param - tool: a dictionary with the following keys:
-                       'name': a string
-                       'line size': a integer
-                       'fill color': a gtk.gdk.Color object
-                       'stroke color': a gtk.gdk.Color object
-                       'line shape': a string - 'circle' or 'square', for now
-                       'fill': a Boolean value
-                       'vertices': a integer
+        @param - tool: a dictionary with the tool keys
         '''
         # logging.debug('Area.set_tool %s', tool)
         self.tool = tool
@@ -1376,17 +1381,17 @@ class Area(gtk.DrawingArea):
             if self.tool['line size'] is not None:
                 self.configure_line(self.tool['line size'])
 
-            if self.tool['fill color'] is not None:
-                self.set_fill_color(self.tool['fill color'])
-            else:
-                # use black
-                self.set_fill_color(self.black)
+#            if self.tool['fill color'] is not None:
+#                self.set_fill_color(self.tool['fill color'])
+#            else:
+#                # use black
+#                self.set_fill_color(self.black)
 
-            if self.tool['stroke color'] is not None:
-                self.set_stroke_color(self.tool['stroke color'])
-            else:
-                # use black
-                self.set_stroke_color(self.black)
+#            if self.tool['stroke color'] is not None:
+#                self.set_stroke_color(self.tool['stroke color'])
+#            else:
+#                # use black
+#                self.set_stroke_color(self.black)
 
         except AttributeError:
             pass
@@ -1401,15 +1406,15 @@ class Area(gtk.DrawingArea):
                        'eraser': 'eraser',
                        'bucket': 'paint-bucket'}
 
-            display = gtk.gdk.display_get_default()
+            display = Gdk.Display.get_default()
             if self.tool['name'] in cursors:
                 name = cursors[self.tool['name']]
-                cursor = gtk.gdk.cursor_new_from_name(display, name)
+                cursor = Gdk.Cursor.new_from_name(display, name)
             elif self.tool['name'] == 'marquee-rectangular':
-                cursor = gtk.gdk.Cursor(gtk.gdk.CROSS)
+                cursor = Gdk.Cursor.new(Gdk.CursorType.CROSS)
             else:
                 filename = os.path.join('images', self.tool['name'] + '.png')
-                pixbuf = gtk.gdk.pixbuf_new_from_file(filename)
+                pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
 
                 # Decide which is the cursor hot spot offset:
                 if self.tool['name'] == 'stamp':
@@ -1422,8 +1427,9 @@ class Area(gtk.DrawingArea):
                 else:
                     hotspot_x, hotspot_y = 0, 0
 
-                cursor = gtk.gdk.Cursor(display, pixbuf, hotspot_x, hotspot_y)
-        except gobject.GError:
+                cursor = Gdk.Cursor.new_from_pixbuf(display, pixbuf,
+                        hotspot_x, hotspot_y)
+        except GObject.GError:
             cursor = None
         self.get_window().set_cursor(cursor)
 
@@ -1457,34 +1463,38 @@ class Area(gtk.DrawingArea):
             logging.debug('Unexpected error: %s', message)
 
     def key_press(self, widget, event):
-        if event.keyval == gtk.keysyms.BackSpace:
+        if event.keyval == Gdk.KEY_BackSpace:
             if self.is_selected():
                 # Remove selection
                 # TODO
 
                 if self.tool['name'] == 'marquee-rectangular':
-                    self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
+                    self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorType.CROSS))
                 widget.queue_draw()
                 self.enable_undo()
-        elif event.keyval == gtk.keysyms.a and gtk.gdk.CONTROL_MASK:
+        elif event.keyval == Gdk.KEY_a and Gdk.ModifierType.CONTROL_MASK:
             if self.is_selected():
                 self.getout()
-            width, height = self.get_window().get_size()
+            width, height = self.get_size()
             if self.tool['name'] == 'marquee-rectangular':
-                self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.FLEUR))
+                self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorTypeFLEUR))
             self.set_selection_bounds(0, 0, width - 1, height - 1)
             self.emit('select')
             widget.queue_draw()
-        elif event.keyval == gtk.keysyms.d and gtk.gdk.CONTROL_MASK:
+        elif event.keyval == Gdk.KEY_d and Gdk.ModifierType.CONTROL_MASK:
             if self.is_selected():
                 self.getout(True)
                 if self.tool['name'] == 'marquee-rectangular':
-                    self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
+                    self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorType.CROSS))
                 widget.queue_draw()
-        elif event.keyval == gtk.keysyms.Return:
+        elif event.keyval == Gdk.KEY_Return:
             self.getout(True)
             if self.tool['name'] == 'marquee-rectangular':
-                self.get_window().set_cursor(gtk.gdk.Cursor(gtk.gdk.CROSS))
+                self.get_window().set_cursor(Gdk.Cursor.new(
+                                                    Gdk.CursorType.CROSS))
             widget.queue_draw()
 
     def change_line_size(self, delta):
