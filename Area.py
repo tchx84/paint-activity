@@ -1083,41 +1083,35 @@ class Area(Gtk.DrawingArea):
 
         """
 
-        def proc_invert_color(temp_pix):
-            try:
-                import numpy
-                # HACK: This numpy version has a bug and breaks the
-                # 'invert_color' function
-                # http://bugs.sugarlabs.org/ticket/3509
-                if numpy.__version__ == '1.6.1':
-                    logging.warning('You have installed a version of numpy '
-                                    '(1.6.1) that has a bug and can\'t be '
-                                    'used. Using string module instead '
-                                    '(slower)')
-                    raise ImportWarning
-                pix_manip2 = temp_pix.get_pixels_array()
-                pix_manip = numpy.ones(pix_manip2.shape, dtype=numpy.uint8) \
-                            * 255
-                pix_manip2 = pix_manip - pix_manip2
-                temp_pix = GdkPixbuf.Pixbuf.new_from_array(pix_manip2,
-                        GdkPixbuf.Colorspace.RGB, 8)
-            except (ImportError, ImportWarning):
-                import string
-                a = temp_pix.get_pixels()
-                b = len(a) * ['\0']
-                for i in range(len(a)):
-                    b[i] = chr(255 - ord(a[i]))
-                buff = string.join(b, '')
-                temp_pix = GdkPixbuf.Pixbuf.new_from_data(buff,
-                        temp_pix.get_colorspace(),
-                        temp_pix.get_has_alpha(),
-                        temp_pix.get_bits_per_sample(),
-                        temp_pix.get_width(),
-                        temp_pix.get_height(),
-                        temp_pix.get_rowstride())
-            return temp_pix
+        def internal_invert(self, old_cursor):
+            # load a array with the surface data
+            for array_type in ['H', 'I', 'L']:
+                pixels = array.array(array_type)
+                if pixels.itemsize == 4:
+                    break
+            else:
+                raise AssertionError()
+            pixels.fromstring(self.drawing_canvas.get_data())
 
-        self._do_process(widget, proc_invert_color)
+            # process the pixels in the array
+            new_array = array.array(pixels.typecode, len(pixels) * [0])
+            for i in range(len(pixels)):
+                new_array[i] = 0xffffffff - pixels[i] | 0xff000000
+
+            # create a updated drawing_canvas
+            width = self.drawing_canvas.get_width()
+            height = self.drawing_canvas.get_height()
+            self.drawing_canvas = cairo.ImageSurface.create_for_data(new_array,
+                    cairo.FORMAT_ARGB32, width, height)
+            self.setup(width, height)
+
+            self.queue_draw()
+            self.enable_undo()
+            self.get_window().set_cursor(old_cursor)
+
+        old_cursor = self.get_window().get_cursor()
+        self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        GObject.idle_add(internal_invert, self, old_cursor)
 
     def mirror(self, widget, horizontal=True):
         """Apply mirror horizontal/vertical effect.
