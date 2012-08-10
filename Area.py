@@ -460,10 +460,10 @@ class Area(Gtk.DrawingArea):
             max_y = max_y + hr
         else:
             size = self.tool['line size']
-            min_x = min_x - size
-            min_y = min_y - size
-            max_x = max_x + size
-            max_y = max_y + size
+            min_x = min_x - size * 2
+            min_y = min_y - size * 2
+            max_x = max_x + size * 2
+            max_y = max_y + size * 2
         return (min_x, min_y, max_x - min_x, max_y - min_y)
 
     def mousemove(self, widget, event):
