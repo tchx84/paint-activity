@@ -63,24 +63,26 @@ Walter Bender                       (walter@laptop.org)
 
 from gettext import gettext as _
 
-import gtk
-import pango
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
+from gi.repository import Pango
 import logging
 
-from sugar.activity.activity import EditToolbar
-from sugar.graphics.toolcombobox import ToolComboBox
-from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.radiotoolbutton import RadioToolButton
-from sugar.graphics.toggletoolbutton import ToggleToolButton
-from sugar.graphics.objectchooser import ObjectChooser
+from sugar3.activity.widgets import EditToolbar
+from sugar3.graphics.toolcombobox import ToolComboBox
+from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.radiotoolbutton import RadioToolButton
+from sugar3.graphics.toggletoolbutton import ToggleToolButton
+from sugar3.graphics.objectchooser import ObjectChooser
 from widgets import ButtonStrokeColor
-from sugar.graphics.colorbutton import ColorToolButton
+from sugar3.graphics.colorbutton import ColorToolButton
 
-from sugar.graphics import style
+from sugar3.graphics import style
 
-from sugar.activity.widgets import ActivityToolbarButton
-from sugar.graphics.toolbarbox import ToolbarButton, ToolbarBox
-from sugar.activity.widgets import StopButton
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.graphics.toolbarbox import ToolbarButton, ToolbarBox
+from sugar3.activity.widgets import StopButton
 
 from fontcombobox import FontComboBox
 
@@ -125,7 +127,7 @@ class DrawToolbarBox(ToolbarBox):
         image_button.props.label = _('Image')
         self.toolbar.insert(image_button, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.props.draw = False
         separator.set_size_request(0, -1)
         separator.set_expand(True)
@@ -142,8 +144,15 @@ class DrawToolbarBox(ToolbarBox):
         self.brush_button.set_brush_shape(area.tool['line shape'])
         self.brush_button.set_brush_size(area.tool['line size'])
         self.brush_button.set_stamp_size(area.tool['stamp size'])
-        if self._activity.area.tool['stroke color'] is not None:
-            self.brush_button.set_color(area.tool['stroke color'])
+
+        # init the color
+        cairo_stroke_color = area.tool['cairo_stroke_color']
+        red = cairo_stroke_color[0] * 65535
+        green = cairo_stroke_color[1] * 65535
+        blue = cairo_stroke_color[2] * 65535
+
+        stroke_color = Gdk.Color(red, green, blue)
+        self.brush_button.set_color(stroke_color)
 
 
 ##Make the Edit Toolbar
@@ -159,7 +168,7 @@ class DrawEditToolbar(EditToolbar):
         self.copy.set_tooltip(_('Copy'))
         self.paste.set_tooltip(_('Paste'))
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
 
@@ -191,7 +200,7 @@ class DrawEditToolbar(EditToolbar):
         self._activity.area.copy()
 
     def _paste_cb(self, widget, data=None):
-        self._activity.area.past(self._activity.area)
+        self._activity.area.paste(self._activity.area)
 
     def _on_signal_undo_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
@@ -248,11 +257,11 @@ class ToolsToolbarBuilder():
         #self._stroke_color.set_icon_name('icon-stroke')
         self._stroke_color.set_title(_('Brush properties'))
         self._stroke_color.connect('notify::color', self._color_button_cb)
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         item.add(self._stroke_color)
         toolbar.insert(item, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         toolbar.insert(separator, -1)
 
@@ -290,7 +299,7 @@ class ToolsToolbarBuilder():
             activity.tool_group, _('Select Area'))
         toolbar.insert(self._tool_marquee_rectangular, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         toolbar.insert(separator, -1)
 
@@ -315,7 +324,7 @@ class ToolsToolbarBuilder():
         """
         Set tool to the Area object. Configures tool's color and size.
 
-            @param self -- gtk.Toolbar
+            @param self -- Gtk.Toolbar
             @param widget -- The connected widget, if any;
                           necessary in case this method is used in a connect()
             @param tool_name --The name of the selected tool
@@ -332,9 +341,8 @@ class ToolsToolbarBuilder():
     def _color_button_cb(self, widget, pspec):
         logging.error('ToolsToolbarBuilder._color_button_cb')
 
-        new_color = widget.alloc_color(widget.get_color())
+        new_color = widget.get_color()
         self._activity.area.set_stroke_color(new_color)
-        self.properties['stroke color'] = new_color
 
     def _on_signal_undo_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
@@ -369,61 +377,55 @@ class ButtonFillColor(ColorToolButton):
         color = self.get_color()
         self.set_fill_color(color)
 
-    def alloc_color(self, color):
-        colormap = self._activity.area.get_colormap()
-        return colormap.alloc_color(color.red, color.green, color.blue)
-
     def set_fill_color(self, color):
-        new_color = self.alloc_color(color)
-        self._activity.area.set_fill_color(new_color)
-        self.properties['fill color'] = new_color
+        self._activity.area.set_fill_color(color)
 
     def create_palette(self):
         self._palette = self.get_child().create_palette()
         color_palette_hbox = self._palette._picker_hbox
 
-        content_box = gtk.VBox()
+        content_box = Gtk.VBox()
 
         # Fill option
-        fill_checkbutton = gtk.CheckButton(_('Fill'))
+        fill_checkbutton = Gtk.CheckButton(_('Fill'))
         fill_checkbutton.set_active(self.properties['fill'])
         fill_checkbutton.connect('toggled',
             self._on_fill_checkbutton_toggled)
-        content_box.pack_start(fill_checkbutton)
+        content_box.pack_start(fill_checkbutton, True, True, 0)
 
-        keep_aspect_checkbutton = gtk.CheckButton(_('Keep aspect'))
+        keep_aspect_checkbutton = Gtk.CheckButton(_('Keep aspect'))
         logging.error('Create palette : tool name %s', self.properties['name'])
         ratio = self._activity.area.keep_shape_ratio
         keep_aspect_checkbutton.set_active(ratio)
         keep_aspect_checkbutton.connect('toggled',
             self._on_keep_aspect_checkbutton_toggled)
-        content_box.pack_start(keep_aspect_checkbutton)
+        content_box.pack_start(keep_aspect_checkbutton, True, True, 0)
 
         # We want choose the number of sides to our polygon
-        spin = gtk.SpinButton()
+        spin = Gtk.SpinButton()
 
         # This is where we set restrictions for sides in Regular Polygon:
         # Initial value, minimum value, maximum value, step
-        adj = gtk.Adjustment(self.properties['vertices'], 3.0, 50.0, 1.0)
+        adj = Gtk.Adjustment(self.properties['vertices'], 3.0, 50.0, 1.0)
         spin.set_adjustment(adj)
         spin.set_numeric(True)
 
-        label = gtk.Label(_('Sides: '))
+        label = Gtk.Label(label=_('Sides: '))
         #For stars
-        #label = gtk.Label(_('Points: '))
+        #label = Gtk.Label(label=_('Points: '))
 
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
         hbox.show_all()
-        hbox.pack_start(label)
-        hbox.pack_start(spin)
+        hbox.pack_start(label, True, True, 0)
+        hbox.pack_start(spin, True, True, 0)
 
-        content_box.pack_start(hbox)
+        content_box.pack_start(hbox, True, True, 0)
         hbox.show_all()
         spin.connect('value-changed', self._on_vertices_value_changed)
 
-        color_palette_hbox.pack_start(gtk.VSeparator(),
+        color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
                                      padding=style.DEFAULT_SPACING)
-        color_palette_hbox.pack_start(content_box)
+        color_palette_hbox.pack_start(content_box, True, True, 0)
         color_palette_hbox.show_all()
         return self._palette
 
@@ -439,7 +441,7 @@ class ButtonFillColor(ColorToolButton):
 
 
 ##Make the Shapes Toolbar
-class ShapesToolbar(gtk.Toolbar):
+class ShapesToolbar(Gtk.Toolbar):
 
     _SHAPE_ARROW_NAME = 'arrow'
     _SHAPE_CURVE_NAME = 'curve'
@@ -456,7 +458,7 @@ class ShapesToolbar(gtk.Toolbar):
 
     ##The Constructor
     def __init__(self, activity):
-        gtk.Toolbar.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._activity = activity
         self.properties = self._activity.area.tool
@@ -464,11 +466,11 @@ class ShapesToolbar(gtk.Toolbar):
         self._fill_color = ButtonFillColor(activity)
         self._fill_color.set_icon_name('icon-fill')
         self._fill_color.set_title(_('Shapes properties'))
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         item.add(self._fill_color)
         self.insert(item, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
 
@@ -544,20 +546,16 @@ class ShapesToolbar(gtk.Toolbar):
 
     def set_tool(self, widget, tool, tool_name):
         tool['name'] = tool_name
-
-        fill_color = self._fill_color.get_color()
-        tool['fill color'] = self._fill_color.alloc_color(fill_color)
-
         self._activity.area.set_tool(tool)
 
 
 ##Make the Text Toolbar
-class TextToolbar(gtk.Toolbar):
+class TextToolbar(Gtk.Toolbar):
 
     _ACTION_TEXT_NAME = 'text'
 
     def __init__(self, activity):
-        gtk.Toolbar.__init__(self)
+        GObject.GObject.__init__(self)
 
         self._activity = activity
         self.properties = self._activity.area.tool
@@ -566,7 +564,7 @@ class TextToolbar(gtk.Toolbar):
         self.insert(self._text, -1)
         self._text.connect('clicked', self.set_tool, self._ACTION_TEXT_NAME)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
 
@@ -580,33 +578,20 @@ class TextToolbar(gtk.Toolbar):
         self._italic.show()
         self._italic.connect('clicked', self.__italic_bt_cb)
 
-        """
-        self._text_color = ButtonFillColor(activity)
-        item = gtk.ToolItem()
-        item.add(self._text_color)
-        self.insert(item, -1)
-        """
-
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
 
-        """
-        self._font_size_icon = Icon(icon_name="format-text-size",
-            icon_size=gtk.ICON_SIZE_LARGE_TOOLBAR)
-        tool_item = gtk.ToolItem()
-        tool_item.add(self._font_size_icon)
-        self.insert(tool_item, -1)
-        """
+        fd = activity.area.get_font_description()
 
-        self._font_size_combo = gtk.combo_box_new_text()
+        self._font_size_combo = Gtk.ComboBoxText()
         self._font_sizes = ['8', '10', '12', '14', '16', '20',
                             '22', '24', '26', '28', '36', '48', '72']
         self._font_size_changed_id = self._font_size_combo.connect('changed',
                 self.__font_size_changed_cb)
         for i, s in enumerate(self._font_sizes):
             self._font_size_combo.append_text(s)
-            if int(s) == activity.area.font_description.get_size():
+            if int(s) == (fd.get_size() /Pango.SCALE):
                 self._font_size_combo.set_active(i)
 
         tool_item = ToolComboBox(self._font_size_combo)
@@ -615,39 +600,39 @@ class TextToolbar(gtk.Toolbar):
         self._font_combo = FontComboBox()
         self._fonts_changed_id = self._font_combo.connect('changed',
                 self.__font_changed_cb)
-        font_name = activity.area.font_description.get_family()
+        font_name = fd.get_family()
         self._font_combo.set_font_name(font_name)
         tool_item = ToolComboBox(self._font_combo)
         self.insert(tool_item, -1)
         self.show_all()
 
     def __bold_bt_cb(self, button):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         if button.get_active():
-            activity.area.font_description.set_weight(pango.WEIGHT_BOLD)
+            fd.set_weight(Pango.Weight.BOLD)
         else:
-            activity.area.font_description.set_weight(pango.WEIGHT_NORMAL)
-        activity.textview.modify_font(activity.area.font_description)
+            fd.set_weight(Pango.Weight.NORMAL)
+        self._activity.area.set_font_description(fd)
 
     def __italic_bt_cb(self, button):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         if button.get_active():
-            activity.area.font_description.set_style(pango.STYLE_ITALIC)
+            fd.set_style(Pango.Style.ITALIC)
         else:
-            activity.area.font_description.set_style(pango.STYLE_NORMAL)
-        activity.textview.modify_font(activity.area.font_description)
+            fd.set_style(Pango.Style.NORMAL)
+        self._activity.area.set_font_description(fd)
 
     def __font_size_changed_cb(self, combo):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         value = self.get_active_text(combo)
-        activity.area.font_description.set_size(int(value) * pango.SCALE)
-        activity.textview.modify_font(activity.area.font_description)
+        fd.set_size(int(value) * Pango.SCALE)
+        self._activity.area.set_font_description(fd)
 
     def __font_changed_cb(self, combo):
-        activity = self._activity
+        fd = self._activity.area.get_font_description()
         font_name = combo.get_font_name()
-        activity.area.font_description.set_family(font_name)
-        activity.textview.modify_font(activity.area.font_description)
+        fd.set_family(font_name)
+        self._activity.area.set_font_description(fd)
 
     def get_active_text(self, combobox):
         model = combobox.get_model()
@@ -662,12 +647,12 @@ class TextToolbar(gtk.Toolbar):
 
 
 ##Make the Images Toolbar
-class ImageToolbar(gtk.Toolbar):
+class ImageToolbar(Gtk.Toolbar):
 
     _EFFECT_RAINBOW_NAME = 'rainbow'
 
     def __init__(self, activity):
-        gtk.Toolbar.__init__(self)
+        GObject.GObject.__init__(self)
         self._activity = activity
         self.properties = self._activity.area.tool
 
@@ -675,7 +660,7 @@ class ImageToolbar(gtk.Toolbar):
         self.insert(self._object_insert, -1)
         self._object_insert.set_tooltip(_('Insert Image'))
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
 
@@ -709,7 +694,7 @@ class ImageToolbar(gtk.Toolbar):
         self.height_spinButton = self._create_spinButton(self._object_height,
             'object-height', activity)
 
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         item.add(self.height_spinButton)
         self.insert(item, -1)
 
@@ -720,11 +705,11 @@ class ImageToolbar(gtk.Toolbar):
         self.width_spinButton = self._create_spinButton(self._object_width,
             'object-width', activity)
 
-        item = gtk.ToolItem()
+        item = Gtk.ToolItem()
         item.add(self.width_spinButton)
         self.insert(item, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
 
@@ -774,7 +759,7 @@ class ImageToolbar(gtk.Toolbar):
 
     def resize(self, spinButton, tool, activity):
         if activity.area.tool['name'] == 'marquee-rectangular' and \
-           activity.area.selmove:
+           activity.area.is_selected():
             if tool == "object-height":
                 self.height_percent = spinButton.get_value_as_int() / 100.
                 activity.area.d.resizeSelection(activity.area,
@@ -787,7 +772,7 @@ class ImageToolbar(gtk.Toolbar):
     def _create_spinButton(self, widget, tool, activity):
         """Set palette for a tool - width or height
 
-            @param self -- gtk.Toolbar
+            @param self -- Gtk.Toolbar
             @param widget  - the widget which Palette will be set,
                               a ToolButton object
             @param tool
@@ -795,13 +780,13 @@ class ImageToolbar(gtk.Toolbar):
         """
         logging.debug('setting a spinButton for %s', tool)
 
-        spin = gtk.SpinButton()
+        spin = Gtk.SpinButton()
         spin.show()
 
         # This is where we set restrictions for Resizing:
         # Initial value, minimum value, maximum value, step
         initial = float(100)
-        adj = gtk.Adjustment(initial, 10.0, 500.0, 1.0)
+        adj = Gtk.Adjustment(initial, 10.0, 500.0, 1.0)
         spin.set_adjustment(adj)
         spin.set_numeric(True)
 
@@ -814,20 +799,20 @@ class ImageToolbar(gtk.Toolbar):
     def insertImage(self, widget, activity):
         try:
             chooser = ObjectChooser(_('Choose image'),
-                self._activity, gtk.DIALOG_MODAL |
-                gtk.DIALOG_DESTROY_WITH_PARENT, what_filter='Image')
+                self._activity, Gtk.DialogFlags.MODAL |
+                Gtk.DialogFlags.DESTROY_WITH_PARENT, what_filter='Image')
         except:
             chooser = ObjectChooser(_('Choose image'),
-                self._activity, gtk.DIALOG_MODAL |
-                gtk.DIALOG_DESTROY_WITH_PARENT)
+                self._activity, Gtk.DialogFlags.MODAL |
+                Gtk.DialogFlags.DESTROY_WITH_PARENT)
         try:
             result = chooser.run()
-            if result == gtk.RESPONSE_ACCEPT:
+            if result == Gtk.ResponseType.ACCEPT:
                 logging.debug('ObjectChooser: %r',
                         chooser.get_selected_object())
                 jobject = chooser.get_selected_object()
                 if jobject and jobject.file_path:
-                    self._activity.area.loadImage(jobject.file_path)
+                    self._activity.area.load_image(jobject.file_path)
         finally:
             chooser.destroy()
             del chooser
