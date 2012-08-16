@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:33-0400\n"
-"PO-Revision-Date: 2012-04-21 18:30+0200\n"
+"POT-Creation-Date: 2012-08-11 00:31-0400\n"
+"PO-Revision-Date: 2012-08-16 02:18+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -21,199 +21,211 @@ msgstr ""
 msgid "Paint"
 msgstr "Mal"
 
-#: toolbox.py:103
+#: toolbox.py:105
 msgid "Edit"
 msgstr "Redigér"
 
-#: toolbox.py:113
+#: toolbox.py:115
 msgid "Shapes"
 msgstr "Former"
 
-#: toolbox.py:119
+#: toolbox.py:121
 msgid "Fonts"
 msgstr "Skrifttyper"
 
-#: toolbox.py:125
+#: toolbox.py:127
 msgid "Image"
 msgstr "Billede"
 
-#: toolbox.py:150
+#: toolbox.py:166
 msgid "Undo"
 msgstr "Fortryd"
 
-#: toolbox.py:151
+#: toolbox.py:167
 msgid "Redo"
 msgstr "Omgør"
 
-#: toolbox.py:152
+#: toolbox.py:168
 msgid "Copy"
 msgstr "Kopiér"
 
-#: toolbox.py:153
+#: toolbox.py:169
 msgid "Paste"
 msgstr "Indsæt"
 
-#: toolbox.py:161
+#: toolbox.py:177
 msgid "Clear"
 msgstr "Ryd"
 
-#: toolbox.py:242 widgets.py:311
+#: toolbox.py:258 widgets.py:339
 msgid "Brush properties"
 msgstr "Egenskaber for pensel"
 
-#: toolbox.py:253
+#: toolbox.py:269
 msgid "Brush"
 msgstr "Pensel"
 
-#: toolbox.py:258
+#: toolbox.py:274
 msgid "Eraser"
 msgstr "Viskelæder"
 
-#: toolbox.py:262
+#: toolbox.py:278
 msgid "Bucket"
 msgstr "Spand"
 
-#: toolbox.py:266
+#: toolbox.py:282
 msgid "Picker"
 msgstr "Udvælgelse"
 
-#: toolbox.py:270
+#: toolbox.py:286
 msgid "Stamp"
 msgstr "Stempel"
 
-#: toolbox.py:283
+#: toolbox.py:299
 msgid "Select Area"
 msgstr "Markér område"
 
-#: toolbox.py:378
+#: toolbox.py:390
 msgid "Fill"
 msgstr "Fyld"
 
-#: toolbox.py:384 widgets.py:277
+#: toolbox.py:396 widgets.py:300
 msgid "Keep aspect"
 msgstr "Bevar aspekt"
 
-#: toolbox.py:401
+#: toolbox.py:413
 msgid "Sides: "
 msgstr "Sider: "
 
-#: toolbox.py:456
+#: toolbox.py:468
 msgid "Shapes properties"
 msgstr "Egenskaber for former"
 
-#: toolbox.py:468
+#: toolbox.py:480
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: toolbox.py:472
+#: toolbox.py:484
 msgid "Rectangle"
 msgstr "Rektangel"
 
-#: toolbox.py:476
+#: toolbox.py:488
 msgid "Line"
 msgstr "Linje"
 
-#: toolbox.py:480
+#: toolbox.py:492
 msgid "Free form"
 msgstr "Fri form"
 
-#: toolbox.py:484
+#: toolbox.py:496
 msgid "Polygon"
 msgstr "Polygon"
 
-#: toolbox.py:488
+#: toolbox.py:500
 msgid "Heart"
 msgstr "Hjerte"
 
-#: toolbox.py:492
+#: toolbox.py:504
 msgid "Parallelogram"
 msgstr "Parallelogram"
 
-#: toolbox.py:496
+#: toolbox.py:508
 msgid "Arrow"
 msgstr "Pil"
 
-#: toolbox.py:500
+#: toolbox.py:512
 msgid "Star"
 msgstr "Stjerne"
 
-#: toolbox.py:504
+#: toolbox.py:516
 msgid "Trapezoid"
 msgstr "Trapez"
 
-#: toolbox.py:508
+#: toolbox.py:520
 msgid "Triangle"
 msgstr "Trekant"
 
-#: toolbox.py:555
+#: toolbox.py:563
 msgid "Type"
 msgstr "Type"
 
-#: toolbox.py:666
+#: toolbox.py:661
 msgid "Insert Image"
 msgstr "Indsæt billede"
 
-#: toolbox.py:679
+#: toolbox.py:674
 msgid "Rotate Left"
 msgstr "Rotér til venstre"
 
-#: toolbox.py:683
+#: toolbox.py:678
 msgid "Rotate Right"
 msgstr "Rotér til højre"
 
-#: toolbox.py:688
+#: toolbox.py:683
 msgid "Horizontal Mirror"
 msgstr "Spejlvend vandret"
 
-#: toolbox.py:693
+#: toolbox.py:688
 msgid "Vertical Mirror"
 msgstr "Spejlvend lodret"
 
-#: toolbox.py:697
+#: toolbox.py:692
 msgid "Height"
 msgstr "Højde"
 
-#: toolbox.py:708
+#: toolbox.py:703
 msgid "Width"
 msgstr "Bredde"
 
-#: toolbox.py:723
+#: toolbox.py:718
 msgid "Grayscale"
 msgstr "Gråskala"
 
-#: toolbox.py:726
+#: toolbox.py:721
 msgid "Rainbow"
 msgstr "Regnbue"
 
-#: toolbox.py:731
+#: toolbox.py:726
 msgid "Invert Colors"
 msgstr "Invertér farver"
 
-#: toolbox.py:806 toolbox.py:810
+#: toolbox.py:801 toolbox.py:805
 msgid "Choose image"
 msgstr "Vælg billede"
 
-#: widgets.py:24
-msgid "Choose brush properties"
-msgstr "Vælg egenskaber for pensel"
-
-#: widgets.py:238
+#: widgets.py:17
 msgid "Size: "
 msgstr "Størrelse: "
 
-#: widgets.py:249
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Uigennemsigtighed:"
+
+#: widgets.py:17
 msgid "Circle"
 msgstr "Cirkel"
 
-#: widgets.py:259
+#: widgets.py:17
 msgid "Square"
 msgstr "Kvadrat"
 
-#: widgets.py:271
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Vælg egenskaber for pensel"
+
+#: widgets.py:255
+msgid "Size"
+msgstr "Størrelse"
+
+#: widgets.py:272
+msgid "Opacity"
+msgstr "Uigennemsigtighed"
+
+#: widgets.py:294
 msgid "Shape"
 msgstr "Form"
 
-#: widgets.py:303
+#: widgets.py:329
 msgid "Stamp properties"
 msgstr "Egenskaber for stempel"
 
