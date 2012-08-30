@@ -659,12 +659,7 @@ class Desenho:
 
         if widget.pending_clean_selection_background:
             # clear the selection background
-            widget.drawing_ctx.save()
-            widget.drawing_ctx.new_path()
-            widget.drawing_ctx.rectangle(x, y, width, height)
-            widget.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
-            widget.drawing_ctx.fill()
-            widget.drawing_ctx.restore()
+            widget.clear_selection_background()
             widget.pending_clean_selection_background = False
 
         selection_surface = widget.get_selection()

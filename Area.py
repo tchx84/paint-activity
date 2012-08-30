@@ -1225,13 +1225,20 @@ class Area(Gtk.DrawingArea):
         # copy from the pixbuf to the drawing context
 
         if self.is_selected():
+            # clear the background before rotate the selection
+            self.clear_selection_background()
+            self.clear_selection_background(temp_canvas=True)
             self.set_selection_bounds(x, y, height, width)
         else:
             # create a new canvas with permuted dimensions
             self.drawing_canvas = None
             self.setup(height, width)
 
-        self._pixbuf_to_context(temp_pix, self.drawing_ctx, x, y)
+        if self.is_selected():
+            self._pixbuf_to_context(temp_pix, self.temp_ctx, x, y)
+            self.create_selection_surface(temp_canvas=True)
+        else:
+            self._pixbuf_to_context(temp_pix, self.drawing_ctx, x, y)
 
         del temp_pix
 
@@ -1286,18 +1293,36 @@ class Area(Gtk.DrawingArea):
         height = height * self._selection_vertical_scale
         return (x, y, int(width), int(height))
 
-    def create_selection_surface(self, clear_background=True):
+    def create_selection_surface(self, clear_background=True,
+                temp_canvas=False):
         x, y, width, height = self.get_selection_bounds()
         logging.error('create_selection_surface %s', (x, y, width, height))
         self.selection_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                 width, height)
         selection_ctx = cairo.Context(self.selection_surface)
         selection_ctx.translate(-x, -y)
-        selection_ctx.set_source_surface(self.drawing_canvas)
+        if not temp_canvas:
+            selection_ctx.set_source_surface(self.drawing_canvas)
+        else:
+            selection_ctx.set_source_surface(self.temp_canvas)
         selection_ctx.paint()
         self.selection_resized_surface = None
         if clear_background:
             self.pending_clean_selection_background = True
+
+    def clear_selection_background(self, temp_canvas=False):
+        # clear the selection background
+        x, y, width, height = self.get_selection_bounds()
+        if not temp_canvas:
+            ctx = self.drawing_ctx
+        else:
+            ctx = self.temp_ctx
+        ctx.save()
+        ctx.new_path()
+        ctx.rectangle(x, y, width, height)
+        ctx.set_source_rgb(1.0, 1.0, 1.0)
+        ctx.fill()
+        ctx.restore()
 
     def resize_selection_surface(self, horizontal_scale, vertical_scale):
         x, y = self._selection_bounds[0], self._selection_bounds[1]
