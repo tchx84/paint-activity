@@ -246,7 +246,7 @@ class Area(Gtk.DrawingArea):
         return rect.width, rect.height
 
     def _init_temp_canvas(self, area=None):
-        #logging.error('init_temp_canvas.')
+        #logging.error('init_temp_canvas. area %s', area)
         #self.drawing_canvas.flush()
         if area == None:
             width, height = self.get_size()
@@ -299,12 +299,12 @@ class Area(Gtk.DrawingArea):
 #        context.clip()
 
         if self.desenha:
-            #logging.error('Expose use temp canvas area %s', area)
+            #logging.error('Expose use temp canvas area')
             # Paint the canvas in the widget:
             context.set_source_surface(self.temp_canvas)
             context.paint()
         else:
-            #logging.error('Expose use drawing canvas area %s', area)
+            #logging.error('Expose use drawing canvas area')
             context.set_source_surface(self.drawing_canvas)
             context.paint()
             self.show_tool_shape(context)
@@ -615,10 +615,12 @@ class Area(Gtk.DrawingArea):
                 self.d.square(widget, event, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'marquee-rectangular':
+                private_undo = True
                 if self.is_selected() and not self._selmove:
                     self.create_selection_surface()
                     self.emit('select')
-                    private_undo = True
+                else:
+                    self.apply_temp_selection()
 
             elif self.tool['name'] == 'freeform':
                 self.d.freeform(widget, coords, False,
@@ -659,19 +661,26 @@ class Area(Gtk.DrawingArea):
 
             elif self.tool['name'] == 'heart':
                 self.d.heart(widget, coords, False, self.tool['fill'])
+        else:
+            if self.tool['name'] == 'marquee-rectangular':
+                if self.is_selected():
+                    self.getout()
 
         if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                  'stamp']:
             self.last = []
             self.d.finish_trace(self)
             self.drawing = False
-        self.desenha = False
-        if not private_undo and self.tool['name'] != 'bucket':
+        if not private_undo and \
+                self.tool['name'] not in ['bucket', 'marquee-rectangular']:
             # We have to avoid saving an undo state if the bucket tool
             # is selected because this undo state is called before the
             # GObject.idle_add (with the fill_flood function) finishes
             # and an unconsistent undo state is saved
             self.enable_undo()
+        if self.tool['name'] != 'marquee-rectangular':
+            self.desenha = False
+
         widget.queue_draw()
         self.d.clear_control_points()
 
@@ -906,6 +915,9 @@ class Area(Gtk.DrawingArea):
         # changed:
         if overrite and self._undo_index != 0:
             self._undo_index -= 1
+
+        if self.is_selected():
+            self.getout(clear_selection=False)
 
         # copy the drawing surface in a new surface
         width = self.drawing_canvas.get_width()
@@ -1432,7 +1444,7 @@ class Area(Gtk.DrawingArea):
             cursor = None
         self.get_window().set_cursor(cursor)
 
-    def getout(self, undo=False):
+    def getout(self, undo=False, clear_selection=True):
         """
         Apply the selected area in the canvas.
 
@@ -1452,7 +1464,8 @@ class Area(Gtk.DrawingArea):
                 self.drawing_ctx.restore()
                 self.desenha = False
 
-                self.clear_selection()
+                if clear_selection:
+                    self.clear_selection()
                 if undo:
                     self.enable_undo()
 
@@ -1460,6 +1473,21 @@ class Area(Gtk.DrawingArea):
             logging.debug(message)
         except Exception, message:
             logging.debug('Unexpected error: %s', message)
+
+    def apply_temp_selection(self):
+        """
+        Apply the selected area in the temp canvas.
+        """
+        # apply selection over canvas
+        if self.is_selected():
+            x, y, width, height = self.get_selection_bounds()
+            selection_surface = self.get_selection()
+            self.temp_ctx.save()
+            self.temp_ctx.translate(x, y)
+            self.temp_ctx.set_source_surface(selection_surface)
+            self.temp_ctx.rectangle(0, 0, width, height)
+            self.temp_ctx.paint()
+            self.temp_ctx.restore()
 
     def key_press(self, widget, event):
         if event.keyval == Gdk.KEY_BackSpace:
