@@ -797,14 +797,7 @@ class ImageToolbar(Gtk.Toolbar):
         return spin
 
     def insertImage(self, widget, activity):
-        try:
-            chooser = ObjectChooser(_('Choose image'),
-                self._activity, Gtk.DialogFlags.MODAL |
-                Gtk.DialogFlags.DESTROY_WITH_PARENT, what_filter='Image')
-        except:
-            chooser = ObjectChooser(_('Choose image'),
-                self._activity, Gtk.DialogFlags.MODAL |
-                Gtk.DialogFlags.DESTROY_WITH_PARENT)
+        chooser = ObjectChooser(self._activity, what_filter='Image')
         try:
             result = chooser.run()
             if result == Gtk.ResponseType.ACCEPT:
