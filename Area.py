@@ -78,7 +78,7 @@ import array
 
 from Desenho import Desenho
 from urlparse import urlparse
-from sugar3.graphics.style import zoom
+from sugar3.graphics import style
 
 FALLBACK_FILL = True
 
@@ -93,7 +93,7 @@ FALLBACK_FILL = True
 
 TARGET_URI = 0
 MAX_UNDO_STEPS = 12
-
+RESIZE_ARROW_SIZE = style.GRID_CELL_SIZE / 2
 
 class Area(Gtk.DrawingArea):
 
@@ -203,7 +203,7 @@ class Area(Gtk.DrawingArea):
 
     def _get_stamp_size(self):
         """Set the stamp initial size, based on the display DPI."""
-        return zoom(44)
+        return style.zoom(44)
 
     def load_from_file(self, file_path):
         self.drawing_canvas = cairo.ImageSurface.create_from_png(file_path)
@@ -264,15 +264,30 @@ class Area(Gtk.DrawingArea):
         ctx.save()
         ctx.set_line_width(1)
         ctx.set_source_rgba(1., 1., 1., 1.)
+        ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+        ctx.set_line_join(cairo.LINE_JOIN_ROUND)
+
+        # draw a dotted rectangle around the selection
         ctx.rectangle(x, y, width, height)
         ctx.stroke_preserve()
 
-        ctx.set_line_cap(cairo.LINE_CAP_ROUND)
-        ctx.set_line_join(cairo.LINE_JOIN_ROUND)
         ctx.set_dash([5, 5], 0)
         ctx.set_source_rgba(0., 0., 0., 1.)
         ctx.stroke()
+
+        # draw a triangle to resize the selection
+        arrow_width = RESIZE_ARROW_SIZE
+        ctx.new_path()
+        ctx.move_to(x + width + arrow_width, y + height)
+        ctx.line_to(x + width + arrow_width, y + height + arrow_width)
+        ctx.line_to(x + width, y + height + arrow_width)
+        ctx.close_path()
+        ctx.set_dash([2, 2], 0)
+        ctx.set_source_rgba(0., 0., 0., 1.)
+        ctx.stroke()
+
         ctx.restore()
+
 
     def configure_line(self, size):
         """Configure the new line's size.
@@ -568,13 +583,19 @@ class Area(Gtk.DrawingArea):
                 sel_x, sel_y, sel_width, sel_height = \
                         self.get_selection_bounds()
                 # show appropiate cursor
-                if (coords[0] < sel_x) or (coords[0] > sel_x + sel_width) or \
-                    (coords[1] < sel_y) or (coords[1] > sel_y + sel_height):
-                    self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorType.CROSS))
+                if self.check_point_in_area(coords[0], coords[1], sel_x, sel_y,
+                        sel_width, sel_height):
+                    # inside the selected area
+                    cursor = Gdk.Cursor.new(Gdk.CursorType.FLEUR)
+                elif self.check_point_in_area(coords[0], coords[1],
+                        sel_x + sel_width, sel_y + sel_height,
+                        RESIZE_ARROW_SIZE, RESIZE_ARROW_SIZE):
+                    # in de resize area
+                    cursor = Gdk.Cursor.new(Gdk.CursorType.BOTTOM_RIGHT_CORNER)
                 else:
-                    self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorType.FLEUR))
+                    cursor = Gdk.Cursor.new(Gdk.CursorType.CROSS)
+                self.get_window().set_cursor(cursor)
+
 
             elif self.tool['name'] == 'freeform':
                 self.desenha = True
@@ -583,6 +604,12 @@ class Area(Gtk.DrawingArea):
                     self.tool['fill'], "moving")
 
         Gdk.event_request_motions(event)
+
+    def check_point_in_area(self, x_point, y_point, x_min, y_min,
+            width, height):
+        return  not ((x_point < x_min) or (x_point > x_min + width) or \
+                    (y_point < y_min) or (y_point > y_min + height))
+
 
     def mouseup(self, widget, event):
         """Make the Area object (GtkDrawingArea)
