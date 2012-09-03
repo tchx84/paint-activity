@@ -687,28 +687,6 @@ class ImageToolbar(Gtk.Toolbar):
         self._mirror_vertical.show()
         self._mirror_vertical.set_tooltip(_('Vertical Mirror'))
 
-        self._object_height = ToolButton('object-height')
-        self.insert(self._object_height, -1)
-        self._object_height.set_tooltip(_('Height'))
-
-        self.height_spinButton = self._create_spinButton(self._object_height,
-            'object-height', activity)
-
-        item = Gtk.ToolItem()
-        item.add(self.height_spinButton)
-        self.insert(item, -1)
-
-        self._object_width = ToolButton('object-width')
-        self.insert(self._object_width, -1)
-        self._object_width.set_tooltip(_('Width'))
-
-        self.width_spinButton = self._create_spinButton(self._object_width,
-            'object-width', activity)
-
-        item = Gtk.ToolItem()
-        item.add(self.width_spinButton)
-        self.insert(item, -1)
-
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         self.insert(separator, -1)
@@ -733,12 +711,6 @@ class ImageToolbar(Gtk.Toolbar):
         self._mirror_vertical.connect('clicked', self.mirror_vertical)
         self._mirror_horizontal.connect('clicked', self.mirror_horizontal)
 
-        self._activity.area.connect('undo', self._on_signal_undo_cb)
-        self._activity.area.connect('redo', self._on_signal_redo_cb)
-        self._activity.area.connect('select', self._on_signal_select_cb)
-        self._activity.area.connect('action-saved',
-            self._on_signal_action_saved_cb)
-
         self._effect_grayscale.connect('clicked', self.grayscale)
         self._effect_rainbow.connect('clicked', self.rainbow)
         self._invert_colors.connect('clicked', self.invert_colors)
@@ -757,45 +729,6 @@ class ImageToolbar(Gtk.Toolbar):
     def mirror_vertical(self, widget):
         self._activity.area.mirror(widget, horizontal=False)
 
-    def resize(self, spinButton, tool, activity):
-        if activity.area.tool['name'] == 'marquee-rectangular' and \
-           activity.area.is_selected():
-            if tool == "object-height":
-                self.height_percent = spinButton.get_value_as_int() / 100.
-                activity.area.d.resizeSelection(activity.area,
-                    self.width_percent, self.height_percent)
-            elif tool == "object-width":
-                self.width_percent = spinButton.get_value_as_int() / 100.
-                activity.area.d.resizeSelection(activity.area,
-                    self.width_percent, self.height_percent)
-
-    def _create_spinButton(self, widget, tool, activity):
-        """Set palette for a tool - width or height
-
-            @param self -- Gtk.Toolbar
-            @param widget  - the widget which Palette will be set,
-                              a ToolButton object
-            @param tool
-            @param activity
-        """
-        logging.debug('setting a spinButton for %s', tool)
-
-        spin = Gtk.SpinButton()
-        spin.show()
-
-        # This is where we set restrictions for Resizing:
-        # Initial value, minimum value, maximum value, step
-        initial = float(100)
-        adj = Gtk.Adjustment(initial, 10.0, 500.0, 1.0)
-        spin.set_adjustment(adj)
-        spin.set_numeric(True)
-
-        spin.set_sensitive(self._activity.area.is_selected())
-
-        spin.connect('value-changed', self.resize, tool, activity)
-
-        return spin
-
     def insertImage(self, widget, activity):
         chooser = ObjectChooser(self._activity, what_filter='Image')
         try:
@@ -809,29 +742,6 @@ class ImageToolbar(Gtk.Toolbar):
         finally:
             chooser.destroy()
             del chooser
-
-    def _on_signal_undo_cb(self, widget, data=None):
-        self._verify_sensitive_buttons()
-
-    def _on_signal_redo_cb(self, widget, data=None):
-        self._verify_sensitive_buttons()
-
-    def _on_signal_select_cb(self, widget, data=None):
-        self._verify_sensitive_buttons()
-
-    def _on_signal_action_saved_cb(self, widget, data=None):
-        self._verify_sensitive_buttons()
-
-    def _verify_sensitive_buttons(self):
-        is_selected = self._activity.area.is_selected()
-        self.width_spinButton.set_sensitive(is_selected)
-        self.height_spinButton.set_sensitive(is_selected)
-
-        if not is_selected:
-            self.width_spinButton.set_value(100)
-            self.height_spinButton.set_value(100)
-            self.width_percent = 1.
-            self.height_percent = 1.
 
     ##Make the colors be in grayscale
     def grayscale(self, widget):

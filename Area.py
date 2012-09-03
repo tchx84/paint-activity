@@ -95,6 +95,7 @@ TARGET_URI = 0
 MAX_UNDO_STEPS = 12
 RESIZE_ARROW_SIZE = style.GRID_CELL_SIZE / 2
 
+
 class Area(Gtk.DrawingArea):
 
     __gsignals__ = {
@@ -165,6 +166,7 @@ class Area(Gtk.DrawingArea):
 
         self.desenha = False
         self._selmove = False
+        self._selresize = False
         self.oldx = 0
         self.oldy = 0
         self.drawing_canvas = None
@@ -288,7 +290,6 @@ class Area(Gtk.DrawingArea):
 
         ctx.restore()
 
-
     def configure_line(self, size):
         """Configure the new line's size.
 
@@ -396,7 +397,9 @@ class Area(Gtk.DrawingArea):
             self.text_in_progress = False
             self.activity.textview.hide()
 
-        self.oldx, self.oldy = coords
+        if not self._selresize:
+            # if resizing don't update to remember previous resize
+            self.oldx, self.oldy = coords
 
         # TODO: get_pointer is deprecated
 # http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
@@ -433,19 +436,30 @@ class Area(Gtk.DrawingArea):
                     self.tool['fill'], "motion")
             if self.tool['name'] == 'marquee-rectangular':
                 if self.is_selected():
-                    xi, yi, width, height = self.get_selection_bounds()
-                    xf = xi + width
-                    yf = yi + height
                     # verify is out of the selected area
-                    if (coords[0] < xi) or (coords[0] > xf) or \
-                        (coords[1] < yi) or (coords[1] > yf):
-                        self.getout()
-                        self._selmove = False
-                        design_mode = False
-                    else:
-                        # if is inside the selected area move the selection
+                    sel_x, sel_y, sel_width, sel_height = \
+                            self.get_selection_bounds()
+                    if self.check_point_in_area(coords[0], coords[1],
+                            sel_x, sel_y, sel_width, sel_height):
+                        # be sure to have the last coords
+                        # because can be older if was resized before
+                        self.oldx, self.oldy = coords
+                        # inside the selected area
                         self.d.move_selection(widget, coords)
                         self._selmove = True
+                        self._selresize = False
+                    elif self.check_point_in_area(coords[0], coords[1],
+                            sel_x + sel_width, sel_y + sel_height,
+                            RESIZE_ARROW_SIZE, RESIZE_ARROW_SIZE):
+                        # in de resize area
+                        self._selmove = False
+                        self._selresize = True
+                    else:
+                        self.getout()
+                        self._selmove = False
+                        self._selresize = False
+                        design_mode = False
+
                 else:
                     self._selmove = False
 
@@ -537,6 +551,8 @@ class Area(Gtk.DrawingArea):
                     if self._selmove:
                         # is inside a selected area, move it
                         self.d.move_selection(widget, coords)
+                    elif self._selresize:
+                        self.d.resize_selection(widget, coords)
                     else:
                         # create a selected area
                         if (state & Gdk.ModifierType.CONTROL_MASK) or \
@@ -596,7 +612,6 @@ class Area(Gtk.DrawingArea):
                     cursor = Gdk.Cursor.new(Gdk.CursorType.CROSS)
                 self.get_window().set_cursor(cursor)
 
-
             elif self.tool['name'] == 'freeform':
                 self.desenha = True
                 self.configure_line(self.tool['line size'])
@@ -609,7 +624,6 @@ class Area(Gtk.DrawingArea):
             width, height):
         return  not ((x_point < x_min) or (x_point > x_min + width) or \
                     (y_point < y_min) or (y_point > y_min + height))
-
 
     def mouseup(self, widget, event):
         """Make the Area object (GtkDrawingArea)
@@ -643,7 +657,8 @@ class Area(Gtk.DrawingArea):
 
             elif self.tool['name'] == 'marquee-rectangular':
                 private_undo = True
-                if self.is_selected() and not self._selmove:
+                if self.is_selected() and not self._selmove and \
+                        not self._selresize:
                     self.create_selection_surface()
                     self.emit('select')
                 else:

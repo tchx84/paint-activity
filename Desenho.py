@@ -676,26 +676,46 @@ class Desenho:
 
         widget.queue_draw()
 
-    def resizeSelection(self, widget, width_percent, height_percent):
-        """Resize the selection.
+    def resize_selection(self, widget, coords):
+        """Move the selection.
 
             @param  self -- Desenho.Desenho instance
-            @param  width_percent -- Percent of x scale
-            @param  height_percent -- Percent of y scale
+            @param  widget -- Area object (GtkDrawingArea)
+            @param  coords -- Two value tuple
+            @param  mvcopy -- Copy or Move
+            @param  pixbuf_copy -- For import image
 
         """
+        widget.desenha = True
+
+        dx = int(coords[0] - widget.oldx)
+        dy = int(coords[1] - widget.oldy)
+
+        sel_width = widget.selection_surface.get_width()
+        sel_height = widget.selection_surface.get_height()
+
+        if widget.pending_clean_selection_background:
+            # clear the selection background
+            widget.clear_selection_background()
+            widget.pending_clean_selection_background = False
+
+        width_scale = float(sel_width + dx) / float(sel_width)
+        height_scale = float(sel_height + dy) / float(sel_height)
+
+        if width_scale < 0 or height_scale < 0:
+            return
+
         # Add a timer for resize or update it if there is one already:
         if self._resize_timer is not None:
             GObject.source_remove(self._resize_timer)
         self._resize_timer = GObject.timeout_add(RESIZE_DELAY,
-            self._do_resize, widget, width_percent, height_percent)
+            self._do_resize, widget, width_scale, height_scale)
 
-    def _do_resize(self, widget, width_percent, height_percent):
-        """Do the resize calculation.
-        """
+    def _do_resize(self, widget, width_scale, height_scale):
+#        """Do the resize calculation.
+#        """
         widget.desenha = True
-        widget.resize_selection_surface(float(width_percent),
-                float(height_percent))
+        widget.resize_selection_surface(width_scale, height_scale)
         widget.queue_draw()
 
     def freeform(self, widget, coords, temp, fill, param=None):
