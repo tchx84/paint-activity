@@ -591,7 +591,7 @@ class TextToolbar(Gtk.Toolbar):
                 self.__font_size_changed_cb)
         for i, s in enumerate(self._font_sizes):
             self._font_size_combo.append_text(s)
-            if int(s) == (fd.get_size() /Pango.SCALE):
+            if int(s) == (fd.get_size() / Pango.SCALE):
                 self._font_size_combo.set_active(i)
 
         tool_item = ToolComboBox(self._font_size_combo)
