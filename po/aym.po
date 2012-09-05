@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-11 00:31-0400\n"
-"PO-Revision-Date: 2011-11-23 06:15+0200\n"
+"POT-Creation-Date: 2012-09-05 00:31-0400\n"
+"PO-Revision-Date: 2012-09-06 00:23+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: aym\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -89,7 +89,7 @@ msgstr "Walti"
 
 #: toolbox.py:282
 msgid "Picker"
-msgstr ""
+msgstr "Chhijlliri"
 
 #  "Sello"
 #: toolbox.py:286
@@ -206,35 +206,20 @@ msgstr "Saytata Uñjasiña"
 msgid "Vertical Mirror"
 msgstr "Liwtata uñjaña"
 
-#  "Altura"
-#: toolbox.py:692
-msgid "Height"
-msgstr "Sayt'aru"
-
-#  "Anchura"
-#: toolbox.py:703
-msgid "Width"
-msgstr "Lankhu"
-
 #  "Escala de grises"
-#: toolbox.py:718
+#: toolbox.py:696
 msgid "Grayscale"
 msgstr "Jayphuru uñtasiri"
 
 #  "Arco iris"
-#: toolbox.py:721
+#: toolbox.py:699
 msgid "Rainbow"
 msgstr "Kurmi"
 
 #  "Invertir colores"
-#: toolbox.py:726
+#: toolbox.py:704
 msgid "Invert Colors"
 msgstr "Suminaka mayjt'ayaña"
-
-#  "Seleccionar imagen"
-#: toolbox.py:801 toolbox.py:805
-msgid "Choose image"
-msgstr "Uñjasiwi ajlliña"
 
 #  "Tamaño: "
 #: widgets.py:17
@@ -243,7 +228,7 @@ msgstr "Taña: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "Phuyphuptayiri: "
 
 #  "Círculo"
 #: widgets.py:17
@@ -262,11 +247,11 @@ msgstr "Ajlliñamawa rixinakana ajllinakapata"
 
 #: widgets.py:255
 msgid "Size"
-msgstr ""
+msgstr "Taña"
 
 #: widgets.py:272
 msgid "Opacity"
-msgstr ""
+msgstr "Phuyphuptayiri"
 
 #  "Forma"
 #: widgets.py:294
@@ -276,4 +261,16 @@ msgstr "Kunjamasa"
 #  "Propiedades de los sellos"
 #: widgets.py:329
 msgid "Stamp properties"
-msgstr "Chimpuña ajlliwinakapa"
+msgstr "Chimpuña ajllirinaka mayjt'ayirinaka"
+
+#  "Altura"
+#~ msgid "Height"
+#~ msgstr "Sayt'aru"
+
+#  "Anchura"
+#~ msgid "Width"
+#~ msgstr "Lankhu"
+
+#  "Seleccionar imagen"
+#~ msgid "Choose image"
+#~ msgstr "Uñjasiwi ajlliña"
