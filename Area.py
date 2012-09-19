@@ -67,6 +67,7 @@ from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
 from gi.repository import Pango
+from gi.repository import PangoCairo
 
 import logging
 import os
@@ -95,6 +96,11 @@ TARGET_URI = 0
 MAX_UNDO_STEPS = 12
 RESIZE_ARROW_SIZE = style.GRID_CELL_SIZE / 2
 
+def _get_screen_dpi():
+    xft_dpi = Gtk.Settings.get_default().get_property('gtk-xft-dpi')
+    dpi = float(xft_dpi / 1024)
+    logging.error('Setting dpi to: %f', dpi)
+    return dpi
 
 class Area(Gtk.DrawingArea):
 
@@ -178,6 +184,8 @@ class Area(Gtk.DrawingArea):
         self.keep_aspect_ratio = False
         self.keep_shape_ratio = False
 
+        self._set_screen_dpi()
+
         self._font_description = None
         self.set_font_description(
                 Pango.FontDescription(self.tool['font_description']))
@@ -194,6 +202,11 @@ class Area(Gtk.DrawingArea):
         self.drawing = False
         self.x_cursor = 0
         self.y_cursor = 0
+
+    def _set_screen_dpi(self):
+        dpi = _get_screen_dpi()
+        font_map_default = PangoCairo.font_map_get_default()
+        font_map_default.set_resolution(dpi)
 
     def set_font_description(self, fd):
         self._font_description = fd
