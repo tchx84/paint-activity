@@ -1112,7 +1112,9 @@ class Area(Gtk.DrawingArea):
         green = color.green / 65535.0
         blue = color.blue / 65535.0
         self.tool['cairo_stroke_color'] = (red, green, blue, alpha)
-        self.activity.textview.modify_text(Gtk.StateType.NORMAL, color)
+        rgba = Gdk.RGBA()
+        rgba.red, rgba.green, rgba.blue, rgba.alpha = red, green, blue, alpha
+        self.activity.textview.override_color(Gtk.StateFlags.NORMAL, rgba)
 
     def set_alpha(self, alpha):
         """
