@@ -229,8 +229,7 @@ class DrawEditToolbar(EditToolbar):
 class DrawToolButton(RadioToolButton):
 
     def __init__(self, icon_name, tool_group, tooltip):
-        RadioToolButton.__init__(self)
-        self.props.icon_name = icon_name
+        RadioToolButton.__init__(self, icon_name=icon_name)
         self.props.group = tool_group
         self.set_active(False)
         self.set_tooltip(tooltip)
