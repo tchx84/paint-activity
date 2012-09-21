@@ -1,0 +1,218 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-05 00:31-0400\n"
+"PO-Revision-Date: 2012-09-21 10:57+0200\n"
+"Last-Translator: hariru <hariruroa@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: mi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Paint"
+msgstr "Peita"
+
+#: toolbox.py:105
+msgid "Edit"
+msgstr "Whakatika"
+
+#: toolbox.py:115
+msgid "Shapes"
+msgstr "Ngā Āhua"
+
+#: toolbox.py:121
+msgid "Fonts"
+msgstr "Ngā Momotuhi"
+
+#: toolbox.py:127
+msgid "Image"
+msgstr "Atahanga"
+
+#: toolbox.py:166
+msgid "Undo"
+msgstr "Wete"
+
+#: toolbox.py:167
+msgid "Redo"
+msgstr "Mahi Anō"
+
+#: toolbox.py:168
+msgid "Copy"
+msgstr "Tārua"
+
+#: toolbox.py:169
+msgid "Paste"
+msgstr "Whakapiri"
+
+#: toolbox.py:177
+msgid "Clear"
+msgstr "Ūkui"
+
+#: toolbox.py:258 widgets.py:339
+msgid "Brush properties"
+msgstr "Ngā āhuatanga paraihe"
+
+#: toolbox.py:269
+msgid "Brush"
+msgstr "Paraihe"
+
+#: toolbox.py:274
+msgid "Eraser"
+msgstr "Pūkōmuru"
+
+#: toolbox.py:278
+msgid "Bucket"
+msgstr "Pakete"
+
+#: toolbox.py:282
+msgid "Picker"
+msgstr "Pūwhiri"
+
+#: toolbox.py:286
+msgid "Stamp"
+msgstr "Hīri"
+
+#: toolbox.py:299
+msgid "Select Area"
+msgstr "Tīpako Wāhi"
+
+#: toolbox.py:390
+msgid "Fill"
+msgstr "Whakakī"
+
+#: toolbox.py:396 widgets.py:300
+msgid "Keep aspect"
+msgstr "Penapena āhuatanga"
+
+#: toolbox.py:413
+msgid "Sides: "
+msgstr "Ngā Taha: "
+
+#: toolbox.py:468
+msgid "Shapes properties"
+msgstr "Ngā āhuatanga auaha"
+
+#: toolbox.py:480
+msgid "Ellipse"
+msgstr "Pororapa"
+
+#: toolbox.py:484
+msgid "Rectangle"
+msgstr "Tapawhā"
+
+#: toolbox.py:488
+msgid "Line"
+msgstr "Raina"
+
+#: toolbox.py:492
+msgid "Free form"
+msgstr "Tuhi Tene"
+
+#: toolbox.py:496
+msgid "Polygon"
+msgstr "Tapamaha"
+
+#: toolbox.py:500
+msgid "Heart"
+msgstr "Manawa"
+
+#: toolbox.py:504
+msgid "Parallelogram"
+msgstr "Kauwhatawhakarara"
+
+#: toolbox.py:508
+msgid "Arrow"
+msgstr "Pere"
+
+#: toolbox.py:512
+msgid "Star"
+msgstr "Whetū"
+
+#: toolbox.py:516
+msgid "Trapezoid"
+msgstr "Tapawhā rite rua"
+
+#: toolbox.py:520
+msgid "Triangle"
+msgstr "Tapatoru"
+
+#: toolbox.py:563
+msgid "Type"
+msgstr "Momo"
+
+#: toolbox.py:661
+msgid "Insert Image"
+msgstr "Kōkuhu Atahanga"
+
+#: toolbox.py:674
+msgid "Rotate Left"
+msgstr "Tītaka Mauī"
+
+#: toolbox.py:678
+msgid "Rotate Right"
+msgstr "Tītaka Matau"
+
+#: toolbox.py:683
+msgid "Horizontal Mirror"
+msgstr "Mira Whakapae"
+
+#: toolbox.py:688
+msgid "Vertical Mirror"
+msgstr "Mira Poutū"
+
+#: toolbox.py:696
+msgid "Grayscale"
+msgstr "Ine Pūmā"
+
+#: toolbox.py:699
+msgid "Rainbow"
+msgstr "Kahukura"
+
+#: toolbox.py:704
+msgid "Invert Colors"
+msgstr "Huripoki Tae"
+
+#: widgets.py:17
+msgid "Size: "
+msgstr "Rahi: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Pōuritanga:"
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Porohita"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Pūtake rua"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Kōwhiri āhuatanga paraihe"
+
+#: widgets.py:255
+msgid "Size"
+msgstr "Rahi"
+
+#: widgets.py:272
+msgid "Opacity"
+msgstr "Pōuritanga"
+
+#: widgets.py:294
+msgid "Shape"
+msgstr "Auaha"
+
+#: widgets.py:329
+msgid "Stamp properties"
+msgstr "Ngā āhuatanga stamp"
