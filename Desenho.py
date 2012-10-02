@@ -743,7 +743,6 @@ class Desenho:
             else:
                 self.points.append((widget.oldx, widget.oldy))
                 self.points.append((coords[0], coords[1]))
-            widget.enable_undo(overrite=True)
             widget.last = coords
         elif param == "release":
             if len(self.points) > 2:
@@ -760,7 +759,7 @@ class Desenho:
                     self._draw_polygon(widget, False, fill, self.points)
                     widget.last = []
                     self.points = []
-                    widget.enable_undo(overrite=True)
+                    widget.enable_undo()
                     widget.queue_draw()
                     return
 

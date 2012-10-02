@@ -114,7 +114,7 @@ class OficinaActivity(activity.Activity):
         def map_cp(widget):
 
             def size_allocate_cb(widget, allocation):
-                self.fixed.disconnect(self._setup_handle)
+                widget.disconnect(self._setup_handle)
                 self.area.setup(allocation.width, allocation.height)
                 self.center_area()
 
@@ -145,9 +145,10 @@ class OficinaActivity(activity.Activity):
         def size_allocate_cb(widget, allocation):
             logging.error('read file size allocate')
             self.fixed.disconnect(self._setup_handle)
-            width = self.area.drawing_canvas.get_width()
-            height = self.area.drawing_canvas.get_height()
-            self.area.setup(width, height)
+            width = self.area.drawing_canvas_data.get_width()
+            height = self.area.drawing_canvas_data.get_height()
+            if self.area.drawing_canvas is None:
+                self.area.setup(width, height)
             # The scrolled window is confused with a image of the same size
             # of the canvas when the toolbars popup and the scrolls
             # keep visible.

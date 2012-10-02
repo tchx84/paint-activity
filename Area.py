@@ -176,6 +176,8 @@ class Area(Gtk.DrawingArea):
         self.oldx = 0
         self.oldy = 0
         self.drawing_canvas = None
+        # This surface is used when need load data from a file or a process
+        self.drawing_canvas_data = None
         self.textos = []
         self.text_in_progress = False
         self.activity = activity
@@ -197,6 +199,7 @@ class Area(Gtk.DrawingArea):
         # List of pixbuf for the Undo function:
         self._undo_list = []
         self._undo_index = None
+        self._keep_undo = False
 
         # variables to show the tool shape
         self.drawing = False
@@ -221,7 +224,8 @@ class Area(Gtk.DrawingArea):
         return style.zoom(44)
 
     def load_from_file(self, file_path):
-        self.drawing_canvas = cairo.ImageSurface.create_from_png(file_path)
+        self.drawing_canvas_data = \
+                cairo.ImageSurface.create_from_png(file_path)
 
     def setup(self, width, height):
         """Configure the Area object."""
@@ -230,24 +234,9 @@ class Area(Gtk.DrawingArea):
 
         self.set_size_request(width, height)
 
-        ##It is the main canvas, who is display most of the time
-        # if is not None was read from a file
-        if self.drawing_canvas is None:
-            self.drawing_canvas = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                                                      width, height)
-            self.drawing_ctx = cairo.Context(self.drawing_canvas)
-            # paint background white
-            self.drawing_ctx.rectangle(0, 0, width, height)
-            self.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
-            self.drawing_ctx.fill()
-        else:
-            self.drawing_ctx = cairo.Context(self.drawing_canvas)
-
-        ##This canvas is showed when we need show something and not draw it.
-        self.temp_canvas = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                                                  width, height)
-        self.temp_ctx = cairo.Context(self.temp_canvas)
-        self._init_temp_canvas()
+        self.drawing_canvas = None
+        self._width = width
+        self._height = height
 
         self.enable_undo()
 
@@ -321,11 +310,28 @@ class Area(Gtk.DrawingArea):
             @param  event -- GdkEvent
 
         """
-#        area = event.area
 
-#        context = self.get_window().cairo_create()
-#        context.rectangle(area.x, area.y, area.width, area.height)
-#        context.clip()
+        ##It is the main canvas, who is display most of the time
+        # if is not None was read from a file
+        if self.drawing_canvas is None:
+            self.drawing_canvas = context.get_target().create_similar(
+                    cairo.CONTENT_COLOR_ALPHA, self._width, self._height)
+            self.drawing_ctx = cairo.Context(self.drawing_canvas)
+            # paint background white
+            self.drawing_ctx.rectangle(0, 0, self._width, self._height)
+            if self.drawing_canvas_data is None:
+                self.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
+                self.drawing_ctx.fill()
+            else:
+                self.drawing_ctx.set_source_surface(self.drawing_canvas_data)
+                self.drawing_ctx.paint()
+                self.drawing_canvas_data = None
+
+            ##canvas showed when we need display something and not draw it
+            self.temp_canvas = context.get_target().create_similar(
+                    cairo.CONTENT_COLOR_ALPHA, self._width, self._height)
+            self.temp_ctx = cairo.Context(self.temp_canvas)
+            self._init_temp_canvas()
 
         if self.desenha:
             #logging.error('Expose use temp canvas area')
@@ -340,6 +346,8 @@ class Area(Gtk.DrawingArea):
         # TODO: gtk3 how get the area to avoid redrawing all ?
         self._init_temp_canvas()  # area)
         self.display_selection_border(context)
+        if self._keep_undo:
+            self.keep_undo()
 
     def show_tool_shape(self, context):
         """
@@ -766,7 +774,15 @@ class Area(Gtk.DrawingArea):
                 break
         else:
             raise AssertionError()
-        pixels.fromstring(self.drawing_canvas.get_data())
+        # need copy self.drawing_canvas in a ImageSurface
+        # because 'cairo.XlibSurface do not have get_data
+        image_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, self._width,
+                self._height)
+        ctx = cairo.Context(image_surface)
+        ctx.set_source_surface(self.drawing_canvas)
+        ctx.paint()
+
+        pixels.fromstring(image_surface)
 
         # process the pixels in the array
         width = self.drawing_canvas.get_width()
@@ -801,7 +817,7 @@ class Area(Gtk.DrawingArea):
             edge = newedge
 
         # create a updated drawing_canvas
-        self.drawing_canvas = cairo.ImageSurface.create_for_data(pixels,
+        self.drawing_canvas_data = cairo.ImageSurface.create_for_data(pixels,
                 cairo.FORMAT_ARGB32, width, height)
         self.setup(width, height)
 
@@ -945,10 +961,15 @@ class Area(Gtk.DrawingArea):
 
         self.emit('redo')
 
-    def enable_undo(self, overrite=False):
-        """Keep the last change in a list for Undo/Redo commands.
-
+    def enable_undo(self):
+        """Save a flag to keep the last change in a list for Undo/Redo.
         """
+        self._keep_undo = True
+
+    def keep_undo(self):
+        """Keep the last change in a list for Undo/Redo commands.
+        """
+        self._keep_undo = False
         if len(self._undo_list) == 0:
             # first undo pix, start index:
             self._undo_index = 0
@@ -964,12 +985,6 @@ class Area(Gtk.DrawingArea):
             self._undo_index += 1
             # Forget the redos after this one:
             self._undo_list = self._undo_list[:self._undo_index]
-
-        # If a tool needs to do several drawings, uses overrite to
-        # undo them in only one step.  In that case, the index is not
-        # changed:
-        if overrite and self._undo_index != 0:
-            self._undo_index -= 1
 
         if self.is_selected():
             self.getout(clear_selection=False)
@@ -1160,7 +1175,15 @@ class Area(Gtk.DrawingArea):
                     break
             else:
                 raise AssertionError()
-            pixels.fromstring(self.drawing_canvas.get_data())
+            # need copy self.drawing_canvas in a ImageSurface
+            # because 'cairo.XlibSurface do not have get_data
+            image_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                    self._width, self._height)
+            ctx = cairo.Context(image_surface)
+            ctx.set_source_surface(self.drawing_canvas)
+            ctx.paint()
+
+            pixels.fromstring(image_surface)
 
             # process the pixels in the array
             new_array = array.array(pixels.typecode, len(pixels) * [0])
@@ -1172,7 +1195,6 @@ class Area(Gtk.DrawingArea):
             height = self.drawing_canvas.get_height()
             self.drawing_canvas = cairo.ImageSurface.create_for_data(new_array,
                     cairo.FORMAT_ARGB32, width, height)
-            self.setup(width, height)
 
             self.queue_draw()
             self.enable_undo()
@@ -1490,6 +1512,8 @@ class Area(Gtk.DrawingArea):
             pass
 
         self.set_tool_cursor()
+        # clear points in Desenha
+        self.d.points = []
 
     def set_tool_cursor(self):
         # Setting the cursor
