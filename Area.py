@@ -96,11 +96,13 @@ TARGET_URI = 0
 MAX_UNDO_STEPS = 12
 RESIZE_ARROW_SIZE = style.GRID_CELL_SIZE / 2
 
+
 def _get_screen_dpi():
     xft_dpi = Gtk.Settings.get_default().get_property('gtk-xft-dpi')
     dpi = float(xft_dpi / 1024)
     logging.error('Setting dpi to: %f', dpi)
     return dpi
+
 
 class Area(Gtk.DrawingArea):
 
