@@ -1214,12 +1214,67 @@ class Area(Gtk.DrawingArea):
             @param  horizontal -- If true sets flip as horizontal else vertical
 
         """
+        old_cursor = self.get_window().get_cursor()
+        self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        GObject.idle_add(self._mirror_internal, widget, horizontal, old_cursor)
 
-        def proc_mirror(temp_pix):
-            return temp_pix.flip(self.horizontal)
+    def _mirror_internal(self, widget, horizontal, old_cursor):
 
-        self.horizontal = horizontal
-        self._do_process(widget, proc_mirror)
+        """Mirror the image.
+
+            @param  self -- the Area object (GtkDrawingArea)
+            @param  widget -- the Area object (GtkDrawingArea)
+        """
+
+        if self.is_selected():
+            x, y, width, height = self.get_selection_bounds()
+            surface = self.get_selection()
+        else:
+            x, y = 0, 0
+            width, height = self.get_size()
+            surface = self.drawing_canvas
+
+        # create a surface and paste the image rotated
+        logging.error('create rotate surface')
+        mirror_surface = surface.create_similar(cairo.CONTENT_COLOR_ALPHA,
+                                width, height)
+        mirror_ctx = cairo.Context(mirror_surface)
+        if horizontal:
+            mirror_ctx.scale(-1, 1)
+            mirror_ctx.translate(-width, 0)
+        else:
+            mirror_ctx.scale(1, -1)
+            mirror_ctx.translate(0, -height)
+
+        mirror_ctx.set_source_surface(surface)
+        mirror_ctx.paint()
+
+        # copy from the surface to the drawing context
+
+        if self.is_selected():
+            # clear the background before rotate the selection
+            self.clear_selection_background()
+            self.clear_selection_background(temp_canvas=True)
+            self.set_selection_bounds(x, y, width, height)
+
+            self.temp_ctx.save()
+            self.temp_ctx.translate(x, y)
+            self.temp_ctx.set_source_surface(mirror_surface)
+            self.temp_ctx.paint()
+            self.temp_ctx.restore()
+
+            self.create_selection_surface(temp_canvas=True)
+
+        else:
+            self.drawing_ctx.save()
+            self.drawing_ctx.set_source_surface(mirror_surface)
+            self.drawing_ctx.paint()
+            self.drawing_ctx.restore()
+
+        self.queue_draw()
+        if not self.is_selected():
+            self.enable_undo()
+        self.get_window().set_cursor(old_cursor)
 
     def _do_process(self, widget, apply_process):
         self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
