@@ -1272,7 +1272,7 @@ class Area(Gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
         """
         self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        GObject.idle_add(self._rotate, widget, 90)
+        GObject.idle_add(self._rotate, widget, 270)
 
     def rotate_right(self, widget):
         """Rotate the image.
@@ -1281,7 +1281,7 @@ class Area(Gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
         """
         self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        GObject.idle_add(self._rotate, widget, 270)
+        GObject.idle_add(self._rotate, widget, 90)
 
     def _rotate(self, widget, angle):
         """Rotate the image.
@@ -1299,9 +1299,20 @@ class Area(Gtk.DrawingArea):
             width, height = self.get_size()
             surface = self.drawing_canvas
 
-        temp_pix = self._surface_to_pixbuf(surface)
+        # create a surface and paste the image rotated
+        logging.error('create rotate surface')
+        rotate_surface = surface.create_similar(cairo.CONTENT_COLOR_ALPHA,
+                                height, width)
+        rotate_ctx = cairo.Context(rotate_surface)
+        radians_angle = math.pi * float(angle) / 180.0
+        rotate_ctx.rotate(radians_angle)
+        if radians_angle > math.pi:
+            rotate_ctx.translate(-width, 0)
+        else:
+            rotate_ctx.translate(0, -height)
 
-        temp_pix = temp_pix.rotate_simple(angle)
+        rotate_ctx.set_source_surface(surface)
+        rotate_ctx.paint()
 
         # copy from the pixbuf to the drawing context
 
@@ -1310,18 +1321,25 @@ class Area(Gtk.DrawingArea):
             self.clear_selection_background()
             self.clear_selection_background(temp_canvas=True)
             self.set_selection_bounds(x, y, height, width)
+
+            self.temp_ctx.save()
+            self.temp_ctx.translate(x, y)
+            self.temp_ctx.set_source_surface(rotate_surface)
+            self.temp_ctx.paint()
+            self.temp_ctx.restore()
+
+            self.create_selection_surface(temp_canvas=True)
+
         else:
             # create a new canvas with permuted dimensions
-            self.drawing_canvas = None
+            self.drawing_canvas_data = surface.create_similar(
+                    cairo.CONTENT_COLOR_ALPHA, height, width)
+            ctx = cairo.Context(self.drawing_canvas_data)
+            ctx.save()
+            ctx.set_source_surface(rotate_surface)
+            ctx.paint()
+            ctx.restore()
             self.setup(height, width)
-
-        if self.is_selected():
-            self._pixbuf_to_context(temp_pix, self.temp_ctx, x, y)
-            self.create_selection_surface(temp_canvas=True)
-        else:
-            self._pixbuf_to_context(temp_pix, self.drawing_ctx, x, y)
-
-        del temp_pix
 
         self.queue_draw()
         if not self.is_selected():
