@@ -6,3 +6,4 @@ exec = sugar-activity OficinaActivity.OficinaActivity
 icon = activity-paint
 mime_types = image/svg+xml; image/svg; image/svg-xml; image/vnd.adobe.svg+xml; text/xml-svg; image/png; image/jpeg; image/gif; image/x-icon; image/x-ico; application/x-navi-animation; image/x-cmu-raster; image/x-sun-raster; image/x-xpixmap; image/tiff; image/x-portable-anymap; image/x-portable-bitmap; image/x-portable-graymap; image/x-portable-pixmap; image/bmp; image/x-bmp; image/x-MS-bmp; image/vnd.wap.wbmp; image/x-xbitmap; image/x-tga; image/x-pcx; image/x-wmf
 license = GPLv2
+summary = Picasso? Van Gogh? You can be any of them! Just let the artist inside you free. Transform images in your mind to beautiful paintings.
