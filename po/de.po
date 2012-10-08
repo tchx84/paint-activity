@@ -1,274 +1,280 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Germany translation for Drawing Activity.
 # Copyright (C) 2007 NATE LSI-USP
 # This file is distributed under the same license as the Oficina package.
-# 
 # Nathalia <nathalia.sautchuk@gmail.com>, 2007.
+# Markus Schlager <m.slg@gmx.de>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:33-0400\n"
-"PO-Revision-Date: 2012-06-25 21:44+0200\n"
-"Last-Translator: Markus <m.slg@gmx.de>\n"
-"Language-Team: Language locale/de/LC\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"PO-Revision-Date: 2012-10-08 20:47+0200\n"
+"Last-Translator: Markus Schlager <m.slg@gmx.de>\n"
+"Language-Team: Deutsche OLPC-Lokalisierung\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Virtaal 0.7.0\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "Malen"
 
-#: toolbox.py:103
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
+"Picasso? Van Gogh? Du kannst jeder von ihnen sein! Lass einfach dem Künstler "
+"in dir freien Lauf und verwandle die Bilder in deinem Kopf in wunderschöne "
+"Gemälde!"
+
+#: toolbox.py:105
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: toolbox.py:113
+#: toolbox.py:115
 msgid "Shapes"
 msgstr "Formen"
 
-#: toolbox.py:119
+#: toolbox.py:121
 msgid "Fonts"
 msgstr "Schriften"
 
-#: toolbox.py:125
+#: toolbox.py:127
 msgid "Image"
 msgstr "Bild"
 
-#: toolbox.py:150
+#: toolbox.py:166
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: toolbox.py:151
+#: toolbox.py:167
 msgid "Redo"
 msgstr "Wiederholen"
 
-#: toolbox.py:152
+#: toolbox.py:168
 msgid "Copy"
 msgstr "Kopieren"
 
-#: toolbox.py:153
+#: toolbox.py:169
 msgid "Paste"
 msgstr "Einfügen"
 
-#: toolbox.py:161
+#: toolbox.py:177
 msgid "Clear"
 msgstr "Löschen"
 
-#: toolbox.py:242 widgets.py:311
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr "Pinseleigenschaften"
 
-#: toolbox.py:253
+#: toolbox.py:268
 msgid "Brush"
 msgstr "Pinsel"
 
-#: toolbox.py:258
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "Radiergummi"
 
-#: toolbox.py:262
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "Farbeimer"
 
-#: toolbox.py:266
+#: toolbox.py:281
 msgid "Picker"
 msgstr "Pipette"
 
-#: toolbox.py:270
+#: toolbox.py:285
 msgid "Stamp"
 msgstr "Stempel"
 
-#: toolbox.py:283
+#: toolbox.py:298
 msgid "Select Area"
 msgstr "Bereich wählen"
 
-#: toolbox.py:378
+#: toolbox.py:389
 msgid "Fill"
 msgstr "Anfüllen"
 
-#: toolbox.py:384 widgets.py:277
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr "Aspekt halten"
 
-#: toolbox.py:401
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "Seiten: "
 
-#: toolbox.py:456
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "Formeneigenschaften"
 
-#: toolbox.py:468
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: toolbox.py:472
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: toolbox.py:476
+#: toolbox.py:487
 msgid "Line"
 msgstr "Linie"
 
-#: toolbox.py:480
+#: toolbox.py:491
 msgid "Free form"
 msgstr "Freie Form"
 
-#: toolbox.py:484
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "Vieleck"
 
-#: toolbox.py:488
+#: toolbox.py:499
 msgid "Heart"
 msgstr "Herz"
 
-#: toolbox.py:492
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "Parallelogramm"
 
-#: toolbox.py:496
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "Pfeil"
 
-#: toolbox.py:500
+#: toolbox.py:511
 msgid "Star"
 msgstr "Stern"
 
-#: toolbox.py:504
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "Paralleltrapez"
 
-#: toolbox.py:508
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "Dreieck"
 
-#: toolbox.py:555
+#: toolbox.py:562
 msgid "Type"
 msgstr "Typ"
 
-#: toolbox.py:666
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "Bild einfügen"
 
-#: toolbox.py:679
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "Links-Rotieren"
 
-#: toolbox.py:683
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "Nach rechts drehen"
 
-#: toolbox.py:688
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr "Horrizontal spiegeln"
 
-#: toolbox.py:693
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr "Vertikal spiegeln"
 
-#: toolbox.py:697
-msgid "Height"
-msgstr "Höhe"
-
-#: toolbox.py:708
-msgid "Width"
-msgstr "Breite"
-
-#: toolbox.py:723
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "Graustufen"
 
-#: toolbox.py:726
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "Regenbogen"
 
-#: toolbox.py:731
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr "Farben umkehren"
 
-#: toolbox.py:806 toolbox.py:810
-msgid "Choose image"
-msgstr "Bild auswählen"
-
-#: widgets.py:24
-msgid "Choose brush properties"
-msgstr "Pinseleigenschaften auswählen"
-
-#: widgets.py:238
+#: widgets.py:17
 msgid "Size: "
 msgstr "Größe: "
 
-#: widgets.py:249
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Deckkraft: "
+
+#: widgets.py:17
 msgid "Circle"
 msgstr "Kreis"
 
-#: widgets.py:259
+#: widgets.py:17
 msgid "Square"
 msgstr "Quadrat"
 
-#: widgets.py:271
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Pinseleigenschaften auswählen"
+
+#: widgets.py:255
+msgid "Size"
+msgstr "Größe"
+
+#: widgets.py:272
+msgid "Opacity"
+msgstr "Deckkraft"
+
+#: widgets.py:294
 msgid "Shape"
 msgstr "Form"
 
-#: widgets.py:303
+#: widgets.py:329
 msgid "Stamp properties"
 msgstr "Stempeleigenschaften"
+
+#~ msgid "Height"
+#~ msgstr "Höhe"
+
+#~ msgid "Width"
+#~ msgstr "Breite"
+
+#~ msgid "Choose image"
+#~ msgstr "Bild auswählen"
 
 #~ msgid "Keep Aspect"
 #~ msgstr "Aspekt behalten"
