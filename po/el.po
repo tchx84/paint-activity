@@ -41,7 +41,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 00:31-0400\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
 "PO-Revision-Date: 2012-09-08 10:28+0200\n"
 "Last-Translator: Yannis <kiolalis@gmail.com>\n"
 "Language-Team: Greek <olpc-l10n-el@googlegroups.com>\n"
@@ -52,9 +52,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "Ζωγραφική"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
 
 #: toolbox.py:105
 msgid "Edit"
@@ -92,127 +99,127 @@ msgstr "Επικόλληση"
 msgid "Clear"
 msgstr "Εκκαθάριση"
 
-#: toolbox.py:258 widgets.py:339
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr "Ιδιότητες πινέλου"
 
-#: toolbox.py:269
+#: toolbox.py:268
 msgid "Brush"
 msgstr "Πινέλο"
 
-#: toolbox.py:274
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "Γόμα"
 
-#: toolbox.py:278
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "Κουβάς"
 
-#: toolbox.py:282
+#: toolbox.py:281
 msgid "Picker"
 msgstr "Επιλογέας"
 
-#: toolbox.py:286
+#: toolbox.py:285
 msgid "Stamp"
 msgstr "Σφραγίδα"
 
-#: toolbox.py:299
+#: toolbox.py:298
 msgid "Select Area"
 msgstr "Επιλογή περιοχής"
 
-#: toolbox.py:390
+#: toolbox.py:389
 msgid "Fill"
 msgstr "Γέμισμα"
 
-#: toolbox.py:396 widgets.py:300
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr "Διατήρηση αναλογίας"
 
-#: toolbox.py:413
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "Πλευρές: "
 
-#: toolbox.py:468
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "Ιδιότητες σχημάτων"
 
-#: toolbox.py:480
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "Έλλειψη"
 
-#: toolbox.py:484
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "Ορθογώνιο"
 
-#: toolbox.py:488
+#: toolbox.py:487
 msgid "Line"
 msgstr "Γραμμή"
 
-#: toolbox.py:492
+#: toolbox.py:491
 msgid "Free form"
 msgstr "Ελεύθερο σχήμα"
 
-#: toolbox.py:496
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "Πολύγωνο"
 
-#: toolbox.py:500
+#: toolbox.py:499
 msgid "Heart"
 msgstr "Καρδιά"
 
-#: toolbox.py:504
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "Παραλληλόγραμμο"
 
-#: toolbox.py:508
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "Βέλος"
 
-#: toolbox.py:512
+#: toolbox.py:511
 msgid "Star"
 msgstr "Άστρο"
 
-#: toolbox.py:516
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "Τραπέζιο"
 
-#: toolbox.py:520
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "Τρίγωνο"
 
-#: toolbox.py:563
+#: toolbox.py:562
 msgid "Type"
 msgstr "Τύπος"
 
-#: toolbox.py:661
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "Εισαγωγή εικόνας"
 
-#: toolbox.py:674
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "Περιστροφή αριστερά"
 
-#: toolbox.py:678
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "Περιστροφή δεξιά"
 
-#: toolbox.py:683
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr "Οριζόντιος Καθρεπτισμός"
 
-#: toolbox.py:688
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr "Κατακόρυφος Καθρεπτισμός"
 
-#: toolbox.py:696
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "Κλίμακα του γκρι"
 
-#: toolbox.py:699
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "Ουράνιο τόξο"
 
-#: toolbox.py:704
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr "Αντιστροφή χρωμάτων"
 

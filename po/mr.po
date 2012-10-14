@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:33-0400\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
 "PO-Revision-Date: 2010-03-27 20:54+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,205 +53,221 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Translate Toolkit 1.6.0\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "रंगवणे"
 
-#: toolbox.py:103
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
+
+#: toolbox.py:105
 msgid "Edit"
 msgstr "संपादन करणे"
 
-#: toolbox.py:113
+#: toolbox.py:115
 msgid "Shapes"
 msgstr "आकार"
 
-#: toolbox.py:119
+#: toolbox.py:121
 msgid "Fonts"
 msgstr ""
 
-#: toolbox.py:125
+#: toolbox.py:127
 msgid "Image"
 msgstr "छायाचित्र"
 
-#: toolbox.py:150
+#: toolbox.py:166
 msgid "Undo"
 msgstr "केलेल्या गोष्टीवर बोला फिरवने"
 
-#: toolbox.py:151
+#: toolbox.py:167
 msgid "Redo"
 msgstr "परत करा"
 
-#: toolbox.py:152
+#: toolbox.py:168
 msgid "Copy"
 msgstr "नक्कल"
 
-#: toolbox.py:153
+#: toolbox.py:169
 msgid "Paste"
 msgstr "छापणे"
 
-#: toolbox.py:161
+#: toolbox.py:177
 msgid "Clear"
 msgstr "साफ करणे"
 
-#: toolbox.py:242 widgets.py:311
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr ""
 
-#: toolbox.py:253
+#: toolbox.py:268
 msgid "Brush"
 msgstr "ब्रश"
 
-#: toolbox.py:258
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "खोडरब्बर"
 
-#: toolbox.py:262
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "बादली"
 
-#: toolbox.py:266
+#: toolbox.py:281
 msgid "Picker"
 msgstr ""
 
-#: toolbox.py:270
+#: toolbox.py:285
 msgid "Stamp"
 msgstr ""
 
-#: toolbox.py:283
+#: toolbox.py:298
 msgid "Select Area"
 msgstr ""
 
-#: toolbox.py:378
+#: toolbox.py:389
 msgid "Fill"
 msgstr "भरणे"
 
-#: toolbox.py:384 widgets.py:277
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr ""
 
-#: toolbox.py:401
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "बाजू: "
 
-#: toolbox.py:456
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr ""
 
-#: toolbox.py:468
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "लंबवर्तुळ"
 
-#: toolbox.py:472
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "आयत"
 
-#: toolbox.py:476
+#: toolbox.py:487
 msgid "Line"
 msgstr "रेषा"
 
-#: toolbox.py:480
+#: toolbox.py:491
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:484
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "बहूभूज"
 
-#: toolbox.py:488
+#: toolbox.py:499
 msgid "Heart"
 msgstr "हृदय"
 
-#: toolbox.py:492
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "समांतरभुज चौकोन"
 
-#: toolbox.py:496
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "बाण"
 
-#: toolbox.py:500
+#: toolbox.py:511
 msgid "Star"
 msgstr "तारे"
 
-#: toolbox.py:504
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "असमांतरभुज चौकोन"
 
-#: toolbox.py:508
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "त्रिकोण"
 
-#: toolbox.py:555
+#: toolbox.py:562
 msgid "Type"
 msgstr "टाइप"
 
-#: toolbox.py:666
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "छायाचित्र आत घाला"
 
-#: toolbox.py:679
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "डावीकडे फिरवा"
 
-#: toolbox.py:683
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "उजवीकडे फिरवा"
 
-#: toolbox.py:688
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:693
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:697
-msgid "Height"
-msgstr "उंची"
-
-#: toolbox.py:708
-msgid "Width"
-msgstr "रुंदी"
-
-#: toolbox.py:723
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "राखाडी छटा"
 
-#: toolbox.py:726
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "इंद्रधनुष्य"
 
-#: toolbox.py:731
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr ""
 
-#: toolbox.py:806 toolbox.py:810
-msgid "Choose image"
-msgstr "चित्र निवडा"
-
-#: widgets.py:24
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:238
+#: widgets.py:17
 msgid "Size: "
 msgstr "आकार: "
 
-#: widgets.py:249
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
 msgid "Circle"
 msgstr "वर्तुळ"
 
-#: widgets.py:259
+#: widgets.py:17
 msgid "Square"
 msgstr "चौकोन"
 
-#: widgets.py:271
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:255
+msgid "Size"
+msgstr ""
+
+#: widgets.py:272
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:294
 msgid "Shape"
 msgstr "आकार"
 
-#: widgets.py:303
+#: widgets.py:329
 msgid "Stamp properties"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "उंची"
+
+#~ msgid "Width"
+#~ msgstr "रुंदी"
+
+#~ msgid "Choose image"
+#~ msgstr "चित्र निवडा"
 
 #~ msgid "Tools"
 #~ msgstr "साधने"

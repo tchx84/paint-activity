@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-11 00:31-0400\n"
-"PO-Revision-Date: 2012-08-14 10:02+0200\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"PO-Revision-Date: 2012-10-07 10:16+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -37,9 +37,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "Paint"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
 
 #: toolbox.py:105
 msgid "Edit"
@@ -77,141 +86,129 @@ msgstr "Paste"
 msgid "Clear"
 msgstr "Clear"
 
-#: toolbox.py:258 widgets.py:339
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr "Brush properties"
 
-#: toolbox.py:269
+#: toolbox.py:268
 msgid "Brush"
 msgstr "Brush"
 
-#: toolbox.py:274
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "Eraser"
 
-#: toolbox.py:278
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "Bucket"
 
-#: toolbox.py:282
+#: toolbox.py:281
 msgid "Picker"
 msgstr "Picker"
 
-#: toolbox.py:286
+#: toolbox.py:285
 msgid "Stamp"
 msgstr "Stamp"
 
-#: toolbox.py:299
+#: toolbox.py:298
 msgid "Select Area"
 msgstr "Select Area"
 
-#: toolbox.py:390
+#: toolbox.py:389
 msgid "Fill"
 msgstr "Fill"
 
-#: toolbox.py:396 widgets.py:300
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr "Keep aspect"
 
-#: toolbox.py:413
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "Sides: "
 
-#: toolbox.py:468
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "Shapes properties"
 
-#: toolbox.py:480
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: toolbox.py:484
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: toolbox.py:488
+#: toolbox.py:487
 msgid "Line"
 msgstr "Line"
 
-#: toolbox.py:492
+#: toolbox.py:491
 msgid "Free form"
 msgstr "Free form"
 
-#: toolbox.py:496
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "Polygon"
 
-#: toolbox.py:500
+#: toolbox.py:499
 msgid "Heart"
 msgstr "Heart"
 
-#: toolbox.py:504
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "Parallelogram"
 
-#: toolbox.py:508
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "Arrow"
 
-#: toolbox.py:512
+#: toolbox.py:511
 msgid "Star"
 msgstr "Star"
 
-#: toolbox.py:516
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "Trapezoid"
 
-#: toolbox.py:520
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "Triangle"
 
-#: toolbox.py:563
+#: toolbox.py:562
 msgid "Type"
 msgstr "Type"
 
-#: toolbox.py:661
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "Insert Image"
 
-#: toolbox.py:674
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "Rotate Left"
 
-#: toolbox.py:678
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "Rotate Right"
 
-#: toolbox.py:683
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr "Horizontal Mirror"
 
-#: toolbox.py:688
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr "Vertical Mirror"
 
-#: toolbox.py:692
-msgid "Height"
-msgstr "Height"
-
-#: toolbox.py:703
-msgid "Width"
-msgstr "Width"
-
-#: toolbox.py:718
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "Greyscale"
 
-#: toolbox.py:721
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "Rainbow"
 
-#: toolbox.py:726
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr "Invert Colours"
-
-#: toolbox.py:801 toolbox.py:805
-msgid "Choose image"
-msgstr "Choose image"
 
 #: widgets.py:17
 msgid "Size: "
@@ -248,6 +245,15 @@ msgstr "Shape"
 #: widgets.py:329
 msgid "Stamp properties"
 msgstr "Stamp properties"
+
+#~ msgid "Height"
+#~ msgstr "Height"
+
+#~ msgid "Width"
+#~ msgstr "Width"
+
+#~ msgid "Choose image"
+#~ msgstr "Choose image"
 
 #~ msgid "Keep Aspect"
 #~ msgstr "Keep Aspect"

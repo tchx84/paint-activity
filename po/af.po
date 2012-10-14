@@ -50,7 +50,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-11 00:31-0400\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
 "PO-Revision-Date: 2012-08-22 01:59+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,9 +61,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "Verf"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
 
 #: toolbox.py:105
 msgid "Edit"
@@ -101,159 +108,146 @@ msgstr "Plak"
 msgid "Clear"
 msgstr "Maak skoon"
 
-#: toolbox.py:258 widgets.py:339
+#: toolbox.py:257 widgets.py:339
 #, fuzzy
 msgid "Brush properties"
 msgstr "Kwas eienskappe"
 
-#: toolbox.py:269
+#: toolbox.py:268
 #, fuzzy
 msgid "Brush"
 msgstr "Kwas"
 
-#: toolbox.py:274
+#: toolbox.py:273
 #, fuzzy
 msgid "Eraser"
 msgstr "Uitveër"
 
-#: toolbox.py:278
+#: toolbox.py:277
 msgid "Bucket"
 msgstr ""
 
-#: toolbox.py:282
+#: toolbox.py:281
 msgid "Picker"
 msgstr ""
 
-#: toolbox.py:286
+#: toolbox.py:285
 msgid "Stamp"
 msgstr ""
 
-#: toolbox.py:299
+#: toolbox.py:298
 #, fuzzy
 msgid "Select Area"
 msgstr "Seleksiearea"
 
-#: toolbox.py:390
+#: toolbox.py:389
 #, fuzzy
 msgid "Fill"
 msgstr "Opvul"
 
-#: toolbox.py:396 widgets.py:300
+#: toolbox.py:395 widgets.py:300
 #, fuzzy
 msgid "Keep aspect"
 msgstr "Hou aspekverhouding"
 
-#: toolbox.py:413
+#: toolbox.py:412
 #, fuzzy
 msgid "Sides: "
 msgstr "Kant: "
 
-#: toolbox.py:468
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "Vorms eienskappe"
 
-#: toolbox.py:480
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "Ellips"
 
-#: toolbox.py:484
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "Reghoek"
 
-#: toolbox.py:488
+#: toolbox.py:487
 msgid "Line"
 msgstr "Lyn"
 
-#: toolbox.py:492
+#: toolbox.py:491
 #, fuzzy
 msgid "Free form"
 msgstr "Vryvorm"
 
-#: toolbox.py:496
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "Veelhoek"
 
-#: toolbox.py:500
+#: toolbox.py:499
 msgid "Heart"
 msgstr "Hart"
 
-#: toolbox.py:504
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "Parallelogram"
 
-#: toolbox.py:508
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "Pyltjie"
 
-#: toolbox.py:512
+#: toolbox.py:511
 msgid "Star"
 msgstr "Ster"
 
-#: toolbox.py:516
+#: toolbox.py:515
 #, fuzzy
 msgid "Trapezoid"
 msgstr "Trepesium"
 
-#: toolbox.py:520
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "Driehoek"
 
-#: toolbox.py:563
+#: toolbox.py:562
 #, fuzzy
 msgid "Type"
 msgstr "Soort"
 
-#: toolbox.py:661
+#: toolbox.py:660
 #, fuzzy
 msgid "Insert Image"
 msgstr "Voeg in Beeld"
 
-#: toolbox.py:674
+#: toolbox.py:673
 #, fuzzy
 msgid "Rotate Left"
 msgstr "Roteer linksom"
 
-#: toolbox.py:678
+#: toolbox.py:677
 #, fuzzy
 msgid "Rotate Right"
 msgstr "Roteer regsom"
 
-#: toolbox.py:683
+#: toolbox.py:682
 #, fuzzy
 msgid "Horizontal Mirror"
 msgstr "Spieël Beeld Horisontaal"
 
-#: toolbox.py:688
+#: toolbox.py:687
 #, fuzzy
 msgid "Vertical Mirror"
 msgstr "Spieël Beeld Vertikaal"
 
-#: toolbox.py:692
-msgid "Height"
-msgstr "Hoogte"
-
-#: toolbox.py:703
-msgid "Width"
-msgstr "Wydte"
-
-#: toolbox.py:718
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "Gryskleur"
 
-#: toolbox.py:721
+#: toolbox.py:698
 #, fuzzy
 msgid "Rainbow"
 msgstr "Reënboog"
 
-#: toolbox.py:726
+#: toolbox.py:703
 #, fuzzy
 msgid "Invert Colors"
 msgstr "Negatief Kleure"
-
-#: toolbox.py:801 toolbox.py:805
-#, fuzzy
-msgid "Choose image"
-msgstr "Kies beeld"
 
 #: widgets.py:17
 msgid "Size: "
@@ -295,6 +289,16 @@ msgstr "Vorm"
 #, fuzzy
 msgid "Stamp properties"
 msgstr "Vorms eienskappe"
+
+#~ msgid "Height"
+#~ msgstr "Hoogte"
+
+#~ msgid "Width"
+#~ msgstr "Wydte"
+
+#, fuzzy
+#~ msgid "Choose image"
+#~ msgstr "Kies beeld"
 
 #~ msgid "Text"
 #~ msgstr "Teks"

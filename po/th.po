@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:33-0400\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
 "PO-Revision-Date: 2012-03-09 10:24+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,205 +45,221 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "วาดภาพ"
 
-#: toolbox.py:103
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
+
+#: toolbox.py:105
 msgid "Edit"
 msgstr "แก้ไข"
 
-#: toolbox.py:113
+#: toolbox.py:115
 msgid "Shapes"
 msgstr "รูปทรง"
 
-#: toolbox.py:119
+#: toolbox.py:121
 msgid "Fonts"
 msgstr "แบบอักษร"
 
-#: toolbox.py:125
+#: toolbox.py:127
 msgid "Image"
 msgstr "รูปภาพ"
 
-#: toolbox.py:150
+#: toolbox.py:166
 msgid "Undo"
 msgstr "เลิกทำ"
 
-#: toolbox.py:151
+#: toolbox.py:167
 msgid "Redo"
 msgstr "ทำซ้ำ"
 
-#: toolbox.py:152
+#: toolbox.py:168
 msgid "Copy"
 msgstr "คัดลอก"
 
-#: toolbox.py:153
+#: toolbox.py:169
 msgid "Paste"
 msgstr "วาง"
 
-#: toolbox.py:161
+#: toolbox.py:177
 msgid "Clear"
 msgstr "ล้าง"
 
-#: toolbox.py:242 widgets.py:311
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr "คุณสมบัติของแปรง"
 
-#: toolbox.py:253
+#: toolbox.py:268
 msgid "Brush"
 msgstr "แปรง"
 
-#: toolbox.py:258
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "ยางลบ"
 
-#: toolbox.py:262
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "ถังสี"
 
-#: toolbox.py:266
+#: toolbox.py:281
 msgid "Picker"
 msgstr ""
 
-#: toolbox.py:270
+#: toolbox.py:285
 msgid "Stamp"
 msgstr "ประทับ"
 
-#: toolbox.py:283
+#: toolbox.py:298
 msgid "Select Area"
 msgstr "เลือกพื้นที่"
 
-#: toolbox.py:378
+#: toolbox.py:389
 msgid "Fill"
 msgstr "เติม"
 
-#: toolbox.py:384 widgets.py:277
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr "คงมุมมองไว้"
 
-#: toolbox.py:401
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "ด้าน: "
 
-#: toolbox.py:456
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "คุณสมบัติของรูปร่าง"
 
-#: toolbox.py:468
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "วงรี"
 
-#: toolbox.py:472
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "สี่เหลี่ยม"
 
-#: toolbox.py:476
+#: toolbox.py:487
 msgid "Line"
 msgstr "เส้น"
 
-#: toolbox.py:480
+#: toolbox.py:491
 msgid "Free form"
 msgstr "รูปร่างอิสระ"
 
-#: toolbox.py:484
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "รูปหลายเหลี่ยม"
 
-#: toolbox.py:488
+#: toolbox.py:499
 msgid "Heart"
 msgstr "หัวใจ"
 
-#: toolbox.py:492
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "สี่เหลี่ยมด้านขนานห"
 
-#: toolbox.py:496
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "ลูกศร"
 
-#: toolbox.py:500
+#: toolbox.py:511
 msgid "Star"
 msgstr "ดาว"
 
-#: toolbox.py:504
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "สี่เหลี่ยมคางหมู"
 
-#: toolbox.py:508
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "สามเหลี่ยม"
 
-#: toolbox.py:555
+#: toolbox.py:562
 msgid "Type"
 msgstr "ชนิด"
 
-#: toolbox.py:666
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "แทรกภาพ"
 
-#: toolbox.py:679
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "หมุนซ้าย"
 
-#: toolbox.py:683
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "หมุนขวา"
 
-#: toolbox.py:688
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr "กลับภาพในแนวนอน"
 
-#: toolbox.py:693
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr "กลับภาพในแนวตั้ง"
 
-#: toolbox.py:697
-msgid "Height"
-msgstr "ความสูง"
-
-#: toolbox.py:708
-msgid "Width"
-msgstr "ความกว้าง"
-
-#: toolbox.py:723
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "ขาวดำ"
 
-#: toolbox.py:726
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "รุ้ง"
 
-#: toolbox.py:731
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr "สลับค่าสี"
 
-#: toolbox.py:806 toolbox.py:810
-msgid "Choose image"
-msgstr "เลือกภาพ"
-
-#: widgets.py:24
-msgid "Choose brush properties"
-msgstr "เลือกคุณสมบัติของแปรง"
-
-#: widgets.py:238
+#: widgets.py:17
 msgid "Size: "
 msgstr "ขนาด: "
 
-#: widgets.py:249
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
 msgid "Circle"
 msgstr "วงกลม"
 
-#: widgets.py:259
+#: widgets.py:17
 msgid "Square"
 msgstr "สี่เหลี่ยม"
 
-#: widgets.py:271
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "เลือกคุณสมบัติของแปรง"
+
+#: widgets.py:255
+msgid "Size"
+msgstr ""
+
+#: widgets.py:272
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:294
 msgid "Shape"
 msgstr "รูปทรง"
 
-#: widgets.py:303
+#: widgets.py:329
 msgid "Stamp properties"
 msgstr "คุณสมบัติของประทับ"
+
+#~ msgid "Height"
+#~ msgstr "ความสูง"
+
+#~ msgid "Width"
+#~ msgstr "ความกว้าง"
+
+#~ msgid "Choose image"
+#~ msgstr "เลือกภาพ"
 
 #~ msgid "Tools"
 #~ msgstr "เครื่องมือ"

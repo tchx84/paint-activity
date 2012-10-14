@@ -34,9 +34,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-11 00:31-0400\n"
-"PO-Revision-Date: 2012-08-23 07:43+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"PO-Revision-Date: 2012-08-27 07:36+0200\n"
+"Last-Translator: aman0115 <aman.maharjan@olenepal.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
@@ -45,9 +45,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "रोगन"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
 
 #: toolbox.py:105
 msgid "Edit"
@@ -85,150 +92,137 @@ msgstr "प्रतिलिपी सार"
 msgid "Clear"
 msgstr "सफा गर"
 
-#: toolbox.py:258 widgets.py:339
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr "ब्रसका गुणहरु"
 
-#: toolbox.py:269
+#: toolbox.py:268
 msgid "Brush"
 msgstr "बुरुस"
 
-#: toolbox.py:274
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "मेट्ने"
 
-#: toolbox.py:278
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "बाल्टिन"
 
-#: toolbox.py:282
+#: toolbox.py:281
 msgid "Picker"
-msgstr ""
+msgstr "टिप्ने"
 
-#: toolbox.py:286
+#: toolbox.py:285
 msgid "Stamp"
-msgstr ""
+msgstr "छाप"
 
-#: toolbox.py:299
+#: toolbox.py:298
 msgid "Select Area"
 msgstr "क्षेत्र चयन गर्नुहोस्"
 
-#: toolbox.py:390
+#: toolbox.py:389
 msgid "Fill"
 msgstr "भर"
 
-#: toolbox.py:396 widgets.py:300
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr "आकार राख्नुहोस"
 
-#: toolbox.py:413
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "सतहरु:॒ "
 
-#: toolbox.py:468
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "आकारका गुणहरु"
 
-#: toolbox.py:480
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "अण्डाकार क्षेत्र"
 
-#: toolbox.py:484
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "चतुर्भुज"
 
-#: toolbox.py:488
+#: toolbox.py:487
 msgid "Line"
 msgstr "रेखा"
 
-#: toolbox.py:492
+#: toolbox.py:491
 msgid "Free form"
 msgstr "स्वतन्त्र रुप"
 
-#: toolbox.py:496
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "बहुभुज"
 
-#: toolbox.py:500
+#: toolbox.py:499
 msgid "Heart"
 msgstr "मुटु"
 
-#: toolbox.py:504
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "समानान्तर चतुर्भुज"
 
-#: toolbox.py:508
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "तीर"
 
-#: toolbox.py:512
+#: toolbox.py:511
 msgid "Star"
 msgstr "तारा"
 
-#: toolbox.py:516
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "असमान्तर भुज"
 
-#: toolbox.py:520
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "त्रिभुज"
 
-#: toolbox.py:563
+#: toolbox.py:562
 msgid "Type"
 msgstr "प्रकार"
 
-#: toolbox.py:661
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "चित्र घुसाऊ"
 
-#: toolbox.py:674
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "बायाँ तिर घुमाऊ"
 
-#: toolbox.py:678
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "दायाँ तिर घुमाऊ"
 
-#: toolbox.py:683
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr "तेर्सो ऐना"
 
-#: toolbox.py:688
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr "ठाडो ऐना"
 
-#: toolbox.py:692
-msgid "Height"
-msgstr "उचाई"
-
-#: toolbox.py:703
-msgid "Width"
-msgstr "चौडाई"
-
-#: toolbox.py:718
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "बेरङ्गी"
 
-#: toolbox.py:721
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "इन्द्रेणी"
 
-#: toolbox.py:726
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr "रङहरु उल्टाउनुहोस्"
-
-#: toolbox.py:801 toolbox.py:805
-msgid "Choose image"
-msgstr "चित्र छान"
 
 #: widgets.py:17
 msgid "Size: "
 msgstr "आकार:॒ "
 
 #: widgets.py:17
-#, fuzzy
 msgid "Opacity: "
-msgstr "अपारदर्सकता "
+msgstr "अस्पष्टता: "
 
 #: widgets.py:17
 msgid "Circle"
@@ -247,9 +241,8 @@ msgid "Size"
 msgstr "आकार"
 
 #: widgets.py:272
-#, fuzzy
 msgid "Opacity"
-msgstr "ओपेसिटी"
+msgstr "अस्पष्टता"
 
 #: widgets.py:294
 msgid "Shape"
@@ -258,6 +251,15 @@ msgstr "आकार"
 #: widgets.py:329
 msgid "Stamp properties"
 msgstr "छापका गुणहरु"
+
+#~ msgid "Height"
+#~ msgstr "उचाई"
+
+#~ msgid "Width"
+#~ msgstr "चौडाई"
+
+#~ msgid "Choose image"
+#~ msgstr "चित्र छान"
 
 #~ msgid "Tools"
 #~ msgstr "औजारहरु"

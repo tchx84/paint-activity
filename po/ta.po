@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 00:33-0400\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
 "PO-Revision-Date: 2012-03-10 16:41+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,205 +45,221 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "நிறம்/மை"
 
-#: toolbox.py:103
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
+
+#: toolbox.py:105
 msgid "Edit"
 msgstr "திருத்து"
 
-#: toolbox.py:113
+#: toolbox.py:115
 msgid "Shapes"
 msgstr "வடிவங்கள்"
 
-#: toolbox.py:119
+#: toolbox.py:121
 msgid "Fonts"
 msgstr "எழுத்துருக்கள்"
 
-#: toolbox.py:125
+#: toolbox.py:127
 msgid "Image"
 msgstr "படம்"
 
-#: toolbox.py:150
+#: toolbox.py:166
 msgid "Undo"
 msgstr "செயலை றத்து செய்"
 
-#: toolbox.py:151
+#: toolbox.py:167
 msgid "Redo"
 msgstr "செயலை மீண்டும் செய்"
 
-#: toolbox.py:152
+#: toolbox.py:168
 msgid "Copy"
 msgstr "பிரதி"
 
-#: toolbox.py:153
+#: toolbox.py:169
 msgid "Paste"
 msgstr "ஒட்டு"
 
-#: toolbox.py:161
+#: toolbox.py:177
 msgid "Clear"
 msgstr "இல்லாமல் செய்"
 
-#: toolbox.py:242 widgets.py:311
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr "தூரிகை பண்புகள்"
 
-#: toolbox.py:253
+#: toolbox.py:268
 msgid "Brush"
 msgstr "தூரிகை"
 
-#: toolbox.py:258
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "அழிப்பான்"
 
-#: toolbox.py:262
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "வாளி"
 
-#: toolbox.py:266
+#: toolbox.py:281
 msgid "Picker"
 msgstr ""
 
-#: toolbox.py:270
+#: toolbox.py:285
 msgid "Stamp"
 msgstr "முத்திரை"
 
-#: toolbox.py:283
+#: toolbox.py:298
 msgid "Select Area"
 msgstr "பகுதியை தெரிவு செய்"
 
-#: toolbox.py:378
+#: toolbox.py:389
 msgid "Fill"
 msgstr "நிரப்புதல்"
 
-#: toolbox.py:384 widgets.py:277
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr "பார்வையை வைத்திரு"
 
-#: toolbox.py:401
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "பக்கங்கள்: "
 
-#: toolbox.py:456
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "வடிவங்களின் பண்புகள்"
 
-#: toolbox.py:468
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "நீள்வட்டம்"
 
-#: toolbox.py:472
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "செவ்வகம்"
 
-#: toolbox.py:476
+#: toolbox.py:487
 msgid "Line"
 msgstr "கோடு"
 
-#: toolbox.py:480
+#: toolbox.py:491
 msgid "Free form"
 msgstr "இலவச படிவம்"
 
-#: toolbox.py:484
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "பல்கோணி"
 
-#: toolbox.py:488
+#: toolbox.py:499
 msgid "Heart"
 msgstr "இதயம்"
 
-#: toolbox.py:492
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "இணைகரம்"
 
-#: toolbox.py:496
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "அம்பு"
 
-#: toolbox.py:500
+#: toolbox.py:511
 msgid "Star"
 msgstr "நட்சத்திரம்"
 
-#: toolbox.py:504
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "சரிவகம்"
 
-#: toolbox.py:508
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "முக்கோணம்"
 
-#: toolbox.py:555
+#: toolbox.py:562
 msgid "Type"
 msgstr "எழுது"
 
-#: toolbox.py:666
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "படத்தை உச்சேர்"
 
-#: toolbox.py:679
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "இடது பக்கத்திருப்பு"
 
-#: toolbox.py:683
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "வலது பக்கத்திருப்பு"
 
-#: toolbox.py:688
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr "கிடைமட்ட கண்ணாடி"
 
-#: toolbox.py:693
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr "நெர்மட்ட கண்ணாடி"
 
-#: toolbox.py:697
-msgid "Height"
-msgstr "உயரம்"
-
-#: toolbox.py:708
-msgid "Width"
-msgstr "அகலம்"
-
-#: toolbox.py:723
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "நரை மாதிரி"
 
-#: toolbox.py:726
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "வானவில்"
 
-#: toolbox.py:731
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr "வண்ணத்தை தழைகீழாக்கு"
 
-#: toolbox.py:806 toolbox.py:810
-msgid "Choose image"
-msgstr "படத்தை தெரிவு செய்"
-
-#: widgets.py:24
-msgid "Choose brush properties"
-msgstr "தூரிகை பண்புகளை தெறிவுச்செய்"
-
-#: widgets.py:238
+#: widgets.py:17
 msgid "Size: "
 msgstr "அளவு: "
 
-#: widgets.py:249
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
 msgid "Circle"
 msgstr "வட்டம்"
 
-#: widgets.py:259
+#: widgets.py:17
 msgid "Square"
 msgstr "சதுரம்"
 
-#: widgets.py:271
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "தூரிகை பண்புகளை தெறிவுச்செய்"
+
+#: widgets.py:255
+msgid "Size"
+msgstr ""
+
+#: widgets.py:272
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:294
 msgid "Shape"
 msgstr "வடிவம்"
 
-#: widgets.py:303
+#: widgets.py:329
 msgid "Stamp properties"
 msgstr "முத்திரை பண்புகள்"
+
+#~ msgid "Height"
+#~ msgstr "உயரம்"
+
+#~ msgid "Width"
+#~ msgstr "அகலம்"
+
+#~ msgid "Choose image"
+#~ msgstr "படத்தை தெரிவு செய்"
 
 #~ msgid "Tools"
 #~ msgstr "கருவிகள்"

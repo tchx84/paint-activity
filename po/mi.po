@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 00:31-0400\n"
+"POT-Creation-Date: 2012-10-06 00:30-0400\n"
 "PO-Revision-Date: 2012-09-21 10:57+0200\n"
 "Last-Translator: hariru <hariruroa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "Peita"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
+"free. Transform images in your mind to beautiful paintings."
+msgstr ""
 
 #: toolbox.py:105
 msgid "Edit"
@@ -57,127 +64,127 @@ msgstr "Whakapiri"
 msgid "Clear"
 msgstr "Ūkui"
 
-#: toolbox.py:258 widgets.py:339
+#: toolbox.py:257 widgets.py:339
 msgid "Brush properties"
 msgstr "Ngā āhuatanga paraihe"
 
-#: toolbox.py:269
+#: toolbox.py:268
 msgid "Brush"
 msgstr "Paraihe"
 
-#: toolbox.py:274
+#: toolbox.py:273
 msgid "Eraser"
 msgstr "Pūkōmuru"
 
-#: toolbox.py:278
+#: toolbox.py:277
 msgid "Bucket"
 msgstr "Pakete"
 
-#: toolbox.py:282
+#: toolbox.py:281
 msgid "Picker"
 msgstr "Pūwhiri"
 
-#: toolbox.py:286
+#: toolbox.py:285
 msgid "Stamp"
 msgstr "Hīri"
 
-#: toolbox.py:299
+#: toolbox.py:298
 msgid "Select Area"
 msgstr "Tīpako Wāhi"
 
-#: toolbox.py:390
+#: toolbox.py:389
 msgid "Fill"
 msgstr "Whakakī"
 
-#: toolbox.py:396 widgets.py:300
+#: toolbox.py:395 widgets.py:300
 msgid "Keep aspect"
 msgstr "Penapena āhuatanga"
 
-#: toolbox.py:413
+#: toolbox.py:412
 msgid "Sides: "
 msgstr "Ngā Taha: "
 
-#: toolbox.py:468
+#: toolbox.py:467
 msgid "Shapes properties"
 msgstr "Ngā āhuatanga auaha"
 
-#: toolbox.py:480
+#: toolbox.py:479
 msgid "Ellipse"
 msgstr "Pororapa"
 
-#: toolbox.py:484
+#: toolbox.py:483
 msgid "Rectangle"
 msgstr "Tapawhā"
 
-#: toolbox.py:488
+#: toolbox.py:487
 msgid "Line"
 msgstr "Raina"
 
-#: toolbox.py:492
+#: toolbox.py:491
 msgid "Free form"
 msgstr "Tuhi Tene"
 
-#: toolbox.py:496
+#: toolbox.py:495
 msgid "Polygon"
 msgstr "Tapamaha"
 
-#: toolbox.py:500
+#: toolbox.py:499
 msgid "Heart"
 msgstr "Manawa"
 
-#: toolbox.py:504
+#: toolbox.py:503
 msgid "Parallelogram"
 msgstr "Kauwhatawhakarara"
 
-#: toolbox.py:508
+#: toolbox.py:507
 msgid "Arrow"
 msgstr "Pere"
 
-#: toolbox.py:512
+#: toolbox.py:511
 msgid "Star"
 msgstr "Whetū"
 
-#: toolbox.py:516
+#: toolbox.py:515
 msgid "Trapezoid"
 msgstr "Tapawhā rite rua"
 
-#: toolbox.py:520
+#: toolbox.py:519
 msgid "Triangle"
 msgstr "Tapatoru"
 
-#: toolbox.py:563
+#: toolbox.py:562
 msgid "Type"
 msgstr "Momo"
 
-#: toolbox.py:661
+#: toolbox.py:660
 msgid "Insert Image"
 msgstr "Kōkuhu Atahanga"
 
-#: toolbox.py:674
+#: toolbox.py:673
 msgid "Rotate Left"
 msgstr "Tītaka Mauī"
 
-#: toolbox.py:678
+#: toolbox.py:677
 msgid "Rotate Right"
 msgstr "Tītaka Matau"
 
-#: toolbox.py:683
+#: toolbox.py:682
 msgid "Horizontal Mirror"
 msgstr "Mira Whakapae"
 
-#: toolbox.py:688
+#: toolbox.py:687
 msgid "Vertical Mirror"
 msgstr "Mira Poutū"
 
-#: toolbox.py:696
+#: toolbox.py:695
 msgid "Grayscale"
 msgstr "Ine Pūmā"
 
-#: toolbox.py:699
+#: toolbox.py:698
 msgid "Rainbow"
 msgstr "Kahukura"
 
-#: toolbox.py:704
+#: toolbox.py:703
 msgid "Invert Colors"
 msgstr "Huripoki Tae"
 
