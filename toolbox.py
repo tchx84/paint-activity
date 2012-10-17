@@ -298,10 +298,6 @@ class ToolsToolbarBuilder():
             activity.tool_group, _('Select Area'))
         toolbar.insert(self._tool_marquee_rectangular, -1)
 
-        separator = Gtk.SeparatorToolItem()
-        separator.set_draw(True)
-        toolbar.insert(separator, -1)
-
         # New connect method
         # Using dictionnaries to control tool's properties
         #self._tool_pencil.connect('clicked', self.set_tool,
