@@ -1012,51 +1012,14 @@ class Area(Gtk.DrawingArea):
 
             @param  self -- the Area object (GtkDrawingArea)
         """
-        clipBoard = Gtk.Clipboard()
-        if 'SUGAR_ACTIVITY_ROOT' in os.environ:
-            temp_dir = os.path.join(os.environ.get('SUGAR_ACTIVITY_ROOT'),
-                'instance')
-        else:
-            temp_dir = '/tmp'
-
-        f, tempPath = tempfile.mkstemp(suffix='.png', dir=temp_dir)
-        del f
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         selection_surface = self.get_selection()
         if selection_surface is None:
             selection_surface = self.drawing_canvas
-        logging.error('Saving file %s', tempPath)
-        selection_surface.write_to_png(tempPath)
-        os.chmod(tempPath, 0604)
 
-        clipBoard.set_with_data([('text/uri-list', 0, 0)],
-            self._copy_get_func, self._copy_clear_func, tempPath)
-
-    def _copy_get_func(self, clipboard, selection_data, info, data):
-        """  Determine type data to put in clipboard
-
-            @param  self -- the Area object (GtkDrawingArea)
-            @param  clipboard -- a Gtk.Clipboard object
-            @param  selection_data -- data of selection
-            @param  info -- the app assigned integer associated with a target
-            @param  data -- user data (tempPath)
-        """
-        tempPath = data
-
-        if selection_data.target == "text/uri-list":
-            selection_data.set_uris(['file://' + tempPath])
-
-    def _copy_clear_func(self, clipboard, data):
-        """ Clear the clipboard
-
-            @param  self -- the Area object (GtkDrawingArea)
-            @param  clipboard -- a Gtk.Clipboard object
-            @param  data -- user data (tempPath)
-        """
-        if (data != None):
-            if (os.path.exists(data)):
-                os.remove(data)
-        data = None
+        pxb = self._surface_to_pixbuf(selection_surface)
+        clipboard.set_image(pxb)
 
     def drag_data_received(self, w, context, x, y, data, info, time):
         if data and data.format == 8:
@@ -1073,34 +1036,27 @@ class Area(Gtk.DrawingArea):
         """
         width, height = self.get_size()
 
-        tempPath = os.path.join("/tmp", "tempFile")
-        tempPath = os.path.abspath(tempPath)
-
-        clipBoard = Gtk.Clipboard()
+        clipBoard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         if clipBoard.wait_is_image_available():
-            logging.debug('Area.paste(self): Wait is image available')
+            logging.error('Area.paste(self): Wait is image available')
             self.getout(True)
             pixbuf_sel = clipBoard.wait_for_image()
-            width, height = pixbuf_sel.get_width(), pixbuf_sel.get_height()
+            self.load_pixbuf(pixbuf_sel)
+            self.pending_clean_selection_background = False
 
-            self.temp_ctx.rectangle(0, 0, width, height)
-            Gdk.cairo_set_source_pixbuf(self.temp_ctx, pixbuf_sel, 0, 0)
-            self.temp_ctx.paint()
-            self.set_selection_bounds(0, 0, width, height)
-            self.desenha = True
-            self.tool['name'] = 'marquee-rectangular'  # TODO: change toolbar?
-            self.emit('select')
         elif clipBoard.wait_is_uris_available():
-            logging.debug('Area.paste(self): is uris available')
+            logging.error('Area.paste(self): is uris available')
             selection = clipBoard.wait_for_contents('text/uri-list')
             if selection != None:
                 for uri in selection.get_uris():
                     self.load_image(urlparse(uri).path, self)
         else:
+            tempPath = os.path.join("/tmp", "tempFile")
+            tempPath = os.path.abspath(tempPath)
             self.load_image(tempPath, self)
-            logging.debug('Area.paste(self): Load from clipboard fails')
-            logging.debug('loading from tempPath')
+            logging.error('Area.paste(self): Load from clipboard fails')
+            logging.error('loading from tempPath')
 
         self.queue_draw()
 
@@ -1286,6 +1242,7 @@ class Area(Gtk.DrawingArea):
         surface.write_to_png(pixbuf_data)
         pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
         pxb_loader.write(pixbuf_data.getvalue())
+        pxb_loader.close()
         return pxb_loader.get_pixbuf()
 
     def _pixbuf_to_context(self, pixbuf, context, x=0, y=0):
@@ -1425,6 +1382,7 @@ class Area(Gtk.DrawingArea):
         self.set_selection_bounds(0, 0, 0, 0)
         self._selection_horizontal_scale = 1.0
         self._selection_vertical_scale = 1.0
+        self.selection_resized_surface = None
 
     def set_selection_bounds(self, x, y, width, height):
         """
@@ -1521,6 +1479,9 @@ class Area(Gtk.DrawingArea):
         logging.debug('Area.load_image Loading file %s', name)
 
         pixbuf = GdkPixbuf.Pixbuf.new_from_file(name)
+        self.load_pixbuf(pixbuf)
+
+    def load_pixbuf(self, pixbuf):
         width, height = (int)(pixbuf.get_width()), (int)(pixbuf.get_height())
 
         logging.debug('image size %d x %d', width, height)
