@@ -127,10 +127,14 @@ class Area(Gtk.DrawingArea):
                 Gdk.EventMask.POINTER_MOTION_HINT_MASK |
                 Gdk.EventMask.BUTTON_PRESS_MASK |
                 Gdk.EventMask.BUTTON_RELEASE_MASK |
+                Gdk.EventMask.BUTTON_MOTION_MASK |
                 Gdk.EventMask.EXPOSURE_MASK |
                 Gdk.EventMask.LEAVE_NOTIFY_MASK |
                 Gdk.EventMask.ENTER_NOTIFY_MASK |
-                Gdk.EventMask.KEY_PRESS_MASK)
+                Gdk.EventMask.KEY_PRESS_MASK |
+                Gdk.EventMask.TOUCH_MASK)
+
+        self.connect('event', self.__event_cb)
 
         self.connect("draw", self.draw)
         self.connect("motion_notify_event", self.mousemove)
@@ -207,6 +211,10 @@ class Area(Gtk.DrawingArea):
         self.drawing = False
         self.x_cursor = 0
         self.y_cursor = 0
+
+        # touch cache position
+        self._last_x_touch = 0
+        self._last_y_touch = 0
 
     def _set_screen_dpi(self):
         dpi = _get_screen_dpi()
@@ -385,6 +393,22 @@ class Area(Gtk.DrawingArea):
                 self.last_x_cursor = self.x_cursor
                 self.last_y_cursor = self.y_cursor
 
+    def __event_cb(self, widget, event):
+        if event.type in (Gdk.EventType.TOUCH_BEGIN,
+                Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END):
+            x = int(event.get_coords()[1])
+            y = int(event.get_coords()[2])
+
+            seq = str(event.touch.sequence)
+            state = event.get_state()[1]
+
+            if event.type == Gdk.EventType.TOUCH_BEGIN:
+                self.tool_start(x, y, True)
+
+            elif event.type == Gdk.EventType.TOUCH_END:
+                shift_pressed = state & Gdk.ModifierType.SHIFT_MASK
+                self.tool_end(x, y, shift_pressed)
+
     def mousedown(self, widget, event):
         """Make the Area object (GtkDrawingArea) recognize
            that the mouse button has been pressed.
@@ -394,13 +418,19 @@ class Area(Gtk.DrawingArea):
             @param event -- GdkEvent
 
         """
-        width, height = self.get_size()
-        coords = int(event.x), int(event.y)
+        coord_x, coord_y = int(event.x), int(event.y)
+        # TODO: get_pointer is deprecated
+# http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
+        _pointer, x, y, state = event.window.get_pointer()
+        button1_pressed = state & Gdk.ModifierType.BUTTON1_MASK
+        self.tool_start(coord_x, coord_y, button1_pressed)
 
+    def tool_start(self, coord_x, coord_y, button1_pressed):
+        width, height = self.get_size()
         # text
         design_mode = True
         if self.tool['name'] == 'text':
-            self.d.text(widget, event)
+            self.d.text(self, coord_x, coord_y)
             design_mode = False
 
         # This fixes a bug that made the text viewer get stuck in the canvas
@@ -416,46 +446,43 @@ class Area(Gtk.DrawingArea):
                 text = buf.get_text(start, end, True)
 
             if text is not None:
-                self.d.text(widget, event)
+                self.d.text(self, coord_x, coord_y)
             self.text_in_progress = False
             self.activity.textview.hide()
 
+        coords = (coord_x, coord_y)
         if not self._selresize:
             # if resizing don't update to remember previous resize
             self.oldx, self.oldy = coords
 
-        # TODO: get_pointer is deprecated
-# http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
-        _pointer, x, y, state = event.window.get_pointer()
-
         if self.tool['name'] == 'picker':
             self.pick_color(x, y)
 
-        if state & Gdk.ModifierType.BUTTON1_MASK:
+        if button1_pressed:
             #Handle with the left button click event.
             if self.tool['name'] == 'eraser':
                 self.last = []
-                self.d.eraser(widget, coords, self.last)
+                self.d.eraser(self, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'brush':
                 self.last = []
-                self.d.brush(widget, coords, self.last)
+                self.d.brush(self, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'stamp':
                 self.last = []
-                self.d.stamp(widget, coords, self.last)
+                self.d.stamp(self, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'rainbow':
                 self.last = []
-                self.d.rainbow(widget, coords, self.last)
+                self.d.rainbow(self, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] == 'freeform':
                 self.configure_line(self.tool['line size'])
-                self.d.freeform(widget, coords, True,
+                self.d.freeform(self, coords, True,
                     self.tool['fill'], "motion")
             if self.tool['name'] == 'marquee-rectangular':
                 if self.is_selected():
@@ -468,7 +495,7 @@ class Area(Gtk.DrawingArea):
                         # because can be older if was resized before
                         self.oldx, self.oldy = coords
                         # inside the selected area
-                        self.d.move_selection(widget, coords)
+                        self.d.move_selection(self, coords)
                         self._selmove = True
                         self._selresize = False
                     elif self.check_point_in_area(coords[0], coords[1],
@@ -528,96 +555,108 @@ class Area(Gtk.DrawingArea):
         """
         x = event.x
         y = event.y
-        state = event.get_state()
+        shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
+        button1_pressed = event.get_state() & Gdk.ModifierType.BUTTON1_MASK
+        self.tool_move(x, y, button1_pressed, shift_pressed)
+        Gdk.event_request_motions(event)
 
+    def tool_move(self, x, y, button1_pressed, shift_pressed):
         self.x_cursor, self.y_cursor = int(x), int(y)
+
+        # the touch driver trigger many events sensing movements up and down
+        # by only a pixel. This code caches the last position and ignores
+        # the movement if is not bigger than one pixel to avoid redraws
+        if abs(x - self._last_x_touch) > 1 or \
+            abs(y > self._last_y_touch) > 1:
+            self._last_x_touch = x
+            self._last_y_touch = y
+        else:
+            return
 
         coords = int(x), int(y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
-            if (state & Gdk.ModifierType.SHIFT_MASK) or \
-                self.keep_shape_ratio:
+            if shift_pressed or self.keep_shape_ratio:
                 if self.tool['name'] in ['rectangle', 'ellipse']:
                     coords = self._keep_selection_ratio(coords)
                 elif self.tool['name'] == 'line':
                     coords = self._keep_line_ratio(coords)
 
-        if state & Gdk.ModifierType.BUTTON1_MASK:
+        if button1_pressed:
             if self.tool['name'] == 'eraser':
-                self.d.eraser(widget, coords, self.last)
+                self.d.eraser(self, coords, self.last)
                 self.last = coords
 
             elif self.tool['name'] == 'brush':
-                self.d.brush(widget, coords, self.last)
+                self.d.brush(self, coords, self.last)
                 self.last = coords
 
             elif self.tool['name'] == 'stamp':
-                self.d.stamp(widget, coords, self.last,
+                self.d.stamp(self, coords, self.last,
                              self.tool['stamp size'])
                 self.last = coords
 
             elif self.tool['name'] == 'rainbow':
-                self.d.rainbow(widget, coords, self.last)
+                self.d.rainbow(self, coords, self.last)
                 self.last = coords
 
             if self.desenha:
                 if self.tool['name'] == 'line':
-                    self.d.line(widget, coords, True)
+                    self.d.line(self, coords, True)
 
                 elif self.tool['name'] == 'ellipse':
-                    self.d.circle(widget, coords, True, self.tool['fill'])
+                    self.d.circle(self, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'rectangle':
-                    self.d.square(widget, event, coords, True,
+                    self.d.square(self, coords, True,
                         self.tool['fill'])
 
                 elif self.tool['name'] == 'marquee-rectangular':
                     if self._selmove:
                         # is inside a selected area, move it
-                        self.d.move_selection(widget, coords)
+                        self.d.move_selection(self, coords)
                     elif self._selresize:
-                        self.d.resize_selection(widget, coords)
+                        self.d.resize_selection(self, coords)
                     else:
                         # create a selected area
-                        if (state & Gdk.ModifierType.CONTROL_MASK) or \
-                            self.keep_aspect_ratio:
+                        if shift_pressed or self.keep_aspect_ratio:
                             coords = self._keep_selection_ratio(coords)
-                        self.d.selection(widget, coords)
+                        self.d.selection(self, coords)
 
                 elif self.tool['name'] == 'freeform':
                     self.configure_line(self.tool['line size'])
-                    self.d.freeform(widget, coords, True,
+                    self.d.freeform(self, coords, True,
                         self.tool['fill'], "motion")
 
                 elif self.tool['name'] == 'triangle':
-                    self.d.triangle(widget, coords, True, self.tool['fill'])
+                    self.d.triangle(self, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'trapezoid':
-                    self.d.trapezoid(widget, coords, True, self.tool['fill'])
+                    self.d.trapezoid(self, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'arrow':
-                    self.d.arrow(widget, coords, True, self.tool['fill'])
+                    self.d.arrow(self, coords, True, self.tool['fill'])
 
                 elif self.tool['name'] == 'parallelogram':
-                    self.d.parallelogram(widget, coords, True,
+                    self.d.parallelogram(self, coords, True,
                         self.tool['fill'])
 
                 elif self.tool['name'] == 'star':
-                    self.d.star(widget, coords, self.tool['vertices'],
+                    self.d.star(self, coords, self.tool['vertices'],
                         True, self.tool['fill'])
 
                 elif self.tool['name'] == 'polygon_regular':
-                    self.d.polygon_regular(widget, coords,
+                    self.d.polygon_regular(self, coords,
                         self.tool['vertices'], True, self.tool['fill'])
 
                 elif self.tool['name'] == 'heart':
-                    self.d.heart(widget, coords, True, self.tool['fill'])
+                    self.d.heart(self, coords, True, self.tool['fill'])
         else:
             if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                      'stamp']:
                 # define area to update
                 last_coords = (self.last_x_cursor, self.last_y_cursor)
                 area = self.calculate_damaged_area([last_coords, coords])
-                widget.queue_draw_area(*area)
+                self.queue_draw_area(*area)
             if self.tool['name'] == 'marquee-rectangular':
                 sel_x, sel_y, sel_width, sel_height = \
                         self.get_selection_bounds()
@@ -638,10 +677,8 @@ class Area(Gtk.DrawingArea):
             elif self.tool['name'] == 'freeform':
                 self.desenha = True
                 self.configure_line(self.tool['line size'])
-                self.d.freeform(widget, coords, True,
+                self.d.freeform(self, coords, True,
                     self.tool['fill'], "moving")
-
-        Gdk.event_request_motions(event)
 
     def check_point_in_area(self, x_point, y_point, x_min, y_min,
             width, height):
@@ -656,10 +693,14 @@ class Area(Gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
             @param  event -- GdkEvent
         """
-        coords = int(event.x), int(event.y)
+        coord_x, coord_y = int(event.x), int(event.y)
+        shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
+        self.tool_end(coord_x, coord_y, shift_pressed)
+
+    def tool_end(self, coord_x, coord_y, shift_pressed):
+        coords = (coord_x, coord_y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
-            if (event.get_state() & Gdk.ModifierType.SHIFT_MASK) or \
-                self.keep_shape_ratio:
+            if shift_pressed or self.keep_shape_ratio:
                 if self.tool['name'] in ['rectangle', 'ellipse']:
                     coords = self._keep_selection_ratio(coords)
                 if self.tool['name'] == 'line':
@@ -670,13 +711,13 @@ class Area(Gtk.DrawingArea):
         private_undo = False
         if self.desenha:
             if self.tool['name'] == 'line':
-                self.d.line(widget, coords, False)
+                self.d.line(self, coords, False)
 
             elif self.tool['name'] == 'ellipse':
-                self.d.circle(widget, coords, False, self.tool['fill'])
+                self.d.circle(self, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'rectangle':
-                self.d.square(widget, event, coords, False, self.tool['fill'])
+                self.d.square(self, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'marquee-rectangular':
                 private_undo = True
@@ -688,7 +729,7 @@ class Area(Gtk.DrawingArea):
                     self.apply_temp_selection()
 
             elif self.tool['name'] == 'freeform':
-                self.d.freeform(widget, coords, False,
+                self.d.freeform(self, coords, False,
                     self.tool['fill'], 'release')
                 private_undo = True
 
@@ -701,31 +742,31 @@ class Area(Gtk.DrawingArea):
                     width, height = self.get_size()
                     self.get_window().set_cursor(Gdk.Cursor.new(
                                                     Gdk.CursorType.WATCH))
-                    GObject.idle_add(self.fast_flood_fill, widget, coords[0],
+                    GObject.idle_add(self.fast_flood_fill, self, coords[0],
                             coords[1], width, height)
 
             elif self.tool['name'] == 'triangle':
-                self.d.triangle(widget, coords, False, self.tool['fill'])
+                self.d.triangle(self, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'trapezoid':
-                self.d.trapezoid(widget, coords, False, self.tool['fill'])
+                self.d.trapezoid(self, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'arrow':
-                self.d.arrow(widget, coords, False, self.tool['fill'])
+                self.d.arrow(self, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'parallelogram':
-                self.d.parallelogram(widget, coords, False, self.tool['fill'])
+                self.d.parallelogram(self, coords, False, self.tool['fill'])
 
             elif self.tool['name'] == 'star':
-                self.d.star(widget, coords, self.tool['vertices'], False,
+                self.d.star(self, coords, self.tool['vertices'], False,
                     self.tool['fill'])
 
             elif self.tool['name'] == 'polygon_regular':
-                self.d.polygon_regular(widget, coords, self.tool['vertices'],
+                self.d.polygon_regular(self, coords, self.tool['vertices'],
                     False, self.tool['fill'])
 
             elif self.tool['name'] == 'heart':
-                self.d.heart(widget, coords, False, self.tool['fill'])
+                self.d.heart(self, coords, False, self.tool['fill'])
         else:
             if self.tool['name'] == 'marquee-rectangular':
                 if self.is_selected():
@@ -746,7 +787,7 @@ class Area(Gtk.DrawingArea):
         if self.tool['name'] != 'marquee-rectangular':
             self.desenha = False
 
-        widget.queue_draw()
+        self.queue_draw()
         self.d.clear_control_points()
 
     def fast_flood_fill(self, widget, x, y, width, height):

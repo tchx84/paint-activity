@@ -303,9 +303,8 @@ class Desenho:
             widget.queue_draw_area(x - size, y - size,
                 width + size * 2, height + size * 2)
 
-    def square(self, widget, event, coords, temp, fill):
+    def square(self, widget, coords, temp, fill):
         """Draw a square.
-
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
             @param  coords -- Two value tuple
@@ -575,18 +574,18 @@ class Desenho:
 
         widget.queue_draw()
 
-    def text(self, widget, event):
+    def text(self, widget, coord_x, coord_y):
         """Display and draw text in the drawing area.
             @param  self -- Desenho.Desenho instance
             @param  widget -- Area object (GtkDrawingArea)
-            @param  event -- GdkEvent
+            @param  coord_x
+            @param  coord_y
         """
 
         if not widget.text_in_progress:
             widget.text_in_progress = True
 
-            x, y = int(event.x), int(event.y)
-            widget.activity.move_textview(x, y)
+            widget.activity.move_textview(coord_x, coord_y)
             widget.activity.textview.show()
             widget.activity.textview.grab_focus()
 
