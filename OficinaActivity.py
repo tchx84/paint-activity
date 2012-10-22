@@ -99,6 +99,7 @@ class OficinaActivity(activity.Activity):
         self.fixed.put(self.area, 0, 0)
 
         self._sw = Gtk.ScrolledWindow()
+        self._sw.set_kinetic_scrolling(False)
         self._sw.show()
         self._sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.set_canvas(self._sw)
