@@ -456,7 +456,7 @@ class Area(Gtk.DrawingArea):
             self.oldx, self.oldy = coords
 
         if self.tool['name'] == 'picker':
-            self.pick_color(x, y)
+            self.pick_color(coord_x, coord_y)
 
         if button1_pressed:
             #Handle with the left button click event.
