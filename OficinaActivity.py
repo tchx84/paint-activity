@@ -188,7 +188,7 @@ class OficinaActivity(activity.Activity):
 
         logging.debug('writting %s w=%s h=%s' % (file_path, width, height))
         if self.area.text_in_progress:
-            self.area.d.text(self.area, event=None)
+            self.area.d.text(self.area, 0, 0)
 
         self.area.getout()
         self.area.drawing_canvas.write_to_png(file_path)

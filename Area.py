@@ -225,6 +225,9 @@ class Area(Gtk.DrawingArea):
         self._font_description = fd
         self.activity.textview.modify_font(fd)
         self.tool['font_description'] = fd.to_string()
+        if self.text_in_progress:
+            # set the focus in the textview to enable resize if needed
+            GObject.idle_add(self.activity.textview.grab_focus)
 
     def get_font_description(self):
         return Pango.FontDescription(self.tool['font_description'])
