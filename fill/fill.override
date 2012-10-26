@@ -1,14 +1,9 @@
 %%
 headers
 #include <Python.h>               
-#include <gtk/gtk.h>
-#include "pygobject.h"
 #include "eggfill.h"
 %%
 modulename _fill
-%%
-import gtk.gdk.Drawable as PyGdkDrawable_Type
-import gtk.gdk.GC as PyGdkGC_Type
 %%
 ignore-glob
   *_get_type                            

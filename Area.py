@@ -82,13 +82,13 @@ from urlparse import urlparse
 from sugar3.graphics import style
 
 FALLBACK_FILL = True
-
-#try:
-#    from fill import fill
-#    FALLBACK_FILL = False
-#except:
-#    logging.debug('No valid fill binaries. Using slower python code')
-#    pass
+try:
+    from fill import fill
+    FALLBACK_FILL = False
+    logging.error('Found fill binaries.')
+except:
+    logging.error('No valid fill binaries. Using slower python code')
+    pass
 
 ##Tools and events manipulation are handle with this class.
 
@@ -737,16 +737,9 @@ class Area(Gtk.DrawingArea):
                 private_undo = True
 
             elif self.tool['name'] == 'bucket':
-                if FALLBACK_FILL:
-                    self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorType.WATCH))
-                    GObject.idle_add(self.flood_fill, coords[0], coords[1])
-                else:
-                    width, height = self.get_size()
-                    self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorType.WATCH))
-                    GObject.idle_add(self.fast_flood_fill, self, coords[0],
-                            coords[1], width, height)
+                self.get_window().set_cursor(Gdk.Cursor.new(
+                                                Gdk.CursorType.WATCH))
+                GObject.idle_add(self.flood_fill, coords[0], coords[1])
 
             elif self.tool['name'] == 'triangle':
                 self.d.triangle(self, coords, False, self.tool['fill'])
@@ -793,15 +786,6 @@ class Area(Gtk.DrawingArea):
         self.queue_draw()
         self.d.clear_control_points()
 
-    def fast_flood_fill(self, widget, x, y, width, height):
-        fill(self.pixmap, self.gc, x, y, width,
-                height, self.gc_line.foreground.pixel)
-        widget.queue_draw()
-        self.enable_undo()
-        display = Gdk.Display.get_default()
-        cursor = Gdk.Cursor.new_from_name(display, 'paint-bucket')
-        self.get_window().set_cursor(cursor)
-
     def flood_fill(self, x, y):
         stroke_color = self.tool['cairo_stroke_color']
         r, g, b = stroke_color[0], stroke_color[1], stroke_color[2]
@@ -817,6 +801,7 @@ class Area(Gtk.DrawingArea):
         for array_type in ['H', 'I', 'L']:
             pixels = array.array(array_type)
             if pixels.itemsize == 4:
+                _array_type_used = array_type
                 break
         else:
             raise AssertionError()
@@ -834,33 +819,42 @@ class Area(Gtk.DrawingArea):
         width = self.drawing_canvas.get_width()
         height = self.drawing_canvas.get_height()
 
-        def within(x, y):
-            if x < 0 or x >= width:
-                return False
-            if y < 0 or y >= height:
-                return False
-            return True
-
-        if not within(x, y):
-            return
-        edge = [(x, y)]
-
         old_color = pixels[x + y * width]
         if old_color == fill_color:
             logging.debug('Already filled')
             return
 
-        pixels[x + y * width] = fill_color
+        if FALLBACK_FILL:
+            logging.debug('using python flood_fill')
+            def within(x, y):
+                if x < 0 or x >= width:
+                    return False
+                if y < 0 or y >= height:
+                    return False
+                return True
 
-        while len(edge) > 0:
-            newedge = []
-            for (x, y) in edge:
-                for (s, t) in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if within(s, t) and \
-                            pixels[s + t * width] == old_color:
-                        pixels[s + t * width] = fill_color
-                        newedge.append((s, t))
-            edge = newedge
+            if not within(x, y):
+                return
+            edge = [(x, y)]
+
+            pixels[x + y * width] = fill_color
+
+            while len(edge) > 0:
+                newedge = []
+                for (x, y) in edge:
+                    for (s, t) in ((x + 1, y), (x - 1, y), (x, y + 1),
+                            (x, y - 1)):
+                        if within(s, t) and \
+                                pixels[s + t * width] == old_color:
+                            pixels[s + t * width] = fill_color
+                            newedge.append((s, t))
+                edge = newedge
+
+        else:
+            logging.debug('using c flood_fill')
+            pixels2 = fill(pixels, x, y, width, height, fill_color)
+            # the c implementation returns a list instead of array.array
+            pixels = array.array(_array_type_used, pixels2)
 
         # create a updated drawing_canvas
         self.drawing_canvas_data = cairo.ImageSurface.create_for_data(pixels,

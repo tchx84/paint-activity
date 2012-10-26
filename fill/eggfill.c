@@ -51,7 +51,6 @@ Roseli de Deus Lopes                (roseli@lsi.usp.br)
 
 */
 
-#include <gtk/gtk.h>
 #include "eggfill.h"
 
 #define front(q)   ( (q)->front )
@@ -90,7 +89,6 @@ void queue_make_empty(queue *q){
             queue_dequeue(q);
 }
 
-
 void queue_enqueue(int element, queue *q){
     no *tmp;
     tmp = (no*)malloc(sizeof(no));
@@ -123,50 +121,50 @@ void queue_dequeue(queue *q){
     }
 }/* end of queue*/
 
-void fill(GdkDrawable *drawable, GdkGC *gc, int x, int y, int width, int height, int color){
+void
+floodfill(unsigned int* pixels, int x, int y, int width, int height, unsigned int color) {
 
-    printf("Entrando no fill\n");
-    int color_start;
+    printf("\nEntrando to floodfill\n");
     queue *lista_xy;
     
     lista_xy = queue_init();
 
-    GdkImage *image;
-    image = gdk_drawable_get_image(drawable,0,0,width,height);
-    printf("0x%x\n", image);
-    
-    color_start = gdk_image_get_pixel(image, x, y);
+    int color_start = pixels[x + y * width];
    
-    if (color!=color_start) {
+    if (color != color_start) {
         queue_enqueue(x, lista_xy);
-	queue_enqueue(y, lista_xy);
-        gdk_image_put_pixel(image, x, y, color);
+        queue_enqueue(y, lista_xy);
+
+        pixels[x + y * width] = color;
+
         while (!queue_is_empty(lista_xy)) {
-            if (x+1 < width){
-                if (gdk_image_get_pixel(image, x+1, y) == color_start){
-                    gdk_image_put_pixel(image, x+1, y, color);
+            if (x + 1 < width) {
+                if (pixels[(x + 1) + y * width] == color_start) {
+                    pixels[(x + 1) + y * width] = color;
                     queue_enqueue(x+1, lista_xy);
                     queue_enqueue(y, lista_xy);
                 }
-	    }
-            
-            if (x-1 >= 0){
-                if (gdk_image_get_pixel(image, x-1, y) == color_start){
-                    gdk_image_put_pixel(image, x-1, y, color);
+            }
+
+            if (x - 1 >= 0){
+                if (pixels[(x - 1) + y * width] == color_start) {
+                    pixels[(x - 1) + y * width] = color;
                     queue_enqueue(x-1, lista_xy);
                     queue_enqueue(y, lista_xy);
                 }
             }
-            if (y+1 < height){
-                if (gdk_image_get_pixel(image, x, y+1) == color_start){
-                    gdk_image_put_pixel(image, x, y+1, color);
+
+            if (y + 1 < height){
+                if (pixels[x + (y + 1) * width] == color_start) {
+                    pixels[x + (y + 1) * width] = color;
                     queue_enqueue(x, lista_xy);
                     queue_enqueue(y+1, lista_xy);
                 }
             }
-            if (y-1 >= 0){
-                if (gdk_image_get_pixel(image, x, y-1) == color_start){
-                    gdk_image_put_pixel(image, x, y-1, color);
+
+            if (y - 1 >= 0){
+                if (pixels[x + (y - 1) * width] == color_start){
+                    pixels[x + (y - 1) * width] = color;
                     queue_enqueue(x, lista_xy);
                     queue_enqueue(y-1, lista_xy);
                 }
@@ -176,13 +174,6 @@ void fill(GdkDrawable *drawable, GdkGC *gc, int x, int y, int width, int height,
             y = lista_xy->front->info;
             queue_dequeue(lista_xy);
        }
-   }
-   gdk_draw_image(drawable, gc, image, 0,0,0,0,width,height);
-   if (image != NULL) {
-	   g_object_unref(image);
-	   printf("Imagem %x\n", image);
-   } else {
-	   printf("Image = null\n");
    }
    queue_destroy(lista_xy);
 } 

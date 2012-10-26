@@ -46,26 +46,53 @@ Cientific Coordinator:
 Roseli de Deus Lopes                (roseli@lsi.usp.br)
 
 */
-#include <pygobject.h>
+#include <Python.h>
+#include "eggfill.h"
 
-void fill_register_classes (PyObject *d);
-
-extern PyMethodDef fill_functions[];
-
-DL_EXPORT(void)
-init_fill(void)
+static PyObject* fill(PyObject* self, PyObject* args)
 {
-    PyObject *m, *d;
-	
-    init_pygobject ();
+    PyObject *mylist;
+    unsigned int x, y, width, height, color;
 
-    m = Py_InitModule ("_fill", fill_functions);
-    d = PyModule_GetDict (m);
-	
-    fill_register_classes (d);
+    if (!PyArg_ParseTuple(args, "OIIIII", &mylist, &x, &y, &width, &height, &color))
+        return NULL;
 
-    if (PyErr_Occurred ()) {
-	Py_FatalError ("can't initialise module fill");
+    /* from http://mail.python.org/pipermail/tutor/1999-November/000758.html */
+    unsigned int *intarr, arrsize, index;
+    PyObject *item;
+    PyObject *pylist;
+
+    /* how many elements are in the Python object */
+    arrsize = PyObject_Length(mylist);
+    /* create a dynamic C array of integers */
+    intarr = (int *)malloc(sizeof(int)*arrsize);
+    for (index = 0; index < arrsize; index++) {
+        /* get the element from the list/tuple */
+        item = PySequence_GetItem(mylist, index);
+        /* assign to the C array */
+        intarr[index] = PyInt_AsUnsignedLongMask(item);
     }
 
+    /* now use intarr and arrsize in you extension */
+    //printf("x %u y %u width %u height %u color %u", x, y, width, height, color);
+    floodfill(intarr, x, y, width, height, color);
+
+    pylist = PyTuple_New(arrsize);
+    for (index = 0; index < arrsize; index++) {
+           PyTuple_SetItem(pylist, index, PyInt_FromLong(intarr[index]));
+    }
+
+    return Py_BuildValue("O", pylist);
+}
+
+
+static PyMethodDef FillMethods[] = {
+    {"fill", fill, METH_VARARGS, "do fill flood in a array with the image data"},
+    {NULL, NULL, 0, NULL}
+};
+ 
+PyMODINIT_FUNC
+init_fill(void)
+{
+    (void) Py_InitModule("_fill", FillMethods);
 }

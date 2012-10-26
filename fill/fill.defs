@@ -9,8 +9,7 @@
   (c-name "fill")
   (return-type "none")
   (parameters
-    '("GdkDrawable*" "drawable")
-    '("GdkGC*" "gc")
+    '("int []" "pixels")
     '("int" "x")
     '("int" "y")
     '("int" "width")

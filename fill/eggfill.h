@@ -52,7 +52,6 @@ Roseli de Deus Lopes                (roseli@lsi.usp.br)
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <gtk/gtk.h>
 
 /*to implement a queue */
 typedef struct _tno {
@@ -74,4 +73,4 @@ void queue_enqueue(int element, queue *q);
 void queue_dequeue(queue *q);
 /*end of queue*/
 
-void fill(GdkDrawable *drawable, GdkGC *gc, int x, int y, int width, int height, int color);
+void floodfill(unsigned int * pixels, int x, int y, int width, int height, unsigned int color);

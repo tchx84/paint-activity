@@ -34,12 +34,10 @@
 #Rafael Barbolo Lopes                (barbolo@gmail.com)
 #Alexandre A. Gonçalves Martinazzo   (alexandremartinazzo@gmail.com)
 
-CFLAGS = $(shell pkg-config --cflags gtk+-2.0 pygtk-2.0 | sed 's/-pthread//') \
-		 $(shell python-config --cflags) \
+CFLAGS = $(shell python-config --cflags) \
 		-fPIC
 
-LDFLAGS = $(shell pkg-config --libs gtk+-2.0 pygtk-2.0 | sed 's/-pthread//') \
-          $(shell python-config --libs)
+LDFLAGS = $(shell python-config --libs)
 
 ARCH_OUT = $(shell arch)
 
@@ -62,13 +60,9 @@ all: _fill.so
 _fill.so: fill.o eggfill.o fillmodule.o
 	$(LD) $(LDFLAGS) -shared $^ -o $@
 
-DEFS=`pkg-config --variable=defsdir pygtk-2.0`
+#DEFS=`pkg-config --variable=defsdir pygtk-2.0`
 # Generate the C wrapper
 fill.c: fill.defs fill.override
-	pygtk-codegen-2.0 --prefix fill \
-	--register $(DEFS)/gdk-types.defs \
-	--register $(DEFS)/gdk-base.defs \
-	--register $(DEFS)/gtk-types.defs \
 	--override fill.override \
 	fill.defs > $@
 
