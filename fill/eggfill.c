@@ -122,7 +122,7 @@ void queue_dequeue(queue *q){
 }/* end of queue*/
 
 void
-floodfill(unsigned int* pixels, int x, int y, int width, int height, unsigned int color) {
+floodfill(unsigned long * pixels, int x, int y, int width, int height,unsigned long color) {
 
     printf("\nEntrando to floodfill\n");
     queue *lista_xy;

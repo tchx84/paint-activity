@@ -58,28 +58,28 @@ static PyObject* fill(PyObject* self, PyObject* args)
         return NULL;
 
     /* from http://mail.python.org/pipermail/tutor/1999-November/000758.html */
-    unsigned int *intarr, arrsize, index;
+    unsigned long *intarr, arrsize, index;
     PyObject *item;
     PyObject *pylist;
 
     /* how many elements are in the Python object */
     arrsize = PyObject_Length(mylist);
     /* create a dynamic C array of integers */
-    intarr = (int *)malloc(sizeof(int)*arrsize);
+    intarr = (unsigned long *)malloc(sizeof(unsigned long)*arrsize);
     for (index = 0; index < arrsize; index++) {
         /* get the element from the list/tuple */
         item = PySequence_GetItem(mylist, index);
         /* assign to the C array */
-        intarr[index] = PyInt_AsUnsignedLongMask(item);
+        intarr[index] = PyLong_AsUnsignedLong(item);
     }
 
     /* now use intarr and arrsize in you extension */
-    //printf("x %u y %u width %u height %u color %u", x, y, width, height, color);
+    printf("x %u y %u width %u height %u color %u", x, y, width, height, color);
     floodfill(intarr, x, y, width, height, color);
 
     pylist = PyTuple_New(arrsize);
     for (index = 0; index < arrsize; index++) {
-           PyTuple_SetItem(pylist, index, PyInt_FromLong(intarr[index]));
+           PyTuple_SetItem(pylist, index, PyLong_FromUnsignedLong(intarr[index]));
     }
 
     return Py_BuildValue("O", pylist);

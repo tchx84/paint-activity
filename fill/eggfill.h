@@ -73,4 +73,4 @@ void queue_enqueue(int element, queue *q);
 void queue_dequeue(queue *q);
 /*end of queue*/
 
-void floodfill(unsigned int * pixels, int x, int y, int width, int height, unsigned int color);
+void floodfill(unsigned long * pixels, int x, int y, int width, int height, unsigned long color);
