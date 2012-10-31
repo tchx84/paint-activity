@@ -213,6 +213,8 @@ class Area(Gtk.DrawingArea):
         # touch cache position
         self._last_x_touch = 0
         self._last_y_touch = 0
+        # used to identify emulated mouse
+        self._on_touch = False
 
     def _set_screen_dpi(self):
         dpi = _get_screen_dpi()
@@ -413,6 +415,7 @@ class Area(Gtk.DrawingArea):
                     _pointer, x, y, state = event.window.get_pointer()
                     button1_pressed = state & Gdk.ModifierType.BUTTON1_MASK
                 else:
+                    self._on_touch = True
                     button1_pressed = True
                 self.tool_start(x, y, button1_pressed)
             elif event.type in (Gdk.EventType.TOUCH_END,
@@ -421,6 +424,7 @@ class Area(Gtk.DrawingArea):
                     _pointer, x, y, state = event.window.get_pointer()
                     shift_pressed = state & Gdk.ModifierType.SHIFT_MASK
                 else:
+                    self._on_touch = False
                     shift_pressed = False
                 self.tool_end(x, y, shift_pressed)
 
@@ -553,6 +557,9 @@ class Area(Gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
             @param  event -- GdkEvent
         """
+        if event.get_source_device().get_name().find('touchscreen') >= 0 and \
+            not self._on_touch:
+            return
         logging.error('mouse move')
         x = event.x
         y = event.y
