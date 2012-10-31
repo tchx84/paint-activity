@@ -725,7 +725,6 @@ class Desenho:
             @param  temp -- switch between drawing context and temp context
             @param  fill -- Fill object
         """
-
         if param == "moving":
             # mouse not pressed moving
             if self.points:
@@ -756,13 +755,32 @@ class Desenho:
                     # close the polygon
                     self.points.append((first[0], first[1]))
                     self._draw_polygon(widget, False, fill, self.points)
+                    widget.desenha = False
                     widget.last = []
                     self.points = []
                     widget.enable_undo()
-                    widget.queue_draw()
                     return
 
         widget.desenha = True
+
+        if self.points:
+            # Draw a circle to show where the freeform start/finish
+            ctx = widget.temp_ctx
+            ctx.save()
+            x_init, y_init = self.points[0]
+            ctx.new_path()
+            ctx.translate(x_init, y_init)
+            ctx.set_line_width(1)
+            ctx.set_source_rgba(1., 1., 1., 1.)
+            ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+            ctx.set_line_join(cairo.LINE_JOIN_ROUND)
+            ctx.arc(0, 0, 20, 0., 2 * math.pi)
+            ctx.stroke_preserve()
+            ctx.set_dash([5, 5], 0)
+            ctx.set_source_rgba(0., 0., 0., 1.)
+            ctx.stroke()
+            ctx.restore()
+
         # Display the polygon open in the temp canvas
         self._draw_polygon(widget, True, False, self.points, closed=False)
         self.clear_control_points()

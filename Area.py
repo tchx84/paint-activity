@@ -429,7 +429,6 @@ class Area(Gtk.DrawingArea):
                 self.tool_end(x, y, shift_pressed)
 
     def tool_start(self, coord_x, coord_y, button1_pressed):
-        logging.error('tool start')
         width, height = self.get_size()
         # text
         design_mode = True
@@ -537,16 +536,15 @@ class Area(Gtk.DrawingArea):
         # add the tool size
         if self.tool['name'] == 'stamp':
             wr, hr = self.stamp_dimentions
-            min_x = min_x - wr
-            min_y = min_y - wr
-            max_x = max_x + hr
-            max_y = max_y + hr
+        elif self.tool['name'] == 'freeform':
+            wr = hr = 20
         else:
-            size = self.tool['line size']
-            min_x = min_x - size * 2
-            min_y = min_y - size * 2
-            max_x = max_x + size * 2
-            max_y = max_y + size * 2
+            wr = hr = self.tool['line size'] * 2
+        min_x = min_x - wr
+        min_y = min_y - wr
+        max_x = max_x + hr
+        max_y = max_y + hr
+
         return (min_x, min_y, max_x - min_x, max_y - min_y)
 
     def mousemove(self, widget, event):
@@ -560,7 +558,6 @@ class Area(Gtk.DrawingArea):
         if event.get_source_device().get_name().find('touchscreen') >= 0 and \
             not self._on_touch:
             return
-        logging.error('mouse move')
         x = event.x
         y = event.y
         shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
@@ -569,7 +566,6 @@ class Area(Gtk.DrawingArea):
         Gdk.event_request_motions(event)
 
     def tool_move(self, x, y, button1_pressed, shift_pressed):
-        logging.error('tool move')
 
         self.x_cursor, self.y_cursor = int(x), int(y)
 
@@ -696,7 +692,6 @@ class Area(Gtk.DrawingArea):
                     (y_point < y_min) or (y_point > y_min + height))
 
     def tool_end(self, coord_x, coord_y, shift_pressed):
-        logging.error('tool end')
         coords = (coord_x, coord_y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
             if shift_pressed or self.keep_shape_ratio:
@@ -776,7 +771,7 @@ class Area(Gtk.DrawingArea):
             # GObject.idle_add (with the fill_flood function) finishes
             # and an unconsistent undo state is saved
             self.enable_undo()
-        if self.tool['name'] != 'marquee-rectangular':
+        if self.tool['name'] not in ('marquee-rectangular', 'freeform'):
             self.desenha = False
 
         self.queue_draw()
