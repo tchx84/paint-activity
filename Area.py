@@ -817,6 +817,7 @@ class Area(Gtk.DrawingArea):
 
         if FALLBACK_FILL:
             logging.debug('using python flood_fill')
+
             def within(x, y):
                 if x < 0 or x >= width:
                     return False
