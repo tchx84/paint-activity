@@ -138,8 +138,6 @@ class Area(Gtk.DrawingArea):
 
         self.connect("draw", self.draw)
         self.connect("motion_notify_event", self.mousemove)
-        self.connect("button_press_event", self.mousedown)
-        self.connect("button_release_event", self.mouseup)
         self.connect("key_press_event", self.key_press)
         self.connect("leave_notify_event", self.mouseleave)
         self.connect("enter_notify_event", self.mouseenter)
@@ -398,37 +396,36 @@ class Area(Gtk.DrawingArea):
 
     def __event_cb(self, widget, event):
         if event.type in (Gdk.EventType.TOUCH_BEGIN,
-                Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END):
-            x = int(event.get_coords()[1])
-            y = int(event.get_coords()[2])
-
+                Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END,
+                Gdk.EventType.BUTTON_PRESS,  # Gdk.EventType.TOUCH_UPDATE,
+                Gdk.EventType.BUTTON_RELEASE):
+                #, Gdk.EventType.MOTION_NOTIFY):
+            x = event.get_coords()[1]
+            y = event.get_coords()[2]
             seq = str(event.touch.sequence)
-            state = event.get_state()[1]
 
-            if event.type == Gdk.EventType.TOUCH_BEGIN:
-                self.tool_start(x, y, True)
-
-            elif event.type == Gdk.EventType.TOUCH_END:
-                shift_pressed = state & Gdk.ModifierType.SHIFT_MASK
+            logging.error('event x %d y %d type %s', x, y, event.type)
+            if event.type in (Gdk.EventType.TOUCH_BEGIN,
+                    Gdk.EventType.TOUCH_UPDATE, Gdk.EventType.BUTTON_PRESS):
+                    #Gdk.EventType.MOTION_NOTIFY):
+                if event.type == Gdk.EventType.BUTTON_PRESS:
+## http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
+                    _pointer, x, y, state = event.window.get_pointer()
+                    button1_pressed = state & Gdk.ModifierType.BUTTON1_MASK
+                else:
+                    button1_pressed = True
+                self.tool_start(x, y, button1_pressed)
+            elif event.type in (Gdk.EventType.TOUCH_END,
+                                Gdk.EventType.BUTTON_RELEASE):
+                if event.type == Gdk.EventType.BUTTON_RELEASE:
+                    _pointer, x, y, state = event.window.get_pointer()
+                    shift_pressed = state & Gdk.ModifierType.SHIFT_MASK
+                else:
+                    shift_pressed = False
                 self.tool_end(x, y, shift_pressed)
 
-    def mousedown(self, widget, event):
-        """Make the Area object (GtkDrawingArea) recognize
-           that the mouse button has been pressed.
-
-            @param self -- the Area object (GtkDrawingArea)
-            @param widget -- the Area object (GtkDrawingArea)
-            @param event -- GdkEvent
-
-        """
-        coord_x, coord_y = int(event.x), int(event.y)
-        # TODO: get_pointer is deprecated
-# http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
-        _pointer, x, y, state = event.window.get_pointer()
-        button1_pressed = state & Gdk.ModifierType.BUTTON1_MASK
-        self.tool_start(coord_x, coord_y, button1_pressed)
-
     def tool_start(self, coord_x, coord_y, button1_pressed):
+        logging.error('tool start')
         width, height = self.get_size()
         # text
         design_mode = True
@@ -556,6 +553,7 @@ class Area(Gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
             @param  event -- GdkEvent
         """
+        logging.error('mouse move')
         x = event.x
         y = event.y
         shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
@@ -564,6 +562,8 @@ class Area(Gtk.DrawingArea):
         Gdk.event_request_motions(event)
 
     def tool_move(self, x, y, button1_pressed, shift_pressed):
+        logging.error('tool move')
+
         self.x_cursor, self.y_cursor = int(x), int(y)
 
         # the touch driver trigger many events sensing movements up and down
@@ -688,19 +688,8 @@ class Area(Gtk.DrawingArea):
         return  not ((x_point < x_min) or (x_point > x_min + width) or \
                     (y_point < y_min) or (y_point > y_min + height))
 
-    def mouseup(self, widget, event):
-        """Make the Area object (GtkDrawingArea)
-           recognize that the mouse was released.
-
-            @param  self -- the Area object (GtkDrawingArea)
-            @param  widget -- the Area object (GtkDrawingArea)
-            @param  event -- GdkEvent
-        """
-        coord_x, coord_y = int(event.x), int(event.y)
-        shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
-        self.tool_end(coord_x, coord_y, shift_pressed)
-
     def tool_end(self, coord_x, coord_y, shift_pressed):
+        logging.error('tool end')
         coords = (coord_x, coord_y)
         if self.tool['name'] in ['rectangle', 'ellipse', 'line']:
             if shift_pressed or self.keep_shape_ratio:
