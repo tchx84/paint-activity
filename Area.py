@@ -958,7 +958,8 @@ class Area(Gtk.DrawingArea):
             self.getout(undo=True)
 
         if self.text_in_progress:
-            self.d.text(self, None)
+            # apply the text
+            self.d.text(self, 0, 0)
             self.activity.textview.hide()
 
         if self._undo_index > 0:
