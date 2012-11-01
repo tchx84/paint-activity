@@ -966,7 +966,6 @@ class Area(Gtk.DrawingArea):
 
         undo_surface = self._undo_list[self._undo_index]
         self.drawing_ctx.set_source_surface(undo_surface, 0, 0)
-        self.drawing_ctx.set_operator(cairo.OPERATOR_SOURCE)
         self.drawing_ctx.paint()
         self.queue_draw()
 
@@ -987,7 +986,6 @@ class Area(Gtk.DrawingArea):
 
         undo_surface = self._undo_list[self._undo_index]
         self.drawing_ctx.set_source_surface(undo_surface, 0, 0)
-        self.drawing_ctx.set_operator(cairo.OPERATOR_SOURCE)
         self.drawing_ctx.paint()
         self.queue_draw()
 
@@ -1027,7 +1025,6 @@ class Area(Gtk.DrawingArea):
         undo_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
         undo_ctx = cairo.Context(undo_surface)
         undo_ctx.set_source_surface(self.drawing_canvas, 0, 0)
-        undo_ctx.set_operator(cairo.OPERATOR_SOURCE)
         undo_ctx.paint()
         undo_surface.flush()
 
