@@ -62,7 +62,6 @@ Walter Bender                       (walter@laptop.org)
 """
 
 from gi.repository import Gtk
-from gi.repository import Gdk
 import logging
 
 from sugar3.activity import activity
@@ -88,11 +87,11 @@ class OficinaActivity(activity.Activity):
 
         self.fixed = Gtk.Fixed()
         self.fixed.show()
+        self.fixed.modify_bg(Gtk.StateType.NORMAL,
+                style.COLOR_WHITE.get_gdk_color())
 
         self.textview = Gtk.TextView()
         self.fixed.put(self.textview, 0, 0)
-        self.textview.override_background_color(Gtk.StateFlags.NORMAL,
-                Gdk.RGBA(0, 0, 0, 0))
 
         # These attributes are used in other classes, so they should be public
         self.area = Area(self)
