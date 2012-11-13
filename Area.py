@@ -404,8 +404,8 @@ class Area(Gtk.DrawingArea):
                 Gdk.EventType.BUTTON_PRESS, Gdk.EventType.TOUCH_UPDATE,
                 Gdk.EventType.BUTTON_RELEASE):
                 #, Gdk.EventType.MOTION_NOTIFY):
-            x = event.get_coords()[1]
-            y = event.get_coords()[2]
+            x = int(event.get_coords()[1])
+            y = int(event.get_coords()[2])
             seq = str(event.touch.sequence)
 
             logging.error('event x %d y %d type %s', x, y, event.type)
