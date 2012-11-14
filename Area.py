@@ -217,6 +217,7 @@ class Area(Gtk.DrawingArea):
         self._on_touch = False
 
         self._update_timer = None
+        self._resize_hq_timer = None
 
     def _set_screen_dpi(self):
         dpi = _get_screen_dpi()
@@ -408,7 +409,7 @@ class Area(Gtk.DrawingArea):
             y = int(event.get_coords()[2])
             seq = str(event.touch.sequence)
 
-            logging.error('event x %d y %d type %s', x, y, event.type)
+            #logging.error('event x %d y %d type %s', x, y, event.type)
             if event.type in (Gdk.EventType.TOUCH_BEGIN,
                     Gdk.EventType.BUTTON_PRESS):
                     #Gdk.EventType.MOTION_NOTIFY):
@@ -1478,7 +1479,8 @@ class Area(Gtk.DrawingArea):
         ctx.fill()
         ctx.restore()
 
-    def resize_selection_surface(self, horizontal_scale, vertical_scale):
+    def resize_selection_surface(self, horizontal_scale, vertical_scale,
+                fast=True):
         x, y = self._selection_bounds[0], self._selection_bounds[1]
         new_width = int(self .selection_surface.get_width() * horizontal_scale)
         new_height = int(self.selection_surface.get_height() * vertical_scale)
@@ -1496,11 +1498,27 @@ class Area(Gtk.DrawingArea):
         self.temp_ctx.translate(x, y)
         self.temp_ctx.set_source_surface(self.selection_resized_surface)
         self.temp_ctx.rectangle(0, 0, new_width, new_height)
+        if fast:
+            self.temp_ctx.get_source().set_filter(cairo.FILTER_NEAREST)
+            # Add a timer for resize with high quality:
+            if self._resize_hq_timer is not None:
+                GObject.source_remove(self._resize_hq_timer)
+            self._resize_hq_timer = GObject.timeout_add(200,
+                    self.resize_selection_surface, horizontal_scale,
+                    vertical_scale, False)
+        else:
+            self._resize_hq_timer = None
+
         self.temp_ctx.paint()
         self.temp_ctx.restore()
 
         self._selection_horizontal_scale = horizontal_scale
         self._selection_vertical_scale = vertical_scale
+
+        self.desenha = True
+        self.queue_draw()
+
+        return False
 
     def get_selection(self):
         if self.selection_resized_surface is not None:
