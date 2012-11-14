@@ -216,6 +216,8 @@ class Area(Gtk.DrawingArea):
         # used to identify emulated mouse
         self._on_touch = False
 
+        self._update_timer = None
+
     def _set_screen_dpi(self):
         dpi = _get_screen_dpi()
         font_map_default = PangoCairo.font_map_get_default()
@@ -399,16 +401,16 @@ class Area(Gtk.DrawingArea):
     def __event_cb(self, widget, event):
         if event.type in (Gdk.EventType.TOUCH_BEGIN,
                 Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END,
-                Gdk.EventType.BUTTON_PRESS,  # Gdk.EventType.TOUCH_UPDATE,
+                Gdk.EventType.BUTTON_PRESS, Gdk.EventType.TOUCH_UPDATE,
                 Gdk.EventType.BUTTON_RELEASE):
                 #, Gdk.EventType.MOTION_NOTIFY):
-            x = event.get_coords()[1]
-            y = event.get_coords()[2]
+            x = int(event.get_coords()[1])
+            y = int(event.get_coords()[2])
             seq = str(event.touch.sequence)
 
             logging.error('event x %d y %d type %s', x, y, event.type)
             if event.type in (Gdk.EventType.TOUCH_BEGIN,
-                    Gdk.EventType.TOUCH_UPDATE, Gdk.EventType.BUTTON_PRESS):
+                    Gdk.EventType.BUTTON_PRESS):
                     #Gdk.EventType.MOTION_NOTIFY):
                 if event.type == Gdk.EventType.BUTTON_PRESS:
 ## http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
@@ -418,6 +420,13 @@ class Area(Gtk.DrawingArea):
                     self._on_touch = True
                     button1_pressed = True
                 self.tool_start(x, y, button1_pressed)
+            elif event.type == Gdk.EventType.TOUCH_UPDATE:
+                # We need trigger a request to draw the screen inmediatly
+                # because if not the screen is not updated until
+                # all the update touch events are processed.
+                if self._update_timer is None:
+                    self._update_timer = GObject.timeout_add(100,
+                        self.__update_draw)
             elif event.type in (Gdk.EventType.TOUCH_END,
                                 Gdk.EventType.BUTTON_RELEASE):
                 if event.type == Gdk.EventType.BUTTON_RELEASE:
@@ -427,6 +436,11 @@ class Area(Gtk.DrawingArea):
                     self._on_touch = False
                     shift_pressed = False
                 self.tool_end(x, y, shift_pressed)
+
+    def __update_draw(self):
+        self.get_window().process_all_updates()
+        self._update_timer = None
+        return False
 
     def tool_start(self, coord_x, coord_y, button1_pressed):
         width, height = self.get_size()
