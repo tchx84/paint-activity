@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:30-0400\n"
-"PO-Revision-Date: 2012-07-16 02:52+0200\n"
+"PO-Revision-Date: 2012-11-15 06:55+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: quz\n"
@@ -22,12 +22,18 @@ msgstr ""
 msgid "Paint"
 msgstr "Llimp'iy"
 
+#  [ES] ""
+#  [ES] "¿Picaso? ¿Van Gogh? !Puedes ser uno de ellos! Deja salir el artista que "
+#  [ES] "llevas dentro. Transforma imágenes en tu mente en hermosas pinturas."
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"Riqsinkichu Sabogalta, Camargota, Wari-Zarate sutichakuqkunata? Ichapas "
+"paykuna allin llimp'qkunahina kawaq!. Llimp'iq kasqaykita qhawarichiwayku. "
+"Umachayki imaymana munay yuyaykuna kaqta llimp'iriy."
 
 #  "Editar"
 #: toolbox.py:105
@@ -94,9 +100,10 @@ msgstr "Pichana"
 msgid "Bucket"
 msgstr "Llimp'i apana"
 
+#  [ES] "Selector"
 #: toolbox.py:281
 msgid "Picker"
-msgstr ""
+msgstr "Akllanapaq"
 
 #  "Sello"
 #: toolbox.py:285
@@ -233,9 +240,10 @@ msgstr "Llimp'ita t'ikray"
 msgid "Size: "
 msgstr "Sayaynin: "
 
+#  [ES] "Opacidad: "
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "Rasphi rasphiynin: "
 
 #  "Círculo"
 #: widgets.py:17
@@ -252,13 +260,15 @@ msgstr "Tawak'uchu"
 msgid "Choose brush properties"
 msgstr "Llimp'iqpa imayninkunata akllay"
 
+#  [ES] "Tamaño"
 #: widgets.py:255
 msgid "Size"
-msgstr ""
+msgstr "Chhikannin"
 
+#  [ES] "Opacidad"
 #: widgets.py:272
 msgid "Opacity"
-msgstr ""
+msgstr "Rasphi rasphiynin"
 
 #  "Forma"
 #: widgets.py:294
