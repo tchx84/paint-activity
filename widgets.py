@@ -47,7 +47,6 @@ class BrushButton(_ColorButton):
         GObject.GObject.__init__(self, **kwargs)
         self._preview.set_events(Gdk.EventMask.BUTTON_PRESS_MASK)
 
-        self._preview.connect('button_press_event', self.__mouse_down_cb)
         self._preview.connect("draw", self.draw)
         self.set_image(self._preview)
 
@@ -167,15 +166,6 @@ class BrushButton(_ColorButton):
     def get_icon_size(self):
         pass
 
-    def __mouse_down_cb(self, event):
-        if self._palette:
-            if not self._palette.is_up():
-                self._palette.popup(immediate=True,
-                                    state=self._palette.SECONDARY)
-            else:
-                self._palette.popdown(immediate=True)
-            return True
-
 
 class ButtonStrokeColor(Gtk.ToolItem):
     """Class to manage the Stroke Color of a Button"""
@@ -206,6 +196,8 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self.color_button.set_relief(Gtk.ReliefStyle.NONE)
 
         self._palette_invoker.attach_tool(self)
+        self._palette_invoker.props.toggle_palette = True
+        self._palette_invoker.props.lock_palette = True
 
         # This widget just proxies the following properties to the colorbutton
         self.color_button.connect('notify::color', self.__notify_change)
@@ -375,6 +367,29 @@ class ButtonStrokeColor(Gtk.ToolItem):
 
     palette_invoker = GObject.property(
         type=object, setter=set_palette_invoker, getter=get_palette_invoker)
+
+    def set_expanded(self, expanded):
+        box = self.toolbar_box
+        if not box:
+            return
+
+        if not expanded:
+            self._palette_invoker.notify_popdown()
+            return
+
+        if box.expanded_button is not None:
+            box.expanded_button.queue_draw()
+            if box.expanded_button != self:
+                box.expanded_button.set_expanded(False)
+        box.expanded_button = self
+
+    def get_toolbar_box(self):
+        parent = self.get_parent()
+        if not hasattr(parent, 'owner'):
+            return None
+        return parent.owner
+
+    toolbar_box = property(get_toolbar_box)
 
     def set_color(self, color):
         self.color_button.set_color(color)

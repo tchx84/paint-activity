@@ -256,9 +256,7 @@ class ToolsToolbarBuilder():
         #self._stroke_color.set_icon_name('icon-stroke')
         self._stroke_color.set_title(_('Brush properties'))
         self._stroke_color.connect('notify::color', self._color_button_cb)
-        item = Gtk.ToolItem()
-        item.add(self._stroke_color)
-        toolbar.insert(item, -1)
+        toolbar.insert(self._stroke_color, -1)
 
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
