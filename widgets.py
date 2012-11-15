@@ -47,7 +47,6 @@ class BrushButton(_ColorButton):
         GObject.GObject.__init__(self, **kwargs)
         self._preview.set_events(Gdk.EventMask.BUTTON_PRESS_MASK)
 
-        self._preview.connect('button_press_event', self.__mouse_down_cb)
         self._preview.connect("draw", self.draw)
         self.set_image(self._preview)
 
@@ -167,15 +166,6 @@ class BrushButton(_ColorButton):
     def get_icon_size(self):
         pass
 
-    def __mouse_down_cb(self, event):
-        if self._palette:
-            if not self._palette.is_up():
-                self._palette.popup(immediate=True,
-                                    state=self._palette.SECONDARY)
-            else:
-                self._palette.popdown(immediate=True)
-            return True
-
 
 class ButtonStrokeColor(Gtk.ToolItem):
     """Class to manage the Stroke Color of a Button"""
@@ -206,6 +196,8 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self.color_button.set_relief(Gtk.ReliefStyle.NONE)
 
         self._palette_invoker.attach_tool(self)
+        self._palette_invoker.props.toggle_palette = True
+        self._palette_invoker.props.lock_palette = True
 
         # This widget just proxies the following properties to the colorbutton
         self.color_button.connect('notify::color', self.__notify_change)
