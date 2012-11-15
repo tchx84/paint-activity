@@ -685,8 +685,6 @@ class Desenho:
             @param  pixbuf_copy -- For import image
 
         """
-        widget.desenha = True
-
         dx = int(coords[0] - widget.oldx)
         dy = int(coords[1] - widget.oldy)
 
@@ -704,18 +702,7 @@ class Desenho:
         if width_scale < 0 or height_scale < 0:
             return
 
-        # Add a timer for resize or update it if there is one already:
-        if self._resize_timer is not None:
-            GObject.source_remove(self._resize_timer)
-        self._resize_timer = GObject.timeout_add(RESIZE_DELAY,
-            self._do_resize, widget, width_scale, height_scale)
-
-    def _do_resize(self, widget, width_scale, height_scale):
-#        """Do the resize calculation.
-#        """
-        widget.desenha = True
         widget.resize_selection_surface(width_scale, height_scale)
-        widget.queue_draw()
 
     def freeform(self, widget, coords, temp, fill, param=None):
         """Draw polygon.
