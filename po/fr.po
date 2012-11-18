@@ -44,8 +44,8 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-06 00:30-0400\n"
-"PO-Revision-Date: 2012-07-15 08:48+0200\n"
-"Last-Translator: Bastien <bzg@altern.org>\n"
+"PO-Revision-Date: 2012-11-18 20:34+0200\n"
+"Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: Language locale/fr/LC\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,9 @@ msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"Picasso? Van Gogh? Tu peux être l'un ou l'autre ! Il te suffit de libérer "
+"l'artiste qui dort en toi. Transforme les images que tu as dans ta tête en "
+"de belles peintures."
 
 #: toolbox.py:105
 msgid "Edit"
@@ -231,7 +234,7 @@ msgstr "Taille : "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "Opacité : "
 
 #: widgets.py:17
 msgid "Circle"
@@ -247,11 +250,11 @@ msgstr "Choisir les propriétés du pinceau"
 
 #: widgets.py:255
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 #: widgets.py:272
 msgid "Opacity"
-msgstr ""
+msgstr "Opacité"
 
 #: widgets.py:294
 msgid "Shape"
