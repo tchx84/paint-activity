@@ -233,23 +233,19 @@ class ButtonStrokeColor(Gtk.ToolItem):
         color_palette_hbox = self._palette._picker_hbox
         content_box = Gtk.VBox()
 
-        self._brush_table = Gtk.Table(2, 2)
-        self._brush_table.set_col_spacing(0, style.DEFAULT_PADDING)
+        self.vbox_brush_options = Gtk.VBox()
 
         # This is where we set restrictions for size:
         # Initial value, minimum value, maximum value, step
         adj = Gtk.Adjustment(self.properties['line size'], 1.0, 100.0, 1.0)
         self.size_scale = Gtk.HScale()
         self.size_scale.set_adjustment(adj)
-        self.size_scale.set_value_pos(Gtk.PositionType.RIGHT)
-        self.size_scale.set_digits(0)
-        self.size_scale.set_size_request(style.zoom(150), -1)
+        self.size_scale.set_draw_value(False)
+        self.size_scale.set_size_request(style.zoom(200), -1)
         label = Gtk.Label(label=_('Size'))
-        row = 0
-        self._brush_table.attach(label, 0, 1, row, row + 1)
-        self._brush_table.attach(self.size_scale, 1, 2, row, row + 1)
-
-        content_box.pack_start(self._brush_table, True, True, 0)
+        label.props.halign = Gtk.Align.START
+        self.vbox_brush_options.pack_start(label, True, True, 0)
+        self.vbox_brush_options.pack_start(self.size_scale, True, True, 0)
 
         self.size_scale.connect('value-changed', self._on_value_changed)
 
@@ -258,18 +254,16 @@ class ButtonStrokeColor(Gtk.ToolItem):
         adj_alpha = Gtk.Adjustment(alpha, 10.0, 100.0, 1.0)
         self.alpha_scale = Gtk.HScale()
         self.alpha_scale.set_adjustment(adj_alpha)
-        self.alpha_scale.set_value_pos(Gtk.PositionType.RIGHT)
-        self.alpha_scale.set_digits(0)
-        self.alpha_scale.set_size_request(style.zoom(150), -1)
+        self.alpha_scale.set_draw_value(False)
+        self.alpha_scale.set_size_request(style.zoom(200), -1)
         self.alpha_label = Gtk.Label(label=_('Opacity'))
-        row = row + 1
-        self._brush_table.attach(self.alpha_label, 0, 1, row, row + 1)
-        self._brush_table.attach(self.alpha_scale, 1, 2, row, row + 1)
+        self.alpha_label.props.halign = Gtk.Align.START
+        self.vbox_brush_options.pack_start(self.alpha_label, True, True, 0)
+        self.vbox_brush_options.pack_start(self.alpha_scale, True, True, 0)
 
         self.alpha_scale.connect('value-changed', self._on_alpha_changed)
 
         # User is able to choose Shapes for 'Brush' and 'Eraser'
-        self.vbox_brush_options = Gtk.VBox()
         shape_box = Gtk.HBox()
         content_box.pack_start(self.vbox_brush_options, True, True, 0)
         item1 = RadioToolButton()
@@ -299,7 +293,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
 
         color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
                                      padding=style.DEFAULT_SPACING)
-        color_palette_hbox.pack_start(content_box, True, True, 0)
+        color_palette_hbox.pack_start(content_box, True, True, 10)
         color_palette_hbox.show_all()
         self._update_palette()
         return self._palette
