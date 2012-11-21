@@ -293,7 +293,8 @@ class ButtonStrokeColor(Gtk.ToolItem):
 
         color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
                                      padding=style.DEFAULT_SPACING)
-        color_palette_hbox.pack_start(content_box, True, True, 10)
+        color_palette_hbox.pack_start(content_box, True, True,
+                padding=style.DEFAULT_SPACING)
         color_palette_hbox.show_all()
         self._update_palette()
         return self._palette

@@ -420,7 +420,8 @@ class ButtonFillColor(ColorToolButton):
 
         color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
                                      padding=style.DEFAULT_SPACING)
-        color_palette_hbox.pack_start(content_box, True, True, 0)
+        color_palette_hbox.pack_start(content_box, True, True,
+                padding=style.DEFAULT_SPACING)
         color_palette_hbox.show_all()
         return self._palette
 
