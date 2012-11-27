@@ -402,9 +402,8 @@ class Area(Gtk.DrawingArea):
     def __event_cb(self, widget, event):
         if event.type in (Gdk.EventType.TOUCH_BEGIN,
                 Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END,
-                Gdk.EventType.BUTTON_PRESS, Gdk.EventType.TOUCH_UPDATE,
+                Gdk.EventType.BUTTON_PRESS,
                 Gdk.EventType.BUTTON_RELEASE):
-                #, Gdk.EventType.MOTION_NOTIFY):
             x = int(event.get_coords()[1])
             y = int(event.get_coords()[2])
             seq = str(event.touch.sequence)
@@ -421,15 +420,12 @@ class Area(Gtk.DrawingArea):
                     self._on_touch = True
                     button1_pressed = True
                 self.tool_start(x, y, button1_pressed)
-            elif event.type == Gdk.EventType.TOUCH_UPDATE:
-                # We need trigger a request to draw the screen inmediatly
-                # because if not the screen is not updated until
-                # all the update touch events are processed.
-                if self._update_timer is None:
-                    self._update_timer = GObject.timeout_add(100,
-                        self.__update_draw)
             elif event.type in (Gdk.EventType.TOUCH_END,
                                 Gdk.EventType.BUTTON_RELEASE):
+                # set _update_timer = None to avoid executing
+                # toolmove code after mouse release or touch end
+                self._update_timer = None
+
                 if event.type == Gdk.EventType.BUTTON_RELEASE:
                     _pointer, x, y, state = event.window.get_pointer()
                     shift_pressed = state & Gdk.ModifierType.SHIFT_MASK
@@ -437,11 +433,6 @@ class Area(Gtk.DrawingArea):
                     self._on_touch = False
                     shift_pressed = False
                 self.tool_end(x, y, shift_pressed)
-
-    def __update_draw(self):
-        self.get_window().process_all_updates()
-        self._update_timer = None
-        return False
 
     def tool_start(self, coord_x, coord_y, button1_pressed):
         width, height = self.get_size()
@@ -577,10 +568,15 @@ class Area(Gtk.DrawingArea):
         y = event.y
         shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
         button1_pressed = event.get_state() & Gdk.ModifierType.BUTTON1_MASK
-        self.tool_move(x, y, button1_pressed, shift_pressed)
-        Gdk.event_request_motions(event)
+        if self._update_timer is None:
+            self._update_timer = GObject.timeout_add(20,
+                        self.tool_move,x, y, button1_pressed, shift_pressed)
 
     def tool_move(self, x, y, button1_pressed, shift_pressed):
+
+        if self._update_timer is None:
+            return False
+        self._update_timer = None
 
         self.x_cursor, self.y_cursor = int(x), int(y)
 
@@ -700,6 +696,9 @@ class Area(Gtk.DrawingArea):
                 self.configure_line(self.tool['line size'])
                 self.d.freeform(self, coords, True,
                     self.tool['fill'], "moving")
+
+        self.get_window().process_all_updates()
+        return False
 
     def check_point_in_area(self, x_point, y_point, x_min, y_min,
             width, height):
