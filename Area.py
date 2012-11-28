@@ -1082,7 +1082,6 @@ class Area(Gtk.DrawingArea):
 
         if clipBoard.wait_is_image_available():
             logging.error('Area.paste(self): Wait is image available')
-            self.getout(True)
             pixbuf_sel = clipBoard.wait_for_image()
             self.load_pixbuf(pixbuf_sel)
             self.pending_clean_selection_background = False
