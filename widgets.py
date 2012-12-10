@@ -231,7 +231,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self._palette = self.get_child().create_palette()
 
         color_palette_hbox = self._palette._picker_hbox
-        content_box = Gtk.VBox()
+        self.custom_box = Gtk.VBox()
 
         self.vbox_brush_options = Gtk.VBox()
 
@@ -242,9 +242,9 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self.size_scale.set_adjustment(adj)
         self.size_scale.set_draw_value(False)
         self.size_scale.set_size_request(style.zoom(200), -1)
-        label = Gtk.Label(label=_('Size'))
-        label.props.halign = Gtk.Align.START
-        self.vbox_brush_options.pack_start(label, True, True, 0)
+        self.size_label = Gtk.Label(label=_('Size'))
+        self.size_label.props.halign = Gtk.Align.START
+        self.vbox_brush_options.pack_start(self.size_label, True, True, 0)
         self.vbox_brush_options.pack_start(self.size_scale, True, True, 0)
 
         self.size_scale.connect('value-changed', self._on_value_changed)
@@ -265,7 +265,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
 
         # User is able to choose Shapes for 'Brush' and 'Eraser'
         shape_box = Gtk.HBox()
-        content_box.pack_start(self.vbox_brush_options, True, True, 0)
+        self.custom_box.pack_start(self.vbox_brush_options, True, True, 0)
         item1 = RadioToolButton()
         item1.set_icon_name('tool-shape-ellipse')
         item1.set_active(True)
@@ -293,7 +293,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
 
         color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
                                      padding=style.DEFAULT_SPACING)
-        color_palette_hbox.pack_start(content_box, True, True,
+        color_palette_hbox.pack_start(self.custom_box, True, True,
                 padding=style.DEFAULT_SPACING)
         color_palette_hbox.show_all()
         self._update_palette()
@@ -305,23 +305,19 @@ class ButtonStrokeColor(Gtk.ToolItem):
     def _update_palette(self):
         palette_children = self._palette._picker_hbox.get_children()
         if self.color_button.is_stamping():
-            # Hide palette color widgets:
-            for ch in palette_children[:4]:
-                ch.hide()
-            # Hide brush options:
-            self.vbox_brush_options.hide()
-            self.alpha_label.hide()
-            self.alpha_scale.hide()
+            # Hide palette color widgets except size:
+            for ch in palette_children:
+                if ch != self.custom_box:
+                    ch.hide()
+            controls = self.vbox_brush_options.get_children()
+            for control in controls:
+                if control not in (self.size_label, self.size_scale):
+                    control.hide()
             # Change title:
             self.set_title(_('Stamp properties'))
         else:
             # Show palette color widgets:
-            for ch in palette_children[:4]:
-                ch.show_all()
-            # Show brush options:
-            self.vbox_brush_options.show_all()
-            self.alpha_label.show()
-            self.alpha_scale.show()
+            self._palette._picker_hbox.show_all()
             # Change title:
             self.set_title(_('Brush properties'))
 
@@ -343,10 +339,12 @@ class ButtonStrokeColor(Gtk.ToolItem):
     def _on_value_changed(self, scale):
         size = int(scale.get_value())
         if self.color_button.is_stamping():
-            self.properties['stamp size'] = size
-            resized_stamp = self._activity.area.resize_stamp(size)
-            self.color_button.set_resized_stamp(resized_stamp)
-            self.color_button.set_stamp_size(self.properties['stamp size'])
+            # avoid stamps too small
+            if size > 5:
+                self.properties['stamp size'] = size
+                resized_stamp = self._activity.area.resize_stamp(size)
+                self.color_button.set_resized_stamp(resized_stamp)
+                self.color_button.set_stamp_size(self.properties['stamp size'])
         else:
             self.properties['line size'] = size
             self.color_button.set_brush_size(self.properties['line size'])
