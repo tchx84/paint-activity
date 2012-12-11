@@ -433,6 +433,23 @@ class ButtonFillColor(ColorToolButton):
     def _on_keep_aspect_checkbutton_toggled(self, checkbutton):
         self._activity.area.keep_shape_ratio = checkbutton.get_active()
 
+    def do_draw(self, cr):
+        child = self.get_child()
+        if self._palette and self._palette.is_up():
+            allocation = self.get_allocation()
+            # draw a black background, has been done by the engine before
+            cr.set_source_rgb(0, 0, 0)
+            cr.rectangle(0, 0, allocation.width, allocation.height)
+            cr.paint()
+
+        Gtk.ToolItem.do_draw(self, cr)
+
+        if self._palette and self._palette.is_up():
+            invoker = self._palette.props.invoker
+            invoker.draw_rectangle(cr, self._palette)
+
+        return False
+
 
 ##Make the Shapes Toolbar
 class ShapesToolbar(Gtk.Toolbar):
