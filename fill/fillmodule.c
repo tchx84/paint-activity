@@ -71,6 +71,7 @@ static PyObject* fill(PyObject* self, PyObject* args)
         item = PySequence_GetItem(mylist, index);
         /* assign to the C array */
         intarr[index] = PyLong_AsUnsignedLong(item);
+        Py_DECREF(item);
     }
 
     /* now use intarr and arrsize in you extension */
@@ -81,8 +82,8 @@ static PyObject* fill(PyObject* self, PyObject* args)
     for (index = 0; index < arrsize; index++) {
            PyTuple_SetItem(pylist, index, PyLong_FromUnsignedLong(intarr[index]));
     }
-
-    return Py_BuildValue("O", pylist);
+    free(intarr);
+    return pylist;
 }
 
 

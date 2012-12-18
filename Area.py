@@ -865,10 +865,12 @@ class Area(Gtk.DrawingArea):
             pixels2 = fill(pixels, x, y, width, height, fill_color)
             # the c implementation returns a list instead of array.array
             pixels = array.array(_array_type_used, pixels2)
+            del(pixels2)
 
         # create a updated drawing_canvas
         self.drawing_canvas_data = cairo.ImageSurface.create_for_data(pixels,
                 cairo.FORMAT_ARGB32, width, height)
+        del(pixels)
         self.setup(width, height)
 
         self.queue_draw()
