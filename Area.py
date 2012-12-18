@@ -827,6 +827,10 @@ class Area(Gtk.DrawingArea):
         old_color = pixels[x + y * width]
         if old_color == fill_color:
             logging.debug('Already filled')
+            # reset the cursor
+            display = Gdk.Display.get_default()
+            cursor = Gdk.Cursor.new_from_name(display, 'paint-bucket')
+            self.get_window().set_cursor(cursor)
             return
 
         if FALLBACK_FILL:
@@ -884,11 +888,14 @@ class Area(Gtk.DrawingArea):
         cairo_context.set_operator(cairo.OPERATOR_SOURCE)
         cairo_context.fill()
         cairo_surface.flush()
+
         # Read the pixel
         pixels = cairo_surface.get_data()
-        red = ord(pixels[2]) * 256
-        green = ord(pixels[1]) * 256
-        blue = ord(pixels[0]) * 256
+
+        # the values are between 0 and 255
+        red = ord(pixels[2]) / 255.0 * 65535.0
+        green = ord(pixels[1]) / 255.0 * 65535.0
+        blue = ord(pixels[0]) / 255.0 * 65535.0
 
         stroke_color = Gdk.Color(red, green, blue)
 
