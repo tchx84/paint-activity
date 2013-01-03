@@ -98,7 +98,8 @@ class Desenho:
         self._rainbow_counter = 0
 
         self.points = []
-        self._last_points_used = self.points
+        self._last_points_used = []
+        self._last_point_drawn_index = 0
 
     def clear_control_points(self):
         self._last_points_used = []
@@ -281,6 +282,7 @@ class Desenho:
             widget.drawing_ctx.restore()
 
         self.points = []
+        self._last_point_drawn_index = 0
 
     def _trace(self, widget, coords, last):
         widget.desenha = True
@@ -350,9 +352,19 @@ class Desenho:
         ctx.set_line_width(widget.tool['line size'])
         ctx.stroke()
         ctx.restore()
-        self._last_points_used.extend(points)
-        area = widget.calculate_damaged_area(self._last_points_used)
-        widget.queue_draw_area(*area)
+        if fill or closed:
+            self._last_points_used.extend(points)
+            area = widget.calculate_damaged_area(self._last_points_used)
+            widget.queue_draw_area(*area)
+        else:
+            # if is a open line and is not filled (like when using the pencil)
+            # we don't need draw all the poligon, can draw only the part
+            # from the last queue update until now
+            self._last_points_used = points[self._last_point_drawn_index:]
+            if self._last_points_used:
+                area = widget.calculate_damaged_area(self._last_points_used)
+                self._last_point_drawn_index = len(points)
+                widget.queue_draw_area(*area)
 
     def triangle(self, widget, coords, temp, fill):
         """Draw a triangle.
@@ -741,6 +753,9 @@ class Desenho:
                 else:
                     # close the polygon
                     self.points.append((first[0], first[1]))
+                    # set the last point index to zero to force draw all
+                    # the polygon
+                    self._last_point_drawn_index = 0
                     self._draw_polygon(widget, False, fill, self.points)
                     widget.desenha = False
                     widget.last = []
