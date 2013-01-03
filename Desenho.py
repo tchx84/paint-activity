@@ -117,12 +117,15 @@ class Desenho:
         else:
             ctx = widget.drawing_ctx
 
+        ctx.save()
+        ctx.new_path()
         ctx.set_line_width(widget.tool['line size'])
         ctx.set_line_cap(cairo.LINE_CAP_ROUND)
         ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
         ctx.move_to(widget.oldx, widget.oldy)
         ctx.line_to(coords[0], coords[1])
         ctx.stroke()
+        ctx.restore()
         # TODO: clip
         widget.queue_draw()
 
