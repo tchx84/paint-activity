@@ -569,7 +569,7 @@ class Area(Gtk.DrawingArea):
         shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
         button1_pressed = event.get_state() & Gdk.ModifierType.BUTTON1_MASK
         if self._update_timer is None:
-            self._update_timer = GObject.timeout_add(20,
+            self._update_timer = GObject.timeout_add(5,
                         self.tool_move,x, y, button1_pressed, shift_pressed)
 
     def tool_move(self, x, y, button1_pressed, shift_pressed):
