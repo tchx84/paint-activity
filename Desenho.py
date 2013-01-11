@@ -681,11 +681,6 @@ class Desenho:
         widget.oldy = coords[1]
 
         new_x, new_y = x + dx, y + dy
-        widget.temp_ctx.save()
-        widget.temp_ctx.translate(new_x, new_y)
-        widget.temp_ctx.set_source_surface(selection_surface)
-        widget.temp_ctx.paint()
-        widget.temp_ctx.restore()
         widget.set_selection_start(new_x, new_y)
 
         widget.queue_draw()

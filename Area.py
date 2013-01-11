@@ -189,6 +189,7 @@ class Area(Gtk.DrawingArea):
         self.last = []
         self.keep_aspect_ratio = False
         self.keep_shape_ratio = False
+        self._selection_finished = False
 
         self._set_screen_dpi()
 
@@ -280,6 +281,15 @@ class Area(Gtk.DrawingArea):
         if not self.is_selected():
             return
         x, y, width, height = self.get_selection_bounds()
+
+        if self._selection_finished:
+            ctx.save()
+            selection_surface = self.get_selection()
+            ctx.translate(x, y)
+            ctx.set_source_surface(selection_surface)
+            ctx.rectangle(0, 0, width, height)
+            ctx.paint()
+            ctx.restore()
 
         ctx.save()
         ctx.set_line_width(1)
@@ -1433,6 +1443,7 @@ class Area(Gtk.DrawingArea):
         self._selection_horizontal_scale = 1.0
         self._selection_vertical_scale = 1.0
         self.selection_resized_surface = None
+        self._selection_finished = False
 
     def set_selection_bounds(self, x, y, width, height):
         """
@@ -1469,6 +1480,7 @@ class Area(Gtk.DrawingArea):
             selection_ctx.set_source_surface(self.temp_canvas)
         selection_ctx.paint()
         self.selection_resized_surface = None
+        self._selection_finished = True
         if clear_background:
             self.pending_clean_selection_background = True
 
@@ -1569,6 +1581,7 @@ class Area(Gtk.DrawingArea):
         self.set_selection_bounds(0, 0, width, height)
         self.desenha = True
         self._selmove = True
+        self._selection_finished = True
 
         self.tool['name'] = 'marquee-rectangular'
         self.emit('select')
