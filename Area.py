@@ -432,7 +432,7 @@ class Area(Gtk.DrawingArea):
                 else:
                     self._on_touch = False
                     shift_pressed = False
-                self.tool_end(x, y, shift_pressed)
+                GObject.timeout_add(10, self.tool_end, x, y, shift_pressed)
 
     def tool_start(self, coord_x, coord_y, button1_pressed):
         width, height = self.get_size()
@@ -670,7 +670,7 @@ class Area(Gtk.DrawingArea):
         else:
             if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
                                      'stamp']:
-                # define area to update
+                # define area to update (only to show the brush shape)
                 last_coords = (self.last_x_cursor, self.last_y_cursor)
                 area = self.calculate_damaged_area([last_coords, coords])
                 self.queue_draw_area(*area)
