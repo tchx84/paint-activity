@@ -241,8 +241,13 @@ class Area(Gtk.DrawingArea):
         return style.zoom(44)
 
     def load_from_file(self, file_path):
-        self.drawing_canvas_data = \
-                cairo.ImageSurface.create_from_png(file_path)
+        # load using a pixbuf to be able to read different formats
+        loaded_pxb = GdkPixbuf.Pixbuf.new_from_file(file_path)
+        self.drawing_canvas_data = cairo.ImageSurface(cairo.FORMAT_ARGB32,
+                loaded_pxb.get_width(), loaded_pxb.get_height())
+        ctx = cairo.Context(self.drawing_canvas_data)
+        Gdk.cairo_set_source_pixbuf(ctx, loaded_pxb, 0, 0)
+        ctx.paint()
 
     def setup(self, width, height):
         """Configure the Area object."""
