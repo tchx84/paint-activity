@@ -89,6 +89,15 @@ from sugar3.activity.widgets import StopButton
 from fontcombobox import FontComboBox
 
 
+def add_menu(icon_name, tooltip, tool_name, button, activate_cb):
+    menu_item = MenuItem(icon_name=icon_name, text_label=tooltip)
+    menu_item.connect('activate', activate_cb, tool_name)
+    menu_item.icon_name = icon_name
+    button.props.palette.menu.append(menu_item)
+    menu_item.show()
+    return menu_item
+
+
 class DrawToolbarBox(ToolbarBox):
     """Create toolbars for the activity"""
 
@@ -294,28 +303,21 @@ class ToolsToolbarBuilder():
         activity.tool_group = self._tool_brush
         toolbar.insert(self._tool_brush, -1)
 
-        def add_menu(icon_name, tooltip, tool_name, button):
-            menu_item = MenuItem(icon_name=icon_name, text_label=tooltip)
-            menu_item.connect('activate', self.set_tool, tool_name)
-            menu_item.icon_name = icon_name
-            button.props.palette.menu.append(menu_item)
-            menu_item.show()
-            return menu_item
-
         add_menu('tool-brush', _('Brush'), self._TOOL_BRUSH_NAME,
-                 self._tool_brush)
+                 self._tool_brush, self.set_tool)
 
         add_menu('tool-eraser', _('Eraser'), self._TOOL_ERASER_NAME,
-                 self._tool_brush)
+                 self._tool_brush, self.set_tool)
 
         add_menu('tool-bucket', _('Bucket'), self._TOOL_BUCKET_NAME,
-                 self._tool_brush)
+                 self._tool_brush, self.set_tool)
 
         add_menu('tool-picker', _('Picker'), self._TOOL_PICKER_NAME,
-                 self._tool_brush)
+                 self._tool_brush, self.set_tool)
 
         self._tool_stamp = add_menu('tool-stamp', _('Stamp'),
-                                    self._TOOL_STAMP_NAME, self._tool_brush)
+                                    self._TOOL_STAMP_NAME, self._tool_brush,
+                                    self.set_tool)
 
         is_selected = self._activity.area.is_selected()
         self._tool_stamp.set_sensitive(is_selected)
@@ -328,7 +330,8 @@ class ToolsToolbarBuilder():
         self._tool_marquee_rectangular = add_menu('tool-marquee-rectangular',
                                                   _('Select Area'),
                                                   self._TOOL_MARQUEE_RECT_NAME,
-                                                  self._tool_brush)
+                                                  self._tool_brush,
+                                                  self.set_tool)
 
         self._tool_brush.connect('clicked', self.set_tool,
             self._TOOL_BRUSH_NAME)
@@ -500,44 +503,38 @@ class ShapesToolbarBuilder():
         self._fill_color_button = fill_color_button
         self._tool_name = None
 
-        def add_menu(icon_name, tooltip, tool_name, button):
-            menu_item = MenuItem(icon_name=icon_name, text_label=tooltip)
-            menu_item.connect('activate', self.set_tool, tool_name)
-            menu_item.icon_name = icon_name
-            button.props.palette.menu.append(menu_item)
-            menu_item.show()
-            return menu_item
-
         add_menu('tool-shape-ellipse', _('Ellipse'), self._SHAPE_ELLIPSE_NAME,
-                 button)
+                 button, self.set_tool)
 
         add_menu('tool-shape-rectangle', _('Rectangle'),
-                 self._SHAPE_RECTANGLE_NAME, button)
+                 self._SHAPE_RECTANGLE_NAME, button, self.set_tool)
 
-        add_menu('tool-shape-line', _('Line'), self._SHAPE_LINE_NAME, button)
+        add_menu('tool-shape-line', _('Line'), self._SHAPE_LINE_NAME, button,
+                 self.set_tool)
 
         add_menu('tool-shape-freeform', _('Free form'),
-                 self._SHAPE_FREEFORM_NAME, button)
+                 self._SHAPE_FREEFORM_NAME, button, self.set_tool)
 
         add_menu('tool-shape-polygon', _('Polygon'), self._SHAPE_POLYGON_NAME,
-                 button)
+                 button, self.set_tool)
 
         add_menu('tool-shape-heart', _('Heart'), self._SHAPE_HEART_NAME,
-                 button)
+                 button, self.set_tool)
 
         add_menu('tool-shape-parallelogram', _('Parallelogram'),
-                 self._SHAPE_PARALLELOGRAM_NAME, button)
+                 self._SHAPE_PARALLELOGRAM_NAME, button, self.set_tool)
 
         add_menu('tool-shape-arrow', _('Arrow'), self._SHAPE_ARROW_NAME,
-                 button)
+                 button, self.set_tool)
 
-        add_menu('tool-shape-star', _('Star'), self._SHAPE_STAR_NAME, button)
+        add_menu('tool-shape-star', _('Star'), self._SHAPE_STAR_NAME, button,
+                 self.set_tool)
 
         add_menu('tool-shape-trapezoid', _('Trapezoid'),
-                 self._SHAPE_TRAPEZOID_NAME, button)
+                 self._SHAPE_TRAPEZOID_NAME, button, self.set_tool)
 
         add_menu('tool-shape-triangle', _('Triangle'),
-                 self._SHAPE_TRIANGLE_NAME, button)
+                 self._SHAPE_TRIANGLE_NAME, button, self.set_tool)
 
         button.connect('clicked', self.button_set_tool)
         button.show_all()
