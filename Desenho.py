@@ -343,16 +343,20 @@ class Desenho:
         else:
             ctx.set_line_cap(cairo.LINE_CAP_SQUARE)
             ctx.set_line_join(cairo.LINE_JOIN_MITER)
+        ctx.set_line_width(widget.tool['line size'])
         if fill:
+            ctx.save()
             ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
-            ctx.set_line_width(0)
             ctx.fill_preserve()
+            ctx.set_operator(cairo.OPERATOR_SOURCE)
+            ctx.set_source_rgba(1.0, 1.0, 1.0, 1)
+            ctx.stroke_preserve()
+            ctx.restore()
 
         if widget.tool['name'] == 'eraser':
             ctx.set_source_rgba(1.0, 1.0, 1.0, 1.0)
         else:
             ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
-        ctx.set_line_width(widget.tool['line size'])
         ctx.stroke()
         ctx.restore()
         if fill or closed:
@@ -525,8 +529,14 @@ class Desenho:
 
         ctx.set_line_width(line_width / w)
         if fill:
+            ctx.save()
             ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
             ctx.fill_preserve()
+            ctx.set_operator(cairo.OPERATOR_SOURCE)
+            ctx.set_source_rgba(1.0, 1.0, 1.0, 1)
+            ctx.stroke_preserve()
+            ctx.restore()
+
         ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
         ctx.stroke()
         ctx.restore()
@@ -560,8 +570,14 @@ class Desenho:
         ctx.arc(0., 0., 1., 0., 2 * math.pi)
         ctx.set_line_width(line_width / float(min(dx, dy)))
         if fill:
+            ctx.save()
             ctx.set_source_rgba(*widget.tool['cairo_fill_color'])
             ctx.fill_preserve()
+            ctx.set_operator(cairo.OPERATOR_SOURCE)
+            ctx.set_source_rgba(1.0, 1.0, 1.0, 1)
+            ctx.stroke_preserve()
+            ctx.restore()
+
         ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
         ctx.stroke()
         ctx.restore()
