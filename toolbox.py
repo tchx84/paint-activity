@@ -77,6 +77,8 @@ from sugar3.graphics.toggletoolbutton import ToggleToolButton
 from sugar3.graphics.objectchooser import ObjectChooser
 from widgets import ButtonStrokeColor
 from sugar3.graphics.colorbutton import ColorToolButton
+from sugar3.graphics.radiopalette import RadioPalette
+from sugar3.graphics.menuitem import MenuItem
 
 from sugar3.graphics import style
 
@@ -234,6 +236,21 @@ class DrawToolButton(RadioToolButton):
         self.set_active(False)
         self.set_tooltip(tooltip)
 
+        self.selected_button = None
+
+        self.palette_invoker.props.toggle_palette = True
+        self.props.hide_tooltip_on_click = False
+
+        if self.props.palette:
+            self.__palette_cb(None, None)
+
+        self.connect('notify::palette', self.__palette_cb)
+
+    def __palette_cb(self, widget, pspec):
+        if not isinstance(self.props.palette, RadioPalette):
+            return
+        self.props.palette.update_button()
+
 
 class ToolsToolbarBuilder():
 
@@ -253,7 +270,6 @@ class ToolsToolbarBuilder():
         self.properties = self._activity.area.tool
 
         self._stroke_color = ButtonStrokeColor(activity)
-        #self._stroke_color.set_icon_name('icon-stroke')
         self._stroke_color.set_title(_('Brush properties'))
         self._stroke_color.connect('notify::color', self._color_button_cb)
         toolbar.insert(self._stroke_color, -1)
@@ -267,21 +283,28 @@ class ToolsToolbarBuilder():
         activity.tool_group = self._tool_brush
         toolbar.insert(self._tool_brush, -1)
 
-        self._tool_eraser = DrawToolButton('tool-eraser',
-            activity.tool_group, _('Eraser'))
-        toolbar.insert(self._tool_eraser, -1)
+        def add_menu(icon_name, tooltip, tool_name, button):
+            menu_item = MenuItem(icon_name=icon_name, text_label=tooltip)
+            menu_item.connect('activate', self.set_tool, tool_name)
+            menu_item.icon_name = icon_name
+            button.props.palette.menu.append(menu_item)
+            menu_item.show()
+            return menu_item
 
-        self._tool_bucket = DrawToolButton('tool-bucket',
-            activity.tool_group, _('Bucket'))
-        toolbar.insert(self._tool_bucket, -1)
+        add_menu('tool-brush', _('Brush'), self._TOOL_BRUSH_NAME,
+                 self._tool_brush)
 
-        self._tool_picker = DrawToolButton('tool-picker',
-            activity.tool_group, _('Picker'))
-        toolbar.insert(self._tool_picker, -1)
+        add_menu('tool-eraser', _('Eraser'), self._TOOL_ERASER_NAME,
+                 self._tool_brush)
 
-        self._tool_stamp = DrawToolButton('tool-stamp',
-            activity.tool_group, _('Stamp'))
-        toolbar.insert(self._tool_stamp, -1)
+        add_menu('tool-bucket', _('Bucket'), self._TOOL_BUCKET_NAME,
+                 self._tool_brush)
+
+        add_menu('tool-picker', _('Picker'), self._TOOL_PICKER_NAME,
+                 self._tool_brush)
+
+        self._tool_stamp = add_menu('tool-stamp', _('Stamp'),
+                                    self._TOOL_STAMP_NAME, self._tool_brush)
 
         is_selected = self._activity.area.is_selected()
         self._tool_stamp.set_sensitive(is_selected)
@@ -291,27 +314,13 @@ class ToolsToolbarBuilder():
         self._activity.area.connect('action-saved',
             self._on_signal_action_saved_cb)
 
-        self._tool_marquee_rectangular = \
-            DrawToolButton('tool-marquee-rectangular',
-            activity.tool_group, _('Select Area'))
-        toolbar.insert(self._tool_marquee_rectangular, -1)
+        self._tool_marquee_rectangular = add_menu('tool-marquee-rectangular',
+                                                  _('Select Area'),
+                                                  self._TOOL_MARQUEE_RECT_NAME,
+                                                  self._tool_brush)
 
-        # New connect method
-        # Using dictionnaries to control tool's properties
-        #self._tool_pencil.connect('clicked', self.set_tool,
-        #    self._TOOL_PENCIL_NAME)
         self._tool_brush.connect('clicked', self.set_tool,
             self._TOOL_BRUSH_NAME)
-        self._tool_eraser.connect('clicked', self.set_tool,
-            self._TOOL_ERASER_NAME)
-        self._tool_bucket.connect('clicked', self.set_tool,
-            self._TOOL_BUCKET_NAME)
-        self._tool_picker.connect('clicked', self.set_tool,
-            self._TOOL_PICKER_NAME)
-        self._tool_stamp.connect('clicked', self.set_tool,
-            self._TOOL_STAMP_NAME)
-        self._tool_marquee_rectangular.connect('clicked', self.set_tool,
-            self._TOOL_MARQUEE_RECT_NAME)
 
     def set_tool(self, widget, tool_name):
         """
@@ -322,6 +331,9 @@ class ToolsToolbarBuilder():
                           necessary in case this method is used in a connect()
             @param tool_name --The name of the selected tool
         """
+        if widget != self._tool_brush:
+            self._tool_brush.set_icon_name(widget.icon_name)
+
         if tool_name == 'stamp':
             resized_stamp = self._activity.area.setup_stamp()
             self._stroke_color.color_button.set_resized_stamp(resized_stamp)
