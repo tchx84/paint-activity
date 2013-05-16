@@ -107,15 +107,25 @@ class DrawToolbarBox(ToolbarBox):
         edit_toolbar.props.label = _('Edit')
         self.toolbar.insert(edit_toolbar, -1)
 
+        self._fill_color_button = ButtonFillColor(activity)
+        self._fill_color_button.set_icon_name('icon-fill')
+        self._fill_color_button.set_title(_('Shapes properties'))
+        item_fill_color = Gtk.ToolItem()
+        item_fill_color.add(self._fill_color_button)
+        self._fill_color_button.set_sensitive(False)
+
         self._activity.tool_group = None
 
-        tools_builder = ToolsToolbarBuilder(self.toolbar, self._activity)
+        tools_builder = ToolsToolbarBuilder(self.toolbar, self._activity,
+                                            self._fill_color_button)
 
-        shapes_button = ToolbarButton()
-        shapes_button.props.page = ShapesToolbar(self._activity)
-        shapes_button.props.icon_name = 'shapes'
-        shapes_button.props.label = _('Shapes')
+        shapes_button = DrawToolButton('shapes',
+            self._activity.tool_group, _('Shapes'))
         self.toolbar.insert(shapes_button, -1)
+        shapes_builder = ShapesToolbarBuilder(self._activity, shapes_button,
+                                              self._fill_color_button)
+
+        self.toolbar.insert(item_fill_color, -1)
 
         fonts_button = ToolbarButton()
         fonts_button.props.page = TextToolbar(self._activity)
@@ -264,10 +274,11 @@ class ToolsToolbarBuilder():
     _TOOL_MARQUEE_RECT_NAME = 'marquee-rectangular'
 
     ##The Constructor
-    def __init__(self, toolbar, activity):
+    def __init__(self, toolbar, activity, fill_color_button):
 
         self._activity = activity
         self.properties = self._activity.area.tool
+        self._fill_color_button = fill_color_button
 
         self._stroke_color = ButtonStrokeColor(activity)
         self._stroke_color.set_title(_('Brush properties'))
@@ -342,6 +353,7 @@ class ToolsToolbarBuilder():
         self._stroke_color.update_stamping()
         self.properties['name'] = tool_name
         self._activity.area.set_tool(self.properties)
+        self._fill_color_button.set_sensitive(False)
 
     def _color_button_cb(self, widget, pspec):
         logging.error('ToolsToolbarBuilder._color_button_cb')
@@ -464,7 +476,7 @@ class ButtonFillColor(ColorToolButton):
 
 
 ##Make the Shapes Toolbar
-class ShapesToolbar(Gtk.Toolbar):
+class ShapesToolbarBuilder():
 
     _SHAPE_ARROW_NAME = 'arrow'
     _SHAPE_CURVE_NAME = 'curve'
@@ -480,96 +492,70 @@ class ShapesToolbar(Gtk.Toolbar):
     _SHAPE_TRIANGLE_NAME = 'triangle'
 
     ##The Constructor
-    def __init__(self, activity):
-        GObject.GObject.__init__(self)
+    def __init__(self, activity, button, fill_color_button):
 
         self._activity = activity
         self.properties = self._activity.area.tool
+        self._tool_button = button
+        self._fill_color_button = fill_color_button
+        self._tool_name = None
 
-        self._fill_color = ButtonFillColor(activity)
-        self._fill_color.set_icon_name('icon-fill')
-        self._fill_color.set_title(_('Shapes properties'))
-        item = Gtk.ToolItem()
-        item.add(self._fill_color)
-        self.insert(item, -1)
+        def add_menu(icon_name, tooltip, tool_name, button):
+            menu_item = MenuItem(icon_name=icon_name, text_label=tooltip)
+            menu_item.connect('activate', self.set_tool, tool_name)
+            menu_item.icon_name = icon_name
+            button.props.palette.menu.append(menu_item)
+            menu_item.show()
+            return menu_item
 
-        separator = Gtk.SeparatorToolItem()
-        separator.set_draw(True)
-        self.insert(separator, -1)
+        add_menu('tool-shape-ellipse', _('Ellipse'), self._SHAPE_ELLIPSE_NAME,
+                 button)
 
-        # self._configure_palette_shape_ellipse()
+        add_menu('tool-shape-rectangle', _('Rectangle'),
+                 self._SHAPE_RECTANGLE_NAME, button)
 
-        self._shape_ellipse = DrawToolButton('tool-shape-ellipse',
-            activity.tool_group, _('Ellipse'))
-        self.insert(self._shape_ellipse, -1)
+        add_menu('tool-shape-line', _('Line'), self._SHAPE_LINE_NAME, button)
 
-        self._shape_rectangle = DrawToolButton('tool-shape-rectangle',
-            activity.tool_group, _('Rectangle'))
-        self.insert(self._shape_rectangle, -1)
+        add_menu('tool-shape-freeform', _('Free form'),
+                 self._SHAPE_FREEFORM_NAME, button)
 
-        self._shape_line = DrawToolButton('tool-shape-line',
-            activity.tool_group, _('Line'))
-        self.insert(self._shape_line, -1)
+        add_menu('tool-shape-polygon', _('Polygon'), self._SHAPE_POLYGON_NAME,
+                 button)
 
-        self._shape_freeform = DrawToolButton('tool-shape-freeform',
-            activity.tool_group, _('Free form'))
-        self.insert(self._shape_freeform, -1)
+        add_menu('tool-shape-heart', _('Heart'), self._SHAPE_HEART_NAME,
+                 button)
 
-        self._shape_polygon = DrawToolButton('tool-shape-polygon',
-            activity.tool_group, _('Polygon'))
-        self.insert(self._shape_polygon, -1)
+        add_menu('tool-shape-parallelogram', _('Parallelogram'),
+                 self._SHAPE_PARALLELOGRAM_NAME, button)
 
-        self._shape_heart = DrawToolButton('tool-shape-heart',
-            activity.tool_group, _('Heart'))
-        self.insert(self._shape_heart, -1)
+        add_menu('tool-shape-arrow', _('Arrow'), self._SHAPE_ARROW_NAME,
+                 button)
 
-        self._shape_parallelogram = DrawToolButton('tool-shape-parallelogram',
-            activity.tool_group, _('Parallelogram'))
-        self.insert(self._shape_parallelogram, -1)
+        add_menu('tool-shape-star', _('Star'), self._SHAPE_STAR_NAME, button)
 
-        self._shape_arrow = DrawToolButton('tool-shape-arrow',
-            activity.tool_group, _('Arrow'))
-        self.insert(self._shape_arrow, -1)
+        add_menu('tool-shape-trapezoid', _('Trapezoid'),
+                 self._SHAPE_TRAPEZOID_NAME, button)
 
-        self._shape_star = DrawToolButton('tool-shape-star',
-            activity.tool_group, _('Star'))
-        self.insert(self._shape_star, -1)
+        add_menu('tool-shape-triangle', _('Triangle'),
+                 self._SHAPE_TRIANGLE_NAME, button)
 
-        self._shape_trapezoid = DrawToolButton('tool-shape-trapezoid',
-            activity.tool_group, _('Trapezoid'))
-        self.insert(self._shape_trapezoid, -1)
+        button.connect('clicked', self.button_set_tool)
+        button.show_all()
 
-        self._shape_triangle = DrawToolButton('tool-shape-triangle',
-            activity.tool_group, _('Triangle'))
-        self.insert(self._shape_triangle, -1)
+    def button_set_tool(self, button):
+        self.set_tool(button, self._tool_name)
 
-        self._shape_arrow.connect('clicked', self.set_tool, self.properties,
-            self._SHAPE_ARROW_NAME)
-        self._shape_ellipse.connect('clicked', self.set_tool, self.properties,
-            self._SHAPE_ELLIPSE_NAME)
-        self._shape_freeform.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_FREEFORM_NAME)
-        self._shape_heart.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_HEART_NAME)
-        self._shape_line.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_LINE_NAME)
-        self._shape_parallelogram.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_PARALLELOGRAM_NAME)
-        self._shape_polygon.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_POLYGON_NAME)
-        self._shape_rectangle.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_RECTANGLE_NAME)
-        self._shape_star.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_STAR_NAME)
-        self._shape_trapezoid.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_TRAPEZOID_NAME)
-        self._shape_triangle.connect('clicked', self.set_tool,
-            self.properties, self._SHAPE_TRIANGLE_NAME)
-        self.show_all()
+    def set_tool(self, widget, tool_name):
+        logging.error('tool_name %s', tool_name)
+        if tool_name is None:
+            return
+        if widget != self._tool_button:
+            self._tool_button.set_icon_name(widget.icon_name)
 
-    def set_tool(self, widget, tool, tool_name):
-        tool['name'] = tool_name
-        self._activity.area.set_tool(tool)
+        self._tool_name = tool_name
+        self.properties['name'] = tool_name
+        self._activity.area.set_tool(self.properties)
+        self._fill_color_button.set_sensitive(True)
 
 
 ##Make the Text Toolbar
