@@ -117,7 +117,6 @@ class DrawToolbarBox(ToolbarBox):
         self.toolbar.insert(edit_toolbar, -1)
 
         self._fill_color_button = ButtonFillColor(activity)
-        self._fill_color_button.set_icon_name('icon-fill')
         self._fill_color_button.set_title(_('Shapes properties'))
         item_fill_color = Gtk.ToolItem()
         item_fill_color.add(self._fill_color_button)
