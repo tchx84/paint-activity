@@ -78,7 +78,8 @@ from sugar3.graphics.objectchooser import ObjectChooser
 from widgets import ButtonStrokeColor
 from sugar3.graphics.colorbutton import ColorToolButton
 from sugar3.graphics.radiopalette import RadioPalette
-from sugar3.graphics.menuitem import MenuItem
+from sugar3.graphics.palettemenu import PaletteMenuBox
+from sugar3.graphics.palettemenu import PaletteMenuItem
 
 from sugar3.graphics import style
 
@@ -90,10 +91,10 @@ from fontcombobox import FontComboBox
 
 
 def add_menu(icon_name, tooltip, tool_name, button, activate_cb):
-    menu_item = MenuItem(icon_name=icon_name, text_label=tooltip)
+    menu_item = PaletteMenuItem(icon_name=icon_name, text_label=tooltip)
     menu_item.connect('activate', activate_cb, tool_name)
     menu_item.icon_name = icon_name
-    button.props.palette.menu.append(menu_item)
+    button.menu_box.append_item(menu_item)
     menu_item.show()
     return menu_item
 
@@ -261,6 +262,10 @@ class DrawToolButton(RadioToolButton):
 
         if self.props.palette:
             self.__palette_cb(None, None)
+
+        self.menu_box = PaletteMenuBox()
+        self.props.palette.set_content(self.menu_box)
+        self.menu_box.show()
 
         self.connect('notify::palette', self.__palette_cb)
 
