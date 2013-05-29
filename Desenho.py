@@ -597,11 +597,16 @@ class Desenho:
         width, height = widget.get_size()
         # try to clear a selected area first
         if widget.is_selected():
-            x, y, width, height = widget.get_selection_bounds()
-
-        widget.drawing_ctx.rectangle(x, y, width, height)
-        widget.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
-        widget.drawing_ctx.fill()
+            selection_surface = widget.get_selection()
+            _x, _y, width, height = widget.get_selection_bounds()
+            ctx = cairo.Context(selection_surface)
+            ctx.rectangle(0, 0, width, height)
+            ctx.set_source_rgb(1.0, 1.0, 1.0)
+            ctx.fill()
+        else:
+            widget.drawing_ctx.rectangle(x, y, width, height)
+            widget.drawing_ctx.set_source_rgb(1.0, 1.0, 1.0)
+            widget.drawing_ctx.fill()
 
         widget.queue_draw()
 
