@@ -62,6 +62,8 @@ Walter Bender                       (walter@laptop.org)
 """
 
 from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
 import logging
 
 from sugar3.activity import activity
@@ -86,6 +88,8 @@ class OficinaActivity(activity.Activity):
         logging.debug('Starting Paint activity (Oficina)')
 
         self.fixed = Gtk.Fixed()
+        self._width = Gdk.Screen.width()
+        self._height = Gdk.Screen.height()
         self.fixed.show()
         self.fixed.modify_bg(Gtk.StateType.NORMAL,
                 style.COLOR_WHITE.get_gdk_color())
@@ -128,6 +132,18 @@ class OficinaActivity(activity.Activity):
                     size_allocate_cb)
 
         self._setup_handle = self.connect('map', map_cp)
+
+        # Handle screen rotation
+        Gdk.Screen.get_default().connect('size-changed', self._configure_cb)
+
+    def _configure_cb(self, event):
+        ''' Rotate the drawing after a screen rotation '''
+        width = Gdk.Screen.width()
+        height = Gdk.Screen.height()
+        if (self._width > self._height) != (width > height):
+            GObject.timeout_add(100, self.area.rotate_right, self.area)
+        self._width = width
+        self._height = height
 
     def key_press(self, widget, event):
         print event.keyval
