@@ -1405,7 +1405,8 @@ class Area(Gtk.DrawingArea):
             self.temp_ctx.paint()
             self.temp_ctx.restore()
 
-            self.create_selection_surface(temp_canvas=True)
+            #assign the rotated surface as the selection surface
+            self.selection_surface = rotate_surface
 
         else:
             # create a new canvas with permuted dimensions
