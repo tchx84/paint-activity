@@ -17,6 +17,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 import os
 import shutil
+from gettext import gettext as _
 
 from gi.repository import Gtk
 from gi.repository import GObject
@@ -85,7 +86,7 @@ class FontComboBox(Gtk.ToolItem):
         self._palette_invoker.attach_tool(self)
         self._palette_invoker.props.toggle_palette = True
 
-        self.palette = Palette('Select font')
+        self.palette = Palette(_('Select font'))
         self.palette.set_invoker(self._palette_invoker)
 
         # load the fonts in the palette menu
@@ -196,3 +197,89 @@ class FontComboBox(Gtk.ToolItem):
 
     def get_font_name(self):
         return self._font_name
+
+
+class FontSize(Gtk.ToolItem):
+
+    __gsignals__ = {
+        'changed': (GObject.SignalFlags.RUN_LAST, None, ([])), }
+
+    def __init__(self):
+
+        Gtk.ToolItem.__init__(self)
+
+        self._font_sizes = [8, 9, 10, 11, 12, 14, 16, 20, 22, 24, 26, 28, 36,
+                            48, 72]
+
+        hbox = Gtk.HBox()
+        vbox = Gtk.VBox()
+        self.add(vbox)
+        # add a vbox to set the padding up and down
+        vbox.pack_start(hbox, True, True, 4)
+        self._size_up = Gtk.Button()
+        icon = Icon(icon_name='resize+')
+        self._size_up.set_image(icon)
+        self._size_up.connect('clicked', self.__font_sizes_cb, True)
+        hbox.pack_start(self._size_up, False, False, 5)
+
+        # TODO: default?
+        self._default_size = 12
+        self._font_size = self._default_size
+
+        self._size_label = Gtk.Label(str(self._font_size))
+        hbox.pack_start(self._size_label, False, False, 5)
+
+        self._size_down = Gtk.Button()
+        icon = Icon(icon_name='resize-')
+        self._size_down.set_image(icon)
+        self._size_down.connect('clicked', self.__font_sizes_cb, False)
+        hbox.pack_start(self._size_down, False, False, 5)
+
+        # theme the buttons, can be removed if add the style to the sugar css
+        if style.zoom(100) == 100:
+            subcell_size = 15
+        else:
+            subcell_size = 11
+        radius = 2 * subcell_size
+        theme_up = "GtkButton {border-radius: %dpx 0px 0px %dpx;}" % (radius,
+                                                                      radius)
+        css_provider_up = Gtk.CssProvider()
+        css_provider_up.load_from_data(theme_up)
+
+        style_context = self._size_up.get_style_context()
+        style_context.add_provider(css_provider_up,
+                                   Gtk.STYLE_PROVIDER_PRIORITY_USER)
+
+        theme_down = "GtkButton {border-radius:0px %dpx %dpx 0px;}" % (radius,
+                                                                       radius)
+        css_provider_down = Gtk.CssProvider()
+        css_provider_down.load_from_data(theme_down)
+        style_context = self._size_down.get_style_context()
+        style_context.add_provider(css_provider_down,
+                                   Gtk.STYLE_PROVIDER_PRIORITY_USER)
+
+        self.show_all()
+
+    def __font_sizes_cb(self, button, increase):
+        if self._font_size in self._font_sizes:
+            i = self._font_sizes.index(self._font_size)
+            if increase:
+                if i < len(self._font_sizes) - 1:
+                    i += 1
+            else:
+                if i > 0:
+                    i -= 1
+        else:
+            i = self._font_sizes.index(self._default_size)
+
+        self._font_size = self._font_sizes[i]
+        self._size_label.set_text(str(self._font_size))
+        self._size_down.set_sensitive(i != 0)
+        self._size_up.set_sensitive(i < len(self._font_sizes) - 1)
+        self.emit('changed')
+
+    def set_font_size(self, size):
+        self._font_size = size
+
+    def get_font_size(self):
+        return self._font_size
