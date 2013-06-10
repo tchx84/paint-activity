@@ -88,6 +88,7 @@ from sugar3.graphics.toolbarbox import ToolbarButton, ToolbarBox
 from sugar3.activity.widgets import StopButton
 
 from fontcombobox import FontComboBox
+from fontcombobox import FontSize
 
 
 def add_menu(icon_name, tooltip, tool_name, button, activate_cb):
@@ -592,26 +593,19 @@ class TextToolbar(Gtk.Toolbar):
         separator.set_draw(True)
         self.insert(separator, -1)
 
-        fd = activity.area.get_font_description()
-
-        self._font_size_combo = Gtk.ComboBoxText()
-        self._font_sizes = ['8', '10', '12', '14', '16', '20',
-                            '22', '24', '26', '28', '36', '48', '72']
-        self._font_size_changed_id = self._font_size_combo.connect('changed',
+        self._font_size = FontSize()
+        self.insert(self._font_size, -1)
+        self._font_size_changed_id = self._font_size.connect('changed',
                 self.__font_size_changed_cb)
-        for i, s in enumerate(self._font_sizes):
-            self._font_size_combo.append_text(s)
-            if int(s) == (fd.get_size() / Pango.SCALE):
-                self._font_size_combo.set_active(i)
-
-        tool_item = ToolComboBox(self._font_size_combo)
-        self.insert(tool_item, -1)
 
         self._font_combo = FontComboBox()
         self._fonts_changed_id = self._font_combo.connect('changed',
                 self.__font_changed_cb)
+
+        fd = activity.area.get_font_description()
         font_name = fd.get_family()
         self._font_combo.set_font_name(font_name)
+        self._font_size.set_font_size(int(fd.get_size() / Pango.SCALE))
         tool_item = ToolComboBox(self._font_combo)
         self.insert(tool_item, -1)
         self.show_all()
@@ -632,9 +626,9 @@ class TextToolbar(Gtk.Toolbar):
             fd.set_style(Pango.Style.NORMAL)
         self._activity.area.set_font_description(fd)
 
-    def __font_size_changed_cb(self, combo):
+    def __font_size_changed_cb(self, widget):
         fd = self._activity.area.get_font_description()
-        value = self.get_active_text(combo)
+        value = widget.get_font_size()
         fd.set_size(int(value) * Pango.SCALE)
         self._activity.area.set_font_description(fd)
 
