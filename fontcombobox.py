@@ -283,7 +283,24 @@ class FontSize(Gtk.ToolItem):
         self.emit('changed')
 
     def set_font_size(self, size):
+        if size not in self._font_sizes:
+            # assure the font assigned is in the range
+            # if not, assign one close.
+            for font_size in self._font_sizes:
+                if font_size > size:
+                    size = font_size
+                    break
+            if size > self._font_sizes[-1]:
+                size = self._font_sizes[-1]
+
         self._font_size = size
+        self._size_label.set_text(str(self._font_size))
+
+        # update the buttons states
+        i = self._font_sizes.index(self._font_size)
+        self._size_down.set_sensitive(i != 0)
+        self._size_up.set_sensitive(i < len(self._font_sizes) - 1)
+        self.emit('changed')
 
     def get_font_size(self):
         return self._font_size
