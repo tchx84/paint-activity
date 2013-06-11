@@ -212,6 +212,7 @@ class FontSize(Gtk.ToolItem):
                             48, 72]
 
         # theme the buttons, can be removed if add the style to the sugar css
+        # these are the same values used in gtk-widgets.css.em
         if style.zoom(100) == 100:
             subcell_size = 15
             default_padding = 6
@@ -224,28 +225,28 @@ class FontSize(Gtk.ToolItem):
         self.add(vbox)
         # add a vbox to set the padding up and down
         vbox.pack_start(hbox, True, True, default_padding)
-        self._size_up = Gtk.Button()
-        icon = Icon(icon_name='resize+')
-        self._size_up.set_image(icon)
-        self._size_up.connect('clicked', self.__font_sizes_cb, True)
-        hbox.pack_start(self._size_up, False, False, 5)
-
-        # TODO: default?
-        self._default_size = 12
-        self._font_size = self._default_size
-
-        self._size_label = Gtk.Label(str(self._font_size))
-        hbox.pack_start(self._size_label, False, False, 5)
-
         self._size_down = Gtk.Button()
         icon = Icon(icon_name='resize-')
         self._size_down.set_image(icon)
         self._size_down.connect('clicked', self.__font_sizes_cb, False)
         hbox.pack_start(self._size_down, False, False, 5)
 
+        # TODO: default?
+        self._default_size = 12
+        self._font_size = self._default_size
+
+        self._size_label = Gtk.Label(str(self._font_size))
+        hbox.pack_start(self._size_label, False, False, 10)
+
+        self._size_up = Gtk.Button()
+        icon = Icon(icon_name='resize+')
+        self._size_up.set_image(icon)
+        self._size_up.connect('clicked', self.__font_sizes_cb, True)
+        hbox.pack_start(self._size_up, False, False, 5)
+
         radius = 2 * subcell_size
-        theme_up = "GtkButton {border-radius: %dpx 0px 0px %dpx;}" % (radius,
-                                                                      radius)
+        theme_up = "GtkButton {border-radius:0px %dpx %dpx 0px;}" % (radius,
+                                                                     radius)
         css_provider_up = Gtk.CssProvider()
         css_provider_up.load_from_data(theme_up)
 
@@ -253,8 +254,8 @@ class FontSize(Gtk.ToolItem):
         style_context.add_provider(css_provider_up,
                                    Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
-        theme_down = "GtkButton {border-radius:0px %dpx %dpx 0px;}" % (radius,
-                                                                       radius)
+        theme_down = "GtkButton {border-radius: %dpx 0px 0px %dpx;}" % (radius,
+                                                                        radius)
         css_provider_down = Gtk.CssProvider()
         css_provider_down.load_from_data(theme_down)
         style_context = self._size_down.get_style_context()
