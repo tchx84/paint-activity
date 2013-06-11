@@ -211,11 +211,19 @@ class FontSize(Gtk.ToolItem):
         self._font_sizes = [8, 9, 10, 11, 12, 14, 16, 20, 22, 24, 26, 28, 36,
                             48, 72]
 
+        # theme the buttons, can be removed if add the style to the sugar css
+        if style.zoom(100) == 100:
+            subcell_size = 15
+            default_padding = 6
+        else:
+            subcell_size = 11
+            default_padding = 4
+
         hbox = Gtk.HBox()
         vbox = Gtk.VBox()
         self.add(vbox)
         # add a vbox to set the padding up and down
-        vbox.pack_start(hbox, True, True, 4)
+        vbox.pack_start(hbox, True, True, default_padding)
         self._size_up = Gtk.Button()
         icon = Icon(icon_name='resize+')
         self._size_up.set_image(icon)
@@ -235,11 +243,6 @@ class FontSize(Gtk.ToolItem):
         self._size_down.connect('clicked', self.__font_sizes_cb, False)
         hbox.pack_start(self._size_down, False, False, 5)
 
-        # theme the buttons, can be removed if add the style to the sugar css
-        if style.zoom(100) == 100:
-            subcell_size = 15
-        else:
-            subcell_size = 11
         radius = 2 * subcell_size
         theme_up = "GtkButton {border-radius: %dpx 0px 0px %dpx;}" % (radius,
                                                                       radius)
