@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2011-12-16 06:01+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,163 +56,167 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "編集"
 
-#: toolbox.py:115
-msgid "Shapes"
-msgstr "図形"
-
-#: toolbox.py:121
-msgid "Fonts"
-msgstr ""
-
-#: toolbox.py:127
-msgid "Image"
-msgstr "画像"
-
-#: toolbox.py:166
-msgid "Undo"
-msgstr "元に戻す"
-
-#: toolbox.py:167
-msgid "Redo"
-msgstr "やり直し"
-
-#: toolbox.py:168
-msgid "Copy"
-msgstr "コピー"
-
-#: toolbox.py:169
-msgid "Paste"
-msgstr "貼り付け"
-
-#: toolbox.py:177
-msgid "Clear"
-msgstr "クリア"
-
-#: toolbox.py:257 widgets.py:339
-msgid "Brush properties"
-msgstr ""
-
-#: toolbox.py:268
-msgid "Brush"
-msgstr "ブラシ"
-
-#: toolbox.py:273
-msgid "Eraser"
-msgstr "消しゴム"
-
-#: toolbox.py:277
-msgid "Bucket"
-msgstr "バケツ"
-
-#: toolbox.py:281
-msgid "Picker"
-msgstr ""
-
-#: toolbox.py:285
-msgid "Stamp"
-msgstr ""
-
-#: toolbox.py:298
-msgid "Select Area"
-msgstr ""
-
-#: toolbox.py:389
-msgid "Fill"
-msgstr "塗りつぶし"
-
-#: toolbox.py:395 widgets.py:300
-msgid "Keep aspect"
-msgstr ""
-
-#: toolbox.py:412
-msgid "Sides: "
-msgstr "辺: "
-
-#: toolbox.py:467
+#: toolbox.py:122
 msgid "Shapes properties"
 msgstr ""
 
-#: toolbox.py:479
+#: toolbox.py:133
+msgid "Shapes"
+msgstr "図形"
+
+#: toolbox.py:143
+msgid "Fonts"
+msgstr ""
+
+#: toolbox.py:149
+msgid "Image"
+msgstr "画像"
+
+#: toolbox.py:188
+msgid "Undo"
+msgstr "元に戻す"
+
+#: toolbox.py:189
+msgid "Redo"
+msgstr "やり直し"
+
+#: toolbox.py:190
+msgid "Copy"
+msgstr "コピー"
+
+#: toolbox.py:191
+msgid "Paste"
+msgstr "貼り付け"
+
+#: toolbox.py:199
+msgid "Clear"
+msgstr "クリア"
+
+#: toolbox.py:298 widgets.py:322
+msgid "Brush properties"
+msgstr ""
+
+#: toolbox.py:307 toolbox.py:311
+msgid "Brush"
+msgstr "ブラシ"
+
+#: toolbox.py:314
+msgid "Eraser"
+msgstr "消しゴム"
+
+#: toolbox.py:317
+msgid "Bucket"
+msgstr "バケツ"
+
+#: toolbox.py:320
+msgid "Picker"
+msgstr ""
+
+#: toolbox.py:323
+msgid "Stamp"
+msgstr ""
+
+#: toolbox.py:336
+msgid "Select Area"
+msgstr ""
+
+#: toolbox.py:415
+msgid "Fill"
+msgstr "塗りつぶし"
+
+#: toolbox.py:421 widgets.py:286
+msgid "Keep aspect"
+msgstr ""
+
+#: toolbox.py:438
+msgid "Sides: "
+msgstr "辺: "
+
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "楕円"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "長方形"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "線"
 
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "多角形"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "ハート形"
 
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "平行四辺形"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "矢印"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "星型"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "台形"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "三角形"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "文字入力"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "画像を挿入"
 
-#: toolbox.py:673
+#: toolbox.py:678
 msgid "Rotate Left"
 msgstr "左回転"
 
-#: toolbox.py:677
+#: toolbox.py:682
 msgid "Rotate Right"
 msgstr "右回転"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "グレイスケール"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr "虹"
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr ""
 
@@ -236,19 +240,19 @@ msgstr "四角"
 msgid "Choose brush properties"
 msgstr ""
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "形"
 
-#: widgets.py:329
+#: widgets.py:317
 msgid "Stamp properties"
 msgstr ""
 

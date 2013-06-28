@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Paint\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2012-05-19 16:29+0200\n"
 "Last-Translator: Yuan <yuanchao@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
@@ -52,163 +52,167 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "編輯"
 
-#: toolbox.py:115
-msgid "Shapes"
-msgstr "形狀"
-
-#: toolbox.py:121
-msgid "Fonts"
-msgstr "字型"
-
-#: toolbox.py:127
-msgid "Image"
-msgstr "圖片"
-
-#: toolbox.py:166
-msgid "Undo"
-msgstr "復原"
-
-#: toolbox.py:167
-msgid "Redo"
-msgstr "取消復原"
-
-#: toolbox.py:168
-msgid "Copy"
-msgstr "複製"
-
-#: toolbox.py:169
-msgid "Paste"
-msgstr "貼上"
-
-#: toolbox.py:177
-msgid "Clear"
-msgstr "清除"
-
-#: toolbox.py:257 widgets.py:339
-msgid "Brush properties"
-msgstr "筆刷屬性"
-
-#: toolbox.py:268
-msgid "Brush"
-msgstr "刷筆"
-
-#: toolbox.py:273
-msgid "Eraser"
-msgstr "橡皮擦"
-
-#: toolbox.py:277
-msgid "Bucket"
-msgstr "水彩桶"
-
-#: toolbox.py:281
-msgid "Picker"
-msgstr "吸取顏色"
-
-#: toolbox.py:285
-msgid "Stamp"
-msgstr "印章"
-
-#: toolbox.py:298
-msgid "Select Area"
-msgstr "選擇區域"
-
-#: toolbox.py:389
-msgid "Fill"
-msgstr "填滿"
-
-#: toolbox.py:395 widgets.py:300
-msgid "Keep aspect"
-msgstr "保持長寬比"
-
-#: toolbox.py:412
-msgid "Sides: "
-msgstr "邊:"
-
-#: toolbox.py:467
+#: toolbox.py:122
 msgid "Shapes properties"
 msgstr "多邊形屬性"
 
-#: toolbox.py:479
+#: toolbox.py:133
+msgid "Shapes"
+msgstr "形狀"
+
+#: toolbox.py:143
+msgid "Fonts"
+msgstr "字型"
+
+#: toolbox.py:149
+msgid "Image"
+msgstr "圖片"
+
+#: toolbox.py:188
+msgid "Undo"
+msgstr "復原"
+
+#: toolbox.py:189
+msgid "Redo"
+msgstr "取消復原"
+
+#: toolbox.py:190
+msgid "Copy"
+msgstr "複製"
+
+#: toolbox.py:191
+msgid "Paste"
+msgstr "貼上"
+
+#: toolbox.py:199
+msgid "Clear"
+msgstr "清除"
+
+#: toolbox.py:298 widgets.py:322
+msgid "Brush properties"
+msgstr "筆刷屬性"
+
+#: toolbox.py:307 toolbox.py:311
+msgid "Brush"
+msgstr "刷筆"
+
+#: toolbox.py:314
+msgid "Eraser"
+msgstr "橡皮擦"
+
+#: toolbox.py:317
+msgid "Bucket"
+msgstr "水彩桶"
+
+#: toolbox.py:320
+msgid "Picker"
+msgstr "吸取顏色"
+
+#: toolbox.py:323
+msgid "Stamp"
+msgstr "印章"
+
+#: toolbox.py:336
+msgid "Select Area"
+msgstr "選擇區域"
+
+#: toolbox.py:415
+msgid "Fill"
+msgstr "填滿"
+
+#: toolbox.py:421 widgets.py:286
+msgid "Keep aspect"
+msgstr "保持長寬比"
+
+#: toolbox.py:438
+msgid "Sides: "
+msgstr "邊:"
+
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "橢圓形"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "矩形"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "線條"
 
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr "自由格式"
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "多邊形"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "心形"
 
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "平行四邊形"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "箭頭"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "星星"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "梯形"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "三角形"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "類型"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "插入圖形"
 
-#: toolbox.py:673
+#: toolbox.py:678
 msgid "Rotate Left"
 msgstr "向左轉"
 
-#: toolbox.py:677
+#: toolbox.py:682
 msgid "Rotate Right"
 msgstr "向右轉"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr "水平鏡像"
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr "垂直鏡像"
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "灰階"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr "漸層色"
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr "對比色"
 
@@ -232,19 +236,19 @@ msgstr "正方形"
 msgid "Choose brush properties"
 msgstr "選擇筆刷屬性"
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "形狀"
 
-#: widgets.py:329
+#: widgets.py:317
 msgid "Stamp properties"
 msgstr "印章屬性"
 

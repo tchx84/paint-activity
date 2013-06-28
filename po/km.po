@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2011-04-28 16:44+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,165 +28,169 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "កែ"
 
-#: toolbox.py:115
-msgid "Shapes"
-msgstr "រាង"
-
-#: toolbox.py:121
-msgid "Fonts"
-msgstr "ពុម្ព​អក្សរ"
-
-#: toolbox.py:127
-msgid "Image"
-msgstr "រូបភាព"
-
-#: toolbox.py:166
-msgid "Undo"
-msgstr "កុំ​ធ្វើ​វិញ"
-
-#: toolbox.py:167
-msgid "Redo"
-msgstr "ធ្វើ​វិញ"
-
-#: toolbox.py:168
-msgid "Copy"
-msgstr "ចំលង"
-
-#: toolbox.py:169
-msgid "Paste"
-msgstr "បិតត"
-
-#: toolbox.py:177
-msgid "Clear"
-msgstr "សំអាត"
-
-#: toolbox.py:257 widgets.py:339
-#, fuzzy
-msgid "Brush properties"
-msgstr "ข้อมูลแทร็ก"
-
-#: toolbox.py:268
-msgid "Brush"
-msgstr "ជក់"
-
-#: toolbox.py:273
-msgid "Eraser"
-msgstr "ជ័រ​លុប"
-
-#: toolbox.py:277
-msgid "Bucket"
-msgstr "ទុង​ទឹក​ថ្នាំ"
-
-#: toolbox.py:281
-msgid "Picker"
-msgstr ""
-
-#: toolbox.py:285
-msgid "Stamp"
-msgstr "ត្រា"
-
-#: toolbox.py:298
-msgid "Select Area"
-msgstr ""
-
-#: toolbox.py:389
-msgid "Fill"
-msgstr "បំពេញ"
-
-#: toolbox.py:395 widgets.py:300
-msgid "Keep aspect"
-msgstr ""
-
-#: toolbox.py:412
-msgid "Sides: "
-msgstr "ខាង ៖"
-
-#: toolbox.py:467
+#: toolbox.py:122
 #, fuzzy
 msgid "Shapes properties"
 msgstr "คุณสมบัติหน้า"
 
-#: toolbox.py:479
+#: toolbox.py:133
+msgid "Shapes"
+msgstr "រាង"
+
+#: toolbox.py:143
+msgid "Fonts"
+msgstr "ពុម្ព​អក្សរ"
+
+#: toolbox.py:149
+msgid "Image"
+msgstr "រូបភាព"
+
+#: toolbox.py:188
+msgid "Undo"
+msgstr "កុំ​ធ្វើ​វិញ"
+
+#: toolbox.py:189
+msgid "Redo"
+msgstr "ធ្វើ​វិញ"
+
+#: toolbox.py:190
+msgid "Copy"
+msgstr "ចំលង"
+
+#: toolbox.py:191
+msgid "Paste"
+msgstr "បិតត"
+
+#: toolbox.py:199
+msgid "Clear"
+msgstr "សំអាត"
+
+#: toolbox.py:298 widgets.py:322
+#, fuzzy
+msgid "Brush properties"
+msgstr "ข้อมูลแทร็ก"
+
+#: toolbox.py:307 toolbox.py:311
+msgid "Brush"
+msgstr "ជក់"
+
+#: toolbox.py:314
+msgid "Eraser"
+msgstr "ជ័រ​លុប"
+
+#: toolbox.py:317
+msgid "Bucket"
+msgstr "ទុង​ទឹក​ថ្នាំ"
+
+#: toolbox.py:320
+msgid "Picker"
+msgstr ""
+
+#: toolbox.py:323
+msgid "Stamp"
+msgstr "ត្រា"
+
+#: toolbox.py:336
+msgid "Select Area"
+msgstr ""
+
+#: toolbox.py:415
+msgid "Fill"
+msgstr "បំពេញ"
+
+#: toolbox.py:421 widgets.py:286
+msgid "Keep aspect"
+msgstr ""
+
+#: toolbox.py:438
+msgid "Sides: "
+msgstr "ខាង ៖"
+
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "ពង​ក្រពើ"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "ចតុកោណ"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "បន្ទាត់"
 
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "ពហុកោណ"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "បេះដូង"
 
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "ចតុកោណ​ស្រប"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "ព្រួញ"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "ផ្កាយ"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "ចតុកោណវាច"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "ត្រីកោណ"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "ប្រភេទ"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "បញ្ចូល​រូបភាប"
 
-#: toolbox.py:673
+#: toolbox.py:678
 msgid "Rotate Left"
 msgstr "បង្វិល​ទៅ​ឆ្វេង"
 
-#: toolbox.py:677
+#: toolbox.py:682
 msgid "Rotate Right"
 msgstr "បង្វិល​ទៅ​ស្ដាំ"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "មាត្រដ្ឋាន​ប្រផេះ"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr "ឥណ្ធនូ"
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr "បញ្ច្រាស​ពណ៌"
 
@@ -210,19 +214,19 @@ msgstr "ជ្រុង"
 msgid "Choose brush properties"
 msgstr ""
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "រាង"
 
-#: widgets.py:329
+#: widgets.py:317
 #, fuzzy
 msgid "Stamp properties"
 msgstr "คุณสมบัติหน้า"

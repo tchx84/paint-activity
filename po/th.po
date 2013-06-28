@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2012-03-09 10:24+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,163 +56,167 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "แก้ไข"
 
-#: toolbox.py:115
-msgid "Shapes"
-msgstr "รูปทรง"
-
-#: toolbox.py:121
-msgid "Fonts"
-msgstr "แบบอักษร"
-
-#: toolbox.py:127
-msgid "Image"
-msgstr "รูปภาพ"
-
-#: toolbox.py:166
-msgid "Undo"
-msgstr "เลิกทำ"
-
-#: toolbox.py:167
-msgid "Redo"
-msgstr "ทำซ้ำ"
-
-#: toolbox.py:168
-msgid "Copy"
-msgstr "คัดลอก"
-
-#: toolbox.py:169
-msgid "Paste"
-msgstr "วาง"
-
-#: toolbox.py:177
-msgid "Clear"
-msgstr "ล้าง"
-
-#: toolbox.py:257 widgets.py:339
-msgid "Brush properties"
-msgstr "คุณสมบัติของแปรง"
-
-#: toolbox.py:268
-msgid "Brush"
-msgstr "แปรง"
-
-#: toolbox.py:273
-msgid "Eraser"
-msgstr "ยางลบ"
-
-#: toolbox.py:277
-msgid "Bucket"
-msgstr "ถังสี"
-
-#: toolbox.py:281
-msgid "Picker"
-msgstr ""
-
-#: toolbox.py:285
-msgid "Stamp"
-msgstr "ประทับ"
-
-#: toolbox.py:298
-msgid "Select Area"
-msgstr "เลือกพื้นที่"
-
-#: toolbox.py:389
-msgid "Fill"
-msgstr "เติม"
-
-#: toolbox.py:395 widgets.py:300
-msgid "Keep aspect"
-msgstr "คงมุมมองไว้"
-
-#: toolbox.py:412
-msgid "Sides: "
-msgstr "ด้าน: "
-
-#: toolbox.py:467
+#: toolbox.py:122
 msgid "Shapes properties"
 msgstr "คุณสมบัติของรูปร่าง"
 
-#: toolbox.py:479
+#: toolbox.py:133
+msgid "Shapes"
+msgstr "รูปทรง"
+
+#: toolbox.py:143
+msgid "Fonts"
+msgstr "แบบอักษร"
+
+#: toolbox.py:149
+msgid "Image"
+msgstr "รูปภาพ"
+
+#: toolbox.py:188
+msgid "Undo"
+msgstr "เลิกทำ"
+
+#: toolbox.py:189
+msgid "Redo"
+msgstr "ทำซ้ำ"
+
+#: toolbox.py:190
+msgid "Copy"
+msgstr "คัดลอก"
+
+#: toolbox.py:191
+msgid "Paste"
+msgstr "วาง"
+
+#: toolbox.py:199
+msgid "Clear"
+msgstr "ล้าง"
+
+#: toolbox.py:298 widgets.py:322
+msgid "Brush properties"
+msgstr "คุณสมบัติของแปรง"
+
+#: toolbox.py:307 toolbox.py:311
+msgid "Brush"
+msgstr "แปรง"
+
+#: toolbox.py:314
+msgid "Eraser"
+msgstr "ยางลบ"
+
+#: toolbox.py:317
+msgid "Bucket"
+msgstr "ถังสี"
+
+#: toolbox.py:320
+msgid "Picker"
+msgstr ""
+
+#: toolbox.py:323
+msgid "Stamp"
+msgstr "ประทับ"
+
+#: toolbox.py:336
+msgid "Select Area"
+msgstr "เลือกพื้นที่"
+
+#: toolbox.py:415
+msgid "Fill"
+msgstr "เติม"
+
+#: toolbox.py:421 widgets.py:286
+msgid "Keep aspect"
+msgstr "คงมุมมองไว้"
+
+#: toolbox.py:438
+msgid "Sides: "
+msgstr "ด้าน: "
+
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "วงรี"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "สี่เหลี่ยม"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "เส้น"
 
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr "รูปร่างอิสระ"
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "รูปหลายเหลี่ยม"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "หัวใจ"
 
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "สี่เหลี่ยมด้านขนานห"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "ลูกศร"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "ดาว"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "สี่เหลี่ยมคางหมู"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "สามเหลี่ยม"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "ชนิด"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "แทรกภาพ"
 
-#: toolbox.py:673
+#: toolbox.py:678
 msgid "Rotate Left"
 msgstr "หมุนซ้าย"
 
-#: toolbox.py:677
+#: toolbox.py:682
 msgid "Rotate Right"
 msgstr "หมุนขวา"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr "กลับภาพในแนวนอน"
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr "กลับภาพในแนวตั้ง"
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "ขาวดำ"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr "รุ้ง"
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr "สลับค่าสี"
 
@@ -236,19 +240,19 @@ msgstr "สี่เหลี่ยม"
 msgid "Choose brush properties"
 msgstr "เลือกคุณสมบัติของแปรง"
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "รูปทรง"
 
-#: widgets.py:329
+#: widgets.py:317
 msgid "Stamp properties"
 msgstr "คุณสมบัติของประทับ"
 

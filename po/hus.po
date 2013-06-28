@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2012-06-24 02:10+0200\n"
 "Last-Translator: ing.arturo.lara <ing.arturo.lara@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,165 +28,169 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "Dhu'cha'"
 
-#: toolbox.py:115
-msgid "Shapes"
-msgstr "In wal"
-
-#: toolbox.py:121
-msgid "Fonts"
-msgstr "Eleltalábchik"
-
-#: toolbox.py:127
-msgid "Image"
-msgstr "T'iplab"
-
-#: toolbox.py:166
-msgid "Undo"
-msgstr "Wichk'ow"
-
-#: toolbox.py:167
-msgid "Redo"
-msgstr "Tsáb ts'ejka'"
-
-#: toolbox.py:168
-msgid "Copy"
-msgstr "K'otbiy"
-
-#: toolbox.py:169
-msgid "Paste"
-msgstr "Ts'at'k'a'"
-
-#: toolbox.py:177
-msgid "Clear"
-msgstr "T'oka'"
-
-#: toolbox.py:257 widgets.py:339
-msgid "Brush properties"
-msgstr "In alwá' an pedh mukux"
-
-#: toolbox.py:268
-msgid "Brush"
-msgstr "Pedh mukux"
-
-#: toolbox.py:273
-msgid "Eraser"
-msgstr "Pakuxtaláb"
-
-#: toolbox.py:277
-msgid "Bucket"
-msgstr "Balixtaláb"
-
-#: toolbox.py:281
-msgid "Picker"
-msgstr ""
-
-#: toolbox.py:285
-msgid "Stamp"
-msgstr "Ts'o'om"
-
-#: toolbox.py:298
-msgid "Select Area"
-msgstr "Takudh puwel"
-
-#: toolbox.py:389
-msgid "Fill"
-msgstr "T'uchiy"
-
-#: toolbox.py:395 widgets.py:300
-msgid "Keep aspect"
-msgstr "Ka ko'onchij antsaná' in majúl"
-
-#: toolbox.py:412
-msgid "Sides: "
-msgstr "Walte'lichik: "
-
-#: toolbox.py:467
+#: toolbox.py:122
 msgid "Shapes properties"
 msgstr "In alwá'chik an aytaláb"
 
-#: toolbox.py:479
+#: toolbox.py:133
+msgid "Shapes"
+msgstr "In wal"
+
+#: toolbox.py:143
+msgid "Fonts"
+msgstr "Eleltalábchik"
+
+#: toolbox.py:149
+msgid "Image"
+msgstr "T'iplab"
+
+#: toolbox.py:188
+msgid "Undo"
+msgstr "Wichk'ow"
+
+#: toolbox.py:189
+msgid "Redo"
+msgstr "Tsáb ts'ejka'"
+
+#: toolbox.py:190
+msgid "Copy"
+msgstr "K'otbiy"
+
+#: toolbox.py:191
+msgid "Paste"
+msgstr "Ts'at'k'a'"
+
+#: toolbox.py:199
+msgid "Clear"
+msgstr "T'oka'"
+
+#: toolbox.py:298 widgets.py:322
+msgid "Brush properties"
+msgstr "In alwá' an pedh mukux"
+
+#: toolbox.py:307 toolbox.py:311
+msgid "Brush"
+msgstr "Pedh mukux"
+
+#: toolbox.py:314
+msgid "Eraser"
+msgstr "Pakuxtaláb"
+
+#: toolbox.py:317
+msgid "Bucket"
+msgstr "Balixtaláb"
+
+#: toolbox.py:320
+msgid "Picker"
+msgstr ""
+
+#: toolbox.py:323
+msgid "Stamp"
+msgstr "Ts'o'om"
+
+#: toolbox.py:336
+msgid "Select Area"
+msgstr "Takudh puwel"
+
+#: toolbox.py:415
+msgid "Fill"
+msgstr "T'uchiy"
+
+#: toolbox.py:421 widgets.py:286
+msgid "Keep aspect"
+msgstr "Ka ko'onchij antsaná' in majúl"
+
+#: toolbox.py:438
+msgid "Sides: "
+msgstr "Walte'lichik: "
+
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "Chek’wnib"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "Pekmadh tse' walté'"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "Kilodh"
 
 # ayláb = forma
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr "Walkadh ayláb"
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "Yan walte'"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "Ichích"
 
 # ts'aklachik walte' = paralelogramo
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "Ts'ak walte'"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "T'ich'ok'láb"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "Ót"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "Yab junat ts'ak walte'"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "Óx ts'uptal"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "Ni’ninchij"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "Ki punk'unchij i t'iplab"
 
-#: toolbox.py:673
+#: toolbox.py:678
 msgid "Rotate Left"
 msgstr "Ka wilk'iy ta k'watab"
 
-#: toolbox.py:677
+#: toolbox.py:682
 msgid "Rotate Right"
 msgstr "Ka wilk'iy ta winab"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr "Pelat lam"
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr "Kubat lám"
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "Aytal an aku'"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr "Pits'al"
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr "Ka Wenk´ow an mukuxtalábl"
 
@@ -210,19 +214,19 @@ msgstr "Tsé' in walté'"
 msgid "Choose brush properties"
 msgstr "Takuy in alwá'"
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "Aykíl"
 
-#: widgets.py:329
+#: widgets.py:317
 msgid "Stamp properties"
 msgstr "In alwá'"
 

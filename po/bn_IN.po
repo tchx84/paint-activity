@@ -37,7 +37,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oficina\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2008-07-13 13:05+0530\n"
 "Last-Translator: Sankarshan Mukhopadhyay <sankarshan@randomink.org>\n"
 "Language-Team: Bengali (India) <discuss@ankur.org.in>\n"
@@ -59,166 +59,170 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "সম্পাদন"
 
-#: toolbox.py:115
+#: toolbox.py:122
+msgid "Shapes properties"
+msgstr ""
+
+#: toolbox.py:133
 msgid "Shapes"
 msgstr "আকৃতি"
 
-#: toolbox.py:121
+#: toolbox.py:143
 msgid "Fonts"
 msgstr ""
 
-#: toolbox.py:127
+#: toolbox.py:149
 msgid "Image"
 msgstr "ছবি"
 
-#: toolbox.py:166
+#: toolbox.py:188
 #, fuzzy
 msgid "Undo"
 msgstr "বাতিল"
 
-#: toolbox.py:167
+#: toolbox.py:189
 msgid "Redo"
 msgstr "আবার করুন"
 
-#: toolbox.py:168
+#: toolbox.py:190
 msgid "Copy"
 msgstr "কপি"
 
-#: toolbox.py:169
+#: toolbox.py:191
 msgid "Paste"
 msgstr "পেস্ট"
 
-#: toolbox.py:177
+#: toolbox.py:199
 msgid "Clear"
 msgstr "মুছে ফেল"
 
-#: toolbox.py:257 widgets.py:339
+#: toolbox.py:298 widgets.py:322
 msgid "Brush properties"
 msgstr ""
 
-#: toolbox.py:268
+#: toolbox.py:307 toolbox.py:311
 msgid "Brush"
 msgstr "ব্রাশ"
 
-#: toolbox.py:273
+#: toolbox.py:314
 msgid "Eraser"
 msgstr "ইরেজার"
 
-#: toolbox.py:277
+#: toolbox.py:317
 msgid "Bucket"
 msgstr "বাকেট"
 
-#: toolbox.py:281
+#: toolbox.py:320
 msgid "Picker"
 msgstr ""
 
-#: toolbox.py:285
+#: toolbox.py:323
 msgid "Stamp"
 msgstr ""
 
-#: toolbox.py:298
+#: toolbox.py:336
 msgid "Select Area"
 msgstr ""
 
-#: toolbox.py:389
+#: toolbox.py:415
 msgid "Fill"
 msgstr "ভর্তি করো"
 
-#: toolbox.py:395 widgets.py:300
+#: toolbox.py:421 widgets.py:286
 msgid "Keep aspect"
 msgstr ""
 
-#: toolbox.py:412
+#: toolbox.py:438
 msgid "Sides: "
 msgstr "পার্শ্ব: "
 
-#: toolbox.py:467
-msgid "Shapes properties"
-msgstr ""
-
-#: toolbox.py:479
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "উপবৃত্ত"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "আয়তক্ষেত্র"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "রেখা"
 
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "পলিগন"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "হার্ট"
 
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "সামান্তরিক"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "তীরচিহ্ন"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "তারাচিহ্ন"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "ট্র্যাপেজয়েড"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "ত্রিভুজ"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "টাইপ"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "ছবি ঢোকান"
 
-#: toolbox.py:673
+#: toolbox.py:678
 #, fuzzy
 msgid "Rotate Left"
 msgstr "বামে ঘোরাও"
 
-#: toolbox.py:677
+#: toolbox.py:682
 #, fuzzy
 msgid "Rotate Right"
 msgstr "ডানে ঘোরাও"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "গ্রস্কেল"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr ""
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr ""
 
@@ -242,19 +246,19 @@ msgstr "বর্গ ক্ষেত্র"
 msgid "Choose brush properties"
 msgstr ""
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "আকৃতি"
 
-#: widgets.py:329
+#: widgets.py:317
 msgid "Stamp properties"
 msgstr ""
 

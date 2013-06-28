@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2012-02-16 07:39+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,163 +49,167 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "Уреди"
 
-#: toolbox.py:115
-msgid "Shapes"
-msgstr "Облици"
-
-#: toolbox.py:121
-msgid "Fonts"
-msgstr "Фонтови"
-
-#: toolbox.py:127
-msgid "Image"
-msgstr "Слика"
-
-#: toolbox.py:166
-msgid "Undo"
-msgstr "Поништи"
-
-#: toolbox.py:167
-msgid "Redo"
-msgstr "Поврати"
-
-#: toolbox.py:168
-msgid "Copy"
-msgstr "Умножи"
-
-#: toolbox.py:169
-msgid "Paste"
-msgstr "Убаци"
-
-#: toolbox.py:177
-msgid "Clear"
-msgstr "Очисти"
-
-#: toolbox.py:257 widgets.py:339
-msgid "Brush properties"
-msgstr "Својства четкице"
-
-#: toolbox.py:268
-msgid "Brush"
-msgstr "Четкица"
-
-#: toolbox.py:273
-msgid "Eraser"
-msgstr "Гумица"
-
-#: toolbox.py:277
-msgid "Bucket"
-msgstr "Канта"
-
-#: toolbox.py:281
-msgid "Picker"
-msgstr ""
-
-#: toolbox.py:285
-msgid "Stamp"
-msgstr "Печат"
-
-#: toolbox.py:298
-msgid "Select Area"
-msgstr "Изабери Површину"
-
-#: toolbox.py:389
-msgid "Fill"
-msgstr "Попуни"
-
-#: toolbox.py:395 widgets.py:300
-msgid "Keep aspect"
-msgstr "Задржи аспект"
-
-#: toolbox.py:412
-msgid "Sides: "
-msgstr "Стране: "
-
-#: toolbox.py:467
+#: toolbox.py:122
 msgid "Shapes properties"
 msgstr "Својства облика"
 
-#: toolbox.py:479
+#: toolbox.py:133
+msgid "Shapes"
+msgstr "Облици"
+
+#: toolbox.py:143
+msgid "Fonts"
+msgstr "Фонтови"
+
+#: toolbox.py:149
+msgid "Image"
+msgstr "Слика"
+
+#: toolbox.py:188
+msgid "Undo"
+msgstr "Поништи"
+
+#: toolbox.py:189
+msgid "Redo"
+msgstr "Поврати"
+
+#: toolbox.py:190
+msgid "Copy"
+msgstr "Умножи"
+
+#: toolbox.py:191
+msgid "Paste"
+msgstr "Убаци"
+
+#: toolbox.py:199
+msgid "Clear"
+msgstr "Очисти"
+
+#: toolbox.py:298 widgets.py:322
+msgid "Brush properties"
+msgstr "Својства четкице"
+
+#: toolbox.py:307 toolbox.py:311
+msgid "Brush"
+msgstr "Четкица"
+
+#: toolbox.py:314
+msgid "Eraser"
+msgstr "Гумица"
+
+#: toolbox.py:317
+msgid "Bucket"
+msgstr "Канта"
+
+#: toolbox.py:320
+msgid "Picker"
+msgstr ""
+
+#: toolbox.py:323
+msgid "Stamp"
+msgstr "Печат"
+
+#: toolbox.py:336
+msgid "Select Area"
+msgstr "Изабери Површину"
+
+#: toolbox.py:415
+msgid "Fill"
+msgstr "Попуни"
+
+#: toolbox.py:421 widgets.py:286
+msgid "Keep aspect"
+msgstr "Задржи аспект"
+
+#: toolbox.py:438
+msgid "Sides: "
+msgstr "Стране: "
+
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "Елипса"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "Правоугаоник"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "Линија"
 
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr "Слободна форма"
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "Полигон"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "Срце"
 
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "Паралелограм"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "Стрела"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "Звезда"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "Трапез"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "Троугао"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "Врста"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "Уметни Слику"
 
-#: toolbox.py:673
+#: toolbox.py:678
 msgid "Rotate Left"
 msgstr "Окрени Лево"
 
-#: toolbox.py:677
+#: toolbox.py:682
 msgid "Rotate Right"
 msgstr "Окрени Десно"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr "Хоризонтално Огледало"
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr "Вертикално Огледало"
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "Сива лества"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr "Дуга"
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr "Обрни Боје"
 
@@ -229,19 +233,19 @@ msgstr "Квадрат"
 msgid "Choose brush properties"
 msgstr "Изабери својства четкице"
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "Облик"
 
-#: widgets.py:329
+#: widgets.py:317
 msgid "Stamp properties"
 msgstr "Својства печата"
 

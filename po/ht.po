@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-06 00:30-0400\n"
+"POT-Creation-Date: 2013-06-12 00:30-0400\n"
 "PO-Revision-Date: 2011-08-10 06:01+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,163 +60,167 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: toolbox.py:105
+#: fontcombobox.py:89
+msgid "Select font"
+msgstr ""
+
+#: toolbox.py:118
 msgid "Edit"
 msgstr "Chanje"
 
-#: toolbox.py:115
-msgid "Shapes"
-msgstr "Fòm"
-
-#: toolbox.py:121
-msgid "Fonts"
-msgstr ""
-
-#: toolbox.py:127
-msgid "Image"
-msgstr "Imaj"
-
-#: toolbox.py:166
-msgid "Undo"
-msgstr "Defè"
-
-#: toolbox.py:167
-msgid "Redo"
-msgstr "Refè"
-
-#: toolbox.py:168
-msgid "Copy"
-msgstr "Kopye"
-
-#: toolbox.py:169
-msgid "Paste"
-msgstr "Kole"
-
-#: toolbox.py:177
-msgid "Clear"
-msgstr "Debarase"
-
-#: toolbox.py:257 widgets.py:339
-msgid "Brush properties"
-msgstr ""
-
-#: toolbox.py:268
-msgid "Brush"
-msgstr "penso"
-
-#: toolbox.py:273
-msgid "Eraser"
-msgstr "Efase"
-
-#: toolbox.py:277
-msgid "Bucket"
-msgstr "Bokit"
-
-#: toolbox.py:281
-msgid "Picker"
-msgstr ""
-
-#: toolbox.py:285
-msgid "Stamp"
-msgstr ""
-
-#: toolbox.py:298
-msgid "Select Area"
-msgstr ""
-
-#: toolbox.py:389
-msgid "Fill"
-msgstr "Plen"
-
-#: toolbox.py:395 widgets.py:300
-msgid "Keep aspect"
-msgstr ""
-
-#: toolbox.py:412
-msgid "Sides: "
-msgstr "Kote yo: "
-
-#: toolbox.py:467
+#: toolbox.py:122
 msgid "Shapes properties"
 msgstr ""
 
-#: toolbox.py:479
+#: toolbox.py:133
+msgid "Shapes"
+msgstr "Fòm"
+
+#: toolbox.py:143
+msgid "Fonts"
+msgstr ""
+
+#: toolbox.py:149
+msgid "Image"
+msgstr "Imaj"
+
+#: toolbox.py:188
+msgid "Undo"
+msgstr "Defè"
+
+#: toolbox.py:189
+msgid "Redo"
+msgstr "Refè"
+
+#: toolbox.py:190
+msgid "Copy"
+msgstr "Kopye"
+
+#: toolbox.py:191
+msgid "Paste"
+msgstr "Kole"
+
+#: toolbox.py:199
+msgid "Clear"
+msgstr "Debarase"
+
+#: toolbox.py:298 widgets.py:322
+msgid "Brush properties"
+msgstr ""
+
+#: toolbox.py:307 toolbox.py:311
+msgid "Brush"
+msgstr "penso"
+
+#: toolbox.py:314
+msgid "Eraser"
+msgstr "Efase"
+
+#: toolbox.py:317
+msgid "Bucket"
+msgstr "Bokit"
+
+#: toolbox.py:320
+msgid "Picker"
+msgstr ""
+
+#: toolbox.py:323
+msgid "Stamp"
+msgstr ""
+
+#: toolbox.py:336
+msgid "Select Area"
+msgstr ""
+
+#: toolbox.py:415
+msgid "Fill"
+msgstr "Plen"
+
+#: toolbox.py:421 widgets.py:286
+msgid "Keep aspect"
+msgstr ""
+
+#: toolbox.py:438
+msgid "Sides: "
+msgstr "Kote yo: "
+
+#: toolbox.py:511
 msgid "Ellipse"
 msgstr "elips"
 
-#: toolbox.py:483
+#: toolbox.py:514
 msgid "Rectangle"
 msgstr "Rektang"
 
-#: toolbox.py:487
+#: toolbox.py:517
 msgid "Line"
 msgstr "Liy"
 
-#: toolbox.py:491
+#: toolbox.py:520
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:495
+#: toolbox.py:523
 msgid "Polygon"
 msgstr "Poligòn"
 
-#: toolbox.py:499
+#: toolbox.py:526
 msgid "Heart"
 msgstr "Kè"
 
-#: toolbox.py:503
+#: toolbox.py:529
 msgid "Parallelogram"
 msgstr "Paralelogram"
 
-#: toolbox.py:507
+#: toolbox.py:532
 msgid "Arrow"
 msgstr "Flèch"
 
-#: toolbox.py:511
+#: toolbox.py:535
 msgid "Star"
 msgstr "Zetwal"
 
-#: toolbox.py:515
+#: toolbox.py:538
 msgid "Trapezoid"
 msgstr "Trapèz"
 
-#: toolbox.py:519
+#: toolbox.py:541
 msgid "Triangle"
 msgstr "Triyang"
 
-#: toolbox.py:562
+#: toolbox.py:574
 msgid "Type"
 msgstr "Tip"
 
-#: toolbox.py:660
+#: toolbox.py:665
 msgid "Insert Image"
 msgstr "Mete imaj"
 
-#: toolbox.py:673
+#: toolbox.py:678
 msgid "Rotate Left"
 msgstr "Vire agoch"
 
-#: toolbox.py:677
+#: toolbox.py:682
 msgid "Rotate Right"
 msgstr "Vire adwat"
 
-#: toolbox.py:682
+#: toolbox.py:687
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:687
+#: toolbox.py:692
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:695
+#: toolbox.py:700
 msgid "Grayscale"
 msgstr "Mete an gri"
 
-#: toolbox.py:698
+#: toolbox.py:703
 msgid "Rainbow"
 msgstr "Lakansyèl"
 
-#: toolbox.py:703
+#: toolbox.py:708
 msgid "Invert Colors"
 msgstr ""
 
@@ -240,19 +244,19 @@ msgstr "Kare"
 msgid "Choose brush properties"
 msgstr ""
 
-#: widgets.py:255
+#: widgets.py:245
 msgid "Size"
 msgstr ""
 
-#: widgets.py:272
+#: widgets.py:259
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:294
+#: widgets.py:280
 msgid "Shape"
 msgstr "Fòm"
 
-#: widgets.py:329
+#: widgets.py:317
 msgid "Stamp properties"
 msgstr ""
 
