@@ -75,6 +75,10 @@ from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.radiotoolbutton import RadioToolButton
 from sugar3.graphics.toggletoolbutton import ToggleToolButton
 from sugar3.graphics.objectchooser import ObjectChooser
+try:
+    from sugar3.graphics.objectchooser import FILTER_TYPE_GENERIC_MIME
+except:
+    FILTER_TYPE_GENERIC_MIME = 'generic_mime'
 from widgets import ButtonStrokeColor
 from sugar3.graphics.colorbutton import ColorToolButton
 from sugar3.graphics.radiopalette import RadioPalette
@@ -734,7 +738,15 @@ class ImageToolbar(Gtk.Toolbar):
         self._activity.area.mirror(widget, horizontal=False)
 
     def insertImage(self, widget, activity):
-        chooser = ObjectChooser(self._activity, what_filter='Image')
+
+        try:
+            chooser = ObjectChooser(self._activity, what_filter='Image',
+                                    filter_type=FILTER_TYPE_GENERIC_MIME,
+                                    show_preview=True)
+        except:
+            # for compatibility with older versions
+            chooser = ObjectChooser(self._activity, what_filter='Image')
+
         try:
             result = chooser.run()
             if result == Gtk.ResponseType.ACCEPT:
