@@ -519,7 +519,6 @@ class ButtonFillColor(ColorToolButton):
         self._activity.area.keep_shape_ratio = checkbutton.get_active()
 
     def do_draw(self, cr):
-        child = self.get_child()
         if self._palette and self._palette.is_up():
             allocation = self.get_allocation()
             # draw a black background, has been done by the engine before
@@ -723,8 +722,6 @@ class ImageToolbar(Gtk.Toolbar):
 
         self.width_percent = 1.
         self.height_percent = 1.
-
-        is_selected = self._activity.area.is_selected()
 
         self._object_rotate_left = ToolButton('object-rotate-left')
         self.insert(self._object_rotate_left, -1)

@@ -62,7 +62,6 @@ Walter Bender                       (walter@laptop.org)
 """
 
 from gi.repository import Gdk
-from gi.repository import GObject
 from gi.repository import PangoCairo
 import logging
 import math
@@ -640,7 +639,7 @@ class Desenho:
             text = buf.get_text(start, end, True)
 
             textview = widget.activity.textview
-            tv_layout = textview.create_pango_layout(text)
+            #tv_layout = textview.create_pango_layout(text)
 
             ctx = widget.drawing_ctx
 
@@ -704,7 +703,6 @@ class Desenho:
             widget.clear_selection_background()
             widget.pending_clean_selection_background = False
 
-        selection_surface = widget.get_selection()
         widget.oldx = coords[0]
         widget.oldy = coords[1]
 

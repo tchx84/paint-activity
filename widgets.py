@@ -51,7 +51,7 @@ class BrushButton(_ColorButton):
         self.set_image(self._preview)
 
         if self._has_palette and self._has_invoker:
-            self._invoker = WidgetInvoker(self)
+            self._invoker = ToolInvoker(self)
             # FIXME: This is a hack.
             self._invoker.has_rectangle_gap = lambda: False
             self._invoker.palette = self._palette
@@ -405,7 +405,6 @@ class ButtonStrokeColor(Gtk.ToolItem):
     title = GObject.property(type=str, getter=get_title, setter=set_title)
 
     def do_draw(self, cr):
-        child = self.get_child()
         if self._palette and self._palette.is_up():
             allocation = self.get_allocation()
             # draw a black background, has been done by the engine before

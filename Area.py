@@ -71,7 +71,6 @@ from gi.repository import PangoCairo
 
 import logging
 import os
-import tempfile
 import math
 import cairo
 import StringIO
@@ -422,7 +421,7 @@ class Area(Gtk.DrawingArea):
                           Gdk.EventType.BUTTON_RELEASE):
             x = int(event.get_coords()[1])
             y = int(event.get_coords()[2])
-            seq = str(event.touch.sequence)
+            #seq = str(event.touch.sequence)
 
             #logging.error('event x %d y %d type %s', x, y, event.type)
             if event.type in (Gdk.EventType.TOUCH_BEGIN,
