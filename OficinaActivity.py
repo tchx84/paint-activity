@@ -93,7 +93,7 @@ class OficinaActivity(activity.Activity):
         self._height = Gdk.Screen.height()
         self.fixed.show()
         self.fixed.modify_bg(Gtk.StateType.NORMAL,
-                style.COLOR_WHITE.get_gdk_color())
+                             style.COLOR_WHITE.get_gdk_color())
 
         self.textview = Gtk.TextView()
         self.fixed.put(self.textview, 0, 0)
@@ -132,7 +132,7 @@ class OficinaActivity(activity.Activity):
             self.canvas.get_children()[0].set_shadow_type(Gtk.ShadowType.NONE)
             self.disconnect(self._setup_handle)
             self._setup_handle = self._sw.connect('size_allocate',
-                    size_allocate_cb)
+                                                  size_allocate_cb)
 
         self._setup_handle = self.connect('map', map_cp)
 
@@ -158,7 +158,8 @@ class OficinaActivity(activity.Activity):
     def read_file(self, file_path):
         '''Read file from Sugar Journal.'''
         logging.debug('reading file %s, mimetype: %s, title: %s',
-            file_path, self.metadata['mime_type'], self.metadata['title'])
+                      file_path, self.metadata['mime_type'],
+                      self.metadata['title'])
 
         self.area.load_from_file(file_path)
 
@@ -174,10 +175,10 @@ class OficinaActivity(activity.Activity):
             # keep visible.
             if height > allocation.height or width > allocation.width:
                 self.canvas.set_policy(Gtk.PolicyType.AUTOMATIC,
-                        Gtk.PolicyType.AUTOMATIC)
+                                       Gtk.PolicyType.AUTOMATIC)
             else:
                 self.canvas.set_policy(Gtk.PolicyType.NEVER,
-                        Gtk.PolicyType.AUTOMATIC)
+                                       Gtk.PolicyType.AUTOMATIC)
 
             self.center_area()
 
@@ -189,7 +190,7 @@ class OficinaActivity(activity.Activity):
 
         self.disconnect(self._setup_handle)
         self._setup_handle = self.fixed.connect('size_allocate',
-                size_allocate_cb)
+                                                size_allocate_cb)
 
         # disassociate with journal entry to avoid overwrite (SL #1771)
         if self.metadata['mime_type'] != "image/png":

@@ -124,15 +124,15 @@ class Area(Gtk.DrawingArea):
         GObject.GObject.__init__(self)
 
         self.set_events(Gdk.EventMask.POINTER_MOTION_MASK |
-                Gdk.EventMask.POINTER_MOTION_HINT_MASK |
-                Gdk.EventMask.BUTTON_PRESS_MASK |
-                Gdk.EventMask.BUTTON_RELEASE_MASK |
-                Gdk.EventMask.BUTTON_MOTION_MASK |
-                Gdk.EventMask.EXPOSURE_MASK |
-                Gdk.EventMask.LEAVE_NOTIFY_MASK |
-                Gdk.EventMask.ENTER_NOTIFY_MASK |
-                Gdk.EventMask.KEY_PRESS_MASK |
-                Gdk.EventMask.TOUCH_MASK)
+                        Gdk.EventMask.POINTER_MOTION_HINT_MASK |
+                        Gdk.EventMask.BUTTON_PRESS_MASK |
+                        Gdk.EventMask.BUTTON_RELEASE_MASK |
+                        Gdk.EventMask.BUTTON_MOTION_MASK |
+                        Gdk.EventMask.EXPOSURE_MASK |
+                        Gdk.EventMask.LEAVE_NOTIFY_MASK |
+                        Gdk.EventMask.ENTER_NOTIFY_MASK |
+                        Gdk.EventMask.KEY_PRESS_MASK |
+                        Gdk.EventMask.TOUCH_MASK)
 
         self.connect('event', self.__event_cb)
 
@@ -144,7 +144,7 @@ class Area(Gtk.DrawingArea):
 
         target = [Gtk.TargetEntry.new('text/uri-list', 0, TARGET_URI)]
         self.drag_dest_set(Gtk.DestDefaults.ALL, target,
-                Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
+                           Gdk.DragAction.COPY | Gdk.DragAction.MOVE)
         self.connect('drag_data_received', self.drag_data_received)
 
         self.set_can_focus(True)
@@ -195,7 +195,7 @@ class Area(Gtk.DrawingArea):
 
         self._font_description = None
         self.set_font_description(
-                Pango.FontDescription(self.tool['font_description']))
+            Pango.FontDescription(self.tool['font_description']))
 
         # selection properties
         self.clear_selection()
@@ -243,8 +243,9 @@ class Area(Gtk.DrawingArea):
     def load_from_file(self, file_path):
         # load using a pixbuf to be able to read different formats
         loaded_pxb = GdkPixbuf.Pixbuf.new_from_file(file_path)
-        self.drawing_canvas_data = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                loaded_pxb.get_width(), loaded_pxb.get_height())
+        self.drawing_canvas_data = cairo.ImageSurface(
+            cairo.FORMAT_ARGB32, loaded_pxb.get_width(),
+            loaded_pxb.get_height())
         ctx = cairo.Context(self.drawing_canvas_data)
         Gdk.cairo_set_source_pixbuf(ctx, loaded_pxb, 0, 0)
         ctx.paint()
@@ -274,7 +275,7 @@ class Area(Gtk.DrawingArea):
     def _init_temp_canvas(self, area=None):
         #logging.error('init_temp_canvas. area %s', area)
         #self.drawing_canvas.flush()
-        if area == None:
+        if area is None:
             width, height = self.get_size()
             self.temp_ctx.rectangle(0, 0, width, height)
         else:
@@ -346,7 +347,7 @@ class Area(Gtk.DrawingArea):
         # if is not None was read from a file
         if self.drawing_canvas is None:
             self.drawing_canvas = context.get_target().create_similar(
-                    cairo.CONTENT_COLOR_ALPHA, self._width, self._height)
+                cairo.CONTENT_COLOR_ALPHA, self._width, self._height)
             self.drawing_ctx = cairo.Context(self.drawing_canvas)
             # paint background white
             self.drawing_ctx.rectangle(0, 0, self._width, self._height)
@@ -360,7 +361,7 @@ class Area(Gtk.DrawingArea):
 
             ##canvas showed when we need display something and not draw it
             self.temp_canvas = context.get_target().create_similar(
-                    cairo.CONTENT_COLOR_ALPHA, self._width, self._height)
+                cairo.CONTENT_COLOR_ALPHA, self._width, self._height)
             self.temp_ctx = cairo.Context(self.temp_canvas)
             self._init_temp_canvas()
 
@@ -394,38 +395,38 @@ class Area(Gtk.DrawingArea):
                 if self.tool['name'] == 'stamp':
                     wr, hr = self.stamp_dimentions
                     context.rectangle(self.x_cursor - wr / 2,
-                            self.y_cursor - hr / 2, wr, hr)
+                                      self.y_cursor - hr / 2, wr, hr)
                     context.stroke()
 
                 # draw shape of the brush, square or circle
                 elif self.tool['line shape'] == 'circle':
                     size = self.tool['line size']
                     context.arc(self.x_cursor,
-                            self.y_cursor, size / 2, 0.,
-                            2 * math.pi)
+                                self.y_cursor, size / 2, 0.,
+                                2 * math.pi)
                     context.stroke()
                 else:
                     size = self.tool['line size']
                     context.move_to(self.x_cursor - size / 2,
-                            self.y_cursor - size / 2)
+                                    self.y_cursor - size / 2)
                     context.rectangle(self.x_cursor - size / 2,
-                            self.y_cursor - size / 2, size, size)
+                                      self.y_cursor - size / 2, size, size)
                     context.stroke()
                 self.last_x_cursor = self.x_cursor
                 self.last_y_cursor = self.y_cursor
 
     def __event_cb(self, widget, event):
         if event.type in (Gdk.EventType.TOUCH_BEGIN,
-                Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END,
-                Gdk.EventType.BUTTON_PRESS,
-                Gdk.EventType.BUTTON_RELEASE):
+                          Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END,
+                          Gdk.EventType.BUTTON_PRESS,
+                          Gdk.EventType.BUTTON_RELEASE):
             x = int(event.get_coords()[1])
             y = int(event.get_coords()[2])
             seq = str(event.touch.sequence)
 
             #logging.error('event x %d y %d type %s', x, y, event.type)
             if event.type in (Gdk.EventType.TOUCH_BEGIN,
-                    Gdk.EventType.BUTTON_PRESS):
+                              Gdk.EventType.BUTTON_PRESS):
                     #Gdk.EventType.MOTION_NOTIFY):
                 if event.type == Gdk.EventType.BUTTON_PRESS:
 ## http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
@@ -507,14 +508,15 @@ class Area(Gtk.DrawingArea):
             elif self.tool['name'] == 'freeform':
                 self.configure_line(self.tool['line size'])
                 self.d.freeform(self, coords, True,
-                    self.tool['fill'], "motion")
+                                self.tool['fill'], "motion")
             if self.tool['name'] == 'marquee-rectangular':
                 if self.is_selected():
                     # verify is out of the selected area
                     sel_x, sel_y, sel_width, sel_height = \
-                            self.get_selection_bounds()
+                        self.get_selection_bounds()
                     if self.check_point_in_area(coords[0], coords[1],
-                            sel_x, sel_y, sel_width, sel_height):
+                                                sel_x, sel_y, sel_width,
+                                                sel_height):
                         # be sure to have the last coords
                         # because can be older if was resized before
                         self.oldx, self.oldy = coords
@@ -523,8 +525,10 @@ class Area(Gtk.DrawingArea):
                         self._selmove = True
                         self._selresize = False
                     elif self.check_point_in_area(coords[0], coords[1],
-                            sel_x + sel_width, sel_y + sel_height,
-                            RESIZE_ARROW_SIZE, RESIZE_ARROW_SIZE):
+                                                  sel_x + sel_width,
+                                                  sel_y + sel_height,
+                                                  RESIZE_ARROW_SIZE,
+                                                  RESIZE_ARROW_SIZE):
                         # in de resize area
                         self._selmove = False
                         self._selresize = True
@@ -577,15 +581,16 @@ class Area(Gtk.DrawingArea):
             @param  event -- GdkEvent
         """
         if event.get_source_device().get_name().find('touchscreen') >= 0 and \
-            not self._on_touch:
+                not self._on_touch:
             return
         x = event.x
         y = event.y
         shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
         button1_pressed = event.get_state() & Gdk.ModifierType.BUTTON1_MASK
         if self._update_timer is None:
-            self._update_timer = GObject.timeout_add(5,
-                        self.tool_move,x, y, button1_pressed, shift_pressed)
+            self._update_timer = GObject.timeout_add(5, self.tool_move, x, y,
+                                                     button1_pressed,
+                                                     shift_pressed)
 
     def tool_move(self, x, y, button1_pressed, shift_pressed):
 
@@ -599,7 +604,7 @@ class Area(Gtk.DrawingArea):
         # by only a pixel. This code caches the last position and ignores
         # the movement if is not bigger than one pixel to avoid redraws
         if abs(x - self._last_x_touch) > 1 or \
-            abs(y > self._last_y_touch) > 1:
+                abs(y > self._last_y_touch) > 1:
             self._last_x_touch = x
             self._last_y_touch = y
         else:
@@ -640,7 +645,7 @@ class Area(Gtk.DrawingArea):
 
                 elif self.tool['name'] == 'rectangle':
                     self.d.square(self, coords, True,
-                        self.tool['fill'])
+                                  self.tool['fill'])
 
                 elif self.tool['name'] == 'marquee-rectangular':
                     if self._selmove:
@@ -657,7 +662,7 @@ class Area(Gtk.DrawingArea):
                 elif self.tool['name'] == 'freeform':
                     self.configure_line(self.tool['line size'])
                     self.d.freeform(self, coords, True,
-                        self.tool['fill'], "motion")
+                                    self.tool['fill'], "motion")
 
                 elif self.tool['name'] == 'triangle':
                     self.d.triangle(self, coords, True, self.tool['fill'])
@@ -670,15 +675,16 @@ class Area(Gtk.DrawingArea):
 
                 elif self.tool['name'] == 'parallelogram':
                     self.d.parallelogram(self, coords, True,
-                        self.tool['fill'])
+                                         self.tool['fill'])
 
                 elif self.tool['name'] == 'star':
                     self.d.star(self, coords, self.tool['vertices'],
-                        True, self.tool['fill'])
+                                True, self.tool['fill'])
 
                 elif self.tool['name'] == 'polygon_regular':
                     self.d.polygon_regular(self, coords,
-                        self.tool['vertices'], True, self.tool['fill'])
+                                           self.tool['vertices'], True,
+                                           self.tool['fill'])
 
                 elif self.tool['name'] == 'heart':
                     self.d.heart(self, coords, True, self.tool['fill'])
@@ -691,15 +697,17 @@ class Area(Gtk.DrawingArea):
                 self.queue_draw_area(*area)
             if self.tool['name'] == 'marquee-rectangular':
                 sel_x, sel_y, sel_width, sel_height = \
-                        self.get_selection_bounds()
+                    self.get_selection_bounds()
                 # show appropiate cursor
                 if self.check_point_in_area(coords[0], coords[1], sel_x, sel_y,
-                        sel_width, sel_height):
+                                            sel_width, sel_height):
                     # inside the selected area
                     cursor = Gdk.Cursor.new(Gdk.CursorType.FLEUR)
                 elif self.check_point_in_area(coords[0], coords[1],
-                        sel_x + sel_width, sel_y + sel_height,
-                        RESIZE_ARROW_SIZE, RESIZE_ARROW_SIZE):
+                                              sel_x + sel_width,
+                                              sel_y + sel_height,
+                                              RESIZE_ARROW_SIZE,
+                                              RESIZE_ARROW_SIZE):
                     # in de resize area
                     cursor = Gdk.Cursor.new(Gdk.CursorType.BOTTOM_RIGHT_CORNER)
                 else:
@@ -709,15 +717,15 @@ class Area(Gtk.DrawingArea):
             elif self.tool['name'] == 'freeform':
                 self.desenha = True
                 self.configure_line(self.tool['line size'])
-                self.d.freeform(self, coords, True,
-                    self.tool['fill'], "moving")
+                self.d.freeform(self, coords, True, self.tool['fill'],
+                                "moving")
 
         self.get_window().process_all_updates()
         return False
 
     def check_point_in_area(self, x_point, y_point, x_min, y_min,
-            width, height):
-        return  not ((x_point < x_min) or (x_point > x_min + width) or \
+                            width, height):
+        return not ((x_point < x_min) or (x_point > x_min + width) or
                     (y_point < y_min) or (y_point > y_min + height))
 
     def tool_end(self, coord_x, coord_y, shift_pressed):
@@ -753,12 +761,12 @@ class Area(Gtk.DrawingArea):
 
             elif self.tool['name'] == 'freeform':
                 self.d.freeform(self, coords, False,
-                    self.tool['fill'], 'release')
+                                self.tool['fill'], 'release')
                 private_undo = True
 
             elif self.tool['name'] == 'bucket':
                 self.get_window().set_cursor(Gdk.Cursor.new(
-                                                Gdk.CursorType.WATCH))
+                    Gdk.CursorType.WATCH))
                 GObject.idle_add(self.flood_fill, coords[0], coords[1])
 
             elif self.tool['name'] == 'triangle':
@@ -775,11 +783,11 @@ class Area(Gtk.DrawingArea):
 
             elif self.tool['name'] == 'star':
                 self.d.star(self, coords, self.tool['vertices'], False,
-                    self.tool['fill'])
+                            self.tool['fill'])
 
             elif self.tool['name'] == 'polygon_regular':
                 self.d.polygon_regular(self, coords, self.tool['vertices'],
-                    False, self.tool['fill'])
+                                       False, self.tool['fill'])
 
             elif self.tool['name'] == 'heart':
                 self.d.heart(self, coords, False, self.tool['fill'])
@@ -811,10 +819,9 @@ class Area(Gtk.DrawingArea):
         r, g, b = stroke_color[0], stroke_color[1], stroke_color[2]
 
         # pack the color in a int as 0xAARRGGBB
-        fill_color = 0xff000000 + \
-                (int(r * 255 * 65536) + \
-                int(g * 255 * 256) + \
-                int(b * 255))
+        fill_color = 0xff000000 + (int(r * 255 * 65536) +
+                                   int(g * 255 * 256) +
+                                   int(b * 255))
         logging.error('fill_color %d', fill_color)
 
         # load a array with the surface data
@@ -828,7 +835,7 @@ class Area(Gtk.DrawingArea):
         # need copy self.drawing_canvas in a ImageSurface
         # because 'cairo.XlibSurface do not have get_data
         image_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, self._width,
-                self._height)
+                                           self._height)
         ctx = cairo.Context(image_surface)
         ctx.set_source_surface(self.drawing_canvas)
         ctx.paint()
@@ -868,7 +875,7 @@ class Area(Gtk.DrawingArea):
                 newedge = []
                 for (x, y) in edge:
                     for (s, t) in ((x + 1, y), (x - 1, y), (x, y + 1),
-                            (x, y - 1)):
+                                   (x, y - 1)):
                         if within(s, t) and \
                                 pixels[s + t * width] == old_color:
                             pixels[s + t * width] = fill_color
@@ -883,8 +890,8 @@ class Area(Gtk.DrawingArea):
             del(pixels2)
 
         # create a updated drawing_canvas
-        self.drawing_canvas_data = cairo.ImageSurface.create_for_data(pixels,
-                cairo.FORMAT_ARGB32, width, height)
+        self.drawing_canvas_data = cairo.ImageSurface.create_for_data(
+            pixels, cairo.FORMAT_ARGB32, width, height)
         del(pixels)
         self.setup(width, height)
 
@@ -929,7 +936,7 @@ class Area(Gtk.DrawingArea):
             self.drawing = True
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
-                size * 2, size * 2)
+                                   size * 2, size * 2)
 
     def mouseenter(self, widget, event):
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
@@ -937,7 +944,7 @@ class Area(Gtk.DrawingArea):
             self.drawing = False
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
-                size * 2, size * 2)
+                                   size * 2, size * 2)
 
     def setup_stamp(self):
         """Prepare for stamping from the selected area.
@@ -977,8 +984,8 @@ class Area(Gtk.DrawingArea):
         else:
             wr, hr = int(stamp_size * w * 1.0 / h), stamp_size
         self.stamp_dimentions = wr, hr
-        self.resized_stamp = self.pixbuf_stamp.scale_simple(wr, hr,
-                                 GdkPixbuf.InterpType.HYPER)
+        self.resized_stamp = self.pixbuf_stamp.scale_simple(
+            wr, hr, GdkPixbuf.InterpType.HYPER)
 
         # Remove selected area
         self.getout()
@@ -1113,7 +1120,7 @@ class Area(Gtk.DrawingArea):
         elif clipBoard.wait_is_uris_available():
             logging.error('Area.paste(self): is uris available')
             selection = clipBoard.wait_for_contents('text/uri-list')
-            if selection != None:
+            if selection is not None:
                 for uri in selection.get_uris():
                     self.load_image(urlparse(uri).path, self)
         else:
@@ -1162,11 +1169,11 @@ class Area(Gtk.DrawingArea):
         self.tool['alpha'] = alpha
         stroke_color = self.tool['cairo_stroke_color']
         self.tool['cairo_stroke_color'] = (stroke_color[0], stroke_color[1],
-                stroke_color[2], alpha)
+                                           stroke_color[2], alpha)
 
         fill_color = self.tool['cairo_fill_color']
         self.tool['cairo_fill_color'] = (fill_color[0], fill_color[1],
-                fill_color[2], alpha)
+                                         fill_color[2], alpha)
 
     def grayscale(self, widget):
         """Apply grayscale effect.
@@ -1200,8 +1207,8 @@ class Area(Gtk.DrawingArea):
                 raise AssertionError()
             # need copy self.drawing_canvas in a ImageSurface
             # because 'cairo.XlibSurface do not have get_data
-            image_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                    self._width, self._height)
+            image_surface = cairo.ImageSurface(
+                cairo.FORMAT_ARGB32, self._width, self._height)
             ctx = cairo.Context(image_surface)
             ctx.set_source_surface(self.drawing_canvas)
             ctx.paint()
@@ -1216,8 +1223,8 @@ class Area(Gtk.DrawingArea):
             # create a updated drawing_canvas
             width = self.drawing_canvas.get_width()
             height = self.drawing_canvas.get_height()
-            self.drawing_canvas = cairo.ImageSurface.create_for_data(new_array,
-                    cairo.FORMAT_ARGB32, width, height)
+            self.drawing_canvas = cairo.ImageSurface.create_for_data(
+                new_array, cairo.FORMAT_ARGB32, width, height)
 
             self.queue_draw()
             self.enable_undo()
@@ -1258,7 +1265,7 @@ class Area(Gtk.DrawingArea):
         # create a surface and paste the image rotated
         logging.error('create rotate surface')
         mirror_surface = surface.create_similar(cairo.CONTENT_COLOR_ALPHA,
-                                width, height)
+                                                width, height)
         mirror_ctx = cairo.Context(mirror_surface)
         if horizontal:
             mirror_ctx.scale(-1, 1)
@@ -1379,7 +1386,7 @@ class Area(Gtk.DrawingArea):
         # create a surface and paste the image rotated
         logging.error('create rotate surface')
         rotate_surface = surface.create_similar(cairo.CONTENT_COLOR_ALPHA,
-                                height, width)
+                                                height, width)
         rotate_ctx = cairo.Context(rotate_surface)
         radians_angle = math.pi * float(angle) / 180.0
         rotate_ctx.rotate(radians_angle)
@@ -1411,7 +1418,7 @@ class Area(Gtk.DrawingArea):
         else:
             # create a new canvas with permuted dimensions
             self.drawing_canvas_data = surface.create_similar(
-                    cairo.CONTENT_COLOR_ALPHA, height, width)
+                cairo.CONTENT_COLOR_ALPHA, height, width)
             ctx = cairo.Context(self.drawing_canvas_data)
             ctx.save()
             ctx.set_source_surface(rotate_surface)
@@ -1460,7 +1467,7 @@ class Area(Gtk.DrawingArea):
 
     def set_selection_start(self, x, y):
         self._selection_bounds = (x, y, self._selection_bounds[2],
-                self._selection_bounds[3])
+                                  self._selection_bounds[3])
 
     def get_selection_bounds(self):
         """
@@ -1473,11 +1480,11 @@ class Area(Gtk.DrawingArea):
         return (x, y, int(width), int(height))
 
     def create_selection_surface(self, clear_background=True,
-                temp_canvas=False):
+                                 temp_canvas=False):
         x, y, width, height = self.get_selection_bounds()
         logging.error('create_selection_surface %s', (x, y, width, height))
-        self.selection_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                width, height)
+        self.selection_surface = cairo.ImageSurface(
+            cairo.FORMAT_ARGB32, width, height)
         selection_ctx = cairo.Context(self.selection_surface)
         selection_ctx.translate(-x, -y)
         if not temp_canvas:
@@ -1505,14 +1512,14 @@ class Area(Gtk.DrawingArea):
         ctx.restore()
 
     def resize_selection_surface(self, horizontal_scale, vertical_scale,
-                fast=True):
+                                 fast=True):
         x, y = self._selection_bounds[0], self._selection_bounds[1]
         new_width = int(self .selection_surface.get_width() * horizontal_scale)
         new_height = int(self.selection_surface.get_height() * vertical_scale)
 
         # create a surface with the selection scaled to the new size
         self.selection_resized_surface = cairo.ImageSurface(
-                cairo.FORMAT_ARGB32, new_width, new_height)
+            cairo.FORMAT_ARGB32, new_width, new_height)
         temp_ctx = cairo.Context(self.selection_resized_surface)
         temp_ctx.scale(horizontal_scale, vertical_scale)
         temp_ctx.set_source_surface(self.selection_surface)
@@ -1528,9 +1535,9 @@ class Area(Gtk.DrawingArea):
             # Add a timer for resize with high quality:
             if self._resize_hq_timer is not None:
                 GObject.source_remove(self._resize_hq_timer)
-            self._resize_hq_timer = GObject.timeout_add(200,
-                    self.resize_selection_surface, horizontal_scale,
-                    vertical_scale, False)
+            self._resize_hq_timer = GObject.timeout_add(
+                200, self.resize_selection_surface, horizontal_scale,
+                vertical_scale, False)
         else:
             self._resize_hq_timer = None
 
@@ -1572,8 +1579,8 @@ class Area(Gtk.DrawingArea):
         logging.debug('image size %d x %d', width, height)
 
         # load in the selection surface
-        self.selection_surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
-                width, height)
+        self.selection_surface = cairo.ImageSurface(
+            cairo.FORMAT_ARGB32, width, height)
         selection_ctx = cairo.Context(self.selection_surface)
         self._pixbuf_to_context(pixbuf, selection_ctx)
 
@@ -1667,7 +1674,7 @@ class Area(Gtk.DrawingArea):
                     hotspot_x, hotspot_y = 0, 0
 
                 cursor = Gdk.Cursor.new_from_pixbuf(display, pixbuf,
-                        hotspot_x, hotspot_y)
+                                                    hotspot_x, hotspot_y)
         except GObject.GError:
             cursor = None
         if self.get_window() is not None:
@@ -1726,7 +1733,7 @@ class Area(Gtk.DrawingArea):
 
                 if self.tool['name'] == 'marquee-rectangular':
                     self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorType.CROSS))
+                                                 Gdk.CursorType.CROSS))
                 widget.queue_draw()
                 self.enable_undo()
         elif event.keyval == Gdk.KEY_a and Gdk.ModifierType.CONTROL_MASK:
@@ -1735,7 +1742,7 @@ class Area(Gtk.DrawingArea):
             width, height = self.get_size()
             if self.tool['name'] == 'marquee-rectangular':
                 self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorTypeFLEUR))
+                                             Gdk.CursorTypeFLEUR))
             self.set_selection_bounds(0, 0, width - 1, height - 1)
             self.emit('select')
             widget.queue_draw()
@@ -1744,13 +1751,13 @@ class Area(Gtk.DrawingArea):
                 self.getout(True)
                 if self.tool['name'] == 'marquee-rectangular':
                     self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorType.CROSS))
+                                                 Gdk.CursorType.CROSS))
                 widget.queue_draw()
         elif event.keyval == Gdk.KEY_Return:
             self.getout(True)
             if self.tool['name'] == 'marquee-rectangular':
                 self.get_window().set_cursor(Gdk.Cursor.new(
-                                                    Gdk.CursorType.CROSS))
+                                             Gdk.CursorType.CROSS))
             widget.queue_draw()
 
     def change_line_size(self, delta):
@@ -1790,11 +1797,8 @@ class Area(Gtk.DrawingArea):
         size = max(abs(dx), abs(dy))
 
         if abs(dx) > 0.5 * size and abs(dy) > 0.5 * size:
-            return (self.oldx + sign(dx) * size,
-                   self.oldy + sign(dy) * size)
+            return (self.oldx + sign(dx) * size, self.oldy + sign(dy) * size)
         elif abs(dx) < 0.5 * size and abs(dy) > 0.5 * size:
-            return (self.oldx,
-                   self.oldy + sign(dy) * size)
+            return (self.oldx, self.oldy + sign(dy) * size)
         elif abs(dx) > 0.5 * size and abs(dy) < 0.5 * size:
-            return (self.oldx + sign(dx) * size,
-                   self.oldy)
+            return (self.oldx + sign(dx) * size, self.oldy)

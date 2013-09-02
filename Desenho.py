@@ -84,17 +84,17 @@ class Desenho:
         """
         self._resize_timer = None
         self._rainbow_color_list = ['#ff0000',  # red
-                '#ff8000',  # orange
-                '#ffff00',  # yellow
-                '#80ff00',  # lime
-                '#00ff00',  # green
-                '#00ff80',  # green water
-                '#00ffff',  # light blue
-                '#007fff',  # almost blue
-                '#0000ff',  # blue
-                '#8000ff',  # indigo
-                '#ff00ff',  # pink violet
-                '#ff0080']  # violet
+                                    '#ff8000',  # orange
+                                    '#ffff00',  # yellow
+                                    '#80ff00',  # lime
+                                    '#00ff00',  # green
+                                    '#00ff80',  # green water
+                                    '#00ffff',  # light blue
+                                    '#007fff',  # almost blue
+                                    '#0000ff',  # blue
+                                    '#8000ff',  # indigo
+                                    '#ff00ff',  # pink violet
+                                    '#ff0080']  # violet
         self._rainbow_counter = 0
 
         self.points = []
@@ -112,7 +112,7 @@ class Desenho:
             @param  coords -- Two value tuple
 
         """
-        if temp == True:
+        if temp:
             ctx = widget.temp_ctx
         else:
             ctx = widget.drawing_ctx
@@ -177,7 +177,7 @@ class Desenho:
         widget.drawing_ctx.translate(dx, dy)
         widget.drawing_ctx.rectangle(dx, dy, width, height)
         Gdk.cairo_set_source_pixbuf(widget.drawing_ctx, widget.resized_stamp,
-                0, 0)
+                                    0, 0)
         widget.drawing_ctx.paint()
         widget.drawing_ctx.restore()
 
@@ -202,7 +202,7 @@ class Desenho:
             self._rainbow_counter = 0
 
         widget.drawing_ctx.set_source_rgba(_color.red, _color.green,
-                _color.blue, 0.3)
+                                           _color.blue, 0.3)
         self._old_trace(widget, coords, last)
 
     def _old_trace(self, widget, coords, last):
@@ -223,10 +223,9 @@ class Desenho:
                 widget.drawing_ctx.line_to(coords[0], coords[1])
                 widget.drawing_ctx.stroke()
             else:
-                widget.drawing_ctx.move_to(coords[0],
-                        coords[1])
+                widget.drawing_ctx.move_to(coords[0], coords[1])
                 widget.drawing_ctx.arc(coords[0], coords[1],
-                        size / 2, 0., 2 * math.pi)
+                                       size / 2, 0., 2 * math.pi)
                 # when activity starts with rainbow tool, need this to
                 # not paint the background
                 widget.drawing_ctx.set_source_rgba(1.0, 1.0, 1.0, 0.0)
@@ -235,24 +234,24 @@ class Desenho:
         elif shape == 'square':
             if last:
                 points = [(last[0] - size / 2, last[1] - size / 2),
-                    (coords[0] - size / 2, coords[1] - size / 2),
-                    (coords[0] + size / 2, coords[1] + size / 2),
-                    (last[0] + size / 2, last[1] + size / 2)]
+                          (coords[0] - size / 2, coords[1] - size / 2),
+                          (coords[0] + size / 2, coords[1] + size / 2),
+                          (last[0] + size / 2, last[1] + size / 2)]
                 for point in points:
                     widget.drawing_ctx.line_to(*point)
                 widget.drawing_ctx.fill()
                 points = [(last[0] + size / 2, last[1] - size / 2),
-                    (coords[0] + size / 2, coords[1] - size / 2),
-                    (coords[0] - size / 2, coords[1] + size / 2),
-                    (last[0] - size / 2, last[1] + size / 2)]
+                          (coords[0] + size / 2, coords[1] - size / 2),
+                          (coords[0] - size / 2, coords[1] + size / 2),
+                          (last[0] - size / 2, last[1] + size / 2)]
                 for point in points:
                     widget.drawing_ctx.line_to(*point)
                 widget.drawing_ctx.fill()
             else:
                 widget.drawing_ctx.move_to(coords[0] - size / 2,
-                        coords[1] - size / 2)
+                                           coords[1] - size / 2)
                 widget.drawing_ctx.rectangle(coords[0] - size / 2,
-                        coords[1] - size / 2, size, size)
+                                             coords[1] - size / 2, size, size)
                 # when activity starts with rainbow tool, need this to
                 # not paint the background
                 widget.drawing_ctx.set_source_rgba(1.0, 1.0, 1.0, 0.0)
@@ -265,7 +264,7 @@ class Desenho:
             height = max(coords[1], last[1]) - y
             # We add size to avoid drawing dotted lines
             widget.queue_draw_area(x - size, y - size,
-                width + size * 2, height + size * 2)
+                                   width + size * 2, height + size * 2)
         else:
             widget.queue_draw()
 
@@ -285,9 +284,9 @@ class Desenho:
                 color = widget.tool['cairo_stroke_color']
             widget.drawing_ctx.set_source_rgba(*color)
             widget.drawing_ctx.move_to(coords[0] - size / 2,
-                    coords[1] - size / 2)
+                                       coords[1] - size / 2)
             widget.drawing_ctx.rectangle(coords[0] - size / 2,
-                    coords[1] - size / 2, size, size)
+                                         coords[1] - size / 2, size, size)
             widget.drawing_ctx.fill()
             widget.drawing_ctx.restore()
 
@@ -304,7 +303,7 @@ class Desenho:
         self.points.append((coords[0], coords[1]))
         if last:
             self._draw_polygon(widget, True, False, self.points, False,
-                    rounded)
+                               rounded)
         self.clear_control_points()
         if last:
             x = min(coords[0], last[0])
@@ -313,7 +312,7 @@ class Desenho:
             height = max(coords[1], last[1]) - y
             # We add size to avoid drawing dotted lines
             widget.queue_draw_area(x - size, y - size,
-                width + size * 2, height + size * 2)
+                                   width + size * 2, height + size * 2)
 
     def square(self, widget, coords, temp, fill):
         """Draw a square.
@@ -329,10 +328,10 @@ class Desenho:
         self._draw_polygon(widget, temp, fill, points)
 
     def _draw_polygon(self, widget, temp, fill, points, closed=True,
-            rounded=False):
+                      rounded=False):
         if not points:
             return
-        if temp == True:
+        if temp:
             ctx = widget.temp_ctx
         else:
             ctx = widget.drawing_ctx
@@ -390,8 +389,9 @@ class Desenho:
         """
 
         points = [(widget.oldx, widget.oldy),
-             (widget.oldx + int((coords[0] - widget.oldx) / 2), coords[1]),
-             (coords[0], widget.oldy)]
+                  (widget.oldx + int((coords[0] - widget.oldx) / 2),
+                   coords[1]),
+                  (coords[0], widget.oldy)]
         self._draw_polygon(widget, temp, fill, points)
 
     def trapezoid(self, widget, coords, temp, fill):
@@ -428,9 +428,9 @@ class Desenho:
                   widget.oldy + int(0.74 * r * math.sin(A + dA / 6))))
         p.append((widget.oldx + int(2 * r * math.cos(A + dA / 6 + dA / 20)),
                   widget.oldy + int(2 * r * math.sin(A + dA / 6 + dA / 20))))
-        p.append((widget.oldx +\
-                  int(2 * r * math.cos(A + dA / 6 - dA / 20 + dA / 6)), \
-                  widget.oldy +\
+        p.append((widget.oldx +
+                  int(2 * r * math.cos(A + dA / 6 - dA / 20 + dA / 6)),
+                  widget.oldy +
                   int(2 * r * math.sin(A + dA / 6 - dA / 20 + dA / 6))))
         p.append((widget.oldx + int(0.74 * r * math.cos(A + dA / 6 + dA / 6)),
                   widget.oldy + int(0.74 * r * math.sin(A + dA / 6 + dA / 6))))
@@ -466,15 +466,15 @@ class Desenho:
         A = math.atan2(y, x)
         dA = 2 * math.pi / n
         r = math.hypot(y, x)
-        p = [(widget.oldx + int(r * math.cos(A)), \
-             widget.oldy + int(r * math.sin(A))), \
+        p = [(widget.oldx + int(r * math.cos(A)),
+             widget.oldy + int(r * math.sin(A))),
              (widget.oldx + int(0.4 * r * math.cos(A + dA / 2)),
              widget.oldy + int(0.4 * r * math.sin(A + dA / 2)))]
         for _i in range(int(n) - 1):
             A = A + dA
-            p.append((widget.oldx + int(r * math.cos(A)), \
+            p.append((widget.oldx + int(r * math.cos(A)),
                      widget.oldy + int(r * math.sin(A))))
-            p.append((widget.oldx + int(0.4 * r * math.cos(A + dA / 2)), \
+            p.append((widget.oldx + int(0.4 * r * math.cos(A + dA / 2)),
                      widget.oldy + int(0.4 * r * math.sin(A + dA / 2))))
         self._draw_polygon(widget, temp, fill, p)
 
@@ -492,12 +492,12 @@ class Desenho:
         A = math.atan2(y, x)
         dA = 2 * math.pi / n
         r = math.hypot(y, x)
-        p = [(widget.oldx + int(r * math.cos(A)), \
+        p = [(widget.oldx + int(r * math.cos(A)),
              widget.oldy + int(r * math.sin(A)))]
         for _i in range(int(n) - 1):
             A = A + dA
-            p.append((widget.oldx + int(r * math.cos(A)), \
-                 widget.oldy + int(r * math.sin(A))))
+            p.append((widget.oldx + int(r * math.cos(A)),
+                     widget.oldy + int(r * math.sin(A))))
         self._draw_polygon(widget, temp, fill, p)
 
     def heart(self, widget, coords, temp, fill):
@@ -508,7 +508,7 @@ class Desenho:
             @param  temp -- switch between context and temp context
             @param  fill -- Fill object
         """
-        if temp == True:
+        if temp:
             ctx = widget.temp_ctx
         else:
             ctx = widget.drawing_ctx
@@ -559,7 +559,7 @@ class Desenho:
             @param  temp -- switch between context and temp context
             @param  fill -- Fill object
         """
-        if temp == True:
+        if temp:
             ctx = widget.temp_ctx
         else:
             ctx = widget.drawing_ctx
@@ -829,7 +829,7 @@ class Desenho:
             yi = widget.oldy
             yf = int(coords[1])
 
-        if locked == True:
+        if locked:
             if xi < 0:
                 xi = 0
             if yi < 0:

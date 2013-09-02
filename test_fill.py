@@ -14,7 +14,7 @@ a.append(2)
 a.append(2)
 a.append(2)
 print "before", a
-b = fill.fill(a,2,2,3,3,4278190080)
+b = fill.fill(a, 2, 2, 3, 3, 4278190080)
 print "after", b
 
 print "after 2", array.array('I', b)

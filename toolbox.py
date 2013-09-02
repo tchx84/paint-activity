@@ -263,7 +263,7 @@ class DrawEditToolbar(EditToolbar):
         self._activity.area.connect('redo', self._on_signal_redo_cb)
         self._activity.area.connect('select', self._on_signal_select_cb)
         self._activity.area.connect('action-saved',
-            self._on_signal_action_saved_cb)
+                                    self._on_signal_action_saved_cb)
 
     def _undo_cb(self, widget, data=None):
         self._activity.area.undo()
@@ -357,7 +357,7 @@ class ToolsToolbarBuilder():
         toolbar.insert(separator, -1)
 
         self._tool_brush = DrawToolButton('tool-brush',
-            activity.tool_group, _('Brush'))
+                                          activity.tool_group, _('Brush'))
         activity.tool_group = self._tool_brush
         toolbar.insert(self._tool_brush, -1)
 
@@ -383,7 +383,7 @@ class ToolsToolbarBuilder():
         self._activity.area.connect('redo', self._on_signal_redo_cb)
         self._activity.area.connect('select', self._on_signal_select_cb)
         self._activity.area.connect('action-saved',
-            self._on_signal_action_saved_cb)
+                                    self._on_signal_action_saved_cb)
 
         self._tool_marquee_rectangular = add_menu('tool-marquee-rectangular',
                                                   _('Select Area'),
@@ -392,7 +392,7 @@ class ToolsToolbarBuilder():
                                                   self.set_tool)
 
         self._tool_brush.connect('clicked', self.set_tool,
-            self._TOOL_BRUSH_NAME)
+                                 self._TOOL_BRUSH_NAME)
 
     def set_tool(self, widget, tool_name):
         """
@@ -468,15 +468,15 @@ class ButtonFillColor(ColorToolButton):
         fill_checkbutton = Gtk.CheckButton(_('Fill'))
         fill_checkbutton.set_active(self.properties['fill'])
         fill_checkbutton.connect('toggled',
-            self._on_fill_checkbutton_toggled)
+                                 self._on_fill_checkbutton_toggled)
         content_box.pack_start(fill_checkbutton, True, True, 0)
 
         keep_aspect_checkbutton = Gtk.CheckButton(_('Keep aspect'))
         logging.error('Create palette : tool name %s', self.properties['name'])
         ratio = self._activity.area.keep_shape_ratio
         keep_aspect_checkbutton.set_active(ratio)
-        keep_aspect_checkbutton.connect('toggled',
-            self._on_keep_aspect_checkbutton_toggled)
+        keep_aspect_checkbutton.connect(
+            'toggled', self._on_keep_aspect_checkbutton_toggled)
         content_box.pack_start(keep_aspect_checkbutton, True, True, 0)
 
         # We want choose the number of sides to our polygon
@@ -502,9 +502,9 @@ class ButtonFillColor(ColorToolButton):
         spin.connect('value-changed', self._on_vertices_value_changed)
 
         color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
-                                     padding=style.DEFAULT_SPACING)
+                                      padding=style.DEFAULT_SPACING)
         color_palette_hbox.pack_start(content_box, True, True,
-                padding=style.DEFAULT_SPACING)
+                                      padding=style.DEFAULT_SPACING)
         color_palette_hbox.show_all()
         return self._palette
 
@@ -648,12 +648,12 @@ class TextToolbar(Gtk.Toolbar):
 
         self._font_size = FontSize()
         self.insert(self._font_size, -1)
-        self._font_size_changed_id = self._font_size.connect('changed',
-                self.__font_size_changed_cb)
+        self._font_size_changed_id = self._font_size.connect(
+            'changed', self.__font_size_changed_cb)
 
         self._font_combo = FontComboBox()
-        self._fonts_changed_id = self._font_combo.connect('changed',
-                self.__font_changed_cb)
+        self._fonts_changed_id = self._font_combo.connect(
+            'changed', self.__font_changed_cb)
 
         fd = activity.area.get_font_description()
         font_name = fd.get_family()
@@ -752,8 +752,8 @@ class ImageToolbar(Gtk.Toolbar):
         self.insert(self._effect_grayscale, -1)
         self._effect_grayscale.set_tooltip(_('Grayscale'))
 
-        self._effect_rainbow = DrawToolButton('effect-rainbow',
-            activity.tool_group, _('Rainbow'))
+        self._effect_rainbow = DrawToolButton(
+            'effect-rainbow', activity.tool_group, _('Rainbow'))
         self.insert(self._effect_rainbow, -1)
 
         self._invert_colors = ToolButton('invert-colors')
@@ -762,9 +762,9 @@ class ImageToolbar(Gtk.Toolbar):
 
         self._object_insert.connect('clicked', self.insertImage, activity)
         self._object_rotate_left.connect('clicked', self.rotate_left,
-            activity)
+                                         activity)
         self._object_rotate_right.connect('clicked', self.rotate_right,
-            activity)
+                                          activity)
         self._mirror_vertical.connect('clicked', self.mirror_vertical)
         self._mirror_horizontal.connect('clicked', self.mirror_horizontal)
 
@@ -800,7 +800,7 @@ class ImageToolbar(Gtk.Toolbar):
             result = chooser.run()
             if result == Gtk.ResponseType.ACCEPT:
                 logging.debug('ObjectChooser: %r',
-                        chooser.get_selected_object())
+                              chooser.get_selected_object())
                 jobject = chooser.get_selected_object()
                 if jobject and jobject.file_path:
                     self._activity.area.load_image(jobject.file_path)

@@ -41,7 +41,7 @@ class BrushButton(_ColorButton):
         self._resized_stamp = None
         self._preview = Gtk.DrawingArea()
         self._preview.set_size_request(style.STANDARD_ICON_SIZE,
-                                        style.STANDARD_ICON_SIZE)
+                                       style.STANDARD_ICON_SIZE)
         self._ctx = None
 
         GObject.GObject.__init__(self, **kwargs)
@@ -69,7 +69,7 @@ class BrushButton(_ColorButton):
         self._preview.queue_draw()
 
     brush_size = GObject.property(type=int, getter=get_brush_size,
-                    setter=set_brush_size)
+                                  setter=set_brush_size)
 
     def get_brush_shape(self):
         return self._brush_shape
@@ -79,7 +79,7 @@ class BrushButton(_ColorButton):
         self._preview.queue_draw()
 
     brush_shape = GObject.property(type=str, getter=get_brush_shape,
-                    setter=set_brush_shape)
+                                   setter=set_brush_shape)
 
     def set_color(self, color):
         """
@@ -96,7 +96,7 @@ class BrushButton(_ColorButton):
         self._preview.queue_draw()
 
     stamp_size = GObject.property(type=int, getter=get_stamp_size,
-                    setter=set_stamp_size)
+                                  setter=set_stamp_size)
 
     def set_resized_stamp(self, resized_stamp):
         self._resized_stamp = resized_stamp
@@ -106,7 +106,7 @@ class BrushButton(_ColorButton):
         self._preview.queue_draw()
 
     def is_stamping(self):
-        return self._resized_stamp != None
+        return self._resized_stamp is not None
 
     def set_alpha(self, alpha):
         self._alpha = alpha
@@ -119,7 +119,7 @@ class BrushButton(_ColorButton):
         if self.get_window() is not None:
             center = style.STANDARD_ICON_SIZE / 2
             ctx.rectangle(0, 0, style.STANDARD_ICON_SIZE,
-                    style.STANDARD_ICON_SIZE)
+                          style.STANDARD_ICON_SIZE)
             ctx.set_source_rgb(1.0, 1.0, 1.0)
             ctx.fill()
 
@@ -145,8 +145,8 @@ class BrushButton(_ColorButton):
 
                 elif self._brush_shape == 'square':
                     ctx.rectangle(center - self._brush_size / 2,
-                            center - self._brush_size / 2, self._brush_size,
-                            self._brush_size)
+                                  center - self._brush_size / 2,
+                                  self._brush_size, self._brush_size)
                     ctx.fill()
 
         return False
@@ -172,7 +172,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
 
     __gtype_name__ = 'BrushColorToolButton'
     __gsignals__ = {'color-set': (GObject.SignalFlags.RUN_FIRST, None,
-        tuple())}
+                    tuple())}
 
     def __init__(self, activity, **kwargs):
         self._activity = activity
@@ -205,7 +205,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self.color_button.connect('notify::icon-size', self.__notify_change)
         self.color_button.connect('notify::title', self.__notify_change)
         self.color_button.connect('can-activate-accel',
-                             self.__button_can_activate_accel_cb)
+                                  self.__button_can_activate_accel_cb)
 
         self.create_palette()
 
@@ -214,18 +214,12 @@ class ButtonStrokeColor(Gtk.ToolItem):
         return True
 
     def __notify_change(self, widget, pspec):
-        #new_color = self.alloc_color(self.get_color())
-        #self.color_button.set_color(new_color)
         self.color_button.set_color(self.get_color())
         self.notify(pspec.name)
 
     def _color_button_cb(self, widget, pspec):
         color = self.get_color()
         self.set_stroke_color(color)
-
-#    def alloc_color(self, color):
-#        colormap = self._activity.area.get_colormap()
-#        return colormap.alloc_color(color.red, color.green, color.blue)
 
     def create_palette(self):
         self._palette = self.get_child().create_palette()
@@ -292,14 +286,14 @@ class ButtonStrokeColor(Gtk.ToolItem):
         ratio = self._activity.area.keep_aspect_ratio
         keep_aspect_checkbutton.set_active(ratio)
         keep_aspect_checkbutton.connect('toggled',
-            self._keep_aspect_checkbutton_toggled)
+                                        self._keep_aspect_checkbutton_toggled)
         self.vbox_brush_options.pack_start(keep_aspect_checkbutton, True, True,
-                0)
+                                           0)
 
         color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
-                                     padding=style.DEFAULT_SPACING)
+                                      padding=style.DEFAULT_SPACING)
         color_palette_hbox.pack_start(self.custom_box, True, True,
-                padding=style.DEFAULT_SPACING)
+                                      padding=style.DEFAULT_SPACING)
         color_palette_hbox.show_all()
         self._update_palette()
         return self._palette
