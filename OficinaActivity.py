@@ -65,6 +65,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
 import logging
+import json
 
 from sugar3.activity import activity
 from sugar3.graphics import style
@@ -107,6 +108,8 @@ class OficinaActivity(activity.Activity):
         self._sw.show()
         self._sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.set_canvas(self._sw)
+
+        self.toolset_intialize_from_journal()
 
         toolbar_box = DrawToolbarBox(self)
 
@@ -209,6 +212,8 @@ class OficinaActivity(activity.Activity):
         self.area.getout()
         self.area.drawing_canvas.write_to_png(file_path)
         self.metadata['mime_type'] = 'image/png'
+        self.metadata['state'] = json.dumps(self.area.tool)
+        logging.debug('Wrote metadata[\'state\']: %s', self.metadata['state'])
 
     def _get_area_displacement(self):
         """Return the point to use as top left corner in order to move
@@ -231,3 +236,10 @@ class OficinaActivity(activity.Activity):
     def move_textview(self, dx, dy):
         x, y = self._get_area_displacement()
         self.fixed.move(self.textview, x + dx, y + dy)
+
+    def toolset_intialize_from_journal(self):
+        try:
+            self.area.tool = json.loads(self.metadata['state'])
+            logging.debug('self.area.tool %s', self.area.tool)
+        except Exception as e:
+            logging.error("exception %s", e)

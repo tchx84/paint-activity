@@ -1670,7 +1670,8 @@ class Area(Gtk.DrawingArea):
                         hotspot_x, hotspot_y)
         except GObject.GError:
             cursor = None
-        self.get_window().set_cursor(cursor)
+        if self.get_window() is not None:
+            self.get_window().set_cursor(cursor)
 
     def getout(self, undo=False, clear_selection=True):
         """

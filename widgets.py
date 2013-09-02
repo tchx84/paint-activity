@@ -188,8 +188,8 @@ class ButtonStrokeColor(Gtk.ToolItem):
         # Replace it with a ColorButton
         self.color_button = BrushButton(has_invoker=False)
         self.add(self.color_button)
-        self.color_button.set_brush_size(2)
-        self.color_button.set_brush_shape('circle')
+        self.color_button.set_brush_size(self.properties['line size'])
+        self.color_button.set_brush_shape(self.properties['line shape'])
         self.color_button.set_stamp_size(20)
 
         # The following is so that the behaviour on the toolbar is correct.
@@ -237,6 +237,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
 
         # This is where we set restrictions for size:
         # Initial value, minimum value, maximum value, step
+
         adj = Gtk.Adjustment(self.properties['line size'], 1.0, 100.0, 1.0)
         self.size_scale = Gtk.HScale()
         self.size_scale.set_adjustment(adj)
@@ -268,11 +269,15 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self.custom_box.pack_start(self.vbox_brush_options, True, True, 0)
         item1 = RadioToolButton()
         item1.set_icon_name('tool-shape-ellipse')
-        item1.set_active(True)
 
         item2 = RadioToolButton()
         item2.set_icon_name('tool-shape-rectangle')
         item2.props.group = item1
+
+        if self.properties['line shape'] == 'circle':
+            item1.set_active(True)
+        else:
+            item2.set_active(True)
 
         item1.connect('toggled', self._on_toggled, self.properties, 'circle')
         item2.connect('toggled', self._on_toggled, self.properties, 'square')

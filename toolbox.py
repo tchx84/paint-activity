@@ -107,6 +107,23 @@ def add_menu(icon_name, tooltip, tool_name, button, activate_cb):
 class DrawToolbarBox(ToolbarBox):
     """Create toolbars for the activity"""
 
+    #dictionary - tool name : tool icon name
+    tool_icon_name = {'ellipse': 'tool-shape-ellipse',
+                      'rectangle': 'tool-shape-rectangle',
+                      'line': 'tool-shape-line',
+                      'freeform': 'tool-shape-freeform',
+                      'heart': 'tool-shape-heart',
+                      'parallelogram': 'tool-shape-parallelogram',
+                      'arrow': 'tool-shape-arrow',
+                      'star': 'tool-shape-star',
+                      'trapezoid': 'tool-shape-trapezoid',
+                      'triangle': 'tool-shape-triangle',
+                      'polygon_regular': 'tool-shape-polygon',
+                      'brush': 'tool-brush',
+                      'eraser': 'tool-eraser',
+                      'bucket': 'tool-bucket',
+                      'picker': 'tool-picket'}
+
     def __init__(self, activity):
 
         self._activity = activity
@@ -130,14 +147,17 @@ class DrawToolbarBox(ToolbarBox):
 
         self._activity.tool_group = None
 
-        tools_builder = ToolsToolbarBuilder(self.toolbar, self._activity,
-                                            self._fill_color_button)
+        self.tools_builder = ToolsToolbarBuilder(self.toolbar, self._activity,
+                                                 self._fill_color_button)
 
-        shapes_button = DrawToolButton('shapes',
-            self._activity.tool_group, _('Shapes'))
-        self.toolbar.insert(shapes_button, -1)
-        shapes_builder = ShapesToolbarBuilder(self._activity, shapes_button,
-                                              self._fill_color_button)
+        self.shapes_button = DrawToolButton('shapes',
+                                            self._activity.tool_group,
+                                            _('Shapes'))
+        self.toolbar.insert(self.shapes_button, -1)
+        self.shapes_builder = ShapesToolbarBuilder(self._activity,
+                                                   self.shapes_button,
+                                                   self._fill_color_button)
+        self.initialize_brush_shape_tools()
 
         self.toolbar.insert(item_fill_color, -1)
 
@@ -165,7 +185,7 @@ class DrawToolbarBox(ToolbarBox):
 
         # TODO: workaround
         # the BrushButton does not starts
-        self.brush_button = tools_builder._stroke_color.color_button
+        self.brush_button = self.tools_builder._stroke_color.color_button
         area = self._activity.area
         self.brush_button.set_brush_shape(area.tool['line shape'])
         self.brush_button.set_brush_size(area.tool['line size'])
@@ -179,6 +199,35 @@ class DrawToolbarBox(ToolbarBox):
 
         stroke_color = Gdk.Color(red, green, blue)
         self.brush_button.set_color(stroke_color)
+
+    def initialize_brush_shape_tools(self):
+        tool_name = self._activity.area.tool['name']
+        if tool_name in ('brush', 'eraser', 'bucket', 'picker'):
+            #make the brush tool group
+            self.tools_builder._tool_brush.set_active(True)
+            #set the icon
+            self.tools_builder._tool_brush.set_icon_name(
+                self.tool_icon_name[tool_name])
+            self.tools_builder.properties['name'] = tool_name
+            self._fill_color_button.set_sensitive(False)
+        elif tool_name in ('ellipse', 'rectangle', 'line', 'freeform', 'heart',
+                           'parallelogram', 'arrow', 'star', 'trapezoid',
+                           'triangle', 'polygon_regular'):
+            #need to make the shapes tool group active
+            self.shapes_button.set_active(True)
+            #set the icon
+            self.shapes_builder._tool_button.set_icon_name(
+                self.tool_icon_name[tool_name])
+            self.shapes_builder._tool_name = tool_name
+            self.shapes_builder.properties['name'] = tool_name
+            self._fill_color_button.set_sensitive(True)
+
+        #setting the fill color
+        cairo_fill_color = self._activity.area.tool['cairo_fill_color']
+        red = cairo_fill_color[0] * 65535
+        green = cairo_fill_color[1] * 65535
+        blue = cairo_fill_color[2] * 65535
+        self._fill_color_button.color = Gdk.Color(red, green, blue)
 
 
 ##Make the Edit Toolbar

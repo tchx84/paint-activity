@@ -212,6 +212,7 @@ class Desenho:
         widget.desenha = False
         size = widget.tool['line size']
         shape = widget.tool['line shape']
+
         if shape == 'circle':
             if last:
                 widget.drawing_ctx.set_line_width(size)
@@ -226,6 +227,9 @@ class Desenho:
                         coords[1])
                 widget.drawing_ctx.arc(coords[0], coords[1],
                         size / 2, 0., 2 * math.pi)
+                # when activity starts with rainbow tool, need this to
+                # not paint the background
+                widget.drawing_ctx.set_source_rgba(1.0, 1.0, 1.0, 0.0)
                 widget.drawing_ctx.fill()
 
         elif shape == 'square':
@@ -249,6 +253,9 @@ class Desenho:
                         coords[1] - size / 2)
                 widget.drawing_ctx.rectangle(coords[0] - size / 2,
                         coords[1] - size / 2, size, size)
+                # when activity starts with rainbow tool, need this to
+                # not paint the background
+                widget.drawing_ctx.set_source_rgba(1.0, 1.0, 1.0, 0.0)
                 widget.drawing_ctx.fill()
 
         if last:
