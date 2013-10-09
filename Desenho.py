@@ -62,7 +62,8 @@ Walter Bender                       (walter@laptop.org)
 """
 
 from gi.repository import Gdk
-from gi.repository import PangoCairo
+from gi.repository import Gtk
+from gi.repository import GObject
 import logging
 import math
 import cairo
@@ -629,45 +630,34 @@ class Desenho:
 
             widget.activity.move_textview(coord_x, coord_y)
             widget.activity.textview.show()
+            widget.activity.textview.set_cursor_visible(True)
             widget.activity.textview.grab_focus()
 
         else:
             widget.text_in_progress = False
-
-            buf = widget.activity.textview.get_buffer()
-            start, end = buf.get_bounds()
-            text = buf.get_text(start, end, True)
-
             textview = widget.activity.textview
-            #tv_layout = textview.create_pango_layout(text)
+            textview.set_cursor_visible(False)
+            # need wait until the cursor is hidden
+            GObject.idle_add(self._finalize_text, widget, textview)
 
-            ctx = widget.drawing_ctx
+    def _finalize_text(self, widget, textview):
+        buf = textview.get_buffer()
+        window = textview.get_window(Gtk.TextWindowType.TEXT)
+        ctx = widget.drawing_ctx
+        tv_alloc = textview.get_allocation()
+        Gdk.cairo_set_source_window(ctx, window, tv_alloc.x, tv_alloc.y)
+        ctx.paint()
 
-            ctx.save()
-            ctx.new_path()
-            ctx.set_source_rgba(*widget.tool['cairo_stroke_color'])
+        widget.activity.textview.hide()
+        widget.drawing_canvas.flush()
 
-            pango_layout = PangoCairo.create_layout(ctx)
-            pango_layout.set_font_description(widget.get_font_description())
-            pango_layout.set_text(unicode(text), len(unicode(text)))
+        try:
+            widget.activity.textview.set_text('')
+        except AttributeError:
+            buf.set_text('')
 
-            tv_alloc = textview.get_allocation()
-            ctx.move_to(tv_alloc.x, tv_alloc.y)
-            PangoCairo.show_layout(ctx, pango_layout)
-            ctx.stroke()
-            ctx.restore()
-
-            widget.activity.textview.hide()
-            widget.drawing_canvas.flush()
-
-            try:
-                widget.activity.textview.set_text('')
-            except AttributeError:
-                buf.set_text('')
-
-            widget.enable_undo()
-            # TODO: clip
-            widget.queue_draw()
+        widget.enable_undo()
+        widget.queue_draw()
 
     def selection(self, widget, coords):
         """Make a selection.
