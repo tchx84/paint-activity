@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-12 00:30-0400\n"
-"PO-Revision-Date: 2012-09-21 10:57+0200\n"
-"Last-Translator: hariru <hariruroa@gmail.com>\n"
+"PO-Revision-Date: 2013-10-31 13:34+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: mi\n"
 "MIME-Version: 1.0\n"
@@ -29,8 +29,9 @@ msgid ""
 msgstr ""
 
 #: fontcombobox.py:89
+#, fuzzy
 msgid "Select font"
-msgstr ""
+msgstr "Tīpako momotuhi"
 
 #: toolbox.py:118
 msgid "Edit"
@@ -198,7 +199,7 @@ msgstr "Rahi: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr "Pōuritanga:"
+msgstr "Pōuritanga: "
 
 #: widgets.py:17
 msgid "Circle"
