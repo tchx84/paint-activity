@@ -47,15 +47,15 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-12 00:30-0400\n"
-"PO-Revision-Date: 2012-10-08 20:47+0200\n"
-"Last-Translator: Markus Schlager <m.slg@gmx.de>\n"
+"PO-Revision-Date: 2013-08-07 22:10+0200\n"
+"Last-Translator: Markus <m.slg@gmx.de>\n"
 "Language-Team: Deutsche OLPC-Lokalisierung\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Paint"
@@ -73,7 +73,7 @@ msgstr ""
 
 #: fontcombobox.py:89
 msgid "Select font"
-msgstr ""
+msgstr "Schriftart wählen"
 
 #: toolbox.py:118
 msgid "Edit"
