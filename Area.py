@@ -1110,7 +1110,16 @@ class Area(Gtk.DrawingArea):
 
         clipBoard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
-        if clipBoard.wait_is_image_available():
+        if clipBoard.wait_is_text_available():
+            logging.debug('Area.paste(self): Wait is text available')
+            selection = clipBoard.wait_for_text()
+            props = self.tool
+            props['name'] = 'text'
+            self.set_tool(props)
+            self.tool_start(0, 0, False)
+            self.activity.textview.get_buffer().set_text(selection)
+
+        elif clipBoard.wait_is_image_available():
             logging.error('Area.paste(self): Wait is image available')
             pixbuf_sel = clipBoard.wait_for_image()
             self.load_pixbuf(pixbuf_sel)
@@ -1122,6 +1131,7 @@ class Area(Gtk.DrawingArea):
             if selection is not None:
                 for uri in selection.get_uris():
                     self.load_image(urlparse(uri).path, self)
+
         else:
             tempPath = os.path.join("/tmp", "tempFile")
             tempPath = os.path.abspath(tempPath)
