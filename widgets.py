@@ -181,6 +181,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self._tooltip = None
         self._palette_invoker = ToolInvoker()
         self._palette = None
+        self._selected_tool = None
 
         GObject.GObject.__init__(self, **kwargs)
 
@@ -259,7 +260,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self.alpha_scale.connect('value-changed', self._on_alpha_changed)
 
         # User is able to choose Shapes for 'Brush' and 'Eraser'
-        shape_box = Gtk.HBox()
+        self.shape_box = Gtk.HBox()
         self.custom_box.pack_start(self.vbox_brush_options, True, True, 0)
         item1 = RadioToolButton()
         item1.set_icon_name('tool-shape-ellipse')
@@ -276,21 +277,22 @@ class ButtonStrokeColor(Gtk.ToolItem):
         item1.connect('toggled', self._on_toggled, self.properties, 'circle')
         item2.connect('toggled', self._on_toggled, self.properties, 'square')
 
-        shape_box.pack_start(Gtk.Label(_('Shape')), True, True, 0)
-        shape_box.pack_start(item1, True, True, 0)
-        shape_box.pack_start(item2, True, True, 0)
+        self.shape_box.pack_start(Gtk.Label(_('Shape')), True, True, 0)
+        self.shape_box.pack_start(item1, True, True, 0)
+        self.shape_box.pack_start(item2, True, True, 0)
 
-        self.vbox_brush_options.pack_start(shape_box, True, True, 0)
+        self.vbox_brush_options.pack_start(self.shape_box, True, True, 0)
 
-        keep_aspect_checkbutton = Gtk.CheckButton(_('Keep aspect'))
+        self.keep_aspect_checkbutton = Gtk.CheckButton(_('Keep aspect'))
         ratio = self._activity.area.keep_aspect_ratio
-        keep_aspect_checkbutton.set_active(ratio)
-        keep_aspect_checkbutton.connect('toggled',
-                                        self._keep_aspect_checkbutton_toggled)
-        self.vbox_brush_options.pack_start(keep_aspect_checkbutton, True, True,
-                                           0)
+        self.keep_aspect_checkbutton.set_active(ratio)
+        self.keep_aspect_checkbutton.connect(
+            'toggled', self._keep_aspect_checkbutton_toggled)
+        self.vbox_brush_options.pack_start(self.keep_aspect_checkbutton, True,
+                                           True, 0)
 
-        color_palette_hbox.pack_start(Gtk.VSeparator(), True, True,
+        self.custom_separator = Gtk.VSeparator()
+        color_palette_hbox.pack_start(self.custom_separator, True, True,
                                       padding=style.DEFAULT_SPACING)
         color_palette_hbox.pack_start(self.custom_box, True, True,
                                       padding=style.DEFAULT_SPACING)
@@ -302,23 +304,51 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self._activity.area.keep_aspect_ratio = checkbutton.get_active()
 
     def _update_palette(self):
-        palette_children = self._palette._picker_hbox.get_children()
-        if self.color_button.is_stamping():
-            # Hide palette color widgets except size:
+        tool_name = self._selected_tool
+        show_controls = ()
+        show_colors = False
+        logging.error('TOOL NAME %s', tool_name)
+        if tool_name == 'brush' or tool_name is None:
+            title = _('Brush properties')
+            show_colors = True
+            show_controls = (self.size_label, self.size_scale, self.shape_box,
+                             self.alpha_label, self.alpha_scale)
+        elif tool_name == 'stamp':
+            show_controls = (self.size_label, self.size_scale)
+            title = _('Stamp properties')
+        elif tool_name == 'eraser':
+            show_controls = (self.size_label, self.size_scale,
+                             self.shape_box)
+            title = _('Eraser properties')
+        elif tool_name == 'bucket':
+            show_colors = True
+            title = _('Bucket properties')
+        elif tool_name == 'picker':
+            title = _('Picker properties')
+        elif tool_name == 'marquee-rectangular':
+            title = _('Select Area')
+            show_controls = (self.keep_aspect_checkbutton,)
+        else:
+            title = ''
+
+        self._palette._picker_hbox.show_all()
+        # Hide palette color widgets except size:
+        if not show_colors:
+            palette_children = self._palette._picker_hbox.get_children()
             for ch in palette_children:
                 if ch != self.custom_box:
                     ch.hide()
-            controls = self.vbox_brush_options.get_children()
-            for control in controls:
-                if control not in (self.size_label, self.size_scale):
-                    control.hide()
-            # Change title:
-            self.set_title(_('Stamp properties'))
-        else:
-            # Show palette color widgets:
-            self._palette._picker_hbox.show_all()
-            # Change title:
-            self.set_title(_('Brush properties'))
+        elif not show_controls:
+            self.custom_separator.hide()
+
+        self.vbox_brush_options.show_all()
+        controls = self.vbox_brush_options.get_children()
+        for control in controls:
+            if control not in show_controls:
+                control.hide()
+
+        # Change title:
+        self.set_title(title)
 
         self._palette._picker_hbox.resize_children()
         self._palette._picker_hbox.queue_draw()
@@ -403,6 +433,12 @@ class ButtonStrokeColor(Gtk.ToolItem):
         return self.get_child().props.title
 
     title = GObject.property(type=str, getter=get_title, setter=set_title)
+
+    def get_selected_tool(self):
+        return self._selected_tool
+
+    def set_selected_tool(self, tool_name):
+        self._selected_tool = tool_name
 
     def do_draw(self, cr):
         if self._palette and self._palette.is_up():

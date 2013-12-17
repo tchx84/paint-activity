@@ -150,6 +150,10 @@ class DrawToolbarBox(ToolbarBox):
         self.tools_builder = ToolsToolbarBuilder(self.toolbar, self._activity,
                                                  self._fill_color_button)
 
+        separator = Gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        self.toolbar.insert(separator, -1)
+
         self.shapes_button = DrawToolButton('shapes',
                                             self._activity.tool_group,
                                             _('Shapes'))
@@ -160,6 +164,10 @@ class DrawToolbarBox(ToolbarBox):
         self.initialize_brush_shape_tools()
 
         self.toolbar.insert(item_fill_color, -1)
+
+        separator = Gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        self.toolbar.insert(separator, -1)
 
         fonts_button = ToolbarButton()
         fonts_button.props.page = TextToolbar(self._activity)
@@ -347,15 +355,6 @@ class ToolsToolbarBuilder():
         self.properties = self._activity.area.tool
         self._fill_color_button = fill_color_button
 
-        self._stroke_color = ButtonStrokeColor(activity)
-        self._stroke_color.set_title(_('Brush properties'))
-        self._stroke_color.connect('notify::color', self._color_button_cb)
-        toolbar.insert(self._stroke_color, -1)
-
-        separator = Gtk.SeparatorToolItem()
-        separator.set_draw(True)
-        toolbar.insert(separator, -1)
-
         self._tool_brush = DrawToolButton('tool-brush',
                                           activity.tool_group, _('Brush'))
         activity.tool_group = self._tool_brush
@@ -394,6 +393,11 @@ class ToolsToolbarBuilder():
         self._tool_brush.connect('clicked', self.set_tool,
                                  self._TOOL_BRUSH_NAME)
 
+        self._stroke_color = ButtonStrokeColor(activity)
+        self.set_tool(self._tool_brush, 'brush')
+        self._stroke_color.connect('notify::color', self._color_button_cb)
+        toolbar.insert(self._stroke_color, -1)
+
     def set_tool(self, widget, tool_name):
         """
         Set tool to the Area object. Configures tool's color and size.
@@ -405,6 +409,7 @@ class ToolsToolbarBuilder():
         """
         if widget != self._tool_brush:
             self._tool_brush.set_icon_name(widget.icon_name)
+            self._stroke_color.set_selected_tool(tool_name)
 
         if tool_name == 'stamp':
             resized_stamp = self._activity.area.setup_stamp()
@@ -449,14 +454,26 @@ class ButtonFillColor(ColorToolButton):
         ColorToolButton.__init__(self)
         self._activity = activity
         self.properties = self._activity.area.tool
-        self.connect('notify::color', self._color_button_cb)
+        self._button_cb = self.connect('notify::color', self._color_button_cb)
+        self._inactive_color = style.COLOR_INACTIVE_FILL.get_gdk_color()
+        # self._old_color = self.get_color()
 
     def _color_button_cb(self, widget, pspec):
-        color = self.get_color()
-        self.set_fill_color(color)
+        self._old_color = self.get_color()
+        self.set_fill_color(self._old_color)
 
     def set_fill_color(self, color):
         self._activity.area.set_fill_color(color)
+
+    def set_sensitive(self, value):
+        self.handler_block(self._button_cb)
+        if value:
+            self.set_color(self._old_color)
+        else:
+            self.set_color(self._inactive_color)
+        self.handler_unblock(self._button_cb)
+
+        ColorToolButton.set_sensitive(self, value)
 
     def create_palette(self):
         self._palette = self.get_child().create_palette()
