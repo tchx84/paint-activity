@@ -814,4 +814,4 @@ class ImageToolbar(Gtk.Toolbar):
         self.properties['name'] = self._EFFECT_RAINBOW_NAME
 
     def invert_colors(self, widget):
-        self._activity.area.invert_colors(widget)
+        self._activity.area.invert_colors()

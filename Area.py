@@ -1198,11 +1198,10 @@ class Area(Gtk.DrawingArea):
 
         self._do_process(widget, proc_grayscale)
 
-    def invert_colors(self, widget):
+    def invert_colors(self):
         """Apply invert effect.
 
             @param  self -- the Area object (GtkDrawingArea)
-            @param  widget -- the Area object (GtkDrawingArea)
 
         """
 
@@ -1232,15 +1231,17 @@ class Area(Gtk.DrawingArea):
             # create a updated drawing_canvas
             width = self.drawing_canvas.get_width()
             height = self.drawing_canvas.get_height()
-            self.drawing_canvas = cairo.ImageSurface.create_for_data(
+            self.drawing_canvas_data = cairo.ImageSurface.create_for_data(
                 new_array, cairo.FORMAT_ARGB32, width, height)
 
+            self.setup(width, height)
             self.queue_draw()
             self.enable_undo()
-            self.get_window().set_cursor(old_cursor)
+            self.get_toplevel().get_window().set_cursor(old_cursor)
 
         old_cursor = self.get_window().get_cursor()
-        self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
+        self.get_toplevel().get_window().set_cursor(
+            Gdk.Cursor.new(Gdk.CursorType.WATCH))
         GObject.idle_add(internal_invert, self, old_cursor)
 
     def mirror(self, widget, horizontal=True):
