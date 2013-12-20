@@ -96,6 +96,18 @@ class OficinaActivity(activity.Activity):
                              style.COLOR_WHITE.get_gdk_color())
 
         self.textview = Gtk.TextView()
+
+        self.textview.set_events(Gdk.EventMask.POINTER_MOTION_MASK |
+                                 Gdk.EventMask.POINTER_MOTION_HINT_MASK |
+                                 Gdk.EventMask.BUTTON_PRESS_MASK |
+                                 Gdk.EventMask.BUTTON_RELEASE_MASK |
+                                 Gdk.EventMask.BUTTON_MOTION_MASK |
+                                 Gdk.EventMask.TOUCH_MASK)
+
+        self.textview.connect('event', self.__textview_event_cb)
+        self.textview.connect("motion_notify_event",
+                              self.__textview_mouse_move_cb)
+
         self.fixed.put(self.textview, 0, 0)
 
         # These attributes are used in other classes, so they should be public
@@ -244,3 +256,31 @@ class OficinaActivity(activity.Activity):
             logging.debug('self.area.tool %s', self.area.tool)
         except Exception as e:
             logging.error("exception %s", e)
+
+    def __textview_event_cb(self, widget, event):
+        if event.type in (Gdk.EventType.TOUCH_BEGIN,
+                          Gdk.EventType.TOUCH_CANCEL, Gdk.EventType.TOUCH_END,
+                          Gdk.EventType.BUTTON_PRESS,
+                          Gdk.EventType.BUTTON_RELEASE):
+            x = int(event.get_coords()[1])
+            y = int(event.get_coords()[2])
+            if event.type in (Gdk.EventType.TOUCH_BEGIN,
+                              Gdk.EventType.BUTTON_PRESS):
+                self._initial_textview_touch_x = x
+                self._initial_textview_touch_y = y
+            elif event.type in (Gdk.EventType.TOUCH_END,
+                                Gdk.EventType.BUTTON_RELEASE):
+                # be sure the textview don't have a selection pending
+                # and put the cursor at the end of the text
+                text_buf = self.textview.get_buffer()
+                end_text_iter = text_buf.get_end_iter()
+                text_buf.select_range(end_text_iter, end_text_iter)
+
+    def __textview_mouse_move_cb(self, widget, event):
+        x = event.x
+        y = event.y
+        if event.get_state() & Gdk.ModifierType.BUTTON1_MASK:
+            dx = x - self._initial_textview_touch_x
+            dy = y - self._initial_textview_touch_y
+            tv_alloc = self.textview.get_allocation()
+            self.move_textview(tv_alloc.x + dx, tv_alloc.y + dy)
