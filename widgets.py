@@ -307,7 +307,6 @@ class ButtonStrokeColor(Gtk.ToolItem):
         tool_name = self._selected_tool
         show_controls = ()
         show_colors = False
-        logging.error('TOOL NAME %s', tool_name)
         if tool_name == 'brush' or tool_name is None:
             title = _('Brush properties')
             show_colors = True
