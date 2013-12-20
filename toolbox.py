@@ -429,8 +429,6 @@ class ToolsToolbarBuilder():
         self.set_tool(button, self._selected_tool_name)
 
     def _color_button_cb(self, widget, pspec):
-        logging.error('ToolsToolbarBuilder._color_button_cb')
-
         new_color = widget.get_color()
         self._activity.area.set_stroke_color(new_color)
 

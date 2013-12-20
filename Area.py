@@ -169,6 +169,7 @@ class Area(Gtk.DrawingArea):
             'fill': True,
             'cairo_stroke_color': (0.0, 0.0, 0.0, 1.0),
             'cairo_fill_color': (0.0, 0.0, 0.0, 1.0),
+            'bucket_color': (0, 0, 0),
             'alpha': 1.0,
             'vertices': 6.0,
             'font_description': 'Sans 12'}
@@ -818,13 +819,13 @@ class Area(Gtk.DrawingArea):
         self.d.clear_control_points()
 
     def flood_fill(self, x, y):
-        stroke_color = self.tool['cairo_stroke_color']
-        r, g, b = stroke_color[0], stroke_color[1], stroke_color[2]
+        bucket_color = self.tool['bucket_color']
+        r, g, b = bucket_color[0], bucket_color[1], bucket_color[2]
 
         # pack the color in a int as 0xAARRGGBB
-        fill_color = 0xff000000 + (int(r * 255 * 65536) +
-                                   int(g * 255 * 256) +
-                                   int(b * 255))
+        fill_color = 0xff000000 + (int(r / 255 * 65536) +
+                                   int(g / 255 * 256) +
+                                   int(b / 255))
         logging.error('fill_color %d', fill_color)
 
         # load a array with the surface data
@@ -1169,6 +1170,8 @@ class Area(Gtk.DrawingArea):
         red = color.red / 65535.0
         green = color.green / 65535.0
         blue = color.blue / 65535.0
+        # for bucket operation, store the integer values
+        self.tool['bucket_color'] = (color.red, color.green, color.blue)
         self.tool['cairo_stroke_color'] = (red, green, blue, alpha)
         rgba = Gdk.RGBA()
         rgba.red, rgba.green, rgba.blue, rgba.alpha = red, green, blue, alpha
