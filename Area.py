@@ -532,16 +532,20 @@ class Area(Gtk.DrawingArea):
                         self._selmove = False
                         self._selresize = True
                     else:
-                        self.getout()
-                        self._selmove = False
-                        self._selresize = False
+                        self.end_selection()
                         design_mode = False
-
                 else:
                     self._selmove = False
 
             if design_mode:
                 self.desenha = True
+
+    def end_selection(self):
+        if self.is_selected():
+            self.getout()
+            self._selmove = False
+            self._selresize = False
+            self.queue_draw()
 
     def calculate_damaged_area(self, points):
         min_x = points[0][0]

@@ -340,7 +340,7 @@ class DrawToolButton(RadioToolButton):
 class ToolsToolbarBuilder():
 
     #Tool default definitions
-    _TOOL_PENCIL_NAME = 'pencil'
+    #_TOOL_PENCIL_NAME = 'pencil'
     _TOOL_BRUSH_NAME = 'brush'
     _TOOL_ERASER_NAME = 'eraser'
     _TOOL_BUCKET_NAME = 'bucket'
@@ -354,6 +354,7 @@ class ToolsToolbarBuilder():
         self._activity = activity
         self.properties = self._activity.area.tool
         self._fill_color_button = fill_color_button
+        self._selected_tool_name = self._TOOL_BRUSH_NAME
 
         self._tool_brush = DrawToolButton('tool-brush',
                                           activity.tool_group, _('Brush'))
@@ -390,11 +391,10 @@ class ToolsToolbarBuilder():
                                                   self._tool_brush,
                                                   self.set_tool)
 
-        self._tool_brush.connect('clicked', self.set_tool,
-                                 self._TOOL_BRUSH_NAME)
+        self._tool_brush.connect('clicked', self._tool_button_clicked_cb)
 
         self._stroke_color = ButtonStrokeColor(activity)
-        self.set_tool(self._tool_brush, 'brush')
+        self.set_tool(self._tool_brush, self._TOOL_BRUSH_NAME)
         self._stroke_color.connect('notify::color', self._color_button_cb)
         toolbar.insert(self._stroke_color, -1)
 
@@ -411,15 +411,22 @@ class ToolsToolbarBuilder():
             self._tool_brush.set_icon_name(widget.icon_name)
             self._stroke_color.set_selected_tool(tool_name)
 
-        if tool_name == 'stamp':
+        if tool_name == self._TOOL_STAMP_NAME:
             resized_stamp = self._activity.area.setup_stamp()
             self._stroke_color.color_button.set_resized_stamp(resized_stamp)
         else:
             self._stroke_color.color_button.stop_stamping()
+        if tool_name != self._TOOL_MARQUEE_RECT_NAME:
+            self._activity.area.end_selection()
+
         self._stroke_color.update_stamping()
         self.properties['name'] = tool_name
         self._activity.area.set_tool(self.properties)
         self._fill_color_button.set_sensitive(False)
+        self._selected_tool_name = tool_name
+
+    def _tool_button_clicked_cb(self, button):
+        self.set_tool(button, self._selected_tool_name)
 
     def _color_button_cb(self, widget, pspec):
         logging.error('ToolsToolbarBuilder._color_button_cb')
@@ -627,6 +634,7 @@ class ShapesToolbarBuilder():
         self.properties['name'] = tool_name
         self._activity.area.set_tool(self.properties)
         self._fill_color_button.set_sensitive(True)
+        self._activity.area.end_selection()
 
 
 ##Make the Text Toolbar
