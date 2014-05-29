@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Paint\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-12 00:30-0400\n"
-"PO-Revision-Date: 2013-06-17 15:02+0200\n"
+"POT-Creation-Date: 2013-12-20 00:30-0500\n"
+"PO-Revision-Date: 2014-01-09 16:14+0200\n"
 "Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
 "Language: zh_CN\n"
@@ -56,167 +56,163 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr "毕加索？梵高？您可以成为其中的任何一位！只是让你内心的艺术自由自在。把你心中的图像变成美丽的画作。"
 
-#: fontcombobox.py:89
+#: fontcombobox.py:90
 msgid "Select font"
 msgstr "选择字体"
 
-#: toolbox.py:118
+#: toolbox.py:139
 msgid "Edit"
 msgstr "编辑"
 
-#: toolbox.py:122
+#: toolbox.py:143
 msgid "Shapes properties"
 msgstr "形状属性"
 
-#: toolbox.py:133
+#: toolbox.py:159
 msgid "Shapes"
 msgstr "形状"
 
-#: toolbox.py:143
+#: toolbox.py:175
 msgid "Fonts"
 msgstr "字体"
 
-#: toolbox.py:149
+#: toolbox.py:181
 msgid "Image"
 msgstr "图片"
 
-#: toolbox.py:188
+#: toolbox.py:249
 msgid "Undo"
 msgstr "撤销"
 
-#: toolbox.py:189
+#: toolbox.py:250
 msgid "Redo"
 msgstr "取消撤销"
 
-#: toolbox.py:190
+#: toolbox.py:251
 msgid "Copy"
 msgstr "复制"
 
-#: toolbox.py:191
+#: toolbox.py:252
 msgid "Paste"
 msgstr "粘贴"
 
-#: toolbox.py:199
+#: toolbox.py:260
 msgid "Clear"
 msgstr "清除"
 
-#: toolbox.py:298 widgets.py:322
-msgid "Brush properties"
-msgstr "画笔属性"
-
-#: toolbox.py:307 toolbox.py:311
+#: toolbox.py:359 toolbox.py:363
 msgid "Brush"
 msgstr "刷子"
 
-#: toolbox.py:314
+#: toolbox.py:366
 msgid "Eraser"
 msgstr "橡皮擦"
 
-#: toolbox.py:317
+#: toolbox.py:369
 msgid "Bucket"
 msgstr "色彩桶"
 
-#: toolbox.py:320
+#: toolbox.py:372
 msgid "Picker"
 msgstr "取色器"
 
-#: toolbox.py:323
+#: toolbox.py:375
 msgid "Stamp"
 msgstr "图章"
 
-#: toolbox.py:336
+#: toolbox.py:388 widgets.py:329
 msgid "Select Area"
 msgstr "选择区域"
 
-#: toolbox.py:415
+#: toolbox.py:485
 msgid "Fill"
 msgstr "填满"
 
-#: toolbox.py:421 widgets.py:286
+#: toolbox.py:491 widgets.py:286
 msgid "Keep aspect"
 msgstr "保持宽高比"
 
-#: toolbox.py:438
+#: toolbox.py:508
 msgid "Sides: "
 msgstr "边:"
 
-#: toolbox.py:511
+#: toolbox.py:580
 msgid "Ellipse"
 msgstr "椭圆形"
 
-#: toolbox.py:514
+#: toolbox.py:583
 msgid "Rectangle"
 msgstr "矩形"
 
-#: toolbox.py:517
+#: toolbox.py:586
 msgid "Line"
 msgstr "线条"
 
-#: toolbox.py:520
+#: toolbox.py:589
 msgid "Free form"
 msgstr "自由形式"
 
-#: toolbox.py:523
+#: toolbox.py:592
 msgid "Polygon"
 msgstr "多边形"
 
-#: toolbox.py:526
+#: toolbox.py:595
 msgid "Heart"
 msgstr "心形"
 
-#: toolbox.py:529
+#: toolbox.py:598
 msgid "Parallelogram"
 msgstr "平行四边形"
 
-#: toolbox.py:532
+#: toolbox.py:601
 msgid "Arrow"
 msgstr "箭头"
 
-#: toolbox.py:535
+#: toolbox.py:604
 msgid "Star"
 msgstr "星状"
 
-#: toolbox.py:538
+#: toolbox.py:607
 msgid "Trapezoid"
 msgstr "梯形"
 
-#: toolbox.py:541
+#: toolbox.py:610
 msgid "Triangle"
 msgstr "三角形"
 
-#: toolbox.py:574
+#: toolbox.py:643
 msgid "Type"
 msgstr "类型"
 
-#: toolbox.py:665
+#: toolbox.py:734
 msgid "Insert Image"
 msgstr "插入物件"
 
-#: toolbox.py:678
+#: toolbox.py:745
 msgid "Rotate Left"
 msgstr "向左转"
 
-#: toolbox.py:682
+#: toolbox.py:749
 msgid "Rotate Right"
 msgstr "向右转"
 
-#: toolbox.py:687
+#: toolbox.py:754
 msgid "Horizontal Mirror"
 msgstr "水平镜像"
 
-#: toolbox.py:692
+#: toolbox.py:759
 msgid "Vertical Mirror"
 msgstr "垂直镜像"
 
-#: toolbox.py:700
+#: toolbox.py:767
 msgid "Grayscale"
 msgstr "灰阶"
 
-#: toolbox.py:703
+#: toolbox.py:770
 msgid "Rainbow"
 msgstr "彩虹"
 
-#: toolbox.py:708
+#: toolbox.py:775
 msgid "Invert Colors"
 msgstr "反色"
 
@@ -240,11 +236,11 @@ msgstr "方形"
 msgid "Choose brush properties"
 msgstr "选择画笔属性"
 
-#: widgets.py:245
+#: widgets.py:241
 msgid "Size"
 msgstr "尺寸大小"
 
-#: widgets.py:259
+#: widgets.py:255
 msgid "Opacity"
 msgstr "不透明度"
 
@@ -252,9 +248,25 @@ msgstr "不透明度"
 msgid "Shape"
 msgstr "形状"
 
-#: widgets.py:317
+#: widgets.py:312
+msgid "Brush properties"
+msgstr "画笔属性"
+
+#: widgets.py:318
 msgid "Stamp properties"
 msgstr "图章属性"
+
+#: widgets.py:322
+msgid "Eraser properties"
+msgstr "橡皮擦属性"
+
+#: widgets.py:325
+msgid "Bucket properties"
+msgstr "油漆桶属性"
+
+#: widgets.py:327
+msgid "Picker properties"
+msgstr "选取器属性"
 
 #~ msgid "Height"
 #~ msgstr "高度"
