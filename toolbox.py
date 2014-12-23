@@ -384,11 +384,8 @@ class ToolsToolbarBuilder():
         is_selected = self._activity.area.is_selected()
         self._tool_stamp.set_sensitive(is_selected)
 
-        # tuxpaint-stamps install dir.
-        tuxstamps = '/usr/share/tuxpaint/stamps'
-        if os.path.exists(tuxstamps):
-            add_menu('tool-stamp', _('Load stamp'), 'load-stamp',
-                     self._tool_brush, self.set_tool)
+        add_menu('tool-stamp', _('Load stamp'), 'load-stamp', self._tool_brush,
+                 self.set_tool)
 
         self._activity.area.connect('undo', self._on_signal_undo_cb)
         self._activity.area.connect('redo', self._on_signal_redo_cb)
@@ -432,7 +429,7 @@ class ToolsToolbarBuilder():
             self._activity.area.end_selection()
 
         if tool_name == 'load-stamp':
-            dialog = TuxStampDialog()
+            dialog = TuxStampDialog(self._activity)
             dialog.set_transient_for(self._activity)
             dialog.connect('stamp-selected', self._load_stamp)
             dialog.show_all()

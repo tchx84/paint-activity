@@ -23,11 +23,18 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 
+from sugar3.datastore import datastore
 from sugar3.graphics import style
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.icon import Icon
+from sugar3.graphics.objectchooser import ObjectChooser
+try:
+    from sugar3.graphics.objectchooser import FILTER_TYPE_GENERIC_MIME
+except:
+    FILTER_TYPE_GENERIC_MIME = 'generic_mime'
 
 STORE = None
+JOURNAL_IMAGES = []
 
 
 class _DialogWindow(Gtk.Window):
@@ -118,8 +125,14 @@ class TuxStampDialog(_DialogWindow):
             (GObject.TYPE_STRING,
              ))}
 
-    def __init__(self):
+    def __init__(self, activity):
         super(TuxStampDialog, self).__init__('tool-stamp', _('Select stamp'))
+
+        self._activity = activity
+
+        global JOURNAL_IMAGES
+        if not JOURNAL_IMAGES:
+            JOURNAL_IMAGES = self._activity._journal_images
 
         global STORE
         if not STORE:
@@ -145,25 +158,98 @@ class TuxStampDialog(_DialogWindow):
 
         iter_ = STORE.get_iter(items[0])
         filepath = STORE.get(iter_, 1)[0]
-        self.emit('stamp-selected', filepath)
-        self.destroy()
+        if filepath == 'loadfromjournal':
+            self.hide()
+            try:
+                chooser = ObjectChooser(self._activity, what_filter='Image',
+                                        filter_type=FILTER_TYPE_GENERIC_MIME,
+                                        show_preview=True)
+            except:
+                # for compatibility with older versions
+                chooser = ObjectChooser(self._activity, what_filter='Image')
+
+            try:
+                result = chooser.run()
+                newfilepath = None
+                if result == Gtk.ResponseType.ACCEPT:
+                    jobject = chooser.get_selected_object()
+                    if jobject and jobject.file_path:
+                        newfilepath = jobject.file_path
+                        object_id = str(jobject.object_id)
+                        if object_id not in JOURNAL_IMAGES:
+                            JOURNAL_IMAGES.append(object_id)
+                            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
+                                newfilepath,
+                                50,
+                                50)
+                            STORE.append([pixbuf, newfilepath])
+            finally:
+                if not newfilepath:
+                    self.show_all()
+                else:
+                    self.emit('stamp-selected', newfilepath)
+                    self.destroy()
+                chooser.destroy()
+                del chooser
+        else:
+            self.emit('stamp-selected', filepath)
+            self.destroy()
 
     def _create_model(self):
         tuxstamps = '/usr/share/tuxpaint/stamps'
-        categories = []
-        dirs = os.listdir(tuxstamps)
-        for d in dirs:
-            d = os.path.join(tuxstamps, d)
-            if os.path.isdir(d):
-                categories.append(d)
-
         store = Gtk.ListStore(GdkPixbuf.Pixbuf, str)
-        for cat in categories:
-            patron = os.path.join(tuxstamps, cat)
-            for x in range(5):
-                patron = patron + "/*"
-                files = glob.iglob(patron + '.png')
-                for f in files:
-                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(f, 50, 50)
-                    store.append([pixbuf, f])
+        tuxavailable = True
+        if not os.path.exists(tuxstamps):
+            tuxavailable = False
+
+        filepaths = []
+
+        for object_id in JOURNAL_IMAGES:
+            if os.path.exists(object_id) and os.path.isfile(object_id):
+                filepaths.append(oid)
+                continue
+            try:
+                obj = datastore.get(object_id)
+                fpath = obj.file_path
+                if os.path.exists(fpath):
+                    filepaths.append(fpath)
+            except Exception, e:
+                pass
+
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
+            'icons/loadfromjournal.svg',
+            50,
+            50)
+        store.append([pixbuf, 'loadfromjournal'])
+
+        for f in filepaths:
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
+                f,
+                50,
+                50)
+            store.append([pixbuf, f])
+
+        if tuxavailable:
+            categories = []
+            dirs = os.listdir(tuxstamps)
+            for d in dirs:
+                d = os.path.join(tuxstamps, d)
+                if os.path.isdir(d):
+                    categories.append(d)
+
+            for cat in categories:
+                patron = os.path.join(tuxstamps, cat)
+                for x in range(5):
+                    patron = patron + "/*"
+                    files = glob.iglob(patron + '.png')
+                    for f in files:
+                        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
+                            f,
+                            50,
+                            50)
+                        store.append([pixbuf, f])
         return store
+
+
+def get_journal_images():
+    return JOURNAL_IMAGES

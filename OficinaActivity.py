@@ -72,6 +72,7 @@ from sugar3.graphics import style
 
 from Area import Area
 from toolbox import DrawToolbarBox
+import dialogs
 
 
 class OficinaActivity(activity.Activity):
@@ -88,6 +89,7 @@ class OficinaActivity(activity.Activity):
 
         logging.debug('Starting Paint activity (Oficina)')
 
+        self._journal_images = []
         self.fixed = Gtk.Fixed()
         self._width = Gdk.Screen.width()
         self._height = Gdk.Screen.height()
@@ -213,6 +215,9 @@ class OficinaActivity(activity.Activity):
                 self.metadata['title'] = title
             logging.error('title: %s', self.metadata['title'])
 
+        if 'images' in self.metadata:
+            self._journal_images = json.loads(self.metadata['images'])
+
     def write_file(self, file_path):
         '''Save file on Sugar Journal. '''
 
@@ -226,6 +231,7 @@ class OficinaActivity(activity.Activity):
         self.area.drawing_canvas.write_to_png(file_path)
         self.metadata['mime_type'] = 'image/png'
         self.metadata['state'] = json.dumps(self.area.tool)
+        self.metadata['images'] = json.dumps(dialogs.get_journal_images())
         logging.debug('Wrote metadata[\'state\']: %s', self.metadata['state'])
 
     def _get_area_displacement(self):
