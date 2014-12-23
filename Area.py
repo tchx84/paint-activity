@@ -387,12 +387,12 @@ class Area(Gtk.DrawingArea):
         rainbow and eraser
         """
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
-                                 'stamp']:
+                                 'stamp', 'load-stamp']:
             if not self.drawing:
                 context.set_source_rgba(*self.tool['cairo_stroke_color'])
                 context.set_line_width(1)
                 # draw stamp border in widget.window
-                if self.tool['name'] == 'stamp':
+                if self.tool['name'] in ('stamp', 'load-stamp'):
                     wr, hr = self.stamp_dimentions
                     context.rectangle(self.x_cursor - wr / 2,
                                       self.y_cursor - hr / 2, wr, hr)
@@ -495,7 +495,7 @@ class Area(Gtk.DrawingArea):
                 self.d.brush(self, coords, self.last)
                 self.last = coords
                 self.drawing = True
-            elif self.tool['name'] == 'stamp':
+            elif self.tool['name'] in ('stamp', 'load-stamp'):
                 self.last = []
                 self.d.stamp(self, coords, self.last)
                 self.last = coords
@@ -563,7 +563,7 @@ class Area(Gtk.DrawingArea):
             if point[1] > max_y:
                 max_y = point[1]
         # add the tool size
-        if self.tool['name'] == 'stamp':
+        if self.tool['name'] in ('stamp', 'load-stamp'):
             wr, hr = self.stamp_dimentions
         elif self.tool['name'] == 'freeform':
             wr = hr = 20
@@ -631,7 +631,7 @@ class Area(Gtk.DrawingArea):
                 self.d.brush(self, coords, self.last)
                 self.last = coords
 
-            elif self.tool['name'] == 'stamp':
+            elif self.tool['name'] in ('stamp', 'load-stamp'):
                 self.d.stamp(self, coords, self.last,
                              self.tool['stamp size'])
                 self.last = coords
@@ -694,7 +694,7 @@ class Area(Gtk.DrawingArea):
                     self.d.heart(self, coords, True, self.tool['fill'])
         else:
             if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
-                                     'stamp']:
+                                     'stamp', 'load-stamp']:
                 # define area to update (only to show the brush shape)
                 last_coords = (self.last_x_cursor, self.last_y_cursor)
                 area = self.calculate_damaged_area([last_coords, coords])
@@ -801,7 +801,7 @@ class Area(Gtk.DrawingArea):
                     self.getout()
 
         if self.tool['name'] in ['brush', 'eraser', 'rainbow', 'pencil',
-                                 'stamp']:
+                                 'stamp', 'load-stamp']:
             self.last = []
             self.d.finish_trace(self)
             self.drawing = False
@@ -936,7 +936,7 @@ class Area(Gtk.DrawingArea):
 
     def mouseleave(self, widget, event):
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
-                                 'stamp']:
+                                 'stamp', 'load-stamp']:
             self.drawing = True
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
@@ -944,25 +944,30 @@ class Area(Gtk.DrawingArea):
 
     def mouseenter(self, widget, event):
         if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
-                                 'stamp']:
+                                 'stamp', 'load-stamp']:
             self.drawing = False
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
                                    size * 2, size * 2)
 
-    def setup_stamp(self):
+    def setup_stamp(self, stamp=None):
         """Prepare for stamping from the selected area.
 
             @param  self -- the Area object (GtkDrawingArea)
         """
-        if self.is_selected():
+        if self.is_selected() or stamp:
             # Change stamp, get it from selection:
-            pixbuf_data = StringIO.StringIO()
-            self.get_selection().write_to_png(pixbuf_data)
-            pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
-            pxb_loader.write(pixbuf_data.getvalue())
+            if stamp:
+                self.pixbuf_stamp = GdkPixbuf.Pixbuf.new_from_file(stamp)
+            elif self.is_selected() and not stamp:
+                pixbuf_data = StringIO.StringIO()
+                self.get_selection().write_to_png(pixbuf_data)
+                pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
+                pxb_loader.write(pixbuf_data.getvalue())
+                self.pixbuf_stamp = pxb_loader.get_pixbuf()
+            else:
+                return
 
-            self.pixbuf_stamp = pxb_loader.get_pixbuf()
             self.stamp_size = 0
             # Set white color as transparent:
             stamp_alpha = self.pixbuf_stamp.add_alpha(True, 255, 255, 255)
@@ -1676,11 +1681,15 @@ class Area(Gtk.DrawingArea):
             elif self.tool['name'] == 'marquee-rectangular':
                 cursor = Gdk.Cursor.new(Gdk.CursorType.CROSS)
             else:
-                filename = os.path.join('images', self.tool['name'] + '.png')
+                name = self.tool['name']
+                if name == 'load-stamp':
+                    name = 'stamp'
+
+                filename = os.path.join('images', name + '.png')
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file(filename)
 
                 # Decide which is the cursor hot spot offset:
-                if self.tool['name'] == 'stamp':
+                if self.tool['name'] in ('stamp', 'load-stamp'):
                     hotspot_x, hotspot_y = 20, 38  # horizontal
                                                     # center and
                                                     # bottom
@@ -1787,7 +1796,7 @@ class Area(Gtk.DrawingArea):
             self.configure_line(size)
             # TODO: clip
             self.queue_draw()
-        if self.tool['name'] == 'stamp':
+        if self.tool['name'] in ('stamp', 'load-stamp'):
             self.resize_stamp(self.stamp_size + delta)
             # TODO: clip
             self.queue_draw()

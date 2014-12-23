@@ -312,7 +312,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
             show_colors = True
             show_controls = (self.size_label, self.size_scale, self.shape_box,
                              self.alpha_label, self.alpha_scale)
-        elif tool_name == 'stamp':
+        elif tool_name in ('stamp', 'load-stamp'):
             show_controls = (self.size_label, self.size_scale)
             title = _('Stamp properties')
         elif tool_name == 'eraser':
@@ -357,6 +357,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
             self.size_scale.set_value(self.color_button.stamp_size)
         else:
             self.size_scale.set_value(self.color_button.brush_size)
+        self.size_scale.queue_draw()
         self._update_palette()
 
     def _on_alpha_changed(self, scale):

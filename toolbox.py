@@ -61,6 +61,8 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
+import os
+
 from gettext import gettext as _
 
 from gi.repository import Gtk
@@ -93,6 +95,8 @@ from sugar3.activity.widgets import StopButton
 
 from fontcombobox import FontComboBox
 from fontcombobox import FontSize
+
+from dialogs import TuxStampDialog
 
 
 def add_menu(icon_name, tooltip, tool_name, button, activate_cb):
@@ -379,6 +383,13 @@ class ToolsToolbarBuilder():
 
         is_selected = self._activity.area.is_selected()
         self._tool_stamp.set_sensitive(is_selected)
+
+        # tuxpaint-stamps install dir.
+        tuxstamps = '/usr/share/tuxpaint/stamps'
+        if os.path.exists(tuxstamps):
+            add_menu('tool-stamp', _('Load stamp'), 'load-stamp',
+                     self._tool_brush, self.set_tool)
+
         self._activity.area.connect('undo', self._on_signal_undo_cb)
         self._activity.area.connect('redo', self._on_signal_redo_cb)
         self._activity.area.connect('select', self._on_signal_select_cb)
@@ -407,6 +418,7 @@ class ToolsToolbarBuilder():
                           necessary in case this method is used in a connect()
             @param tool_name --The name of the selected tool
         """
+
         if widget != self._tool_brush:
             self._tool_brush.set_icon_name(widget.icon_name)
             self._stroke_color.set_selected_tool(tool_name)
@@ -418,6 +430,12 @@ class ToolsToolbarBuilder():
             self._stroke_color.color_button.stop_stamping()
         if tool_name != self._TOOL_MARQUEE_RECT_NAME:
             self._activity.area.end_selection()
+
+        if tool_name == 'load-stamp':
+            dialog = TuxStampDialog()
+            dialog.set_transient_for(self._activity)
+            dialog.connect('stamp-selected', self._load_stamp)
+            dialog.show_all()
 
         self._stroke_color.update_stamping()
         self.properties['name'] = tool_name
@@ -450,6 +468,11 @@ class ToolsToolbarBuilder():
         sensitive = self._activity.area.is_selected() or \
             self.properties['name'] == 'stamp'
         self._tool_stamp.set_sensitive(sensitive)
+
+    def _load_stamp(self, widget, filepath):
+        resized_stamp = self._activity.area.setup_stamp(stamp=filepath)
+        self._stroke_color.color_button.set_resized_stamp(resized_stamp)
+        self._stroke_color.update_stamping()
 
 
 class ButtonFillColor(ColorToolButton):
