@@ -112,6 +112,9 @@ class Area(Gtk.DrawingArea):
         'select': (GObject.SignalFlags.ACTION, None, ([])),
     }
 
+    PENCIL_LIKE_TOOLS = ['pencil', 'eraser', 'brush', 'kalidoscope', 'rainbow',
+                         'stamp', 'load-stamp']
+
     def __init__(self, activity):
         """ Initialize the object from class Area which is derived
             from Gtk.DrawingArea.
@@ -386,8 +389,7 @@ class Area(Gtk.DrawingArea):
         Show the shape of the tool selected for pencil, brush,
         rainbow and eraser
         """
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
-                                 'stamp', 'load-stamp']:
+        if self.tool['name'] in self.PENCIL_LIKE_TOOLS:
             if not self.drawing:
                 context.set_source_rgba(*self.tool['cairo_stroke_color'])
                 context.set_line_width(1)
@@ -493,6 +495,11 @@ class Area(Gtk.DrawingArea):
             elif self.tool['name'] == 'brush':
                 self.last = []
                 self.d.brush(self, coords, self.last)
+                self.last = coords
+                self.drawing = True
+            elif self.tool['name'] == 'kalidoscope':
+                self.last = []
+                self.d.kalidoscope(self, coords, self.last)
                 self.last = coords
                 self.drawing = True
             elif self.tool['name'] in ('stamp', 'load-stamp'):
@@ -629,6 +636,10 @@ class Area(Gtk.DrawingArea):
 
             elif self.tool['name'] == 'brush':
                 self.d.brush(self, coords, self.last)
+                self.last = coords
+
+            elif self.tool['name'] == 'kalidoscope':
+                self.d.kalidoscope(self, coords, self.last)
                 self.last = coords
 
             elif self.tool['name'] in ('stamp', 'load-stamp'):
@@ -935,16 +946,14 @@ class Area(Gtk.DrawingArea):
         self.activity.get_toolbar_box().brush_button.stop_stamping()
 
     def mouseleave(self, widget, event):
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
-                                 'stamp', 'load-stamp']:
+        if self.tool['name'] in self.PENCIL_LIKE_TOOLS:
             self.drawing = True
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
                                    size * 2, size * 2)
 
     def mouseenter(self, widget, event):
-        if self.tool['name'] in ['pencil', 'eraser', 'brush', 'rainbow',
-                                 'stamp', 'load-stamp']:
+        if self.tool['name'] in self.PENCIL_LIKE_TOOLS:
             self.drawing = False
             size = self.tool['line size']
             widget.queue_draw_area(self.x_cursor - size, self.y_cursor - size,
@@ -1671,6 +1680,7 @@ class Area(Gtk.DrawingArea):
         try:
             cursors = {'pencil': 'pencil',
                        'brush': 'paintbrush',
+                       'kalidoscope': 'paintbrush',
                        'eraser': 'eraser',
                        'bucket': 'paint-bucket'}
 

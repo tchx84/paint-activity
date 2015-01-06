@@ -749,6 +749,7 @@ class TextToolbar(Gtk.Toolbar):
 class ImageToolbar(Gtk.Toolbar):
 
     _EFFECT_RAINBOW_NAME = 'rainbow'
+    _EFFECT_KALIDOSCOPE_NAME = 'kalidoscope'
 
     def __init__(self, activity):
         GObject.GObject.__init__(self)
@@ -796,6 +797,10 @@ class ImageToolbar(Gtk.Toolbar):
             'effect-rainbow', activity.tool_group, _('Rainbow'))
         self.insert(self._effect_rainbow, -1)
 
+        self._effect_kalidoscope = DrawToolButton(
+            'effect-kalidoscope', activity.tool_group, _('Kalidoscope'))
+        self.insert(self._effect_kalidoscope, -1)
+
         self._invert_colors = ToolButton('invert-colors')
         self.insert(self._invert_colors, -1)
         self._invert_colors.set_tooltip(_('Invert Colors'))
@@ -810,6 +815,7 @@ class ImageToolbar(Gtk.Toolbar):
 
         self._effect_grayscale.connect('clicked', self.grayscale)
         self._effect_rainbow.connect('clicked', self.rainbow)
+        self._effect_kalidoscope.connect('clicked', self.kalidoscope)
         self._invert_colors.connect('clicked', self.invert_colors)
 
         self.show_all()
@@ -855,6 +861,9 @@ class ImageToolbar(Gtk.Toolbar):
     ##Like the brush, but change it color when painting
     def rainbow(self, widget):
         self.properties['name'] = self._EFFECT_RAINBOW_NAME
+
+    def kalidoscope(self, widget):
+        self.properties['name'] = self._EFFECT_KALIDOSCOPE_NAME
 
     def invert_colors(self, widget):
         self._activity.area.invert_colors()

@@ -98,6 +98,10 @@ class Desenho:
         self._rainbow_counter = 0
 
         self.points = []
+        self.points1 = []
+        self.points2 = []
+        self.points3 = []
+        self.points4 = []
         self._last_points_used = []
         self._last_point_drawn_index = 0
 
@@ -154,6 +158,51 @@ class Desenho:
 
         """
         self._trace(widget, coords, last)
+
+    def kalidoscope(self, widget, coords, last):
+        """Paint with kalidoscope.
+
+            @param  self -- Desenho.Desenho instance
+            @param  last -- last of oldx
+            @param  widget -- Area object (GtkDrawingArea)
+            @param  coords -- Two value tuple
+
+        """
+        if not last:
+            self.points1 = []
+            self.points2 = []
+            self.points3 = []
+            self.points4 = []
+
+        shape = widget.tool['line shape']
+        rounded = (shape == 'circle')
+        x1, y1 = coords
+        x3, y2 = x1, y1
+        width, height = widget.get_size()
+        if x1 <= width / 2.0:
+            x2 = width - x1
+            x4 = x2
+        elif x1 > width / 2.0:
+            x2 = width / 2.0 - (x1 - width / 2.0)
+            x4 = x2
+
+        if y1 <= height / 2.0:
+            y3 = height - y1
+            y4 = y3
+        elif y1 > height / 2.0:
+            y3 = height / 2.0 - (y1 - height / 2.0)
+            y4 = y3
+
+        self.points1.append((x1, y2))
+        self.points2.append((x2, y2))
+        self.points3.append((x3, y3))
+        self.points4.append((x4, y4))
+
+        self._draw_polygon(widget, False, False, self.points1, False, rounded)
+        self._draw_polygon(widget, False, False, self.points2, False, rounded)
+        self._draw_polygon(widget, False, False, self.points3, False, rounded)
+        self._draw_polygon(widget, False, False, self.points4, False, rounded)
+        widget.queue_draw()
 
     def stamp(self, widget, coords, last, stamp_size=20):
         """Paint with stamp.
