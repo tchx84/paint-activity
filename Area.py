@@ -89,7 +89,7 @@ except:
     logging.error('No valid fill binaries. Using slower python code')
     pass
 
-##Tools and events manipulation are handle with this class.
+# Tools and events manipulation are handle with this class.
 
 TARGET_URI = 0
 MAX_UNDO_STEPS = 12
@@ -154,16 +154,16 @@ class Area(Gtk.DrawingArea):
         # TODO gtk3
         # self.set_extension_events(Gdk.EXTENSION_EVENTS_CURSOR)
 
-        ## Define which tool is been used.
-        ## It is now described as a dictionnary,
-        ## with the following keys:
-        ## - 'name'          : a string
-        ## - 'line size'     : a integer
-        ## - 'stamp size'    : a integer
-        ## - 'line shape'    : a string - 'circle' or 'square', for now
-        ## - 'fill'          : a Boolean value
-        ## - 'vertices'      : a integer
-        ## All values migth be None, execept in 'name' key.
+        # Define which tool is been used.
+        # It is now described as a dictionnary,
+        # with the following keys:
+        # - 'name'          : a string
+        # - 'line size'     : a integer
+        # - 'stamp size'    : a integer
+        # - 'line shape'    : a string - 'circle' or 'square', for now
+        # - 'fill'          : a Boolean value
+        # - 'vertices'      : a integer
+        # All values migth be None, execept in 'name' key.
         self.tool = {
             'name': 'brush',
             'line size': 4,
@@ -276,8 +276,8 @@ class Area(Gtk.DrawingArea):
         return rect.width, rect.height
 
     def _init_temp_canvas(self, area=None):
-        #logging.error('init_temp_canvas. area %s', area)
-        #self.drawing_canvas.flush()
+        # logging.error('init_temp_canvas. area %s', area)
+        # self.drawing_canvas.flush()
         if area is None:
             width, height = self.get_size()
             self.temp_ctx.rectangle(0, 0, width, height)
@@ -346,7 +346,7 @@ class Area(Gtk.DrawingArea):
 
         """
 
-        ##It is the main canvas, who is display most of the time
+        # It is the main canvas, who is display most of the time
         # if is not None was read from a file
         if self.drawing_canvas is None:
             self.drawing_canvas = context.get_target().create_similar(
@@ -362,19 +362,19 @@ class Area(Gtk.DrawingArea):
                 self.drawing_ctx.paint()
                 self.drawing_canvas_data = None
 
-            ##canvas showed when we need display something and not draw it
+            # canvas showed when we need display something and not draw it
             self.temp_canvas = context.get_target().create_similar(
                 cairo.CONTENT_COLOR_ALPHA, self._width, self._height)
             self.temp_ctx = cairo.Context(self.temp_canvas)
             self._init_temp_canvas()
 
         if self.desenha:
-            #logging.error('Expose use temp canvas area')
+            # logging.error('Expose use temp canvas area')
             # Paint the canvas in the widget:
             context.set_source_surface(self.temp_canvas)
             context.paint()
         else:
-            #logging.error('Expose use drawing canvas area')
+            # logging.error('Expose use drawing canvas area')
             context.set_source_surface(self.drawing_canvas)
             context.paint()
             self.show_tool_shape(context)
@@ -424,14 +424,14 @@ class Area(Gtk.DrawingArea):
                           Gdk.EventType.BUTTON_RELEASE):
             x = int(event.get_coords()[1])
             y = int(event.get_coords()[2])
-            #seq = str(event.touch.sequence)
+            # seq = str(event.touch.sequence)
 
-            #logging.error('event x %d y %d type %s', x, y, event.type)
+            # logging.error('event x %d y %d type %s', x, y, event.type)
             if event.type in (Gdk.EventType.TOUCH_BEGIN,
                               Gdk.EventType.BUTTON_PRESS):
-                    #Gdk.EventType.MOTION_NOTIFY):
                 if event.type == Gdk.EventType.BUTTON_PRESS:
-## http://developer.gnome.org/gtk3/3.4/GtkWidget.html#gtk-widget-get-pointer
+                    # http://developer.gnome.org/gtk3/3.4/
+                    #                  GtkWidget.html#gtk-widget-get-pointer
                     _pointer, x, y, state = event.window.get_pointer()
                     button1_pressed = state & Gdk.ModifierType.BUTTON1_MASK
                 else:
@@ -464,10 +464,10 @@ class Area(Gtk.DrawingArea):
         elif self.text_in_progress:
             design_mode = False
             try:
-            # This works for a Gtk.Entry
+                # This works for a Gtk.Entry
                 text = self.activity.textview.get_text()
             except AttributeError:
-            # This works for a Gtk.TextView
+                # This works for a Gtk.TextView
                 buf = self.activity.textview.get_buffer()
                 start, end = buf.get_bounds()
                 text = buf.get_text(start, end, True)
@@ -486,7 +486,7 @@ class Area(Gtk.DrawingArea):
             self.pick_color(coord_x, coord_y)
 
         if button1_pressed:
-            #Handle with the left button click event.
+            # Handle with the left button click event.
             if self.tool['name'] == 'eraser':
                 self.last = []
                 self.d.eraser(self, coords, self.last)
@@ -1443,7 +1443,7 @@ class Area(Gtk.DrawingArea):
             self.temp_ctx.paint()
             self.temp_ctx.restore()
 
-            #assign the rotated surface as the selection surface
+            # assign the rotated surface as the selection surface
             self.selection_surface = rotate_surface
 
         else:
@@ -1700,12 +1700,10 @@ class Area(Gtk.DrawingArea):
 
                 # Decide which is the cursor hot spot offset:
                 if self.tool['name'] in ('stamp', 'load-stamp'):
-                    hotspot_x, hotspot_y = 20, 38  # horizontal
-                                                    # center and
-                                                    # bottom
+                    hotspot_x, hotspot_y = 20, 38
+                    # horizontal center and bottom
                 elif self.tool['name'] == 'picker':
-                    hotspot_x, hotspot_y = 1, 38  # bottom left
-                                                   # corner
+                    hotspot_x, hotspot_y = 1, 38  # bottom left corner
                 else:
                     hotspot_x, hotspot_y = 0, 0
 

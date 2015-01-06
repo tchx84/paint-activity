@@ -111,7 +111,7 @@ def add_menu(icon_name, tooltip, tool_name, button, activate_cb):
 class DrawToolbarBox(ToolbarBox):
     """Create toolbars for the activity"""
 
-    #dictionary - tool name : tool icon name
+    # dictionary - tool name : tool icon name
     tool_icon_name = {'ellipse': 'tool-shape-ellipse',
                       'rectangle': 'tool-shape-rectangle',
                       'line': 'tool-shape-line',
@@ -215,9 +215,9 @@ class DrawToolbarBox(ToolbarBox):
     def initialize_brush_shape_tools(self):
         tool_name = self._activity.area.tool['name']
         if tool_name in ('brush', 'eraser', 'bucket', 'picker'):
-            #make the brush tool group
+            # make the brush tool group
             self.tools_builder._tool_brush.set_active(True)
-            #set the icon
+            # set the icon
             self.tools_builder._tool_brush.set_icon_name(
                 self.tool_icon_name[tool_name])
             self.tools_builder.properties['name'] = tool_name
@@ -225,16 +225,16 @@ class DrawToolbarBox(ToolbarBox):
         elif tool_name in ('ellipse', 'rectangle', 'line', 'freeform', 'heart',
                            'parallelogram', 'arrow', 'star', 'trapezoid',
                            'triangle', 'polygon_regular'):
-            #need to make the shapes tool group active
+            # need to make the shapes tool group active
             self.shapes_button.set_active(True)
-            #set the icon
+            # set the icon
             self.shapes_builder._tool_button.set_icon_name(
                 self.tool_icon_name[tool_name])
             self.shapes_builder._tool_name = tool_name
             self.shapes_builder.properties['name'] = tool_name
             self._fill_color_button.set_sensitive(True)
 
-        #setting the fill color
+        # setting the fill color
         cairo_fill_color = self._activity.area.tool['cairo_fill_color']
         red = cairo_fill_color[0] * 65535
         green = cairo_fill_color[1] * 65535
@@ -242,7 +242,7 @@ class DrawToolbarBox(ToolbarBox):
         self._fill_color_button.color = Gdk.Color(red, green, blue)
 
 
-##Make the Edit Toolbar
+# Make the Edit Toolbar
 class DrawEditToolbar(EditToolbar):
 
     def __init__(self, activity):
@@ -301,13 +301,13 @@ class DrawEditToolbar(EditToolbar):
     def _on_signal_action_saved_cb(self, widget, data=None):
         self._verify_sensitive_buttons()
 
-    ##define when a button is active
+    # define when a button is active
     def _verify_sensitive_buttons(self):
         self.undo.set_sensitive(self._activity.area.can_undo())
         self.redo.set_sensitive(self._activity.area.can_redo())
         self.copy.set_sensitive(self._activity.area.is_selected())
-        #TODO: it is not possible to verify this yet.
-        #self.paste.set_sensitive(self._activity.area.can_paste())
+        # TODO: it is not possible to verify this yet.
+        # self.paste.set_sensitive(self._activity.area.can_paste())
 
     def _clear_all_cb(self, widget, data=None):
         self._activity.area.clear()
@@ -343,8 +343,8 @@ class DrawToolButton(RadioToolButton):
 
 class ToolsToolbarBuilder():
 
-    #Tool default definitions
-    #_TOOL_PENCIL_NAME = 'pencil'
+    # Tool default definitions
+    # _TOOL_PENCIL_NAME = 'pencil'
     _TOOL_BRUSH_NAME = 'brush'
     _TOOL_ERASER_NAME = 'eraser'
     _TOOL_BUCKET_NAME = 'bucket'
@@ -352,7 +352,6 @@ class ToolsToolbarBuilder():
     _TOOL_STAMP_NAME = 'stamp'
     _TOOL_MARQUEE_RECT_NAME = 'marquee-rectangular'
 
-    ##The Constructor
     def __init__(self, toolbar, activity, fill_color_button):
 
         self._activity = activity
@@ -531,8 +530,6 @@ class ButtonFillColor(ColorToolButton):
         spin.set_numeric(True)
 
         label = Gtk.Label(label=_('Sides: '))
-        #For stars
-        #label = Gtk.Label(label=_('Points: '))
 
         hbox = Gtk.HBox()
         hbox.show_all()
@@ -577,7 +574,7 @@ class ButtonFillColor(ColorToolButton):
         return False
 
 
-##Make the Shapes Toolbar
+# Make the Shapes Toolbar
 class ShapesToolbarBuilder():
 
     _SHAPE_ARROW_NAME = 'arrow'
@@ -593,7 +590,6 @@ class ShapesToolbarBuilder():
     _SHAPE_TRAPEZOID_NAME = 'trapezoid'
     _SHAPE_TRIANGLE_NAME = 'triangle'
 
-    ##The Constructor
     def __init__(self, activity, button, fill_color_button):
 
         self._activity = activity
@@ -655,7 +651,7 @@ class ShapesToolbarBuilder():
         self._activity.area.end_selection()
 
 
-##Make the Text Toolbar
+# Make the Text Toolbar
 class TextToolbar(Gtk.Toolbar):
 
     _ACTION_TEXT_NAME = 'text'
@@ -745,7 +741,7 @@ class TextToolbar(Gtk.Toolbar):
         self._activity.area.set_tool(self.properties)
 
 
-##Make the Images Toolbar
+# Make the Images Toolbar
 class ImageToolbar(Gtk.Toolbar):
 
     _EFFECT_RAINBOW_NAME = 'rainbow'
@@ -854,11 +850,11 @@ class ImageToolbar(Gtk.Toolbar):
             chooser.destroy()
             del chooser
 
-    ##Make the colors be in grayscale
+    # Make the colors be in grayscale
     def grayscale(self, widget):
         self._activity.area.grayscale(widget)
 
-    ##Like the brush, but change it color when painting
+    # Like the brush, but change it color when painting
     def rainbow(self, widget):
         self.properties['name'] = self._EFFECT_RAINBOW_NAME
 

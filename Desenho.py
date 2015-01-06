@@ -68,12 +68,13 @@ import logging
 import math
 import cairo
 
-RESIZE_DELAY = 500  # The time to wait for the resize operation to be
-                    # executed, after the resize controls are pressed.
+# The time to wait for the resize operation to be
+# executed, after the resize controls are pressed.
+RESIZE_DELAY = 500
 
 
-##Pixmap manipulation
 class Desenho:
+    # Pixmap manipulation
 
     def __init__(self, widget):
         """Initialize Desenho object.

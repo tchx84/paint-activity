@@ -56,11 +56,6 @@ class BrushButton(_ColorButton):
             self._invoker.has_rectangle_gap = lambda: False
             self._invoker.palette = self._palette
 
-#    def _setup(self):
-#        if self.get_window() is not None:
-#            self._preview.show()
-#            self.show_all()
-
     def get_brush_size(self):
         return self._brush_size
 
@@ -113,8 +108,6 @@ class BrushButton(_ColorButton):
         self._preview.queue_draw()
 
     def draw(self, widget, ctx):
-        #if self._ctx is None:
-        #    self._setup()
 
         if self.get_window() is not None:
             center = style.STANDARD_ICON_SIZE / 2
