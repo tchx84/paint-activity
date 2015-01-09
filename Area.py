@@ -62,6 +62,12 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
+try:
+    from gi.repository import Gst
+    _HAS_GST = True
+except:
+    _HAS_GST = False
+
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
@@ -79,6 +85,7 @@ import array
 from Desenho import Desenho
 from urlparse import urlparse
 from sugar3.graphics import style
+from sugar3.activity import activity
 
 FALLBACK_FILL = True
 try:
@@ -95,12 +102,39 @@ TARGET_URI = 0
 MAX_UNDO_STEPS = 12
 RESIZE_ARROW_SIZE = style.GRID_CELL_SIZE / 2
 
+SOUNDS = {'arrow': ['oneclick.ogg', False, True, True],
+          'brush': ['brush.ogg', True, False, False],
+          'bucket': ['bucket.ogg', False, True, True],
+          'ellipse': ['oneclick.ogg', False, True, True],
+          'eraser': ['eraser.ogg', True, False, False],
+          'freeform': ['oneclick.ogg', False, True, True],
+          'heart': ['oneclick.ogg', False, True, True],
+          'kalidoscope': ['brush.ogg', True, False, False],
+          'line': ['oneclick.ogg', False, True, True],
+          'marquee-rectangular': ['oneclick.ogg', False, True, True],
+          'parallelogram': ['oneclick.ogg', False, True, True],
+          'polygon_regular': ['oneclick.ogg', False, True, True],
+          'rainbow': ['brush.ogg', True, False, False],
+          'rectangle': ['oneclick.ogg', False, True, True],
+          'star': ['oneclick.ogg', False, True, True],
+          'trapezoid': ['oneclick.ogg', False, True, True],
+          'triangle': ['oneclick.ogg', False, True, True]}
+
+# this list contain the sounds that should be played manually,
+# and no automatically.
+IGNORE_AUTO_PLAY = ['bucket']
+
+if _HAS_GST:
+    Gst.init([])
+
 
 def _get_screen_dpi():
     xft_dpi = Gtk.Settings.get_default().get_property('gtk-xft-dpi')
     dpi = float(xft_dpi / 1024)
     logging.error('Setting dpi to: %f', dpi)
     return dpi
+
+bundle_path = activity.get_bundle_path()
 
 
 class Area(Gtk.DrawingArea):
@@ -222,6 +256,21 @@ class Area(Gtk.DrawingArea):
 
         self._update_timer = None
         self._resize_hq_timer = None
+
+        self._player = None
+        self._sounds_enabled = False
+
+        if _HAS_GST:
+            try:
+                self._player = Gst.ElementFactory.make('playbin', 'Player')
+                self._pipeline = Gst.Pipeline()
+                self._bus = self._pipeline.get_bus()
+                self._bus.add_signal_watch()
+                self._bus.connect('message::eos', self.replay_tool_sound)
+                self._pipeline.add(self._player)
+            except:
+                logging.error(
+                    "Sound player is not installed/available in the system.")
 
     def _set_screen_dpi(self):
         dpi = _get_screen_dpi()
@@ -444,6 +493,9 @@ class Area(Gtk.DrawingArea):
                 # toolmove code after mouse release or touch end
                 self._update_timer = None
 
+                if not self._tool_sound['full_play']:
+                    self.stop_sound()
+
                 if event.type == Gdk.EventType.BUTTON_RELEASE:
                     _pointer, x, y, state = event.window.get_pointer()
                     shift_pressed = state & Gdk.ModifierType.SHIFT_MASK
@@ -487,6 +539,10 @@ class Area(Gtk.DrawingArea):
 
         if button1_pressed:
             # Handle with the left button click event.
+            if self._sounds_enabled and not self._tool_sound[
+                    'play_after_release'] and not self.tool[
+                    'name'] in IGNORE_AUTO_PLAY:
+                self.play_tool_sound()
             if self.tool['name'] == 'eraser':
                 self.last = []
                 self.d.eraser(self, coords, self.last)
@@ -806,6 +862,11 @@ class Area(Gtk.DrawingArea):
 
             elif self.tool['name'] == 'heart':
                 self.d.heart(self, coords, False, self.tool['fill'])
+
+            if self._sounds_enabled and self._tool_sound[
+                    'play_after_release'] and not self.tool[
+                    'name'] in IGNORE_AUTO_PLAY:
+                self.play_tool_sound()
         else:
             if self.tool['name'] == 'marquee-rectangular':
                 if self.is_selected():
@@ -915,6 +976,8 @@ class Area(Gtk.DrawingArea):
 
         display = Gdk.Display.get_default()
         cursor = Gdk.Cursor.new_from_name(display, 'paint-bucket')
+        if self._sounds_enabled:
+            self.play_tool_sound()
         self.get_window().set_cursor(cursor)
 
     def pick_color(self, x, y):
@@ -1278,7 +1341,6 @@ class Area(Gtk.DrawingArea):
         GObject.idle_add(self._mirror_internal, widget, horizontal, old_cursor)
 
     def _mirror_internal(self, widget, horizontal, old_cursor):
-
         """Mirror the image.
 
             @param  self -- the Area object (GtkDrawingArea)
@@ -1674,6 +1736,7 @@ class Area(Gtk.DrawingArea):
         self.set_tool_cursor()
         # clear points in Desenha
         self.d.points = []
+        self.select_sound()
 
     def set_tool_cursor(self):
         # Setting the cursor
@@ -1836,3 +1899,56 @@ class Area(Gtk.DrawingArea):
             return (self.oldx, self.oldy + sign(dy) * size)
         elif abs(dx) > 0.5 * size and abs(dy) < 0.5 * size:
             return (self.oldx + sign(dx) * size, self.oldy)
+
+    def play_tool_sound(self):
+        if not self._player:
+            return
+
+        if self._pipeline.get_state(0)[1] == Gst.State.PLAYING:
+            self.stop_sound()
+        self._pipeline.set_state(Gst.State.PLAYING)
+
+    def replay_tool_sound(self, bus, msg):
+        if not self._tool_sound['loop']:
+            return
+
+        if self._sounds_enabled:
+            self._pipeline.seek_simple(
+                Gst.Format.TIME,
+                Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT,
+                0)
+
+    def stop_sound(self):
+        if self._player:
+            self._pipeline.set_state(Gst.State.NULL)
+
+    def enable_sounds(self, enabled):
+        self._sounds_enabled = enabled
+        self.select_sound()
+
+    def select_sound(self):
+        try:
+            soundinfo = SOUNDS[self.tool['name']]
+            self._tool_sound = {
+                'filepath': os.path.join(
+                    bundle_path,
+                    'sounds',
+                    soundinfo[0]),
+                'loop': soundinfo[1],
+                'full_play': soundinfo[2],
+                'play_after_release': soundinfo[3]}
+        except KeyError:
+            self._tool_sound = {
+                'filepath': '',
+                'loop': False,
+                'full_play': False,
+                'play_after_release': False}
+
+        if not self._player:
+            return
+
+        self._pipeline.set_state(Gst.State.READY)
+        self._player.set_property(
+            'uri',
+            'file://%s' %
+            self._tool_sound['filepath'])

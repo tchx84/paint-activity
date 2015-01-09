@@ -264,6 +264,15 @@ class DrawEditToolbar(EditToolbar):
         self._clear_all.set_tooltip(_('Clear'))
         self._clear_all.show()
 
+        self._sound = ToggleToolButton('speaker-100')
+        self._sound.set_tooltip(_('Enable sound'))
+
+        if self._activity.area._player is not None:
+            self.insert(self._sound, -1)
+
+        self._sound.show()
+        self._sound.connect('clicked', self.__sound_cb)
+
         self.undo.connect('clicked', self._undo_cb)
         self.redo.connect('clicked', self._redo_cb)
 
@@ -311,6 +320,13 @@ class DrawEditToolbar(EditToolbar):
 
     def _clear_all_cb(self, widget, data=None):
         self._activity.area.clear()
+
+    def __sound_cb(self, widget):
+        self._activity.area.enable_sounds(widget.get_active())
+        if widget.get_active():
+            self._sound.set_tooltip(_('Disable sound'))
+        else:
+            self._sound.set_tooltip(_('Enable sound'))
 
 
 class DrawToolButton(RadioToolButton):
@@ -857,9 +873,11 @@ class ImageToolbar(Gtk.Toolbar):
     # Like the brush, but change it color when painting
     def rainbow(self, widget):
         self.properties['name'] = self._EFFECT_RAINBOW_NAME
+        self._activity.area.set_tool(self.properties)
 
     def kalidoscope(self, widget):
         self.properties['name'] = self._EFFECT_KALIDOSCOPE_NAME
+        self._activity.area.set_tool(self.properties)
 
     def invert_colors(self, widget):
         self._activity.area.invert_colors()
