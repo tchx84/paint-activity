@@ -61,8 +61,6 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
-import os
-
 from gettext import gettext as _
 
 from gi.repository import Gtk

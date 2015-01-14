@@ -15,7 +15,6 @@
 
 from gettext import gettext as _
 import os
-import random
 import glob
 
 from gi.repository import GObject
@@ -206,14 +205,14 @@ class TuxStampDialog(_DialogWindow):
 
         for object_id in JOURNAL_IMAGES:
             if os.path.exists(object_id) and os.path.isfile(object_id):
-                filepaths.append(oid)
+                filepaths.append(object_id)
                 continue
             try:
                 obj = datastore.get(object_id)
                 fpath = obj.file_path
                 if os.path.exists(fpath):
                     filepaths.append(fpath)
-            except Exception, e:
+            except Exception:
                 pass
 
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
