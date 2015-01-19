@@ -8,3 +8,4 @@ mime_types = image/svg+xml; image/svg; image/svg-xml; image/vnd.adobe.svg+xml; t
 license = GPLv2
 summary = Picasso? Van Gogh? You can be any of them! Just let the artist inside you free. Transform images in your mind to beautiful paintings.
 repository = git@github.com:godiard/paint-activity.git
+max_participants = 1
