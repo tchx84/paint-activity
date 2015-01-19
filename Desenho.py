@@ -180,21 +180,12 @@ class Desenho:
         x1, y1 = coords
         x3, y2 = x1, y1
         width, height = widget.get_size()
-        if x1 <= width / 2.0:
-            x2 = width - x1
-            x4 = x2
-        elif x1 > width / 2.0:
-            x2 = width / 2.0 - (x1 - width / 2.0)
-            x4 = x2
+        x2 = width - x1
+        x4 = x2
+        y3 = height - y1
+        y4 = y3
 
-        if y1 <= height / 2.0:
-            y3 = height - y1
-            y4 = y3
-        elif y1 > height / 2.0:
-            y3 = height / 2.0 - (y1 - height / 2.0)
-            y4 = y3
-
-        self.points1.append((x1, y2))
+        self.points1.append((x1, y1))
         self.points2.append((x2, y2))
         self.points3.append((x3, y3))
         self.points4.append((x4, y4))
