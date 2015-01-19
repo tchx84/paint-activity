@@ -454,6 +454,9 @@ class ToolsToolbarBuilder():
         self._selected_tool_name = tool_name
 
     def _tool_button_clicked_cb(self, button):
+        if self._selected_tool_name == 'load-stamp':
+            # do not open the load stamp dialog when the button is pressed
+            return
         self.set_tool(button, self._selected_tool_name)
 
     def _color_button_cb(self, widget, pspec):
