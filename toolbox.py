@@ -811,7 +811,7 @@ class ImageToolbar(Gtk.Toolbar):
         self.insert(self._effect_rainbow, -1)
 
         self._effect_kalidoscope = DrawToolButton(
-            'effect-kalidoscope', activity.tool_group, _('Kalidoscope'))
+            'effect-kalidoscope', activity.tool_group, _('Kaleidoscope'))
         self.insert(self._effect_kalidoscope, -1)
 
         self._invert_colors = ToolButton('invert-colors')
