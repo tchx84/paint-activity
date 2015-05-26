@@ -10,3 +10,23 @@ summary = Picasso? Van Gogh? You can be any of them! Just let the artist inside 
 repository = git@github.com:godiard/paint-activity.git
 max_participants = 1
 categories = art
+
+# Added fields
+activity_type = gtk3
+homepage = http://wiki.sugarlabs.org/go/Activities/Jukebox
+long_description: Sugar Learning Platform - calculate activity
+ Sugar Learning Platform promotes collaborative learning through Sugar
+ Activities that encourage critical thinking, the heart of a quality
+ education.  Designed from the ground up especially for children, Sugar
+ offers an alternative to traditional “office-desktop” software.
+ .
+ Learner applications in Sugar are called Activities.  They are software
+ packages that automatically save your work - producing specific
+ instances of the Activity that can be resumed at a later time.  Many
+ Activities support learner collaboration, where multiple learners may
+ be invited to join a collective Activity session.
+ .
+ Paint is a drawing application, simple but expresive.
+
+sources_url = http://download.sugarlabs.org/sources/honey/Paint/
+sources_format = tar.bz2
