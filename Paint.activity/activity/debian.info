@@ -1,9 +1,9 @@
 [Package]
 name = sugar-paint-activity
-version = 0godiard1
-vcs-git = https://github.com/godiard/debian-sugar-paint-activity.git
-vcs-browser = https://github.com/godiard/debian-sugar-paint-activity.git
-primary_branch = 0.104
+version = 0~godiard1
+vcs-git = https://github.com/godiard/paint-activity.git
+vcs-browser = https://github.com/godiard/paint-activity.git
+primary_branch = debian_packaging
 
 [Maintainer]
 name = Debian Sugar Team

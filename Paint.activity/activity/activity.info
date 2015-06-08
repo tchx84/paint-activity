@@ -30,3 +30,7 @@ long_description: Sugar Learning Platform - calculate activity
 
 sources_url = http://download.sugarlabs.org/sources/honey/Paint/
 sources_format = tar.bz2
+
+[Maintainer]
+name = Gonzalo Odiard
+email = godiard@gmail.com
