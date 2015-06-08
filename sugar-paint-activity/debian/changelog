@@ -1,0 +1,5 @@
+sugar-paint-activity (64-0~godiard1) UNRELEASED; urgency=low
+
+  * Initial version for Debian.
+
+ -- Debian Sugar Team <pkg-sugar-devel@lists.alioth.debian.org>  Mon, 08 Jun 2015 14:00:15 -0300
