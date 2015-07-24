@@ -780,11 +780,12 @@ class ImageToolbar(Gtk.Toolbar):
         self.width_percent = 1.
         self.height_percent = 1.
 
-        self._object_rotate_left = ToolButton('object-rotate-left')
+        # FIXME: Sometimes we get the gnome icons not the sugar ones
+        self._object_rotate_left = ToolButton('object-rotate-left-sugar')
         self.insert(self._object_rotate_left, -1)
         self._object_rotate_left.set_tooltip(_('Rotate Left'))
 
-        self._object_rotate_right = ToolButton('object-rotate-right')
+        self._object_rotate_right = ToolButton('object-rotate-right-sugar')
         self.insert(self._object_rotate_right, -1)
         self._object_rotate_right.set_tooltip(_('Rotate Right'))
 
