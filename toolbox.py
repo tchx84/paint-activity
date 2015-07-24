@@ -780,11 +780,12 @@ class ImageToolbar(Gtk.Toolbar):
         self.width_percent = 1.
         self.height_percent = 1.
 
-        self._object_rotate_left = ToolButton('object-rotate-left')
+        # FIXME: Sometimes we get the gnome icons not the sugar ones
+        self._object_rotate_left = ToolButton('object-rotate-left-sugar')
         self.insert(self._object_rotate_left, -1)
         self._object_rotate_left.set_tooltip(_('Rotate Left'))
 
-        self._object_rotate_right = ToolButton('object-rotate-right')
+        self._object_rotate_right = ToolButton('object-rotate-right-sugar')
         self.insert(self._object_rotate_right, -1)
         self._object_rotate_right.set_tooltip(_('Rotate Right'))
 
@@ -806,13 +807,15 @@ class ImageToolbar(Gtk.Toolbar):
         self.insert(self._effect_grayscale, -1)
         self._effect_grayscale.set_tooltip(_('Grayscale'))
 
-        self._effect_rainbow = DrawToolButton(
-            'effect-rainbow', activity.tool_group, _('Rainbow'))
+        self._effect_rainbow = RadioToolButton('effect-rainbow')
+        self._effect_rainbow.props.group = activity.tool_group
         self.insert(self._effect_rainbow, -1)
+        self._effect_rainbow.set_tooltip(_('Rainbow'))
 
-        self._effect_kalidoscope = DrawToolButton(
-            'effect-kalidoscope', activity.tool_group, _('Kaleidoscope'))
+        self._effect_kalidoscope = RadioToolButton('effect-kalidoscope')
+        self._effect_kalidoscope.props.group = activity.tool_group
         self.insert(self._effect_kalidoscope, -1)
+        self._effect_kalidoscope.set_tooltip(_('Kaleidoscope'))
 
         self._invert_colors = ToolButton('invert-colors')
         self.insert(self._invert_colors, -1)
