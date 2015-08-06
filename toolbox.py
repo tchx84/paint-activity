@@ -446,7 +446,10 @@ class ToolsToolbarBuilder():
             dialog.set_transient_for(self._activity)
             dialog.connect('stamp-selected', self._load_stamp)
             dialog.show_all()
+        else:
+            self._do_setup_tool(tool_name)
 
+    def _do_setup_tool(self, tool_name):
         self._stroke_color.update_stamping()
         self.properties['name'] = tool_name
         self._activity.area.set_tool(self.properties)
@@ -485,7 +488,7 @@ class ToolsToolbarBuilder():
     def _load_stamp(self, widget, filepath):
         resized_stamp = self._activity.area.setup_stamp(stamp=filepath)
         self._stroke_color.color_button.set_resized_stamp(resized_stamp)
-        self._stroke_color.update_stamping()
+        self._do_setup_tool('load-stamp')
 
 
 class ButtonFillColor(ColorToolButton):
