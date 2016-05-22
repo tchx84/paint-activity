@@ -34,199 +34,214 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-12 00:30-0400\n"
-"PO-Revision-Date: 2011-03-30 06:22+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"PO-Revision-Date: 2016-05-21 22:45+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1463870726.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Paint"
 msgstr "نقاشی"
 
 #. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"پیکاسو؟ ون گوگ؟ شما می توانید روزی یکی از آنها شوید! فقط روح هنرمندی که در "
+"درون شماست را آزاد کنید. سپس هرآنچه را در ذهن خود می پروراندی به نقاشی های "
+"زیبا تبدیل کن."
 
-#: fontcombobox.py:89
+#: dialogs.py:101
+msgid "Done"
+msgstr "انجام شد"
+
+#: dialogs.py:129
+msgid "Select stamp"
+msgstr "انتخاب مهر"
+
+#: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "انتخاب قلم"
 
-#: toolbox.py:118
+#: toolbox.py:143
 msgid "Edit"
 msgstr "ویرایش"
 
-#: toolbox.py:122
+#: toolbox.py:147
 msgid "Shapes properties"
-msgstr ""
+msgstr "ویژگی‌های به اشتراک‌گذاری"
 
-#: toolbox.py:133
+#: toolbox.py:163
 msgid "Shapes"
 msgstr "اشکال"
 
-#: toolbox.py:143
+#: toolbox.py:179
 msgid "Fonts"
-msgstr ""
+msgstr "قلم‌ها"
 
-#: toolbox.py:149
+#: toolbox.py:185
 msgid "Image"
 msgstr "تصویر"
 
-#: toolbox.py:188
+#: toolbox.py:253
 msgid "Undo"
 msgstr "بی‌اثر کردن"
 
-#: toolbox.py:189
+#: toolbox.py:254
 msgid "Redo"
 msgstr "دوباره"
 
-#: toolbox.py:190
+#: toolbox.py:255
 msgid "Copy"
 msgstr "کپی"
 
-#: toolbox.py:191
+#: toolbox.py:256
 msgid "Paste"
 msgstr "چسباندن"
 
-#: toolbox.py:199
+#: toolbox.py:264
 msgid "Clear"
 msgstr "پاک کردن"
 
-#: toolbox.py:298 widgets.py:322
-msgid "Brush properties"
-msgstr ""
-
-#: toolbox.py:307 toolbox.py:311
+#: toolbox.py:363 toolbox.py:367
 msgid "Brush"
 msgstr "قلم‌مو"
 
-#: toolbox.py:314
+#: toolbox.py:370
 msgid "Eraser"
 msgstr "پاک کن"
 
-#: toolbox.py:317
+#: toolbox.py:373
 msgid "Bucket"
 msgstr "سطل"
 
-#: toolbox.py:320
+#: toolbox.py:376
 msgid "Picker"
-msgstr ""
+msgstr "جمع کننده"
 
-#: toolbox.py:323
+#: toolbox.py:379
 msgid "Stamp"
-msgstr ""
+msgstr "مهر"
 
-#: toolbox.py:336
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr "تمبر باز"
+
+#: toolbox.py:396 widgets.py:321
 msgid "Select Area"
-msgstr ""
+msgstr "انتخاب منطقه"
 
-#: toolbox.py:415
+#: toolbox.py:509
 msgid "Fill"
 msgstr "پر کردن"
 
-#: toolbox.py:421 widgets.py:286
+#: toolbox.py:515 widgets.py:279
 msgid "Keep aspect"
-msgstr ""
+msgstr "نگه داشتن"
 
-#: toolbox.py:438
+#: toolbox.py:532
 msgid "Sides: "
-msgstr "کناره‌ها:ـ"
+msgstr "کناره‌ها: "
 
-#: toolbox.py:511
+#: toolbox.py:601
 msgid "Ellipse"
 msgstr "بیضی"
 
-#: toolbox.py:514
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr "مستطیل"
 
-#: toolbox.py:517
+#: toolbox.py:607
 msgid "Line"
 msgstr "خط"
 
-#: toolbox.py:520
+#: toolbox.py:610
 msgid "Free form"
-msgstr ""
+msgstr "فرم آزاد"
 
-#: toolbox.py:523
+#: toolbox.py:613
 msgid "Polygon"
 msgstr "چند گوشه"
 
-#: toolbox.py:526
+#: toolbox.py:616
 msgid "Heart"
 msgstr "قلب"
 
-#: toolbox.py:529
+#: toolbox.py:619
 msgid "Parallelogram"
 msgstr "متوازی‌الاضلاع"
 
-#: toolbox.py:532
+#: toolbox.py:622
 msgid "Arrow"
 msgstr "پیکان"
 
-#: toolbox.py:535
+#: toolbox.py:625
 msgid "Star"
 msgstr "ستاره"
 
-#: toolbox.py:538
+#: toolbox.py:628
 msgid "Trapezoid"
 msgstr "ذوزنقه"
 
-#: toolbox.py:541
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "مثلث"
 
-#: toolbox.py:574
+#: toolbox.py:665
 msgid "Type"
 msgstr "نوع"
 
-#: toolbox.py:665
+#: toolbox.py:757
 msgid "Insert Image"
 msgstr "جا دادن تصویر"
 
-#: toolbox.py:678
+#: toolbox.py:768
 msgid "Rotate Left"
 msgstr "چرخش به چپ"
 
-#: toolbox.py:682
+#: toolbox.py:772
 msgid "Rotate Right"
 msgstr "چرخش به راست"
 
-#: toolbox.py:687
+#: toolbox.py:777
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "آینه افقی"
 
-#: toolbox.py:692
+#: toolbox.py:782
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "آینه عمودی"
 
-#: toolbox.py:700
+#: toolbox.py:790
 msgid "Grayscale"
 msgstr "تناسب خاکستری"
 
-#: toolbox.py:703
+#: toolbox.py:793
 msgid "Rainbow"
 msgstr "رنگین کمان"
 
-#: toolbox.py:708
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr "زیبابین"
+
+#: toolbox.py:802
 msgid "Invert Colors"
-msgstr ""
+msgstr "وارونه کردن رنگها"
 
 #: widgets.py:17
 msgid "Size: "
-msgstr "اندازه:ـ"
+msgstr "اندازه: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "تاری: "
 
 #: widgets.py:17
 msgid "Circle"
@@ -238,23 +253,39 @@ msgstr "مربع"
 
 #: widgets.py:31
 msgid "Choose brush properties"
-msgstr ""
+msgstr "انتخاب خواص برس"
 
-#: widgets.py:245
+#: widgets.py:234
 msgid "Size"
-msgstr ""
+msgstr "اندازه"
 
-#: widgets.py:259
+#: widgets.py:248
 msgid "Opacity"
-msgstr ""
+msgstr "تاری"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "شکل"
 
-#: widgets.py:317
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "خواص برش"
+
+#: widgets.py:310
 msgid "Stamp properties"
-msgstr ""
+msgstr "خواص مهر"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "خواص پاک کن"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "خواص سطل"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "خواص جمع کننده"
 
 #~ msgid "Height"
 #~ msgstr "بلندی"
