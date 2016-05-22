@@ -50,7 +50,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-20 00:30-0500\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
 "PO-Revision-Date: 2012-08-22 01:59+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,184 +66,199 @@ msgid "Paint"
 msgstr "Verf"
 
 #. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
+msgstr ""
+
+#: dialogs.py:101
+msgid "Done"
+msgstr ""
+
+#: dialogs.py:129
+msgid "Select stamp"
 msgstr ""
 
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
 
-#: toolbox.py:139
+#: toolbox.py:143
 msgid "Edit"
 msgstr "Redigeer"
 
-#: toolbox.py:143
+#: toolbox.py:147
 msgid "Shapes properties"
 msgstr "Vorms eienskappe"
 
-#: toolbox.py:159
+#: toolbox.py:163
 msgid "Shapes"
 msgstr "Vorms"
 
-#: toolbox.py:175
+#: toolbox.py:179
 msgid "Fonts"
 msgstr "Skriftipes"
 
-#: toolbox.py:181
+#: toolbox.py:185
 msgid "Image"
 msgstr "Beeld"
 
-#: toolbox.py:249
+#: toolbox.py:253
 msgid "Undo"
 msgstr "Ontdoen"
 
-#: toolbox.py:250
+#: toolbox.py:254
 msgid "Redo"
 msgstr "Herdoen"
 
-#: toolbox.py:251
+#: toolbox.py:255
 msgid "Copy"
 msgstr "Kopieer"
 
-#: toolbox.py:252
+#: toolbox.py:256
 msgid "Paste"
 msgstr "Plak"
 
-#: toolbox.py:260
+#: toolbox.py:264
 msgid "Clear"
 msgstr "Maak skoon"
 
-#: toolbox.py:359 toolbox.py:363
+#: toolbox.py:363 toolbox.py:367
 #, fuzzy
 msgid "Brush"
 msgstr "Kwas"
 
-#: toolbox.py:366
+#: toolbox.py:370
 #, fuzzy
 msgid "Eraser"
 msgstr "Uitveër"
 
-#: toolbox.py:369
+#: toolbox.py:373
 msgid "Bucket"
 msgstr ""
 
-#: toolbox.py:372
+#: toolbox.py:376
 msgid "Picker"
 msgstr ""
 
-#: toolbox.py:375
+#: toolbox.py:379
 msgid "Stamp"
 msgstr ""
 
-#: toolbox.py:388 widgets.py:329
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr ""
+
+#: toolbox.py:396 widgets.py:321
 #, fuzzy
 msgid "Select Area"
 msgstr "Seleksiearea"
 
-#: toolbox.py:485
+#: toolbox.py:509
 #, fuzzy
 msgid "Fill"
 msgstr "Opvul"
 
-#: toolbox.py:491 widgets.py:286
+#: toolbox.py:515 widgets.py:279
 #, fuzzy
 msgid "Keep aspect"
 msgstr "Hou aspekverhouding"
 
-#: toolbox.py:508
+#: toolbox.py:532
 #, fuzzy
 msgid "Sides: "
 msgstr "Kant: "
 
-#: toolbox.py:580
+#: toolbox.py:601
 msgid "Ellipse"
 msgstr "Ellips"
 
-#: toolbox.py:583
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr "Reghoek"
 
-#: toolbox.py:586
+#: toolbox.py:607
 msgid "Line"
 msgstr "Lyn"
 
-#: toolbox.py:589
+#: toolbox.py:610
 #, fuzzy
 msgid "Free form"
 msgstr "Vryvorm"
 
-#: toolbox.py:592
+#: toolbox.py:613
 msgid "Polygon"
 msgstr "Veelhoek"
 
-#: toolbox.py:595
+#: toolbox.py:616
 msgid "Heart"
 msgstr "Hart"
 
-#: toolbox.py:598
+#: toolbox.py:619
 msgid "Parallelogram"
 msgstr "Parallelogram"
 
-#: toolbox.py:601
+#: toolbox.py:622
 msgid "Arrow"
 msgstr "Pyltjie"
 
-#: toolbox.py:604
+#: toolbox.py:625
 msgid "Star"
 msgstr "Ster"
 
-#: toolbox.py:607
+#: toolbox.py:628
 #, fuzzy
 msgid "Trapezoid"
 msgstr "Trepesium"
 
-#: toolbox.py:610
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "Driehoek"
 
-#: toolbox.py:643
+#: toolbox.py:665
 #, fuzzy
 msgid "Type"
 msgstr "Soort"
 
-#: toolbox.py:734
+#: toolbox.py:757
 #, fuzzy
 msgid "Insert Image"
 msgstr "Voeg in Beeld"
 
-#: toolbox.py:745
+#: toolbox.py:768
 #, fuzzy
 msgid "Rotate Left"
 msgstr "Roteer linksom"
 
-#: toolbox.py:749
+#: toolbox.py:772
 #, fuzzy
 msgid "Rotate Right"
 msgstr "Roteer regsom"
 
-#: toolbox.py:754
+#: toolbox.py:777
 #, fuzzy
 msgid "Horizontal Mirror"
 msgstr "Spieël Beeld Horisontaal"
 
-#: toolbox.py:759
+#: toolbox.py:782
 #, fuzzy
 msgid "Vertical Mirror"
 msgstr "Spieël Beeld Vertikaal"
 
-#: toolbox.py:767
+#: toolbox.py:790
 msgid "Grayscale"
 msgstr "Gryskleur"
 
-#: toolbox.py:770
+#: toolbox.py:793
 #, fuzzy
 msgid "Rainbow"
 msgstr "Reënboog"
 
-#: toolbox.py:775
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr ""
+
+#: toolbox.py:802
 #, fuzzy
 msgid "Invert Colors"
 msgstr "Negatief Kleure"
@@ -270,41 +285,41 @@ msgstr "Vierkant"
 msgid "Choose brush properties"
 msgstr "Kies kwaseienskappe"
 
-#: widgets.py:241
+#: widgets.py:234
 #, fuzzy
 msgid "Size"
 msgstr "Grootte"
 
-#: widgets.py:255
+#: widgets.py:248
 #, fuzzy
 msgid "Opacity"
 msgstr "Ondeursigtigheid"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "Vorm"
 
-#: widgets.py:312
+#: widgets.py:304
 #, fuzzy
 msgid "Brush properties"
 msgstr "Kwas eienskappe"
 
-#: widgets.py:318
+#: widgets.py:310
 #, fuzzy
 msgid "Stamp properties"
 msgstr "Vorms eienskappe"
 
-#: widgets.py:322
+#: widgets.py:314
 #, fuzzy
 msgid "Eraser properties"
 msgstr "Kwas eienskappe"
 
-#: widgets.py:325
+#: widgets.py:317
 #, fuzzy
 msgid "Bucket properties"
 msgstr "Kwas eienskappe"
 
-#: widgets.py:327
+#: widgets.py:319
 #, fuzzy
 msgid "Picker properties"
 msgstr "Kwas eienskappe"
