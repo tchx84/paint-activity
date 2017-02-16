@@ -286,6 +286,7 @@ class OficinaActivity(activity.Activity):
                 text_buf = self.textview.get_buffer()
                 end_text_iter = text_buf.get_end_iter()
                 text_buf.select_range(end_text_iter, end_text_iter)
+        return False
 
     def __textview_mouse_move_cb(self, widget, event):
         x = event.x
@@ -295,3 +296,4 @@ class OficinaActivity(activity.Activity):
             dy = y - self._initial_textview_touch_y
             tv_alloc = self.textview.get_allocation()
             self.move_textview(tv_alloc.x + dx, tv_alloc.y + dy)
+        return False
