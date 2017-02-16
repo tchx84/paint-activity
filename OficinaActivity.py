@@ -98,7 +98,6 @@ class OficinaActivity(activity.Activity):
         self.fixed = Gtk.Fixed()
         self._width = Gdk.Screen.width()
         self._height = Gdk.Screen.height()
-        self.fixed.show()
         self.fixed.modify_bg(Gtk.StateType.NORMAL,
                              style.COLOR_WHITE.get_gdk_color())
 
@@ -114,13 +113,13 @@ class OficinaActivity(activity.Activity):
         self.textview.connect('event', self.__textview_event_cb)
         self.textview.connect("motion_notify_event",
                               self.__textview_mouse_move_cb)
+        self.textview.hide()  # will be shown when text tool is used
 
-        self.fixed.put(self.textview, 0, 0)
-
-        # These attributes are used in other classes, so they should be public
         self.area = Area(self)
         self.area.show()
         self.fixed.put(self.area, 0, 0)
+        self.fixed.put(self.textview, 0, 0)
+        self.fixed.show()
 
         self._sw = Gtk.ScrolledWindow()
         self._sw.set_kinetic_scrolling(False)
