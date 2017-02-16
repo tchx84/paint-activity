@@ -261,7 +261,7 @@ class OficinaActivity(activity.Activity):
             self.area.tool = json.loads(self.metadata['state'])
             logging.debug('self.area.tool %s', self.area.tool)
         except Exception as e:
-            logging.error("exception %s", e)
+            logging.debug("exception %s", e)
 
     def __textview_event_cb(self, widget, event):
         if event.type in (Gdk.EventType.TOUCH_BEGIN,
