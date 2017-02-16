@@ -682,7 +682,6 @@ class Desenho:
             GObject.idle_add(self._finalize_text, widget, textview)
 
     def _finalize_text(self, widget, textview):
-        buf = textview.get_buffer()
         window = textview.get_window(Gtk.TextWindowType.TEXT)
         ctx = widget.drawing_ctx
         tv_alloc = textview.get_allocation()
@@ -692,10 +691,7 @@ class Desenho:
         widget.activity.textview.hide()
         widget.drawing_canvas.flush()
 
-        try:
-            widget.activity.textview.set_text('')
-        except AttributeError:
-            buf.set_text('')
+        textview.get_buffer().set_text('')
 
         widget.enable_undo()
         widget.queue_draw()
