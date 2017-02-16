@@ -61,6 +61,11 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gst', '1.0')
+gi.require_version('PangoCairo', '1.0')
+
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
@@ -93,7 +98,6 @@ class OficinaActivity(activity.Activity):
         self.fixed = Gtk.Fixed()
         self._width = Gdk.Screen.width()
         self._height = Gdk.Screen.height()
-        self.fixed.show()
         self.fixed.modify_bg(Gtk.StateType.NORMAL,
                              style.COLOR_WHITE.get_gdk_color())
 
@@ -109,13 +113,13 @@ class OficinaActivity(activity.Activity):
         self.textview.connect('event', self.__textview_event_cb)
         self.textview.connect("motion_notify_event",
                               self.__textview_mouse_move_cb)
+        self.textview.hide()  # will be shown when text tool is used
 
-        self.fixed.put(self.textview, 0, 0)
-
-        # These attributes are used in other classes, so they should be public
         self.area = Area(self)
         self.area.show()
         self.fixed.put(self.area, 0, 0)
+        self.fixed.put(self.textview, 0, 0)
+        self.fixed.show()
 
         self._sw = Gtk.ScrolledWindow()
         self._sw.set_kinetic_scrolling(False)
@@ -261,7 +265,7 @@ class OficinaActivity(activity.Activity):
             self.area.tool = json.loads(self.metadata['state'])
             logging.debug('self.area.tool %s', self.area.tool)
         except Exception as e:
-            logging.error("exception %s", e)
+            logging.debug("exception %s", e)
 
     def __textview_event_cb(self, widget, event):
         if event.type in (Gdk.EventType.TOUCH_BEGIN,
@@ -281,6 +285,7 @@ class OficinaActivity(activity.Activity):
                 text_buf = self.textview.get_buffer()
                 end_text_iter = text_buf.get_end_iter()
                 text_buf.select_range(end_text_iter, end_text_iter)
+        return False
 
     def __textview_mouse_move_cb(self, widget, event):
         x = event.x
@@ -290,3 +295,4 @@ class OficinaActivity(activity.Activity):
             dy = y - self._initial_textview_touch_y
             tv_alloc = self.textview.get_allocation()
             self.move_textview(tv_alloc.x + dx, tv_alloc.y + dy)
+        return False

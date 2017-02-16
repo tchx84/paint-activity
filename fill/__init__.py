@@ -11,11 +11,11 @@ for i in os.listdir(_root_path):
         sys.path = _sys_path + [os.path.join('.', path)]
         try:
             from _fill import *
-            logging.error('use %s blobs' % path)
+            logging.debug('use %s blobs' % path)
             _sys_path = None
             break
         except Exception, e:
-            logging.error('skip %s blobs: %s' % (path, e))
+            logging.debug('skip %s blobs: %s' % (path, e))
 
 if _sys_path:
     raise('cannot find proper binary blobs')

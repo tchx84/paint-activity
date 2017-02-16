@@ -91,7 +91,7 @@ FALLBACK_FILL = True
 try:
     from fill import fill
     FALLBACK_FILL = False
-    logging.error('Found fill binaries.')
+    logging.debug('Found fill binaries.')
 except:
     logging.error('No valid fill binaries. Using slower python code')
     pass
@@ -131,7 +131,7 @@ if _HAS_GST:
 def _get_screen_dpi():
     xft_dpi = Gtk.Settings.get_default().get_property('gtk-xft-dpi')
     dpi = float(xft_dpi / 1024)
-    logging.error('Setting dpi to: %f', dpi)
+    logging.debug('Setting dpi to: %f', dpi)
     return dpi
 
 bundle_path = activity.get_bundle_path()
@@ -1772,7 +1772,7 @@ class Area(Gtk.DrawingArea):
 
                 cursor = Gdk.Cursor.new_from_pixbuf(display, pixbuf,
                                                     hotspot_x, hotspot_y)
-        except GObject.GError, TypeError:
+        except (GObject.GError, TypeError):
             cursor = None
         if self.get_window() is not None:
             self.get_window().set_cursor(cursor)
