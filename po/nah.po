@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-20 00:30-0500\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
 "PO-Revision-Date: 2013-12-21 21:06+0200\n"
 "Last-Translator: usuarionahuatl02 <proyecto.olpc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,173 +22,188 @@ msgid "Paint"
 msgstr "Tlapa"
 
 #. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
+msgstr ""
+
+#: dialogs.py:101
+msgid "Done"
+msgstr ""
+
+#: dialogs.py:129
+msgid "Select stamp"
 msgstr ""
 
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
 
-#: toolbox.py:139
+#: toolbox.py:143
 msgid "Edit"
 msgstr "tlachwalis"
 
-#: toolbox.py:143
+#: toolbox.py:147
 msgid "Shapes properties"
 msgstr "nelchiwal tla axkayotl"
 
-#: toolbox.py:159
+#: toolbox.py:163
 #, fuzzy
 msgid "Shapes"
 msgstr "tlachijtli"
 
-#: toolbox.py:175
+#: toolbox.py:179
 msgid "Fonts"
 msgstr "kampakisa"
 
-#: toolbox.py:181
+#: toolbox.py:185
 #, fuzzy
 msgid "Image"
 msgstr "Ixkopinka"
 
-#: toolbox.py:249
+#: toolbox.py:253
 msgid "Undo"
 msgstr "ajchiwali"
 
-#: toolbox.py:250
+#: toolbox.py:254
 msgid "Redo"
 msgstr "ompawilli"
 
-#: toolbox.py:251
+#: toolbox.py:255
 #, fuzzy
 msgid "Copy"
 msgstr "Ixkopina"
 
-#: toolbox.py:252
+#: toolbox.py:256
 msgid "Paste"
 msgstr "tlatskiltili"
 
-#: toolbox.py:260
+#: toolbox.py:264
 #, fuzzy
 msgid "Clear"
 msgstr "Pojpowas"
 
-#: toolbox.py:359 toolbox.py:363
+#: toolbox.py:363 toolbox.py:367
 msgid "Brush"
 msgstr "tlapalli"
 
-#: toolbox.py:366
+#: toolbox.py:370
 msgid "Eraser"
 msgstr "tlaixpololli"
 
-#: toolbox.py:369
+#: toolbox.py:373
 msgid "Bucket"
 msgstr "wakalli"
 
-#: toolbox.py:372
+#: toolbox.py:376
 msgid "Picker"
 msgstr "tlapejpeniketl"
 
-#: toolbox.py:375
+#: toolbox.py:379
 msgid "Stamp"
 msgstr "ixnexkatlapalli"
 
-#: toolbox.py:388 widgets.py:329
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr ""
+
+#: toolbox.py:396 widgets.py:321
 msgid "Select Area"
 msgstr "ixpan tlapepenilpa"
 
-#: toolbox.py:485
+#: toolbox.py:509
 msgid "Fill"
 msgstr "tlatemitilli"
 
-#: toolbox.py:491 widgets.py:286
+#: toolbox.py:515 widgets.py:279
 msgid "Keep aspect"
 msgstr "xik ixpan nechkawilti"
 
-#: toolbox.py:508
+#: toolbox.py:532
 msgid "Sides: "
 msgstr "iixkaj~"
 
-#: toolbox.py:580
+#: toolbox.py:601
 msgid "Ellipse"
 msgstr "mimiyawak"
 
-#: toolbox.py:583
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr "nawixayakpaj"
 
-#: toolbox.py:586
+#: toolbox.py:607
 msgid "Line"
 msgstr "tekpantli"
 
-#: toolbox.py:589
+#: toolbox.py:610
 msgid "Free form"
 msgstr "kenweli tlachiwal"
 
-#: toolbox.py:592
+#: toolbox.py:613
 msgid "Polygon"
 msgstr "miakxayakpaj"
 
-#: toolbox.py:595
+#: toolbox.py:616
 msgid "Heart"
 msgstr "yolotl"
 
-#: toolbox.py:598
+#: toolbox.py:619
 msgid "Parallelogram"
 msgstr ""
 
-#: toolbox.py:601
+#: toolbox.py:622
 msgid "Arrow"
 msgstr "wasaniltlachiyali"
 
-#: toolbox.py:604
+#: toolbox.py:625
 msgid "Star"
 msgstr "sitlalli"
 
-#: toolbox.py:607
+#: toolbox.py:628
 msgid "Trapezoid"
 msgstr ""
 
-#: toolbox.py:610
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "exkaxayakpa"
 
-#: toolbox.py:643
+#: toolbox.py:665
 msgid "Type"
 msgstr "tsompechili"
 
-#: toolbox.py:734
+#: toolbox.py:757
 msgid "Insert Image"
 msgstr "sajsalos ixkopinali"
 
-#: toolbox.py:745
+#: toolbox.py:768
 msgid "Rotate Left"
 msgstr "malakachos ikamoopoch"
 
-#: toolbox.py:749
+#: toolbox.py:772
 msgid "Rotate Right"
 msgstr "malakachos ikanemajtli"
 
-#: toolbox.py:754
+#: toolbox.py:777
 msgid "Horizontal Mirror"
 msgstr "wilantok teskatl"
 
-#: toolbox.py:759
+#: toolbox.py:782
 msgid "Vertical Mirror"
 msgstr "ikatok teskatl"
 
-#: toolbox.py:767
+#: toolbox.py:790
 msgid "Grayscale"
 msgstr "tlapalli ixtenextik"
 
-#: toolbox.py:770
+#: toolbox.py:793
 msgid "Rainbow"
 msgstr "akosemalotl"
 
-#: toolbox.py:775
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr ""
+
+#: toolbox.py:802
 msgid "Invert Colors"
 msgstr ""
 
@@ -212,37 +227,37 @@ msgstr "sejanajkaxayak"
 msgid "Choose brush properties"
 msgstr "xitlapejpeni tlen tlapajtekiwili"
 
-#: widgets.py:241
+#: widgets.py:234
 msgid "Size"
 msgstr "wexka"
 
-#: widgets.py:255
+#: widgets.py:248
 msgid "Opacity"
 msgstr "ixmiktok"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "tlachijtli"
 
-#: widgets.py:312
+#: widgets.py:304
 msgid "Brush properties"
 msgstr "axkatil tlapalli"
 
-#: widgets.py:318
+#: widgets.py:310
 msgid "Stamp properties"
 msgstr "tlaaxkayotl  tlen tlapalli"
 
-#: widgets.py:322
+#: widgets.py:314
 #, fuzzy
 msgid "Eraser properties"
 msgstr "axkatil tlapalli"
 
-#: widgets.py:325
+#: widgets.py:317
 #, fuzzy
 msgid "Bucket properties"
 msgstr "axkatil tlapalli"
 
-#: widgets.py:327
+#: widgets.py:319
 #, fuzzy
 msgid "Picker properties"
 msgstr "axkatil tlapalli"

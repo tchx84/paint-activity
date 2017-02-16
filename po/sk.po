@@ -71,7 +71,7 @@ msgstr "Vyberte pečiatku"
 msgid "Select font"
 msgstr "Vyberte písmo"
 
-#: toolbox.py:118
+#: toolbox.py:143
 msgid "Edit"
 msgstr "Editovať"
 
@@ -87,7 +87,7 @@ msgstr "Tvary"
 msgid "Fonts"
 msgstr "Typy písma"
 
-#: toolbox.py:149
+#: toolbox.py:185
 msgid "Image"
 msgstr "Obrázok"
 
@@ -99,15 +99,15 @@ msgstr "Späť"
 msgid "Redo"
 msgstr "Zopakovať"
 
-#: toolbox.py:190
+#: toolbox.py:255
 msgid "Copy"
 msgstr "Kopírovať"
 
-#: toolbox.py:191
+#: toolbox.py:256
 msgid "Paste"
 msgstr "Vložit"
 
-#: toolbox.py:199
+#: toolbox.py:264
 msgid "Clear"
 msgstr "Vyčistiť"
 
@@ -151,43 +151,43 @@ msgstr "Vyplniť"
 msgid "Keep aspect"
 msgstr "Zachovajte pomer strán"
 
-#: toolbox.py:438
+#: toolbox.py:532
 msgid "Sides: "
 msgstr ""
 
-#: toolbox.py:511
+#: toolbox.py:601
 msgid "Ellipse"
 msgstr ""
 
-#: toolbox.py:514
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr ""
 
-#: toolbox.py:517
+#: toolbox.py:607
 msgid "Line"
 msgstr ""
 
-#: toolbox.py:520
+#: toolbox.py:610
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:523
+#: toolbox.py:613
 msgid "Polygon"
 msgstr ""
 
-#: toolbox.py:526
+#: toolbox.py:616
 msgid "Heart"
 msgstr ""
 
-#: toolbox.py:529
+#: toolbox.py:619
 msgid "Parallelogram"
 msgstr ""
 
-#: toolbox.py:532
+#: toolbox.py:622
 msgid "Arrow"
 msgstr ""
 
-#: toolbox.py:535
+#: toolbox.py:625
 msgid "Star"
 msgstr ""
 
@@ -196,11 +196,11 @@ msgstr ""
 msgid "Trapezoid"
 msgstr "Lichobežník"
 
-#: toolbox.py:541
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "Trojuholník"
 
-#: toolbox.py:574
+#: toolbox.py:665
 msgid "Type"
 msgstr "Typ"
 
@@ -238,7 +238,7 @@ msgstr "Dúha"
 msgid "Kalidoscope"
 msgstr "kaleidoskop"
 
-#: toolbox.py:708
+#: toolbox.py:802
 msgid "Invert Colors"
 msgstr ""
 
@@ -262,15 +262,15 @@ msgstr ""
 msgid "Choose brush properties"
 msgstr ""
 
-#: widgets.py:245
+#: widgets.py:234
 msgid "Size"
 msgstr ""
 
-#: widgets.py:259
+#: widgets.py:248
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr ""
 

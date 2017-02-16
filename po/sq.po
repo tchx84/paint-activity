@@ -87,7 +87,7 @@ msgstr "Përpunoni"
 msgid "Shapes properties"
 msgstr "Veti formash"
 
-#: toolbox.py:133
+#: toolbox.py:163
 msgid "Shapes"
 msgstr "Forma"
 
@@ -95,7 +95,7 @@ msgstr "Forma"
 msgid "Fonts"
 msgstr "Shkronja"
 
-#: toolbox.py:149
+#: toolbox.py:185
 msgid "Image"
 msgstr "Figurë"
 
@@ -127,7 +127,7 @@ msgstr "Penel"
 msgid "Eraser"
 msgstr "Fshirëse"
 
-#: toolbox.py:317
+#: toolbox.py:373
 msgid "Bucket"
 msgstr "Kovë"
 
@@ -135,7 +135,7 @@ msgstr "Kovë"
 msgid "Picker"
 msgstr "Zgjedhës"
 
-#: toolbox.py:323
+#: toolbox.py:379
 msgid "Stamp"
 msgstr ""
 
@@ -159,15 +159,15 @@ msgstr "Ruaji përpjestimet"
 msgid "Sides: "
 msgstr "Anë:"
 
-#: toolbox.py:511
+#: toolbox.py:601
 msgid "Ellipse"
 msgstr "Elips"
 
-#: toolbox.py:514
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr "Drejtkëndësh"
 
-#: toolbox.py:517
+#: toolbox.py:607
 msgid "Line"
 msgstr "Vijë"
 
@@ -175,35 +175,35 @@ msgstr "Vijë"
 msgid "Free form"
 msgstr "Me dorë të lirë"
 
-#: toolbox.py:523
+#: toolbox.py:613
 msgid "Polygon"
 msgstr "Shumëkëndësh"
 
-#: toolbox.py:526
+#: toolbox.py:616
 msgid "Heart"
 msgstr "Zemër"
 
-#: toolbox.py:529
+#: toolbox.py:619
 msgid "Parallelogram"
 msgstr "Paralelogram"
 
-#: toolbox.py:532
+#: toolbox.py:622
 msgid "Arrow"
 msgstr "Shigjetë"
 
-#: toolbox.py:535
+#: toolbox.py:625
 msgid "Star"
 msgstr "Yll"
 
-#: toolbox.py:538
+#: toolbox.py:628
 msgid "Trapezoid"
 msgstr "Trapezoid"
 
-#: toolbox.py:541
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "Trekëndësh"
 
-#: toolbox.py:574
+#: toolbox.py:665
 msgid "Type"
 msgstr "Lloj"
 
@@ -231,7 +231,7 @@ msgstr "Pasqyrë Vertikale"
 msgid "Grayscale"
 msgstr "Shkallë të Grisë"
 
-#: toolbox.py:703
+#: toolbox.py:793
 msgid "Rainbow"
 msgstr "Ylber"
 
@@ -239,6 +239,7 @@ msgstr "Ylber"
 msgid "Kalidoscope"
 msgstr "Kaleidoskop"
 
+#: toolbox.py:802
 msgid "Invert Colors"
 msgstr ""
 
@@ -270,7 +271,7 @@ msgstr "Madhësi"
 msgid "Opacity"
 msgstr "Patejdukshmëri"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "Formë"
 
@@ -278,6 +279,7 @@ msgstr "Formë"
 msgid "Brush properties"
 msgstr "Veti peneli"
 
+#: widgets.py:310
 msgid "Stamp properties"
 msgstr ""
 

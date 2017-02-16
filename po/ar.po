@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-20 00:30-0500\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
 "PO-Revision-Date: 2014-02-06 19:31+0200\n"
 "Last-Translator: elxrashedy <abdxelrhman@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -30,7 +30,6 @@ msgid "Paint"
 msgstr "الرسام"
 
 #. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
@@ -38,163 +37,179 @@ msgstr ""
 "بيكاسو ؟ فان جوخ ؟ يمكنك أن تصبح أياً منهم !! فقط حرر روح الرسام التى بداخلك "
 "ثم إبدأ بتحويل كل ما تتخيله فى عقلك إلى أروع الرسومات."
 
+#: dialogs.py:101
+msgid "Done"
+msgstr ""
+
+#: dialogs.py:129
+msgid "Select stamp"
+msgstr ""
+
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "إختر الخط"
 
-#: toolbox.py:139
+#: toolbox.py:143
 msgid "Edit"
 msgstr "حرر"
 
-#: toolbox.py:143
+#: toolbox.py:147
 msgid "Shapes properties"
 msgstr "خصائص اﻷشكال"
 
-#: toolbox.py:159
+#: toolbox.py:163
 msgid "Shapes"
 msgstr "اﻷشكال"
 
-#: toolbox.py:175
+#: toolbox.py:179
 msgid "Fonts"
 msgstr "الخطوط"
 
-#: toolbox.py:181
+#: toolbox.py:185
 msgid "Image"
 msgstr "الصور"
 
-#: toolbox.py:249
+#: toolbox.py:253
 msgid "Undo"
 msgstr "تراجع"
 
-#: toolbox.py:250
+#: toolbox.py:254
 msgid "Redo"
 msgstr "إلغ التراجع"
 
-#: toolbox.py:251
+#: toolbox.py:255
 msgid "Copy"
 msgstr "إنسخ"
 
-#: toolbox.py:252
+#: toolbox.py:256
 msgid "Paste"
 msgstr "إلصق"
 
-#: toolbox.py:260
+#: toolbox.py:264
 msgid "Clear"
 msgstr "إمحى"
 
-#: toolbox.py:359 toolbox.py:363
+#: toolbox.py:363 toolbox.py:367
 msgid "Brush"
 msgstr "الفرشاه"
 
-#: toolbox.py:366
+#: toolbox.py:370
 msgid "Eraser"
 msgstr "الممحاه"
 
-#: toolbox.py:369
+#: toolbox.py:373
 msgid "Bucket"
 msgstr "الدلو"
 
-#: toolbox.py:372
+#: toolbox.py:376
 msgid "Picker"
 msgstr "المنتقى"
 
-#: toolbox.py:375
+#: toolbox.py:379
 msgid "Stamp"
 msgstr "الختم"
 
-#: toolbox.py:388 widgets.py:329
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr ""
+
+#: toolbox.py:396 widgets.py:321
 msgid "Select Area"
 msgstr "إختر المنطقه المُراده"
 
-#: toolbox.py:485
+#: toolbox.py:509
 msgid "Fill"
 msgstr "إملأ"
 
-#: toolbox.py:491 widgets.py:286
+#: toolbox.py:515 widgets.py:279
 msgid "Keep aspect"
 msgstr ""
 
-#: toolbox.py:508
+#: toolbox.py:532
 msgid "Sides: "
 msgstr "الجوانب : "
 
-#: toolbox.py:580
+#: toolbox.py:601
 msgid "Ellipse"
 msgstr "بيضاوى"
 
-#: toolbox.py:583
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr "مستطيل"
 
-#: toolbox.py:586
+#: toolbox.py:607
 msgid "Line"
 msgstr "خط مستقيم"
 
-#: toolbox.py:589
+#: toolbox.py:610
 msgid "Free form"
 msgstr "شكل حر"
 
-#: toolbox.py:592
+#: toolbox.py:613
 msgid "Polygon"
 msgstr "مضلع"
 
-#: toolbox.py:595
+#: toolbox.py:616
 msgid "Heart"
 msgstr "قلب"
 
-#: toolbox.py:598
+#: toolbox.py:619
 msgid "Parallelogram"
 msgstr "متوازي أضلاع"
 
-#: toolbox.py:601
+#: toolbox.py:622
 msgid "Arrow"
 msgstr "سهم"
 
-#: toolbox.py:604
+#: toolbox.py:625
 msgid "Star"
 msgstr "نجمة"
 
-#: toolbox.py:607
+#: toolbox.py:628
 msgid "Trapezoid"
 msgstr "معين"
 
-#: toolbox.py:610
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "مثلّث"
 
-#: toolbox.py:643
+#: toolbox.py:665
 msgid "Type"
 msgstr "النوع"
 
-#: toolbox.py:734
+#: toolbox.py:757
 msgid "Insert Image"
 msgstr "إدرج صورة"
 
-#: toolbox.py:745
+#: toolbox.py:768
 msgid "Rotate Left"
 msgstr "دَوِر يساراً"
 
-#: toolbox.py:749
+#: toolbox.py:772
 msgid "Rotate Right"
 msgstr "دَوِر يميناً"
 
-#: toolbox.py:754
+#: toolbox.py:777
 msgid "Horizontal Mirror"
 msgstr "مرآه اُفقيه"
 
-#: toolbox.py:759
+#: toolbox.py:782
 msgid "Vertical Mirror"
 msgstr "مرآه رأسيه"
 
-#: toolbox.py:767
+#: toolbox.py:790
 msgid "Grayscale"
 msgstr "رمادى"
 
-#: toolbox.py:770
+#: toolbox.py:793
 msgid "Rainbow"
 msgstr "قوس قزح (ألوان الطيف)"
 
-#: toolbox.py:775
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr ""
+
+#: toolbox.py:802
 msgid "Invert Colors"
 msgstr "إعكس اﻷلوان"
 
@@ -218,35 +233,35 @@ msgstr "مربع"
 msgid "Choose brush properties"
 msgstr "إختر خصائص الفرشاه"
 
-#: widgets.py:241
+#: widgets.py:234
 msgid "Size"
 msgstr "الحجم"
 
-#: widgets.py:255
+#: widgets.py:248
 msgid "Opacity"
 msgstr "الظُلمَه"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "شكل"
 
-#: widgets.py:312
+#: widgets.py:304
 msgid "Brush properties"
 msgstr "خصائص الفرشاه"
 
-#: widgets.py:318
+#: widgets.py:310
 msgid "Stamp properties"
 msgstr "خصائص الختم"
 
-#: widgets.py:322
+#: widgets.py:314
 msgid "Eraser properties"
 msgstr "خصائص الممحاه"
 
-#: widgets.py:325
+#: widgets.py:317
 msgid "Bucket properties"
 msgstr "خصائص الدلو"
 
-#: widgets.py:327
+#: widgets.py:319
 msgid "Picker properties"
 msgstr "خصائص المنتقى"
 

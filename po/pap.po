@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-20 00:30-0500\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
 "PO-Revision-Date: 2014-03-30 07:19+0200\n"
 "Last-Translator: June <juneleonora@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,6 @@ msgid "Paint"
 msgstr "Pinta"
 
 #. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
@@ -58,167 +57,183 @@ msgstr ""
 "Picasso? Van Gogh? Abo por ta un di nan! Djis laga e artista den bo "
 "liber.Transformá imágennan den bo mente den pinturanan bunita."
 
+#: dialogs.py:101
+msgid "Done"
+msgstr ""
+
+#: dialogs.py:129
+msgid "Select stamp"
+msgstr ""
+
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Selektá tipo di leter"
 
-#: toolbox.py:139
+#: toolbox.py:143
 msgid "Edit"
 msgstr "Editá"
 
-#: toolbox.py:143
+#: toolbox.py:147
 msgid "Shapes properties"
 msgstr "Karakterístikanan di forma"
 
-#: toolbox.py:159
+#: toolbox.py:163
 msgid "Shapes"
 msgstr "Formanan"
 
-#: toolbox.py:175
+#: toolbox.py:179
 msgid "Fonts"
 msgstr "Tipo di lèter"
 
-#: toolbox.py:181
+#: toolbox.py:185
 msgid "Image"
 msgstr "Imágen"
 
-#: toolbox.py:249
+#: toolbox.py:253
 msgid "Undo"
 msgstr "Deshasí"
 
-#: toolbox.py:250
+#: toolbox.py:254
 msgid "Redo"
 msgstr "Rehasí"
 
-#: toolbox.py:251
+#: toolbox.py:255
 msgid "Copy"
 msgstr "Kopia"
 
-#: toolbox.py:252
+#: toolbox.py:256
 msgid "Paste"
 msgstr "Pega"
 
-#: toolbox.py:260
+#: toolbox.py:264
 msgid "Clear"
 msgstr "Hasi bashi"
 
-#: toolbox.py:359 toolbox.py:363
+#: toolbox.py:363 toolbox.py:367
 msgid "Brush"
 msgstr "Pensel"
 
 # skrap is meer fysich, stuf(Pap.)= gummen(NL>) in overdrachtelijke zin
-#: toolbox.py:366
+#: toolbox.py:370
 msgid "Eraser"
 msgstr "Gòm"
 
-#: toolbox.py:369
+#: toolbox.py:373
 msgid "Bucket"
 msgstr "Hèmber"
 
-#: toolbox.py:372
+#: toolbox.py:376
 msgid "Picker"
 msgstr "Selekshonadó"
 
 # A stamp to use as postage is stampia
 # A stamp as an impression on i.e. a document is stèmpel
-#: toolbox.py:375
+#: toolbox.py:379
 msgid "Stamp"
 msgstr "Stampia"
 
-#: toolbox.py:388 widgets.py:329
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr ""
+
+#: toolbox.py:396 widgets.py:321
 msgid "Select Area"
 msgstr "Selekshoná área"
 
-#: toolbox.py:485
+#: toolbox.py:509
 msgid "Fill"
 msgstr "Yena"
 
-#: toolbox.py:491 widgets.py:286
+#: toolbox.py:515 widgets.py:279
 msgid "Keep aspect"
 msgstr "Mantené aspekto"
 
-#: toolbox.py:508
+#: toolbox.py:532
 msgid "Sides: "
 msgstr "Bandanan: "
 
-#: toolbox.py:580
+#: toolbox.py:601
 msgid "Ellipse"
 msgstr "Ellips"
 
-#: toolbox.py:583
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr "Rektángulo"
 
-#: toolbox.py:586
+#: toolbox.py:607
 msgid "Line"
 msgstr "Liña"
 
-#: toolbox.py:589
+#: toolbox.py:610
 msgid "Free form"
 msgstr "Forma liber"
 
-#: toolbox.py:592
+#: toolbox.py:613
 msgid "Polygon"
 msgstr "Polígono"
 
-#: toolbox.py:595
+#: toolbox.py:616
 msgid "Heart"
 msgstr "Kurason"
 
-#: toolbox.py:598
+#: toolbox.py:619
 msgid "Parallelogram"
 msgstr "Paralelogram"
 
-#: toolbox.py:601
+#: toolbox.py:622
 msgid "Arrow"
 msgstr "Flecha"
 
-#: toolbox.py:604
+#: toolbox.py:625
 msgid "Star"
 msgstr "Strea"
 
-#: toolbox.py:607
+#: toolbox.py:628
 msgid "Trapezoid"
 msgstr "Trapesio"
 
-#: toolbox.py:610
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "Triángulo"
 
 # type (E) heeft vele betekenissen bv. the type font=karakter of letterteken, the type face=lettertype of soort, the type catagory=klasse, onderverdeling
-#: toolbox.py:643
+#: toolbox.py:665
 msgid "Type"
 msgstr "Tipo"
 
-#: toolbox.py:734
+#: toolbox.py:757
 msgid "Insert Image"
 msgstr "Inserta Imagen"
 
-#: toolbox.py:745
+#: toolbox.py:768
 msgid "Rotate Left"
 msgstr "Drei na man robes"
 
-#: toolbox.py:749
+#: toolbox.py:772
 msgid "Rotate Right"
 msgstr "Drei na man drechi"
 
-#: toolbox.py:754
+#: toolbox.py:777
 msgid "Horizontal Mirror"
 msgstr "Spil horizontal"
 
-#: toolbox.py:759
+#: toolbox.py:782
 msgid "Vertical Mirror"
 msgstr "Spil vertikal"
 
-#: toolbox.py:767
+#: toolbox.py:790
 msgid "Grayscale"
 msgstr "Koló Shinishi"
 
-#: toolbox.py:770
+#: toolbox.py:793
 msgid "Rainbow"
 msgstr "Regenbog"
 
-#: toolbox.py:775
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr ""
+
+#: toolbox.py:802
 msgid "Invert Colors"
 msgstr "Invertí kolónan"
 
@@ -242,35 +257,35 @@ msgstr "Kuadrángulo"
 msgid "Choose brush properties"
 msgstr "Skohe karakterístikanan di e kuashi"
 
-#: widgets.py:241
+#: widgets.py:234
 msgid "Size"
 msgstr "Tamaño"
 
-#: widgets.py:255
+#: widgets.py:248
 msgid "Opacity"
 msgstr "Opasidat"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "Forma"
 
-#: widgets.py:312
+#: widgets.py:304
 msgid "Brush properties"
 msgstr "Karakterístikanan di kuashi"
 
-#: widgets.py:318
+#: widgets.py:310
 msgid "Stamp properties"
 msgstr "Karakterístikanan di e stampia"
 
-#: widgets.py:322
+#: widgets.py:314
 msgid "Eraser properties"
 msgstr "Karakterístikanan di gòm"
 
-#: widgets.py:325
+#: widgets.py:317
 msgid "Bucket properties"
 msgstr "Karakterístikanan di hèmber"
 
-#: widgets.py:327
+#: widgets.py:319
 msgid "Picker properties"
 msgstr "Karakterístikanan di selekshonadó"
 

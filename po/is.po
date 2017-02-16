@@ -70,7 +70,7 @@ msgstr "Veldu stimpil"
 msgid "Select font"
 msgstr "Veldu letur"
 
-#: toolbox.py:118
+#: toolbox.py:143
 msgid "Edit"
 msgstr "Breyta"
 
@@ -78,7 +78,7 @@ msgstr "Breyta"
 msgid "Shapes properties"
 msgstr "Eiginleikar forma"
 
-#: toolbox.py:133
+#: toolbox.py:163
 msgid "Shapes"
 msgstr "Form"
 
@@ -86,39 +86,39 @@ msgstr "Form"
 msgid "Fonts"
 msgstr "Letur"
 
-#: toolbox.py:149
+#: toolbox.py:185
 msgid "Image"
 msgstr "Myndir"
 
-#: toolbox.py:188
+#: toolbox.py:253
 msgid "Undo"
 msgstr "Afturkalla"
 
-#: toolbox.py:189
+#: toolbox.py:254
 msgid "Redo"
 msgstr "Endurgera"
 
-#: toolbox.py:190
+#: toolbox.py:255
 msgid "Copy"
 msgstr "Afrita"
 
-#: toolbox.py:191
+#: toolbox.py:256
 msgid "Paste"
 msgstr "Líma"
 
-#: toolbox.py:199
+#: toolbox.py:264
 msgid "Clear"
 msgstr "Hreinsa"
 
-#: toolbox.py:307 toolbox.py:311
+#: toolbox.py:363 toolbox.py:367
 msgid "Brush"
 msgstr "Bursti"
 
-#: toolbox.py:314
+#: toolbox.py:370
 msgid "Eraser"
 msgstr "Strokleður"
 
-#: toolbox.py:317
+#: toolbox.py:373
 msgid "Bucket"
 msgstr "Fata"
 
@@ -138,7 +138,7 @@ msgstr "Hlaða inn stimpli"
 msgid "Select Area"
 msgstr "Velja svæði"
 
-#: toolbox.py:415
+#: toolbox.py:509
 msgid "Fill"
 msgstr "Fylla"
 
@@ -146,7 +146,7 @@ msgstr "Fylla"
 msgid "Keep aspect"
 msgstr "Halda hlutföllum"
 
-#: toolbox.py:438
+#: toolbox.py:532
 msgid "Sides: "
 msgstr "Hliðar: "
 
@@ -154,11 +154,11 @@ msgstr "Hliðar: "
 msgid "Ellipse"
 msgstr "Sporbaugur"
 
-#: toolbox.py:514
+#: toolbox.py:604
 msgid "Rectangle"
 msgstr "Rétthyrningur"
 
-#: toolbox.py:517
+#: toolbox.py:607
 msgid "Line"
 msgstr "Lína"
 
@@ -170,7 +170,7 @@ msgstr "Frjálst form"
 msgid "Polygon"
 msgstr "Marghyrningur"
 
-#: toolbox.py:526
+#: toolbox.py:616
 msgid "Heart"
 msgstr "Hjarta"
 
@@ -178,11 +178,11 @@ msgstr "Hjarta"
 msgid "Parallelogram"
 msgstr "Samsíðungur"
 
-#: toolbox.py:532
+#: toolbox.py:622
 msgid "Arrow"
 msgstr "Ör"
 
-#: toolbox.py:535
+#: toolbox.py:625
 msgid "Star"
 msgstr "Stjarna"
 
@@ -190,23 +190,23 @@ msgstr "Stjarna"
 msgid "Trapezoid"
 msgstr "Trapisa"
 
-#: toolbox.py:541
+#: toolbox.py:631
 msgid "Triangle"
 msgstr "Þríhirningur"
 
-#: toolbox.py:574
+#: toolbox.py:665
 msgid "Type"
 msgstr "Gerðir"
 
-#: toolbox.py:665
+#: toolbox.py:757
 msgid "Insert Image"
 msgstr "Setja inn mynd"
 
-#: toolbox.py:678
+#: toolbox.py:768
 msgid "Rotate Left"
 msgstr "Snúa til vinstri"
 
-#: toolbox.py:682
+#: toolbox.py:772
 msgid "Rotate Right"
 msgstr "Snúa til hægri"
 
@@ -222,7 +222,7 @@ msgstr "Lóðrétt speglun"
 msgid "Grayscale"
 msgstr "Grátóna"
 
-#: toolbox.py:703
+#: toolbox.py:793
 msgid "Rainbow"
 msgstr "Regnbogi"
 
@@ -262,7 +262,7 @@ msgstr "Stærð"
 msgid "Opacity"
 msgstr "Ógegnsæi"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "Form"
 
