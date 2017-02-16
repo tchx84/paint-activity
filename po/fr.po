@@ -43,16 +43,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-20 00:30-0500\n"
-"PO-Revision-Date: 2014-01-10 21:33+0200\n"
-"Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"PO-Revision-Date: 2016-10-18 07:33+0000\n"
+"Last-Translator: krhome <padodanle51@gmail.com>\n"
 "Language-Team: Language locale/fr/LC\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1476776023.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Paint"
@@ -67,6 +68,14 @@ msgstr ""
 "Picasso? Van Gogh? Tu peux être l'un ou l'autre ! Il te suffit de libérer "
 "l'artiste qui dort en toi. Transforme les images que tu as dans ta tête en "
 "de belles peintures."
+
+#: dialogs.py:101
+msgid "Done"
+msgstr "Terminé"
+
+#: dialogs.py:129
+msgid "Select stamp"
+msgstr "Sélectionner un tampon"
 
 #: fontcombobox.py:90
 msgid "Select font"
@@ -132,7 +141,10 @@ msgstr "sélecteur"
 msgid "Stamp"
 msgstr "Tampon"
 
-#: toolbox.py:388 widgets.py:329
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr "Charger un tampon"
+
 msgid "Select Area"
 msgstr "Sélectionner une zone"
 
@@ -224,7 +236,10 @@ msgstr "Niveau de gris"
 msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
-#: toolbox.py:775
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr "kaléidoscope"
+
 msgid "Invert Colors"
 msgstr "Inverser les couleurs"
 

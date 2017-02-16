@@ -30,51 +30,61 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-12 00:30-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"PO-Revision-Date: 2017-01-02 10:24+0000\n"
+"Last-Translator: sveinki <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1483352643.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Paint"
-msgstr "Mála"
+msgstr "Málun"
 
 #. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"Kjarval? Picasso? Van Gogh? Þú getur verið eins og þeir! Láttu listamanninn "
+"í þér ganga lausum hala. Breyttu myndunum í höfðinu á þér í falleg málverk."
 
-#: fontcombobox.py:89
+#: dialogs.py:101
+msgid "Done"
+msgstr "Lokið"
+
+#: dialogs.py:129
+msgid "Select stamp"
+msgstr "Veldu stimpil"
+
+#: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Veldu letur"
 
 #: toolbox.py:118
 msgid "Edit"
 msgstr "Breyta"
 
-#: toolbox.py:122
+#: toolbox.py:147
 msgid "Shapes properties"
-msgstr ""
+msgstr "Eiginleikar forma"
 
 #: toolbox.py:133
 msgid "Shapes"
 msgstr "Form"
 
-#: toolbox.py:143
+#: toolbox.py:179
 msgid "Fonts"
-msgstr ""
+msgstr "Letur"
 
 #: toolbox.py:149
 msgid "Image"
@@ -100,10 +110,6 @@ msgstr "Líma"
 msgid "Clear"
 msgstr "Hreinsa"
 
-#: toolbox.py:298 widgets.py:322
-msgid "Brush properties"
-msgstr ""
-
 #: toolbox.py:307 toolbox.py:311
 msgid "Brush"
 msgstr "Bursti"
@@ -116,33 +122,37 @@ msgstr "Strokleður"
 msgid "Bucket"
 msgstr "Fata"
 
-#: toolbox.py:320
+#: toolbox.py:376
 msgid "Picker"
-msgstr ""
+msgstr "Litaplokkari"
 
-#: toolbox.py:323
+#: toolbox.py:379
 msgid "Stamp"
-msgstr ""
+msgstr "Stimpill"
 
-#: toolbox.py:336
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr "Hlaða inn stimpli"
+
+#: toolbox.py:396 widgets.py:321
 msgid "Select Area"
-msgstr ""
+msgstr "Velja svæði"
 
 #: toolbox.py:415
 msgid "Fill"
 msgstr "Fylla"
 
-#: toolbox.py:421 widgets.py:286
+#: toolbox.py:515 widgets.py:279
 msgid "Keep aspect"
-msgstr ""
+msgstr "Halda hlutföllum"
 
 #: toolbox.py:438
 msgid "Sides: "
 msgstr "Hliðar: "
 
-#: toolbox.py:511
+#: toolbox.py:601
 msgid "Ellipse"
-msgstr ""
+msgstr "Sporbaugur"
 
 #: toolbox.py:514
 msgid "Rectangle"
@@ -152,21 +162,21 @@ msgstr "Rétthyrningur"
 msgid "Line"
 msgstr "Lína"
 
-#: toolbox.py:520
+#: toolbox.py:610
 msgid "Free form"
-msgstr ""
+msgstr "Frjálst form"
 
-#: toolbox.py:523
+#: toolbox.py:613
 msgid "Polygon"
-msgstr ""
+msgstr "Marghyrningur"
 
 #: toolbox.py:526
 msgid "Heart"
 msgstr "Hjarta"
 
-#: toolbox.py:529
+#: toolbox.py:619
 msgid "Parallelogram"
-msgstr ""
+msgstr "Samsíðungur"
 
 #: toolbox.py:532
 msgid "Arrow"
@@ -176,9 +186,9 @@ msgstr "Ör"
 msgid "Star"
 msgstr "Stjarna"
 
-#: toolbox.py:538
+#: toolbox.py:628
 msgid "Trapezoid"
-msgstr ""
+msgstr "Trapisa"
 
 #: toolbox.py:541
 msgid "Triangle"
@@ -200,25 +210,29 @@ msgstr "Snúa til vinstri"
 msgid "Rotate Right"
 msgstr "Snúa til hægri"
 
-#: toolbox.py:687
+#: toolbox.py:777
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Lárétt speglun"
 
-#: toolbox.py:692
+#: toolbox.py:782
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Lóðrétt speglun"
 
-#: toolbox.py:700
+#: toolbox.py:790
 msgid "Grayscale"
-msgstr "Gráskala"
+msgstr "Grátóna"
 
 #: toolbox.py:703
 msgid "Rainbow"
 msgstr "Regnbogi"
 
-#: toolbox.py:708
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr "Kviksjá"
+
+#: toolbox.py:802
 msgid "Invert Colors"
-msgstr ""
+msgstr "Snúa við litum"
 
 #: widgets.py:17
 msgid "Size: "
@@ -226,7 +240,7 @@ msgstr "Stærð: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "Ógegnsæi: "
 
 #: widgets.py:17
 msgid "Circle"
@@ -238,23 +252,39 @@ msgstr "Ferningur"
 
 #: widgets.py:31
 msgid "Choose brush properties"
-msgstr ""
+msgstr "Veldu eiginleika pensla"
 
-#: widgets.py:245
+#: widgets.py:234
 msgid "Size"
-msgstr ""
+msgstr "Stærð"
 
-#: widgets.py:259
+#: widgets.py:248
 msgid "Opacity"
-msgstr ""
+msgstr "Ógegnsæi"
 
 #: widgets.py:280
 msgid "Shape"
 msgstr "Form"
 
-#: widgets.py:317
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Eiginleikar pensils"
+
+#: widgets.py:310
 msgid "Stamp properties"
-msgstr ""
+msgstr "Eiginleikar stimpils"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Eiginleikar strokleðurs"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Eiginleikar fötufyllingar"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Eiginleikar litaplokkara"
 
 #~ msgid "Height"
 #~ msgstr "Hæð"

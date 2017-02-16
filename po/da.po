@@ -6,16 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-20 00:30-0500\n"
-"PO-Revision-Date: 2014-03-10 15:46+0200\n"
-"Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
+"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"PO-Revision-Date: 2016-10-13 08:28+0000\n"
+"Last-Translator: dark159123 <r.j.hansen@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1476347320.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Paint"
@@ -29,6 +30,14 @@ msgid ""
 msgstr ""
 "Picasso? Van Gogh? Du kan blive til én af dem! Sæt blot din indre kunstner "
 "fri. Omform billeder i din bevidsthed til smukke malerier."
+
+#: dialogs.py:101
+msgid "Done"
+msgstr "Færdig"
+
+#: dialogs.py:129
+msgid "Select stamp"
+msgstr "Vælg stempel"
 
 #: fontcombobox.py:90
 msgid "Select font"
@@ -94,7 +103,11 @@ msgstr "Udvælgelse"
 msgid "Stamp"
 msgstr "Stempel"
 
-#: toolbox.py:388 widgets.py:329
+#: toolbox.py:386
+msgid "Load stamp"
+msgstr "Indlæs stempel"
+
+#: toolbox.py:396 widgets.py:321
 msgid "Select Area"
 msgstr "Markér område"
 
@@ -186,7 +199,10 @@ msgstr "Gråskala"
 msgid "Rainbow"
 msgstr "Regnbue"
 
-#: toolbox.py:775
+#: toolbox.py:797
+msgid "Kalidoscope"
+msgstr "kalejdoskop"
+
 msgid "Invert Colors"
 msgstr "Invertér farver"
 
