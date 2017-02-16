@@ -1772,7 +1772,7 @@ class Area(Gtk.DrawingArea):
 
                 cursor = Gdk.Cursor.new_from_pixbuf(display, pixbuf,
                                                     hotspot_x, hotspot_y)
-        except GObject.GError, TypeError:
+        except (GObject.GError, TypeError):
             cursor = None
         if self.get_window() is not None:
             self.get_window().set_cursor(cursor)
