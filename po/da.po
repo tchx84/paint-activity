@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"POT-Creation-Date: 2017-02-17 08:34+1100\n"
 "PO-Revision-Date: 2016-10-13 08:28+0000\n"
 "Last-Translator: dark159123 <r.j.hansen@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,12 @@ msgstr ""
 "X-POOTLE-MTIME: 1476347320.000000\n"
 
 #. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Paint"
 msgstr "Mal"
 
 #. TRANS: "summary" option from activity.info file
+#: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
@@ -30,179 +32,179 @@ msgstr ""
 "Picasso? Van Gogh? Du kan blive til én af dem! Sæt blot din indre kunstner "
 "fri. Omform billeder i din bevidsthed til smukke malerier."
 
-#: dialogs.py:101
-msgid "Done"
-msgstr "Færdig"
-
-#: dialogs.py:129
-msgid "Select stamp"
-msgstr "Vælg stempel"
-
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Vælg skrifttype"
 
-#: toolbox.py:143
+#: toolbox.py:141
 msgid "Edit"
 msgstr "Redigér"
 
-#: toolbox.py:147
+#: toolbox.py:145
 msgid "Shapes properties"
 msgstr "Egenskaber for former"
 
-#: toolbox.py:163
+#: toolbox.py:161
 msgid "Shapes"
 msgstr "Former"
 
-#: toolbox.py:179
+#: toolbox.py:177
 msgid "Fonts"
 msgstr "Skrifttyper"
 
-#: toolbox.py:185
+#: toolbox.py:183
 msgid "Image"
 msgstr "Billede"
 
-#: toolbox.py:253
+#: toolbox.py:251
 msgid "Undo"
 msgstr "Fortryd"
 
-#: toolbox.py:254
+#: toolbox.py:252
 msgid "Redo"
 msgstr "Omgør"
 
-#: toolbox.py:255
+#: toolbox.py:253
 msgid "Copy"
 msgstr "Kopiér"
 
-#: toolbox.py:256
+#: toolbox.py:254
 msgid "Paste"
 msgstr "Indsæt"
 
-#: toolbox.py:264
+#: toolbox.py:262
 msgid "Clear"
 msgstr "Ryd"
 
-#: toolbox.py:363 toolbox.py:367
+#: toolbox.py:266 toolbox.py:327
+msgid "Enable sound"
+msgstr ""
+
+#: toolbox.py:325
+msgid "Disable sound"
+msgstr ""
+
+#: toolbox.py:377 toolbox.py:381
 msgid "Brush"
 msgstr "Pensel"
 
-#: toolbox.py:370
+#: toolbox.py:384
 msgid "Eraser"
 msgstr "Viskelæder"
 
-#: toolbox.py:373
+#: toolbox.py:387
 msgid "Bucket"
 msgstr "Spand"
 
-#: toolbox.py:376
+#: toolbox.py:390
 msgid "Picker"
 msgstr "Udvælgelse"
 
-#: toolbox.py:379
+#: toolbox.py:393
 msgid "Stamp"
 msgstr "Stempel"
 
-#: toolbox.py:386
+#: toolbox.py:400
 msgid "Load stamp"
 msgstr "Indlæs stempel"
 
-#: toolbox.py:396 widgets.py:321
+#: toolbox.py:410 widgets.py:321
 msgid "Select Area"
 msgstr "Markér område"
 
-#: toolbox.py:509
+#: toolbox.py:529
 msgid "Fill"
 msgstr "Fyld"
 
-#: toolbox.py:515 widgets.py:279
+#: toolbox.py:535 widgets.py:279
 msgid "Keep aspect"
 msgstr "Bevar aspekt"
 
-#: toolbox.py:532
+#: toolbox.py:552
 msgid "Sides: "
 msgstr "Sider: "
 
-#: toolbox.py:601
+#: toolbox.py:621
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: toolbox.py:604
+#: toolbox.py:624
 msgid "Rectangle"
 msgstr "Rektangel"
 
-#: toolbox.py:607
+#: toolbox.py:627
 msgid "Line"
 msgstr "Linje"
 
-#: toolbox.py:610
+#: toolbox.py:630
 msgid "Free form"
 msgstr "Fri form"
 
-#: toolbox.py:613
+#: toolbox.py:633
 msgid "Polygon"
 msgstr "Polygon"
 
-#: toolbox.py:616
+#: toolbox.py:636
 msgid "Heart"
 msgstr "Hjerte"
 
-#: toolbox.py:619
+#: toolbox.py:639
 msgid "Parallelogram"
 msgstr "Parallelogram"
 
-#: toolbox.py:622
+#: toolbox.py:642
 msgid "Arrow"
 msgstr "Pil"
 
-#: toolbox.py:625
+#: toolbox.py:645
 msgid "Star"
 msgstr "Stjerne"
 
-#: toolbox.py:628
+#: toolbox.py:648
 msgid "Trapezoid"
 msgstr "Trapez"
 
-#: toolbox.py:631
+#: toolbox.py:651
 msgid "Triangle"
 msgstr "Trekant"
 
-#: toolbox.py:665
+#: toolbox.py:685
 msgid "Type"
 msgstr "Type"
 
-#: toolbox.py:757
+#: toolbox.py:777
 msgid "Insert Image"
 msgstr "Indsæt billede"
 
-#: toolbox.py:768
+#: toolbox.py:789
 msgid "Rotate Left"
 msgstr "Rotér til venstre"
 
-#: toolbox.py:772
+#: toolbox.py:793
 msgid "Rotate Right"
 msgstr "Rotér til højre"
 
-#: toolbox.py:777
+#: toolbox.py:798
 msgid "Horizontal Mirror"
 msgstr "Spejlvend vandret"
 
-#: toolbox.py:782
+#: toolbox.py:803
 msgid "Vertical Mirror"
 msgstr "Spejlvend lodret"
 
-#: toolbox.py:790
+#: toolbox.py:811
 msgid "Grayscale"
 msgstr "Gråskala"
 
-#: toolbox.py:793
+#: toolbox.py:816
 msgid "Rainbow"
 msgstr "Regnbue"
 
-#: toolbox.py:797
-msgid "Kalidoscope"
-msgstr "kalejdoskop"
+#: toolbox.py:821
+msgid "Kaleidoscope"
+msgstr ""
 
-#: toolbox.py:802
+#: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Invertér farver"
 
@@ -257,6 +259,17 @@ msgstr "Egenskaber for spand"
 #: widgets.py:319
 msgid "Picker properties"
 msgstr "Egenskaber for valgfunktion"
+
+#: dialogs.py:100
+msgid "Done"
+msgstr "Færdig"
+
+#: dialogs.py:128
+msgid "Select stamp"
+msgstr "Vælg stempel"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "kalejdoskop"
 
 #~ msgid "Height"
 #~ msgstr "Højde"

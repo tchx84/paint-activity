@@ -43,7 +43,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"POT-Creation-Date: 2017-02-17 08:34+1100\n"
 "PO-Revision-Date: 2016-10-18 07:33+0000\n"
 "Last-Translator: krhome <padodanle51@gmail.com>\n"
 "Language-Team: Language locale/fr/LC\n"
@@ -56,10 +56,12 @@ msgstr ""
 "X-POOTLE-MTIME: 1476776023.000000\n"
 
 #. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Paint"
 msgstr "Dessiner"
 
 #. TRANS: "summary" option from activity.info file
+#: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
@@ -68,179 +70,179 @@ msgstr ""
 "l'artiste qui dort en toi. Transforme les images que tu as dans ta tête en "
 "de belles peintures."
 
-#: dialogs.py:101
-msgid "Done"
-msgstr "Terminé"
-
-#: dialogs.py:129
-msgid "Select stamp"
-msgstr "Sélectionner un tampon"
-
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Sélectionner la police"
 
-#: toolbox.py:143
+#: toolbox.py:141
 msgid "Edit"
 msgstr "Éditer"
 
-#: toolbox.py:147
+#: toolbox.py:145
 msgid "Shapes properties"
 msgstr "Propriétés de la forme"
 
-#: toolbox.py:163
+#: toolbox.py:161
 msgid "Shapes"
 msgstr "Formes"
 
-#: toolbox.py:179
+#: toolbox.py:177
 msgid "Fonts"
 msgstr "Polices"
 
-#: toolbox.py:185
+#: toolbox.py:183
 msgid "Image"
 msgstr "Image"
 
-#: toolbox.py:253
+#: toolbox.py:251
 msgid "Undo"
 msgstr "Défaire"
 
-#: toolbox.py:254
+#: toolbox.py:252
 msgid "Redo"
 msgstr "Refaire"
 
-#: toolbox.py:255
+#: toolbox.py:253
 msgid "Copy"
 msgstr "Copier"
 
-#: toolbox.py:256
+#: toolbox.py:254
 msgid "Paste"
 msgstr "Coller"
 
-#: toolbox.py:264
+#: toolbox.py:262
 msgid "Clear"
 msgstr "Effacer"
 
-#: toolbox.py:363 toolbox.py:367
+#: toolbox.py:266 toolbox.py:327
+msgid "Enable sound"
+msgstr ""
+
+#: toolbox.py:325
+msgid "Disable sound"
+msgstr ""
+
+#: toolbox.py:377 toolbox.py:381
 msgid "Brush"
 msgstr "Pinceau"
 
-#: toolbox.py:370
+#: toolbox.py:384
 msgid "Eraser"
 msgstr "Gomme"
 
-#: toolbox.py:373
+#: toolbox.py:387
 msgid "Bucket"
 msgstr "Seau"
 
-#: toolbox.py:376
+#: toolbox.py:390
 msgid "Picker"
 msgstr "sélecteur"
 
-#: toolbox.py:379
+#: toolbox.py:393
 msgid "Stamp"
 msgstr "Tampon"
 
-#: toolbox.py:386
+#: toolbox.py:400
 msgid "Load stamp"
 msgstr "Charger un tampon"
 
-#: toolbox.py:396 widgets.py:321
+#: toolbox.py:410 widgets.py:321
 msgid "Select Area"
 msgstr "Sélectionner une zone"
 
-#: toolbox.py:509
+#: toolbox.py:529
 msgid "Fill"
 msgstr "Remplissage"
 
-#: toolbox.py:515 widgets.py:279
+#: toolbox.py:535 widgets.py:279
 msgid "Keep aspect"
 msgstr "Conserver l'aspect"
 
-#: toolbox.py:532
+#: toolbox.py:552
 msgid "Sides: "
 msgstr "Côtés : "
 
-#: toolbox.py:601
+#: toolbox.py:621
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: toolbox.py:604
+#: toolbox.py:624
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: toolbox.py:607
+#: toolbox.py:627
 msgid "Line"
 msgstr "Ligne"
 
-#: toolbox.py:610
+#: toolbox.py:630
 msgid "Free form"
 msgstr "Forme libre"
 
-#: toolbox.py:613
+#: toolbox.py:633
 msgid "Polygon"
 msgstr "Polygone"
 
-#: toolbox.py:616
+#: toolbox.py:636
 msgid "Heart"
 msgstr "Coeur"
 
-#: toolbox.py:619
+#: toolbox.py:639
 msgid "Parallelogram"
 msgstr "Parallélogramme"
 
-#: toolbox.py:622
+#: toolbox.py:642
 msgid "Arrow"
 msgstr "Flèche"
 
-#: toolbox.py:625
+#: toolbox.py:645
 msgid "Star"
 msgstr "Étoile"
 
-#: toolbox.py:628
+#: toolbox.py:648
 msgid "Trapezoid"
 msgstr "Trapèze"
 
-#: toolbox.py:631
+#: toolbox.py:651
 msgid "Triangle"
 msgstr "Triangle"
 
-#: toolbox.py:665
+#: toolbox.py:685
 msgid "Type"
 msgstr "Écrire"
 
-#: toolbox.py:757
+#: toolbox.py:777
 msgid "Insert Image"
 msgstr "Insérer une image"
 
-#: toolbox.py:768
+#: toolbox.py:789
 msgid "Rotate Left"
 msgstr "Tourner à gauche"
 
-#: toolbox.py:772
+#: toolbox.py:793
 msgid "Rotate Right"
 msgstr "Tourner à droite"
 
-#: toolbox.py:777
+#: toolbox.py:798
 msgid "Horizontal Mirror"
 msgstr "Miroir horizontal"
 
-#: toolbox.py:782
+#: toolbox.py:803
 msgid "Vertical Mirror"
 msgstr "Miroir vertical"
 
-#: toolbox.py:790
+#: toolbox.py:811
 msgid "Grayscale"
 msgstr "Niveau de gris"
 
-#: toolbox.py:793
+#: toolbox.py:816
 msgid "Rainbow"
 msgstr "Arc-en-ciel"
 
-#: toolbox.py:797
-msgid "Kalidoscope"
-msgstr "kaléidoscope"
+#: toolbox.py:821
+msgid "Kaleidoscope"
+msgstr ""
 
-#: toolbox.py:802
+#: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Inverser les couleurs"
 
@@ -295,6 +297,17 @@ msgstr "Propriétés du seau"
 #: widgets.py:319
 msgid "Picker properties"
 msgstr "Propriétés du sélecteur"
+
+#: dialogs.py:100
+msgid "Done"
+msgstr "Terminé"
+
+#: dialogs.py:128
+msgid "Select stamp"
+msgstr "Sélectionner un tampon"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "kaléidoscope"
 
 #~ msgid "Height"
 #~ msgstr "Hauteur"

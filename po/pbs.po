@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-20 00:30-0500\n"
+"POT-Creation-Date: 2017-02-17 08:34+1100\n"
 "PO-Revision-Date: 2014-01-17 23:15+0200\n"
 "Last-Translator: xavier <proyecto.olpc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,12 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Paint"
 msgstr "maka't"
 
 #. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
@@ -34,159 +35,175 @@ msgstr ""
 msgid "Select font"
 msgstr "kiji't manajá"
 
-#: toolbox.py:139
+#: toolbox.py:141
 msgid "Edit"
 msgstr "Malejeiñ"
 
-#: toolbox.py:143
+#: toolbox.py:145
 msgid "Shapes properties"
 msgstr "Kad-er lumei ravú se vakja"
 
-#: toolbox.py:159
+#: toolbox.py:161
 msgid "Shapes"
 msgstr "Peuk vakja"
 
-#: toolbox.py:175
+#: toolbox.py:177
 msgid "Fonts"
 msgstr "Peuk vakja ndu'et kily'e"
 
-#: toolbox.py:181
+#: toolbox.py:183
 msgid "Image"
 msgstr "Xik'iji'"
 
-#: toolbox.py:249
+#: toolbox.py:251
 msgid "Undo"
 msgstr "Majuát"
 
-#: toolbox.py:250
+#: toolbox.py:252
 msgid "Redo"
 msgstr "Kue'e matsjau"
 
-#: toolbox.py:251
+#: toolbox.py:253
 msgid "Copy"
 msgstr "Make'eik"
 
-#: toolbox.py:252
+#: toolbox.py:254
 msgid "Paste"
 msgstr "Makua'al"
 
-#: toolbox.py:260
+#: toolbox.py:262
 msgid "Clear"
 msgstr "Matseiñ'"
 
-#: toolbox.py:359 toolbox.py:363
+#: toolbox.py:266 toolbox.py:327
+msgid "Enable sound"
+msgstr ""
+
+#: toolbox.py:325
+msgid "Disable sound"
+msgstr ""
+
+#: toolbox.py:377 toolbox.py:381
 msgid "Brush"
 msgstr "Ngul'ueixily'iung ndaka't"
 
-#: toolbox.py:366
+#: toolbox.py:384
 msgid "Eraser"
 msgstr "Ndavun"
 
-#: toolbox.py:369
+#: toolbox.py:387
 msgid "Bucket"
 msgstr "Ndangueje'l"
 
-#: toolbox.py:372
+#: toolbox.py:390
 msgid "Picker"
 msgstr "Kasei'k"
 
-#: toolbox.py:375
+#: toolbox.py:393
 msgid "Stamp"
 msgstr "Ndapúmanajap"
 
-#: toolbox.py:388 widgets.py:329
+#: toolbox.py:400
+msgid "Load stamp"
+msgstr ""
+
+#: toolbox.py:410 widgets.py:321
 msgid "Select Area"
 msgstr "Ravú se masa'aun"
 
-#: toolbox.py:485
+#: toolbox.py:529
 msgid "Fill"
 msgstr "Maneé"
 
-#: toolbox.py:491 widgets.py:286
+#: toolbox.py:535 widgets.py:279
 msgid "Keep aspect"
 msgstr "Majaiñ skad-a vakja"
 
-#: toolbox.py:508
+#: toolbox.py:552
 msgid "Sides: "
 msgstr "Rangaú: "
 
-#: toolbox.py:580
+#: toolbox.py:621
 msgid "Ellipse"
 msgstr "Ndavungkunju'"
 
-#: toolbox.py:583
+#: toolbox.py:624
 msgid "Rectangle"
 msgstr "Kiñuimuu maba'aú"
 
-#: toolbox.py:586
+#: toolbox.py:627
 msgid "Line"
 msgstr "Niñ'eje'"
 
-#: toolbox.py:589
+#: toolbox.py:630
 msgid "Free form"
 msgstr "Peuk vakja majaiñ"
 
-#: toolbox.py:592
+#: toolbox.py:633
 msgid "Polygon"
 msgstr "mata'aung nda chi nangaú lijiañ ranju'muu"
 
-#: toolbox.py:595
+#: toolbox.py:636
 msgid "Heart"
 msgstr "Na'uá"
 
-#: toolbox.py:598
+#: toolbox.py:639
 msgid "Parallelogram"
 msgstr "Kiñuimuu skad-a vakja"
 
-#: toolbox.py:601
+#: toolbox.py:642
 msgid "Arrow"
 msgstr "Ngulja'"
 
-#: toolbox.py:604
+#: toolbox.py:645
 msgid "Star"
 msgstr "Kang'u'"
 
-#: toolbox.py:607
+#: toolbox.py:648
 msgid "Trapezoid"
 msgstr "Kiñuimuu se nip skad-a mvakja"
 
-#: toolbox.py:610
+#: toolbox.py:651
 msgid "Triangle"
 msgstr "Ranju'muu"
 
-#: toolbox.py:643
+#: toolbox.py:685
 msgid "Type"
 msgstr "Mateét kily'e"
 
-#: toolbox.py:734
+#: toolbox.py:777
 msgid "Insert Image"
 msgstr "Mamejep xik'iji'"
 
-#: toolbox.py:745
+#: toolbox.py:789
 msgid "Rotate Left"
 msgstr "Mata't ma meje'ep"
 
-#: toolbox.py:749
+#: toolbox.py:793
 msgid "Rotate Right"
 msgstr "Mata't ma majaap"
 
-#: toolbox.py:754
+#: toolbox.py:798
 msgid "Horizontal Mirror"
 msgstr "Nak'ujuly se lupup mameje'p luljung mamajap"
 
-#: toolbox.py:759
+#: toolbox.py:803
 msgid "Vertical Mirror"
 msgstr "Nak'ujuly se lupup mamajap luljung mameje'p"
 
-#: toolbox.py:767
+#: toolbox.py:811
 msgid "Grayscale"
 msgstr "Tajaich' se tsunduép"
 
-#: toolbox.py:770
+#: toolbox.py:816
 msgid "Rainbow"
 msgstr "Chijiñ"
 
-#: toolbox.py:775
+#: toolbox.py:821
+msgid "Kaleidoscope"
+msgstr ""
+
+#: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Masal' xikjia'"
 
@@ -210,37 +227,45 @@ msgstr "Kiñuimuu se skad-a me'e masau'"
 msgid "Choose brush properties"
 msgstr "Kiji't re se vupái ne chich'i xily'iung ndaka't"
 
-#: widgets.py:241
+#: widgets.py:234
 msgid "Size"
 msgstr "Makéje'"
 
-#: widgets.py:255
+#: widgets.py:248
 msgid "Opacity"
 msgstr "nip majau lichja'aun"
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "Peuk vakja"
 
-#: widgets.py:312
+#: widgets.py:304
 msgid "Brush properties"
 msgstr "Kad-er lumei ne ndaka't"
 
-#: widgets.py:318
+#: widgets.py:310
 msgid "Stamp properties"
 msgstr "Vupaí re ndapu manajap"
 
-#: widgets.py:322
+#: widgets.py:314
 msgid "Eraser properties"
 msgstr "Kad-er lumei ne ndavun"
 
-#: widgets.py:325
+#: widgets.py:317
 msgid "Bucket properties"
 msgstr "vupai ne balde"
 
-#: widgets.py:327
+#: widgets.py:319
 msgid "Picker properties"
 msgstr "Kad-er lumei ne ndake'eik"
+
+#: dialogs.py:100
+msgid "Done"
+msgstr ""
+
+#: dialogs.py:128
+msgid "Select stamp"
+msgstr ""
 
 #~ msgid "Height"
 #~ msgstr "Majaáx"

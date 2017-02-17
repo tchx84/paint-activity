@@ -34,7 +34,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"POT-Creation-Date: 2017-02-17 08:34+1100\n"
 "PO-Revision-Date: 2016-08-03 17:48+0000\n"
 "Last-Translator: jana <jpastyrova@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,10 +47,12 @@ msgstr ""
 "X-POOTLE-MTIME: 1470246486.000000\n"
 
 #. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Paint"
 msgstr "Maľovanie"
 
 #. TRANS: "summary" option from activity.info file
+#: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
@@ -58,187 +60,186 @@ msgstr ""
 "Picasso? Van Gogh? Aj Vy môžete byť jedným z nich. Vypustite umelca čo vo "
 "Vás drieme. Premeňte obrázky vo vašej hlave na nádherné obrazy.  "
 
-#: dialogs.py:101
-msgid "Done"
-msgstr "Hotovo"
-
-# vyberte razítko
-#: dialogs.py:129
-msgid "Select stamp"
-msgstr "Vyberte pečiatku"
-
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Vyberte písmo"
 
-#: toolbox.py:143
+#: toolbox.py:141
 msgid "Edit"
 msgstr "Editovať"
 
-#: toolbox.py:147
+#: toolbox.py:145
 msgid "Shapes properties"
 msgstr "Vlastnosti tvaru"
 
-#: toolbox.py:163
+#: toolbox.py:161
 msgid "Shapes"
 msgstr "Tvary"
 
-#: toolbox.py:179
+#: toolbox.py:177
 msgid "Fonts"
 msgstr "Typy písma"
 
-#: toolbox.py:185
+#: toolbox.py:183
 msgid "Image"
 msgstr "Obrázok"
 
-#: toolbox.py:253
+#: toolbox.py:251
 msgid "Undo"
 msgstr "Späť"
 
-#: toolbox.py:254
+#: toolbox.py:252
 msgid "Redo"
 msgstr "Zopakovať"
 
-#: toolbox.py:255
+#: toolbox.py:253
 msgid "Copy"
 msgstr "Kopírovať"
 
-#: toolbox.py:256
+#: toolbox.py:254
 msgid "Paste"
 msgstr "Vložit"
 
-#: toolbox.py:264
+#: toolbox.py:262
 msgid "Clear"
 msgstr "Vyčistiť"
 
-#: toolbox.py:363 toolbox.py:367
+#: toolbox.py:266 toolbox.py:327
+msgid "Enable sound"
+msgstr ""
+
+#: toolbox.py:325
+msgid "Disable sound"
+msgstr ""
+
+#: toolbox.py:377 toolbox.py:381
 msgid "Brush"
 msgstr "Štetec"
 
-#: toolbox.py:370
+#: toolbox.py:384
 msgid "Eraser"
 msgstr "Guma"
 
 # vedro
-#: toolbox.py:373
+#: toolbox.py:387
 msgid "Bucket"
 msgstr "vedierko"
 
-#: toolbox.py:376
+#: toolbox.py:390
 msgid "Picker"
 msgstr "špic"
 
 # pečiatka
-#: toolbox.py:379
+#: toolbox.py:393
 msgid "Stamp"
 msgstr "Známka"
 
 # načítať razítko
-#: toolbox.py:386
+#: toolbox.py:400
 msgid "Load stamp"
 msgstr "Načítať pečiatku"
 
-#: toolbox.py:396 widgets.py:321
+#: toolbox.py:410 widgets.py:321
 msgid "Select Area"
 msgstr "Vyberte oblasť"
 
 # Vyplnte
-#: toolbox.py:509
+#: toolbox.py:529
 msgid "Fill"
 msgstr "Vyplniť"
 
-#: toolbox.py:515 widgets.py:279
+#: toolbox.py:535 widgets.py:279
 msgid "Keep aspect"
 msgstr "Zachovajte pomer strán"
 
-#: toolbox.py:532
+#: toolbox.py:552
 msgid "Sides: "
 msgstr ""
 
-#: toolbox.py:601
+#: toolbox.py:621
 msgid "Ellipse"
 msgstr ""
 
-#: toolbox.py:604
+#: toolbox.py:624
 msgid "Rectangle"
 msgstr ""
 
-#: toolbox.py:607
+#: toolbox.py:627
 msgid "Line"
 msgstr ""
 
-#: toolbox.py:610
+#: toolbox.py:630
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:613
+#: toolbox.py:633
 msgid "Polygon"
 msgstr ""
 
-#: toolbox.py:616
+#: toolbox.py:636
 msgid "Heart"
 msgstr ""
 
-#: toolbox.py:619
+#: toolbox.py:639
 msgid "Parallelogram"
 msgstr ""
 
-#: toolbox.py:622
+#: toolbox.py:642
 msgid "Arrow"
 msgstr ""
 
-#: toolbox.py:625
+#: toolbox.py:645
 msgid "Star"
 msgstr ""
 
 # Rôznobežník
-#: toolbox.py:628
+#: toolbox.py:648
 msgid "Trapezoid"
 msgstr "Lichobežník"
 
-#: toolbox.py:631
+#: toolbox.py:651
 msgid "Triangle"
 msgstr "Trojuholník"
 
-#: toolbox.py:665
+#: toolbox.py:685
 msgid "Type"
 msgstr "Typ"
 
-#: toolbox.py:757
+#: toolbox.py:777
 msgid "Insert Image"
 msgstr "Vložte obrázok"
 
-#: toolbox.py:768
+#: toolbox.py:789
 msgid "Rotate Left"
 msgstr "Otočte doľava"
 
-#: toolbox.py:772
+#: toolbox.py:793
 msgid "Rotate Right"
 msgstr "Otočte doprava"
 
 # vodorovné zrkadlo
-#: toolbox.py:777
+#: toolbox.py:798
 msgid "Horizontal Mirror"
 msgstr "horizontálne zrkadlo"
 
 # Zvislé zrkadlo
-#: toolbox.py:782
+#: toolbox.py:803
 msgid "Vertical Mirror"
 msgstr "vertikálne zrkadlo"
 
-#: toolbox.py:790
+#: toolbox.py:811
 msgid "Grayscale"
 msgstr "odtiene sivej"
 
-#: toolbox.py:793
+#: toolbox.py:816
 msgid "Rainbow"
 msgstr "Dúha"
 
-#: toolbox.py:797
-msgid "Kalidoscope"
-msgstr "kaleidoskop"
+#: toolbox.py:821
+msgid "Kaleidoscope"
+msgstr ""
 
-#: toolbox.py:802
+#: toolbox.py:825
 msgid "Invert Colors"
 msgstr ""
 
@@ -295,6 +296,18 @@ msgstr "Vlastnosti vedierka"
 #: widgets.py:319
 msgid "Picker properties"
 msgstr "Vlastnosti špica"
+
+#: dialogs.py:100
+msgid "Done"
+msgstr "Hotovo"
+
+# vyberte razítko
+#: dialogs.py:128
+msgid "Select stamp"
+msgstr "Vyberte pečiatku"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "kaleidoskop"
 
 #~ msgid "Height"
 #~ msgstr "Výška"

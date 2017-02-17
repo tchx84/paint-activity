@@ -42,7 +42,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-09 20:03+0000\n"
+"POT-Creation-Date: 2017-02-17 08:34+1100\n"
 "PO-Revision-Date: 2016-11-28 15:45+0000\n"
 "Last-Translator: Besnik_b <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,10 +55,12 @@ msgstr ""
 "X-POOTLE-MTIME: 1480347928.000000\n"
 
 #. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Paint"
 msgstr "Vizatim"
 
 #. TRANS: "summary" option from activity.info file
+#: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
@@ -67,179 +69,179 @@ msgstr ""
 "artistin brenda jush. Shndërrojini figurat e mendjes tuaj në piktura të "
 "hijshme."
 
-#: dialogs.py:101
-msgid "Done"
-msgstr "U bë"
-
-#: dialogs.py:129
-msgid "Select stamp"
-msgstr ""
-
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Përzgjidhni shkronja"
 
-#: toolbox.py:143
+#: toolbox.py:141
 msgid "Edit"
 msgstr "Përpunoni"
 
-#: toolbox.py:147
+#: toolbox.py:145
 msgid "Shapes properties"
 msgstr "Veti formash"
 
-#: toolbox.py:163
+#: toolbox.py:161
 msgid "Shapes"
 msgstr "Forma"
 
-#: toolbox.py:179
+#: toolbox.py:177
 msgid "Fonts"
 msgstr "Shkronja"
 
-#: toolbox.py:185
+#: toolbox.py:183
 msgid "Image"
 msgstr "Figurë"
 
-#: toolbox.py:253
+#: toolbox.py:251
 msgid "Undo"
 msgstr "Zhbëje"
 
-#: toolbox.py:254
+#: toolbox.py:252
 msgid "Redo"
 msgstr "Ribëje"
 
-#: toolbox.py:255
+#: toolbox.py:253
 msgid "Copy"
 msgstr "Kopjoje"
 
-#: toolbox.py:256
+#: toolbox.py:254
 msgid "Paste"
 msgstr "Ngjite"
 
-#: toolbox.py:264
+#: toolbox.py:262
 msgid "Clear"
 msgstr "Pastro"
 
-#: toolbox.py:363 toolbox.py:367
+#: toolbox.py:266 toolbox.py:327
+msgid "Enable sound"
+msgstr ""
+
+#: toolbox.py:325
+msgid "Disable sound"
+msgstr ""
+
+#: toolbox.py:377 toolbox.py:381
 msgid "Brush"
 msgstr "Penel"
 
-#: toolbox.py:370
+#: toolbox.py:384
 msgid "Eraser"
 msgstr "Fshirëse"
 
-#: toolbox.py:373
+#: toolbox.py:387
 msgid "Bucket"
 msgstr "Kovë"
 
-#: toolbox.py:376
+#: toolbox.py:390
 msgid "Picker"
 msgstr "Zgjedhës"
 
-#: toolbox.py:379
+#: toolbox.py:393
 msgid "Stamp"
 msgstr ""
 
-#: toolbox.py:386
+#: toolbox.py:400
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:396 widgets.py:321
+#: toolbox.py:410 widgets.py:321
 msgid "Select Area"
 msgstr "Përzgjidhni Zonë"
 
-#: toolbox.py:509
+#: toolbox.py:529
 msgid "Fill"
 msgstr "Mbushje"
 
-#: toolbox.py:515 widgets.py:279
+#: toolbox.py:535 widgets.py:279
 msgid "Keep aspect"
 msgstr "Ruaji përpjestimet"
 
-#: toolbox.py:532
+#: toolbox.py:552
 msgid "Sides: "
 msgstr "Anë:"
 
-#: toolbox.py:601
+#: toolbox.py:621
 msgid "Ellipse"
 msgstr "Elips"
 
-#: toolbox.py:604
+#: toolbox.py:624
 msgid "Rectangle"
 msgstr "Drejtkëndësh"
 
-#: toolbox.py:607
+#: toolbox.py:627
 msgid "Line"
 msgstr "Vijë"
 
-#: toolbox.py:610
+#: toolbox.py:630
 msgid "Free form"
 msgstr "Me dorë të lirë"
 
-#: toolbox.py:613
+#: toolbox.py:633
 msgid "Polygon"
 msgstr "Shumëkëndësh"
 
-#: toolbox.py:616
+#: toolbox.py:636
 msgid "Heart"
 msgstr "Zemër"
 
-#: toolbox.py:619
+#: toolbox.py:639
 msgid "Parallelogram"
 msgstr "Paralelogram"
 
-#: toolbox.py:622
+#: toolbox.py:642
 msgid "Arrow"
 msgstr "Shigjetë"
 
-#: toolbox.py:625
+#: toolbox.py:645
 msgid "Star"
 msgstr "Yll"
 
-#: toolbox.py:628
+#: toolbox.py:648
 msgid "Trapezoid"
 msgstr "Trapezoid"
 
-#: toolbox.py:631
+#: toolbox.py:651
 msgid "Triangle"
 msgstr "Trekëndësh"
 
-#: toolbox.py:665
+#: toolbox.py:685
 msgid "Type"
 msgstr "Lloj"
 
-#: toolbox.py:757
+#: toolbox.py:777
 msgid "Insert Image"
 msgstr "Futni Figurë"
 
-#: toolbox.py:768
+#: toolbox.py:789
 msgid "Rotate Left"
 msgstr "Rrotulloje Majtas"
 
-#: toolbox.py:772
+#: toolbox.py:793
 msgid "Rotate Right"
 msgstr "Rrotulloje Djathtas"
 
-#: toolbox.py:777
+#: toolbox.py:798
 msgid "Horizontal Mirror"
 msgstr "Pasqyrë Horizontale"
 
-#: toolbox.py:782
+#: toolbox.py:803
 msgid "Vertical Mirror"
 msgstr "Pasqyrë Vertikale"
 
-#: toolbox.py:790
+#: toolbox.py:811
 msgid "Grayscale"
 msgstr "Shkallë të Grisë"
 
-#: toolbox.py:793
+#: toolbox.py:816
 msgid "Rainbow"
 msgstr "Ylber"
 
-#: toolbox.py:797
-msgid "Kalidoscope"
-msgstr "Kaleidoskop"
+#: toolbox.py:821
+msgid "Kaleidoscope"
+msgstr ""
 
-#: toolbox.py:802
+#: toolbox.py:825
 msgid "Invert Colors"
 msgstr ""
 
@@ -294,6 +296,17 @@ msgstr ""
 #: widgets.py:319
 msgid "Picker properties"
 msgstr "Veti zgjedhësi"
+
+#: dialogs.py:100
+msgid "Done"
+msgstr "U bë"
+
+#: dialogs.py:128
+msgid "Select stamp"
+msgstr ""
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kaleidoskop"
 
 #~ msgid "Height"
 #~ msgstr "Lartësia"
