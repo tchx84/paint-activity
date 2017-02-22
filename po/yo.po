@@ -2,45 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-09-15 14:18+0000\n"
-"Last-Translator: Samson <samsongoddy@sugarlabs.org>\n"
+"PO-Revision-Date: 2017-02-17 18:04+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: yo\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1473949089.000000\n"
+"X-POOTLE-MTIME: 1487354642.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -110,11 +78,11 @@ msgstr "ko"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Jeki ohun"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Yọ ohun"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -198,31 +166,31 @@ msgstr "Trapezoid"
 
 #: toolbox.py:651
 msgid "Triangle"
-msgstr "onigun-mẹta"
+msgstr "Onigun-mẹta"
 
 #: toolbox.py:685
 msgid "Type"
-msgstr "iru"
+msgstr "Iru"
 
 #: toolbox.py:777
 msgid "Insert Image"
-msgstr "fi aworan"
+msgstr "Fi aworan"
 
 #: toolbox.py:789
 msgid "Rotate Left"
-msgstr "n yi osi"
+msgstr "N yi osi"
 
 #: toolbox.py:793
 msgid "Rotate Right"
-msgstr "n yi ọtun"
+msgstr "N yi ọtun"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr "petele digi"
+msgstr "Petele digi"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr "inaro digi"
+msgstr "Inaro digi"
 
 #: toolbox.py:811
 msgid "Grayscale"
@@ -230,11 +198,11 @@ msgstr "ìdúdúsí"
 
 #: toolbox.py:816
 msgid "Rainbow"
-msgstr "oṣumare"
+msgstr "Oṣumare"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "ọpọlọpọ awọn awọ"
 
 #: toolbox.py:825
 msgid "Invert Colors"

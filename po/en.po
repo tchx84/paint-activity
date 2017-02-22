@@ -2,48 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2017-02-17 02:33+0000\n"
+"PO-Revision-Date: 2017-02-17 02:34+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -52,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487298795.000000\n"
+"X-POOTLE-MTIME: 1487298865.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -118,7 +82,7 @@ msgstr "Enable sound"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Disable sound"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -142,7 +106,7 @@ msgstr "Stamp"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
+msgstr "Load stamp"
 
 #: toolbox.py:410 widgets.py:321
 msgid "Select Area"
@@ -238,7 +202,7 @@ msgstr "Rainbow"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoscope"
 
 #: toolbox.py:825
 msgid "Invert Colors"
@@ -298,11 +262,11 @@ msgstr "Picker properties"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Select stamp"
 
 #~ msgid "Height"
 #~ msgstr "Height"

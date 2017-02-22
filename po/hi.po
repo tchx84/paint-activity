@@ -2,30 +2,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # translation of oficina.po to Hindi
 # G Karunakar <karunakar@indlinux.org>, 2007.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -35,7 +11,7 @@ msgstr ""
 "Project-Id-Version: oficina\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-05-21 22:43+0000\n"
+"PO-Revision-Date: 2017-02-17 17:59+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
@@ -44,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1463870597.000000\n"
+"X-POOTLE-MTIME: 1487354366.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -106,11 +82,11 @@ msgstr "साफ करें"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "ध्वनि सक्षम करें"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "ध्वनि अक्षम करें"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -230,7 +206,7 @@ msgstr "इंद्रधनुष"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "बहुरूपदर्शक"
 
 #: toolbox.py:825
 msgid "Invert Colors"

@@ -2,48 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2013-11-20 06:39+0200\n"
-"Last-Translator: Ganesh <ganesh.ghimire@olenepal.org>\n"
+"PO-Revision-Date: 2017-02-17 17:49+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1487353756.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -56,12 +29,13 @@ msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
-"पिकासो? व्यान गो? तिमी यी मध्ये कोही पनि बन्न सक्छौ! तिमी भित्रको कलाकारलाई "
-"नरोक। तिम्रो दिमागमा भएका चित्रहरूलाई राम्रा राम्रा चित्रकलामा परिवर्तन गर।"
+"तिमी पिकासो र भ्यान गो जस्ता कलाकार जो पनि बन्न सक्छौ! तिमी भित्रको कलाकारला"
+"ई फस्टाउन देउ। अनि तिम्रा मन भित्रका चित्रहरूलाई राम्रा चित्रकलाहरूमा परिवर्"
+"तन गर।"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr "फण्ट चयन गर"
+msgstr "फन्ट छान"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -69,15 +43,15 @@ msgstr "सम्पादन"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr "आकारका गुणहरु"
+msgstr "आकारका गुणहरू"
 
 #: toolbox.py:161
 msgid "Shapes"
-msgstr "आकारहरु"
+msgstr "आकारहरू"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr "फन्टहरु"
+msgstr "फन्टहरू"
 
 #: toolbox.py:183
 msgid "Image"
@@ -93,7 +67,7 @@ msgstr "पुन: सच्याउ"
 
 #: toolbox.py:253
 msgid "Copy"
-msgstr "प्रतिलिपी बनाऊ"
+msgstr "प्रतिलिपी बनाउ"
 
 #: toolbox.py:254
 msgid "Paste"
@@ -101,15 +75,15 @@ msgstr "प्रतिलिपी सार"
 
 #: toolbox.py:262
 msgid "Clear"
-msgstr "सफा गर"
+msgstr "मेट"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "ध्वनि राख"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "ध्वनि बन्द गर"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -133,11 +107,11 @@ msgstr "छाप"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
+msgstr "छाप लोड गर"
 
 #: toolbox.py:410 widgets.py:321
 msgid "Select Area"
-msgstr "क्षेत्र चयन गर्नुहोस्"
+msgstr "क्षेत्र छान"
 
 #: toolbox.py:529
 msgid "Fill"
@@ -149,7 +123,7 @@ msgstr "आकार राख्नुहोस"
 
 #: toolbox.py:552
 msgid "Sides: "
-msgstr "सतहरु:॒ "
+msgstr "किनाराहरू: "
 
 #: toolbox.py:621
 msgid "Ellipse"
@@ -229,7 +203,7 @@ msgstr "इन्द्रेणी"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "कलाइडस्कोप"
 
 #: toolbox.py:825
 msgid "Invert Colors"
@@ -277,23 +251,23 @@ msgstr "छापका गुणहरु"
 
 #: widgets.py:314
 msgid "Eraser properties"
-msgstr ""
+msgstr "मेट्ने गुणहरू"
 
 #: widgets.py:317
 msgid "Bucket properties"
-msgstr ""
+msgstr "बाल्टिन गुणहरू"
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr ""
+msgstr "छान्ने गुणहरू"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "सकियो"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "छाप छान"
 
 #~ msgid "Height"
 #~ msgstr "उचाई"

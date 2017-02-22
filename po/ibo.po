@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-03-03 04:47+0000\n"
+"PO-Revision-Date: 2017-02-18 00:50+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ibo\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1456980439.000000\n"
+"X-POOTLE-MTIME: 1487379019.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
-msgstr "agba"
+msgstr "Agba"
 
 #. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
@@ -42,7 +42,7 @@ msgstr "Edit"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr "akpụzi Njirimara"
+msgstr "Akpụzi Njirimara"
 
 #: toolbox.py:161
 msgid "Shapes"
@@ -201,8 +201,9 @@ msgid "Rainbow"
 msgstr "Egwurugwu"
 
 #: toolbox.py:821
+#, fuzzy
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kalidoscope"
 
 #: toolbox.py:825
 msgid "Invert Colors"

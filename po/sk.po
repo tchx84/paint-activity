@@ -2,41 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-08-03 17:48+0000\n"
-"Last-Translator: jana <jpastyrova@gmail.com>\n"
+"PO-Revision-Date: 2017-02-18 00:37+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1470246486.000000\n"
+"X-POOTLE-MTIME: 1487378230.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -58,7 +30,7 @@ msgid ""
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 "Picasso? Van Gogh? Aj Vy môžete byť jedným z nich. Vypustite umelca čo vo "
-"Vás drieme. Premeňte obrázky vo vašej hlave na nádherné obrazy.  "
+"Vás drieme. Premeňte obrázky vo vašej hlave na nádherné obrazy."
 
 #: fontcombobox.py:90
 msgid "Select font"
@@ -123,11 +95,11 @@ msgstr "Guma"
 # vedro
 #: toolbox.py:387
 msgid "Bucket"
-msgstr "vedierko"
+msgstr "Vedierko"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr "špic"
+msgstr "Špic"
 
 # pečiatka
 #: toolbox.py:393
@@ -220,16 +192,16 @@ msgstr "Otočte doprava"
 # vodorovné zrkadlo
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr "horizontálne zrkadlo"
+msgstr "Horizontálne zrkadlo"
 
 # Zvislé zrkadlo
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr "vertikálne zrkadlo"
+msgstr "Vertikálne zrkadlo"
 
 #: toolbox.py:811
 msgid "Grayscale"
-msgstr "odtiene sivej"
+msgstr "Odtiene sivej"
 
 #: toolbox.py:816
 msgid "Rainbow"
@@ -237,7 +209,7 @@ msgstr "Dúha"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoskop"
 
 #: toolbox.py:825
 msgid "Invert Colors"
@@ -272,8 +244,9 @@ msgid "Opacity"
 msgstr ""
 
 #: widgets.py:273
+#, fuzzy
 msgid "Shape"
-msgstr ""
+msgstr "Tvary"
 
 #: widgets.py:304
 msgid "Brush properties"

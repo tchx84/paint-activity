@@ -12,18 +12,19 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2014-02-06 19:31+0200\n"
-"Last-Translator: elxrashedy <abdxelrhman@gmail.com>\n"
+"PO-Revision-Date: 2017-02-17 07:47+0000\n"
+"Last-Translator: khaled <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 2.0.5\n"
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Pootle 2.5.1.1\n"
 "Nplurals=6; Plural=N==0 ? 0: n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 "
 ": n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-POOTLE-MTIME: 1487317673.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -36,12 +37,12 @@ msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
-"بيكاسو ؟ فان جوخ ؟ يمكنك أن تصبح أياً منهم !! فقط حرر روح الرسام التى بداخلك "
-"ثم إبدأ بتحويل كل ما تتخيله فى عقلك إلى أروع الرسومات."
+"بيكاسو؟ فان جوخ؟ يمكنك أن تصبح أيًا منهم! فقط حرر روح الرسام بداخلك و ابدأ "
+"بتحويل كل ما تتخيله إلى أروع الرسوم."
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr "إختر الخط"
+msgstr "اختر الخط"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -49,11 +50,11 @@ msgstr "حرر"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr "خصائص اﻷشكال"
+msgstr "خصائص الأشكال"
 
 #: toolbox.py:161
 msgid "Shapes"
-msgstr "اﻷشكال"
+msgstr "الأشكال"
 
 #: toolbox.py:177
 msgid "Fonts"
@@ -69,35 +70,35 @@ msgstr "تراجع"
 
 #: toolbox.py:252
 msgid "Redo"
-msgstr "إلغ التراجع"
+msgstr "أعِد"
 
 #: toolbox.py:253
 msgid "Copy"
-msgstr "إنسخ"
+msgstr "انسخ"
 
 #: toolbox.py:254
 msgid "Paste"
-msgstr "إلصق"
+msgstr "ألصق"
 
 #: toolbox.py:262
 msgid "Clear"
-msgstr "إمحى"
+msgstr "امسح"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "فعّل الصوت"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "عطّل الصوت"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
-msgstr "الفرشاه"
+msgstr "الفرشاة"
 
 #: toolbox.py:384
 msgid "Eraser"
-msgstr "الممحاه"
+msgstr "الممحاة"
 
 #: toolbox.py:387
 msgid "Bucket"
@@ -105,7 +106,7 @@ msgstr "الدلو"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr "المنتقى"
+msgstr "المنتقي"
 
 #: toolbox.py:393
 msgid "Stamp"
@@ -113,19 +114,19 @@ msgstr "الختم"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
+msgstr "حمّل الختم"
 
 #: toolbox.py:410 widgets.py:321
 msgid "Select Area"
-msgstr "إختر المنطقه المُراده"
+msgstr "اختر المنطقة المُرادة"
 
 #: toolbox.py:529
 msgid "Fill"
-msgstr "إملأ"
+msgstr "املأ"
 
 #: toolbox.py:535 widgets.py:279
 msgid "Keep aspect"
-msgstr ""
+msgstr "حافظ على النسبة"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -133,7 +134,7 @@ msgstr "الجوانب : "
 
 #: toolbox.py:621
 msgid "Ellipse"
-msgstr "بيضاوى"
+msgstr "بيضاوي"
 
 #: toolbox.py:624
 msgid "Rectangle"
@@ -181,47 +182,47 @@ msgstr "النوع"
 
 #: toolbox.py:777
 msgid "Insert Image"
-msgstr "إدرج صورة"
+msgstr "أدرج صورة"
 
 #: toolbox.py:789
 msgid "Rotate Left"
-msgstr "دَوِر يساراً"
+msgstr "أدر يسارًا"
 
 #: toolbox.py:793
 msgid "Rotate Right"
-msgstr "دَوِر يميناً"
+msgstr "أدر يمينًا"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr "مرآه اُفقيه"
+msgstr "مرآة أفقية"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr "مرآه رأسيه"
+msgstr "مرآة رأسية"
 
 #: toolbox.py:811
 msgid "Grayscale"
-msgstr "رمادى"
+msgstr "رمادي"
 
 #: toolbox.py:816
 msgid "Rainbow"
-msgstr "قوس قزح (ألوان الطيف)"
+msgstr "ألوان الطيف"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "مشكال"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr "إعكس اﻷلوان"
+msgstr "اعكس الألوان"
 
 #: widgets.py:17
 msgid "Size: "
-msgstr "الحجم : "
+msgstr "الحجم: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr "الظُلمَه : "
+msgstr "الإعتام: "
 
 #: widgets.py:17
 msgid "Circle"
@@ -233,7 +234,7 @@ msgstr "مربع"
 
 #: widgets.py:31
 msgid "Choose brush properties"
-msgstr "إختر خصائص الفرشاه"
+msgstr "اختر خصائص الفرشاة"
 
 #: widgets.py:234
 msgid "Size"
@@ -241,7 +242,7 @@ msgstr "الحجم"
 
 #: widgets.py:248
 msgid "Opacity"
-msgstr "الظُلمَه"
+msgstr "الإعتام"
 
 #: widgets.py:273
 msgid "Shape"
@@ -249,7 +250,7 @@ msgstr "شكل"
 
 #: widgets.py:304
 msgid "Brush properties"
-msgstr "خصائص الفرشاه"
+msgstr "خصائص الفرشاة"
 
 #: widgets.py:310
 msgid "Stamp properties"
@@ -257,7 +258,7 @@ msgstr "خصائص الختم"
 
 #: widgets.py:314
 msgid "Eraser properties"
-msgstr "خصائص الممحاه"
+msgstr "خصائص الممحاة"
 
 #: widgets.py:317
 msgid "Bucket properties"
@@ -265,15 +266,15 @@ msgstr "خصائص الدلو"
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr "خصائص المنتقى"
+msgstr "خصائص المنتقي"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "تم"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "اختر ختمًا"
 
 #~ msgid "Height"
 #~ msgstr "الارتفاع"

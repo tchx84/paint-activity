@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2011-04-28 16:44+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2017-02-18 02:08+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1487383732.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -120,7 +121,7 @@ msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
-msgstr "ខាង ៖"
+msgstr "ខាង ៖ "
 
 #: toolbox.py:621
 msgid "Ellipse"
@@ -208,7 +209,7 @@ msgstr "បញ្ច្រាស​ពណ៌"
 
 #: widgets.py:17
 msgid "Size: "
-msgstr "ទំហំ ៖"
+msgstr "ទំហំ ៖ "
 
 #: widgets.py:17
 msgid "Opacity: "
@@ -249,16 +250,18 @@ msgid "Stamp properties"
 msgstr "คุณสมบัติหน้า"
 
 #: widgets.py:314
+#, fuzzy
 msgid "Eraser properties"
-msgstr ""
+msgstr "ข้อมูลแทร็ก"
 
 #: widgets.py:317
 msgid "Bucket properties"
 msgstr ""
 
 #: widgets.py:319
+#, fuzzy
 msgid "Picker properties"
-msgstr ""
+msgstr "ข้อมูลแทร็ก"
 
 #: dialogs.py:100
 msgid "Done"

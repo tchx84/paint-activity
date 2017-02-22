@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-06-16 22:24+0000\n"
-"Last-Translator: saravpaz <saravilarelle@gmail.com>\n"
+"PO-Revision-Date: 2017-02-17 11:39+0000\n"
+"Last-Translator: mbouzada <mbouzada@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1466115884.000000\n"
+"X-POOTLE-MTIME: 1487331573.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -34,7 +34,7 @@ msgstr ""
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr "Seleccionar fonte"
+msgstr "Seleccionar letra"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -50,7 +50,7 @@ msgstr "Formas"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr "Fontes"
+msgstr "Letras"
 
 #: toolbox.py:183
 msgid "Image"
@@ -78,11 +78,11 @@ msgstr "Limpar"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Activar o son"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Desactivar o son"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -98,43 +98,43 @@ msgstr "Balde"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr ""
+msgstr "Recolledor"
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr ""
+msgstr "Selo"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
+msgstr "Cargar selos"
 
 #: toolbox.py:410 widgets.py:321
 msgid "Select Area"
-msgstr ""
+msgstr "Seleccione a área"
 
 #: toolbox.py:529
 msgid "Fill"
-msgstr ""
+msgstr "Encher"
 
 #: toolbox.py:535 widgets.py:279
 msgid "Keep aspect"
-msgstr ""
+msgstr "Manter o aspecto"
 
 #: toolbox.py:552
 msgid "Sides: "
-msgstr ""
+msgstr "Diapositivas: "
 
 #: toolbox.py:621
 msgid "Ellipse"
-msgstr ""
+msgstr "Elipse"
 
 #: toolbox.py:624
 msgid "Rectangle"
-msgstr ""
+msgstr "Rectángulo"
 
 #: toolbox.py:627
 msgid "Line"
-msgstr ""
+msgstr "Liña"
 
 #: toolbox.py:630
 msgid "Free form"
@@ -174,39 +174,39 @@ msgstr "Teclear"
 
 #: toolbox.py:777
 msgid "Insert Image"
-msgstr ""
+msgstr "Inserir imaxe"
 
 #: toolbox.py:789
 msgid "Rotate Left"
-msgstr ""
+msgstr "Rotar á esquerda"
 
 #: toolbox.py:793
 msgid "Rotate Right"
-msgstr ""
+msgstr "Rotar á dereita"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Espello horizontal"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Espello vertical"
 
 #: toolbox.py:811
 msgid "Grayscale"
-msgstr ""
+msgstr "Escala de grises"
 
 #: toolbox.py:816
 msgid "Rainbow"
-msgstr ""
+msgstr "Arco da vella"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Calidoscopio"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr ""
+msgstr "Inverter as cores"
 
 #: widgets.py:17
 msgid "Size: "
@@ -246,19 +246,19 @@ msgstr "Propiedades do pincel"
 
 #: widgets.py:310
 msgid "Stamp properties"
-msgstr ""
+msgstr "Propiedades do selo"
 
 #: widgets.py:314
 msgid "Eraser properties"
-msgstr ""
+msgstr "Propiedades do borrador"
 
 #: widgets.py:317
 msgid "Bucket properties"
-msgstr ""
+msgstr "Propiedades do balde"
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr ""
+msgstr "Propiedades do recolledor"
 
 #: dialogs.py:100
 msgid "Done"
@@ -266,4 +266,4 @@ msgstr "Feito"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr "Seleccionar estampa"
+msgstr "Seleccionar selo"

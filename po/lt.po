@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-04-28 10:27+0000\n"
+"PO-Revision-Date: 2017-02-17 11:11+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1461839246.000000\n"
+"X-POOTLE-MTIME: 1487329906.000000\n"
 
 #. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
@@ -80,11 +80,11 @@ msgstr "Išvalyti"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Įjungti garsą"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Išjungti garsą"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -124,7 +124,7 @@ msgstr "Išlaikyti proporcijas"
 
 #: toolbox.py:552
 msgid "Sides: "
-msgstr ""
+msgstr "Šonai: "
 
 #: toolbox.py:621
 msgid "Ellipse"
@@ -204,7 +204,7 @@ msgstr "Vaivorykštė"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoskopas"
 
 #: toolbox.py:825
 msgid "Invert Colors"
