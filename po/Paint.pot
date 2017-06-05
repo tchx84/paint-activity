@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-06-05 13:42+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr ""
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
+msgstr ""
+
+#: dialogs.py:100
+msgid "Done"
+msgstr ""
+
+#: dialogs.py:128
+msgid "Select stamp"
 msgstr ""
 
 #: fontcombobox.py:90
@@ -256,12 +261,4 @@ msgstr ""
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr ""
-
-#: dialogs.py:100
-msgid "Done"
-msgstr ""
-
-#: dialogs.py:128
-msgid "Select stamp"
 msgstr ""
