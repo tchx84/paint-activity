@@ -682,7 +682,22 @@ class Desenho:
             GObject.idle_add(self._finalize_text, widget, textview)
 
     def _finalize_text(self, widget, textview):
+        # get the Gdk.Window of the TextWindow child of the TextView
         window = textview.get_window(Gtk.TextWindowType.TEXT)
+        window.ensure_native()
+
+        # paint the TextView TextWindow onto a surface and destroy it
+        # FIXME: theoretically unnecessary, but empirically prevents
+        # use of the window underneath the activity.
+        width, height = window.get_width(), window.get_height()
+        surface = Gdk.Window.create_similar_surface(window, cairo.CONTENT_COLOR,
+                                                    width, height)
+        ctx = cairo.Context(surface)
+        Gdk.cairo_set_source_window(ctx, window, 0, 0)
+        ctx.paint()
+        surface = None  # destroy the copy
+
+        # paint the Gtk.TextView TextWindow onto the drawing
         ctx = widget.drawing_ctx
         tv_alloc = textview.get_allocation()
         Gdk.cairo_set_source_window(ctx, window, tv_alloc.x, tv_alloc.y)
