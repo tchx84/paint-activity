@@ -1,3 +1,14 @@
+66
+
+* New translations (Chris Leonard et al),
+* Update repository URL (James Cameron),
+* Remove several normal log messages (James Cameron),
+* Discard useless messages about versions (James Cameron),
+* Use set_text of Gtk.TextBuffer (James Cameron),
+* Make explicit TextView callbacks return (James Cameron),
+* Fix for text tool (James Cameron),
+* Defend against Gtk3 cursor new_from_name bug #4985 (James Cameron).
+
 27
 
 * Text entries are not working #942
