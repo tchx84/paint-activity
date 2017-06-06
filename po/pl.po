@@ -2,39 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2015-02-18 23:09+0000\n"
 "Last-Translator: Tymon <dwgipk@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,12 +19,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1424300949.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Maluj"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -61,9 +31,65 @@ msgstr ""
 "Picasso? Van Gogh? Możesz być jednym z nich! Uwolnij swojego wewnętrznego "
 "artystę. Zamień swe pomysły na piękne obrazy."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Wybierz czcionkę"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Rozmiar: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Nieprzezroczystość: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Koło"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Kwadrat"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Wybierz właściwości pędzla"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Rozmiar"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Nieprzezroczystość"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Kształt"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Zachowaj proporcje"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Właściwości pędzla"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Właściwości znaczków"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Właściwości gumki"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Właściwości wiadra"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Właściwości wybieracza"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Zaznacz obszar"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -137,17 +163,9 @@ msgstr "Pieczątka"
 msgid "Load stamp"
 msgstr "Załaduj pieczątkę"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Zaznacz obszar"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Wypełnij"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Zachowaj proporcje"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -237,58 +255,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Odwróć kolory"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Rozmiar: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Nieprzezroczystość: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Koło"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Kwadrat"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Wybierz właściwości pędzla"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Rozmiar"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Nieprzezroczystość"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Kształt"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Właściwości pędzla"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Właściwości znaczków"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Właściwości gumki"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Właściwości wiadra"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Właściwości wybieracza"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Gotowe"
@@ -297,74 +263,6 @@ msgstr "Gotowe"
 msgid "Select stamp"
 msgstr "Wybierz pieczątkę"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Kalejdoskop"
-
-#~ msgid "Height"
-#~ msgstr "Wysokość"
-
-#~ msgid "Width"
-#~ msgstr "Szerokość"
-
-#~ msgid "Choose image"
-#~ msgstr "Wybierz obraz"
-
-#~ msgid "Tools"
-#~ msgstr "Narzędzia"
-
-#~ msgid "Text"
-#~ msgstr "Tekst"
-
-#~ msgid "Effects"
-#~ msgstr "Efekty"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Kolor obramowania"
-
-#~ msgid "Pencil"
-#~ msgstr "Ołówek"
-
-#~ msgid "Fill Color"
-#~ msgstr "Kolor wypełnienia"
-
-#~ msgid "Points: "
-#~ msgstr "Punkty:"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Powiększ"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Zmniejsz"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Zaznaczanie prostokątne"
-
-#~ msgid "Tool Color"
-#~ msgstr "Kolor narzędzia"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Kolor wypełnienia:"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Wybierz czcionkę"

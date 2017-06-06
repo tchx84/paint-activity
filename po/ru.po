@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 16:45+0000\n"
 "Last-Translator: Anna <leonteva.anna.e@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,12 +19,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487349927.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Рисовать"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -33,9 +31,65 @@ msgstr ""
 "Пикассо? Ван Гог? Ты можешь быть любым из них! Просто открой в себе "
 "художника. Превращай картины в твоем воображении в прекрасные рисунки!"
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Выбрать шрифт"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Размер: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Непрозрачность: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Круг"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Квадрат"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Выбрать свойства кисти"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Размер"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Прозрачность"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Фигура"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Сохранять пропорции"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Свойства кисти"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Свойства печатки"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Настройки ластика"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Настройки заливки"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Настройки пипетки"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Выбрать Область"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -109,17 +163,9 @@ msgstr "Печатка"
 msgid "Load stamp"
 msgstr "Загрузить печатку"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Выбрать Область"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Заполнение"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Сохранять пропорции"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -209,58 +255,6 @@ msgstr "Калейдоскоп"
 msgid "Invert Colors"
 msgstr "Инвертировать Цвета"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Размер: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Непрозрачность: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Круг"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Квадрат"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Выбрать свойства кисти"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Размер"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Прозрачность"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Фигура"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Свойства кисти"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Свойства печатки"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Настройки ластика"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Настройки заливки"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Настройки пипетки"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Готово"
@@ -269,74 +263,6 @@ msgstr "Готово"
 msgid "Select stamp"
 msgstr "Выбрать печатку"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Калейдоскоп"
-
-#~ msgid "Height"
-#~ msgstr "Высота"
-
-#~ msgid "Width"
-#~ msgstr "Ширина"
-
-#~ msgid "Choose image"
-#~ msgstr "Выбрать картинку"
-
-#~ msgid "Tools"
-#~ msgstr "Инструменты"
-
-#~ msgid "Text"
-#~ msgstr "Текст"
-
-#~ msgid "Effects"
-#~ msgstr "Эффекты"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Цвет Линий"
-
-#~ msgid "Pencil"
-#~ msgstr "Карандаш"
-
-#~ msgid "Fill Color"
-#~ msgstr "Цвет Заполнения"
-
-#~ msgid "Points: "
-#~ msgstr "Точки: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "РАЗМЕР +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "РАЗМЕР -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Прямоугольник"
-
-#~ msgid "Tool Color"
-#~ msgstr "Цвет инструмента"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Цвет Заполнения: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Выбрать шрифт"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Paint\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 03:09+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
@@ -18,21 +18,75 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487300966.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "绘图"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr "毕加索？梵高？您可以成为其中的任何一位！只是让你内心的艺术自由自在。把你心中的图像变成美丽的画作。"
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "选择字体"
+#: widgets.py:17
+msgid "Size: "
+msgstr "尺寸大小:"
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "不透明度："
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "圆形"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "方形"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "选择画笔属性"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "尺寸大小"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "不透明度"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "形状"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "保持宽高比"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "画笔属性"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "图章属性"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "橡皮擦属性"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "油漆桶属性"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "选取器属性"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "选择区域"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -106,17 +160,9 @@ msgstr "图章"
 msgid "Load stamp"
 msgstr "加载图章"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "选择区域"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "填满"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "保持宽高比"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -206,58 +252,6 @@ msgstr "万花筒"
 msgid "Invert Colors"
 msgstr "反色"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "尺寸大小:"
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "不透明度："
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "圆形"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "方形"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "选择画笔属性"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "尺寸大小"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "不透明度"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "形状"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "画笔属性"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "图章属性"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "橡皮擦属性"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "油漆桶属性"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "选取器属性"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "完成"
@@ -266,89 +260,6 @@ msgstr "完成"
 msgid "Select stamp"
 msgstr "选择图章"
 
-#~ msgid "Height"
-#~ msgstr "高度"
-
-#~ msgid "Width"
-#~ msgstr "宽度"
-
-#~ msgid "Choose image"
-#~ msgstr "选择图片"
-
-#~ msgid "Tools"
-#~ msgstr "工具"
-
-#~ msgid "Text"
-#~ msgstr "文字"
-
-#~ msgid "Effects"
-#~ msgstr "效果"
-
-#~ msgid "Stroke Color"
-#~ msgstr "画笔颜色"
-
-#~ msgid "Pencil"
-#~ msgstr "铅笔"
-
-#~ msgid "Fill Color"
-#~ msgstr "填满颜色"
-
-#~ msgid "Points: "
-#~ msgstr "点: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "放大"
-
-#~ msgid "ZOOM -"
-#~ msgstr "缩小"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "矩形选择区域"
-
-#~ msgid "Tool Color"
-#~ msgstr "工具颜色"
-
-#~ msgid "Fill Color: "
-#~ msgstr "填满颜色: "
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "20"
-#~ msgstr "20"
-
-#~ msgid "Open File..."
-#~ msgstr "开启旧档..."
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "选择字体"

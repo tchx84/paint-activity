@@ -6,32 +6,90 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2013-09-02 14:58+0200\n"
-"Last-Translator: Phan <ppanhh@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-05 17:02+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1496682142.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Sơn"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"Picasso? Van Gogh? Bạn có thể là bất kỳ ai trong số họ! Chỉ cần để cho phần "
+"nghệ sỹ trong bạn được bay bổng. Dịch chuyển các ảnh để bạn thấy đây là bức "
+"tranh đẹp."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr ""
+#: widgets.py:17
+msgid "Size: "
+msgstr "Kích cỡ : "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Độ đục: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Hình tròn"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Hình vuông"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Chọn thuộc tính bút lông"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Cỡ"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Độ đục"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Hình"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Giữ hướng"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Thuộc tính bút lông"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Thuộc tính mẫu dấu"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Thuộc tính tẩy"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Thuộc tính xô"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Thuộc tính cái chọn"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Chọn vùng"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -39,7 +97,7 @@ msgstr "Sửa"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr ""
+msgstr "Thuộc tính hình dạng"
 
 #: toolbox.py:161
 msgid "Shapes"
@@ -47,7 +105,7 @@ msgstr "Hình"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr ""
+msgstr "Phông chữ"
 
 #: toolbox.py:183
 msgid "Image"
@@ -75,11 +133,11 @@ msgstr "Dọn"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Bật âm thanh"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Tắt âm thanh"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -95,27 +153,19 @@ msgstr "Xô"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr ""
+msgstr "Cái chọn"
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr ""
+msgstr "Mẫu"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
-
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
+msgstr "Tải mẫu"
 
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Tô đầy"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -135,7 +185,7 @@ msgstr "Đường"
 
 #: toolbox.py:630
 msgid "Free form"
-msgstr ""
+msgstr "Dạng tự do"
 
 #: toolbox.py:633
 msgid "Polygon"
@@ -183,11 +233,11 @@ msgstr "Xoay sang phải"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Lật dọc"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Lật ngang"
 
 #: toolbox.py:811
 msgid "Grayscale"
@@ -199,137 +249,20 @@ msgstr "Cầu vồng"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kính vạn hoa"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr ""
-
-#: widgets.py:17
-msgid "Size: "
-msgstr "Kích cỡ : "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Hình tròn"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Hình vuông"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Hình"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
+msgstr "Đảo ngược các màu"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Xong"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Chọn mẫu dấu"
 
-#~ msgid "Height"
-#~ msgstr "Bề cao"
-
-#~ msgid "Width"
-#~ msgstr "Bề rộng"
-
-#~ msgid "Choose image"
-#~ msgstr "Chọn ảnh"
-
-#~ msgid "Tools"
-#~ msgstr "Công cụ"
-
-#~ msgid "Text"
-#~ msgstr "Văn bản"
-
-#~ msgid "Effects"
-#~ msgstr "Hiệu ứng"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Màu nét"
-
-#~ msgid "Pencil"
-#~ msgstr "Bút chì"
-
-#~ msgid "Fill Color"
-#~ msgstr "Màu tô đầy"
-
-#~ msgid "Points: "
-#~ msgstr "Đỉnh: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Phóng to"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Thu nhỏ"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Bảng chữ chạy hình chữ nhật"
-
-#~ msgid "Tool Color"
-#~ msgstr "Màu công cụ"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Màu tô đầy: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Chọn phông chữ"

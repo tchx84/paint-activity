@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-05-21 22:46+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-02-21 10:52+0000\n"
+"Last-Translator: EdgarQuispeChambi <equispe7@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ayc\n"
 "MIME-Version: 1.0\n"
@@ -16,16 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1463870783.000000\n"
+"X-POOTLE-MTIME: 1487674328.000000\n"
 
 #  "Pintar"
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Samichaña"
 
 # Picasso  con doble SS. Inclusive para el español.
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -35,9 +33,77 @@ msgstr ""
 "k'acha samichaña kamana kankañama uñt'ayma. P'iqimana kuna jamutamsa suma "
 "jamuqawinakaru tukuyma."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Qillqana kankañapa ajlliña"
+#  "Tamaño: "
+#: widgets.py:17
+msgid "Size: "
+msgstr "Taña: "
+
+# Chharpu 'opaco' (Saturnino Callo)
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Chharpu kankaña: "
+
+#  "Círculo"
+#: widgets.py:17
+msgid "Circle"
+msgstr "Muyu"
+
+#  "Cuadrado"
+#: widgets.py:17
+msgid "Square"
+msgstr "Pusiq'achi"
+
+#  "Elija las propiedades del pincel"
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Samiphuyuna kunaymana lurañapa ajllma"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Taña"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Chharpu kankaña"
+
+#  "Forma"
+#: widgets.py:273
+msgid "Shape"
+msgstr "Kunjama kankaña"
+
+#  "Mantener relación de aspecto"
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Uñanaqapana katxäsiña"
+
+#  "Propiedades del pincel"
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Samiphuyuna wakisirinakapa"
+
+#  "Propiedades de los sellos"
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Liq'xatiri chimpuñana wakisirinakapa"
+
+# "Propiedades del pincel"
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Yant'awina wakisirinakapa"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Waltina wakisirinakapa"
+
+# "Propiedades del pincel"
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Ajllirina wakisirinakapa"
+
+#  "Área seleccionada"
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Lakita chiqa"
 
 #  "Editar"
 #: toolbox.py:141
@@ -52,12 +118,12 @@ msgstr "Kunjama kankañana wakisirinakapa"
 #  "Formas"
 #: toolbox.py:161
 msgid "Shapes"
-msgstr "Kunjama kankañanaka"
+msgstr "Kunaymana kankañanaka"
 
 #  "Fuentes"
 #: toolbox.py:177
 msgid "Fonts"
-msgstr "Qillqañana kankañanakapa"
+msgstr "Qillqanaka kankañanakapa"
 
 #  "Imagen"
 #: toolbox.py:183
@@ -91,11 +157,11 @@ msgstr "Pichsuña"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Ist'aña qhantayaña"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Ist'aña jiwayaña"
 
 #  "Pincel"
 #: toolbox.py:377 toolbox.py:381
@@ -125,20 +191,10 @@ msgstr "Liq'xataña"
 msgid "Load stamp"
 msgstr "Samichkata ch'amanchaña"
 
-#  "Área seleccionada"
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Lakita chiqa"
-
 #  "Llenar"
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Phuqantaña"
-
-#  "Mantener relación de aspecto"
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Uñanaqapana katxäsiña"
 
 #  "Lados: "
 #: toolbox.py:552
@@ -243,74 +299,12 @@ msgstr "Kuyurmi"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Caleidoscopio sata wakichata"
 
 #  "Invertir colores"
 #: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Saminaka jaqukipaña"
-
-#  "Tamaño: "
-#: widgets.py:17
-msgid "Size: "
-msgstr "Taña: "
-
-# Chharpu 'opaco' (Saturnino Callo)
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Chharpu kankaña: "
-
-#  "Círculo"
-#: widgets.py:17
-msgid "Circle"
-msgstr "Muyu"
-
-#  "Cuadrado"
-#: widgets.py:17
-msgid "Square"
-msgstr "Pusiq'achi"
-
-#  "Elija las propiedades del pincel"
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Samiphuyuna kunaymana lurañapa ajllma"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Taña"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Chharpu kankaña"
-
-#  "Forma"
-#: widgets.py:273
-msgid "Shape"
-msgstr "Kunjama kankaña"
-
-#  "Propiedades del pincel"
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Samiphuyuna wakisirinakapa"
-
-#  "Propiedades de los sellos"
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Liq'xatiri chimpuñana wakisirinakapa"
-
-# "Propiedades del pincel"
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Yant'awina wakisirinakapa"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Waltina wakisirinakapa"
-
-# "Propiedades del pincel"
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Ajllirina wakisirinakapa"
 
 #: dialogs.py:100
 msgid "Done"
@@ -320,17 +314,6 @@ msgstr "Lursuta"
 msgid "Select stamp"
 msgstr "Samichkata ajlliña"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Caleidoscopio sata"
-
-#  "Altura"
-#~ msgid "Height"
-#~ msgstr "Sayt'aru"
-
-#  "Anchura"
-#~ msgid "Width"
-#~ msgstr "Lankhu"
-
-#  "Seleccionar imagen"
-#~ msgid "Choose image"
-#~ msgstr "Uñjasiwi ajlliña"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Qillqana kankañapa ajlliña"

@@ -2,35 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: OLPC Paint\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-12 00:30-0400\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2012-05-19 16:29+0200\n"
 "Last-Translator: Yuan <yuanchao@gmail.com>\n"
 "Language-Team: Yuan CHAO <yuanchao@gmail.com>\n"
@@ -41,180 +17,15 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
+#: activity/activity.info:2
 msgid "Paint"
 msgstr "繪圖"
 
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
+#: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
-
-#: fontcombobox.py:89
-msgid "Select font"
-msgstr ""
-
-#: toolbox.py:118
-msgid "Edit"
-msgstr "編輯"
-
-#: toolbox.py:122
-msgid "Shapes properties"
-msgstr "多邊形屬性"
-
-#: toolbox.py:133
-msgid "Shapes"
-msgstr "形狀"
-
-#: toolbox.py:143
-msgid "Fonts"
-msgstr "字型"
-
-#: toolbox.py:149
-msgid "Image"
-msgstr "圖片"
-
-#: toolbox.py:188
-msgid "Undo"
-msgstr "復原"
-
-#: toolbox.py:189
-msgid "Redo"
-msgstr "取消復原"
-
-#: toolbox.py:190
-msgid "Copy"
-msgstr "複製"
-
-#: toolbox.py:191
-msgid "Paste"
-msgstr "貼上"
-
-#: toolbox.py:199
-msgid "Clear"
-msgstr "清除"
-
-#: toolbox.py:298 widgets.py:322
-msgid "Brush properties"
-msgstr "筆刷屬性"
-
-#: toolbox.py:307 toolbox.py:311
-msgid "Brush"
-msgstr "刷筆"
-
-#: toolbox.py:314
-msgid "Eraser"
-msgstr "橡皮擦"
-
-#: toolbox.py:317
-msgid "Bucket"
-msgstr "水彩桶"
-
-#: toolbox.py:320
-msgid "Picker"
-msgstr "吸取顏色"
-
-#: toolbox.py:323
-msgid "Stamp"
-msgstr "印章"
-
-#: toolbox.py:336
-msgid "Select Area"
-msgstr "選擇區域"
-
-#: toolbox.py:415
-msgid "Fill"
-msgstr "填滿"
-
-#: toolbox.py:421 widgets.py:286
-msgid "Keep aspect"
-msgstr "保持長寬比"
-
-#: toolbox.py:438
-msgid "Sides: "
-msgstr "邊:"
-
-#: toolbox.py:511
-msgid "Ellipse"
-msgstr "橢圓形"
-
-#: toolbox.py:514
-msgid "Rectangle"
-msgstr "矩形"
-
-#: toolbox.py:517
-msgid "Line"
-msgstr "線條"
-
-#: toolbox.py:520
-msgid "Free form"
-msgstr "自由格式"
-
-#: toolbox.py:523
-msgid "Polygon"
-msgstr "多邊形"
-
-#: toolbox.py:526
-msgid "Heart"
-msgstr "心形"
-
-#: toolbox.py:529
-msgid "Parallelogram"
-msgstr "平行四邊形"
-
-#: toolbox.py:532
-msgid "Arrow"
-msgstr "箭頭"
-
-#: toolbox.py:535
-msgid "Star"
-msgstr "星星"
-
-#: toolbox.py:538
-msgid "Trapezoid"
-msgstr "梯形"
-
-#: toolbox.py:541
-msgid "Triangle"
-msgstr "三角形"
-
-#: toolbox.py:574
-msgid "Type"
-msgstr "類型"
-
-#: toolbox.py:665
-msgid "Insert Image"
-msgstr "插入圖形"
-
-#: toolbox.py:678
-msgid "Rotate Left"
-msgstr "向左轉"
-
-#: toolbox.py:682
-msgid "Rotate Right"
-msgstr "向右轉"
-
-#: toolbox.py:687
-msgid "Horizontal Mirror"
-msgstr "水平鏡像"
-
-#: toolbox.py:692
-msgid "Vertical Mirror"
-msgstr "垂直鏡像"
-
-#: toolbox.py:700
-msgid "Grayscale"
-msgstr "灰階"
-
-#: toolbox.py:703
-msgid "Rainbow"
-msgstr "漸層色"
-
-#: toolbox.py:708
-msgid "Invert Colors"
-msgstr "對比色"
 
 #: widgets.py:17
 msgid "Size: "
@@ -236,114 +47,218 @@ msgstr "正方形"
 msgid "Choose brush properties"
 msgstr "選擇筆刷屬性"
 
-#: widgets.py:245
+#: widgets.py:234
 msgid "Size"
 msgstr ""
 
-#: widgets.py:259
+#: widgets.py:248
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:280
+#: widgets.py:273
 msgid "Shape"
 msgstr "形狀"
 
-#: widgets.py:317
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "保持長寬比"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "筆刷屬性"
+
+#: widgets.py:310
 msgid "Stamp properties"
 msgstr "印章屬性"
 
-#~ msgid "Height"
-#~ msgstr "高度"
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
 
-#~ msgid "Width"
-#~ msgstr "寬度"
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
 
-#~ msgid "Choose image"
-#~ msgstr "選擇圖片"
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
 
-#~ msgid "Tools"
-#~ msgstr "工具"
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "選擇區域"
 
-#~ msgid "Text"
-#~ msgstr "文字"
+#: toolbox.py:141
+msgid "Edit"
+msgstr "編輯"
 
-#~ msgid "Effects"
-#~ msgstr "特效"
+#: toolbox.py:145
+msgid "Shapes properties"
+msgstr "多邊形屬性"
 
-#~ msgid "Stroke Color"
-#~ msgstr "畫筆顏色"
+#: toolbox.py:161
+msgid "Shapes"
+msgstr "形狀"
 
-#~ msgid "Pencil"
-#~ msgstr "鉛筆"
+#: toolbox.py:177
+msgid "Fonts"
+msgstr "字型"
 
-#~ msgid "Fill Color"
-#~ msgstr "填滿顏色"
+#: toolbox.py:183
+msgid "Image"
+msgstr "圖片"
 
-#~ msgid "Points: "
-#~ msgstr "頂點: "
+#: toolbox.py:251
+msgid "Undo"
+msgstr "復原"
 
-#~ msgid "Keep Aspect"
-#~ msgstr "保持比例"
+#: toolbox.py:252
+msgid "Redo"
+msgstr "取消復原"
 
-#~ msgid "1000"
-#~ msgstr "1000"
+#: toolbox.py:253
+msgid "Copy"
+msgstr "複製"
 
-#~ msgid "500"
-#~ msgstr "500"
+#: toolbox.py:254
+msgid "Paste"
+msgstr "貼上"
 
-#~ msgid "200"
-#~ msgstr "200"
+#: toolbox.py:262
+msgid "Clear"
+msgstr "清除"
 
-#~ msgid "150"
-#~ msgstr "150"
+#: toolbox.py:266 toolbox.py:327
+msgid "Enable sound"
+msgstr ""
 
-#~ msgid "100"
-#~ msgstr "100"
+#: toolbox.py:325
+msgid "Disable sound"
+msgstr ""
 
-#~ msgid "50"
-#~ msgstr "50"
+#: toolbox.py:377 toolbox.py:381
+msgid "Brush"
+msgstr "刷筆"
 
-#~ msgid "25"
-#~ msgstr "25"
+#: toolbox.py:384
+msgid "Eraser"
+msgstr "橡皮擦"
 
-#~ msgid "10"
-#~ msgstr "10"
+#: toolbox.py:387
+msgid "Bucket"
+msgstr "水彩桶"
 
-#~ msgid "ZOOM +"
-#~ msgstr "放大"
+#: toolbox.py:390
+msgid "Picker"
+msgstr "吸取顏色"
 
-#~ msgid "ZOOM -"
-#~ msgstr "縮小"
+#: toolbox.py:393
+msgid "Stamp"
+msgstr "印章"
 
-#~ msgid "Mirror Horizontal"
-#~ msgstr "水平鏡象"
+#: toolbox.py:400
+msgid "Load stamp"
+msgstr ""
 
-#~ msgid "Mirror Vertical"
-#~ msgstr "垂直鏡象"
+#: toolbox.py:529
+msgid "Fill"
+msgstr "填滿"
 
-#~ msgid "Rectangular Marquee"
-#~ msgstr "矩形選擇區域"
+#: toolbox.py:552
+msgid "Sides: "
+msgstr "邊:"
 
-#~ msgid "Tool Color"
-#~ msgstr "工具顏色"
+#: toolbox.py:621
+msgid "Ellipse"
+msgstr "橢圓形"
 
-#~ msgid "Fill Color: "
-#~ msgstr "填滿顏色: "
+#: toolbox.py:624
+msgid "Rectangle"
+msgstr "矩形"
 
-#~ msgid "1"
-#~ msgstr "1"
+#: toolbox.py:627
+msgid "Line"
+msgstr "線條"
 
-#~ msgid "2"
-#~ msgstr "2"
+#: toolbox.py:630
+msgid "Free form"
+msgstr "自由格式"
 
-#~ msgid "3"
-#~ msgstr "3"
+#: toolbox.py:633
+msgid "Polygon"
+msgstr "多邊形"
 
-#~ msgid "5"
-#~ msgstr "5"
+#: toolbox.py:636
+msgid "Heart"
+msgstr "心形"
 
-#~ msgid "20"
-#~ msgstr "20"
+#: toolbox.py:639
+msgid "Parallelogram"
+msgstr "平行四邊形"
 
-#~ msgid "Open File..."
-#~ msgstr "開啟舊檔..."
+#: toolbox.py:642
+msgid "Arrow"
+msgstr "箭頭"
+
+#: toolbox.py:645
+msgid "Star"
+msgstr "星星"
+
+#: toolbox.py:648
+msgid "Trapezoid"
+msgstr "梯形"
+
+#: toolbox.py:651
+msgid "Triangle"
+msgstr "三角形"
+
+#: toolbox.py:685
+msgid "Type"
+msgstr "類型"
+
+#: toolbox.py:777
+msgid "Insert Image"
+msgstr "插入圖形"
+
+#: toolbox.py:789
+msgid "Rotate Left"
+msgstr "向左轉"
+
+#: toolbox.py:793
+msgid "Rotate Right"
+msgstr "向右轉"
+
+#: toolbox.py:798
+msgid "Horizontal Mirror"
+msgstr "水平鏡像"
+
+#: toolbox.py:803
+msgid "Vertical Mirror"
+msgstr "垂直鏡像"
+
+#: toolbox.py:811
+msgid "Grayscale"
+msgstr "灰階"
+
+#: toolbox.py:816
+msgid "Rainbow"
+msgstr "漸層色"
+
+#: toolbox.py:821
+msgid "Kaleidoscope"
+msgstr ""
+
+#: toolbox.py:825
+msgid "Invert Colors"
+msgstr "對比色"
+
+#: dialogs.py:100
+msgid "Done"
+msgstr ""
+
+#: dialogs.py:128
+msgid "Select stamp"
+msgstr ""
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

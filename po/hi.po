@@ -1,7 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # translation of oficina.po to Hindi
 # G Karunakar <karunakar@indlinux.org>, 2007.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -10,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oficina\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 17:59+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -22,12 +18,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487354366.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "पेंट"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -36,9 +30,65 @@ msgstr ""
 "पिकासो? वान गाग? आप भी इनमें से एक हो सकते हैं! केवल अपने अंदर के कलाकार को "
 "मुक्त करो. अपने मन की छवियों को सुंदर पेंटिंग में रूपांतर करो."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "फ़ॉन्ट चुनें"
+#: widgets.py:17
+msgid "Size: "
+msgstr "आकार: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "अपारदर्शिता: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "वृत्त"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "वर्ग"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "ब्रश के गुणधर्म चुनें"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "आकार"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "अपारदर्शिता"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "रूप"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "अनुपात रखें"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "बृश के गुणधर्म"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "मोहर के गुणधर्म"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "इरेज़र विशेषताएं"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "बाल्टी की विशेषतायें"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "पिकर की विशेषतायें"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "क्षेत्र चुनें"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -112,17 +162,9 @@ msgstr "मोहर"
 msgid "Load stamp"
 msgstr "मोहर लोड करें"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "क्षेत्र चुनें"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "भरें"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "अनुपात रखें"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -212,58 +254,6 @@ msgstr "बहुरूपदर्शक"
 msgid "Invert Colors"
 msgstr "रंग उलटें"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "आकार: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "अपारदर्शिता: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "वृत्त"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "वर्ग"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "ब्रश के गुणधर्म चुनें"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "आकार"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "अपारदर्शिता"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "रूप"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "बृश के गुणधर्म"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "मोहर के गुणधर्म"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "इरेज़र विशेषताएं"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "बाल्टी की विशेषतायें"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "पिकर की विशेषतायें"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "संपन्न"
@@ -272,74 +262,6 @@ msgstr "संपन्न"
 msgid "Select stamp"
 msgstr "मोहर चुनें"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "बहुरूपदर्शक"
-
-#~ msgid "Height"
-#~ msgstr "ऊंचाई"
-
-#~ msgid "Width"
-#~ msgstr "चौड़ाई"
-
-#~ msgid "Choose image"
-#~ msgstr "छवि चुनो"
-
-#~ msgid "Tools"
-#~ msgstr "औज़ार"
-
-#~ msgid "Text"
-#~ msgstr "पाठ"
-
-#~ msgid "Effects"
-#~ msgstr "प्रभाव"
-
-#~ msgid "Stroke Color"
-#~ msgstr "लगाने का रंग"
-
-#~ msgid "Pencil"
-#~ msgstr "पेनसिल"
-
-#~ msgid "Fill Color"
-#~ msgstr "रंग भरें"
-
-#~ msgid "Points: "
-#~ msgstr "बिन्दुएँ: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "बड़ा करें +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "छोटा करें -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "वर्गाकार घेरा"
-
-#~ msgid "Tool Color"
-#~ msgstr "औजार का रंग"
-
-#~ msgid "Fill Color: "
-#~ msgstr "रंग भरें: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "फ़ॉन्ट चुनें"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2017-02-18 00:50+0000\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-05 16:45+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ibo\n"
@@ -16,14 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487379019.000000\n"
+"X-POOTLE-MTIME: 1496681123.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Agba"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -32,9 +30,65 @@ msgstr ""
 "Picasso ? Van Gogh ? Ị nwere ike ịbụ ihe ọ bụla n'ime ha! Dị nnọọ ka onye na-"
 "ese n'ime unu free. Ịgbanwe ihe oyiyi na uche gị mara mma na ihe osise."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Họrọ font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Size: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Opacity: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "gburugburu"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Square"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Họrọ ahịhịa Njirimara"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Size"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Opacity"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Odidi"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "na- akụkụ"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "ahịhịa Njirimara"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "stampụ Njirimara"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "nchicha Njirimara"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "ịwụ Njirimara"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "onye na-atụtụ Njirimara"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Họrọ ebe"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -108,21 +162,13 @@ msgstr "stampụ"
 msgid "Load stamp"
 msgstr "ibu Ibu stampụ"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Họrọ ebe"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Wet"
 
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "na- akụkụ"
-
 #: toolbox.py:552
 msgid "Sides: "
-msgstr "n'akụkụ "
+msgstr "n'akụkụ: "
 
 #: toolbox.py:621
 msgid "Ellipse"
@@ -209,58 +255,6 @@ msgstr "Kalidoscope"
 msgid "Invert Colors"
 msgstr "Invert agba"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Size: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Opacity: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "gburugburu"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Square"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Họrọ ahịhịa Njirimara"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Size"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Opacity"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Odidi"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "ahịhịa Njirimara"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "stampụ Njirimara"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "nchicha Njirimara"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "ịwụ Njirimara"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "onye na-atụtụ Njirimara"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Emela"
@@ -269,5 +263,6 @@ msgstr "Emela"
 msgid "Select stamp"
 msgstr "Họrọ stampụ"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Kalidoscope"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Họrọ font"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2017-02-18 00:37+0000\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-05 17:06+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sk\n"
@@ -16,14 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487378230.000000\n"
+"X-POOTLE-MTIME: 1496682396.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Maľovanie"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -32,9 +30,67 @@ msgstr ""
 "Picasso? Van Gogh? Aj Vy môžete byť jedným z nich. Vypustite umelca čo vo "
 "Vás drieme. Premeňte obrázky vo vašej hlave na nádherné obrazy."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Vyberte písmo"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Veľkosť: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Nepriehľadnosť: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Kruh"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Štvorec"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Vyberte vlastnosti štetca"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Veľkosť"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Nepriehľadnosť"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Tvar"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Zachovajte pomer strán"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Vlastnosti štetca"
+
+# vlastnosti známky
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Vlastnosti razítka"
+
+# vlastnosti  zmizíka
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Vlastnosti gumy"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Vlastnosti vedierka"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Vlastnosti špica"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Vyberte oblasť"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -78,11 +134,11 @@ msgstr "Vyčistiť"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Umožňuje zvuk"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Zablokuj zvuk"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -111,58 +167,52 @@ msgstr "Známka"
 msgid "Load stamp"
 msgstr "Načítať pečiatku"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Vyberte oblasť"
-
 # Vyplnte
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Vyplniť"
 
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Zachovajte pomer strán"
-
 #: toolbox.py:552
 msgid "Sides: "
-msgstr ""
+msgstr "Strany: "
 
 #: toolbox.py:621
 msgid "Ellipse"
-msgstr ""
+msgstr "Elipsa"
 
 #: toolbox.py:624
 msgid "Rectangle"
-msgstr ""
+msgstr "Obdĺžnik"
 
+# riadok
 #: toolbox.py:627
 msgid "Line"
-msgstr ""
+msgstr "Riadok"
 
 #: toolbox.py:630
 msgid "Free form"
-msgstr ""
+msgstr "Voľný tvar"
 
 #: toolbox.py:633
 msgid "Polygon"
-msgstr ""
+msgstr "Mnohouholník"
 
 #: toolbox.py:636
 msgid "Heart"
-msgstr ""
+msgstr "Srdce"
 
 #: toolbox.py:639
 msgid "Parallelogram"
-msgstr ""
+msgstr "Rovnobežník"
 
+# šíp
 #: toolbox.py:642
 msgid "Arrow"
-msgstr ""
+msgstr "Šípka"
 
 #: toolbox.py:645
 msgid "Star"
-msgstr ""
+msgstr "Hviezda"
 
 # Rôznobežník
 #: toolbox.py:648
@@ -213,62 +263,7 @@ msgstr "Kaleidoskop"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr ""
-
-#: widgets.py:17
-msgid "Size: "
-msgstr "Veľkosť: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr ""
-
-#: widgets.py:17
-msgid "Square"
-msgstr ""
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-#, fuzzy
-msgid "Shape"
-msgstr "Tvary"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Vlastnosti štetca"
-
-# vlastnosti známky
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Vlastnosti razítka"
-
-# vlastnosti  zmizíka
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Vlastnosti gumy"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Vlastnosti vedierka"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Vlastnosti špica"
+msgstr "Zmeň farby"
 
 #: dialogs.py:100
 msgid "Done"
@@ -279,14 +274,6 @@ msgstr "Hotovo"
 msgid "Select stamp"
 msgstr "Vyberte pečiatku"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "kaleidoskop"
-
-#~ msgid "Height"
-#~ msgstr "Výška"
-
-#~ msgid "Width"
-#~ msgstr "Širka"
-
-#~ msgid "Text"
-#~ msgstr "Text"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Vyberte písmo"

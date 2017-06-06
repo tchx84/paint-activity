@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 17:49+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487353756.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "रङ-रोगन"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -33,9 +31,65 @@ msgstr ""
 "ई फस्टाउन देउ। अनि तिम्रा मन भित्रका चित्रहरूलाई राम्रा चित्रकलाहरूमा परिवर्"
 "तन गर।"
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "फन्ट छान"
+#: widgets.py:17
+msgid "Size: "
+msgstr "आकार:॒ "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "अस्पष्टता: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "वृत्त"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "वर्ग"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "ब्रसका गुणहरु छान"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "आकार"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "अस्पष्टता"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "आकार"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "आकार राख्नुहोस"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "ब्रसका गुणहरु"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "छापका गुणहरु"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "मेट्ने गुणहरू"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "बाल्टिन गुणहरू"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "छान्ने गुणहरू"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "क्षेत्र छान"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -109,17 +163,9 @@ msgstr "छाप"
 msgid "Load stamp"
 msgstr "छाप लोड गर"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "क्षेत्र छान"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "भर"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "आकार राख्नुहोस"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -209,58 +255,6 @@ msgstr "कलाइडस्कोप"
 msgid "Invert Colors"
 msgstr "रङहरु उल्टाउनुहोस्"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "आकार:॒ "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "अस्पष्टता: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "वृत्त"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "वर्ग"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "ब्रसका गुणहरु छान"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "आकार"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "अस्पष्टता"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "आकार"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "ब्रसका गुणहरु"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "छापका गुणहरु"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "मेट्ने गुणहरू"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "बाल्टिन गुणहरू"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "छान्ने गुणहरू"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "सकियो"
@@ -269,74 +263,6 @@ msgstr "सकियो"
 msgid "Select stamp"
 msgstr "छाप छान"
 
-#~ msgid "Height"
-#~ msgstr "उचाई"
-
-#~ msgid "Width"
-#~ msgstr "चौडाई"
-
-#~ msgid "Choose image"
-#~ msgstr "चित्र छान"
-
-#~ msgid "Tools"
-#~ msgstr "औजारहरु"
-
-#~ msgid "Text"
-#~ msgstr "पाठ"
-
-#~ msgid "Effects"
-#~ msgstr "श्रृगार"
-
-#~ msgid "Stroke Color"
-#~ msgstr "घेराको रङ्ग"
-
-#~ msgid "Pencil"
-#~ msgstr "सिशाकलम"
-
-#~ msgid "Fill Color"
-#~ msgstr "भर्ने रङ्ग"
-
-#~ msgid "Points: "
-#~ msgstr "बिन्दुहरु:॒ "
-
-#~ msgid "Keep Aspect"
-#~ msgstr "आकार राख्नुहोस"
-
-#~ msgid "1000"
-#~ msgstr "१०००"
-
-#~ msgid "500"
-#~ msgstr "५००"
-
-#~ msgid "200"
-#~ msgstr "२००"
-
-#~ msgid "150"
-#~ msgstr "१५०"
-
-#~ msgid "100"
-#~ msgstr "१००"
-
-#~ msgid "50"
-#~ msgstr "५०"
-
-#~ msgid "25"
-#~ msgstr "२५"
-
-#~ msgid "10"
-#~ msgstr "१०"
-
-#~ msgid "ZOOM +"
-#~ msgstr "ठूलो +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "सानो -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "चतुर्भुजिय रेखा"
-
-#~ msgid "Tool Color"
-#~ msgstr "औजारको रङ्ग"
-
-#~ msgid "Fill Color: "
-#~ msgstr "रङ्ग भर: ॒"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "फन्ट छान"

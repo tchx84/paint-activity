@@ -6,23 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2014-03-30 07:19+0200\n"
-"Last-Translator: June <juneleonora@yahoo.com>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-03-18 16:40+0000\n"
+"Last-Translator: Ace <ace@suares.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pap\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1489855221.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Pinta"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -31,9 +30,65 @@ msgstr ""
 "Picasso? Van Gogh? Abo por ta un di nan! Djis laga e artista den bo "
 "liber.Transformá imágennan den bo mente den pinturanan bunita."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Selektá tipo di leter"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Grandura: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Opasidat: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Sírkulo"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Kuadrángulo"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Skohe karakterístikanan di e kuashi"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Tamaño"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Opasidat"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Forma"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Mantené aspekto"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Karakterístikanan di kuashi"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Karakterístikanan di e stampia"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Karakterístikanan di gòm"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Karakterístikanan di hèmber"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Karakterístikanan di selekshonadó"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Selekshoná área"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -77,11 +132,11 @@ msgstr "Hasi bashi"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Aktivá zonido"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Desaktivá zonido"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -108,19 +163,11 @@ msgstr "Stampia"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
-
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Selekshoná área"
+msgstr "Karga plachi"
 
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Yena"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Mantené aspekto"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -205,141 +252,20 @@ msgstr "Regenbog"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoskop"
 
 #: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Invertí kolónan"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Grandura: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Opasidat: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Sírkulo"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Kuadrángulo"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Skohe karakterístikanan di e kuashi"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Tamaño"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Opasidat"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Forma"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Karakterístikanan di kuashi"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Karakterístikanan di e stampia"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Karakterístikanan di gòm"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Karakterístikanan di hèmber"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Karakterístikanan di selekshonadó"
-
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Kla"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Selektá plachi"
 
-#~ msgid "Height"
-#~ msgstr "Haltura"
-
-#~ msgid "Width"
-#~ msgstr "Hanchura"
-
-#~ msgid "Choose image"
-#~ msgstr "Skohe imagen"
-
-#~ msgid "Tools"
-#~ msgstr "Tools"
-
-#~ msgid "Text"
-#~ msgstr "Teksto"
-
-#~ msgid "Effects"
-#~ msgstr "Efektonan"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Kolor prefera"
-
-#~ msgid "Pencil"
-#~ msgstr "Potlot"
-
-#~ msgid "Fill Color"
-#~ msgstr "Yena koló"
-
-#~ msgid "Points: "
-#~ msgstr "Puntonan: "
-
-#, fuzzy
-#~ msgid "Keep Aspect"
-#~ msgstr "Warda aspekto"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "ZOOM +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "ZOOM -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Selekshon Rektangular"
-
-#~ msgid "Tool Color"
-#~ msgstr "Kolor di Tool"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Yena koló: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Selektá tipo di leter"

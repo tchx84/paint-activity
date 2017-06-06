@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 10:45+0000\n"
 "Last-Translator: dark159123 <r.j.hansen@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487328337.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Mal"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -32,9 +30,65 @@ msgstr ""
 "Picasso? Van Gogh? Du kan blive til én af dem! Sæt blot din indre kunstner "
 "fri. Omform billeder i din bevidsthed til smukke malerier."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Vælg skrifttype"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Størrelse: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Uigennemsigtighed: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Cirkel"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Kvadrat"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Vælg egenskaber for pensel"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Størrelse"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Uigennemsigtighed"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Form"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Bevar aspekt"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Egenskaber for pensel"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Egenskaber for stempel"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Egenskaber for viskelæder"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Egenskaber for spand"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Egenskaber for valgfunktion"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Markér område"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -108,17 +162,9 @@ msgstr "Stempel"
 msgid "Load stamp"
 msgstr "Indlæs stempel"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Markér område"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Fyld"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Bevar aspekt"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -208,58 +254,6 @@ msgstr "Kalejdoskop"
 msgid "Invert Colors"
 msgstr "Invertér farver"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Størrelse: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Uigennemsigtighed: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Cirkel"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Kvadrat"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Vælg egenskaber for pensel"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Størrelse"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Uigennemsigtighed"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Form"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Egenskaber for pensel"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Egenskaber for stempel"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Egenskaber for viskelæder"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Egenskaber for spand"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Egenskaber for valgfunktion"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Færdig"
@@ -268,68 +262,6 @@ msgstr "Færdig"
 msgid "Select stamp"
 msgstr "Vælg stempel"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "kalejdoskop"
-
-#~ msgid "Height"
-#~ msgstr "Højde"
-
-#~ msgid "Width"
-#~ msgstr "Bredde"
-
-#~ msgid "Choose image"
-#~ msgstr "Vælg billede"
-
-#~ msgid "Tools"
-#~ msgstr "Værktøjer"
-
-#~ msgid "Text"
-#~ msgstr "Tekst"
-
-#~ msgid "Effects"
-#~ msgstr "Effekter"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Farve på strøg"
-
-#~ msgid "Pencil"
-#~ msgstr "Blyant"
-
-#~ msgid "Fill Color"
-#~ msgstr "Fyldfarve"
-
-#~ msgid "Points: "
-#~ msgstr "Punkter: "
-
-#~ msgid "Keep Aspect"
-#~ msgstr "Bevar aspekt"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "ZOOM +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "ZOOM -"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Vælg skrifttype"

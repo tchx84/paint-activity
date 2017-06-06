@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 07:47+0000\n"
 "Last-Translator: khaled <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -22,16 +22,14 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1487317673.000000\n"
 "Nplurals=6; Plural=N==0 ? 0: n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 "
 ": n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-POOTLE-MTIME: 1487317673.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "الرسام"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -40,9 +38,65 @@ msgstr ""
 "بيكاسو؟ فان جوخ؟ يمكنك أن تصبح أيًا منهم! فقط حرر روح الرسام بداخلك و ابدأ "
 "بتحويل كل ما تتخيله إلى أروع الرسوم."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "اختر الخط"
+#: widgets.py:17
+msgid "Size: "
+msgstr "الحجم: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "الإعتام: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "دائرة"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "مربع"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "اختر خصائص الفرشاة"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "الحجم"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "الإعتام"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "شكل"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "حافظ على النسبة"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "خصائص الفرشاة"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "خصائص الختم"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "خصائص الممحاة"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "خصائص الدلو"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "خصائص المنتقي"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "اختر المنطقة المُرادة"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -116,17 +170,9 @@ msgstr "الختم"
 msgid "Load stamp"
 msgstr "حمّل الختم"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "اختر المنطقة المُرادة"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "املأ"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "حافظ على النسبة"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -216,58 +262,6 @@ msgstr "مشكال"
 msgid "Invert Colors"
 msgstr "اعكس الألوان"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "الحجم: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "الإعتام: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "دائرة"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "مربع"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "اختر خصائص الفرشاة"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "الحجم"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "الإعتام"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "شكل"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "خصائص الفرشاة"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "خصائص الختم"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "خصائص الممحاة"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "خصائص الدلو"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "خصائص المنتقي"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "تم"
@@ -276,89 +270,6 @@ msgstr "تم"
 msgid "Select stamp"
 msgstr "اختر ختمًا"
 
-#~ msgid "Height"
-#~ msgstr "الارتفاع"
-
-#~ msgid "Width"
-#~ msgstr "العرض"
-
-#~ msgid "Choose image"
-#~ msgstr "اختر صورة"
-
-#~ msgid "Tools"
-#~ msgstr "أدوات"
-
-#~ msgid "Text"
-#~ msgstr "نص"
-
-#~ msgid "Effects"
-#~ msgstr "مؤثِّرات"
-
-#~ msgid "Stroke Color"
-#~ msgstr "لون الخط:"
-
-#~ msgid "Pencil"
-#~ msgstr "قلم"
-
-#~ msgid "Fill Color"
-#~ msgstr "لون الملء"
-
-#~ msgid "Points: "
-#~ msgstr "النقاط: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "قرّب +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "بعّد -"
-
-#~ msgid "Tool Color"
-#~ msgstr "لون الأداة"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "معلِّمة مربّعة"
-
-#~ msgid "Fill Color: "
-#~ msgstr "لون الملء: "
-
-#~ msgid "1"
-#~ msgstr "١"
-
-#~ msgid "2"
-#~ msgstr "٢"
-
-#~ msgid "3"
-#~ msgstr "٣"
-
-#~ msgid "5"
-#~ msgstr "٥"
-
-#~ msgid "20"
-#~ msgstr "٢٠"
-
-#~ msgid "Open File..."
-#~ msgstr "افتح ملف..."
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "اختر الخط"

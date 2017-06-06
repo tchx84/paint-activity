@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 04:52+0000\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487307122.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Tekenen"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -32,9 +30,65 @@ msgstr ""
 "Picasso? Van Gogh? Jij kan ook één van hen worden! Laat je innerlijke "
 "artiest vrij. Vorm beelden in je hoofd om tot prachtige schilderijen."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Selecteer lettertype"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Grootte: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Doorzichtigheid: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Cirkel"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Vierkant"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Kies kwasteigenschappen"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Grootte"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Doorzichtigheid"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Vorm"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Bewaar aanzicht"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Kwast eigenschappen"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Stempel eigenschappen"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Wisser eigenschappen"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Emmer eigenschappen"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Prikker eigenschappen"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Selecteer Gebied"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -108,17 +162,9 @@ msgstr "Zegel"
 msgid "Load stamp"
 msgstr "Laad stempel"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Selecteer Gebied"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Vullen"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Bewaar aanzicht"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -208,58 +254,6 @@ msgstr "Kaleidoscoop"
 msgid "Invert Colors"
 msgstr "Inverteer kleuren"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Grootte: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Doorzichtigheid: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Cirkel"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Vierkant"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Kies kwasteigenschappen"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Grootte"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Doorzichtigheid"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Vorm"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Kwast eigenschappen"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Stempel eigenschappen"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Wisser eigenschappen"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Emmer eigenschappen"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Prikker eigenschappen"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Klaar"
@@ -268,83 +262,6 @@ msgstr "Klaar"
 msgid "Select stamp"
 msgstr "Selecteer stempel"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Kaleidoscoop"
-
-#~ msgid "Height"
-#~ msgstr "Hoogte"
-
-#~ msgid "Width"
-#~ msgstr "Breedte"
-
-#~ msgid "Choose image"
-#~ msgstr "Afbeelding kiezen"
-
-#~ msgid "Tools"
-#~ msgstr "Werktuigen"
-
-#~ msgid "Text"
-#~ msgstr "Tekst"
-
-#~ msgid "Effects"
-#~ msgstr "Effecten"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Pen kleur"
-
-#~ msgid "Pencil"
-#~ msgstr "Penseel"
-
-#~ msgid "Fill Color"
-#~ msgstr "Invul kleur"
-
-#~ msgid "Points: "
-#~ msgstr "Punten: "
-
-#~ msgid "Keep Aspect"
-#~ msgstr "Bewaar aanzicht"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "ZOOM +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "ZOOM -"
-
-#~ msgid "Mirror Horizontal"
-#~ msgstr "Spiegel Horizontaal"
-
-#~ msgid "Mirror Vertical"
-#~ msgstr "Spiegel Verticaal"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Rechthoekig markeren"
-
-#~ msgid "Tool Color"
-#~ msgstr "Werktuig kleur"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Invul kleur: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Selecteer lettertype"

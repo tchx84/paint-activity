@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2017-02-18 00:29+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-04-09 17:48+0000\n"
+"Last-Translator: bzg <bzg@bzg.fr>\n"
 "Language-Team: Language locale/fr/LC\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -17,14 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487377796.000000\n"
+"X-POOTLE-MTIME: 1491760116.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Dessiner"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -34,9 +32,65 @@ msgstr ""
 "l'artiste qui dort en toi. Transforme les images que tu as dans ta tête en "
 "de belles peintures."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Sélectionner la police"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Taille : "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Opacité : "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Cercle"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Carré"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Choisir les propriétés du pinceau"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Taille"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Opacité"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Forme"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Conserver l'aspect"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Propriétés du pinceau"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Propriétés du tampon"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Propriétés de la gomme"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Propriétés du seau"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Propriétés du sélecteur"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Sélectionner une zone"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -80,11 +134,11 @@ msgstr "Effacer"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Activer le son"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Désactiver le son"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -110,17 +164,9 @@ msgstr "Tampon"
 msgid "Load stamp"
 msgstr "Charger un tampon"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Sélectionner une zone"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Remplissage"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Conserver l'aspect"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -210,58 +256,6 @@ msgstr "Kaléidoscope"
 msgid "Invert Colors"
 msgstr "Inverser les couleurs"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Taille : "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Opacité : "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Cercle"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Carré"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Choisir les propriétés du pinceau"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Taille"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Opacité"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Forme"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Propriétés du pinceau"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Propriétés du tampon"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Propriétés de la gomme"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Propriétés du seau"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Propriétés du sélecteur"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Terminé"
@@ -270,101 +264,6 @@ msgstr "Terminé"
 msgid "Select stamp"
 msgstr "Sélectionner un tampon"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "kaléidoscope"
-
-#~ msgid "Height"
-#~ msgstr "Hauteur"
-
-#~ msgid "Width"
-#~ msgstr "Largeur"
-
-#~ msgid "Choose image"
-#~ msgstr "Sélectionner une image"
-
-#~ msgid "Tools"
-#~ msgstr "Outils"
-
-#~ msgid "Text"
-#~ msgstr "Texte"
-
-#~ msgid "Effects"
-#~ msgstr "Effets"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Couleur du trait"
-
-#~ msgid "Pencil"
-#~ msgstr "Crayon"
-
-#~ msgid "Fill Color"
-#~ msgstr "Couleur de remplissage"
-
-#~ msgid "Points: "
-#~ msgstr "Points : "
-
-#~ msgid "Keep Aspect"
-#~ msgstr "Conserver l'aspect"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "ZOOM +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "ZOOM -"
-
-#~ msgid "Mirror Horizontal"
-#~ msgstr "Miroir Horizontal"
-
-#~ msgid "Mirror Vertical"
-#~ msgstr "Miroir vertical"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Sélection rectangulaire"
-
-#~ msgid "Tool Color"
-#~ msgstr "Couleur de l'outil"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Couleur de remplissage : "
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "20"
-#~ msgstr "20"
-
-#~ msgid "Open File..."
-#~ msgstr "Ouvrir le Dossier..."
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Sélectionner la police"

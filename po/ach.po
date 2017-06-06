@@ -2,238 +2,242 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2012-03-30 07:12+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2017-03-14 03:52+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: rw\n"
+"Language: ach\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
-"X-Generator: Pootle 2.0.5\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1489463546.000000\n"
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr "Gusiga irange"
+msgstr "Dawa"
 
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"Picasso? Van Gogh? In i twero bedo moo i kingi! Wek dong lagoo cal ma i yii "
+"obed agonya. Lok cal magi ki i wii wek dwok ling maleng."
 
 #: widgets.py:17
 msgid "Size: "
-msgstr "Ingano: "
+msgstr "Cajji: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "Lengone: "
 
 #: widgets.py:17
 msgid "Circle"
-msgstr "Uruziga"
+msgstr "Alawala"
 
 #: widgets.py:17
 msgid "Square"
-msgstr "Kare"
+msgstr "Gwic angwen"
 
 #: widgets.py:31
 msgid "Choose brush properties"
-msgstr ""
+msgstr "Yer jami pa lajwac"
 
 #: widgets.py:234
 msgid "Size"
-msgstr ""
+msgstr "Caji"
 
 #: widgets.py:248
 msgid "Opacity"
-msgstr ""
+msgstr "Lengone"
 
 #: widgets.py:273
 msgid "Shape"
-msgstr "Iforome y`icyintu"
+msgstr "Kite"
 
 #: widgets.py:279 toolbox.py:535
 msgid "Keep aspect"
-msgstr ""
+msgstr "Bed ki neno matut"
 
 #: widgets.py:304
 msgid "Brush properties"
-msgstr ""
+msgstr "Jami pa lajwac"
 
 #: widgets.py:310
 msgid "Stamp properties"
-msgstr ""
+msgstr "Jami pa stamp"
 
 #: widgets.py:314
 msgid "Eraser properties"
-msgstr ""
+msgstr "Jami pa gin yweyone"
 
 #: widgets.py:317
 msgid "Bucket properties"
-msgstr ""
+msgstr "Jami pa baket"
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr ""
+msgstr "Jami pa ngat makwanyo"
 
 #: widgets.py:321 toolbox.py:410
 msgid "Select Area"
-msgstr ""
+msgstr "Yer Kabedo"
 
 #: toolbox.py:141
 msgid "Edit"
-msgstr "Hindura"
+msgstr "Yub"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr ""
+msgstr "Jami pa kitgi"
 
 #: toolbox.py:161
 msgid "Shapes"
-msgstr "Guforoma kwikintu"
+msgstr "Kitgi"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr "Intego-nyuguti"
+msgstr "Caji"
 
 #: toolbox.py:183
 msgid "Image"
-msgstr "Ishusho"
+msgstr "Cale"
 
 #: toolbox.py:251
 msgid "Undo"
-msgstr "Kugarura ikintu cyabuze"
+msgstr "Tim ku"
 
 #: toolbox.py:252
 msgid "Redo"
-msgstr "Gukuraho ikigaruwe"
+msgstr "Tim odoco"
 
 #: toolbox.py:253
 msgid "Copy"
-msgstr "Gukoporora"
+msgstr "Kobi"
 
 #: toolbox.py:254
 msgid "Paste"
-msgstr "Komeka ibyakoporowe"
+msgstr "Dac"
 
 #: toolbox.py:262
 msgid "Clear"
-msgstr "Ikintu gisobanutse"
+msgstr "Ywee"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Wek dwon winye"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Juk dwon woko"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
-msgstr "Igikoresho bahanaguza ikintu"
+msgstr "Lajwac"
 
 #: toolbox.py:384
 msgid "Eraser"
-msgstr "Igisibisho"
+msgstr "Jwaa woko"
 
 #: toolbox.py:387
 msgid "Bucket"
-msgstr "Indobo"
+msgstr "Baket"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr ""
+msgstr "Ngat makwanyo"
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr ""
+msgstr "Stamp"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
+msgstr "Ket stamp"
 
 #: toolbox.py:529
 msgid "Fill"
-msgstr "Kuzuza"
+msgstr "Pong"
 
 #: toolbox.py:552
 msgid "Sides: "
-msgstr "Impande: "
+msgstr "Teng: "
 
 #: toolbox.py:621
 msgid "Ellipse"
-msgstr "Ellipse"
+msgstr "Lapim borpiny"
 
 #: toolbox.py:624
 msgid "Rectangle"
-msgstr "Urukiramende"
+msgstr "Gwic angwen"
 
 #: toolbox.py:627
 msgid "Line"
-msgstr "Umurongo"
+msgstr "Rek"
 
 #: toolbox.py:630
 msgid "Free form"
-msgstr ""
+msgstr "Fom me nono"
 
 #: toolbox.py:633
 msgid "Polygon"
-msgstr "Ikinyampande"
+msgstr "Romgi/poligon"
 
 #: toolbox.py:636
 msgid "Heart"
-msgstr "Umutima"
+msgstr "Lacwiny"
 
 #: toolbox.py:639
 msgid "Parallelogram"
-msgstr "Parallelogram"
+msgstr "Tirne"
 
 #: toolbox.py:642
 msgid "Arrow"
-msgstr "Akerekana ikerekezo"
+msgstr "Atero"
 
 #: toolbox.py:645
 msgid "Star"
-msgstr "Inyenyeri"
+msgstr "Lacer"
 
 #: toolbox.py:648
 msgid "Trapezoid"
-msgstr "Trapezoid"
+msgstr "Twoke tir angwen"
 
 #: toolbox.py:651
 msgid "Triangle"
-msgstr "Mpandeshatu"
+msgstr "Twoke adek"
 
 #: toolbox.py:685
 msgid "Type"
-msgstr "Andika"
+msgstr "Goo"
 
 #: toolbox.py:777
 msgid "Insert Image"
-msgstr "Shyiramo ishusho"
+msgstr "Roo Cal"
 
 #: toolbox.py:789
 msgid "Rotate Left"
-msgstr "Zengurutsa uganisha ubumosa"
+msgstr "Wir idwok lacam"
 
 #: toolbox.py:793
 msgid "Rotate Right"
-msgstr "Zengurutsa uganisha iburyo"
+msgstr "Wir i dwok lacem"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Kio ma Ocung tir"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Kio ma obuto abuta"
 
 #: toolbox.py:811
 msgid "Grayscale"
@@ -241,24 +245,24 @@ msgstr "Grayscale"
 
 #: toolbox.py:816
 msgid "Rainbow"
-msgstr "Umukororombya"
+msgstr "Ataloka"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoscope"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr ""
+msgstr "Lok Rangi acilalic"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Otyeko"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Yer stamp"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Yer caji"

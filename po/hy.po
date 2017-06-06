@@ -6,23 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2014-03-12 06:58+0200\n"
-"Last-Translator: Aram <ararat.info@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-02-18 03:23+0000\n"
+"Last-Translator: Jasmine <udea_jasmine@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1487388238.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Նկարել"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -31,9 +30,65 @@ msgstr ""
 "Պիկա՞սո, Վան Գո՞գ. Կարող ես լինել նրանցից մեկը: Պարզապես ազատիր քո ներսում "
 "գտնվող արվեստագերին: Վերածիր քո մտքում եղած պատկերները գեղեցիկ նկարների:"
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Ընտրել տառատեսակը"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Չափս. "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Անթափանցիկություն. "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Շրջանագիծ"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Քառակուսի"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Ընտրեք վրձնի հատկանիշները"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Չափս"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Անթափանցիկություն"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Ձև"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Պահել արտաքին տեսքը"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Վրձնի հատկանիշները"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Դրոշմի հատկանիշները"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Ռետինի հատկանիշները"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Դույլի հատկանիշները"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Ընտրիչի հատկանիշները"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Ընտրել տարածքը"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -77,11 +132,11 @@ msgstr "Մաքրել"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Միացնել ձայնը"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Անջատել ձայնը"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -106,19 +161,11 @@ msgstr "Դրոշմ"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
-
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Ընտրել տարածքը"
+msgstr "Ներկրել դրոշմը"
 
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Լիցք"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Պահել արտաքին տեսքը"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -202,77 +249,20 @@ msgstr "Ծիածան"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Խճանկար"
 
 #: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Հակադարձել Գույները"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Չափս. "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Անթափանցիկություն. "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Շրջանագիծ"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Քառակուսի"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Ընտրեք վրձնի հատկանիշները"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Չափս"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Անթափանցիկություն"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Ձև"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Վրձնի հատկանիշները"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Դրոշմի հատկանիշները"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Ռետինի հատկանիշները"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Դույլի հատկանիշները"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Ընտրիչի հատկանիշները"
-
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Պատրաստ է"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Ընտրել դրոշմը"
 
-#~ msgid "Height"
-#~ msgstr "Բարձրություն"
-
-#~ msgid "Width"
-#~ msgstr "Լայնք"
-
-#~ msgid "Choose image"
-#~ msgstr "Ընտրել պատկերը"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Ընտրել տառատեսակը"

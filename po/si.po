@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2011-09-28 08:24+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,74 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "පින්තාරු කරන්න"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "ප්‍රමාණය: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "වෘත්තය"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "කොටුව"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "හැඩය"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr ""
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr ""
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr ""
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
 msgstr ""
 
 #: toolbox.py:141
@@ -105,17 +159,9 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "පුරවන්න"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -205,58 +251,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr ""
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "ප්‍රමාණය: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "වෘත්තය"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "කොටුව"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "හැඩය"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -265,71 +259,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "උස"
-
-#~ msgid "Width"
-#~ msgstr "පළල"
-
-#~ msgid "Choose image"
-#~ msgstr "පින්තූරයක් තෝරන්න"
-
-#~ msgid "Tools"
-#~ msgstr "මෙවලම්"
-
-#~ msgid "Text"
-#~ msgstr "පෙළ"
-
-#~ msgid "Effects"
-#~ msgstr "ගුණාගුණ"
-
-#~ msgid "Stroke Color"
-#~ msgstr "පහර වර්ණය"
-
-#~ msgid "Pencil"
-#~ msgstr "පැන්සල"
-
-#~ msgid "Fill Color"
-#~ msgstr "වර්ණය පුරවන්න"
-
-#~ msgid "Points: "
-#~ msgstr "ලක්ෂ්‍ය: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "විශාල කරන්න"
-
-#~ msgid "ZOOM -"
-#~ msgstr "කුඩා කරන්න"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "චතුරස්‍ර අනුචලනය"
-
-#~ msgid "Tool Color"
-#~ msgstr "මෙවලම් වර්ණය"
-
-#~ msgid "Fill Color: "
-#~ msgstr "පිරවුම් වර්ණය: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

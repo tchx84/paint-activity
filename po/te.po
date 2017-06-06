@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2017-02-18 02:22+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-03-28 13:22+0000\n"
+"Last-Translator: GeeKrypter <psramaraju@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -16,22 +16,76 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487384543.000000\n"
+"X-POOTLE-MTIME: 1490707356.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "చిత్రీకరించు"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "కొలత: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "అస్పష్టత: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "వృత్తము"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "నలుచదరము"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:234
+msgid "Size"
+msgstr "పరిమాణం"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "అస్పష్టత"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "ఆకారము"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr ""
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr ""
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr ""
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
 msgstr ""
 
 #: toolbox.py:141
@@ -48,7 +102,7 @@ msgstr "ఆకారములు"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr ""
+msgstr "ఫాంట్లు"
 
 #: toolbox.py:183
 msgid "Image"
@@ -100,23 +154,15 @@ msgstr ""
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr ""
+msgstr "స్టాంప్"
 
 #: toolbox.py:400
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "నింపు"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -184,11 +230,11 @@ msgstr "కుడివైపుకు తిప్పు"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "సమాంతర అద్దం"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "నిలువు అద్దం"
 
 #: toolbox.py:811
 msgid "Grayscale"
@@ -204,133 +250,16 @@ msgstr ""
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr ""
-
-#: widgets.py:17
-msgid "Size: "
-msgstr "కొలత: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "వృత్తము"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "నలుచదరము"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "ఆకారము"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
+msgstr "రంగులను తారుమారు"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "పూర్తి"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "స్టాంప్ ఎంచుకోండి"
 
-#~ msgid "Height"
-#~ msgstr "ఎత్తు"
-
-#~ msgid "Width"
-#~ msgstr "వెడల్పు"
-
-#~ msgid "Choose image"
-#~ msgstr "బొమ్మ కోరుకో"
-
-#~ msgid "Tools"
-#~ msgstr "పనిముట్లు"
-
-#~ msgid "Text"
-#~ msgstr "వచనం"
-
-#~ msgid "Effects"
-#~ msgstr "ఫలములు"
-
-#~ msgid "Stroke Color"
-#~ msgstr "రంగులద్దు"
-
-#~ msgid "Pencil"
-#~ msgstr "పెన్ సిలు"
-
-#~ msgid "Fill Color"
-#~ msgstr "రంగుతో నింపు"
-
-#~ msgid "Points: "
-#~ msgstr "పాయింట్లు: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "పెద్దదిగా చూపు"
-
-#~ msgid "ZOOM -"
-#~ msgstr "చిన్నదిగా చూపు"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "దీర్ఘచదరపు మార్ఖీ"
-
-#~ msgid "Tool Color"
-#~ msgstr "పనిముట్టు రంగు"
-
-#~ msgid "Fill Color: "
-#~ msgstr "రంగుతో నింపు:"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "ఫాంట్ ఎంచుకోండి"

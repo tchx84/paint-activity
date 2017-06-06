@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2017-02-18 01:17+0000\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-05 16:37+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pbs\n"
@@ -16,25 +16,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487380624.000000\n"
+"X-POOTLE-MTIME: 1496680636.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Maka't"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 "¿Picaso? ¿van Gogh? lania'at tatsjau nda re ravut! viñuap nejeiñ ne kandau "
-"se kipiejé kiñkie'p vichjaut vajauts kutaut se jiuk tigyajau"
+"se kipiejé kiñkie'p vichjaut vajauts kutaut se jiuk tigyajau."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Kiji't manajá"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Mandap: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Nip majau lichja'aun: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Ndimjiuly'"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Kiñuimuu se skad-a me'e masau'"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Kiji't re se vupái ne chich'i xily'iung ndaka't"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Makéje'"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Nip majau lichja'aun"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Peuk vakja"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Majaiñ skad-a vakja"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Kad-er lumei ne ndaka't"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Vupaí re ndapu manajap"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Kad-er lumei ne ndavun"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Vupai ne balde"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Kad-er lumei ne ndake'eik"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Ravú se masa'aun"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -108,17 +162,9 @@ msgstr "Ndapúmanajap"
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Ravú se masa'aun"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Maneé"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Majaiñ skad-a vakja"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -208,58 +254,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Masal' xikjia'"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Mandap: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Nip majau lichja'aun: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Ndimjiuly'"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Kiñuimuu se skad-a me'e masau'"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Kiji't re se vupái ne chich'i xily'iung ndaka't"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Makéje'"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Nip majau lichja'aun"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Peuk vakja"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Kad-er lumei ne ndaka't"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Vupaí re ndapu manajap"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Kad-er lumei ne ndavun"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Vupai ne balde"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Kad-er lumei ne ndake'eik"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -268,11 +262,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "Majaáx"
-
-#~ msgid "Width"
-#~ msgstr "Nixi'i"
-
-#~ msgid "Choose image"
-#~ msgstr "Makeje' xik'iji'"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Kiji't manajá"

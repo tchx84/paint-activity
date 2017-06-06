@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2012-08-22 01:59+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,86 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Verf"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr ""
+#: widgets.py:17
+msgid "Size: "
+msgstr "Grootte: "
+
+#: widgets.py:17
+#, fuzzy
+msgid "Opacity: "
+msgstr "Ondeursigtigheid: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Sirkel"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Vierkant"
+
+#: widgets.py:31
+#, fuzzy
+msgid "Choose brush properties"
+msgstr "Kies kwaseienskappe"
+
+#: widgets.py:234
+#, fuzzy
+msgid "Size"
+msgstr "Grootte"
+
+#: widgets.py:248
+#, fuzzy
+msgid "Opacity"
+msgstr "Ondeursigtigheid"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Vorm"
+
+#: widgets.py:279 toolbox.py:535
+#, fuzzy
+msgid "Keep aspect"
+msgstr "Hou aspekverhouding"
+
+#: widgets.py:304
+#, fuzzy
+msgid "Brush properties"
+msgstr "Kwas eienskappe"
+
+#: widgets.py:310
+#, fuzzy
+msgid "Stamp properties"
+msgstr "Vorms eienskappe"
+
+#: widgets.py:314
+#, fuzzy
+msgid "Eraser properties"
+msgstr "Kwas eienskappe"
+
+#: widgets.py:317
+#, fuzzy
+msgid "Bucket properties"
+msgstr "Kwas eienskappe"
+
+#: widgets.py:319
+#, fuzzy
+msgid "Picker properties"
+msgstr "Kwas eienskappe"
+
+#: widgets.py:321 toolbox.py:410
+#, fuzzy
+msgid "Select Area"
+msgstr "Seleksiearea"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -107,20 +172,10 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-#, fuzzy
-msgid "Select Area"
-msgstr "Seleksiearea"
-
 #: toolbox.py:529
 #, fuzzy
 msgid "Fill"
 msgstr "Opvul"
-
-#: toolbox.py:535 widgets.py:279
-#, fuzzy
-msgid "Keep aspect"
-msgstr "Hou aspekverhouding"
 
 #: toolbox.py:552
 #, fuzzy
@@ -221,67 +276,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Negatief Kleure"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Grootte: "
-
-#: widgets.py:17
-#, fuzzy
-msgid "Opacity: "
-msgstr "Ondeursigtigheid: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Sirkel"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Vierkant"
-
-#: widgets.py:31
-#, fuzzy
-msgid "Choose brush properties"
-msgstr "Kies kwaseienskappe"
-
-#: widgets.py:234
-#, fuzzy
-msgid "Size"
-msgstr "Grootte"
-
-#: widgets.py:248
-#, fuzzy
-msgid "Opacity"
-msgstr "Ondeursigtigheid"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Vorm"
-
-#: widgets.py:304
-#, fuzzy
-msgid "Brush properties"
-msgstr "Kwas eienskappe"
-
-#: widgets.py:310
-#, fuzzy
-msgid "Stamp properties"
-msgstr "Vorms eienskappe"
-
-#: widgets.py:314
-#, fuzzy
-msgid "Eraser properties"
-msgstr "Kwas eienskappe"
-
-#: widgets.py:317
-#, fuzzy
-msgid "Bucket properties"
-msgstr "Kwas eienskappe"
-
-#: widgets.py:319
-#, fuzzy
-msgid "Picker properties"
-msgstr "Kwas eienskappe"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -290,15 +284,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "Hoogte"
-
-#~ msgid "Width"
-#~ msgstr "Wydte"
-
-#, fuzzy
-#~ msgid "Choose image"
-#~ msgstr "Kies beeld"
-
-#~ msgid "Text"
-#~ msgstr "Teks"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

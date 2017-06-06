@@ -2,49 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-11-28 15:45+0000\n"
-"Last-Translator: Besnik_b <besnik@programeshqip.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-05 16:28+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
@@ -52,14 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1480347928.000000\n"
+"X-POOTLE-MTIME: 1496680094.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Vizatim"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -69,9 +31,66 @@ msgstr ""
 "artistin brenda jush. Shndërrojini figurat e mendjes tuaj në piktura të "
 "hijshme."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Përzgjidhni shkronja"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Madhësi: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Patejdukshmëri: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Rreth"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Katror"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Zgjidhni veti peneli"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Madhësi"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Patejdukshmëri"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Formë"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Ruaji përpjestimet"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Veti peneli"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Veti stampe"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Veti fshirëseje"
+
+#: widgets.py:317
+#, fuzzy
+msgid "Bucket properties"
+msgstr "Veti zgjedhësi"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Veti zgjedhësi"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Përzgjidhni Zonë"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -115,11 +134,11 @@ msgstr "Pastro"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Aktivizo tingujt"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Çaktivizo tingujt"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -139,27 +158,19 @@ msgstr "Zgjedhës"
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr ""
+msgstr "Stampë"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
-
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Përzgjidhni Zonë"
+msgstr "Ngarko stampë"
 
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Mbushje"
 
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Ruaji përpjestimet"
-
 #: toolbox.py:552
 msgid "Sides: "
-msgstr "Anë:"
+msgstr "Anë: "
 
 #: toolbox.py:621
 msgid "Ellipse"
@@ -238,64 +249,13 @@ msgid "Rainbow"
 msgstr "Ylber"
 
 #: toolbox.py:821
+#, fuzzy
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoskop"
 
 #: toolbox.py:825
 msgid "Invert Colors"
 msgstr ""
-
-#: widgets.py:17
-msgid "Size: "
-msgstr "Madhësi:"
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Patejdukshmëri:"
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Rreth"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Katror"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Zgjidhni veti peneli"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Madhësi"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Patejdukshmëri"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Formë"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Veti peneli"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Veti fshirëseje "
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Veti zgjedhësi"
 
 #: dialogs.py:100
 msgid "Done"
@@ -303,70 +263,8 @@ msgstr "U bë"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Përzgjidhni stampë"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Kaleidoskop"
-
-#~ msgid "Height"
-#~ msgstr "Lartësia"
-
-#~ msgid "Width"
-#~ msgstr "Gjerësia"
-
-#~ msgid "Choose image"
-#~ msgstr "Zgjidhni imazhin"
-
-#~ msgid "Tools"
-#~ msgstr "Vegla"
-
-#~ msgid "Text"
-#~ msgstr "Tekst"
-
-#~ msgid "Effects"
-#~ msgstr "Efekt"
-
-#~ msgid "Pencil"
-#~ msgstr "Laps"
-
-#~ msgid "Fill Color"
-#~ msgstr "Mbushur ngjyra"
-
-#~ msgid "Points: "
-#~ msgstr "Pikët: "
-
-#~ msgid "1000"
-#~ msgstr "Njëmijë"
-
-#~ msgid "500"
-#~ msgstr "Pesëqind"
-
-#~ msgid "200"
-#~ msgstr "Dyqind"
-
-#~ msgid "150"
-#~ msgstr "Njëqind pesëdhjetë"
-
-#~ msgid "100"
-#~ msgstr "Njëqind"
-
-#~ msgid "50"
-#~ msgstr "Pesëdhjetë"
-
-#~ msgid "25"
-#~ msgstr "Njëzet e pesë"
-
-#~ msgid "10"
-#~ msgstr "Dhjetë"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Zmadho +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Zvoglo -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Tendë drejtkëndor"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Mbushur ngjyra: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Përzgjidhni shkronja"

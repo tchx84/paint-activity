@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2011-03-28 07:08+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,20 +16,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.6.0\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "vali"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr ""
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "vi'o"
+
+#: widgets.py:17
+msgid "Square"
+msgstr ""
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr ""
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr ""
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr ""
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr ""
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
 msgstr ""
 
 #: toolbox.py:141
@@ -104,16 +158,8 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
-
 #: toolbox.py:529
 msgid "Fill"
-msgstr ""
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
 msgstr ""
 
 #: toolbox.py:552
@@ -204,58 +250,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr ""
 
-#: widgets.py:17
-msgid "Size: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "vi'o"
-
-#: widgets.py:17
-msgid "Square"
-msgstr ""
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr ""
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -264,14 +258,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Choose image"
-#~ msgstr "filifili ata"
-
-#~ msgid "Text"
-#~ msgstr "tusitusiga"
-
-#~ msgid "ZOOM +"
-#~ msgstr "fa'a lapo'a"
-
-#~ msgid "ZOOM -"
-#~ msgstr "fa'a laititi"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

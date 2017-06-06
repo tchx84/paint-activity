@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2015-12-01 21:11+0000\n"
 "Last-Translator: Roger <contacto@somosazucar.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,6 @@ msgstr ""
 "X-POOTLE-MTIME: 1449004284.000000\n"
 
 #  "Pintar"
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Llimp'iy"
@@ -27,7 +26,6 @@ msgstr "Llimp'iy"
 #  [ES] ""
 #  [ES] "¿Picaso? ¿Van Gogh? !Puedes ser uno de ellos! Deja salir el artista que "
 #  [ES] "llevas dentro. Transforma imágenes en tu mente en hermosas pinturas."
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -37,9 +35,77 @@ msgstr ""
 "llimp'iqkunahina kawaq! Llimp'iq kasqaykita qhawarichiwayku. Umachayki "
 "imaymana munay yuyaykuna kaqta llimp'iriy."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Qillqalayata akllay"
+#  "Tamaño: "
+#: widgets.py:17
+msgid "Size: "
+msgstr "Sayaynin: "
+
+#  [ES] "Opacidad: "
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Rankhi kay: "
+
+#  "Círculo"
+#: widgets.py:17
+msgid "Circle"
+msgstr "Muyu"
+
+#  "Cuadrado"
+#: widgets.py:17
+msgid "Square"
+msgstr "Tawak'uchu"
+
+#  "Elija las propiedades del pincel"
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Llimp'iqpa imayninkunata akllay"
+
+#  [ES] "Tamaño"
+#: widgets.py:234
+msgid "Size"
+msgstr "Chhikannin"
+
+#  [ES] "Opacidad"
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Rankhi kay"
+
+#  "Forma"
+#: widgets.py:273
+msgid "Shape"
+msgstr "Rikch'ay"
+
+#  "Mantener relación de aspecto"
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Sayaynin kaqtaqa masichallay"
+
+#  "Propiedades del pincel"
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Llimp'iqpa kayninkuna"
+
+#  "Propiedades de los sellos"
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Takanakunap imayninkuna"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#  "Área seleccionada"
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Akllarisqa K'iti"
 
 #  "Editar"
 #: toolbox.py:141
@@ -128,20 +194,10 @@ msgstr "Takana"
 msgid "Load stamp"
 msgstr ""
 
-#  "Área seleccionada"
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Akllarisqa K'iti"
-
 #  "Llenar"
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Hunt'achiy"
-
-#  "Mantener relación de aspecto"
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Sayaynin kaqtaqa masichallay"
 
 #  "Lados: "
 #: toolbox.py:552
@@ -252,68 +308,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Llimp'ita t'ikray"
 
-#  "Tamaño: "
-#: widgets.py:17
-msgid "Size: "
-msgstr "Sayaynin: "
-
-#  [ES] "Opacidad: "
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Rankhi kay: "
-
-#  "Círculo"
-#: widgets.py:17
-msgid "Circle"
-msgstr "Muyu"
-
-#  "Cuadrado"
-#: widgets.py:17
-msgid "Square"
-msgstr "Tawak'uchu"
-
-#  "Elija las propiedades del pincel"
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Llimp'iqpa imayninkunata akllay"
-
-#  [ES] "Tamaño"
-#: widgets.py:234
-msgid "Size"
-msgstr "Chhikannin"
-
-#  [ES] "Opacidad"
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Rankhi kay"
-
-#  "Forma"
-#: widgets.py:273
-msgid "Shape"
-msgstr "Rikch'ay"
-
-#  "Propiedades del pincel"
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Llimp'iqpa kayninkuna"
-
-#  "Propiedades de los sellos"
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Takanakunap imayninkuna"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -322,14 +316,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#  "Altura"
-#~ msgid "Height"
-#~ msgstr "Sayaynin"
-
-#  "Anchura"
-#~ msgid "Width"
-#~ msgstr "Sakhaynin"
-
-#  "Seleccionar imagen"
-#~ msgid "Choose image"
-#~ msgstr "Wankita akllay"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Qillqalayata akllay"

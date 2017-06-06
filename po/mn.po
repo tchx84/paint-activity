@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2012-01-26 01:33+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,74 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Зурах"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Хэмжээ: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Дугуй"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Тэгш өнцөгт"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Дүрс"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr ""
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr ""
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr ""
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
 msgstr ""
 
 #: toolbox.py:141
@@ -105,17 +159,9 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Будах"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -205,58 +251,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr ""
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Хэмжээ: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Дугуй"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Тэгш өнцөгт"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Дүрс"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -265,71 +259,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "Өндөр"
-
-#~ msgid "Width"
-#~ msgstr "Өргөн"
-
-#~ msgid "Choose image"
-#~ msgstr "Зургаа сонгох"
-
-#~ msgid "Tools"
-#~ msgstr "Хэрэгслүүд"
-
-#~ msgid "Text"
-#~ msgstr "Бичих"
-
-#~ msgid "Effects"
-#~ msgstr "эффект"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Хүрээний өнгө"
-
-#~ msgid "Pencil"
-#~ msgstr "Харандаа"
-
-#~ msgid "Fill Color"
-#~ msgstr "Будах өнгө"
-
-#~ msgid "Points: "
-#~ msgstr "Хошуу: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Ойртуулах +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Холдуулах -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Тэгш өнцөгт .."
-
-#~ msgid "Tool Color"
-#~ msgstr "Өнгө"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Будах өнгө: _"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

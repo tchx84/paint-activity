@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 03:11+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487301090.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Málun"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -32,9 +30,65 @@ msgstr ""
 "Kjarval? Picasso? Van Gogh? Þú getur verið eins og þeir! Láttu listamanninn "
 "í þér ganga lausum hala. Breyttu myndunum í höfðinu á þér í falleg málverk."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Veldu letur"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Stærð: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Ógegnsæi: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Hringur"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Ferningur"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Veldu eiginleika pensla"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Stærð"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Ógegnsæi"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Form"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Halda hlutföllum"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Eiginleikar pensils"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Eiginleikar stimpils"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Eiginleikar strokleðurs"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Eiginleikar fötufyllingar"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Eiginleikar litaplokkara"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Velja svæði"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -108,17 +162,9 @@ msgstr "Stimpill"
 msgid "Load stamp"
 msgstr "Hlaða inn stimpli"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Velja svæði"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Fylla"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Halda hlutföllum"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -208,58 +254,6 @@ msgstr "Kviksjá"
 msgid "Invert Colors"
 msgstr "Snúa við litum"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Stærð: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Ógegnsæi: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Hringur"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Ferningur"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Veldu eiginleika pensla"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Stærð"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Ógegnsæi"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Form"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Eiginleikar pensils"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Eiginleikar stimpils"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Eiginleikar strokleðurs"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Eiginleikar fötufyllingar"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Eiginleikar litaplokkara"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Lokið"
@@ -268,68 +262,6 @@ msgstr "Lokið"
 msgid "Select stamp"
 msgstr "Veldu stimpil"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Kviksjá"
-
-#~ msgid "Height"
-#~ msgstr "Hæð"
-
-#~ msgid "Width"
-#~ msgstr "Breidd"
-
-#~ msgid "Choose image"
-#~ msgstr "Velja mynd"
-
-#~ msgid "Tools"
-#~ msgstr "Tól"
-
-#~ msgid "Text"
-#~ msgstr "Texti"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Striks litur"
-
-#~ msgid "Pencil"
-#~ msgstr "Pensill"
-
-#~ msgid "Fill Color"
-#~ msgstr "Fillingar litur"
-
-#~ msgid "Points: "
-#~ msgstr "Punktar: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Stækka"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Minnka"
-
-#~ msgid "Tool Color"
-#~ msgstr "Tóla litur"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Fyllingar litur: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Veldu letur"

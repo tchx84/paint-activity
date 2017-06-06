@@ -1,155 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Spanish translation of Drawing activity.
 # Copyright (C) 2007 NATE LSI-USP
 # This file is distributed under the same license as the Oficina package.
@@ -158,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2015-02-09 23:02+0000\n"
-"Last-Translator: Ignacio <ignacio@sugarlabs.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-02-20 02:51+0000\n"
+"Last-Translator: Alan <alanjas@hotmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -168,14 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1423522974.000000\n"
+"X-POOTLE-MTIME: 1487559064.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Pintar"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -184,9 +30,65 @@ msgstr ""
 "¿Picaso? ¿Van Gogh? ¡Puedes ser uno de ellos! Deja salir el artista que "
 "llevas dentro. Transforma imágenes en tu mente en hermosas pinturas."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Seleccionar fuente"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Tamaño: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Opacidad: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Círculo"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Cuadrado"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Elija las propiedades del pincel"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Tamaño"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Opacidad"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Forma"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Mantener relación de aspecto"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Propiedades del pincel"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Propiedades de los sellos"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Propiedades del borrador"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Propiedades del balde"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Propiedades del selector"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Área seleccionada"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -230,11 +132,11 @@ msgstr "Limpiar"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Habilitar sonido"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Deshabilitar sonido"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -260,17 +162,9 @@ msgstr "Sello"
 msgid "Load stamp"
 msgstr "Cargar estampa"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Área seleccionada"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Llenar"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Mantener relación de aspecto"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -354,63 +248,11 @@ msgstr "Arco iris"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Caleidoscopio"
 
 #: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Invertir colores"
-
-#: widgets.py:17
-msgid "Size: "
-msgstr "Tamaño: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Opacidad: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Círculo"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Cuadrado"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Elija las propiedades del pincel"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Tamaño"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Opacidad"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Forma"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Propiedades del pincel"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Propiedades de los sellos"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Propiedades del borrador"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Propiedades del balde"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Propiedades del selector"
 
 #: dialogs.py:100
 msgid "Done"
@@ -420,105 +262,6 @@ msgstr "Hecho"
 msgid "Select stamp"
 msgstr "Seleccionar estampa"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Caleidoscopio"
-
-#~ msgid "Height"
-#~ msgstr "Altura"
-
-#~ msgid "Width"
-#~ msgstr "Anchura"
-
-# Leave as infinitive verb.
-#~ msgid "Choose image"
-#~ msgstr "Seleccionar imagen"
-
-#~ msgid "Tools"
-#~ msgstr "Herramientas"
-
-#~ msgid "Text"
-#~ msgstr "Texto"
-
-#~ msgid "Effects"
-#~ msgstr "Efectos"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Color de trazo"
-
-#~ msgid "Pencil"
-#~ msgstr "Lápiz"
-
-#~ msgid "Fill Color"
-#~ msgstr "Color de relleno"
-
-#~ msgid "Points: "
-#~ msgstr "Puntos: "
-
-#~ msgid "Keep Aspect"
-#~ msgstr "Mantener proporciones"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Agrandar"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Achicar"
-
-#~ msgid "Mirror Horizontal"
-#~ msgstr "Espejo horizontal"
-
-#~ msgid "Mirror Vertical"
-#~ msgstr "Espejo vertical"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Selección Rectangular"
-
-#~ msgid "Tool Color"
-#~ msgstr "Color de la Herramienta"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Color de llenado: "
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "20"
-#~ msgstr "20"
-
-#~ msgid "Resize (%): "
-#~ msgstr "Retamañar (%): "
-
-#~ msgid "Open File..."
-#~ msgstr "Abrir Archivo..."
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Seleccionar fuente"

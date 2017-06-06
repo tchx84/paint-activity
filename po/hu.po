@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2016-03-23 04:59+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1458709168.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Kifestés"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -32,9 +30,65 @@ msgstr ""
 "Picasso? Van Gogh? Bármelyikük lehetsz! Csak engedd szabadon a benned lakó "
 "művészt. Formálj a fejedben lévő képekből gyönyörű festményeket."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Válassz betűtípust"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Méret: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Átlátszatlanság: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Kör"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Négyzet"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Ecset tulajdonságai"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Méret"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Átlátszatlanság"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Alakzat"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Képarány rögzítése"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Ecset tulajdonságai"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Bélyegző tulajdonságai"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Radír tulajdonságai"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Vödör tulajdonságai"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Pipetta tulajdonságai"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Terület kijelölése"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -108,17 +162,9 @@ msgstr "Pecsét"
 msgid "Load stamp"
 msgstr "Pecsét betöltése"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Terület kijelölése"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Kitöltés"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Képarány rögzítése"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -208,58 +254,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Színek invertálása"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Méret: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Átlátszatlanság: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Kör"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Négyzet"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Ecset tulajdonságai"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Méret"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Átlátszatlanság"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Alakzat"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Ecset tulajdonságai"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Bélyegző tulajdonságai"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Radír tulajdonságai"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Vödör tulajdonságai"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Pipetta tulajdonságai"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Kész"
@@ -268,38 +262,6 @@ msgstr "Kész"
 msgid "Select stamp"
 msgstr "Válassz pecsétet"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Kaleidoszkóp"
-
-#~ msgid "Height"
-#~ msgstr "Magasság"
-
-#~ msgid "Width"
-#~ msgstr "Szélesség"
-
-#~ msgid "Text"
-#~ msgstr "Szöveg"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Válassz betűtípust"

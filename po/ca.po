@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 07:08+0000\n"
 "Last-Translator: Robert <rbuj@fedoraproject.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,11 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487315319.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Dibuix"
 
 # well-spelled: Picasso, Van, Gogh
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -34,9 +32,65 @@ msgstr ""
 "porteu a dins. Transformeu les imatges que teniu a la vostra ment en "
 "dibuixos meravellosos."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Selecciona el tipus de lletra"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Mida: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Opacitat: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Cercle"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Quadrat"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Tria les propietats del pinzell"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Mida"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Opacitat"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Forma"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Manté l'aspecte"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Propietats del pinzell"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Propietats del segell"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Propietats de la goma d'esborrar"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Propietats de la galleda"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Propietats del selector"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Selecciona una àrea"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -116,17 +170,9 @@ msgstr "Segell"
 msgid "Load stamp"
 msgstr "Carrega un segell"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Selecciona una àrea"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Omple"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Manté l'aspecte"
 
 # altres:
 # costat m, cantó m, banda f; (of disk, piece of paper) cara f;
@@ -220,58 +266,6 @@ msgstr "Calidoscopi"
 msgid "Invert Colors"
 msgstr "Inverteix els colors"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Mida: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Opacitat: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Cercle"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Quadrat"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Tria les propietats del pinzell"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Mida"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Opacitat"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Forma"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Propietats del pinzell"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Propietats del segell"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Propietats de la goma d'esborrar"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Propietats de la galleda"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Propietats del selector"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Fet"
@@ -280,74 +274,6 @@ msgstr "Fet"
 msgid "Select stamp"
 msgstr "Selecciona el segell"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Calidoscopi"
-
-#~ msgid "Height"
-#~ msgstr "Alçada"
-
-#~ msgid "Width"
-#~ msgstr "Amplada"
-
-#~ msgid "Choose image"
-#~ msgstr "Tria Imatge"
-
-#~ msgid "Tools"
-#~ msgstr "Eines"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Effects"
-#~ msgstr "Efectes"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Traç de Color"
-
-#~ msgid "Pencil"
-#~ msgstr "Llapis"
-
-#~ msgid "Fill Color"
-#~ msgstr "Omplir amb color"
-
-#~ msgid "Points: "
-#~ msgstr "Punts:"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "AMPLIAR +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "REDUIR -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Marquesina Rectangular"
-
-#~ msgid "Tool Color"
-#~ msgstr "Eina de color"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Omplir amb color:"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Selecciona el tipus de lletra"

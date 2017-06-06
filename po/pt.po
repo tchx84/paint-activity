@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2013-09-30 22:53+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Pintar"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -31,9 +29,65 @@ msgstr ""
 "Picasso? Van Gogh? Podes ser qualquer um deles! Liberta o artista dentro de "
 "ti. Transformas as imagens da tua mente em pinturas lindas."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Escolher o tipo de letra"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Tamanho: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Opacidade: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Círculo"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Quadrado"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Escolhe as propriedades do pincel"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Tamanho"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Opacidade"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Forma"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Manter aspeto"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Propriedades do pincel"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Propriedades do carimbo"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Selecionar Área"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -107,17 +161,9 @@ msgstr "Carimbo"
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Selecionar Área"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Preencher"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Manter aspeto"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -207,58 +253,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Inverter Cores"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Tamanho: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Opacidade: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Círculo"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Quadrado"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Escolhe as propriedades do pincel"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Tamanho"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Opacidade"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Forma"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Propriedades do pincel"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Propriedades do carimbo"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -267,71 +261,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "Altura"
-
-#~ msgid "Width"
-#~ msgstr "Largura"
-
-#~ msgid "Choose image"
-#~ msgstr "Escolhe a imagem"
-
-#~ msgid "Tools"
-#~ msgstr "Ferramentas"
-
-#~ msgid "Text"
-#~ msgstr "Texto"
-
-#~ msgid "Effects"
-#~ msgstr "Efeitos"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Cor do Traço"
-
-#~ msgid "Pencil"
-#~ msgstr "Lápis"
-
-#~ msgid "Fill Color"
-#~ msgstr "Cor de Preenchimento"
-
-#~ msgid "Points: "
-#~ msgstr "Pontos: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "Aproximar Zoom"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Afastar Zoom"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Selecionar Àrea Rectangular"
-
-#~ msgid "Tool Color"
-#~ msgstr "Cor da Ferramenta"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Cor do Preenchimento: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Escolher o tipo de letra"

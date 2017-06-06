@@ -1,207 +1,207 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This file is distributed under the same license as the Paint package.
+# Božidar Putanec <bozidarp@yahoo.com>, 2017.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Paint\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2012-03-30 07:12+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: rw\n"
+"PO-Revision-Date: 2017-05-16 14:58-0700\n"
+"Last-Translator: Božidar Putanec <bozidarp@yahoo.com>\n"
+"Language-Team: Croatian <LL@li.org>\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Poedit 2.0.1\n"
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr "Gusiga irange"
+msgstr "Bojamo"
 
 #: activity/activity.info:3
 msgid ""
-"Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
-"free. Transform images in your mind to beautiful paintings."
+"Picasso? Van Gogh? You can be any of them! Just let the artist inside you free. Transform images in "
+"your mind to beautiful paintings."
 msgstr ""
+"Picasso? Van Gogh? Možeš biti bilo koji od njih! Oslobodi umjetnika u sebi i prenesi svoja maštanja "
+"na platno."
 
 #: widgets.py:17
 msgid "Size: "
-msgstr "Ingano: "
+msgstr "Veličina: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "Neprozirnost: "
 
 #: widgets.py:17
 msgid "Circle"
-msgstr "Uruziga"
+msgstr "Kružnica"
 
 #: widgets.py:17
 msgid "Square"
-msgstr "Kare"
+msgstr "Kvadrat"
 
 #: widgets.py:31
 msgid "Choose brush properties"
-msgstr ""
+msgstr "Odaberi kist"
 
 #: widgets.py:234
 msgid "Size"
-msgstr ""
+msgstr "Veličina"
 
 #: widgets.py:248
 msgid "Opacity"
-msgstr ""
+msgstr "Neprozirnost"
 
 #: widgets.py:273
 msgid "Shape"
-msgstr "Iforome y`icyintu"
+msgstr "Oblik"
 
 #: widgets.py:279 toolbox.py:535
 msgid "Keep aspect"
-msgstr ""
+msgstr "Zadrži aspekt"
 
 #: widgets.py:304
 msgid "Brush properties"
-msgstr ""
+msgstr "Svojstva kista"
 
 #: widgets.py:310
 msgid "Stamp properties"
-msgstr ""
+msgstr "Svojstva pečata"
 
 #: widgets.py:314
 msgid "Eraser properties"
-msgstr ""
+msgstr "Svojstva gumice"
 
 #: widgets.py:317
 msgid "Bucket properties"
-msgstr ""
+msgstr "Svojstva kantice"
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr ""
+msgstr "Svojstva kapaljke"
 
 #: widgets.py:321 toolbox.py:410
 msgid "Select Area"
-msgstr ""
+msgstr "Odaberi područje"
 
 #: toolbox.py:141
 msgid "Edit"
-msgstr "Hindura"
+msgstr "Uredi"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr ""
+msgstr "Svojstva oblika"
 
 #: toolbox.py:161
 msgid "Shapes"
-msgstr "Guforoma kwikintu"
+msgstr "Oblici"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr "Intego-nyuguti"
+msgstr "Tipovi slova"
 
 #: toolbox.py:183
 msgid "Image"
-msgstr "Ishusho"
+msgstr "Slika"
 
 #: toolbox.py:251
 msgid "Undo"
-msgstr "Kugarura ikintu cyabuze"
+msgstr "Poništi zadnju radnju"
 
 #: toolbox.py:252
 msgid "Redo"
-msgstr "Gukuraho ikigaruwe"
+msgstr "Ponovi poništeno"
 
 #: toolbox.py:253
 msgid "Copy"
-msgstr "Gukoporora"
+msgstr "Kopiraj"
 
 #: toolbox.py:254
 msgid "Paste"
-msgstr "Komeka ibyakoporowe"
+msgstr "Zalijepi"
 
 #: toolbox.py:262
 msgid "Clear"
-msgstr "Ikintu gisobanutse"
+msgstr "Izbriši"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Uključi zvuk"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Isključi zvuk"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
-msgstr "Igikoresho bahanaguza ikintu"
+msgstr "Kist"
 
 #: toolbox.py:384
 msgid "Eraser"
-msgstr "Igisibisho"
+msgstr "Gumica"
 
 #: toolbox.py:387
 msgid "Bucket"
-msgstr "Indobo"
+msgstr "Kantica"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr ""
+msgstr "Kapaljka za biranje boje"
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr ""
+msgstr "Pečat"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
+msgstr "Učitaj pečat"
 
 #: toolbox.py:529
 msgid "Fill"
-msgstr "Kuzuza"
+msgstr "Ispuna"
 
 #: toolbox.py:552
 msgid "Sides: "
-msgstr "Impande: "
+msgstr "Stranice: "
 
 #: toolbox.py:621
 msgid "Ellipse"
-msgstr "Ellipse"
+msgstr "Elipsa"
 
 #: toolbox.py:624
 msgid "Rectangle"
-msgstr "Urukiramende"
+msgstr "Pravokutnik"
 
 #: toolbox.py:627
 msgid "Line"
-msgstr "Umurongo"
+msgstr "Crta"
 
 #: toolbox.py:630
 msgid "Free form"
-msgstr ""
+msgstr "Prostoručno crtanje"
 
 #: toolbox.py:633
 msgid "Polygon"
-msgstr "Ikinyampande"
+msgstr "Poligon"
 
 #: toolbox.py:636
 msgid "Heart"
-msgstr "Umutima"
+msgstr "Srce"
 
 #: toolbox.py:639
 msgid "Parallelogram"
-msgstr "Parallelogram"
+msgstr "Paralelogram"
 
 #: toolbox.py:642
 msgid "Arrow"
-msgstr "Akerekana ikerekezo"
+msgstr "Strelica"
 
 #: toolbox.py:645
 msgid "Star"
-msgstr "Inyenyeri"
+msgstr "Zvijezda"
 
 #: toolbox.py:648
 msgid "Trapezoid"
@@ -209,56 +209,56 @@ msgstr "Trapezoid"
 
 #: toolbox.py:651
 msgid "Triangle"
-msgstr "Mpandeshatu"
+msgstr "Trokut"
 
 #: toolbox.py:685
 msgid "Type"
-msgstr "Andika"
+msgstr "Vrsta"
 
 #: toolbox.py:777
 msgid "Insert Image"
-msgstr "Shyiramo ishusho"
+msgstr "Umetni sliku"
 
 #: toolbox.py:789
 msgid "Rotate Left"
-msgstr "Zengurutsa uganisha ubumosa"
+msgstr "Rotiraj nalijevo"
 
 #: toolbox.py:793
 msgid "Rotate Right"
-msgstr "Zengurutsa uganisha iburyo"
+msgstr "Rotiraj nadesno"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Obrni vodoravno"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Obrni okomito"
 
 #: toolbox.py:811
 msgid "Grayscale"
-msgstr "Grayscale"
+msgstr "Sivi tonovi"
 
 #: toolbox.py:816
 msgid "Rainbow"
-msgstr "Umukororombya"
+msgstr "Dúga"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoskop"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr ""
+msgstr "Obrni boje"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Gotovo"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Odaberi pečat"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Odaberi tip slova"

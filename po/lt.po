@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2017-02-17 11:11+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,12 +19,10 @@ msgstr ""
 "X-Generator: Pootle 2.5.1.1\n"
 "X-POOTLE-MTIME: 1487329906.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Piešti"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -34,9 +32,65 @@ msgstr ""
 "jumyse esantį dailininką. Paverskite paveikslėlius jūsų mintyse gražiais "
 "piešiniais."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Pasirinkti šriftą"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Dydis: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Nepermatomumas: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Apskritimas"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Kvadratas"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Pasirinkti teptuko savybes"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Dydis"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Nepermatomumas"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Forma"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Išlaikyti proporcijas"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Teptuko savybės"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Antspaudo savybės"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Trintuko savybės"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Kibirėlio savybės"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Pipetės savybės"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Pažymėti sritį"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -110,17 +164,9 @@ msgstr "Antspaudas"
 msgid "Load stamp"
 msgstr "Įkelti antspaudą"
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Pažymėti sritį"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Užpildyti"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Išlaikyti proporcijas"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -210,58 +256,6 @@ msgstr "Kaleidoskopas"
 msgid "Invert Colors"
 msgstr "Invertuoti spalvas"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Dydis: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Nepermatomumas: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Apskritimas"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Kvadratas"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Pasirinkti teptuko savybes"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Dydis"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Nepermatomumas"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Forma"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Teptuko savybės"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Antspaudo savybės"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Trintuko savybės"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Kibirėlio savybės"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Pipetės savybės"
-
 #: dialogs.py:100
 msgid "Done"
 msgstr "Atlikta"
@@ -270,5 +264,6 @@ msgstr "Atlikta"
 msgid "Select stamp"
 msgstr "Pasirinkti antspaudą"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Kaleidoskopas"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Pasirinkti šriftą"

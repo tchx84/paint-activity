@@ -1,31 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Brazilian Portuguese translation of Drawing activity.
 # Copyright (C) 2007 NATE LSI-USP
 # This file is distributed under the same license as the Oficina package.
@@ -35,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2016-05-21 22:47+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-02-20 18:13+0000\n"
+"Last-Translator: Felipe <fefcas@gmail.com>\n"
 "Language-Team: Language locale/pt\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -45,25 +17,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1463870860.000000\n"
+"X-POOTLE-MTIME: 1487614423.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Pintar"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 "Picasso? Van Gogh? Você pode ser qualquer um deles! Apenas libere o artista "
-"dentro de você. Transforme imagens pensadas em belas pinturas."
+"dentro de você. Transforme imagens da sua mente em belas pinturas."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr "Selecione a fonte"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Tamanho: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Opacidade: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Círculo"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Quadrado"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Escolha as propriedades do pincel"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Tamanho"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Opacidade"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Forma"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Mantenha aspecto"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "propriedades do pincel"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Propriedades do carimbo"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Propriedades da borracha"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Propriedades do balde de tinta"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Propriedades do seletor de cores"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Selecionar área"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -91,7 +117,7 @@ msgstr "Desfazer"
 
 #: toolbox.py:252
 msgid "Redo"
-msgstr "Fazer de novo"
+msgstr "Refazer"
 
 #: toolbox.py:253
 msgid "Copy"
@@ -107,11 +133,11 @@ msgstr "Limpar"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Habilitar som"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Desabilitar som"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -127,7 +153,7 @@ msgstr "Balde"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr "Selecionar Cor"
+msgstr "Selecionar cor"
 
 #: toolbox.py:393
 msgid "Stamp"
@@ -135,19 +161,11 @@ msgstr "Carimbo"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr "Carregar carimbo"
-
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Selecionar Área"
+msgstr "Importar carimbo"
 
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Preenchimento"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Mantenha aspecto"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -231,63 +249,11 @@ msgstr "Arco-Íris"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Caleidoscópio"
 
 #: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Inverter as cores"
-
-#: widgets.py:17
-msgid "Size: "
-msgstr "Tamanho: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Opacidade: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Círculo"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Quadrado"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Escolha as propriedades do pincel"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Tamanho"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Opacidade"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Forma"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "propriedades do pincel"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Propriedades do carimbo"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr "Propriedades da borracha"
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr "Propriedades do balde de tinta"
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr "Propriedades do seletor de cores"
 
 #: dialogs.py:100
 msgid "Done"
@@ -297,99 +263,6 @@ msgstr "Concluído"
 msgid "Select stamp"
 msgstr "Selecionar carimbo"
 
-#~ msgid "Kalidoscope"
-#~ msgstr "Caleidoscópio"
-
-#~ msgid "Height"
-#~ msgstr "Altura"
-
-#~ msgid "Width"
-#~ msgstr "Largura"
-
-#~ msgid "Choose image"
-#~ msgstr "Escolha a imagem"
-
-#, fuzzy
-#~ msgid "Keep Aspect"
-#~ msgstr "Mantenha aspecto"
-
-#~ msgid "Tools"
-#~ msgstr "Ferramentas"
-
-#~ msgid "Text"
-#~ msgstr "Texto"
-
-#~ msgid "Effects"
-#~ msgstr "Efeitos"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Cor do Contorno"
-
-#~ msgid "Pencil"
-#~ msgstr "Lápis"
-
-#~ msgid "Fill Color"
-#~ msgstr "Cor do Preenchimento"
-
-#~ msgid "Points: "
-#~ msgstr "Pontos: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "ZOOM +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "ZOOM -"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Seleção Rectangular"
-
-#~ msgid "Tool Color"
-#~ msgstr "Cor da Ferramenta"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Cor do Preenchimento: "
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "20"
-#~ msgstr "20"
-
-#~ msgid "Resize (%): "
-#~ msgstr "Redimensionar (%): "
-
-#~ msgid "Open File..."
-#~ msgstr "Abrir Arquivo..."
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Selecione a fonte"

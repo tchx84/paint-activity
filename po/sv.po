@@ -6,31 +6,89 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2009-01-11 13:50-0500\n"
-"Last-Translator: Nicci Manns <nicci@saunalahti.fi>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-03-28 22:37+0000\n"
+"Last-Translator: Anders <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1490740629.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Rita"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"Picasso? Van Gogh? Du kan vara vem som helst av dem! Släpp lös din inre "
+"artist. Omvandla bilderna i ditt huvud till underbara målningar."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr ""
+#: widgets.py:17
+msgid "Size: "
+msgstr "Storlek: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Ogenomskinlighet: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Cirkel"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Fyrkant"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Välj penselegenskaper"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Storlek"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Ogenomskinlighet"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Form"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Behåll bildförhållande"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Penselegenskaper"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Stämpelegenskaper"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Suddgummiegenskaper"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Fyllfärgsegenskaper"
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr "Färgväljaregenskaper"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Välj område"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -38,7 +96,7 @@ msgstr "Redigera"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr ""
+msgstr "Formegenskaper"
 
 #: toolbox.py:161
 msgid "Shapes"
@@ -46,7 +104,7 @@ msgstr "Former"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr ""
+msgstr "Typsnitt"
 
 #: toolbox.py:183
 msgid "Image"
@@ -74,11 +132,11 @@ msgstr "Rensa"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Aktivera ljud"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Inaktivera ljud"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -86,7 +144,7 @@ msgstr "Pensel"
 
 #: toolbox.py:384
 msgid "Eraser"
-msgstr "Suddigummi"
+msgstr "Suddgummi"
 
 #: toolbox.py:387
 msgid "Bucket"
@@ -94,27 +152,19 @@ msgstr "Fyllfärg"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr ""
+msgstr "Färgväljare"
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr ""
+msgstr "Stämpel"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
-
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
+msgstr "Läs in stämpel"
 
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Fyll"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -134,7 +184,7 @@ msgstr "Linje"
 
 #: toolbox.py:630
 msgid "Free form"
-msgstr ""
+msgstr "Frihand"
 
 #: toolbox.py:633
 msgid "Polygon"
@@ -182,11 +232,11 @@ msgstr "Vrid höger"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr ""
+msgstr "Horisontell spegel"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr ""
+msgstr "Vertikal spegel"
 
 #: toolbox.py:811
 msgid "Grayscale"
@@ -198,138 +248,20 @@ msgstr "Regnbåge"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kalejdoskop"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr ""
-
-#: widgets.py:17
-msgid "Size: "
-msgstr "Storlek: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Cirkel"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Fyrkant"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Form"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
+msgstr "Invertera färger"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Färdig"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Välj stämpel"
 
-#~ msgid "Height"
-#~ msgstr "Höjd"
-
-#~ msgid "Width"
-#~ msgstr "Bredd"
-
-#~ msgid "Choose image"
-#~ msgstr "Välj bild"
-
-#~ msgid "Tools"
-#~ msgstr "Verktyg"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Effects"
-#~ msgstr "Effekter"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Kantfärg"
-
-#~ msgid "Pencil"
-#~ msgstr "Penna"
-
-#~ msgid "Fill Color"
-#~ msgstr "Fyllfärg"
-
-#~ msgid "Points: "
-#~ msgstr "Punkter: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-# Zooma in
-#~ msgid "ZOOM +"
-#~ msgstr "Zooma in"
-
-#~ msgid "ZOOM -"
-#~ msgstr "Zooma ut"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Fyrkantsmarkerare"
-
-#~ msgid "Tool Color"
-#~ msgstr "Verktygsfärg"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Fyllfärg: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Välj typsnitt"

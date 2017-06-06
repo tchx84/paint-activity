@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2008-03-02 05:00-0500\n"
 "Last-Translator: Ahmad Jawed Samsor <jawedsamsor@gmail.com>\n"
 "Language-Team: PASHTO <LL@li.org>\n"
@@ -16,20 +16,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.6.0\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "رسامي"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "اندازه "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "دايره"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "مربع"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "بڼه"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr ""
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr ""
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr ""
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
 msgstr ""
 
 #: toolbox.py:141
@@ -104,17 +158,9 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "ډكول"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -204,58 +250,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr ""
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "اندازه "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "دايره"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "مربع"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "بڼه"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -264,71 +258,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "لوړوالی"
-
-#~ msgid "Width"
-#~ msgstr "عرض"
-
-#~ msgid "Choose image"
-#~ msgstr "انځور انتخابول"
-
-#~ msgid "Tools"
-#~ msgstr "وسيلې"
-
-#~ msgid "Text"
-#~ msgstr "متن"
-
-#~ msgid "Effects"
-#~ msgstr "اغيزې"
-
-#~ msgid "Stroke Color"
-#~ msgstr "رنګ وهل"
-
-#~ msgid "Pencil"
-#~ msgstr "پنسل"
-
-#~ msgid "Fill Color"
-#~ msgstr "رنګ ډكول"
-
-#~ msgid "Points: "
-#~ msgstr "نقطې: "
-
-#~ msgid "1000"
-#~ msgstr "۱۰۰۰"
-
-#~ msgid "500"
-#~ msgstr "۵۰۰"
-
-#~ msgid "200"
-#~ msgstr "۲۰۰"
-
-#~ msgid "150"
-#~ msgstr "۱۵۰"
-
-#~ msgid "100"
-#~ msgstr "۱۰۰"
-
-#~ msgid "50"
-#~ msgstr "۵۰"
-
-#~ msgid "25"
-#~ msgstr "۲۵"
-
-#~ msgid "10"
-#~ msgstr "۱۰"
-
-#~ msgid "ZOOM +"
-#~ msgstr "لويوالی ډېرول"
-
-#~ msgid "ZOOM -"
-#~ msgstr "لويوالی کمول"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "مستطيل ډوله خوځمتن"
-
-#~ msgid "Tool Color"
-#~ msgstr "د وسيلې رنګ"
-
-#~ msgid "Fill Color: "
-#~ msgstr "رنګ ډکول "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

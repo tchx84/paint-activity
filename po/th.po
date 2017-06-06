@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2012-03-09 10:24+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,75 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "วาดภาพ"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "ขนาด: "
+
+#: widgets.py:17
+msgid "Opacity: "
 msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "วงกลม"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "สี่เหลี่ยม"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "เลือกคุณสมบัติของแปรง"
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "รูปทรง"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "คงมุมมองไว้"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "คุณสมบัติของแปรง"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "คุณสมบัติของประทับ"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "เลือกพื้นที่"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -105,17 +159,9 @@ msgstr "ประทับ"
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "เลือกพื้นที่"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "เติม"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "คงมุมมองไว้"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -205,58 +251,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "สลับค่าสี"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "ขนาด: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "วงกลม"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "สี่เหลี่ยม"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "เลือกคุณสมบัติของแปรง"
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "รูปทรง"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "คุณสมบัติของแปรง"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "คุณสมบัติของประทับ"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -265,65 +259,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "ความสูง"
-
-#~ msgid "Width"
-#~ msgstr "ความกว้าง"
-
-#~ msgid "Choose image"
-#~ msgstr "เลือกภาพ"
-
-#~ msgid "Tools"
-#~ msgstr "เครื่องมือ"
-
-#~ msgid "Text"
-#~ msgstr "ข้อความ"
-
-#~ msgid "Effects"
-#~ msgstr "ลูกเล่น"
-
-#~ msgid "Pencil"
-#~ msgstr "ดินสอ"
-
-#~ msgid "Fill Color"
-#~ msgstr "เติมสี"
-
-#~ msgid "Points: "
-#~ msgstr "จุด: "
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "+ ขยาย"
-
-#~ msgid "ZOOM -"
-#~ msgstr "- ขยาย"
-
-#~ msgid "Tool Color"
-#~ msgstr "สีเครื่องมือ"
-
-#~ msgid "Fill Color: "
-#~ msgstr "เติมสี: "
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

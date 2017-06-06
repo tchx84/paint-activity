@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2017-02-18 02:05+0000\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-06-05 16:59+0000\n"
 "Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sw\n"
@@ -16,23 +16,77 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487383553.000000\n"
+"X-POOTLE-MTIME: 1496681941.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Rangi"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Michezo: "
+
+#: widgets.py:17
+msgid "Opacity: "
 msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Duara"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Mraba"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Sura"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Kweka kipengele"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr ""
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr ""
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Kuchagua Eneo"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -71,6 +125,7 @@ msgid "Paste"
 msgstr "Kuweka"
 
 #: toolbox.py:262
+#, fuzzy
 msgid "Clear"
 msgstr "wazi or kuvuta"
 
@@ -106,17 +161,9 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Kuchagua Eneo"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Kujaza"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Kweka kipengele"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -206,58 +253,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Geuza michezo"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Michezo: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Duara"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Mraba"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Sura"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -266,65 +261,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "urefu"
-
-#~ msgid "Width"
-#~ msgstr "upana"
-
-#~ msgid "Choose image"
-#~ msgstr "chagua image, chagua picture,"
-
-#~ msgid "Tools"
-#~ msgstr "vifaa"
-
-#~ msgid "Text"
-#~ msgstr "nakala"
-
-#~ msgid "Effects"
-#~ msgstr "athari"
-
-#~ msgid "Stroke Color"
-#~ msgstr "kiharusi michezo"
-
-#~ msgid "Pencil"
-#~ msgstr "penseli"
-
-#~ msgid "Fill Color"
-#~ msgstr "kujaza michezo"
-
-#~ msgid "Points: "
-#~ msgstr "pointi"
-
-#~ msgid "Keep Aspect"
-#~ msgstr "kuweka kipengle"
-
-#~ msgid "1000"
-#~ msgstr "elfu moja"
-
-#~ msgid "500"
-#~ msgstr "mia tano"
-
-#~ msgid "200"
-#~ msgstr "mia mbili"
-
-#~ msgid "150"
-#~ msgstr "mia moja na hamsini"
-
-#~ msgid "100"
-#~ msgstr "mia moja"
-
-#~ msgid "50"
-#~ msgstr "hamsini"
-
-#~ msgid "25"
-#~ msgstr "ishirini na tano"
-
-#~ msgid "10"
-#~ msgstr "kumi"
-
-#~ msgid "ZOOM +"
-#~ msgstr "zoom+; zoom mingi"
-
-#~ msgid "ZOOM -"
-#~ msgstr "zoom -; zoom kidogo"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

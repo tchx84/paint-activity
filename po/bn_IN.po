@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oficina\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2008-07-13 13:05+0530\n"
 "Last-Translator: Sankarshan Mukhopadhyay <sankarshan@randomink.org>\n"
 "Language-Team: Bengali (India) <discuss@ankur.org.in>\n"
@@ -17,20 +17,74 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Translate Toolkit 1.6.0\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "পেইন্ট"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "আকার: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "বৃত্ত"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "বর্গ ক্ষেত্র"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr ""
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "আকৃতি"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr ""
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr ""
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr ""
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
 msgstr ""
 
 #: toolbox.py:141
@@ -106,17 +160,9 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr ""
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "ভর্তি করো"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr ""
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -208,58 +254,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr ""
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "আকার: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "বৃত্ত"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "বর্গ ক্ষেত্র"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr ""
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "আকৃতি"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr ""
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr ""
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -268,74 +262,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "দৈর্ঘ্য"
-
-#~ msgid "Width"
-#~ msgstr "প্রস্থ"
-
-#~ msgid "Choose image"
-#~ msgstr "ছবি বেছে নিন"
-
-#~ msgid "Tools"
-#~ msgstr "টুল"
-
-#~ msgid "Text"
-#~ msgstr "টেক্সট"
-
-#~ msgid "Effects"
-#~ msgstr "এফেক্ট"
-
-#~ msgid "Stroke Color"
-#~ msgstr "তুলির রঙ"
-
-#~ msgid "Pencil"
-#~ msgstr "পেন্সিল"
-
-#~ msgid "Fill Color"
-#~ msgstr "ভর্তি করার রঙ"
-
-#~ msgid "Points: "
-#~ msgstr "বিন্দুসমূহ: "
-
-#~ msgid "1000"
-#~ msgstr "১০০০"
-
-#~ msgid "500"
-#~ msgstr "৫০০"
-
-#~ msgid "200"
-#~ msgstr "২০০"
-
-#~ msgid "150"
-#~ msgstr "১৫০"
-
-#~ msgid "100"
-#~ msgstr "১০০"
-
-#~ msgid "50"
-#~ msgstr "৫০"
-
-#~ msgid "25"
-#~ msgstr "২৫"
-
-#~ msgid "10"
-#~ msgstr "১০"
-
-#, fuzzy
-#~ msgid "ZOOM +"
-#~ msgstr "বড় করো"
-
-#, fuzzy
-#~ msgid "ZOOM -"
-#~ msgstr "ছোট করো"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "চতুর্ভূজাকার মার্কিউই"
-
-#, fuzzy
-#~ msgid "Tool Color"
-#~ msgstr "টুলের রঙ"
-
-#~ msgid "Fill Color: "
-#~ msgstr "ভর্তি করার রঙ:"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

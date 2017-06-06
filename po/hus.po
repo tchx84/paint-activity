@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
 "PO-Revision-Date: 2012-06-24 02:10+0200\n"
 "Last-Translator: ing.arturo.lara <ing.arturo.lara@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Mukuy"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
 
-#: fontcombobox.py:90
-msgid "Select font"
+#: widgets.py:17
+msgid "Size: "
+msgstr "Puwél: "
+
+#: widgets.py:17
+msgid "Opacity: "
 msgstr ""
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Kwechodh"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Tsé' in walté'"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Takuy in alwá'"
+
+#: widgets.py:234
+msgid "Size"
+msgstr ""
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr ""
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Aykíl"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Ka ko'onchij antsaná' in majúl"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "In alwá' an pedh mukux"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "In alwá'"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr ""
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr ""
+
+#: widgets.py:319
+msgid "Picker properties"
+msgstr ""
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Takudh puwel"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -105,17 +159,9 @@ msgstr "Ts'o'om"
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Takudh puwel"
-
 #: toolbox.py:529
 msgid "Fill"
 msgstr "T'uchiy"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Ka ko'onchij antsaná' in majúl"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -207,58 +253,6 @@ msgstr ""
 msgid "Invert Colors"
 msgstr "Ka Wenk´ow an mukuxtalábl"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Puwél: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr ""
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Kwechodh"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Tsé' in walté'"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Takuy in alwá'"
-
-#: widgets.py:234
-msgid "Size"
-msgstr ""
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr ""
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Aykíl"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "In alwá' an pedh mukux"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "In alwá'"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
 msgstr ""
@@ -267,11 +261,6 @@ msgstr ""
 msgid "Select stamp"
 msgstr ""
 
-#~ msgid "Height"
-#~ msgstr "T'ek'em"
-
-#~ msgid "Width"
-#~ msgstr "Ts'ikwel"
-
-#~ msgid "Choose image"
-#~ msgstr "Ka takuy an t'iplab"
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr ""

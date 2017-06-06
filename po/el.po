@@ -1,35 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Greek translation of Drawing activity.
 # Copyright (C) 2007 NATE LSI-USP
 # This file is distributed under the same license as the Oficina package.
@@ -41,23 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-17 08:34+1100\n"
-"PO-Revision-Date: 2012-11-18 08:57+0200\n"
-"Last-Translator: Yannis <kiolalis@gmail.com>\n"
+"POT-Creation-Date: 2017-03-24 17:39+1100\n"
+"PO-Revision-Date: 2017-02-17 06:41+0000\n"
+"Last-Translator: kiolalis <kiolalis@gmail.com>\n"
 "Language-Team: Greek <olpc-l10n-el@googlegroups.com>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1487313691.000000\n"
 
-#. TRANS: "name" option from activity.info file
 #: activity/activity.info:2
 msgid "Paint"
 msgstr "Ζωγραφική"
 
-#. TRANS: "summary" option from activity.info file
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
@@ -67,9 +34,66 @@ msgstr ""
 "καλλιτέχνη που έχετε μέσα σας. Μετασχηματίστε τις νοερές σας εικόνες σε "
 "ζωγραφιές."
 
-#: fontcombobox.py:90
-msgid "Select font"
-msgstr ""
+#: widgets.py:17
+msgid "Size: "
+msgstr "Μέγεθος: "
+
+#: widgets.py:17
+msgid "Opacity: "
+msgstr "Αδιαφάνεια: "
+
+#: widgets.py:17
+msgid "Circle"
+msgstr "Κύκλος"
+
+#: widgets.py:17
+msgid "Square"
+msgstr "Τετράγωνο"
+
+#: widgets.py:31
+msgid "Choose brush properties"
+msgstr "Επιλέξτε ιδιότητες πινέλου"
+
+#: widgets.py:234
+msgid "Size"
+msgstr "Μέγεθος"
+
+#: widgets.py:248
+msgid "Opacity"
+msgstr "Αδιαφάνεια"
+
+#: widgets.py:273
+msgid "Shape"
+msgstr "Σχήμα"
+
+#: widgets.py:279 toolbox.py:535
+msgid "Keep aspect"
+msgstr "Διατήρηση αναλογίας"
+
+#: widgets.py:304
+msgid "Brush properties"
+msgstr "Ιδιότητες πινέλου"
+
+#: widgets.py:310
+msgid "Stamp properties"
+msgstr "Ιδιότητες σφραγίδας"
+
+#: widgets.py:314
+msgid "Eraser properties"
+msgstr "Ιδιότητες σβήστρας"
+
+#: widgets.py:317
+msgid "Bucket properties"
+msgstr "Ιδιότητες κάδου"
+
+#: widgets.py:319
+#, fuzzy
+msgid "Picker properties"
+msgstr "Ιδιότητες επιλογέα χρώματος"
+
+#: widgets.py:321 toolbox.py:410
+msgid "Select Area"
+msgstr "Επιλογή περιοχής"
 
 #: toolbox.py:141
 msgid "Edit"
@@ -113,11 +137,11 @@ msgstr "Εκκαθάριση"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Ενεργοποίηση ήχου"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Απενεργοποίηση ήχου"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -141,19 +165,11 @@ msgstr "Σφραγίδα"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
-
-#: toolbox.py:410 widgets.py:321
-msgid "Select Area"
-msgstr "Επιλογή περιοχής"
+msgstr "Φόρτωση σφραγίδας"
 
 #: toolbox.py:529
 msgid "Fill"
 msgstr "Γέμισμα"
-
-#: toolbox.py:535 widgets.py:279
-msgid "Keep aspect"
-msgstr "Διατήρηση αναλογίας"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -237,164 +253,20 @@ msgstr "Ουράνιο τόξο"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Καλειδοσκόπιο"
 
 #: toolbox.py:825
 msgid "Invert Colors"
 msgstr "Αντιστροφή χρωμάτων"
 
-#: widgets.py:17
-msgid "Size: "
-msgstr "Μέγεθος: "
-
-#: widgets.py:17
-msgid "Opacity: "
-msgstr "Αδιαφάνεια: "
-
-#: widgets.py:17
-msgid "Circle"
-msgstr "Κύκλος"
-
-#: widgets.py:17
-msgid "Square"
-msgstr "Τετράγωνο"
-
-#: widgets.py:31
-msgid "Choose brush properties"
-msgstr "Επιλέξτε ιδιότητες πινέλου"
-
-#: widgets.py:234
-msgid "Size"
-msgstr "Μέγεθος"
-
-#: widgets.py:248
-msgid "Opacity"
-msgstr "Αδιαφάνεια"
-
-#: widgets.py:273
-msgid "Shape"
-msgstr "Σχήμα"
-
-#: widgets.py:304
-msgid "Brush properties"
-msgstr "Ιδιότητες πινέλου"
-
-#: widgets.py:310
-msgid "Stamp properties"
-msgstr "Ιδιότητες σφραγίδας"
-
-#: widgets.py:314
-msgid "Eraser properties"
-msgstr ""
-
-#: widgets.py:317
-msgid "Bucket properties"
-msgstr ""
-
-#: widgets.py:319
-msgid "Picker properties"
-msgstr ""
-
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Ολοκληρώθηκε"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Επιλογή σφραγίδας"
 
-#~ msgid "Height"
-#~ msgstr "Ύψος"
-
-#~ msgid "Width"
-#~ msgstr "Πλάτος"
-
-#~ msgid "Choose image"
-#~ msgstr "Επιλογή εικόνας"
-
-#~ msgid "Tools"
-#~ msgstr "Εργαλεία"
-
-#~ msgid "Text"
-#~ msgstr "Κείμενο"
-
-#~ msgid "Effects"
-#~ msgstr "Εφέ"
-
-#~ msgid "Stroke Color"
-#~ msgstr "Χρώμα πινελιάς"
-
-#~ msgid "Pencil"
-#~ msgstr "Μολύβι"
-
-#~ msgid "Fill Color"
-#~ msgstr "Χρώμα γεμίσματος"
-
-#~ msgid "Points: "
-#~ msgstr "Σημεία: "
-
-#~ msgid "Keep Aspect"
-#~ msgstr "Διατήρηση αναλογίας"
-
-#~ msgid "1000"
-#~ msgstr "1000"
-
-#~ msgid "500"
-#~ msgstr "500"
-
-#~ msgid "200"
-#~ msgstr "200"
-
-#~ msgid "150"
-#~ msgstr "150"
-
-#~ msgid "100"
-#~ msgstr "100"
-
-#~ msgid "50"
-#~ msgstr "50"
-
-#~ msgid "25"
-#~ msgstr "25"
-
-#~ msgid "10"
-#~ msgstr "10"
-
-#~ msgid "ZOOM +"
-#~ msgstr "ΕΣΤΙΑΣΗ +"
-
-#~ msgid "ZOOM -"
-#~ msgstr "ΕΣΤΙΑΣΗ -"
-
-#~ msgid "Mirror Horizontal"
-#~ msgstr "Οριζόντια προβολή ειδώλου"
-
-#~ msgid "Mirror Vertical"
-#~ msgstr "Κάθετη προβολή ειδώλου"
-
-#~ msgid "Rectangular Marquee"
-#~ msgstr "Ορθογώνια επιλογή"
-
-#~ msgid "Tool Color"
-#~ msgstr "Εργαλείο χρωμάτων"
-
-#~ msgid "Fill Color: "
-#~ msgstr "Χρώμα γεμίσματος: "
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "20"
-#~ msgstr "20"
-
-#~ msgid "Open File..."
-#~ msgstr "Άνοιγμα αρχείου..."
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Επιλογή γραμματοσειράς"
