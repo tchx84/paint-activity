@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2016-02-01 14:10+0000\n"
-"Last-Translator: Carlo <cfalciola@yahoo.it>\n"
+"PO-Revision-Date: 2017-10-11 13:54+0000\n"
+"Last-Translator: elcico <elcico2001@yahoo.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1454335807.000000\n"
+"X-POOTLE-MTIME: 1507730072.000000\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -132,11 +132,11 @@ msgstr "Pulisci"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Abilita audio"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Disabilita audio"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -248,7 +248,7 @@ msgstr "Arcobaleno"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Caleidoscopio"
 
 #: toolbox.py:825
 msgid "Invert Colors"
