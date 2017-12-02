@@ -791,7 +791,10 @@ class Area(Gtk.DrawingArea):
                 self.d.freeform(self, coords, True, self.tool['fill'],
                                 "moving")
 
-        self.get_window().process_all_updates()
+        window = self.get_window()
+        if window is not None:
+            window.process_all_updates()
+
         return False
 
     def check_point_in_area(self, x_point, y_point, x_min, y_min,
