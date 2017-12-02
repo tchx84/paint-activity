@@ -116,6 +116,7 @@ class OficinaActivity(activity.Activity):
         self.textview.hide()  # will be shown when text tool is used
 
         self.area = Area(self)
+        self.area.setup(self._width, self._height - style.GRID_CELL_SIZE)
         self.area.show()
         self.fixed.put(self.area, 0, 0)
         self.fixed.put(self.textview, 0, 0)
