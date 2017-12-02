@@ -690,7 +690,8 @@ class Desenho:
         # FIXME: theoretically unnecessary, but empirically prevents
         # use of the window underneath the activity.
         width, height = window.get_width(), window.get_height()
-        surface = Gdk.Window.create_similar_surface(window, cairo.CONTENT_COLOR,
+        surface = Gdk.Window.create_similar_surface(window,
+                                                    cairo.CONTENT_COLOR,
                                                     width, height)
         ctx = cairo.Context(surface)
         Gdk.cairo_set_source_window(ctx, window, 0, 0)
