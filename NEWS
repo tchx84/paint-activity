@@ -1,3 +1,10 @@
+67
+
+* Update translation (James Cameron),
+* Removed warning during stop (James Cameron),
+* Preallocate area widget (James Cameron),
+* Flake8 fixes (James Cameron).
+
 66
 
 * New translations (Chris Leonard et al),
