@@ -1573,7 +1573,7 @@ class Area(Gtk.DrawingArea):
     def create_selection_surface(self, clear_background=True,
                                  temp_canvas=False):
         x, y, width, height = self.get_selection_bounds()
-        logging.error('create_selection_surface %s', (x, y, width, height))
+        logging.debug('create_selection_surface %s', (x, y, width, height))
         self.selection_surface = cairo.ImageSurface(
             cairo.FORMAT_ARGB32, width, height)
         selection_ctx = cairo.Context(self.selection_surface)
