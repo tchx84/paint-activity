@@ -75,11 +75,11 @@ import logging
 import os
 import math
 import cairo
-import StringIO
+import io
 import array
 
 from Desenho import Desenho
-from urlparse import urlparse
+from urllib.parse import urlparse
 from sugar3.graphics import style
 from sugar3.activity import activity
 
@@ -914,7 +914,7 @@ class Area(Gtk.DrawingArea):
         ctx.set_source_surface(self.drawing_canvas)
         ctx.paint()
 
-        pixels.fromstring(image_surface)
+        pixels.frombytes(image_surface.get_data())
 
         # process the pixels in the array
         width = self.drawing_canvas.get_width()
@@ -1030,7 +1030,7 @@ class Area(Gtk.DrawingArea):
             if stamp:
                 self.pixbuf_stamp = GdkPixbuf.Pixbuf.new_from_file(stamp)
             elif self.is_selected() and not stamp:
-                pixbuf_data = StringIO.StringIO()
+                pixbuf_data = io.StringIO()
                 self.get_selection().write_to_png(pixbuf_data)
                 pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
                 pxb_loader.write(pixbuf_data.getvalue())
@@ -1401,7 +1401,7 @@ class Area(Gtk.DrawingArea):
 
     def _surface_to_pixbuf(self, surface):
         # copy from the surface to the pixbuf
-        pixbuf_data = StringIO.StringIO()
+        pixbuf_data = io.StringIO()
         surface.write_to_png(pixbuf_data)
         pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
         pxb_loader.write(pixbuf_data.getvalue())
@@ -1800,9 +1800,9 @@ class Area(Gtk.DrawingArea):
                 if undo:
                     self.enable_undo()
 
-        except NameError, message:
+        except NameError as message:
             logging.debug(message)
-        except Exception, message:
+        except Exception as message:
             logging.debug('Unexpected error: %s', message)
 
     def apply_temp_selection(self):
