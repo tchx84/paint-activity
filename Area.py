@@ -475,7 +475,7 @@ class Area(Gtk.DrawingArea):
                               Gdk.EventType.BUTTON_PRESS):
                 if event.type == Gdk.EventType.BUTTON_PRESS:
                     # http://developer.gnome.org/gtk3/3.4/
-                    #                  GtkWidget.html#gtk-widget-get-pointer
+                    # GtkWidget.html#gtk-widget-get-pointer
                     _pointer, x, y, state = event.window.get_pointer()
                     button1_pressed = state & Gdk.ModifierType.BUTTON1_MASK
                 else:
@@ -1719,13 +1719,13 @@ class Area(Gtk.DrawingArea):
 #            if self.tool['fill color'] is not None:
 #                self.set_fill_color(self.tool['fill color'])
 #            else:
-#                # use black
+# use black
 #                self.set_fill_color(self.black)
 
 #            if self.tool['stroke color'] is not None:
 #                self.set_stroke_color(self.tool['stroke color'])
 #            else:
-#                # use black
+# use black
 #                self.set_stroke_color(self.black)
 
         except AttributeError:

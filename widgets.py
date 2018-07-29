@@ -18,6 +18,7 @@ _old_strings = [_('Size: '), _('Opacity: '), _('Circle'), _('Square')]
 
 
 class BrushButton(_ColorButton):
+
     """This is a ColorButton but show the color, the size and the shape
     of the brush.
     Instead of a color selector dialog it will pop up a Sugar palette.
@@ -161,6 +162,7 @@ class BrushButton(_ColorButton):
 
 
 class ButtonStrokeColor(Gtk.ToolItem):
+
     """Class to manage the Stroke Color of a Button"""
 
     __gtype_name__ = 'BrushColorToolButton'
