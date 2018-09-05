@@ -61,9 +61,9 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Gtk
-from gi.repository import GObject
 import logging
 import math
 import cairo
@@ -679,7 +679,7 @@ class Desenho:
             textview = widget.activity.textview
             textview.set_cursor_visible(False)
             # need wait until the cursor is hidden
-            GObject.idle_add(self._finalize_text, widget, textview)
+            GLib.idle_add(self._finalize_text, widget, textview)
 
     def _finalize_text(self, widget, textview):
         # get the Gdk.Window of the TextWindow child of the TextView

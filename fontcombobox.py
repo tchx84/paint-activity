@@ -180,7 +180,7 @@ class FontComboBox(Gtk.ToolItem):
     def set_palette(self, palette):
         self._palette_invoker.palette = palette
 
-    palette = GObject.property(
+    palette = GObject.Property(
         type=object, setter=set_palette, getter=get_palette)
 
     def get_palette_invoker(self):
@@ -190,7 +190,7 @@ class FontComboBox(Gtk.ToolItem):
         self._palette_invoker.detach()
         self._palette_invoker = palette_invoker
 
-    palette_invoker = GObject.property(
+    palette_invoker = GObject.Property(
         type=object, setter=set_palette_invoker, getter=get_palette_invoker)
 
     def set_font_name(self, font_name):

@@ -66,9 +66,9 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Gst', '1.0')
 gi.require_version('PangoCairo', '1.0')
 
+from gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import GObject
 import logging
 import json
 
@@ -163,7 +163,7 @@ class OficinaActivity(activity.Activity):
         width = Gdk.Screen.width()
         height = Gdk.Screen.height()
         if (self._width > self._height) != (width > height):
-            GObject.timeout_add(100, self.area.rotate_right, self.area)
+            GLib.timeout_add(100, self.area.rotate_right, self.area)
         self._width = width
         self._height = height
 

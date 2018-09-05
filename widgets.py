@@ -63,7 +63,7 @@ class BrushButton(_ColorButton):
         self._brush_size = brush_size
         self._preview.queue_draw()
 
-    brush_size = GObject.property(type=int, getter=get_brush_size,
+    brush_size = GObject.Property(type=int, getter=get_brush_size,
                                   setter=set_brush_size)
 
     def get_brush_shape(self):
@@ -73,7 +73,7 @@ class BrushButton(_ColorButton):
         self._brush_shape = brush_shape
         self._preview.queue_draw()
 
-    brush_shape = GObject.property(type=str, getter=get_brush_shape,
+    brush_shape = GObject.Property(type=str, getter=get_brush_shape,
                                    setter=set_brush_shape)
 
     def set_color(self, color):
@@ -90,7 +90,7 @@ class BrushButton(_ColorButton):
         self._stamp_size = stamp_size
         self._preview.queue_draw()
 
-    stamp_size = GObject.property(type=int, getter=get_stamp_size,
+    stamp_size = GObject.Property(type=int, getter=get_stamp_size,
                                   setter=set_stamp_size)
 
     def set_resized_stamp(self, resized_stamp):
@@ -385,7 +385,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self._palette_invoker.detach()
         self._palette_invoker = palette_invoker
 
-    palette_invoker = GObject.property(
+    palette_invoker = GObject.Property(
         type=object, setter=set_palette_invoker, getter=get_palette_invoker)
 
     def set_expanded(self, expanded):
@@ -417,7 +417,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
     def get_color(self):
         return self.get_child().props.color
 
-    color = GObject.property(type=object, getter=get_color, setter=set_color)
+    color = GObject.Property(type=object, getter=get_color, setter=set_color)
 
     def set_title(self, title):
         self.get_child().props.title = title
@@ -425,7 +425,7 @@ class ButtonStrokeColor(Gtk.ToolItem):
     def get_title(self):
         return self.get_child().props.title
 
-    title = GObject.property(type=str, getter=get_title, setter=set_title)
+    title = GObject.Property(type=str, getter=get_title, setter=set_title)
 
     def get_selected_tool(self):
         return self._selected_tool

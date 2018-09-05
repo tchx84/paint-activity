@@ -62,6 +62,7 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
+from gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
@@ -127,6 +128,7 @@ def _get_screen_dpi():
     dpi = float(xft_dpi / 1024)
     logging.debug('Setting dpi to: %f', dpi)
     return dpi
+
 
 bundle_path = activity.get_bundle_path()
 
@@ -276,7 +278,7 @@ class Area(Gtk.DrawingArea):
         self.tool['font_description'] = fd.to_string()
         if self.text_in_progress:
             # set the focus in the textview to enable resize if needed
-            GObject.idle_add(self.activity.textview.grab_focus)
+            GLib.idle_add(self.activity.textview.grab_focus)
 
     def get_font_description(self):
         return Pango.FontDescription(self.tool['font_description'])
@@ -495,7 +497,7 @@ class Area(Gtk.DrawingArea):
                 else:
                     self._on_touch = False
                     shift_pressed = False
-                GObject.timeout_add(10, self.tool_end, x, y, shift_pressed)
+                GLib.timeout_add(10, self.tool_end, x, y, shift_pressed)
 
     def tool_start(self, coord_x, coord_y, button1_pressed):
         width, height = self.get_size()
@@ -648,9 +650,9 @@ class Area(Gtk.DrawingArea):
         shift_pressed = event.get_state() & Gdk.ModifierType.SHIFT_MASK
         button1_pressed = event.get_state() & Gdk.ModifierType.BUTTON1_MASK
         if self._update_timer is None:
-            self._update_timer = GObject.timeout_add(5, self.tool_move, x, y,
-                                                     button1_pressed,
-                                                     shift_pressed)
+            self._update_timer = GLib.timeout_add(5, self.tool_move, x, y,
+                                                  button1_pressed,
+                                                  shift_pressed)
 
     def tool_move(self, x, y, button1_pressed, shift_pressed):
 
@@ -834,7 +836,7 @@ class Area(Gtk.DrawingArea):
             elif self.tool['name'] == 'bucket':
                 self.get_window().set_cursor(Gdk.Cursor.new(
                     Gdk.CursorType.WATCH))
-                GObject.idle_add(self.flood_fill, coords[0], coords[1])
+                GLib.idle_add(self.flood_fill, coords[0], coords[1])
 
             elif self.tool['name'] == 'triangle':
                 self.d.triangle(self, coords, False, self.tool['fill'])
@@ -877,7 +879,7 @@ class Area(Gtk.DrawingArea):
                 self.tool['name'] not in ['bucket', 'marquee-rectangular']:
             # We have to avoid saving an undo state if the bucket tool
             # is selected because this undo state is called before the
-            # GObject.idle_add (with the fill_flood function) finishes
+            # GLib.idle_add (with the fill_flood function) finishes
             # and an unconsistent undo state is saved
             self.enable_undo()
         if self.tool['name'] not in ('marquee-rectangular', 'freeform'):
@@ -1322,7 +1324,7 @@ class Area(Gtk.DrawingArea):
         old_cursor = self.get_window().get_cursor()
         self.get_toplevel().get_window().set_cursor(
             Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        GObject.idle_add(internal_invert, self, old_cursor)
+        GLib.idle_add(internal_invert, self, old_cursor)
 
     def mirror(self, widget, horizontal=True):
         """Apply mirror horizontal/vertical effect.
@@ -1334,7 +1336,7 @@ class Area(Gtk.DrawingArea):
         """
         old_cursor = self.get_window().get_cursor()
         self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        GObject.idle_add(self._mirror_internal, widget, horizontal, old_cursor)
+        GLib.idle_add(self._mirror_internal, widget, horizontal, old_cursor)
 
     def _mirror_internal(self, widget, horizontal, old_cursor):
         """Mirror the image.
@@ -1395,7 +1397,7 @@ class Area(Gtk.DrawingArea):
 
     def _do_process(self, widget, apply_process):
         self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        GObject.idle_add(self._do_process_internal, widget, apply_process)
+        GLib.idle_add(self._do_process_internal, widget, apply_process)
 
     def _surface_to_pixbuf(self, surface):
         # copy from the surface to the pixbuf
@@ -1445,7 +1447,7 @@ class Area(Gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
         """
         self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        GObject.idle_add(self._rotate, widget, 270)
+        GLib.idle_add(self._rotate, widget, 270)
 
     def rotate_right(self, widget):
         """Rotate the image.
@@ -1454,7 +1456,7 @@ class Area(Gtk.DrawingArea):
             @param  widget -- the Area object (GtkDrawingArea)
         """
         self.get_window().set_cursor(Gdk.Cursor.new(Gdk.CursorType.WATCH))
-        GObject.idle_add(self._rotate, widget, 90)
+        GLib.idle_add(self._rotate, widget, 90)
 
     def _rotate(self, widget, angle):
         """Rotate the image.
@@ -1623,8 +1625,8 @@ class Area(Gtk.DrawingArea):
             self.temp_ctx.get_source().set_filter(cairo.FILTER_NEAREST)
             # Add a timer for resize with high quality:
             if self._resize_hq_timer is not None:
-                GObject.source_remove(self._resize_hq_timer)
-            self._resize_hq_timer = GObject.timeout_add(
+                GLib.source_remove(self._resize_hq_timer)
+            self._resize_hq_timer = GLib.timeout_add(
                 200, self.resize_selection_surface, horizontal_scale,
                 vertical_scale, False)
         else:
