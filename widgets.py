@@ -28,6 +28,7 @@ class BrushButton(_ColorButton):
     __gtype_name__ = 'BrushButton'
 
     def __init__(self, **kwargs):
+        _ColorButton.__init__(self, **kwargs)
         self._title = _('Choose brush properties')
         self._color = Gdk.Color(0, 0, 0)
         self._has_palette = True
@@ -44,7 +45,6 @@ class BrushButton(_ColorButton):
                                        style.STANDARD_ICON_SIZE)
         self._ctx = None
 
-        GObject.GObject.__init__(self, **kwargs)
         self._preview.set_events(Gdk.EventMask.BUTTON_PRESS_MASK)
 
         self._preview.connect("draw", self.draw)
@@ -168,6 +168,8 @@ class ButtonStrokeColor(Gtk.ToolItem):
                     tuple())}
 
     def __init__(self, activity, **kwargs):
+        Gtk.ToolItem.__init__(self, **kwargs)
+
         self._activity = activity
         self.properties = self._activity.area.tool
         self._accelerator = None
@@ -175,8 +177,6 @@ class ButtonStrokeColor(Gtk.ToolItem):
         self._palette_invoker = ToolInvoker()
         self._palette = None
         self._selected_tool = None
-
-        GObject.GObject.__init__(self, **kwargs)
 
         # The Gtk.ToolButton has already added a normal button.
         # Replace it with a ColorButton

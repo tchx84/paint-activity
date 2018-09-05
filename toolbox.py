@@ -677,7 +677,7 @@ class TextToolbar(Gtk.Toolbar):
     _ACTION_TEXT_NAME = 'text'
 
     def __init__(self, activity):
-        GObject.GObject.__init__(self)
+        Gtk.Toolbar.__init__(self)
 
         self._activity = activity
         self.properties = self._activity.area.tool
@@ -768,7 +768,7 @@ class ImageToolbar(Gtk.Toolbar):
     _EFFECT_KALIDOSCOPE_NAME = 'kalidoscope'
 
     def __init__(self, activity):
-        GObject.GObject.__init__(self)
+        Gtk.Toolbar.__init__(self)
         self._activity = activity
         self.properties = self._activity.area.tool
 
