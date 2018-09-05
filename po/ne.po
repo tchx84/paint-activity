@@ -266,3 +266,75 @@ msgstr "छाप छान"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "फन्ट छान"
+
+#~ msgid "Height"
+#~ msgstr "उचाई"
+
+#~ msgid "Width"
+#~ msgstr "चौडाई"
+
+#~ msgid "Choose image"
+#~ msgstr "चित्र छान"
+
+#~ msgid "Tools"
+#~ msgstr "औजारहरु"
+
+#~ msgid "Text"
+#~ msgstr "पाठ"
+
+#~ msgid "Effects"
+#~ msgstr "श्रृगार"
+
+#~ msgid "Stroke Color"
+#~ msgstr "घेराको रङ्ग"
+
+#~ msgid "Pencil"
+#~ msgstr "सिशाकलम"
+
+#~ msgid "Fill Color"
+#~ msgstr "भर्ने रङ्ग"
+
+#~ msgid "Points: "
+#~ msgstr "बिन्दुहरु:॒ "
+
+#~ msgid "Keep Aspect"
+#~ msgstr "आकार राख्नुहोस"
+
+#~ msgid "1000"
+#~ msgstr "१०००"
+
+#~ msgid "500"
+#~ msgstr "५००"
+
+#~ msgid "200"
+#~ msgstr "२००"
+
+#~ msgid "150"
+#~ msgstr "१५०"
+
+#~ msgid "100"
+#~ msgstr "१००"
+
+#~ msgid "50"
+#~ msgstr "५०"
+
+#~ msgid "25"
+#~ msgstr "२५"
+
+#~ msgid "10"
+#~ msgstr "१०"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ठूलो +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "सानो -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "चतुर्भुजिय रेखा"
+
+#~ msgid "Tool Color"
+#~ msgstr "औजारको रङ्ग"
+
+#~ msgid "Fill Color: "
+#~ msgstr "रङ्ग भर: ॒"

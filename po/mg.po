@@ -263,3 +263,51 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Haavo"
+
+#~ msgid "Width"
+#~ msgstr "Sakany"
+
+#~ msgid "Choose image"
+#~ msgstr "Mifidiana sary"
+
+#~ msgid "Text"
+#~ msgstr "Lahatsoratra"
+
+#~ msgid "Pencil"
+#~ msgstr "Pensily"
+
+#~ msgid "Points: "
+#~ msgstr "Teboka:"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Akaikezo"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Alaviro"

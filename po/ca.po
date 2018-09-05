@@ -277,3 +277,75 @@ msgstr "Selecciona el segell"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Selecciona el tipus de lletra"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Calidoscopi"
+
+#~ msgid "Height"
+#~ msgstr "Alçada"
+
+#~ msgid "Width"
+#~ msgstr "Amplada"
+
+#~ msgid "Choose image"
+#~ msgstr "Tria Imatge"
+
+#~ msgid "Tools"
+#~ msgstr "Eines"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Effects"
+#~ msgstr "Efectes"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Traç de Color"
+
+#~ msgid "Pencil"
+#~ msgstr "Llapis"
+
+#~ msgid "Fill Color"
+#~ msgstr "Omplir amb color"
+
+#~ msgid "Points: "
+#~ msgstr "Punts:"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "AMPLIAR +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "REDUIR -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Marquesina Rectangular"
+
+#~ msgid "Tool Color"
+#~ msgstr "Eina de color"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Omplir amb color:"

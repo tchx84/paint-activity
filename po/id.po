@@ -265,3 +265,15 @@ msgstr "Pilih stempel"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Pilih fonta"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kaleidoskop"
+
+#~ msgid "Height"
+#~ msgstr "Tinggi"
+
+#~ msgid "Width"
+#~ msgstr "Lebar"
+
+#~ msgid "Choose image"
+#~ msgstr "Pilih gambar"

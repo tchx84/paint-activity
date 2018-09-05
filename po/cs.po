@@ -262,3 +262,42 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Výška"
+
+#~ msgid "Width"
+#~ msgstr "Šířka"
+
+#~ msgid "Tools"
+#~ msgstr "Nástroje"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Effects"
+#~ msgstr "Efekty"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"

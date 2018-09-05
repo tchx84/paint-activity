@@ -265,3 +265,6 @@ msgstr "yan ontẹ"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "yan font"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kalidoscope"

@@ -273,3 +273,90 @@ msgstr "اختر ختمًا"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "اختر الخط"
+
+#~ msgid "Height"
+#~ msgstr "الارتفاع"
+
+#~ msgid "Width"
+#~ msgstr "العرض"
+
+#~ msgid "Choose image"
+#~ msgstr "اختر صورة"
+
+#~ msgid "Tools"
+#~ msgstr "أدوات"
+
+#~ msgid "Text"
+#~ msgstr "نص"
+
+#~ msgid "Effects"
+#~ msgstr "مؤثِّرات"
+
+#~ msgid "Stroke Color"
+#~ msgstr "لون الخط:"
+
+#~ msgid "Pencil"
+#~ msgstr "قلم"
+
+#~ msgid "Fill Color"
+#~ msgstr "لون الملء"
+
+#~ msgid "Points: "
+#~ msgstr "النقاط: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "قرّب +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "بعّد -"
+
+#~ msgid "Tool Color"
+#~ msgstr "لون الأداة"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "معلِّمة مربّعة"
+
+#~ msgid "Fill Color: "
+#~ msgstr "لون الملء: "
+
+#~ msgid "1"
+#~ msgstr "١"
+
+#~ msgid "2"
+#~ msgstr "٢"
+
+#~ msgid "3"
+#~ msgstr "٣"
+
+#~ msgid "5"
+#~ msgstr "٥"
+
+#~ msgid "20"
+#~ msgstr "٢٠"
+
+#~ msgid "Open File..."
+#~ msgstr "افتح ملف..."

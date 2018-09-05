@@ -265,3 +265,73 @@ msgstr "Välj stämpel"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Välj typsnitt"
+
+#~ msgid "Height"
+#~ msgstr "Höjd"
+
+#~ msgid "Width"
+#~ msgstr "Bredd"
+
+#~ msgid "Choose image"
+#~ msgstr "Välj bild"
+
+#~ msgid "Tools"
+#~ msgstr "Verktyg"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Effects"
+#~ msgstr "Effekter"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Kantfärg"
+
+#~ msgid "Pencil"
+#~ msgstr "Penna"
+
+#~ msgid "Fill Color"
+#~ msgstr "Fyllfärg"
+
+#~ msgid "Points: "
+#~ msgstr "Punkter: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+# Zooma in
+#~ msgid "ZOOM +"
+#~ msgstr "Zooma in"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Zooma ut"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Fyrkantsmarkerare"
+
+#~ msgid "Tool Color"
+#~ msgstr "Verktygsfärg"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Fyllfärg: "

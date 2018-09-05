@@ -263,3 +263,90 @@ msgstr "选择图章"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "选择字体"
+
+#~ msgid "Height"
+#~ msgstr "高度"
+
+#~ msgid "Width"
+#~ msgstr "宽度"
+
+#~ msgid "Choose image"
+#~ msgstr "选择图片"
+
+#~ msgid "Tools"
+#~ msgstr "工具"
+
+#~ msgid "Text"
+#~ msgstr "文字"
+
+#~ msgid "Effects"
+#~ msgstr "效果"
+
+#~ msgid "Stroke Color"
+#~ msgstr "画笔颜色"
+
+#~ msgid "Pencil"
+#~ msgstr "铅笔"
+
+#~ msgid "Fill Color"
+#~ msgstr "填满颜色"
+
+#~ msgid "Points: "
+#~ msgstr "点: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "放大"
+
+#~ msgid "ZOOM -"
+#~ msgstr "缩小"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "矩形选择区域"
+
+#~ msgid "Tool Color"
+#~ msgstr "工具颜色"
+
+#~ msgid "Fill Color: "
+#~ msgstr "填满颜色: "
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "5"
+#~ msgstr "5"
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "Open File..."
+#~ msgstr "开启旧档..."

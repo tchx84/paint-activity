@@ -263,3 +263,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Yükseklik"
+
+#~ msgid "Width"
+#~ msgstr "Genişlik"
+
+#~ msgid "Choose image"
+#~ msgstr "Resim seç"
+
+#~ msgid "Tools"
+#~ msgstr "Araçlar"
+
+#~ msgid "Text"
+#~ msgstr "Metin"
+
+#~ msgid "Effects"
+#~ msgstr "Etkiler"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Boya Darbesi"
+
+#~ msgid "Pencil"
+#~ msgstr "Kurşunkalem"
+
+#~ msgid "Fill Color"
+#~ msgstr "Boya"
+
+#~ msgid "Points: "
+#~ msgstr "Noktalar"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Yakınlaştır +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Uzaklaştır -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Dikdörtgen Çerçeve"
+
+#~ msgid "Tool Color"
+#~ msgstr "Araç Renkleri"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Boyama:"

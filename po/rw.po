@@ -262,3 +262,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Ubuhagarike"
+
+#~ msgid "Width"
+#~ msgstr "Ubugali"
+
+#~ msgid "Choose image"
+#~ msgstr "Toranya ishusho"
+
+#~ msgid "Tools"
+#~ msgstr "ibikoresho"
+
+#~ msgid "Text"
+#~ msgstr "Umwandiko"
+
+#~ msgid "Effects"
+#~ msgstr "Ingaruka "
+
+#~ msgid "Stroke Color"
+#~ msgstr "Stroke ibara"
+
+#~ msgid "Pencil"
+#~ msgstr "ikaramu yigiti"
+
+#~ msgid "Fill Color"
+#~ msgstr "Uzuzamo ibara"
+
+#~ msgid "Points: "
+#~ msgstr "Ingingo"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Kwagura"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Kugabanya"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr " Marquee y`Urukiramende"
+
+#~ msgid "Tool Color"
+#~ msgstr "ibara ryigikoresho"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Uzuzamwo ibara"

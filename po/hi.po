@@ -1,3 +1,7 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # translation of oficina.po to Hindi
 # G Karunakar <karunakar@indlinux.org>, 2007.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
@@ -265,3 +269,75 @@ msgstr "मोहर चुनें"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "फ़ॉन्ट चुनें"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "बहुरूपदर्शक"
+
+#~ msgid "Height"
+#~ msgstr "ऊंचाई"
+
+#~ msgid "Width"
+#~ msgstr "चौड़ाई"
+
+#~ msgid "Choose image"
+#~ msgstr "छवि चुनो"
+
+#~ msgid "Tools"
+#~ msgstr "औज़ार"
+
+#~ msgid "Text"
+#~ msgstr "पाठ"
+
+#~ msgid "Effects"
+#~ msgstr "प्रभाव"
+
+#~ msgid "Stroke Color"
+#~ msgstr "लगाने का रंग"
+
+#~ msgid "Pencil"
+#~ msgstr "पेनसिल"
+
+#~ msgid "Fill Color"
+#~ msgstr "रंग भरें"
+
+#~ msgid "Points: "
+#~ msgstr "बिन्दुएँ: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "बड़ा करें +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "छोटा करें -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "वर्गाकार घेरा"
+
+#~ msgid "Tool Color"
+#~ msgstr "औजार का रंग"
+
+#~ msgid "Fill Color: "
+#~ msgstr "रंग भरें: "

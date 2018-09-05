@@ -261,3 +261,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Дължина"
+
+#~ msgid "Width"
+#~ msgstr "Ширина"
+
+#~ msgid "Choose image"
+#~ msgstr "Избор на изображение"
+
+#~ msgid "Tools"
+#~ msgstr "Инструменти"
+
+#~ msgid "Text"
+#~ msgstr "Текст"
+
+#~ msgid "Effects"
+#~ msgstr "Ефекти"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Цвят на линията"
+
+#~ msgid "Pencil"
+#~ msgstr "Молив"
+
+#~ msgid "Fill Color"
+#~ msgstr "Цвят на запълването"
+
+#~ msgid "Points: "
+#~ msgstr "Точки: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Увеличаване"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Намаляване"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Правоъгълно маркиране"
+
+#~ msgid "Tool Color"
+#~ msgstr "Цвят на инструмента"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Цвят на запълването: "

@@ -266,3 +266,6 @@ msgstr "Вибери штамп"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Вибери шрифт"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Калейдоскоп"

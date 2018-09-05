@@ -263,3 +263,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Височина"
+
+#~ msgid "Width"
+#~ msgstr "Широчина"
+
+#~ msgid "Choose image"
+#~ msgstr "Избери слика"
+
+#~ msgid "Tools"
+#~ msgstr "Алатки"
+
+#~ msgid "Text"
+#~ msgstr "Текст"
+
+#~ msgid "Effects"
+#~ msgstr "Ефекти"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Исцртај со боја"
+
+#~ msgid "Pencil"
+#~ msgstr "Молив"
+
+#~ msgid "Fill Color"
+#~ msgstr "Пополни со боја"
+
+#~ msgid "Points: "
+#~ msgstr "Поени:"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ЗГОЛЕМИ +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "НАМАЛИ -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Правоаголна табла"
+
+#~ msgid "Tool Color"
+#~ msgstr "Боја на алатка"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Пополни со боја: "

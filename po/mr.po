@@ -262,3 +262,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "उंची"
+
+#~ msgid "Width"
+#~ msgstr "रुंदी"
+
+#~ msgid "Choose image"
+#~ msgstr "चित्र निवडा"
+
+#~ msgid "Tools"
+#~ msgstr "साधने"
+
+#~ msgid "Text"
+#~ msgstr "शब्द"
+
+#~ msgid "Effects"
+#~ msgstr "परिणाम"
+
+#~ msgid "Stroke Color"
+#~ msgstr "स्ट्रोक कलर"
+
+#~ msgid "Pencil"
+#~ msgstr "पेन्सिल"
+
+#~ msgid "Fill Color"
+#~ msgstr "रंग भरा"
+
+#~ msgid "Points: "
+#~ msgstr "बिंदू: "
+
+#~ msgid "1000"
+#~ msgstr "१०००"
+
+#~ msgid "500"
+#~ msgstr "५००"
+
+#~ msgid "200"
+#~ msgstr "२००"
+
+#~ msgid "150"
+#~ msgstr "१५०"
+
+#~ msgid "100"
+#~ msgstr "१००"
+
+#~ msgid "50"
+#~ msgstr "५०"
+
+#~ msgid "25"
+#~ msgstr "२५"
+
+#~ msgid "10"
+#~ msgstr "१०"
+
+#~ msgid "ZOOM +"
+#~ msgstr "झूम +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "झूम -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "आयताकृती तंबू"
+
+#~ msgid "Tool Color"
+#~ msgstr "साधनाचा रंग"
+
+#~ msgid "Fill Color: "
+#~ msgstr "रंग भरा: "

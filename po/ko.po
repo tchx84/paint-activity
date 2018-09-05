@@ -276,3 +276,23 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Tools"
+#~ msgstr "툴"
+
+#, fuzzy
+#~ msgid "Text"
+#~ msgstr "텍스트"
+
+#, fuzzy
+#~ msgid "Effects"
+#~ msgstr "효과"
+
+#, fuzzy
+#~ msgid "Pencil"
+#~ msgstr "연필"
+
+#, fuzzy
+#~ msgid "Rectangular Marquee"
+#~ msgstr "사각 마퀴"

@@ -268,3 +268,12 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "កំពស់"
+
+#~ msgid "Width"
+#~ msgstr "ទទឹង"
+
+#~ msgid "Choose image"
+#~ msgstr "ជ្រើស​រូបភាប"

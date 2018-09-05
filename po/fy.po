@@ -7,268 +7,261 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2012-02-16 07:39+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2018-01-18 19:48+0000\n"
+"Last-Translator: Berend <berendy@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: sr\n"
+"Language: fy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1516304897.000000\n"
 
 #: activity/activity.info:2
 msgid "Paint"
-msgstr "Фарбај"
+msgstr "Tekenje"
 
 #: activity/activity.info:3
 msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
+"Picasso? Van Gogh? Do kinst ek ien fan har wurde! Lit dyn inerlike artyst "
+"frij. Foarm bylden yn dyn holle om ta prachtige skilderijen."
 
 #: widgets.py:17
 msgid "Size: "
-msgstr "Величина: "
+msgstr "Grutte: "
 
 #: widgets.py:17
 msgid "Opacity: "
-msgstr ""
+msgstr "Trochsichtigens: "
 
 #: widgets.py:17
 msgid "Circle"
-msgstr "Круг"
+msgstr "Sirkel"
 
 #: widgets.py:17
 msgid "Square"
-msgstr "Квадрат"
+msgstr "Fjourkant"
 
 #: widgets.py:31
 msgid "Choose brush properties"
-msgstr "Изабери својства четкице"
+msgstr "Kies kwast eigenskippen"
 
 #: widgets.py:234
 msgid "Size"
-msgstr ""
+msgstr "Grutte"
 
 #: widgets.py:248
 msgid "Opacity"
-msgstr ""
+msgstr "Trochsichtigens"
 
 #: widgets.py:273
 msgid "Shape"
-msgstr "Облик"
+msgstr "Foarm"
 
 #: widgets.py:279 toolbox.py:535
 msgid "Keep aspect"
-msgstr "Задржи аспект"
+msgstr "Ferhâlding behâlde"
 
 #: widgets.py:304
 msgid "Brush properties"
-msgstr "Својства четкице"
+msgstr "Kwast eigenskippen"
 
 #: widgets.py:310
 msgid "Stamp properties"
-msgstr "Својства печата"
+msgstr "Stimpel eigenskippen"
 
 #: widgets.py:314
 msgid "Eraser properties"
-msgstr ""
+msgstr "Wisker eigenskippen"
 
 #: widgets.py:317
 msgid "Bucket properties"
-msgstr ""
+msgstr "Amer eigenskippen"
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr ""
+msgstr "Prikker eigenskippen"
 
 #: widgets.py:321 toolbox.py:410
 msgid "Select Area"
-msgstr "Изабери Површину"
+msgstr "gebiet selektearje"
 
 #: toolbox.py:141
 msgid "Edit"
-msgstr "Уреди"
+msgstr "Bewurkje"
 
 #: toolbox.py:145
 msgid "Shapes properties"
-msgstr "Својства облика"
+msgstr "Foarm eigenskippen"
 
 #: toolbox.py:161
 msgid "Shapes"
-msgstr "Облици"
+msgstr "Foarmen"
 
 #: toolbox.py:177
 msgid "Fonts"
-msgstr "Фонтови"
+msgstr "Lettertypen"
 
 #: toolbox.py:183
 msgid "Image"
-msgstr "Слика"
+msgstr "Ofbylding"
 
 #: toolbox.py:251
 msgid "Undo"
-msgstr "Поништи"
+msgstr "Ungedien meitsje"
 
 #: toolbox.py:252
 msgid "Redo"
-msgstr "Поврати"
+msgstr "Op 'e nij dwaan"
 
 #: toolbox.py:253
 msgid "Copy"
-msgstr "Умножи"
+msgstr "Kopiearje"
 
 #: toolbox.py:254
 msgid "Paste"
-msgstr "Убаци"
+msgstr "Plakke"
 
 #: toolbox.py:262
 msgid "Clear"
-msgstr "Очисти"
+msgstr "Skjin meitsje"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Lûd oan"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Lûd út"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
-msgstr "Четкица"
+msgstr "Kwast"
 
 #: toolbox.py:384
 msgid "Eraser"
-msgstr "Гумица"
+msgstr "Gom"
 
 #: toolbox.py:387
 msgid "Bucket"
-msgstr "Канта"
+msgstr "Amer"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr ""
+msgstr "Prikker"
 
 #: toolbox.py:393
 msgid "Stamp"
-msgstr "Печат"
+msgstr "Stimpel"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr ""
+msgstr "Stimpel lade"
 
 #: toolbox.py:529
 msgid "Fill"
-msgstr "Попуни"
+msgstr "Folje"
 
 #: toolbox.py:552
 msgid "Sides: "
-msgstr "Стране: "
+msgstr "Kanten: "
 
 #: toolbox.py:621
 msgid "Ellipse"
-msgstr "Елипса"
+msgstr "Ellips"
 
 #: toolbox.py:624
 msgid "Rectangle"
-msgstr "Правоугаоник"
+msgstr "Rjochthoek"
 
 #: toolbox.py:627
 msgid "Line"
-msgstr "Линија"
+msgstr "Line"
 
 #: toolbox.py:630
 msgid "Free form"
-msgstr "Слободна форма"
+msgstr "Frije foarm"
 
 #: toolbox.py:633
 msgid "Polygon"
-msgstr "Полигон"
+msgstr "Polygoan"
 
 #: toolbox.py:636
 msgid "Heart"
-msgstr "Срце"
+msgstr "Hert"
 
 #: toolbox.py:639
 msgid "Parallelogram"
-msgstr "Паралелограм"
+msgstr "Parallellogram"
 
 #: toolbox.py:642
 msgid "Arrow"
-msgstr "Стрела"
+msgstr "Pylk"
 
 #: toolbox.py:645
 msgid "Star"
-msgstr "Звезда"
+msgstr "Stjer"
 
 #: toolbox.py:648
 msgid "Trapezoid"
-msgstr "Трапез"
+msgstr "Trapezium"
 
 #: toolbox.py:651
 msgid "Triangle"
-msgstr "Троугао"
+msgstr "Trijehoek"
 
 #: toolbox.py:685
 msgid "Type"
-msgstr "Врста"
+msgstr "Type"
 
 #: toolbox.py:777
 msgid "Insert Image"
-msgstr "Уметни Слику"
+msgstr "Ofbylding ynfoegje"
 
 #: toolbox.py:789
 msgid "Rotate Left"
-msgstr "Окрени Лево"
+msgstr "Linksom rotearje"
 
 #: toolbox.py:793
 msgid "Rotate Right"
-msgstr "Окрени Десно"
+msgstr "Rjochtsom rotearje"
 
 #: toolbox.py:798
 msgid "Horizontal Mirror"
-msgstr "Хоризонтално Огледало"
+msgstr "Horizontaal spegelje"
 
 #: toolbox.py:803
 msgid "Vertical Mirror"
-msgstr "Вертикално Огледало"
+msgstr "Fertikaal spegelje"
 
 #: toolbox.py:811
 msgid "Grayscale"
-msgstr "Сива лества"
+msgstr "Griiswearde"
 
 #: toolbox.py:816
 msgid "Rainbow"
-msgstr "Дуга"
+msgstr "Reinbôge"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kaleidoskoop"
 
 #: toolbox.py:825
 msgid "Invert Colors"
-msgstr "Обрни Боје"
+msgstr "Kleuren ynferzje"
 
 #: dialogs.py:100
 msgid "Done"
-msgstr ""
+msgstr "Ree"
 
 #: dialogs.py:128
 msgid "Select stamp"
-msgstr ""
+msgstr "Stimpel selektearje"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
-
-#~ msgid "Height"
-#~ msgstr "Висина"
-
-#~ msgid "Width"
-#~ msgstr "Ширина"
-
-#~ msgid "Choose image"
-#~ msgstr "Изабери слику"
+msgstr "Lettertype selektearje"

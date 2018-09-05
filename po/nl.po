@@ -265,3 +265,84 @@ msgstr "Selecteer stempel"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Selecteer lettertype"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kaleidoscoop"
+
+#~ msgid "Height"
+#~ msgstr "Hoogte"
+
+#~ msgid "Width"
+#~ msgstr "Breedte"
+
+#~ msgid "Choose image"
+#~ msgstr "Afbeelding kiezen"
+
+#~ msgid "Tools"
+#~ msgstr "Werktuigen"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Effects"
+#~ msgstr "Effecten"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Pen kleur"
+
+#~ msgid "Pencil"
+#~ msgstr "Penseel"
+
+#~ msgid "Fill Color"
+#~ msgstr "Invul kleur"
+
+#~ msgid "Points: "
+#~ msgstr "Punten: "
+
+#~ msgid "Keep Aspect"
+#~ msgstr "Bewaar aanzicht"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ZOOM +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ZOOM -"
+
+#~ msgid "Mirror Horizontal"
+#~ msgstr "Spiegel Horizontaal"
+
+#~ msgid "Mirror Vertical"
+#~ msgstr "Spiegel Verticaal"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Rechthoekig markeren"
+
+#~ msgid "Tool Color"
+#~ msgstr "Werktuig kleur"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Invul kleur: "

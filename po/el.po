@@ -1,3 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Greek translation of Drawing activity.
 # Copyright (C) 2007 NATE LSI-USP
 # This file is distributed under the same license as the Oficina package.
@@ -270,3 +302,99 @@ msgstr "Επιλογή σφραγίδας"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Επιλογή γραμματοσειράς"
+
+#~ msgid "Height"
+#~ msgstr "Ύψος"
+
+#~ msgid "Width"
+#~ msgstr "Πλάτος"
+
+#~ msgid "Choose image"
+#~ msgstr "Επιλογή εικόνας"
+
+#~ msgid "Tools"
+#~ msgstr "Εργαλεία"
+
+#~ msgid "Text"
+#~ msgstr "Κείμενο"
+
+#~ msgid "Effects"
+#~ msgstr "Εφέ"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Χρώμα πινελιάς"
+
+#~ msgid "Pencil"
+#~ msgstr "Μολύβι"
+
+#~ msgid "Fill Color"
+#~ msgstr "Χρώμα γεμίσματος"
+
+#~ msgid "Points: "
+#~ msgstr "Σημεία: "
+
+#~ msgid "Keep Aspect"
+#~ msgstr "Διατήρηση αναλογίας"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ΕΣΤΙΑΣΗ +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ΕΣΤΙΑΣΗ -"
+
+#~ msgid "Mirror Horizontal"
+#~ msgstr "Οριζόντια προβολή ειδώλου"
+
+#~ msgid "Mirror Vertical"
+#~ msgstr "Κάθετη προβολή ειδώλου"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Ορθογώνια επιλογή"
+
+#~ msgid "Tool Color"
+#~ msgstr "Εργαλείο χρωμάτων"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Χρώμα γεμίσματος: "
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "5"
+#~ msgstr "5"
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "Open File..."
+#~ msgstr "Άνοιγμα αρχείου..."

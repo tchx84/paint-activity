@@ -264,3 +264,12 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "T'ek'em"
+
+#~ msgid "Width"
+#~ msgstr "Ts'ikwel"
+
+#~ msgid "Choose image"
+#~ msgstr "Ka takuy an t'iplab"

@@ -266,3 +266,72 @@ msgstr "Chọn mẫu dấu"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Chọn phông chữ"
+
+#~ msgid "Height"
+#~ msgstr "Bề cao"
+
+#~ msgid "Width"
+#~ msgstr "Bề rộng"
+
+#~ msgid "Choose image"
+#~ msgstr "Chọn ảnh"
+
+#~ msgid "Tools"
+#~ msgstr "Công cụ"
+
+#~ msgid "Text"
+#~ msgstr "Văn bản"
+
+#~ msgid "Effects"
+#~ msgstr "Hiệu ứng"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Màu nét"
+
+#~ msgid "Pencil"
+#~ msgstr "Bút chì"
+
+#~ msgid "Fill Color"
+#~ msgstr "Màu tô đầy"
+
+#~ msgid "Points: "
+#~ msgstr "Đỉnh: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Phóng to"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Thu nhỏ"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Bảng chữ chạy hình chữ nhật"
+
+#~ msgid "Tool Color"
+#~ msgstr "Màu công cụ"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Màu tô đầy: "

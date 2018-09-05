@@ -262,3 +262,66 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "ความสูง"
+
+#~ msgid "Width"
+#~ msgstr "ความกว้าง"
+
+#~ msgid "Choose image"
+#~ msgstr "เลือกภาพ"
+
+#~ msgid "Tools"
+#~ msgstr "เครื่องมือ"
+
+#~ msgid "Text"
+#~ msgstr "ข้อความ"
+
+#~ msgid "Effects"
+#~ msgstr "ลูกเล่น"
+
+#~ msgid "Pencil"
+#~ msgstr "ดินสอ"
+
+#~ msgid "Fill Color"
+#~ msgstr "เติมสี"
+
+#~ msgid "Points: "
+#~ msgstr "จุด: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "+ ขยาย"
+
+#~ msgid "ZOOM -"
+#~ msgstr "- ขยาย"
+
+#~ msgid "Tool Color"
+#~ msgstr "สีเครื่องมือ"
+
+#~ msgid "Fill Color: "
+#~ msgstr "เติมสี: "

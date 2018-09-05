@@ -265,3 +265,12 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Kiji't manajá"
+
+#~ msgid "Height"
+#~ msgstr "Majaáx"
+
+#~ msgid "Width"
+#~ msgstr "Nixi'i"
+
+#~ msgid "Choose image"
+#~ msgstr "Makeje' xik'iji'"

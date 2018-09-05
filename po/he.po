@@ -265,3 +265,12 @@ msgstr "בחירת חותמת"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "בחירת גופן"
+
+#~ msgid "Tools"
+#~ msgstr "כלים"
+
+#~ msgid "Text"
+#~ msgstr "טקסט"
+
+#~ msgid "Effects"
+#~ msgstr "אפקטים"

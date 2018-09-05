@@ -266,3 +266,6 @@ msgstr "Họrọ stampụ"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Họrọ font"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kalidoscope"

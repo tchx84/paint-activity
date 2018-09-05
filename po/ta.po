@@ -262,3 +262,81 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "உயரம்"
+
+#~ msgid "Width"
+#~ msgstr "அகலம்"
+
+#~ msgid "Choose image"
+#~ msgstr "படத்தை தெரிவு செய்"
+
+#~ msgid "Tools"
+#~ msgstr "கருவிகள்"
+
+#~ msgid "Text"
+#~ msgstr "உரை"
+
+#~ msgid "Effects"
+#~ msgstr "தாக்கம்"
+
+#~ msgid "Stroke Color"
+#~ msgstr "பக்கவாத மை"
+
+#~ msgid "Pencil"
+#~ msgstr "பென்சில்"
+
+#~ msgid "Fill Color"
+#~ msgstr "மை நிரப்புதல்"
+
+#~ msgid "Points: "
+#~ msgstr "குறி:"
+
+#~ msgid "Keep Aspect"
+#~ msgstr "பார்ப்பதை வைத்திரு"
+
+#~ msgid "1000"
+#~ msgstr "ஆயிரம்"
+
+#~ msgid "500"
+#~ msgstr "ஐநூறு"
+
+#~ msgid "200"
+#~ msgstr "இருநூறு"
+
+#~ msgid "150"
+#~ msgstr "நூற்றைம்பது"
+
+#~ msgid "100"
+#~ msgstr "நூறு"
+
+#~ msgid "50"
+#~ msgstr "ஐம்பது"
+
+#~ msgid "25"
+#~ msgstr "இருபத்தைந்து"
+
+#~ msgid "10"
+#~ msgstr "பத்து"
+
+#~ msgid "ZOOM +"
+#~ msgstr "பெரிதாக்கு +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "பெரிதாக்கு -"
+
+#~ msgid "Mirror Horizontal"
+#~ msgstr "கிடைத்தள கண்ணாடி"
+
+#~ msgid "Mirror Vertical"
+#~ msgstr "நெடுக்கை கண்ணாடி"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "கிடையாக ஓடும் எழுத்து"
+
+#~ msgid "Tool Color"
+#~ msgstr "கருவி நிறம்"
+
+#~ msgid "Fill Color: "
+#~ msgstr "மை நிரப்புதல்:"

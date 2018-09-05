@@ -265,3 +265,75 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "দৈর্ঘ্য"
+
+#~ msgid "Width"
+#~ msgstr "প্রস্থ"
+
+#~ msgid "Choose image"
+#~ msgstr "ছবি বেছে নিন"
+
+#~ msgid "Tools"
+#~ msgstr "টুল"
+
+#~ msgid "Text"
+#~ msgstr "টেক্সট"
+
+#~ msgid "Effects"
+#~ msgstr "এফেক্ট"
+
+#~ msgid "Stroke Color"
+#~ msgstr "তুলির রঙ"
+
+#~ msgid "Pencil"
+#~ msgstr "পেন্সিল"
+
+#~ msgid "Fill Color"
+#~ msgstr "ভর্তি করার রঙ"
+
+#~ msgid "Points: "
+#~ msgstr "বিন্দুসমূহ: "
+
+#~ msgid "1000"
+#~ msgstr "১০০০"
+
+#~ msgid "500"
+#~ msgstr "৫০০"
+
+#~ msgid "200"
+#~ msgstr "২০০"
+
+#~ msgid "150"
+#~ msgstr "১৫০"
+
+#~ msgid "100"
+#~ msgstr "১০০"
+
+#~ msgid "50"
+#~ msgstr "৫০"
+
+#~ msgid "25"
+#~ msgstr "২৫"
+
+#~ msgid "10"
+#~ msgstr "১০"
+
+#, fuzzy
+#~ msgid "ZOOM +"
+#~ msgstr "বড় করো"
+
+#, fuzzy
+#~ msgid "ZOOM -"
+#~ msgstr "ছোট করো"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "চতুর্ভূজাকার মার্কিউই"
+
+#, fuzzy
+#~ msgid "Tool Color"
+#~ msgstr "টুলের রঙ"
+
+#~ msgid "Fill Color: "
+#~ msgstr "ভর্তি করার রঙ:"

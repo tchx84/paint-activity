@@ -266,3 +266,12 @@ msgstr "Ընտրել դրոշմը"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Ընտրել տառատեսակը"
+
+#~ msgid "Height"
+#~ msgstr "Բարձրություն"
+
+#~ msgid "Width"
+#~ msgstr "Լայնք"
+
+#~ msgid "Choose image"
+#~ msgstr "Ընտրել պատկերը"

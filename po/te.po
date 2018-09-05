@@ -263,3 +263,72 @@ msgstr "స్టాంప్ ఎంచుకోండి"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "ఫాంట్ ఎంచుకోండి"
+
+#~ msgid "Height"
+#~ msgstr "ఎత్తు"
+
+#~ msgid "Width"
+#~ msgstr "వెడల్పు"
+
+#~ msgid "Choose image"
+#~ msgstr "బొమ్మ కోరుకో"
+
+#~ msgid "Tools"
+#~ msgstr "పనిముట్లు"
+
+#~ msgid "Text"
+#~ msgstr "వచనం"
+
+#~ msgid "Effects"
+#~ msgstr "ఫలములు"
+
+#~ msgid "Stroke Color"
+#~ msgstr "రంగులద్దు"
+
+#~ msgid "Pencil"
+#~ msgstr "పెన్ సిలు"
+
+#~ msgid "Fill Color"
+#~ msgstr "రంగుతో నింపు"
+
+#~ msgid "Points: "
+#~ msgstr "పాయింట్లు: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "పెద్దదిగా చూపు"
+
+#~ msgid "ZOOM -"
+#~ msgstr "చిన్నదిగా చూపు"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "దీర్ఘచదరపు మార్ఖీ"
+
+#~ msgid "Tool Color"
+#~ msgstr "పనిముట్టు రంగు"
+
+#~ msgid "Fill Color: "
+#~ msgstr "రంగుతో నింపు:"

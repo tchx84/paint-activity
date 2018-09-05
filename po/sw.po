@@ -264,3 +264,66 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "urefu"
+
+#~ msgid "Width"
+#~ msgstr "upana"
+
+#~ msgid "Choose image"
+#~ msgstr "chagua image, chagua picture,"
+
+#~ msgid "Tools"
+#~ msgstr "vifaa"
+
+#~ msgid "Text"
+#~ msgstr "nakala"
+
+#~ msgid "Effects"
+#~ msgstr "athari"
+
+#~ msgid "Stroke Color"
+#~ msgstr "kiharusi michezo"
+
+#~ msgid "Pencil"
+#~ msgstr "penseli"
+
+#~ msgid "Fill Color"
+#~ msgstr "kujaza michezo"
+
+#~ msgid "Points: "
+#~ msgstr "pointi"
+
+#~ msgid "Keep Aspect"
+#~ msgstr "kuweka kipengle"
+
+#~ msgid "1000"
+#~ msgstr "elfu moja"
+
+#~ msgid "500"
+#~ msgstr "mia tano"
+
+#~ msgid "200"
+#~ msgstr "mia mbili"
+
+#~ msgid "150"
+#~ msgstr "mia moja na hamsini"
+
+#~ msgid "100"
+#~ msgstr "mia moja"
+
+#~ msgid "50"
+#~ msgstr "hamsini"
+
+#~ msgid "25"
+#~ msgstr "ishirini na tano"
+
+#~ msgid "10"
+#~ msgstr "kumi"
+
+#~ msgid "ZOOM +"
+#~ msgstr "zoom+; zoom mingi"
+
+#~ msgid "ZOOM -"
+#~ msgstr "zoom -; zoom kidogo"

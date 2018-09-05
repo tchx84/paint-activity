@@ -266,3 +266,75 @@ msgstr "Выбрать печатку"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Выбрать шрифт"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Калейдоскоп"
+
+#~ msgid "Height"
+#~ msgstr "Высота"
+
+#~ msgid "Width"
+#~ msgstr "Ширина"
+
+#~ msgid "Choose image"
+#~ msgstr "Выбрать картинку"
+
+#~ msgid "Tools"
+#~ msgstr "Инструменты"
+
+#~ msgid "Text"
+#~ msgstr "Текст"
+
+#~ msgid "Effects"
+#~ msgstr "Эффекты"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Цвет Линий"
+
+#~ msgid "Pencil"
+#~ msgstr "Карандаш"
+
+#~ msgid "Fill Color"
+#~ msgstr "Цвет Заполнения"
+
+#~ msgid "Points: "
+#~ msgstr "Точки: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "РАЗМЕР +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "РАЗМЕР -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Прямоугольник"
+
+#~ msgid "Tool Color"
+#~ msgstr "Цвет инструмента"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Цвет Заполнения: "

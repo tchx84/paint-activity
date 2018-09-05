@@ -265,3 +265,72 @@ msgstr "Select stamp"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Select font"
+
+#~ msgid "Height"
+#~ msgstr "Height"
+
+#~ msgid "Width"
+#~ msgstr "Width"
+
+#~ msgid "Choose image"
+#~ msgstr "Choose image"
+
+#~ msgid "Tools"
+#~ msgstr "Tools"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Effects"
+#~ msgstr "Effects"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Stroke Color"
+
+#~ msgid "Pencil"
+#~ msgstr "Pencil"
+
+#~ msgid "Fill Color"
+#~ msgstr "Fill Color"
+
+#~ msgid "Points: "
+#~ msgstr "Points: "
+
+#~ msgid "Keep Aspect"
+#~ msgstr "Keep Aspect"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ZOOM +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ZOOM -"
+
+#~ msgid "Mirror Horizontal"
+#~ msgstr "Mirror Horizontal"
+
+#~ msgid "Mirror Vertical"
+#~ msgstr "Mirror Vertical"

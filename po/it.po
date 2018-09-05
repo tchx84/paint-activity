@@ -2,6 +2,34 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -265,3 +293,84 @@ msgstr "Scegli il timbro"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Scegli il carattere"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Caleidoscopio"
+
+#~ msgid "Height"
+#~ msgstr "Altezza"
+
+#~ msgid "Width"
+#~ msgstr "Larghezza"
+
+#~ msgid "Choose image"
+#~ msgstr "Scegli immagine"
+
+#~ msgid "Tools"
+#~ msgstr "Strumenti"
+
+#~ msgid "Text"
+#~ msgstr "Testo"
+
+#~ msgid "Effects"
+#~ msgstr "Effetti"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Colore Tratto"
+
+#~ msgid "Pencil"
+#~ msgstr "Matita"
+
+#~ msgid "Fill Color"
+#~ msgstr "Colore Riempimento"
+
+#~ msgid "Points: "
+#~ msgstr "Punti: "
+
+#~ msgid "Keep Aspect"
+#~ msgstr "Conserva le proporzioni"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ZOOM +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ZOOM -"
+
+#~ msgid "Mirror Horizontal"
+#~ msgstr "Specchio orizzontale"
+
+#~ msgid "Mirror Vertical"
+#~ msgstr "Specchio verticale"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Selezione Rettangolare"
+
+#~ msgid "Tool Color"
+#~ msgstr "Colore Strumento"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Colore Riempimento: "

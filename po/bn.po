@@ -263,3 +263,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "উচ্চতা"
+
+#~ msgid "Width"
+#~ msgstr "প্রস্থ"
+
+#~ msgid "Choose image"
+#~ msgstr "চিত্র বেছে নাও"
+
+#~ msgid "Tools"
+#~ msgstr "টুল"
+
+#~ msgid "Text"
+#~ msgstr "টেক্সট"
+
+#~ msgid "Effects"
+#~ msgstr "প্রভাব"
+
+#~ msgid "Stroke Color"
+#~ msgstr "রঙের আঁচড় টানো"
+
+#~ msgid "Pencil"
+#~ msgstr "পেন্সিল"
+
+#~ msgid "Fill Color"
+#~ msgstr "রং দিয়ে পূরণ করো"
+
+#~ msgid "Points: "
+#~ msgstr "বিন্দু: "
+
+#~ msgid "1000"
+#~ msgstr "১০০০"
+
+#~ msgid "500"
+#~ msgstr "৫০০"
+
+#~ msgid "200"
+#~ msgstr "২০০"
+
+#~ msgid "150"
+#~ msgstr "১৫০"
+
+#~ msgid "100"
+#~ msgstr "১০০"
+
+#~ msgid "50"
+#~ msgstr "৫০"
+
+#~ msgid "25"
+#~ msgstr "২৫"
+
+#~ msgid "10"
+#~ msgstr "১০"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ZOOM +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ZOOM -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "আয়তাকার মার্কি"
+
+#~ msgid "Tool Color"
+#~ msgstr "টুলের রং"
+
+#~ msgid "Fill Color: "
+#~ msgstr "রং দিয়ে পূরণ করো: "

@@ -287,3 +287,16 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Hoogte"
+
+#~ msgid "Width"
+#~ msgstr "Wydte"
+
+#, fuzzy
+#~ msgid "Choose image"
+#~ msgstr "Kies beeld"
+
+#~ msgid "Text"
+#~ msgstr "Teks"

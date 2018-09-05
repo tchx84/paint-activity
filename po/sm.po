@@ -261,3 +261,15 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Choose image"
+#~ msgstr "filifili ata"
+
+#~ msgid "Text"
+#~ msgstr "tusitusiga"
+
+#~ msgid "ZOOM +"
+#~ msgstr "fa'a lapo'a"
+
+#~ msgid "ZOOM -"
+#~ msgstr "fa'a laititi"

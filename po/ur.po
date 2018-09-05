@@ -265,3 +265,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "اونچائی"
+
+#~ msgid "Width"
+#~ msgstr "چوڑائی"
+
+#~ msgid "Choose image"
+#~ msgstr "نقش منتخب کریں"
+
+#~ msgid "Tools"
+#~ msgstr "آلات"
+
+#~ msgid "Text"
+#~ msgstr "متن"
+
+#~ msgid "Effects"
+#~ msgstr "اثرات"
+
+#~ msgid "Stroke Color"
+#~ msgstr "جنبش کا رنگ"
+
+#~ msgid "Pencil"
+#~ msgstr "پينسل"
+
+#~ msgid "Fill Color"
+#~ msgstr "بھرنے کا رنگ"
+
+#~ msgid "Points: "
+#~ msgstr "پوائنٹ:_"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "زوم+"
+
+#~ msgid "ZOOM -"
+#~ msgstr "زوم- "
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "مستطيل مارقی"
+
+#~ msgid "Tool Color"
+#~ msgstr "آلے کا رنگ"
+
+#~ msgid "Fill Color: "
+#~ msgstr "بھرنے کا رنگ:_"

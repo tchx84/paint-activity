@@ -261,3 +261,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "لوړوالی"
+
+#~ msgid "Width"
+#~ msgstr "عرض"
+
+#~ msgid "Choose image"
+#~ msgstr "انځور انتخابول"
+
+#~ msgid "Tools"
+#~ msgstr "وسيلې"
+
+#~ msgid "Text"
+#~ msgstr "متن"
+
+#~ msgid "Effects"
+#~ msgstr "اغيزې"
+
+#~ msgid "Stroke Color"
+#~ msgstr "رنګ وهل"
+
+#~ msgid "Pencil"
+#~ msgstr "پنسل"
+
+#~ msgid "Fill Color"
+#~ msgstr "رنګ ډكول"
+
+#~ msgid "Points: "
+#~ msgstr "نقطې: "
+
+#~ msgid "1000"
+#~ msgstr "۱۰۰۰"
+
+#~ msgid "500"
+#~ msgstr "۵۰۰"
+
+#~ msgid "200"
+#~ msgstr "۲۰۰"
+
+#~ msgid "150"
+#~ msgstr "۱۵۰"
+
+#~ msgid "100"
+#~ msgstr "۱۰۰"
+
+#~ msgid "50"
+#~ msgstr "۵۰"
+
+#~ msgid "25"
+#~ msgstr "۲۵"
+
+#~ msgid "10"
+#~ msgstr "۱۰"
+
+#~ msgid "ZOOM +"
+#~ msgstr "لويوالی ډېرول"
+
+#~ msgid "ZOOM -"
+#~ msgstr "لويوالی کمول"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "مستطيل ډوله خوځمتن"
+
+#~ msgid "Tool Color"
+#~ msgstr "د وسيلې رنګ"
+
+#~ msgid "Fill Color: "
+#~ msgstr "رنګ ډکول "

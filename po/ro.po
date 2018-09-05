@@ -263,3 +263,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Înălțime"
+
+#~ msgid "Width"
+#~ msgstr " Lățime"
+
+#~ msgid "Choose image"
+#~ msgstr "Alege imaginea"
+
+#~ msgid "Tools"
+#~ msgstr "Unelte"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Effects"
+#~ msgstr "Efecte"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Culoare pensulă"
+
+#~ msgid "Pencil"
+#~ msgstr "Creion"
+
+#~ msgid "Fill Color"
+#~ msgstr "Culoare de umplere"
+
+#~ msgid "Points: "
+#~ msgstr "Puncte: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Lupă +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Lupă -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Marcaj dreptunghiular"
+
+#~ msgid "Tool Color"
+#~ msgstr "Unealtă culori"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Culoare de umplere: "

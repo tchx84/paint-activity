@@ -266,3 +266,75 @@ msgstr "انتخاب مهر"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "انتخاب قلم"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "زیبابین"
+
+#~ msgid "Height"
+#~ msgstr "بلندی"
+
+#~ msgid "Width"
+#~ msgstr "پهنا"
+
+#~ msgid "Choose image"
+#~ msgstr "انتخاب تصویر"
+
+#~ msgid "Tools"
+#~ msgstr "ابزار"
+
+#~ msgid "Text"
+#~ msgstr "متن"
+
+#~ msgid "Effects"
+#~ msgstr "جلوه‌ها"
+
+#~ msgid "Stroke Color"
+#~ msgstr "رنگ روکش"
+
+#~ msgid "Pencil"
+#~ msgstr "مداد"
+
+#~ msgid "Fill Color"
+#~ msgstr "رنگ پر کردن"
+
+#~ msgid "Points: "
+#~ msgstr "نقاط:ـ"
+
+#~ msgid "1000"
+#~ msgstr "۱۰۰۰"
+
+#~ msgid "500"
+#~ msgstr "۵۰۰"
+
+#~ msgid "200"
+#~ msgstr "۲۰۰"
+
+#~ msgid "150"
+#~ msgstr "۱۵۰"
+
+#~ msgid "100"
+#~ msgstr "۱۰۰"
+
+#~ msgid "50"
+#~ msgstr "۵۰"
+
+#~ msgid "25"
+#~ msgstr "۲۵"
+
+#~ msgid "10"
+#~ msgstr "۱۰"
+
+#~ msgid "ZOOM +"
+#~ msgstr "بزرگنمایی +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "کوچکنمایی -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "سایبان مستطیل شکل"
+
+#~ msgid "Tool Color"
+#~ msgstr "ابزار رنگ"
+
+#~ msgid "Fill Color: "
+#~ msgstr "رنگ پر کردن:ـ"

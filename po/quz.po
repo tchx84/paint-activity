@@ -319,3 +319,15 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Qillqalayata akllay"
+
+#  "Altura"
+#~ msgid "Height"
+#~ msgstr "Sayaynin"
+
+#  "Anchura"
+#~ msgid "Width"
+#~ msgstr "Sakhaynin"
+
+#  "Seleccionar imagen"
+#~ msgid "Choose image"
+#~ msgstr "Wankita akllay"

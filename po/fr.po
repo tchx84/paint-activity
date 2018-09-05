@@ -267,3 +267,102 @@ msgstr "Sélectionner un tampon"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Sélectionner la police"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "kaléidoscope"
+
+#~ msgid "Height"
+#~ msgstr "Hauteur"
+
+#~ msgid "Width"
+#~ msgstr "Largeur"
+
+#~ msgid "Choose image"
+#~ msgstr "Sélectionner une image"
+
+#~ msgid "Tools"
+#~ msgstr "Outils"
+
+#~ msgid "Text"
+#~ msgstr "Texte"
+
+#~ msgid "Effects"
+#~ msgstr "Effets"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Couleur du trait"
+
+#~ msgid "Pencil"
+#~ msgstr "Crayon"
+
+#~ msgid "Fill Color"
+#~ msgstr "Couleur de remplissage"
+
+#~ msgid "Points: "
+#~ msgstr "Points : "
+
+#~ msgid "Keep Aspect"
+#~ msgstr "Conserver l'aspect"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ZOOM +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ZOOM -"
+
+#~ msgid "Mirror Horizontal"
+#~ msgstr "Miroir Horizontal"
+
+#~ msgid "Mirror Vertical"
+#~ msgstr "Miroir vertical"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Sélection rectangulaire"
+
+#~ msgid "Tool Color"
+#~ msgstr "Couleur de l'outil"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Couleur de remplissage : "
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "5"
+#~ msgstr "5"
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "Open File..."
+#~ msgstr "Ouvrir le Dossier..."

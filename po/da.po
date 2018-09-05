@@ -265,3 +265,69 @@ msgstr "Vælg stempel"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Vælg skrifttype"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "kalejdoskop"
+
+#~ msgid "Height"
+#~ msgstr "Højde"
+
+#~ msgid "Width"
+#~ msgstr "Bredde"
+
+#~ msgid "Choose image"
+#~ msgstr "Vælg billede"
+
+#~ msgid "Tools"
+#~ msgstr "Værktøjer"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Effects"
+#~ msgstr "Effekter"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Farve på strøg"
+
+#~ msgid "Pencil"
+#~ msgstr "Blyant"
+
+#~ msgid "Fill Color"
+#~ msgstr "Fyldfarve"
+
+#~ msgid "Points: "
+#~ msgstr "Punkter: "
+
+#~ msgid "Keep Aspect"
+#~ msgstr "Bevar aspekt"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "ZOOM +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "ZOOM -"

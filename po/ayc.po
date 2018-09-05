@@ -317,3 +317,18 @@ msgstr "Samichkata ajlliña"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Qillqana kankañapa ajlliña"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Caleidoscopio sata"
+
+#  "Altura"
+#~ msgid "Height"
+#~ msgstr "Sayt'aru"
+
+#  "Anchura"
+#~ msgid "Width"
+#~ msgstr "Lankhu"
+
+#  "Seleccionar imagen"
+#~ msgid "Choose image"
+#~ msgstr "Uñjasiwi ajlliña"

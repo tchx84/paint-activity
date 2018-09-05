@@ -262,3 +262,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Өндөр"
+
+#~ msgid "Width"
+#~ msgstr "Өргөн"
+
+#~ msgid "Choose image"
+#~ msgstr "Зургаа сонгох"
+
+#~ msgid "Tools"
+#~ msgstr "Хэрэгслүүд"
+
+#~ msgid "Text"
+#~ msgstr "Бичих"
+
+#~ msgid "Effects"
+#~ msgstr "эффект"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Хүрээний өнгө"
+
+#~ msgid "Pencil"
+#~ msgstr "Харандаа"
+
+#~ msgid "Fill Color"
+#~ msgstr "Будах өнгө"
+
+#~ msgid "Points: "
+#~ msgstr "Хошуу: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Ойртуулах +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Холдуулах -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Тэгш өнцөгт .."
+
+#~ msgid "Tool Color"
+#~ msgstr "Өнгө"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Будах өнгө: _"

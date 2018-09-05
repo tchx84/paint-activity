@@ -277,3 +277,15 @@ msgstr "Vyberte pečiatku"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Vyberte písmo"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "kaleidoskop"
+
+#~ msgid "Height"
+#~ msgstr "Výška"
+
+#~ msgid "Width"
+#~ msgstr "Širka"
+
+#~ msgid "Text"
+#~ msgstr "Text"

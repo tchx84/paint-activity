@@ -262,3 +262,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "උස"
+
+#~ msgid "Width"
+#~ msgstr "පළල"
+
+#~ msgid "Choose image"
+#~ msgstr "පින්තූරයක් තෝරන්න"
+
+#~ msgid "Tools"
+#~ msgstr "මෙවලම්"
+
+#~ msgid "Text"
+#~ msgstr "පෙළ"
+
+#~ msgid "Effects"
+#~ msgstr "ගුණාගුණ"
+
+#~ msgid "Stroke Color"
+#~ msgstr "පහර වර්ණය"
+
+#~ msgid "Pencil"
+#~ msgstr "පැන්සල"
+
+#~ msgid "Fill Color"
+#~ msgstr "වර්ණය පුරවන්න"
+
+#~ msgid "Points: "
+#~ msgstr "ලක්ෂ්‍ය: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "විශාල කරන්න"
+
+#~ msgid "ZOOM -"
+#~ msgstr "කුඩා කරන්න"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "චතුරස්‍ර අනුචලනය"
+
+#~ msgid "Tool Color"
+#~ msgstr "මෙවලම් වර්ණය"
+
+#~ msgid "Fill Color: "
+#~ msgstr "පිරවුම් වර්ණය: "

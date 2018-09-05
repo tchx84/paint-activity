@@ -267,3 +267,6 @@ msgstr "Pasirinkti antspaudą"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Pasirinkti šriftą"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kaleidoskopas"

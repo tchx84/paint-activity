@@ -263,3 +263,72 @@ msgstr ""
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr ""
+
+#~ msgid "Height"
+#~ msgstr "Višina"
+
+#~ msgid "Width"
+#~ msgstr "Širina"
+
+#~ msgid "Choose image"
+#~ msgstr "Izberi sliko"
+
+#~ msgid "Tools"
+#~ msgstr "Orodja"
+
+#~ msgid "Text"
+#~ msgstr "Besedilo"
+
+#~ msgid "Effects"
+#~ msgstr "Efekti"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Barva pisala"
+
+#~ msgid "Pencil"
+#~ msgstr "Svinčnik"
+
+#~ msgid "Fill Color"
+#~ msgstr "Barva polnila"
+
+#~ msgid "Points: "
+#~ msgstr "Točke: "
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Približaj +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Oddalji -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Pravokotno premično besedilo"
+
+#~ msgid "Tool Color"
+#~ msgstr "Orodje z barvami"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Barva polnila: "

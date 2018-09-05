@@ -2,6 +2,34 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -266,3 +294,75 @@ msgstr "Wybierz pieczątkę"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Wybierz czcionkę"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kalejdoskop"
+
+#~ msgid "Height"
+#~ msgstr "Wysokość"
+
+#~ msgid "Width"
+#~ msgstr "Szerokość"
+
+#~ msgid "Choose image"
+#~ msgstr "Wybierz obraz"
+
+#~ msgid "Tools"
+#~ msgstr "Narzędzia"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Effects"
+#~ msgstr "Efekty"
+
+#~ msgid "Stroke Color"
+#~ msgstr "Kolor obramowania"
+
+#~ msgid "Pencil"
+#~ msgstr "Ołówek"
+
+#~ msgid "Fill Color"
+#~ msgstr "Kolor wypełnienia"
+
+#~ msgid "Points: "
+#~ msgstr "Punkty:"
+
+#~ msgid "1000"
+#~ msgstr "1000"
+
+#~ msgid "500"
+#~ msgstr "500"
+
+#~ msgid "200"
+#~ msgstr "200"
+
+#~ msgid "150"
+#~ msgstr "150"
+
+#~ msgid "100"
+#~ msgstr "100"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Powiększ"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Zmniejsz"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Zaznaczanie prostokątne"
+
+#~ msgid "Tool Color"
+#~ msgstr "Kolor narzędzia"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Kolor wypełnienia:"

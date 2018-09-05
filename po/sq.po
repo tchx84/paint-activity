@@ -2,13 +2,49 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-06-05 16:28+0000\n"
-"Last-Translator: Chris <cjl@sugarlabs.org>\n"
+"PO-Revision-Date: 2018-02-03 21:34+0000\n"
+"Last-Translator: Besnik_b <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +52,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1496680094.000000\n"
+"X-POOTLE-MTIME: 1517693673.000000\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -80,9 +116,8 @@ msgid "Eraser properties"
 msgstr "Veti fshirëseje"
 
 #: widgets.py:317
-#, fuzzy
 msgid "Bucket properties"
-msgstr "Veti zgjedhësi"
+msgstr "Veti kanoçeje"
 
 #: widgets.py:319
 msgid "Picker properties"
@@ -130,7 +165,7 @@ msgstr "Ngjite"
 
 #: toolbox.py:262
 msgid "Clear"
-msgstr "Pastro"
+msgstr "Pastroje"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
@@ -150,7 +185,7 @@ msgstr "Fshirëse"
 
 #: toolbox.py:387
 msgid "Bucket"
-msgstr "Kovë"
+msgstr "Kanoçe"
 
 #: toolbox.py:390
 msgid "Picker"
@@ -249,7 +284,6 @@ msgid "Rainbow"
 msgstr "Ylber"
 
 #: toolbox.py:821
-#, fuzzy
 msgid "Kaleidoscope"
 msgstr "Kaleidoskop"
 
@@ -268,3 +302,69 @@ msgstr "Përzgjidhni stampë"
 #: fontcombobox.py:90
 msgid "Select font"
 msgstr "Përzgjidhni shkronja"
+
+#~ msgid "Kalidoscope"
+#~ msgstr "Kaleidoskop"
+
+#~ msgid "Height"
+#~ msgstr "Lartësia"
+
+#~ msgid "Width"
+#~ msgstr "Gjerësia"
+
+#~ msgid "Choose image"
+#~ msgstr "Zgjidhni imazhin"
+
+#~ msgid "Tools"
+#~ msgstr "Vegla"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Effects"
+#~ msgstr "Efekt"
+
+#~ msgid "Pencil"
+#~ msgstr "Laps"
+
+#~ msgid "Fill Color"
+#~ msgstr "Mbushur ngjyra"
+
+#~ msgid "Points: "
+#~ msgstr "Pikët: "
+
+#~ msgid "1000"
+#~ msgstr "Njëmijë"
+
+#~ msgid "500"
+#~ msgstr "Pesëqind"
+
+#~ msgid "200"
+#~ msgstr "Dyqind"
+
+#~ msgid "150"
+#~ msgstr "Njëqind pesëdhjetë"
+
+#~ msgid "100"
+#~ msgstr "Njëqind"
+
+#~ msgid "50"
+#~ msgstr "Pesëdhjetë"
+
+#~ msgid "25"
+#~ msgstr "Njëzet e pesë"
+
+#~ msgid "10"
+#~ msgstr "Dhjetë"
+
+#~ msgid "ZOOM +"
+#~ msgstr "Zmadho +"
+
+#~ msgid "ZOOM -"
+#~ msgstr "Zvoglo -"
+
+#~ msgid "Rectangular Marquee"
+#~ msgstr "Tendë drejtkëndor"
+
+#~ msgid "Fill Color: "
+#~ msgstr "Mbushur ngjyra: "
