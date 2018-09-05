@@ -62,18 +62,13 @@ Walter Bender                       (walter@laptop.org)
 
 """
 
-try:
-    from gi.repository import Gst
-    _HAS_GST = True
-except:
-    _HAS_GST = False
-
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GdkPixbuf
 from gi.repository import GObject
 from gi.repository import Pango
 from gi.repository import PangoCairo
+from gi.repository import Gst
 
 import logging
 import os
@@ -124,8 +119,7 @@ SOUNDS = {'arrow': ['oneclick.ogg', False, True, True],
 # and no automatically.
 IGNORE_AUTO_PLAY = ['bucket']
 
-if _HAS_GST:
-    Gst.init([])
+Gst.init([])
 
 
 def _get_screen_dpi():
@@ -260,17 +254,16 @@ class Area(Gtk.DrawingArea):
         self._player = None
         self._sounds_enabled = False
 
-        if _HAS_GST:
-            try:
-                self._player = Gst.ElementFactory.make('playbin', 'Player')
-                self._pipeline = Gst.Pipeline()
-                self._bus = self._pipeline.get_bus()
-                self._bus.add_signal_watch()
-                self._bus.connect('message::eos', self.replay_tool_sound)
-                self._pipeline.add(self._player)
-            except:
-                logging.error(
-                    "Sound player is not installed/available in the system.")
+        try:
+            self._player = Gst.ElementFactory.make('playbin', 'Player')
+            self._pipeline = Gst.Pipeline()
+            self._bus = self._pipeline.get_bus()
+            self._bus.add_signal_watch()
+            self._bus.connect('message::eos', self.replay_tool_sound)
+            self._pipeline.add(self._player)
+        except:
+            logging.error(
+                "Sound player is not installed/available in the system.")
 
     def _set_screen_dpi(self):
         dpi = _get_screen_dpi()
