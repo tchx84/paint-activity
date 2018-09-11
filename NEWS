@@ -1,3 +1,10 @@
+68
+
+* New translations (Chris Leonard et al),
+* Remove check for GStreamer (James Cameron),
+* Add missing calls to object parent class (James Cameron),
+* Port from GObject to GLib (James Cameron),
+
 67
 
 * Update translation (James Cameron),
