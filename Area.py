@@ -993,9 +993,9 @@ class Area(Gtk.DrawingArea):
         pixels = cairo_surface.get_data()
 
         # the values are between 0 and 255
-        red = ord(pixels[2]) / 255.0 * 65535.0
-        green = ord(pixels[1]) / 255.0 * 65535.0
-        blue = ord(pixels[0]) / 255.0 * 65535.0
+        red = ord(pixels[2]) / 256.0 * 65536.0
+        green = ord(pixels[1]) / 256.0 * 65536.0
+        blue = ord(pixels[0]) / 256.0 * 65536.0
 
         stroke_color = Gdk.Color(red, green, blue)
 
