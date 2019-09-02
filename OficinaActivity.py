@@ -183,7 +183,6 @@ class OficinaActivity(activity.Activity):
         self.area.load_from_file(file_path)
 
         def size_allocate_cb(widget, allocation):
-            logging.error('read file size allocate')
             self.fixed.disconnect(self._setup_handle)
             width = self.area.drawing_canvas_data.get_width()
             height = self.area.drawing_canvas_data.get_height()
