@@ -1,3 +1,14 @@
+70
+
+* Port to Python 3 (Rahul Bothra),
+
+69
+
+* New translations (Chris Leonard et al),
+* Fix colour calculation (James Cameron),
+* Remove redundant error log (Rahul Bothra),
+* Remove unnecessary log message (James Cameron).
+
 68
 
 * New translations (Chris Leonard et al),
