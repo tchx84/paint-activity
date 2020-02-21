@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-05 13:42+1000\n"
+"POT-Creation-Date: 2020-02-21 17:53+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,103 +111,103 @@ msgstr ""
 msgid "Load stamp"
 msgstr ""
 
-#: toolbox.py:410 widgets.py:321
+#: toolbox.py:410 widgets.py:323
 msgid "Select Area"
 msgstr ""
 
-#: toolbox.py:529
+#: toolbox.py:530
 msgid "Fill"
 msgstr ""
 
-#: toolbox.py:535 widgets.py:279
+#: toolbox.py:536 widgets.py:281
 msgid "Keep aspect"
 msgstr ""
 
-#: toolbox.py:552
+#: toolbox.py:553
 msgid "Sides: "
 msgstr ""
 
-#: toolbox.py:621
+#: toolbox.py:622
 msgid "Ellipse"
 msgstr ""
 
-#: toolbox.py:624
+#: toolbox.py:625
 msgid "Rectangle"
 msgstr ""
 
-#: toolbox.py:627
+#: toolbox.py:628
 msgid "Line"
 msgstr ""
 
-#: toolbox.py:630
+#: toolbox.py:631
 msgid "Free form"
 msgstr ""
 
-#: toolbox.py:633
+#: toolbox.py:634
 msgid "Polygon"
 msgstr ""
 
-#: toolbox.py:636
+#: toolbox.py:637
 msgid "Heart"
 msgstr ""
 
-#: toolbox.py:639
+#: toolbox.py:640
 msgid "Parallelogram"
 msgstr ""
 
-#: toolbox.py:642
+#: toolbox.py:643
 msgid "Arrow"
 msgstr ""
 
-#: toolbox.py:645
+#: toolbox.py:646
 msgid "Star"
 msgstr ""
 
-#: toolbox.py:648
+#: toolbox.py:649
 msgid "Trapezoid"
 msgstr ""
 
-#: toolbox.py:651
+#: toolbox.py:652
 msgid "Triangle"
 msgstr ""
 
-#: toolbox.py:685
+#: toolbox.py:686
 msgid "Type"
 msgstr ""
 
-#: toolbox.py:777
+#: toolbox.py:778
 msgid "Insert Image"
 msgstr ""
 
-#: toolbox.py:789
+#: toolbox.py:790
 msgid "Rotate Left"
 msgstr ""
 
-#: toolbox.py:793
+#: toolbox.py:794
 msgid "Rotate Right"
 msgstr ""
 
-#: toolbox.py:798
+#: toolbox.py:799
 msgid "Horizontal Mirror"
 msgstr ""
 
-#: toolbox.py:803
+#: toolbox.py:804
 msgid "Vertical Mirror"
 msgstr ""
 
-#: toolbox.py:811
+#: toolbox.py:812
 msgid "Grayscale"
 msgstr ""
 
-#: toolbox.py:816
+#: toolbox.py:817
 msgid "Rainbow"
 msgstr ""
 
-#: toolbox.py:821
+#: toolbox.py:822
 msgid "Kaleidoscope"
 msgstr ""
 
-#: toolbox.py:825
+#: toolbox.py:826
 msgid "Invert Colors"
 msgstr ""
 
@@ -227,38 +227,38 @@ msgstr ""
 msgid "Square"
 msgstr ""
 
-#: widgets.py:31
+#: widgets.py:33
 msgid "Choose brush properties"
 msgstr ""
 
-#: widgets.py:234
+#: widgets.py:236
 msgid "Size"
 msgstr ""
 
-#: widgets.py:248
+#: widgets.py:250
 msgid "Opacity"
 msgstr ""
 
-#: widgets.py:273
+#: widgets.py:275
 msgid "Shape"
 msgstr ""
 
-#: widgets.py:304
+#: widgets.py:306
 msgid "Brush properties"
 msgstr ""
 
-#: widgets.py:310
+#: widgets.py:312
 msgid "Stamp properties"
 msgstr ""
 
-#: widgets.py:314
+#: widgets.py:316
 msgid "Eraser properties"
 msgstr ""
 
-#: widgets.py:317
+#: widgets.py:319
 msgid "Bucket properties"
 msgstr ""
 
-#: widgets.py:319
+#: widgets.py:321
 msgid "Picker properties"
 msgstr ""
