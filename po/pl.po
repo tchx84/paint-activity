@@ -35,8 +35,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2015-02-18 23:09+0000\n"
-"Last-Translator: Tymon <dwgipk@gmail.com>\n"
+"PO-Revision-Date: 2018-12-16 15:48+0000\n"
+"Last-Translator: KrzysztofJ <krzysztofjesz@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1424300949.000000\n"
+"X-POOTLE-MTIME: 1544975283.000000\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -113,7 +113,7 @@ msgstr "Właściwości wiadra"
 
 #: widgets.py:319
 msgid "Picker properties"
-msgstr "Właściwości wybieracza"
+msgstr "Właściwości próbnika"
 
 #: widgets.py:321 toolbox.py:410
 msgid "Select Area"
@@ -161,11 +161,11 @@ msgstr "Wyczyść"
 
 #: toolbox.py:266 toolbox.py:327
 msgid "Enable sound"
-msgstr ""
+msgstr "Włącz dźwięk"
 
 #: toolbox.py:325
 msgid "Disable sound"
-msgstr ""
+msgstr "Wyłącz dźwięk"
 
 #: toolbox.py:377 toolbox.py:381
 msgid "Brush"
@@ -181,7 +181,7 @@ msgstr "Wiadro"
 
 #: toolbox.py:390
 msgid "Picker"
-msgstr "Zbieracz"
+msgstr "Próbnik"
 
 #: toolbox.py:393
 msgid "Stamp"
@@ -225,7 +225,7 @@ msgstr "Serce"
 
 #: toolbox.py:639
 msgid "Parallelogram"
-msgstr "Równoległobok"
+msgstr "Serce"
 
 #: toolbox.py:642
 msgid "Arrow"
@@ -233,7 +233,7 @@ msgstr "Strzałka"
 
 #: toolbox.py:645
 msgid "Star"
-msgstr "Gwiazda"
+msgstr "Strzałka"
 
 #: toolbox.py:648
 msgid "Trapezoid"
@@ -277,7 +277,7 @@ msgstr "Tęcza"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
-msgstr ""
+msgstr "Kalejdoskop"
 
 #: toolbox.py:825
 msgid "Invert Colors"

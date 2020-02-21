@@ -36,8 +36,8 @@ msgstr ""
 "Project-Id-Version: drawing.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-24 17:39+1100\n"
-"PO-Revision-Date: 2017-02-20 18:13+0000\n"
-"Last-Translator: Felipe <fefcas@gmail.com>\n"
+"PO-Revision-Date: 2019-03-09 00:51+0000\n"
+"Last-Translator: Paulo Francisco <slomp@ufrgs.br>\n"
 "Language-Team: Language locale/pt\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1.1\n"
-"X-POOTLE-MTIME: 1487614423.000000\n"
+"X-POOTLE-MTIME: 1552092678.000000\n"
 
 #: activity/activity.info:2
 msgid "Paint"
@@ -56,8 +56,8 @@ msgid ""
 "Picasso? Van Gogh? You can be any of them! Just let the artist inside you "
 "free. Transform images in your mind to beautiful paintings."
 msgstr ""
-"Picasso? Van Gogh? Você pode ser qualquer um deles! Apenas libere o artista "
-"dentro de você. Transforme imagens da sua mente em belas pinturas."
+"Picasso? Van Gogh? Você pode ser um deles! Apenas libere o artista dentro de "
+"você. Transforme imagens da sua mente em belas pinturas."
 
 #: widgets.py:17
 msgid "Size: "
@@ -97,7 +97,7 @@ msgstr "Mantenha aspecto"
 
 #: widgets.py:304
 msgid "Brush properties"
-msgstr "propriedades do pincel"
+msgstr "Propriedades do pincel"
 
 #: widgets.py:310
 msgid "Stamp properties"
@@ -189,11 +189,11 @@ msgstr "Carimbo"
 
 #: toolbox.py:400
 msgid "Load stamp"
-msgstr "Importar carimbo"
+msgstr "Carregar carimbo"
 
 #: toolbox.py:529
 msgid "Fill"
-msgstr "Preenchimento"
+msgstr "Preencher"
 
 #: toolbox.py:552
 msgid "Sides: "
@@ -237,7 +237,7 @@ msgstr "Estrela"
 
 #: toolbox.py:648
 msgid "Trapezoid"
-msgstr "Trapézio"
+msgstr "Trapezoide"
 
 #: toolbox.py:651
 msgid "Triangle"
@@ -245,7 +245,7 @@ msgstr "Triângulo"
 
 #: toolbox.py:685
 msgid "Type"
-msgstr "Digite"
+msgstr "Digitar"
 
 #: toolbox.py:777
 msgid "Insert Image"
@@ -269,11 +269,11 @@ msgstr "Espelho Vertical"
 
 #: toolbox.py:811
 msgid "Grayscale"
-msgstr "Escala de Cinza"
+msgstr "Escala de cinza"
 
 #: toolbox.py:816
 msgid "Rainbow"
-msgstr "Arco-Íris"
+msgstr "Arco-íris"
 
 #: toolbox.py:821
 msgid "Kaleidoscope"
