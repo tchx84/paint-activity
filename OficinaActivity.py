@@ -168,7 +168,6 @@ class OficinaActivity(activity.Activity):
         self._height = height
 
     def key_press(self, widget, event):
-        print(event.keyval)
         if event.keyval == 45:
             self.area.change_line_size(-1)
         if event.keyval == 43:
