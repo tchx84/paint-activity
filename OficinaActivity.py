@@ -72,15 +72,16 @@ from gi.repository import Gdk
 import logging
 import json
 
-from sugar3.activity import activity
 from sugar3.graphics import style
 
 from Area import Area
 from toolbox import DrawToolbarBox
 import dialogs
 
+from sugarapp.widgets import SugarCompatibleActivity
 
-class OficinaActivity(activity.Activity):
+
+class OficinaActivity(SugarCompatibleActivity):
 
     def __init__(self, handle):
         """Initialize the OficinaActivity object.
@@ -89,7 +90,7 @@ class OficinaActivity(activity.Activity):
             @param  handle
 
         """
-        activity.Activity.__init__(self, handle)
+        SugarCompatibleActivity.__init__(self, handle)
         self.max_participants = 1
 
         logging.debug('Starting Paint activity (Oficina)')
@@ -174,68 +175,15 @@ class OficinaActivity(activity.Activity):
             self.area.change_line_size(1)
 
     def read_file(self, file_path):
-        '''Read file from Sugar Journal.'''
-        logging.debug('reading file %s, mimetype: %s, title: %s',
-                      file_path, self.metadata['mime_type'],
-                      self.metadata['title'])
-
+        self.area.setup(self._width, self._height - style.GRID_CELL_SIZE)
         self.area.load_from_file(file_path)
-
-        def size_allocate_cb(widget, allocation):
-            self.fixed.disconnect(self._setup_handle)
-            width = self.area.drawing_canvas_data.get_width()
-            height = self.area.drawing_canvas_data.get_height()
-            if self.area.drawing_canvas is None:
-                self.area.setup(width, height)
-            # The scrolled window is confused with a image of the same size
-            # of the canvas when the toolbars popup and the scrolls
-            # keep visible.
-            if height > allocation.height or width > allocation.width:
-                self.canvas.set_policy(Gtk.PolicyType.AUTOMATIC,
-                                       Gtk.PolicyType.AUTOMATIC)
-            else:
-                self.canvas.set_policy(Gtk.PolicyType.NEVER,
-                                       Gtk.PolicyType.AUTOMATIC)
-
-            self.center_area()
-
-        self.canvas.add_with_viewport(self.fixed)
-        # to remove the border, we need set the shadowtype
-        # in the viewport child of the scrolledwindow
-        self.canvas.get_children()[0].set_shadow_type(Gtk.ShadowType.NONE)
-        self.canvas.get_children()[0].set_border_width(0)
-
-        self.disconnect(self._setup_handle)
-        self._setup_handle = self.fixed.connect('size_allocate',
-                                                size_allocate_cb)
-
-        # disassociate with journal entry to avoid overwrite (SL #1771)
-        if self.metadata['mime_type'] != "image/png":
-            self._jobject.object_id = None
-            last_point_posi = self.metadata['title'].rfind('.')
-            if last_point_posi > -1:
-                title = self.metadata['title'][0:last_point_posi] + '.png'
-                self.metadata['title'] = title
-            logging.error('title: %s', self.metadata['title'])
-
         if 'images' in self.metadata:
             self._journal_images = json.loads(self.metadata['images'])
 
     def write_file(self, file_path):
-        '''Save file on Sugar Journal. '''
-
-        width, height = self.area.get_size_request()
-
-        logging.debug('writting %s w=%s h=%s' % (file_path, width, height))
-        if self.area.text_in_progress:
-            self.area.d.text(self.area, 0, 0)
-
-        self.area.getout()
+        self.area.end_selection()
         self.area.drawing_canvas.write_to_png(file_path)
-        self.metadata['mime_type'] = 'image/png'
-        self.metadata['state'] = json.dumps(self.area.tool)
         self.metadata['images'] = json.dumps(dialogs.get_journal_images())
-        logging.debug('Wrote metadata[\'state\']: %s', self.metadata['state'])
 
     def _get_area_displacement(self):
         """Return the point to use as top left corner in order to move

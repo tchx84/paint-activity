@@ -16,7 +16,9 @@
 from gettext import gettext as _
 import os
 import glob
+import shutil
 
+from gi.repository import GLib
 from gi.repository import GObject
 from gi.repository import Gtk
 from gi.repository import Gdk
@@ -31,6 +33,8 @@ try:
     from sugar3.graphics.objectchooser import FILTER_TYPE_GENERIC_MIME
 except:
     FILTER_TYPE_GENERIC_MIME = 'generic_mime'
+
+from sugarapp.widgets import DesktopOpenChooser
 
 STORE = None
 JOURNAL_IMAGES = []
@@ -159,36 +163,28 @@ class TuxStampDialog(_DialogWindow):
         filepath = STORE.get(iter_, 1)[0]
         if filepath == 'loadfromjournal':
             self.hide()
-            try:
-                chooser = ObjectChooser(self._activity, what_filter='Image',
-                                        filter_type=FILTER_TYPE_GENERIC_MIME,
-                                        show_preview=True)
-            except:
-                # for compatibility with older versions
-                chooser = ObjectChooser(self._activity, what_filter='Image')
+            chooser = DesktopOpenChooser(self._activity)
 
             try:
-                result = chooser.run()
-                newfilepath = None
-                if result == Gtk.ResponseType.ACCEPT:
-                    jobject = chooser.get_selected_object()
-                    if jobject and jobject.file_path:
-                        newfilepath = jobject.file_path
-                        object_id = str(jobject.object_id)
-                        if object_id not in JOURNAL_IMAGES:
-                            JOURNAL_IMAGES.append(object_id)
-                            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
-                                newfilepath,
-                                50,
-                                50)
-                            STORE.append([pixbuf, newfilepath])
+                filename = chooser.get_filename()
+                newfilepath = GLib.build_filenamev([
+                    GLib.get_user_data_dir(),
+                    os.path.basename(filename)])
+                shutil.copyfile(filename, newfilepath)
+
+                if newfilepath not in JOURNAL_IMAGES:
+                    JOURNAL_IMAGES.append(newfilepath)
+                    pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_size(
+                        newfilepath,
+                        50,
+                        50)
+                    STORE.append([pixbuf, newfilepath])
             finally:
                 if not newfilepath:
                     self.show_all()
                 else:
                     self.emit('stamp-selected', newfilepath)
                     self.destroy()
-                chooser.destroy()
                 del chooser
         else:
             self.emit('stamp-selected', filepath)

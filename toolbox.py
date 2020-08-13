@@ -73,11 +73,6 @@ from sugar3.graphics.toolcombobox import ToolComboBox
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.radiotoolbutton import RadioToolButton
 from sugar3.graphics.toggletoolbutton import ToggleToolButton
-from sugar3.graphics.objectchooser import ObjectChooser
-try:
-    from sugar3.graphics.objectchooser import FILTER_TYPE_GENERIC_MIME
-except:
-    FILTER_TYPE_GENERIC_MIME = 'generic_mime'
 from widgets import ButtonStrokeColor
 from sugar3.graphics.colorbutton import ColorToolButton
 from sugar3.graphics.radiopalette import RadioPalette
@@ -86,7 +81,6 @@ from sugar3.graphics.palettemenu import PaletteMenuItem
 
 from sugar3.graphics import style
 
-from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.graphics.toolbarbox import ToolbarButton, ToolbarBox
 from sugar3.activity.widgets import StopButton
 
@@ -94,6 +88,9 @@ from fontcombobox import FontComboBox
 from fontcombobox import FontSize
 
 from dialogs import TuxStampDialog
+
+from sugarapp.widgets import DesktopOpenChooser
+from sugarapp.widgets import ExtendedActivityToolbarButton
 
 
 def add_menu(icon_name, tooltip, tool_name, button, activate_cb):
@@ -130,7 +127,7 @@ class DrawToolbarBox(ToolbarBox):
 
         self._activity = activity
         ToolbarBox.__init__(self)
-        activity_button = ActivityToolbarButton(self._activity)
+        activity_button = ExtendedActivityToolbarButton(self._activity)
         self.toolbar.insert(activity_button, -1)
 
         self._activity.set_toolbar_box(self)
@@ -853,26 +850,11 @@ class ImageToolbar(Gtk.Toolbar):
         self._activity.area.mirror(widget, horizontal=False)
 
     def insertImage(self, widget, activity):
-
-        try:
-            chooser = ObjectChooser(self._activity, what_filter='Image',
-                                    filter_type=FILTER_TYPE_GENERIC_MIME,
-                                    show_preview=True)
-        except:
-            # for compatibility with older versions
-            chooser = ObjectChooser(self._activity, what_filter='Image')
-
-        try:
-            result = chooser.run()
-            if result == Gtk.ResponseType.ACCEPT:
-                logging.debug('ObjectChooser: %r',
-                              chooser.get_selected_object())
-                jobject = chooser.get_selected_object()
-                if jobject and jobject.file_path:
-                    self._activity.area.load_image(jobject.file_path)
-        finally:
-            chooser.destroy()
-            del chooser
+        chooser = DesktopOpenChooser(activity)
+        chooser.add_filter('.png', 'PNG')
+        filename = chooser.get_filename()
+        if filename:
+            self._activity.area.load_image(filename)
 
     # Make the colors be in grayscale
     def grayscale(self, widget):
