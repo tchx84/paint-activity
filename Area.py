@@ -1303,7 +1303,7 @@ class Area(Gtk.DrawingArea):
             ctx.set_source_surface(self.drawing_canvas)
             ctx.paint()
 
-            pixels.fromstring(image_surface)
+            pixels.frombytes(image_surface.get_data())
 
             # process the pixels in the array
             new_array = array.array(pixels.typecode, len(pixels) * [0])
