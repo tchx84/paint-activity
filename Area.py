@@ -1401,12 +1401,10 @@ class Area(Gtk.DrawingArea):
 
     def _surface_to_pixbuf(self, surface):
         # copy from the surface to the pixbuf
-        pixbuf_data = io.StringIO()
-        surface.write_to_png(pixbuf_data)
-        pxb_loader = GdkPixbuf.PixbufLoader.new_with_type('png')
-        pxb_loader.write(pixbuf_data.getvalue())
-        pxb_loader.close()
-        return pxb_loader.get_pixbuf()
+        return Gdk.pixbuf_get_from_surface(
+            surface, 0, 0,
+            surface.get_width(),
+            surface.get_height());
 
     def _pixbuf_to_context(self, pixbuf, context, x=0, y=0):
         # copy from the pixbuf to the drawing context
