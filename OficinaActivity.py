@@ -78,6 +78,7 @@ from Area import Area
 from toolbox import DrawToolbarBox
 import dialogs
 
+from sugarapp.helpers import PrimaryMonitor
 from sugarapp.widgets import SugarCompatibleActivity
 
 
@@ -97,8 +98,8 @@ class OficinaActivity(SugarCompatibleActivity):
 
         self._journal_images = []
         self.fixed = Gtk.Fixed()
-        self._width = Gdk.Screen.width()
-        self._height = Gdk.Screen.height()
+        self._width = PrimaryMonitor.width()
+        self._height = PrimaryMonitor.height()
         self.fixed.modify_bg(Gtk.StateType.NORMAL,
                              style.COLOR_WHITE.get_gdk_color())
 
@@ -161,8 +162,8 @@ class OficinaActivity(SugarCompatibleActivity):
 
     def _configure_cb(self, event):
         ''' Rotate the drawing after a screen rotation '''
-        width = Gdk.Screen.width()
-        height = Gdk.Screen.height()
+        width = PrimaryMonitor.width()
+        height = PrimaryMonitor.height()
         if (self._width > self._height) != (width > height):
             GLib.timeout_add(100, self.area.rotate_right, self.area)
         self._width = width

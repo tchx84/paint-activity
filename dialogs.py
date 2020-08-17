@@ -34,6 +34,7 @@ try:
 except:
     FILTER_TYPE_GENERIC_MIME = 'generic_mime'
 
+from sugarapp.helpers import PrimaryMonitor
 from sugarapp.widgets import DesktopOpenChooser
 
 STORE = None
@@ -48,8 +49,8 @@ class _DialogWindow(Gtk.Window):
         super(_DialogWindow, self).__init__()
 
         self.set_border_width(style.LINE_WIDTH)
-        width = Gdk.Screen.width() - style.GRID_CELL_SIZE * 2
-        height = Gdk.Screen.height() - style.GRID_CELL_SIZE * 2
+        width = PrimaryMonitor.width() - style.GRID_CELL_SIZE * 2
+        height = PrimaryMonitor.height() - style.GRID_CELL_SIZE * 2
         self.set_size_request(width, height)
         self.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
         self.set_decorated(False)
