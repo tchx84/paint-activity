@@ -890,12 +890,13 @@ class Area(Gtk.DrawingArea):
 
     def flood_fill(self, x, y):
         bucket_color = self.tool['bucket_color']
-        r, g, b = bucket_color[0], bucket_color[1], bucket_color[2]
+        r = int((bucket_color[0] / 65536) * 256)
+        g = int((bucket_color[1] / 65536) * 256)
+        b = int((bucket_color[2] / 65536) * 256)
+        a = 255
 
         # pack the color in a int as 0xAARRGGBB
-        fill_color = 0xff000000 + (int(r / 255 * 65536) +
-                                   int(g / 255 * 256) +
-                                   int(b / 255))
+        fill_color = (a << 24) + (r << 16) + (g << 8) + (b);
         logging.error('fill_color %d', fill_color)
 
         # load a array with the surface data
