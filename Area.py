@@ -897,7 +897,7 @@ class Area(Gtk.DrawingArea):
 
         # pack the color in a int as 0xAARRGGBB
         fill_color = (a << 24) + (r << 16) + (g << 8) + (b);
-        logging.error('fill_color %d', fill_color)
+        logging.debug('fill_color %d', fill_color)
 
         # load a array with the surface data
         for array_type in ['H', 'I', 'L']:
@@ -1201,13 +1201,13 @@ class Area(Gtk.DrawingArea):
             self.activity.textview.get_buffer().set_text(selection)
 
         elif clipBoard.wait_is_image_available():
-            logging.error('Area.paste(self): Wait is image available')
+            logging.debug('Area.paste(self): Wait is image available')
             pixbuf_sel = clipBoard.wait_for_image()
             self.load_pixbuf(pixbuf_sel)
             self.pending_clean_selection_background = False
 
         elif clipBoard.wait_is_uris_available():
-            logging.error('Area.paste(self): is uris available')
+            logging.debug('Area.paste(self): is uris available')
             selection = clipBoard.wait_for_contents('text/uri-list')
             if selection is not None:
                 for uri in selection.get_uris():
@@ -1217,8 +1217,8 @@ class Area(Gtk.DrawingArea):
             tempPath = os.path.join("/tmp", "tempFile")
             tempPath = os.path.abspath(tempPath)
             self.load_image(tempPath, self)
-            logging.error('Area.paste(self): Load from clipboard fails')
-            logging.error('loading from tempPath')
+            logging.debug('Area.paste(self): Load from clipboard fails')
+            logging.debug('loading from tempPath')
 
         self.queue_draw()
 

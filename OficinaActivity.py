@@ -216,7 +216,7 @@ class OficinaActivity(activity.Activity):
             if last_point_posi > -1:
                 title = self.metadata['title'][0:last_point_posi] + '.png'
                 self.metadata['title'] = title
-            logging.error('title: %s', self.metadata['title'])
+            logging.debug('title: %s', self.metadata['title'])
 
         if 'images' in self.metadata:
             self._journal_images = json.loads(self.metadata['images'])

@@ -534,7 +534,7 @@ class ButtonFillColor(ColorToolButton):
         content_box.pack_start(fill_checkbutton, True, True, 0)
 
         keep_aspect_checkbutton = Gtk.CheckButton(_('Keep aspect'))
-        logging.error('Create palette : tool name %s', self.properties['name'])
+        logging.debug('Create palette : tool name %s', self.properties['name'])
         ratio = self._activity.area.keep_shape_ratio
         keep_aspect_checkbutton.set_active(ratio)
         keep_aspect_checkbutton.connect(
@@ -659,7 +659,7 @@ class ShapesToolbarBuilder():
         self.set_tool(button, self._tool_name)
 
     def set_tool(self, widget, tool_name):
-        logging.error('tool_name %s', tool_name)
+        logging.debug('tool_name %s', tool_name)
         if tool_name is None:
             return
         if widget != self._tool_button:
